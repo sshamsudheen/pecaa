@@ -33,8 +33,8 @@ class VideosController < ApplicationController
 #        end
       end
     end
-  rescue
-    redirect_to content_libraries_path
+#  rescue
+#    redirect_to content_libraries_path
   end
 
   def edit
