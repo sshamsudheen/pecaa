@@ -10,10 +10,9 @@ body textarea{resize:none;}
 button{
 	font-size: 12px;
 	line-height: 12px;
-	padding: 8px 15px 8px 15px;
+	padding: 5px 15px 8px;
 	margin-right:10px;
 	color:#FFFFFF;
-	font-weight: bold;
 	border-radius: 6px;
 	cursor: pointer;
 }
@@ -34,19 +33,12 @@ button.secondary{
 	background: -moz-linear-gradient(top,  #b5b5b5,  #999999);
 	border:1px solid #666666;
 }
-
-a.primary{
-	background: -webkit-gradient(linear, left top, left bottom, from(#99cc99), to(#669966));
-	background: -moz-linear-gradient(top,  #99cc99,  #669966);
-	border:1px solid #336633;
+button.redBtn{
+	background: -webkit-gradient(linear, left top, left bottom, from(#fd6868), to(#dc4f57));
+	background: -moz-linear-gradient(top,  #fd6868,  #dc4f57);
+	border:1px solid #ff9999;
+	color:#FFFFFF;
 }
-a.secondary{
-	background: -webkit-gradient(linear, left top, left bottom, from(#b5b5b5), to(#999999));
-	background: -moz-linear-gradient(top,  #b5b5b5,  #999999);
-	border:1px solid #666666;
-}
-
-
 .mainContainer {
     margin: auto;
     width: 100%;
@@ -174,9 +166,8 @@ a.secondary{
 	background: url(img/btn_users.png) no-repeat;
 	width: 94px;
 }
-
-.main-nav ul li.users{
-	background: url(img/btn_users.png) no-repeat;
+.main-nav ul li.users.active{
+	background: url(img/btn_users_on.png) no-repeat;
 	width: 94px;
 }
 .main-nav ul li.done{
@@ -237,7 +228,7 @@ a.secondary{
 }
 /* Checkbox customization*/
 span.checkbox {
-    background: url("img/checkbox.png") no-repeat scroll 0 0 white;
+    background: url("img/checkbox.png") no-repeat scroll 0 0 transparent;
     clear: left;
     display: inline-block;
     float: left;

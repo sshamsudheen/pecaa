@@ -30,6 +30,7 @@ Mystore3::Application.routes.draw do
     resources :site_pages do
       get 'copy_page', :on => :member
       post 'rename_page', :on => :collection
+      get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
     end

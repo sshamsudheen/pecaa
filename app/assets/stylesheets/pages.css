@@ -31,101 +31,152 @@
 	display:block;
 }
 
-.site-pages table{
-	table-layout: fixed;
-	border: 1px solid #333333;
-	border-radius: 6px;
-}
-.site-pages table thead {
+.site-pages .userGridHeader {
 	background: url(img/bg_grayGrain.gif) repeat;
 	color:#FFFFFF;
-}
-.site-pages table th {
-	padding:5px;
 	border-bottom: 1px solid #333333;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	height:37px;
+	font-size:14px;
 }
-.site-pages table tbody td{
-	padding: 5px;
-	border-bottom: 1px solid #CCCCCC;
-	border-left: 1px solid #666666;
-	border-top: 1px solid #f0f0f0;
+
+.site-pages .userGridHeader ul.ConLibraHeads,
+.site-pages .userGridHeader ul.ConLibra{
+	padding:0;
+	margin:0;
+	list-style: none;
 }
-.site-pages table tbody tr{
-	background:#f0f0f0;
+
+.site-pages .userGridHeader ul.ConLibraHeads .pageName{
+	width:165px;
+	text-align: left;
+	padding-left:20px;	
+	display:inline-block;
+	vertical-align: middle;
 }
-.site-pages table tfoot td {
+.site-pages .userGridHeader ul.ConLibraHeads .status{
+	width:50px;	
+	padding: 0 2px;
+	text-align: center;
+	display:inline-block;
+	height:24px;
+	vertical-align: middle;
+}
+.site-pages .userGridHeader ul.ConLibraHeads .home{
+	width:40px;	
+	display:inline-block;
+	vertical-align: middle;
+	padding: 3px 0px 0;
+	text-align: center;
+	
+}
+.site-pages .userGridHeader ul.ConLibraHeads .other{
+	width: 200px;
+	text-align: center;
+	display:inline-block;
+}
+.site-pages ul.ConLibra{
+	border-left:1px solid #333333;
+	border-right:1px solid #333333;
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+.site-pages ul.ConLibra li{
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
+	/*border-bottom: 1px solid #CCCCCC;*/
+	height:24px;
+}
+.site-pages ul.ConLibra li:first-child{
+	background:url(img/bg_tableTopShadow.png) repeat-x 0 0 #CCCCCC;
+}
+.site-pages ul.ConLibra li.selected:first-child{
+	background:url(img/bg_tableTopShadow.png) repeat-x 0 top #787878;
+}
+.site-pages ul.ConLibra li:last-child{
+	background:url(img/bg_tableBottomShadow.png) repeat-x 0 bottom #CCCCCC;
+	border-bottom:0px;
+}
+.site-pages ul.ConLibra li.selected:last-child{
+	background:url(img/bg_tableBottomShadow.png) repeat-x 0 bottom #787878;
+}
+.site-pages .userGridFooter {
 	background: url(img/bg_grayGrain.gif) repeat;
 	height:15px;
 	border-top: 1px solid #333333;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
 }
-.site-pages .alt {
-	background:#cccccc;
+.site-pages .userGrid{
+	width:680px;
 }
-.site-pages .selected {
+.site-pages ul.ConLibra .alt {
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
+	border-bottom:1px solid #cbcbca;
+}
+.site-pages ul.ConLibra li.selected {
 	background:#787878;
 	color: #FFFFFF;
-}
-.site-pages .selected td {
-	border-top:1px solid #333333;
-	border-bottom:1px solid #333333;
+	/*border-top:1px solid #333333;
+	border-bottom:1px solid #333333;*/
 }
 
-.site-pages table td:first-child{
-	padding-left:20px;
-	border-left: 0;
-}
-.site-pages table tbody tr:first-child td{
-	border-top: 0;
-	background: -moz-linear-gradient(bottom,  #cccccc, #cccccc,  #cccccc,  #666666);
-	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#cccccc), to(#cccccc), to(#cccccc));
-}
-.site-pages table tbody tr:last-child td{
-	border-bottom: 0;
-	background: -moz-linear-gradient(top,  #cccccc, #cccccc,  #cccccc,  #666666);
-	background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#cccccc), to(#cccccc), to(#666666));
-}
-.site-pages table tbody tr.selected:first-child td{
-	border-top: 0;
-	background: -moz-linear-gradient(bottom,  #787878, #787878,  #787878,  #666666);
-	background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#787878), to(#787878), to(#787878));
-}
-.site-pages table tbody tr.selected:last-child td{
-	border-bottom: 0;
-	background: -moz-linear-gradient(top,  #787878, #787878,  #787878,  #666666);
-	background: -webkit-gradient(linear, left top, left bottom, from(#787878), to(#787878), to(#787878), to(#666666));
-}
-
-
-.site-pages table .pageName{
-	width:170px;
+.site-pages .ConLibra .pageName{
+	width:165px;
+	background:url(img/icon_movable.png) no-repeat 98% center transparent;
 	text-align: left;
 	padding-left:20px;	
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	padding-top:2px;
 }
-.site-pages table .status,
-.site-pages table .home{
-	width:50px;	
-	padding: 0 3px 0 3px;
+.site-pages .ConLibra .status,
+.site-pages .ConLibra .home{
+	width:43px;	
+	padding-top:2px;
 	text-align: center;
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-left: 2px;
+    padding-right: 3px;
 }
-.status .on{
-	width: 48px;
-	height:21px;
-	background: url(img/bg_On.png) no-repeat;
-	display:block;
+.site-pages .ConLibra .home{
+	padding-left:15px;
+	width:25px;
 }
-.status .off{
-	width: 48px;
-	height:21px;
-	background: url(img/bg_Off.png) no-repeat;
-	display:block;
-}
-.site-pages table .other{
-	width:200px;
+	.status .on{
+		width: 48px;
+		height:21px;
+		background: url(img/bg_On.png) no-repeat;
+		display:block;
+	}
+	.status .off{
+		width: 48px;
+		height:21px;
+		background: url(img/bg_Off.png) no-repeat;
+		display:block;
+	}
+.site-pages .ConLibra .other{
+	width:210px;
 	text-align: center;	
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-top:2px;
 }
-.site-pages table .misc{
+.site-pages .ConLibra .misc{
 	text-align: center;
-    width: 35px;
+    width: 40px;
+    display:inline-block;
+    height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-top:2px;
 }
 .subNav-wrapper{
 	background:#FFFFFF;
@@ -146,11 +197,10 @@
 .page-data{
 	margin-bottom:10px;
 }
-.rightBtns{
-	float: right;
-}
+
 .rightBtns button{
 	margin-left:10px;
+	margin-right:0;
 }
 .rightBtns .addPage{
 	width: 96px;
