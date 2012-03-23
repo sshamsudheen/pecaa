@@ -48,11 +48,17 @@
 													<span class="pointer"></span>
 													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
 												</div>
+												<div style="display:none;width:200px;" id="doc_form">
+															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
+												  </div>
 												<%elsif content.source_type == "Video"%>
 												<div class="hotspot" style="display: none;">
 													<span class="pointer"></span>
 													<div class="hotspotContent"><img border="0" src="<%=content.source.source%>" width="120" height="90"></div>
 												</div>
+												<div style="display:none;width:200px;" id="doc_form">
+															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
+												  </div>
 												<%elsif content.source_type == "File"%>
 												  <div style="display:none;width:200px;" id="doc_form">
 															<%@add_file = AddFile.find(content.source_id)%>
