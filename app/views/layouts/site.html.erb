@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PECAA</title>
-      <%= stylesheet_link_tag "sites", "layout", "content", "site_pages", "facebox", "pages"%>
+      <%= stylesheet_link_tag "sites", "layout", "content", "site_pages", "facebox", "pages", "users"%>
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox'%>
       <%= csrf_meta_tag %>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
@@ -39,7 +39,7 @@
 				$( this ).find( ".placeholder" ).remove();
 				$( this ).find('li').remove();
 				$( "<li></li>" ).html( ui.draggable.clone() ).appendTo( this );
-				$('.ui-droppable div#doc_form').show();
+				$('.ui-droppable div.contentObject').show();
 			}
 		}).sortable({
 			items: "li:not(.placeholder)",
@@ -104,13 +104,21 @@
       					<li class="content <%= params[:controller]== 'content_libraries' ? 'active' : ''%>"></li>
       					<li class="theme"></li>
       					<li class="optional"></li>
-  						<li class="users"></li>
+  						<li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%>""></li>
       					<li class="done"></li>
       				</ul>
       			</div>
       			<div class="rightBtns"><button class="btn_Save">Save and go to next step</button></div>
       		</div>
-      	</div>
+			<%if params[:controller] == "site_users"%>
+			<div class="user-tabs">
+		    			<ul>
+			    			<li class="<%= params[:action]== 'list_users' ? 'active' : ''%>"><%=link_to "users", "/sites/#{@site.id}/site_users/list_users"%></li>
+			    		    <li class="<%= params[:action]== 'list_groups' ? 'active' : ''%>"><%=link_to "groups", "/sites/#{@site.id}/site_users/list_groups"%></li>
+		    			</ul>
+		    		</div>
+      		</div>
+		<%end%>
       	<div class="content-section">
       	  	<%=yield%>
       	</div>

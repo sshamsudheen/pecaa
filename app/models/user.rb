@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_many :site_link_accounts
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by"
   has_many :password_histories
-
+  
+  has_one :site_user
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, #:registerable,

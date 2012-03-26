@@ -2,9 +2,9 @@
     <div class="alphaBg">
     </div>
     <div class="expandable">
-        <span class="delete"></span>
+        <span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.contentObject').hide();"%></span>
         <span class="drag"></span>
-        <span class="scale"></span>
+        <span class="scale"></span> 
         <div class="objectContent" style="width:300px;height:250px;">
             <div class="viewVideoHolder">
                 <div class="viewVideoTop">

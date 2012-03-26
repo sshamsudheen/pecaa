@@ -37,6 +37,11 @@ Mystore3::Application.routes.draw do
     resources :site_links do
       post 'search', :on => :collection
     end
+    
+    resources :site_users do
+      get 'list_users', :on => :collection 
+      get 'list_groups', :on => :collection
+    end
   end
   
   resources :images

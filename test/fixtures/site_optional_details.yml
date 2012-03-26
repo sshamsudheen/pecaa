@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key_words: MyText
+  google_analytics_code: MyText
+  description: MyText
+  logo_alt_text: MyString
+  twitter_id: MyString
+  google_id: MyString
+  facebook_id: MyString
+  linked_in_id: MyString
+  share: false
+
+two:
+  key_words: MyText
+  google_analytics_code: MyText
+  description: MyText
+  logo_alt_text: MyString
+  twitter_id: MyString
+  google_id: MyString
+  facebook_id: MyString
+  linked_in_id: MyString
+  share: false
