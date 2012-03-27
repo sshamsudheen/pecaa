@@ -17,14 +17,33 @@
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Form"%>
 												<li class="item newItem"><span class="title">New Form</span>
+												<%=hidden_field_tag 'source',"AddForm"%>
+															<div style="display:none;width:200px;" id="doc_form">
+																<%#@image = Image.new%>
+																<%@from_content=true%>
+																<%=render :partial=>"add_forms/form"%>
+															</div>
 												</li>
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Image"%>
-												<li class="item newItem"><span class="title">New Image</span>
+												<li class="item newItem">
+													<span class="title">New Image</span>
+													<%=hidden_field_tag 'source',"Image"%>
+															<div style="display:none;width:200px;" id="doc_form">
+																<%@image = Image.new%>
+																<%@from_content=true%>
+																<%=render :partial=>"images/form"%>
+															</div>
 												</li>
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Video"%>
 												<li class="item newItem"><span class="title">New Video</span>
+												<%=hidden_field_tag 'source',"Video"%>
+															<div style="display:none;width:200px;" id="doc_form">
+																<%@video = Video.new%>
+																<%@from_content=true%>
+																<%=render :partial=>"videos/form"%>
+															</div>
 												</li>
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="File"%>

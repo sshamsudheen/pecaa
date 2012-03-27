@@ -1,17 +1,25 @@
-<%= form_for(@video) do |f| %>
-  <% if @video.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
+<%= stylesheet_link_tag "pecaa"%>
+<div class="addFileHolder">
+<div class="helpPopUp">
+<p>Add Video info</p>
 
-      <ul>
-      <% @video.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<span><span class="helpGreyTxt">video type:</span> MPEG, MP4, FLV, F4V</span><br />
+<span><span class="helpGreyTxt">max file size:</span> 30mb</span>
+</div>
+    <div class="addFileTop">Add Video <img src="/assets/icon-help.png" class="help" /></div>
+    <%= form_for(@video, :html => { :multipart => true }, :remote => true) do |f| %>
+	<%=hidden_field_tag :from_content, @from_content%>
+    <%#= f.object.errors %>
+    <div class="addFileBody">
+      <%= f.file_field :source %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="addFileBottom">
+      <div class="btnCancelLeft">
+        <input type="reset" value="Cancel" class="btnCancel" />
+      </div>
+      <div class="btnUploadFileLeft">
+        <%= f.submit "Upload Video", :class => "btnUploadFile" %>
+      </div>
+    </div>
+    <% end %>
+</div>

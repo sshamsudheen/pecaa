@@ -19,9 +19,17 @@ class ImagesController < ApplicationController
         ContentLibrary.create({:name => @image.upload_file_name,
           :source_id => @image.id, :source_type => 'Image',
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
-        redirect_to content_libraries_path
+         if params[:from_content]
+            redirect_to content_search_path+"?search[source_type_equals]=Image"
+          else
+            redirect_to content_libraries_path
+          end
       else
-        redirect_to content_libraries_path
+         if params[:from_content]
+            redirect_to content_search_path+"?search[source_type_equals]=Image"
+          else
+            redirect_to content_libraries_path
+          end
 #        respond_to do |format|
 #          format.html  { render(:nothing => true)}
 #        end
