@@ -4,9 +4,9 @@ class Video < ActiveRecord::Base
   has_attached_file :source
 
   # Paperclip Validations
-  validates_attachment_presence :source
-  validates_attachment_size :source, :less_than=>30.megabyte
-  validates_attachment_content_type :source, :content_type => ['video/mp4', 'video/mpeg', 'video/flv', 'video/f4v', 'video/x-flv', 'video/x-msvideo']
+#  validates_attachment_presence :source
+#  validates_attachment_size :source, :less_than=>30.megabyte
+#  validates_attachment_content_type :source, :content_type => ['video/mp4', 'video/mpeg', 'video/flv', 'video/f4v', 'video/x-flv', 'video/x-msvideo']
 #  validates_attachment_content_type :source, :content_type => 'video/quicktime'
 
     # Acts as State Machine
