@@ -110,13 +110,13 @@
     text-align: center;
     width: 150px;
     position: relative;
+    cursor: pointer;
 }
 .item-wrapper .item.newItem{
 	background:url(/assets/bg_newItem.png)repeat;
 }
-.item-wrapper .item:hover{
+.item-wrapper .item.hovered{
 	background:url(/assets/bg_ItemHover.png)repeat-x;
-	cursor: pointer;
 }
 .item span.dragable{
 	background:url(/assets/icon_Dragable.png)no-repeat;
@@ -138,7 +138,7 @@
 }
 .item .hotspot{
 	position: absolute;
-	top: 33px;
+	top: 35px;
 	width: 128px;
 	height:90px;
 	padding:10px;
@@ -191,15 +191,15 @@
 .contentObject{
 	position: absolute;
 	z-index: 99999;
-	left: 30%;
-	top:20%;
+	left: 10%;
+	top:10%;
 }
 
 .dragableObject{
 	position: absolute;
 	z-index: 99999;
-	left: 30%;
-	top:50%;
+	left: 60%;
+	top:60%;
 }
 .dragableObject .dragable{
 	position: relative;
@@ -216,13 +216,27 @@
 .dragable .dragContent{
 	background: url(/assets/bg_DraggableContent.png)no-repeat;
 	width:286px;
-	height: 55px;
 	padding:40px 10px 10px 10px;
+	overflow: hidden;
+}
+.dragable .dragContentBottom{
+	background: url(/assets/bg_DraggableContentBottom.png)no-repeat;
+	height: 10px;
+}
+.dragContent .noteText{
+	color:#c91e27;
 }
 .dragContent .key,
 .dragContent .val{
 	display: inline-block;
 	margin:2px;
+}
+.dragContent .mapDetail .key{
+	width: 60px;
+	text-align:right;
+}
+.dragContent .mapDetail .val input[type="text"]{
+	width:210px;
 }
 .dragContent .val input[type="text"]{
 	width:230px;
@@ -254,15 +268,17 @@
 }
 .contentObject .expandable .objectContent{
 	min-width:130px;
-	min-height: 145px;
+	min-height: 30px;
 	border-radius: 6px;
 	border: 1px solid #579DC4;
 	padding:40px;
 }
-.objectContent .title,
-.objectContent img{
+.objectContent .title{
 	vertical-align: middle;
 	padding:5px;
+}
+.objectContent img{
+	vertical-align: middle;
 }
 .expandable .delete,
 .expandable .drag,
@@ -280,14 +296,14 @@
 	background: url(/assets/btn_ContentDelete.png) no-repeat;
 }
 .expandable .drag{
-	right:-1%;
+	right:-2px;
 	top:-2px;
 	width:36px;
 	height:35px;
 	background: url(/assets/btn_ContentDrag.png) no-repeat;
 }
 .expandable .scale{
-	right:-1%;
+	right:-2px;
 	bottom:-2px;
 	width:22px;
 	height:22px;
@@ -317,24 +333,183 @@
 	background: -webkit-gradient(linear, left top, left bottom, from(#9bbcff), to(#6699ff));
 	background: -moz-linear-gradient(top,  #9bbcff,  #6699ff);
 }
-.themes-board{
-	background: url(/assets/bg_grid.gif) repeat;
-	height:60%;
-	width:1015px;
-	position: absolute;
-	top:290px;
-	border-top:1px solid black;
+.objectContent .video-wrapper {
+	background:#f5f6f6;
+	border:1px solid #CCCCCC;
+	border-top-right-radius:6px;
+	border-bottom-right-radius:6px;
+	overflow:hidden;
 }
-.themes-board .grid-board{
-	background:url(/assets/bg_gridTop.png) repeat-x;
-	height:8px;
-	margin-top:-8px;
+.objectContent .video-wrapper .videoPreview{
+	height:195px;
+	width:320px;
+}
+.objectContent .video-wrapper .videoPreview img{
+	padding:0;
+}
+.objectContent .video-wrapper .videoDetail{
+	padding:10px;
+	width:260px;
+}
+.video-wrapper .videoDetail .vdoInfo{
+	display:block;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#DADADA));
+	background: -moz-linear-gradient(top,  #FFFFFF,  #DADADA);
+	padding:5px;
+	border-radius:4px;
+	border:1px solid #CCCCCC;
+	margin-bottom:5px;
+}
+.video-wrapper .videoDetail .vdoInfo .dragIcon{
+	background: url(/assets/icon_movable.png) no-repeat 0 -1px;
+	width:10px;
+	height:19px;
+	display:inline-block;
+	vertical-align: middle;
+}
+.dragContent span{
+	vertical-align: middle;
+}
+.objectContent .img-holder{
+	position: relative;
+}
+.contentObject .imgCropTools .btnTop,
+.contentObject .imgCropTools .btnRight,
+.contentObject .imgCropTools .btnBottom,
+.contentObject .imgCropTools .btnLeft{
+	position:absolute;
+}
+.contentObject .imgCropTools .btnTop{
+	top: -21px;
+	left:45%;
+}
+.contentObject .imgCropTools .btnRight{
+	top:45%;
+	right: -21px;
+}
+.contentObject .imgCropTools .btnBottom{
+	bottom: -21px;
+	left:45%;
+}
+.contentObject .imgCropTools .btnLeft{
+	top:45%;
+	left: -21px;
 }
 
-.blueBtn{
-	border:0;
-	background:url(/assets/bg_blueBtn.png) no-repeat;
-	width:94px;
-	height:24px;
-	padding:0 0 5px;
+/* text editing tools classes*/
+.text-editer .tool-wrapper{
+	margin-bottom:10px;
+	overflow:hidden;
 }
+.text-editer .tool-wrapper .toolset{
+	background:#ccc;
+	background: -moz-linear-gradient(top,  #ffffff,  #ededed);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+	float:left;
+	margin:0 5px 5px 0;
+	padding:0;
+	overflow:hidden;
+	border-radius:4px;
+	border: 1px solid #cccccc;
+	height:25px;
+}
+.toolset span{
+	display: table-cell;
+	width:25px;
+	height:25px;
+	margin:0;
+	padding: 4px 0;
+	border-left:1px solid #cccccc;
+	text-align: center;
+	color:#666666;
+}
+.text-editer .tool-wrapper .toolset span:first-child{
+	border-left:0;
+}
+.text-editer .tool-wrapper .toolset span a,
+.editor-tabs ul li a{
+	display: block;
+	text-decoration: none;
+	color:#666666;
+}
+.text-editer .tool-wrapper .toolset span a{
+	width: 25px;
+	height: 17px;
+	display: block;
+}
+.text-editer .tool-wrapper .toolset .heading{
+	width: 105px;
+	background: url(/assets/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.text-editer .tool-wrapper .toolset .font{
+	width: 105px;
+	background: url(/assets/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.text-editer .tool-wrapper .toolset .fontSize{
+	width: 45px;
+	background: url(/assets/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.editor-tab-wrapper .editor-tabs{
+	position: relative;
+	height:27px;
+}
+.toolset .underline{
+	background:url(/assets/icon_Underline.gif) no-repeat center center;
+}
+.toolset .strike{
+	background:url(/assets/icon_Strike.gif) no-repeat center center;
+}
+.toolset .bold{
+	background:url(/assets/icon_Bold.gif) no-repeat center center;
+}
+.toolset .italic{
+	background:url(/assets/icon_Italic.gif) no-repeat center center;
+}
+.toolset .xSq{
+	background:url(/assets/icon_Xsq.gif) no-repeat center center;
+}
+.toolset .x2{
+	background:url(/assets/icon_X2.gif) no-repeat center center;
+}
+.toolset .threeA{
+	background:url(/assets/icon_3A.gif) no-repeat center center;
+}
+.toolset .highlight{
+	background:url(/assets/icon_Highlight.gif) no-repeat center center;
+}
+.toolset .rightIndent{
+	background:url(/assets/icon_RightIndent.gif) no-repeat center center;
+}
+.toolset .leftIndent{
+	background:url(/assets/icon_LeftIndent.gif) no-repeat center center;
+}
+.toolset .format{
+	background:url(/assets/icon_Format.gif) no-repeat center center;
+}
+.toolset .cells{
+	background:url(/assets/icon_Cells.gif) no-repeat center center;
+}
+.toolset .bullets{
+	background:url(/assets/icon_Bullets.gif) no-repeat center center;
+}
+.toolset .numberList{
+	background:url(/assets/icon_NumberList.gif) no-repeat center center;
+}
+.toolset .link{
+	background:url(/assets/icon_Link.gif) no-repeat center center;
+}
+.toolset .unLink{
+	background:url(/assets/icon_UnLink.gif) no-repeat center center;
+}
+.toolset .img{
+	background:url(/assets/icon_Img.gif) no-repeat center center;
+	width:30px;
+}
+.toolset .doc{
+	background:url(/assets/icon_Doc.gif) no-repeat center center;
+	width:28px;
+}
+/* end of text editing tool classes*/
