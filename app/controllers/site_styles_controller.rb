@@ -3,7 +3,7 @@ class SiteStylesController < ApplicationController
    layout 'site'
   
   def index
-
+    @style_type = params[:type] || 'background'
   end
   
   protected
