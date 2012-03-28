@@ -1,0 +1,117 @@
+<div class="themes-main">
+	<div class="themes-wrapper">
+		<div class="tabs">
+			<ul>
+				<li><a href="#">Choose Theme</a></li>
+				<li><a href="#">Choose Base Colors</a></li>
+				<li class="active"><a href="#">Edit All Styles</a></li>
+			</ul>
+		</div>
+		<div class="theme-content" id="content_1" style="display: none">
+			
+		</div>
+		
+		<div class="theme-content" id="content_2" style="display: none">
+			
+		</div>
+		
+		<div class="theme-content" id="content_3">
+			<div class="theme-SubTabs left">
+				<ul>
+					<li><a href="#">Text</a></li>
+					<li class="active"><a href="#">Background</a></li>
+					<li><a href="#">Block</a></li>
+				</ul>
+			</div>
+			<div class="subTab-Content left" style="display: none">
+			</div>
+			<div class="subTab-Content left">
+				<div class="resetAll"><a href="#"></a></div>
+				<div class="colum-wrapper left">
+					<div class="changePanel">
+						<label>color</label>
+						<div class="palletBox">
+							<div class="solidColor"><span class="piller"></span><span class="add"></span></div>
+							<div class="gradientColor right">creat gradient</div>
+						</div>
+					</div>
+					<div class="changePanel">
+						<label>opacity</label>
+						<div class="palletBox">
+							  <div class="slider-alpha" id='opacity'>
+								<div class="alphaPointer"><span id="opacity_val" class="val">100%</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="colum-wrapper last left">
+					<div class="changePanel">
+						<label>background image</label>
+						<div class="palletBox grayBg"><span class="noImage">no image</span>
+							<div class="chooseImg right">choose image</div>
+						</div>
+					</div>
+					<div class="changePanel">
+						<label>image position & style</label>
+						<div class="palletBox">
+							<div class="tileBox left">
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li class="active"></li>
+								</ul>
+						</div>
+						<div class="repeatBox left">
+							<div class="repeatXY"><input type="checkbox" class="styled" id="repeatX"/> <label for="repeatX">repeat-x</label></div>
+							<div class="repeatXY"><input type="checkbox" class="styled" id="repeatY"/> <label for="repeatY">repeat-y</label></div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="subTab-Content left" style="display: none">
+			</div>
+		</div>
+	</div>
+	<div class="themes-board">
+		<div class="grid-board">
+			
+		</div>
+	</div>
+</div>
+<script>
+
+  $(document).ready(function(){
+  	$('.tileBox ul li').click(function(){
+  	  var $this = $(this);
+  	  $this.parent().find('li.active').removeClass('active');
+  	  $this.addClass('active');
+    })
+  })
+
+  $( "#opacity" ).slider({
+    orientation: "horizontal",
+    min: 0,
+    max: 100,
+    value: 100,
+    slide: refreshSwatch,
+		change: refreshSwatch});
+    
+    function refreshSwatch() {
+      var transparency = $("#opacity").slider("value")
+      // $("#swatch").css("background-color", "rgb(" + red + ", " + green + ", " + blue + ")");
+      // $("#swatch").css("opacity", transparency);
+      // $(".hexResults").text("#" + hex);
+      // $(".rgbResults").text("rgb(" + red + ", " + green + ", " + blue + ")");
+  		$("#opacity_val").text(transparency + "%");
+      // $(".rgbaResults").text("rgba(" + red + ", " + green + ", " + blue + ", " + transparency + ")");
+  	}
+  	refreshSwatch();
+</script>

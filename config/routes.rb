@@ -1,6 +1,8 @@
 Mystore3::Application.routes.draw do
 
 
+  get "model/site_style"
+
   get "site_pages/index"
 
   resources :themes
@@ -33,6 +35,9 @@ Mystore3::Application.routes.draw do
       get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
+    end
+    resources :site_styles do
+      
     end
     resources :site_links do
       post 'search', :on => :collection
