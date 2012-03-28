@@ -2,6 +2,7 @@ class Site < ActiveRecord::Base
   has_many :site_links, :dependent => :delete_all
   has_many :site_contacts
   has_many :site_pages
+  has_one  :site_style
   has_many :site_users
   has_many :site_page_contents
   has_many :site_link_accounts

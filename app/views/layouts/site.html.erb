@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PECAA</title>
-      <%= stylesheet_link_tag "layout", "facebox", "pages"%>
+      <%= stylesheet_link_tag "layout", "facebox", "pages", "themes"%>
 	  <%if params[:controller] == "content_libraries"%>
 	  	<%= stylesheet_link_tag "content"%>
 	  <%elsif params[:controller] == "site_users"%>
@@ -18,9 +18,13 @@
 		<%end%>
 	  <%end%>
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox'%>
+      <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
       <%= csrf_meta_tag %>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
-      <%= javascript_include_tag 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+      <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core',
+      'jquery.ui.widget',
+      'jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+      <link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
 
       <script type="text/javascript">
 
