@@ -1,291 +1,177 @@
-<%if false%>
-<ul>
-    <% @user_obj.errors.full_messages.each do |msg| %>
-    <li>
-        <%= msg %>
-    </li>
-    <% end %>
-</ul>
-<%end%>
-<div class="ueBodyContent">
-    <div class="fLeft">
-        User Management
-    </div>
-    <div class="btnGreyLeft ueBtnCreateNewUser">
-        <%= button_to "create new user", '/users/new',:class=>'btnGrey',:method=>"get" %>
-    </div>
-    <div class="clear">
-    </div>
-<%=form_for(@user_obj) do |f| %>
-    <!-- black table -->
-    <div class="rcBlack">
-        <div class="ueNameDisplay">
-            <%=@user_obj.username if @user_obj %>
-        </div>
-        <div class="lastActivity">
-            <span>last activity:</span>
-            <%=@user_obj.last_login.strftime('%d/%m/%y') if @user_obj and @user_obj.last_login %>
-        </div>
-        <div class="created">
-            <span>created:</span>
-            <%=@user_obj.created_at.strftime('%d/%m/%y') if @user_obj and @user_obj.created_at %>
-        </div>
-        <div class="status">
-            <div id="checkboxDemo">
-                <label for="checkbox-4" tabindex="4" class="txtColorWhite prettyCheckbox checkbox list">
-                    active
-                </label>
-                <%=f.check_box "active",{:id=>"checkbox-4",:class=>"hiddenCheckbox" },1,0%>
-            </div>
-        </div>
-        <div class="clearHeight10Border">
-        </div>
-        <!-- first column -->
-        <div class="col1">
-            <div class="row1">
-                <div class="inpTxt">
-                    user name:
-                </div>
-                <%=f.text_field :username,:class=>"ueInp" %>
-                <div class="clear">
-                </div>
-                <span id="nameInfo" class="error"></span>
-            </div>
-			<%if @user_obj.new_record?%>
-            <div class="row1">
-                <div class="inpTxt">
-                    password:
-                </div>
-                <%=f.password_field :password,:class=>"ueInp" %>
-                <div class="clear">
-                </div>
-                <span id="passInfo" class="error"></span>
-            </div>
-			<%end%>
-            <div class="row1">
-                <div class="inpTxt correctFieldTxt">
-                    email:
-                </div>
-                <%=f.text_field :email,:class=>"ueInp" %>
-                <div class="clear">
-                </div>
-                <span id="emailInfo" class="error"><%= @user_obj.errors["email"] unless @user_obj.errors.blank? %></span>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    phone:
-                </div>
-                <%=f.text_field :phone_number,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    company:
-                </div>
-                <%=f.text_field :company,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    title:
-                </div>
-                <%=f.text_field :title,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    role:
-                </div>
-                <%=f.text_field :role_title,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    login page:
-                </div>
-                <%=f.text_field :login_page,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    user #:
-                </div>
-                <%=f.text_field :user_identity,:class=>"ueInp" %>
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                    websites:
-                </div>
-                <input type="text" class="ueInp" />
-            </div>
-            <div class="row1 posrel">
-                <div class="inpTxt">
-                </div>
-                <input type="text" class="ueInpRemove" /><img src="/assets/remove-field.png" class="addFieldPos" />
-            </div>
-            <div class="row1">
-                <div class="inpTxt">
-                </div>
-                <input type="text" class="ueInp" />
-            </div>
-            <div class="row1 posrel">
-                <div class="inpTxt">
-                </div>
-                <input type="text" class="ueInpAdd" /><img src="/assets/add-field.png" class="addFieldPos" />
-            </div>
-        </div><!-- end of first column --><!-- second column -->
-        <div class="col2">
-            <%=f.fields_for(:addresses, :include_id => false) do |address| %>
-            <ol id="toc">
-                <li>
-                    <a href="#page-1" class=" active"><span>shipping address</span></a>
-                </li>
-                <li>
-                    <a href="#page-2" class=" inactive"><span>billing address</span></a>
-                </li>
-            </ol>
-            <div class="content active" id="page-1">
-                <div class="row1">
-                    <div class="inpTxt">
-                    </div>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        nick name:
-                    </div>
-                    <%=f.text_field "addresses1[nickname]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.nickname if @user_obj.addresses.first}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        address:
-                    </div>
-                    <%=f.text_field "addresses1[address_one]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.address_one if @user_obj.addresses.first}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        city:
-                    </div>
-                    <%=f.text_field "addresses1[city]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        state:
-                    </div>
-                    <%=f.text_field "addresses1[state]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        zip:
-                    </div>
-                    <%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}"%>
-                </div>
-                <div class="clear">
-                </div>
-            </div>
-            <div class="content inactive" id="page-2">
-                <div class="row1">
-                    <div class="inpTxt">
-                    </div>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        nick name:
-                    </div>
-                    <%=f.text_field "addresses2[nickname]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.nickname if @user_obj.addresses.second}"%>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        address:
-                    </div>
-                    <%=f.text_field "addresses2[address_one]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.address_one if @user_obj.addresses.second}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        city:
-                    </div>
-                    <%=f.text_field "addresses2[city]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.city if @user_obj.addresses.second}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        state:
-                    </div>
-                    <%=f.text_field "addresses2[state]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.state if @user_obj.addresses.second}" %>
-                </div>
-                <div class="row1">
-                    <div class="inpTxt">
-                        zip:
-                    </div>
-                    <%=f.text_field "addresses2[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.zipcode if @user_obj.addresses.second}"%>
-                </div>
-                <div class="clear">
-                </div>
-            </div>
-            <%end %>
-        </div>
-        <!-- end of second column --><!-- third column -->
-        <div class="col3">
-            <div class="col3Head">
-                roles
-            </div>
-            <div class="rcRoles">
-                <!--     <div class="roles"><img src="/assets/icon-close.png" /><span>System Administrator</span></div>
-                <div class="clear"></div>
-                <div class="roles"><img src="/assets/icon-active.png" /><span>Administrator</span></div>
-                <div class="clear"></div>
-                <div class="roles"><img src="/assets/icon-close.png" /><span>Website Builder</span></div>
-                <div class="clear"></div>-->
-				
-                <div id="checkboxDemo">
-                    <%Role.all.collect do |role| %>
-                    <label for="checkbox-<%=role.id%>" tabindex="<%=role.id%>" class="txtColorWhite prettyCheckbox checkbox list">
-                        <%=role.display_name %>
-                    </label>
-                    <%=check_box_tag "users[role_ids][]",role.id,@user_obj.roles.include?(role),{:id=>"checkbox-#{role.id}",:class=>"hiddenCheckbox"} %>
-                    <%end %>
-                </div>
-            </div>
-            <div class="col3Head">
-                notes
-            </div>
-            <!--<div class="rcNotes">
-                Here is a note about shomething 
-                to do with this account <img src="/assets/add-notes.png" class="addNotesPos" />
-            </div><span class="noteAuthor">10/22/2011 by k.keane</span>
-            <div class="rcNotes">
-                Here is a note about shomething
-                to do with this account
-            </div>
-            <span class="noteAuthor">10/22/2011 by k.keane</span>
-            <div class="rcNotes">
-                Here is a note about shomething
-                to do with this account
-            </div>
-            <span class="noteAuthor">10/22/2011 by k.keane</span>
-            <div class="clear">
-            </div>
-            <div class="seeMore">
-                <a href="#">see more</a>
-            </div>-->
-        </div>
-        <!-- end of third column -->
-		
-        <div class="clear ueBdrBottom">
-        </div>
-		
-        <div class="btnAshGreyLeft ueBtnCancel">
-            <%= button_to "Cancel", '/users',:class=>'btnAshGrey',:method=>"get" %>
-        </div>
-		
-        <div class="btnGreenLeft ueBtnSave">
-            <%=f.submit "Save",:class=>"btnGreen" %>
-        </div>
-    </div>
-    <!-- end of black table -->
-<%end %>
-</div>
-<%= javascript_include_tag "activatables" %>
-<script type="text/javascript">
-activatables('page', ['page-1', 'page-2']);
-</script>
-<%= javascript_include_tag "prettyCheckboxes" %>
-<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-				$('#checkboxDemo input[type=checkbox]').prettyCheckboxes();
-				$('.inlineRadios input[type=radio]').prettyCheckboxes({'display':'inline'});
-			});
-</script>
+<div class="pages-main">
+		    			<div class="pages-wrapper">
+		    				
+		    				<div class="usersLeftPane userEdit">
+								<div class="title">Manage Users <span class="help">
+									<a href="#"></a></span><div class="addNewUserBtn right">
+										        <%= button_to "create new user", '/users/new',:class=>'addNewUser',:method=>"get" %>
+							     </div>
+							</div>
+								<%=form_for(@user_obj) do |f| %>
+									<div class="userEditPanel">
+										<h2><%=@user_obj.username if @user_obj %></h2>
+										<div class="user-topCorner">
+											<span class="key"><span id="" class="checkbox" style="background-position: 0px 0px; "></span>
+											<%=f.check_box "active",{:id=>"checkbox-4",:class=>"styled" },1,0%>
+											</span>
+											<span class="val">active</span>
+											<span class="key">created :</span>
+											<span class="val"> <%=@user_obj.created_at.strftime('%d/%m/%y') if @user_obj and @user_obj.created_at %></span>
+											<span class="key">last activity :</span>
+											<span class="val"><%=@user_obj.last_login.strftime('%d/%m/%y') if @user_obj and @user_obj.last_login %></span>
+										</div>
+										<!-- start of colum wrapper -->
+										<div class="left">
+											<div class="userDetailSet">
+												<span class="key">user name :</span>
+												<span class="val"><%=f.text_field :username,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">password :</span>
+												<span class="val"><%=f.password_field :password,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">email :</span>
+												<span class="val"><%=f.text_field :email,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">phone :</span>
+												<span class="val"><%=f.text_field :phone_number,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">company :</span>
+												<span class="val"> <%=f.text_field :company,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">title :</span>
+												<span class="val"><%=f.text_field :title,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">role :</span>
+												<span class="val"><%=f.text_field :role_title,:class=>"ueInp" %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">user # :</span>
+												<span class="val"><%=f.text_field :user_identity,:class=>"ueInp" %></span>
+											</div>
+									
+										</div>
+										<!-- end of colum wrapper -->
+										<!-- start of colum wrapper -->
+										<div class="left">
+											<div class="tab-wrapper"><ul><li class="active"><a href="#">shipping address</a></li><li><a href="#">billing address</a></li></ul></div>
+											<div class="tab-Content">
+												<div class="userDetailSet">
+													<span class="key"></span>
+													<span class="val"><select><option>choose an existing address</option></select></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">nickname :</span>
+													<span class="val"><%=f.text_field "addresses1[nickname]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.nickname if @user_obj.addresses.first}" %>g</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">address :</span>
+													<span class="val"> <%=f.text_field "addresses1[address_one]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.address_one if @user_obj.addresses.first}" %></span>
+													<span class="key"></span>
+													<span class="val">2</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">Omaha</span>
+													<span class="val"><%=f.text_field "addresses1[city]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" %></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">state :</span>
+													<span class="val"><%=f.text_field "addresses1[state]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" %></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">zip :</span>
+													<span class="val"><%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}"%></span>
+												</div>
+											</div>
+											<div class="tab-Content" style="display: none">
+												<div class="userDetailSet">
+													<span class="key"></span>
+													<span class="val"><select><option>choose an existing address</option></select></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">nickname :</span>
+													<span class="val">Home Shipping</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">address :</span>
+													<span class="val">1234 W. 12th Avenue</span>
+													<span class="key"></span>
+													<span class="val">2</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">Omaha</span>
+													<span class="val">302.345.6662</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">state :</span>
+													<span class="val">Nebraska</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">zip :</span>
+													<span class="val">15648</span>
+												</div>
+											</div>
+										</div>
+										<!-- end of colum wrapper -->
+										<!-- start of colum wrapper -->
+										<div class="last left">
+											<div class="userGroupInfo">
+												<div class="groupLabel">groups :</div>
+												<div class="groupInfo">
+													<div>
+														<span id="" class="checkbox" style="background-position: 0px -50px; "></span><input type="checkbox" class="styled">
+														<label>group1</label>
+													</div>
+													<div>
+														<span id="" class="checkbox" style="background-position: 0px -50px; "></span><input type="checkbox" class="styled">
+														<label>group2</label>
+													</div>
+													<div>
+														<span id="" class="checkbox" style="background-position: 0px -50px; "></span><input type="checkbox" class="styled">
+														<label>groupX</label>
+													</div>
+												</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupLabel">notes :</div>
+												<div class="groupInfo fixed"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+													<span class="addNote right"><a href="#" class="btnAddNote"></a></span>
+												</div>
+												<div class="editedBy clear right">10/22/2011 by k.keane</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupInfo fixed fullWidth"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+												</div>
+												<div class="editedBy clear right">9/11/2011 by j.smith</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupInfo fixed fullWidth"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+												</div>
+												<div class="editedBy clear right">9/11/2011 by peter king</div>
+											</div>
+											<div class="seeMore">
+												<div class="seeMoreLine"></div>
+												<span class="seeMoreBtn"><a href="#">see more</a></span>
+											</div>
+										</div>
+										<!-- end of colum wrapper -->
+										
+										<div class="userEditBtnPanel clear">
+											<div class="left"><button class="redBtn">delete user</button></div>
+											<div class="right">
+												<button class="secondary">cancel</button>
+												<button class="primary">save changes</button>
+											</div>
+										</div>
+									</div>
+								
+		    				</div>
+
+		    		<%end%>
+		    			</div>
+		    		</div>

@@ -5,7 +5,19 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PECAA</title>
-      <%= stylesheet_link_tag "sites", "layout", "content", "site_pages", "facebox", "pages", "themes", "users", "optional"%>
+      <%= stylesheet_link_tag "layout", "facebox", "pages", "themes"%>
+	  <%if params[:controller] == "content_libraries"%>
+	  	<%= stylesheet_link_tag "content"%>
+	  <%elsif params[:controller] == "site_users"%>
+	    <%= stylesheet_link_tag "users"%>
+	  <%elsif (params[:controller] == "sites" or params[:controller] == "sites_pages")%>
+	    <%if params[:action] =="optional"%>
+			<%= stylesheet_link_tag "optional"%>
+		<%else%>
+	  		<%= stylesheet_link_tag "site_pages","sites"%>
+		<%end%>
+	  <%end%>
+      <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox'%>
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
       <%= csrf_meta_tag %>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
