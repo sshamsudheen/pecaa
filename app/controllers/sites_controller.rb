@@ -104,7 +104,17 @@ class SitesController < ApplicationController
       render :partial => "link_accounts"
     end
   end
+  
+  def optional
+    @optional = SiteOptionalDetail.new
+    render :layout => "site"
+  end
 
+  def create_optional
+    @optional = SiteOptionalDetail.create(params[:optional])
+    redirect_to "/sites/#{params[:id]}/site_users/list_users"
+  end
+  
   protected
 
   def setup

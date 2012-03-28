@@ -23,7 +23,9 @@ Mystore3::Application.routes.draw do
   resources :add_forms
   resources :external_links
   
-  resources :sites do 
+  resources :sites do
+    get 'optional', :on => :member
+    post 'optional_create', :on => :member
     get 'preview', :on => :member
     post 'site_link_account', :on => :collection
     get 'rendering_partial', :on => :member

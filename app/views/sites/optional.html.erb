@@ -1,0 +1,69 @@
+<%=form_tag "/sites/#{params[:id]}/optional_create" do %>
+<div class="siteInfo-main">
+		    			<div class="intro-text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae purus id mauris mollis tincidunt. Curabitur in pellentesque mi. Nulla facilisi. Nam vel venenatis diam. Curabitur urna arcu, egestas at vehicula ullamcorper, scelerisque non est. Pellentesque pulvinar massa eu velit pulvinar accumsan ac in est. Fusce mauris nulla, vestibulum ac semper id, mollis at lectus. Nullam placerat tempor nisl, quis tincidunt sapien lacinia ac. </p></div>
+		    			<div class="colum-wrapper">
+		    				<div class="colum-section">
+								<div class="main-title">Search Engine Optimization</div>
+    							<div class="group">
+    								<div class="title"><label for="siteKeyWords">Site Keywords</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_area :optional, :key_words, :id => "siteKeyWords"%>
+									</span>
+    							</div>
+    							<div class="group">
+    								<div class="title"><label for="googleAnlt">Google Analitics Code</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_area :optional, :google_analytics_code, :id => "googleAnlt"%>
+									</span>
+    							</div>
+    							<div class="group">
+    								<div class="title"><label for="siteDesc">Site Description</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_area :optional, :description, :id => "siteDesc"%>
+									</span>
+    							</div>
+								<div class="group">
+    								<div class="title"><label for="logoAltText">Logo Alt Text</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_field :optional, :logo_alt_text, :id => "logoAltText"%>
+    								</span>
+    							</div>
+    							
+		    				</div>
+		    				
+
+							<div class="colum-section last">
+								<div class="main-title">Social Media</div>
+    							<div class="group">
+    								<div class="title"><label for="twitterID">Twitter ID</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_field :optional, :twitter_id, :id => "twitterID"%>
+    								</span>
+    							</div>
+    							<div class="group">
+    								<div class="title"><label for="googleID">Google+ ID</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_field :optional, :google_id, :id => "googleID"%>
+									</span>
+    							</div>
+    							<div class="group">
+    								<div class="title"><label for="facebookId">Facebook ID</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_field :optional, :facebook_id, :id => "facebookID"%>
+									</span>
+    							</div>
+								<div class="group">
+    								<div class="title"><label for="linkedIn">Linked In ID</label><span class="help"><a href="#"></a></span></div>
+    								<span class="val">
+    									<%=text_field :optional, :linked_in_id, :id => "linkedIn"%>
+    								</span>
+    							</div>
+    							<div class="group enableThis">
+    								<span id="shareThis" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" id="shareThis" class="styled"><label for="shareThis">enable "Share this plugin"</label><span class="help"><a href="#"></a></span>
+    							</div>
+		    				</div>
+		    			</div>
+		    			
+		    		
+		    		</div>
+<%end%>					
