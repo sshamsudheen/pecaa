@@ -20,9 +20,11 @@
     		</ul>
     	</div>
     	<div class="subTab-Content left" style="display: none"></div>
+    	<%= form_tag [@site, @site_style] do |f| %>
         <%=render :partial=>"background_form"%>
         <%=render :partial=>"block_form"%>
         <%=render :partial=>"text_form"%>
+      <%end%>
     	</div>
     	<div class="subTab-Content left" style="display: none"></div>
     </div>
@@ -178,4 +180,9 @@ $('.style_tab').click(function(){
   $(this).parent().addClass('active');
   
 });
+
+$('#form_submit').click(function(){
+  $('form')[0].submit();
+});
+
 </script>

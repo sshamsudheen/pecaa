@@ -120,11 +120,11 @@
       					<li class="content <%= params[:controller]== 'content_libraries' ? 'active' : ''%>"></li>
       					<li class="theme"></li>
       					<li class="optional"></li>
-  						<li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%>""></li>
+  						  <li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%> "></li>
       					<li class="done"></li>
       				</ul>
       			</div>
-      			<div class="rightBtns"><button class="btn_Save">Save and go to next step</button></div>
+      			<div class="rightBtns"><button class="btn_Save" id="form_submit">Save and go to next step</button></div>
       		</div>
 			<%if params[:controller] == "site_users"%>
 			<div class="user-tabs">
