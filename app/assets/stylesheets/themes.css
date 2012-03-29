@@ -4,6 +4,9 @@
 	width:auto;
 	min-height: 0;
 }
+.themes-board{
+	top: 290px;
+}
 .themes-main .themes-wrapper{
 	min-height: 180px;
 	position: relative;

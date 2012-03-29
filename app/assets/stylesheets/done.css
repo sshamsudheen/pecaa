@@ -1,0 +1,61 @@
+.done-main{
+	border-radius: 6px;
+	background:url(img/bg_Done.png) no-repeat center center #FFFFFF;
+	border:1px solid #333;
+	min-height:500px;
+	-moz-box-shadow: inset 0px 1px 3px #CCC;
+   	-webkit-box-shadow: inset 0px 1px 3px #CCC;
+  	box-shadow: inset 0px 1px 3px #CCC;
+  	overflow: hidden;
+  	text-align: center;
+  	padding:50px 150px;
+  	margin-right: 10px;
+}
+
+.done-main header h1{
+	font-size:75px;
+	color:#DDE9F4;
+	text-shadow: 2px -1px 1px #CCCCCC;
+	margin:0 0 20px;
+}
+.done-main .done-msg{
+	margin-bottom: 50px;
+    margin-left: 15%;
+    overflow: hidden;
+    text-align: left;
+    width: 500px;
+}
+.done-main .activateWebsite{
+	margin-bottom:50px;
+}
+.done-main .activateWebsite button.activateMyWeb{
+	background: url(img/btn_activateMyWeb.png) no-repeat;
+	width: 374px;
+	height:74px;
+	border:0;
+	font-size:20px;
+	padding-right:85px;
+}
+.done-main span{
+	display:inline-block;
+	width:320px;
+}
+.done-main .activateLaterBtn{
+	margin-right:10px;
+}
+.done-main .activateLaterBtn button.activateLater{
+	background: url(img/btn_activateLater.png) no-repeat;
+	width: 314px;
+	height:44px;
+	border:0;
+	font-size:12px;
+	padding-right:45px;
+}
+.done-main .addCommerceBtn button.addEcommerce{
+	background: url(img/btn_AddEcommerce.png) no-repeat;
+	width: 314px;
+	height:44px;
+	border:0;
+	font-size:12px;
+	padding-right:45px;
+}
