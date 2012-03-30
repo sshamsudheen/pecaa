@@ -19,10 +19,19 @@
 		  <%end%>
 	  <%end%>
 	  <%end%>
-	  <%if ["sites", "site_styles"].include?(params[:controller])%>
+	  
+	  <%if ["site_pages", "sites", "site_styles"].include?(params[:controller])%>
+	  <%#CSS as per Rajesh's Modules%>
         <link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
 	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
 	  <%end%>
+	  
+	  <%if ["content_libraries"].include?(params[:controller])%>
+  	  <%#CSS as per Mani's Modules%>
+	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
+	  <%end%>
+    
+	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
       <%= csrf_meta_tag %>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
