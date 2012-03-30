@@ -1,6 +1,7 @@
 .pages-main{
 	min-height:500px;
   	overflow: hidden;
+  	margin-right:10px;
 }
 .pages-wrapper {
 }
@@ -21,11 +22,36 @@
 	margin-bottom:5px;
 }
 
-.title .help{
+.site-pages .title .help,
+.subNav .title .help{
 	float: right;
 	background:url(img/helpIcon.png) no-repeat;
 	width: 20px;
 	height:20px;
+	position: relative;
+}
+
+.site-pages .title .help .helpPopup {
+    color: #333333;
+    font-size: 12px;
+   	left: -225px;
+    padding: 0px;
+    position: absolute;
+    top: 20px;
+    width: 340px;
+    z-index: 99999;
+}
+.site-pages .title .help .helpPopup .helpPopupContent{
+	background:url(img/bg_helpPopupTop.png)no-repeat 0 0 transparent;
+	 padding: 25px 15px 5px 20px;
+}
+.helpPopup .helpPopupContent .helpHeader{
+	font-size: 20px;
+	margin-bottom:10px;
+}
+.site-pages .title .help .helpPopup .helpPopupBottom{
+	background:url(img/bg_helpPopupBottom.png)no-repeat 0 0 transparent;
+	height:25px;
 }
 .help a{
 	display:block;
@@ -109,7 +135,7 @@
 	border-bottom-right-radius:6px;
 }
 .site-pages .userGrid{
-	width:680px;
+	width:100%;
 }
 .site-pages ul.ConLibra .alt {
 	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;

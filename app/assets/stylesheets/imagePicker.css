@@ -1,0 +1,297 @@
+.imgPicker-wrapper{
+	padding: 20px 0 20px 20px;
+	overflow:hidden;
+}
+.imgPicker-wrapper .imgGallery{
+	width:410px;
+	margin-right:20px;
+}
+.imgGallery .galleryNav{
+	overflow:hidden;
+	margin-bottom:5px;
+}
+.imgGallery .galleryNav .views ul.galleryViews{
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+.imgGallery .galleryNav .views ul.galleryViews li{
+	width: 32px;
+	height:32px;
+	display: inline-block;
+	cursor: pointer;
+}
+.imgGallery .galleryNav .views ul.galleryViews li.listView{
+	background:url(img/btn_GalleryListView.png) no-repeat;
+}
+.imgGallery .galleryNav .views ul.galleryViews li.boxView{
+	background:url(img/btn_GalleryBoxView.png) no-repeat;
+}
+.imgGallery .galleryNav .views ul.galleryViews li.listView.active{
+	background:url(img/btn_GalleryListView_On.png) no-repeat;
+}
+.imgGallery .galleryNav .views ul.galleryViews li.boxView.active{
+	background:url(img/btn_GalleryBoxView_On.png) no-repeat;
+}
+
+.imgPicker-wrapper .imgDetailColumn{
+	width: 450px;
+}
+.searchImage {
+	background:#FFFFFF;
+	border:1px solid #666666;
+	border-radius:4px;
+	-moz-box-shadow: inset 0px 0px 3px #999;
+	-webkit-box-shadow: inset 0px 0px 3px #999;
+	width:222px;
+}
+.searchImage .searchIcon{
+	display:inline-block;
+	background: url(img/icon_Search.gif) no-repeat;
+	height:32px;
+	width:30px;
+	vertical-align: middle;
+}
+.searchImage input[type="text"]{
+	background:none;
+	vertical-align: middle;
+	border:0;
+	padding-left: 5px;
+    padding-top: 5px;
+	font-size:16px;
+	
+}
+.galleryMain ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.galleryMain ul li{
+	margin:0;
+	padding:0;
+}
+.galleryMain ul.ConLibraHeads li {
+	background: url(img/bg_grayGrain.gif) repeat;
+	height:25px;
+	border-top: 1px solid #333333;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	color:#FFFFFF;
+	font-size:14px;
+	padding-top: 8px;
+}
+.galleryMain ul.ConLibraHeads li span{
+	border:0;
+	text-align: center;
+}
+.galleryMain ul.ConLibraHeads li span.imgName{
+	width:200px;
+	display:inline-block;
+}
+.galleryMain ul.ConLibraHeads li {
+	text-align:center;
+}
+.galleryMain ul.ConLibraHeads li span.category{
+	width:150px;
+	display:inline-block;
+	border:0;
+}
+.galleryMain ul.ConLibraHeads li span.deleteBtn {
+	width:35px;
+	display:inline-block;
+	border:0;
+}
+
+.galleryMain ul.ConLibra li span{
+	/*border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #666666;
+	border-top: 1px solid #f0f0f0;*/
+	display:inline-block;
+	text-align: center;
+	margin:0;
+}
+.galleryMain ul.ConLibra{
+	border-left:1px solid #333333;
+	border-right:1px solid #333333;
+}
+.galleryMain ul.ConLibra li{
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
+	border-bottom: 1px solid #CBCBCA;
+}
+.galleryMain ul.ConLibra.thumbs li{
+	background:#FFFFFF;
+	border-bottom: 0px;
+}
+
+.galleryMain ul.ConLibra.thumbs li{
+	background:#FFFFFF;
+	border-right: 1px solid #CBCBCA;
+	float:left;
+	width:100px;
+	height:80px;
+	position: relative;
+	padding:5px 20px 10px 10px;
+}
+.galleryMain ul.ConLibra.thumbs li .imgDelete{
+	position: absolute;
+	right:17px;
+	bottom: 5px;
+}
+.galleryMain ul.ConLibra.thumbs li img{
+	border: 5px solid #ffffff;
+}
+.galleryMain ul.ConLibra.thumbs li.selected img{
+	border: 5px solid #ffcc33;
+}
+.galleryMain ul.ConLibra.thumbs li span.imgDelete img,
+.galleryMain ul.ConLibra.thumbs li.selected span.imgDelete img{
+	border: 0;
+}
+.galleryMain .userGridFooter {
+	background: url(img/bg_grayGrain.gif) repeat;
+	height:15px;
+	border: 1px solid #333333;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+}
+.galleryMain ul.ConLibra .alt {
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
+}
+.galleryMain ul.ConLibra .selected {
+	background:#cce3f2;
+}
+.galleryMain ul.ConLibra li span.imgName{
+	width:200px;
+	position: relative;
+	height: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: top;
+}
+
+.galleryMain ul.ConLibra li span.category{
+	width:150px;
+	border-left: 1px solid #999999;
+	height: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: top;
+}
+.galleryMain ul.ConLibra li span.deleteBtn{
+	width:30px;	
+	text-align: center;
+	border-left: 1px solid #999999;
+	height: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: top;
+}
+.userGridBody { width: 410px;  }
+.userGridBody .viewport { width: 394px; height: 465px; overflow: hidden; position: relative; }
+.userGridBody .overview { width: 395px; list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+.userGridBody .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
+.userGridBody .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #333333;}
+.userGridBody .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+.userGridBody .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
+.userGridBody .disable { display: none; }
+
+.imgDetailColumn .addImageToLib {
+	background: url(img/bg_ImgGal_AddImg.png) repeat-y 100% 0 transparent;
+	padding:15px;
+	border-top-left-radius:6px;
+	border-bottom-left-radius:6px;
+	border:1px solid #333333;
+	overflow:hidden;
+	margin-bottom:15px;
+}
+.imgDetailColumn .showImgDetail{
+	background:#000000;
+	padding:10px;
+	border-top-left-radius:6px;
+	border-bottom-left-radius:6px;
+	border:1px solid #333333;
+	overflow:hidden;
+}
+.imgDetailColumn .showImgDetail .selectedImgDetail{
+	margin-bottom:5px;
+}
+.showImgDetail .selectedImgDetail span{
+	display:inline-block;
+	vertical-align: middle;
+	margin-bottom:3px;
+}
+.showImgDetail .selectedImgDetail .key{
+	width: 125px;
+	margin-right:5px;
+	text-align: right;
+	color:#FFFFFF;
+}
+.showImgDetail .selectedImgDetail .val{
+	width: 250px;
+	background:#333333;
+	border-radius:4px;
+	height:25px;
+}
+.addImageToLib .setDetail{
+	width:258px;
+}
+.addImageToLib h3{
+	font-size:18px;
+	color:#272727;
+	margin:0 0 10px 0;
+}
+.addImageToLib .addImgBar{
+	background:#666666;
+	border-radius:4px;
+	overflow:hidden;
+	margin-bottom:20px;	
+}
+.addImageToLib .addImgBar input{
+	background:none;
+	width:250px;
+	padding:5px;
+	border:0;
+}
+.addImageToLib .addImgBar input,
+.addImageToLib .addImgBar button{
+	margin:0;
+	border:0;
+}
+.addImageToLib .imgTypeThumb{
+	margin-right:10px;
+	overflow:hidden;
+}
+.addImageToLib .setDetail span.chooseImgName,
+.addImageToLib .setDetail span.chooseCategory {
+	display:block;
+	overflow:hidden;
+	background:#666666;
+	margin-bottom:4px;	
+	border-radius:4px;
+}
+.setDetail span.chooseCategory span.addCat{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9ddd5e), to(#7fc05c));
+	background: -moz-linear-gradient(top,  #9ddd5e,  #7fc05c);
+	display:inline-block;
+	height: 18px;
+    width: 23px;
+    padding-top:4px;
+	text-align: center;
+	border:1px solid #42a113;
+	border-top-right-radius:4px;
+	border-bottom-right-radius:4px;
+}
+
+.addImageToLib .setDetail span.addedCategory{
+	display:block;
+	margin-bottom:10px;	
+}
+.addImageToLib .setDetail input[type="text"]{
+	background:none;
+	width:225px;
+	border:0;
+	padding:2px 4px 2px 4px;
+}
+.addImageToLib .setDetail span.addImgeBtn button{
+	margin-right:0;
+}

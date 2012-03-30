@@ -1,0 +1,146 @@
+.content-section .editCode-wrapper{
+	margin-top:20px;
+}
+.editCode-wrapper .fileList{
+	width: 200px;
+	margin-right:20px;
+}
+.editCode-wrapper .fileList .goToFolder{
+	margin-bottom:10px;
+}
+.editCode-wrapper .fileList .goToFolder select{
+	width: 200px;
+	height: 25px;
+}
+.editCode-wrapper .editCode{
+	width: 750px;
+}
+.editCode .fileDetail{
+	margin-bottom:10px;
+	overflow:hidden;
+}
+.editCode .fileNameField span{
+	vertical-align: middle;
+	display:inline-block;
+	margin-right: 10px;
+}
+.editCode .fileNameField .showName{
+	background:#bdcbd8;
+	padding:4px;
+	min-width: 160px;
+	border-radius:4px;
+	color:#FFFFFF;
+}
+.editCode .closeAndReturn{
+	background:#bdcbd8;
+	min-width: 160px;
+	border-radius:4px;
+	color:#FFFFFF;
+}
+.editCode .closeAndReturn span{
+	vertical-align: middle;
+	display:inline-block;
+}
+.editCode .closeAndReturn .closeLabel{
+	padding:4px;
+}
+.editFileView{
+	background: #FFFFFF;
+    border: 1px solid #333333;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 3px #CCCCCC inset;
+    min-height: 500px;
+    overflow: hidden;
+}
+.fileList ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.fileList ul li{
+	margin:0;
+	padding:0;
+}
+
+.fileList ul.ConLibraHeads li {
+	background: url(img/bg_grayGrain.gif) repeat;
+	height:25px;
+	border-top: 1px solid #333333;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	color:#FFFFFF;
+	font-size:14px;
+	padding-top: 8px;
+}
+.fileList ul.ConLibraHeads li span{
+	border:0;
+}
+.fileList ul.ConLibraHeads li span.fileName{
+	width:190px;
+	display:inline-block;
+	padding-left:10px;
+}
+
+.fileList ul.ConLibra li span{
+	/*border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #666666;
+	border-top: 1px solid #f0f0f0;*/
+	display:inline-block;
+	margin:0;
+}
+.fileList ul.ConLibra{
+	border-left:1px solid #333333;
+	border-right:1px solid #333333;
+}
+.fileList ul.ConLibra li{
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
+	border-bottom: 1px solid #CBCBCA;
+}
+
+.fileList .userGridFooter {
+	background: url(img/bg_grayGrain.gif) repeat;
+	height:15px;
+	border: 1px solid #333333;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+}
+.fileList ul.ConLibra .alt {
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
+}
+.fileList ul.ConLibra .selected {
+	background:#6f6f6f;
+	color:#FFFFFF;
+}
+.fileList .pointer{
+	display:none;
+	background:url(img/pointerEditCodeTableRow.png) no-repeat;
+	width:11px;
+	height:25px;
+	position: absolute;
+	z-index: 9999;
+	right: -11px;
+	top:0;
+	border:0;
+}
+
+.fileList ul.ConLibra li span.fileName{
+	width:190px;
+	position: relative;
+	height: 19px;
+    padding-top: 5px;
+    vertical-align: top;
+    padding-left:10px;
+}
+
+#fileListView .shadows{
+	margin:0;
+}
+/* Tiny Scrollbar */
+#fileListView { width: 200px;  position: relative}
+#fileListView .viewport { width: 200px; height: 450px; overflow: hidden; position: relative; }
+#fileListView .overview { width: 195px; list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; }
+#fileListView .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
+#fileListView .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #333333;}
+#fileListView .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#fileListView .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
+#fileListView .disable { display: none; }

@@ -105,7 +105,11 @@ class UsersController < ApplicationController
         redirect_to "/sites/#{params[:id]}/site_users/list_users"
       end
     else
+      if params[:site_id]
+        render :template => "site_users/new", :status => :unprocessable_entity, :layout => 'site'
+      else
        render :action => :new, :status => :unprocessable_entity
+      end
     end
   end
   
