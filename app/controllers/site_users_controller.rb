@@ -9,6 +9,15 @@ class SiteUsersController < ApplicationController
   def list_groups
     @site_groups = @site.site_groups
   end
+  
+  def new_group
+    @site_groups = @site.site_groups.new
+  end
+  
+  def user_details
+    @user_obj = User.find(params[:user_id])
+    render :partial => 'user_details'
+  end
 
   def new
     @user_obj = User.new
