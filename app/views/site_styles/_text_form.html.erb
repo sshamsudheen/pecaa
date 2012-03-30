@@ -13,6 +13,7 @@
 			<div class="palletBox">
 			  <div class="slider-alpha" id='opacity_text'>
 				<div class="alphaPointer"><span id="opacity_text_val" class="val">100%</span></div>
+				<%=hidden_field_tag :text_opacity%>
 				</div>
 			</div>
 		</div>
@@ -23,9 +24,10 @@
 			<div class="palletBox">
 				
 				<div class="boxShadow right">
-					<div class="slider-boxShadow left" id='text_shadow'>
+					<div class="slider-boxShadow left" id='textshadow'>
 						<div class="amt"><span id='text_shadow_val1' class="val">amt</span></div>
 						<div class="spread"><span id='text_shadow_val2' class="val">spread</span></div>
+						<%=hidden_field_tag :text_shadow %>
 					</div>
 				</div>
 				
@@ -36,16 +38,17 @@
 			<div class="palletBox">
 				<div class="tileBox left">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li class="active"></li>
+						<li id="topLeft"></li>
+						<li id="topCenter"></li>
+						<li id="topRight"></li>
+						<li id="middleLeft"></li>
+						<li id="middleCenter"></li>
+						<li id="middleRight"></li>
+						<li id="bottomLeft"></li>
+						<li id="bottomMiddle"></li>
+						<li id="bottomLeft" class="active"></li>
 					</ul>
+					<%= hidden_field_tag :text_shadow_direction, '', :class=>"pallet_box"%>
 			</div>
 			<div class="textShadowPrev left">
 				<div class="textShadow">shadow</div>
