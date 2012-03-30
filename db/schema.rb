@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120327174006) do
+=======
+ActiveRecord::Schema.define(:version => 20120323080403) do
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "groups_roles", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "group_id"
@@ -86,6 +91,8 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.integer "user_id"
   end
 
+=======
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
   create_table "images", :force => true do |t|
     t.integer  "user_id"
     t.string   "upload_file_name"
@@ -97,10 +104,16 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "notes", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
     t.integer  "created_by"
+=======
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "layout"
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -166,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "site_groups", :force => true do |t|
     t.integer  "site_id"
     t.string   "name"
@@ -174,6 +188,8 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
   create_table "site_link_accounts", :force => true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
@@ -198,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "site_optional_details", :force => true do |t|
     t.text     "key_words"
     t.text     "google_analytics_code"
@@ -214,6 +231,8 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
   create_table "site_page_contents", :force => true do |t|
     t.integer  "site_id"
     t.integer  "content_library_id"
@@ -243,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.string   "keywords"
     t.string   "custom_url"
   end
+<<<<<<< HEAD
 
   create_table "site_styles", :force => true do |t|
     t.integer  "site_id"
@@ -263,6 +283,8 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+=======
+>>>>>>> 7c9f01560a7e10756c6eff456869c8edf3f6be08
 
   create_table "sites", :force => true do |t|
     t.text     "description"

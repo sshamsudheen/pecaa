@@ -5,7 +5,7 @@ class SiteLinksController < ApplicationController
   layout 'pecaa_application'
   
   def index
-    @site_links = @site.site_links.all
+    @site_links = @site.site_links
 
     respond_to do |format|
       format.html # index.html.erb
@@ -66,7 +66,7 @@ class SiteLinksController < ApplicationController
     respond_to do |format|
       if @site_link.update_attributes(params[:site_link])
         format.html { redirect_to site_site_link_path(@site, @site_link), :notice => 'Site link was successfully updated.' }
-        format.json { head :ok }
+}
       else
         format.html { render :action => "edit" }
         format.json { render :json => @site_link.errors, :status => :unprocessable_entity }

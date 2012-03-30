@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update,:dashboard]
+  load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update,:dashboard,:search]
   
   before_filter :check_permissions, :only => [:new, :cancel]
   skip_before_filter :require_no_authentication
@@ -37,10 +37,8 @@ class UsersController < ApplicationController
   #-------------------------------------------------------------------
   def new
     @user_obj=User.new
-    respond_to do |format|
-      format.json { render :json => @user_obj }   
-      format.xml  { render :xml => @user_obj }
-      format.html
+    if params[:site_id]
+      render :layout => "site"
     end
   end
  
@@ -101,17 +99,13 @@ class UsersController < ApplicationController
     @user_obj = User.new(params[:user])
     @user_obj.created_by = current_user
     if @user_obj.save
-      respond_to do |format|
-        format.json { render :json => @user_obj.to_json, :status => 200 }
-        format.xml  { head :ok }
-        format.html { redirect_to :action => :index }
+      if params[:site_id]
+        redirect_to :action => :index
+      else
+        redirect_to "/sites/#{params[:id]}/site_users/list_users"
       end
     else
-      respond_to do |format|
-        format.json { render :text => "Could not create user", :status => :unprocessable_entity } # placeholder
-        format.xml  { head :ok }
-        format.html { render :action => :new, :status => :unprocessable_entity }
-      end
+       render :action => :new, :status => :unprocessable_entity
     end
   end
   
@@ -141,8 +135,13 @@ class UsersController < ApplicationController
     if current_user.launch_link
       redirect_to(current_user.launch_link) 
     else
-	 render :layout=>false
+	    render :layout=>false
     end
+  end
+  
+  def search
+    @search_link_account = User.where("username like ?", "%#{params[:query]}%")
+    render :partial=>"sites/search_link_account"
   end
   
   protected  

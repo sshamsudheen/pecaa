@@ -1,0 +1,177 @@
+  <%= stylesheet_link_tag "layout", "siteinfo", "pages", "content", "themes","optional","users","done","modal_layout" ,"imagePicker"%>
+		<%= javascript_include_tag 'jquery-1.7.1.min.js'%>
+		<%= javascript_include_tag 'inputstyle'%>
+	       <%= javascript_include_tag 'jquery.tinyscrollbar.min.js'%>
+        <script type="text/javascript">
+        	$(document).ready(function(){
+        		$('#galleryListView').tinyscrollbar();
+        		$('#galleryBoxView').tinyscrollbar();
+        		
+        		$(".ConLibra li:even").addClass("alt");
+        		//$(".ConLibra.thumbs li:even").removeClass("alt");
+        		
+        		$("ul.ConLibra li").each(function(){
+        			var $this = $(this);
+        			if($this.hasClass("selected")){
+        				//$this.find('.pointer').show();
+        			}
+        		})
+        		$("ul.ConLibra li").click(function(){
+        			var $this = $(this);
+        			//$this.parent().find('.misc img').hide();
+        			
+        			if(!$this.hasClass("selected")){
+        				$("ul.ConLibra li").removeClass("selected");
+        				//$("ul.ConLibra li").find('.pointer').hide();
+        				$this.addClass("selected");
+        				//$this.find('.pointer').show();
+        				//$this.find('.misc img').show();
+        			}
+        			return false;
+        			
+        		})
+        		$("ul.galleryViews li").click(function(){
+        			var $this = $(this);
+        			if(!$this.hasClass("active")){
+        				$("ul.galleryViews li").removeClass("active");
+        				$this.addClass("active");
+        				//alert($this.index());
+        				$(".galleryMain").hide();
+        				$("#gallery"+($this.index()+1)).show();
+        				$('#galleryListView').tinyscrollbar();
+        				$('#galleryBoxView').tinyscrollbar();
+        			}
+        		})
+        	})
+        </script>
+<%= form_for [@site, @site_style] do |f| %>
+  <div class="main-container imgPicker">
+			<div class="header">Choose or Upload an Image<span class="helpIcon"></span></div>
+			<div class="main-content">
+				<div class="imgPicker-wrapper">
+					<div class="imgGallery left">
+						<div class="galleryNav">
+							<div class="searchImage left">
+								<input type="text" placeholder="search">
+								<span class="searchIcon right"><a href="#"></a></span>
+							</div>
+							<div class="views right">
+								<ul class="galleryViews">
+									<li class="listView active"></li>
+									<li class="boxView"></li>
+								</ul>
+							</div>
+						</div>
+						<div class="galleryMain clear" id="gallery1">
+							<div class="userGrid">
+								<div class="userGridHeader">
+									<ul class="ConLibraHeads">
+										<li>
+											<span class="imgName">Image Name</span>
+											<span class="category">Category</span>
+											<span class="deleteBtn"></span>
+										</li>
+									</ul>
+								</div>
+								<div class="userGridBody">
+									<div id="galleryListView">
+										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+										<div class="viewport">
+		 									<div class="overview">
+		    									<ul class="ConLibra">
+		    								<%@image_pickers=Image.all%>		
+											<% @image_pickers.each do |image_picker| %>
+		    										<li>
+												       <span class="imgName"><%= image_picker.upload_file_name  %></span>
+		    											<span class="category"><%= image_picker.upload_content_type  %></span>
+												       <span class="deleteBtn"><a href="#"><img src="/assets/img/btnDelete.png" border="0" /></a></span>
+												</li>
+											 <% end %>
+		    									</ul>
+		    								</div>
+		    							</div>
+		    						</div>
+		    					</div>
+		    					<div class="userGridFooter"></div>
+		    				</div>
+						</div>
+						<!-- end of list view -->
+						<!-- start of box view -->
+						<div class="galleryMain clear" id="gallery2" style="display: none">
+							<div class="userGrid">
+								<div class="userGridHeader">
+									<ul class="ConLibraHeads">
+										<li>
+											Image Thumbnails
+										</li>
+									</ul>
+								</div>
+								<div class="userGridBody">
+									<div id="galleryBoxView">
+										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+										<div class="viewport">
+		 									<div class="overview">
+		    									<ul class="ConLibra thumbs">
+											<% @image_pickers.each do |image_picker| %>
+		    										<li class="thumbList">
+												        <% image = image_picker.upload.url(:thumb).split('?')[0] %>
+												         <img src="<%= image %>"  border="0"  width="100px" height="80px"/>
+		    											<span class="imgDelete"><a href="#"><img src="/assets/img/btn_ImgDelete.png" border="0" /></a></span>
+												</li>
+												<% end %>
+											</ul>
+		    								</div>
+		    							</div>
+		    						</div>
+		    					</div>
+		    					<div class="userGridFooter"></div>
+		    				</div>
+						</div>
+						<!-- end of box view-->
+					</div>
+					<div class="imgDetailColumn left">
+						<div class="addImageToLib">
+							<h3>Add Image to Library</h3>
+							<div class="addImgBar"><span class="imgSelection left"><input type="text" placeholder="no image selected" /></span><button class="secondary right">choose new image</button></div>
+							<div class="imgTypeThumb left"></div>
+							<div class="setDetail left">
+								<span class="chooseImgName"><input type="text" placeholder="choose image name" /></span>
+								<span class="chooseCategory"><input type="text" placeholder="add category" /><span class="addCat right"><img src="/assets/img/btnAddNote.png" border="0" /></span></span>
+								<span class="addedCategory">category 1, category 2</span>
+								<span class="addImgeBtn clear right"><button class="blueBtn"  type="button">add image to library</button></span>
+							</div>
+						</div>
+						<div class="showImgDetail">
+							<div class="selectedImgDetail">
+								<span class="key">image name :</span>
+								<span class="val"></span>
+								<span class="key">file name :</span>
+								<span class="val"></span>
+								<span class="key">categories :</span>
+								<span class="val"></span>
+							</div>
+							<div class="imgPreview"><img src="assets/images/sampleImg.png" /></div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+			<div class="footer-section">
+				<div class="leftBtns"><button class="secondary" id="cancelBtn">cancel</button> </div>
+				<div class="rightBtns"><button class="primary" id="saveBtn">use selected image</button> </div>
+			</div>
+		</div>
+
+<% end %>
+<script>
+$('#cancelBtn').click(function(){
+    $(document).trigger('close.facebox');
+    return false;
+});
+$('.pageLayout').click(function(){
+  $('#site_page_page_layout').attr('value', $(this).attr('id'));
+  $(this).attr('style', 'border:1px;');
+  return false;
+});
+</script>

@@ -1,28 +1,83 @@
 Mystore3::Application.routes.draw do
 
+
+  get "model/site_style"
+
+  get "site_pages/index"
+
+  resources :themes
+
+  resources :base_colors
+
+  resources :texts
+
+
   resources :sub_permissions
 
   resources :permissions
+  
   get "roles/index"
   post "roles/index"
   resources :roles
   resources :add_files
   resources :add_forms
-
-  resources :sites do 
+  resources :external_links
+  
+  resources :sites do
+    get 'optional', :on => :member
+    post 'optional_create', :on => :member
     get 'preview', :on => :member
+    post 'site_link_account', :on => :collection
+    get 'rendering_partial', :on => :member
     post 'search', :on => :collection
+    get 'pages_list', :on => :collection
+    resources :site_pages do
+      get 'copy_page', :on => :member
+      post 'rename_page', :on => :collection
+      get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
+      get 'update_page', :on => :member, :to => 'site_pages#update'
+      get 'seo_page', :on => :member
+    end
+    resources :site_styles do
+      
+    end
     resources :site_links do
       post 'search', :on => :collection
+    end
+    
+    resources :site_users do
+      get 'list_users', :on => :collection 
+      get 'list_groups', :on => :collection
     end
   end
   
   resources :images
   resources :videos
-  resources :content_libraries
 
-  get "users/index"
+
+  match 'content_libraries/search', :to=> 'content_libraries#search',:as=>:content_search
   
+resources :content_libraries do
+    
+  end
+  
+
+  match 'colorpicker', :to => "base_colors#colorpicker", :as => :colorpicker 
+  
+  get "users/index"
+
+#  resources :add_files do
+#   member do
+#     post 'download'
+#   end
+#   end
+  match 'add_files/download' => 'add_files#download', :as => :download
+#  resources :profiles
+#
+#  match 'profiles/update_state_select/:id', :controller=>'profiles', :action => 'update_state_select'
+#
+#  match 'profiles/update_city_select/:id', :controller=>'profiles', :action => 'update_city_select'
+
   # match 'users/list', :to => "users/users#index", :as => :user_list
   # namespace :users do
   #   resources :users
@@ -37,19 +92,14 @@ Mystore3::Application.routes.draw do
 #  resources :users
 
 # devise_for :users,  :controllers => { :registrations => "users/registrations" }
- resources :users
+ resources :users do 
+   post 'search', :on => :collection
+ end
+
  devise_for :user
 #         :path_names => {:sign_in => "", :sign_out => "logout",:sign_up => "register"}
 
 
-#  get 'uploads/new'
-#  get 'uploads/index'
-#  get 'uploads/show'
-#  get 'uploads/destroy'
-#  match 'uploads/delete', :to => 'uploads#delete'
-#  match 'uploads/show', :to => 'uploads#show'
-
-  resources :uploads
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

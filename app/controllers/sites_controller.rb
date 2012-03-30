@@ -1,6 +1,4 @@
 class SitesController < ApplicationController
-  # GET /sites
-  # GET /sites.json
   layout 'pecaa_application'
   before_filter :setup
   
@@ -12,8 +10,6 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/1
-  # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
 
@@ -23,55 +19,56 @@ class SitesController < ApplicationController
     end
   end
 
-  # GET /sites/new
-  # GET /sites/new.json
   def new
     @site = Site.new
-
+    @link_accounts = @site.site_link_accounts
+    # 3.times do 
+      @site.site_contacts.build
+    # end
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @site }
+      format.html {render :layout=>"site"}
     end
   end
 
-  # GET /sites/1/edit
   def edit
     @site = Site.find(params[:id])
+    @link_accounts = @site.site_link_accounts
+    
+    respond_to do |format|
+      format.html {render :layout=>"site"}
+    end
   end
 
-  # POST /sites
-  # POST /sites.json
   def create
     @site = Site.new(params[:site])
     @site.created_by = current_user
     respond_to do |format|
-      if @site.save
-        format.html { redirect_to @site, :notice => 'Site was successfully created.' }
-        format.json { render :json => @site, :status => :created, :location => @site }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @site.errors, :status => :unprocessable_entity }
+      @site.transaction do 
+        if @site.save
+          params[:site_link_accounts].split(',').uniq.each do |s|
+             sla = SiteLinkAccount.create(:user_id => s.split('_')[0].to_i, :access=>s.split('_')[1], :created_by => current_user)
+             @site.site_link_accounts << sla
+          end
+          
+          format.html { redirect_to site_site_pages_path(@site), :notice => 'Site was successfully created.' }
+        else
+          format.html { render :action => "new", :layout=>"site" }
+        end
       end
     end
   end
 
-  # PUT /sites/1
-  # PUT /sites/1.json
   def update
     @site = Site.find(params[:id])
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to @site, :notice => 'Site was successfully updated.' }
-        format.json { head :ok }
+        format.html { redirect_to site_site_pages_path(@site), :notice => 'Site was successfully updated.' }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @site.errors, :status => :unprocessable_entity }
+        format.html { render :action => "edit", :layout=>"site"}
       end
     end
   end
 
-  # DELETE /sites/1
-  # DELETE /sites/1.json
   def destroy
     @site = Site.find(params[:id])
     @site.destroy
@@ -97,8 +94,29 @@ class SitesController < ApplicationController
     render :layout=> false
   end
   
-  protected
+  def rendering_partial
+    render :partial => "contact_form"
+  end
   
+  def site_link_account
+    if SiteLinkAccount.save_link(params)
+      @link_accounts = Site.find(params[:site_id]).site_link_accounts
+      render :partial => "link_accounts"
+    end
+  end
+  
+  def optional
+    @optional = SiteOptionalDetail.new
+    render :layout => "site"
+  end
+
+  def create_optional
+    @optional = SiteOptionalDetail.create(params[:optional])
+    redirect_to "/sites/#{params[:id]}/site_users/list_users"
+  end
+  
+  protected
+
   def setup
     @symbol="Website_List"
   end

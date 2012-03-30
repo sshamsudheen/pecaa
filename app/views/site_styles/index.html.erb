@@ -1,0 +1,188 @@
+<div class="themes-main">
+	<div class="themes-wrapper">
+		<div class="tabs">
+			<ul>
+				<li><a href="#">Choose Theme</a></li>
+				<li><a href="#">Choose Base Colors</a></li>
+				<li class="active"><a href="#">Edit All Styles</a></li>
+			</ul>
+		</div>
+		<div class="theme-content" id="content_1" style="display:none"></div>
+		<div class="theme-content" id="content_2" style="display:none"></div>
+    <div class="theme-content" id="content_3">
+    	<div class="theme-SubTabs left">
+    		<ul>
+    		  <%["text", "background", "block"].each do |d|%>
+            <li class=<%=@style_type == d ? "active" : ''%>>
+              <a href="#" class='style_tab' rel='<%=d%>' ><%=d.capitalize%></a>
+            </li>
+    			<% end %>
+    		</ul>
+    	</div>
+    	<div class="subTab-Content left" style="display: none"></div>
+    	<%= form_tag [@site, @site_style] do |f| %>
+        <%=render :partial=>"background_form"%>
+        <%=render :partial=>"block_form"%>
+        <%=render :partial=>"text_form"%>
+      <%end%>
+    	</div>
+    	<div class="subTab-Content left" style="display: none"></div>
+    </div>
+	  <div class="themes-board">
+	    <div class="grid-board">
+		  </div>
+	  </div>
+	</div>
+</div>
+<script>
+
+  $(document).ready(function(){
+  	$('.tileBox ul li').click(function(){
+  	  var $this = $(this);
+  	  $this.parent().find('li.active').removeClass('active');
+  	  $this.addClass('active');
+    })
+    // $('#cp1').colorpicker({
+    //     onClose: function(hex, rgba, inst){
+    //         console.log('onClose: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+    //     },
+    //     onSelect: function(hex, rgba, inst){
+    //         console.log('onSelect: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+    //     },
+    //     showOn: 'both',
+    //     showSwatches: true,
+    //     showNoneButton: true,
+    //     buttonColorize: true,
+    //     altField: '.cp1-alt',
+    //     limit: 'websafe',
+    //     parts: 'full',
+    //     regional: 'nl',
+    //     altProperties: 'background-color,color'
+    // });
+    
+  })
+  $( "#opacity" ).slider({
+    orientation: "horizontal",
+    min: 0,
+    max: 100,
+    value: 0,
+    slide: refreshOpacity,
+  	change: refreshOpacity});
+
+  function refreshOpacity() {
+    var transparency = $("#opacity").slider("value")
+    // $("#swatch").css("background-color", "rgb(" + red + ", " + green + ", " + blue + ")");
+    // $("#swatch").css("opacity", transparency);
+    // $(".hexResults").text("#" + hex);
+    // $(".rgbResults").text("rgb(" + red + ", " + green + ", " + blue + ")");
+  	$("#opacity_val").text(transparency + "%");
+    // $(".rgbaResults").text("rgba(" + red + ", " + green + ", " + blue + ", " + transparency + ")");
+  }
+  
+  $( "#opacity_block" ).slider({
+    orientation: "horizontal",
+    min: 0,
+    max: 100,
+    value: 0,
+    slide: refreshBlockOpacity,
+  	change: refreshBlockOpacity});
+  
+  
+  function refreshBlockOpacity() {
+    var transparency = $("#opacity_block").slider("value")
+		$("#opacity_block_val").text(transparency + "px");
+	}
+  $( "#opacity_text" ).slider({
+    orientation: "horizontal",
+    min: 0,
+    max: 100,
+    value: 0,
+    slide: refreshTextOpacity,
+  	change: refreshTextOpacity});
+  
+  
+  function refreshTextOpacity() {
+    var transparency = $("#opacity_text").slider("value")
+		$("#opacity_text_val").text(transparency + "px");
+	}
+
+  
+  $( "#border_width" ).slider({
+    orientation: "horizontal",
+    min: 0,
+    max: 10,
+    value: 0,
+    slide: refreshBwidth,
+		change: refreshBwidth});
+    
+    function refreshBwidth() {
+      var transparency = $("#border_width").slider("value")
+    	$("#border_width_val").text(transparency + "px");
+    }
+  	
+  	$( "#border_radius" ).slider({
+      orientation: "horizontal",
+      min: 0,
+      max: 10,
+      value: 0,
+      slide: refreshBradius,
+  		change: refreshBradius});
+
+      function refreshBradius() {
+        var transparency = $("#border_radius").slider("value")
+    		$("#border_radius_val").text(transparency + "px");
+    	}
+    	
+    $( "#box_shadow" ).slider({
+      orientation: "horizontal",
+      range:true,
+      min: 0,
+      max: 10,
+      values: [4, 6],
+      slide: refreshShadow,
+    	change: refreshShadow});
+
+      function refreshShadow() {
+        var val1 = $("#box_shadow").slider("values")[0];
+        var val2 = $("#box_shadow").slider("values")[1];
+    		$("#box_shadow_val1").text(val1 + "px");
+        $("#box_shadow_val2").text(val2 + "px");
+    	}
+    $("#text_shadow").slider({
+      orientation: "horizontal",
+      range:true,
+      min: 0,
+      max: 10,
+      values: [4, 6],
+      slide: refreshTextShadow,
+    	change: refreshTextShadow});
+
+      function refreshTextShadow() {
+        var val1 = $("#text_shadow").slider("values")[0];
+        var val2 = $("#text_shadow").slider("values")[1];
+    		$("#text_shadow_val1").text(val1 + "px");
+        $("#text_shadow_val2").text(val2 + "px");
+    	}
+    	
+    
+  	refreshOpacity();
+  	refreshBwidth();
+    refreshBradius();
+    refreshShadow();
+    refreshTextShadow();
+    refreshTextOpacity();
+    refreshBlockOpacity();
+    
+$('.style_tab').click(function(){
+  $(".subTab-Content-tab").hide();
+  $("#"+$(this).attr('rel')+'_form').show();
+  $(this).parent().siblings(".active").removeClass('active');
+  $(this).parent().addClass('active');
+  
+});
+
+$('#form_submit').click(function(){
+  $('form')[0].submit();
+});
+
+</script>

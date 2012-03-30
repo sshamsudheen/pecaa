@@ -1,0 +1,177 @@
+<script type="text/javascript" src="/assets/externals/released-externals/interface-1.2.js"></script>
+<script type="text/javascript" src="/assets/compressed/nested_sortable/inestedsortable.js"></script>
+<% if @site_page && @site_page.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@site_page.errors.count, "error") %> prohibited this site_link from being saved:</h2>
+
+    <ul>
+    <% @site_page.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="pages-main">
+	<div class="pages-wrapper">
+		<div class="site-pages">
+		<div class="title">Organize Site Pages <span class="help"><a href="#"></a></span></div>
+			<div class="page-data">
+			  <div class="userGrid">
+  				<div class="userGridHeader">
+  						<ul class="ConLibraHeads">
+  							<li>
+  								<span class="pageName">Page Name</span>
+  								<span class="status"></span>
+  								<span class="home">Home Page</span>
+  								<span class="other">Other</span>
+  								<span class="misc"></span>
+  								<span class="misc"></span>
+  								<span class="misc"></span>
+  								<span class="misc"></span>
+  							</li>
+  						</ul>
+  					</div>
+  					<div class="userGridBody">
+  						<ul class="ConLibra" id="list-container">
+  						  <%@site_pages.each do |sp|%>
+    							<li id="page_<%=sp.id%>" class='sortable-element-class'>
+    								<span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
+										<span class="status">
+    								  <a href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_active => !(sp.is_active)})%>" class=<%=sp.is_active ? 'on' : 'off' %>></a>
+    								</span>
+    								<span class="home">
+                      <a href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_home_page => true})%>">
+                        <input type="radio" <%=sp.is_home_page ? 'checked' : '' %> class="styled" name="is_home_page"/>
+      							  </a>
+      							</span>
+    								<span class="other">Other Info?</span>
+    								<span class="misc">
+    								  <a href="<%=copy_page_site_site_page_path(@site, sp)%>">
+      							    <img src="/assets/btnCopy.png" border="0">
+      							  </a>
+    								</span>
+    								<span class="misc">
+    								  <a href="<%=seo_page_site_site_page_path(@site, sp)%>" rel='facebox'>
+      							    <img src="/assets/btnSEO.png" border="0">
+      							  </a>
+    								</span>
+    								<span class="misc">
+    								  <a href="<%=content_search_path%>">
+      							    <img src="/assets/btnEdit.png" border="0"></td>
+      							  </a>
+    								</span>
+    								<span class="misc">
+    								  <%= link_to image_tag("/assets/btnDelete.png", :border=>"0"), '#',:class=>'confirm_delete', :rel=>sp.id %>
+      							  <!-- Alert message box start -->
+                      <div id="alertBox_<%=sp.id%>" class="alert-box" style="display:none">
+                        	<div class="msgTitle">Are you sure?!</div>
+                        	<div class="msgContent">
+                        	  Hey, you are about to delete the entire "<%=sp.name%>" <%=sp.category%>. Are you sure you want to do this?
+                        	</div>
+                        	<div class="msgFooter">
+                          <%= link_to "Cancel","#", :class=>'secondary cancel_alert', :rel=>sp.id%>
+                          <%= link_to "OK!", destroy_page_site_site_page_path(@site, sp), :method => :delete, :class=>'primary' %>
+                        	</div>
+                      </div>
+                      <!-- Alert message box ends -->
+    								</span>
+    							</li>
+    						<%end%>
+  						</ul>
+  					</div>
+					<div class="userGridFooter"></div>
+				</div>
+			</div>
+			<div class="rightBtns">
+			  <a href='<%= new_site_site_page_path(:type=>'page') %>' rel="facebox" style="display:block; float:left;" class="addPage"></a>
+			  <span style="display:block; float:left;">&nbsp;&nbsp;</span>
+    	  <a href='<%= new_site_site_page_path(:type=>'link') %>' rel="facebox" style="display:block; float:left;" class="addLink"></a>
+    	  <span style="clear:both;"></span>
+			</div>
+		</div>
+		
+
+	<div class="subNav">
+		<div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
+			<div class="subNav-wrapper">
+				<div class="subNav-section">
+					<div><input type="radio" checked="checked" class="styled" name="site_nav_type" value='dropdown'/>use dropdown type</div>
+					<div class="dropDownType"><img src="/assets/img_dropdown1.png" border="0"></div>
+				</div>
+				<div class="subNav-section">
+					<div><input type="radio" checked="checked" class="styled" name="site_nav_type" value='sidebar'/>use left sidebar type</div>
+					<div class="dropDownType"><img src="/assets/img_dropdown2.png" border="0"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+	var rename_url = "<%=rename_page_site_site_pages_path(@site)%>";
+  $(document).ready(function(){
+    get_editors_ready();
+    // get_sortables_ready();
+  	//$('#scrollbar1').tinyscrollbar();
+  	$(".ConLibra li:even").addClass("alt");
+
+  	$("ul.ConLibra li").click(function(){
+  	  get_editors_ready();
+      // get_sortables_ready();
+  		var $this = $(this);
+  		if(!$this.hasClass("selected")){
+  			$("ul.ConLibra li").removeClass("selected");
+  			$this.addClass("selected");
+  		}
+		
+  	});
+	});
+
+  $('.confirm_delete').click(function(){
+    $("#alertBox_"+$(this).attr("rel")).show();
+    return false;
+  });
+  $('.cancel_alert').click(function(){
+    $("#alertBox_"+$(this).attr("rel")).hide();
+    return false;
+  });
+	$('a[rel*=facebox]').facebox();
+	
+  function editor_options(){
+    return {
+        type      : "text",
+        width     : '120px',
+        height    : '15px',
+        tooltip   : 'Click to edit...',
+        onsubmit  : function(){}
+    }
+  }
+  
+  function get_editors_ready(){  
+    $('.pageName').editable(rename_url, editor_options());
+    // get_sortables_ready();
+  }
+</script>
+
+<script type="text/javascript">
+function get_sortables_ready(){  
+  jQuery( function($) {
+    $('#list-container').NestedSortable(
+      {
+        accept: 'sortable-element-class',
+        opacity: 0.8,
+        helperclass: 'helper',
+        nestingPxSpace: 20,
+        currentNestingClass: 'current-nesting',
+        fx:400,
+        revert: true,
+        autoScroll: false
+
+      }
+    );
+  });
+}
+</script>

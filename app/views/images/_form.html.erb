@@ -1,17 +1,21 @@
-<%= form_for(@image) do |f| %>
-  <% if @image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
-
-      <ul>
-      <% @image.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= stylesheet_link_tag "pecaa"%>
+<div class="addFileHolder" style="margin-top:10px">
+    <div class="addFileTop">Add Image <img src="/assets/icon-help-grey.png" class="help" /></div>
+    <%= form_for(@image, :html => { :multipart => true }, :remote => true) do |f| %>
+	<%=hidden_field_tag :from_content, @from_content%>
+    <%#= f.object.errors %>
+    <div class="addFileBody">
+      <%= f.file_field :upload %>
+      <p>File Path</p>
+      <p>users/jim/desktop/image.png</p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="addFileBottom">
+      <div class="btnCancelLeft">
+        <input type="reset" value="Cancel" class="btnCancel" />
+      </div>
+      <div class="btnUploadFileLeft">
+        <%= f.submit "Upload Image", :class => "btnUploadFile" %>
+      </div>
+    </div>
+    <% end %>
+</div>

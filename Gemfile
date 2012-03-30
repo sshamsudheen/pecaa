@@ -13,6 +13,7 @@ gem 'paperclip'
 
 gem 'json'
 
+gem 'meta_search'
 # gem "railties", "~> 4.0.0"
 
 # Gems used only for assets and not required
@@ -53,3 +54,7 @@ gem 'kaminari'
 gem 'acts_as_state_machine'
 gem 'paperclip-ffmpeg'
 gem 'ffmpeg'
+#gem 'tiny_mce'
+gem 'tinymce-rails'
+
+gem 'tzinfo'

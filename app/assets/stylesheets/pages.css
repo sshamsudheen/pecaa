@@ -1,0 +1,251 @@
+.pages-main{
+	min-height:500px;
+  	overflow: hidden;
+}
+.pages-wrapper {
+}
+.site-pages{
+	float: left;
+	width:70%;
+	margin-right:20px;
+	margin-bottom:30px;
+}
+.subNav{
+	width:27%;
+	float:right;
+}
+.site-pages .title,
+.subNav .title{
+	font-size:20px;
+	color:#99aec0;
+	margin-bottom:5px;
+}
+
+.title .help{
+	float: right;
+	background:url(img/helpIcon.png) no-repeat;
+	width: 20px;
+	height:20px;
+}
+.help a{
+	display:block;
+}
+
+.site-pages .userGridHeader {
+	background: url(img/bg_grayGrain.gif) repeat;
+	color:#FFFFFF;
+	border-bottom: 1px solid #333333;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	height:37px;
+	font-size:14px;
+}
+
+.site-pages .userGridHeader ul.ConLibraHeads,
+.site-pages .userGridHeader ul.ConLibra{
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+
+.site-pages .userGridHeader ul.ConLibraHeads .pageName{
+	width:165px;
+	text-align: left;
+	padding-left:20px;	
+	display:inline-block;
+	vertical-align: middle;
+}
+.site-pages .userGridHeader ul.ConLibraHeads .status{
+	width:50px;	
+	padding: 0 2px;
+	text-align: center;
+	display:inline-block;
+	height:24px;
+	vertical-align: middle;
+}
+.site-pages .userGridHeader ul.ConLibraHeads .home{
+	width:40px;	
+	display:inline-block;
+	vertical-align: middle;
+	padding: 3px 0px 0;
+	text-align: center;
+	
+}
+.site-pages .userGridHeader ul.ConLibraHeads .other{
+	width: 200px;
+	text-align: center;
+	display:inline-block;
+}
+.site-pages ul.ConLibra{
+	border-left:1px solid #333333;
+	border-right:1px solid #333333;
+	padding:0;
+	margin:0;
+	list-style: none;
+}
+.site-pages ul.ConLibra li{
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
+	/*border-bottom: 1px solid #CCCCCC;*/
+	height:24px;
+}
+.site-pages ul.ConLibra li:first-child{
+	background:url(img/bg_tableTopShadow.png) repeat-x 0 0 #CCCCCC;
+}
+.site-pages ul.ConLibra li.selected:first-child{
+	background:url(img/bg_tableTopShadow.png) repeat-x 0 top #787878;
+}
+.site-pages ul.ConLibra li:last-child{
+	background:url(img/bg_tableBottomShadow.png) repeat-x 0 bottom #CCCCCC;
+	border-bottom:0px;
+}
+.site-pages ul.ConLibra li.selected:last-child{
+	background:url(img/bg_tableBottomShadow.png) repeat-x 0 bottom #787878;
+}
+.site-pages .userGridFooter {
+	background: url(img/bg_grayGrain.gif) repeat;
+	height:15px;
+	border-top: 1px solid #333333;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+}
+.site-pages .userGrid{
+	width:680px;
+}
+.site-pages ul.ConLibra .alt {
+	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
+	border-bottom:1px solid #cbcbca;
+}
+.site-pages ul.ConLibra li.selected {
+	background:#787878;
+	color: #FFFFFF;
+	/*border-top:1px solid #333333;
+	border-bottom:1px solid #333333;*/
+}
+
+.site-pages .ConLibra .pageName{
+	width:165px;
+	background:url(img/icon_movable.png) no-repeat 98% center transparent;
+	text-align: left;
+	padding-left:20px;	
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	padding-top:2px;
+}
+.site-pages .ConLibra .status,
+.site-pages .ConLibra .home{
+	width:43px;	
+	padding-top:2px;
+	text-align: center;
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-left: 2px;
+    padding-right: 3px;
+}
+.site-pages .ConLibra .home{
+	padding-left:15px;
+	width:25px;
+}
+	.status .on{
+		width: 48px;
+		height:21px;
+		background: url(img/bg_On.png) no-repeat;
+		display:block;
+	}
+	.status .off{
+		width: 48px;
+		height:21px;
+		background: url(img/bg_Off.png) no-repeat;
+		display:block;
+	}
+.site-pages .ConLibra .other{
+	width:210px;
+	text-align: center;	
+	display:inline-block;
+	height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-top:2px;
+}
+.site-pages .ConLibra .misc{
+	text-align: center;
+    width: 40px;
+    display:inline-block;
+    height:22px;
+	vertical-align: middle;
+	border-left:1px solid #999999;
+	padding-top:2px;
+}
+.subNav-wrapper{
+	background:#FFFFFF;
+	-moz-box-shadow: inset 0px 1px 4px #666666;
+	-webkit-box-shadow: inset 0px 1px 4px #666666;
+	 box-shadow: inset 0px 1px 4px #666666;
+	 border-radius: 6px;
+	 border:1px solid #333;
+	 height:365px;
+	 padding:10px;
+}
+.subNav-section div{
+	margin-bottom:8px;
+}
+.subNav-section{
+	margin-bottom:50px;
+}
+.page-data{
+	margin-bottom:10px;
+}
+
+.rightBtns button{
+	margin-left:10px;
+	margin-right:0;
+}
+.rightBtns .addPage{
+	width: 96px;
+	height:30px;
+	border:0;
+	background:url(img/btnAddPage.png) no-repeat;
+}
+.rightBtns .addLink{
+	width: 194px;
+	height:30px;
+	border:0;
+	background:url(img/btnAddLink.png) no-repeat;
+}
+.alert-box{
+	width:240px;
+	min-height:150px;
+	padding:10px;
+	border-radius:4px;
+	border:1px solid #666666;
+	-moz-box-shadow: 0px 1px 6px #333;
+	-webkit-box-shadow: 0px 1px 6px #333;
+	/*background: url(img/bg_grayGrain.gif) repeat;*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#bdbdbd), to(#8a8a8a));
+	background: -moz-linear-gradient(top,  #bdbdbd,  #8a8a8a);
+	position: absolute;
+	left: 40%;
+	top:30%;
+	
+}
+.alert-box .msgTitle{
+	background:url(img/bg_AlertTitle.png) no-repeat 100% center;
+	font-size:26px;
+	color:#ff6666;
+	padding:5px 35px 15px 0;
+}
+.alert-box .msgContent{
+	font-size:14px;
+	color:#FFF;
+	margin-bottom:20px;
+}
+.alert-box .msgFooter .secondary{
+	float: left;
+	margin:0;
+}
+.alert-box .msgFooter .primary{
+	float: right;
+	margin:0;
+}

@@ -72,21 +72,21 @@ end
   
   desc "Restart Nginx"
   task :nginx_restart do
-    run  "su" do |ch, _, out| 
-      if out =~ /^Password: /
-        ch.send_data "\n"
-      else
-        puts out 
-      end
-    end
-    run "/etc/init.d/nginx stop"
-    run "/etc/init.d/nginx start"
+    # run "/etc/init.d/nginx stop"
+    run "/etc/init.d/nginx restart"
+  end
+
+  desc "Restarting Apache"
+  task :apache_restart do
+    run "/usr/sbin/httpd -k stop"
+    run "/usr/sbin/httpd -k start"
   end
   
 
 end
 
 after 'deploy:symlink', 'deploy:create_symlinks'
+# after 'deploy:start', 'deploy:apache_restart'
 # after 'deploy:db_backup', 'deploy:db_seed'
 # after 'deploy:db_backup', 'deploy:migrate'
 # after 'deploy:create_symlinks', 'deploy:db_backup'

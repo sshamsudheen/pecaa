@@ -1,0 +1,71 @@
+<script type="text/javascript" src="/assets/externals/released-externals/interface-1.2.js"></script>
+<script type="text/javascript" src="/assets/compressed/nested_sortable/inestedsortable.js"></script>
+
+<div class="subTab-Content left subTab-Content-tab" id='background_form'>
+	<div class="resetAll"><a href="#"></a></div>
+	<div class="colum-wrapper left">
+		<div class="changePanel">
+			<label>color</label>
+			<div class="palletBox">
+				<div class="solidColor">
+				  <%=hidden_field_tag :bg_color%>
+				  <span class="piller"></span>
+          <span class="add"></span>
+        </div>
+				<div class="gradientColor right">creat gradient</div>
+			</div>
+		</div>
+		<div class="changePanel">
+			<label>opacity</label>
+			<div class="palletBox">
+				  <div class="slider-alpha" id='opacity'>
+					<div class="alphaPointer"><span id="opacity_val" class="val">100%</span></div>
+				  <%=hidden_field_tag :bg_color_opacity%>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="colum-wrapper last left">
+		<div class="changePanel">
+			<label>background image</label>
+			<div class="palletBox grayBg"><span class="noImage">no image</span>
+				<div class="chooseImg right">
+					
+					<span style="display:block; float:left;">
+						&nbsp;&nbsp;
+				   <a href='<%= new_site_site_style_path(@site, :type=>'image') %>' rel="facebox" style="display:block; float:left;"></a>
+						</span>
+				</div>
+		  <%=hidden_field_tag :bg_image%>
+			</div>
+		</div>
+		<div class="changePanel">
+			<label>image position & style</label>
+			<div class="palletBox">
+				<div class="tileBox left">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li class="active"></li>
+					</ul>
+          <%=hidden_field_tag :image_position%>
+			</div>
+			<div class="repeatBox left">
+				<div class="repeatXY"><input type="checkbox" class="styled" id="repeatX" value='repeatX'/> <label for="repeatX">repeat-x</label></div>
+				<div class="repeatXY"><input type="checkbox" class="styled" id="repeatY" value='repeatY'/> <label for="repeatY">repeat-y</label></div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('a[rel*=facebox]').facebox();
+</script>
+

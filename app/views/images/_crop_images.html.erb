@@ -1,0 +1,9 @@
+<div class="contentObject">
+	<div class="alphaBg"></div>
+	<div class="expandable">
+		<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
+		<span class="drag"></span>
+		<span class="scale"></span>
+		<div class="objectContent" style="width:300px;height:250px;"><span style="width:300px" class="title"><img border="0" src="<%=content.source.upload%>" width="300" height="200"></span></div>
+	</div>
+</div>

@@ -1,3 +1,4 @@
+//= require tinymce-jquery
 $(document).ready(function() {
   $('a[rel*=facebox]').facebox({
   loadingImage : '/assets/loading.gif'
@@ -12,6 +13,13 @@ $(document).ready(function() {
   $(".btnCancelForm").live('click', function(){
     $("#facebox").hide()
     $("#facebox_overlay").hide()
-  })
+  })  
+//  $(function() {
+//    $('textarea').tinymce({
+//      width: "98%",
+//      height: "50%",
+//      theme: 'advanced'
+//    });
+//  });
 })
 

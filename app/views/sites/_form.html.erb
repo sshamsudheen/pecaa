@@ -1,33 +1,168 @@
-<%= form_for(@site) do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+<div class="siteInfo-main">
+	<div class="intro-text"><p>Some Intro Test "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae purus id mauris mollis tincidunt. Curabitur in pellentesque mi. Nulla facilisi. Nam vel venenatis diam. Curabitur urna arcu, egestas at vehicula ullamcorper, scelerisque non est. Pellentesque pulvinar massa eu velit pulvinar accumsan ac in est. Fusce mauris nulla, vestibulum ac semper id, mollis at lectus. Nullam placerat tempor nisl, quis tincidunt sapien lacinia ac." </p></div>
+	<div class="colum-wrapper">
+		<div class="colum-section">
+	  <%= form_for(@site) do |f| %>
+      <%= hidden_field_tag "site_link_accounts" %>
+	  <% if @site.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
 
-      <ul>
-      <% @site.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @site.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+		<div class="title">Site Details <span class="help"><a href="#"></a></span></div>
+			<div class="group">
+				<div class="field">
+				  <span class="key">site name:</span>
+				  <span class="val"><%= f.text_field :name %></span>
+        </div>
+      </div>
+			<div class="group">
+			  <div class="field">
+				  <span class="key">domain name:</span>
+				  <span class="val"><%= f.text_field :domain_name %></span>
+        </div>
+			</div>
+			<div class="group next">
+				<div class="field">
+          <span class="key">company name:</span>
+          <span class="val"><%= f.text_field :company_name %></span>
+        </div>
+			</div>
+  		  <%= f.fields_for (@site.new_record? && !@site.address ? :address_attributes : :address) do |site| %>
+  		  <div class="group">
+  				<span class="key">address:</span>
+          <span class="val"><%= site.text_field :address_one %></span>
+        </div>
+        <div class="group">
+          <span class="key">&nbsp;</span>
+          <span class="val"><%= site.text_field :address_two %></span>
+  			</div>
+  			<div class="group">
+  				<span class="key">city:</span>
+  				<span class="val"><%= site.text_field :city %></span>
+  			</div>
+  			<div class="group">
+  				<span class="key">state:</span>
+          <span class="val"><%= site.text_field :state %></span>
+        </div>
+        <div class="group">
+          <span class="zipCode">
+            <span class="key">zip:</span>
+            <span class="val"><%= site.text_field :zipcode %></span>
+          </span>
+        </div>
+  			<div class="group country">
+  				<span class="key">country:</span>
+          <span class="val">
+          <%= site.select(:country, options_for_select(TZInfo::Country.all_codes.map {|code|
+            ["#{TZInfo::Country.get(code).name}", "#{code}" ]}), :prompt=>"Select Country")%>
+          </span>
+  			</div>
+      <% end -%>
+		</div>
+		
+		
+	<div class="colum-section last">
+		<div class="title">Contact Details <span class="help"><a href="#"></a></span></div>
+		<div class="contactfields" >
+		  <%= f.fields_for :site_contacts do |contact_fields| %>
+        <%= render :partial => 'site_contact_fields', :locals => { :f => contact_fields } %>
+      <%end%>
     </div>
-  <% end %>
+		<div class="group">
+		  <%= link_to_add_fields "Add Contact", f, :site_contacts %>
+		</div>
+			
+			<div class="title">Link to Existing Account <span class="help"><a href="#"></a></span></div>
+			<div class="group" id="link_account">
+			  <%= render :partial => 'link_accounts'%>
+			</div>
+			<div class="group searchAC">
+			  <input type="text" class="search" placeholder="search accounts">
+			</div>
+			<div style="clear:both"></div>
+      
+			<div class="group" id="site_link_account">
+        <div id="search_results"></div>
+      </div>
+			<div class="main-nav">
+      	<div class="rightBtns"><button class="btn_Save">
+      	  <%= f.submit("Save and go to next step") %></button>
+      	</div>
+      </div>
+    <% end %>
+		</div>
+	</div>
+</div>
+<script>
+var acc_val =[];
+var new_site = <%=@site.new_record?%>;
+var siteid = <%=@site.id ? @site.id : 0%>;
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :is_active %><br />
-    <%= f.check_box :is_active %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+   $(".remove_fields").live('click', function(){
+     var link = $(this)
+     $(link).prev("input[type=hidden]").val("1");
+     $(link).closest(".fields").hide();
+     return false;
+  });
+
+  function add_fields(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $('.contactfields').append(content.replace(regexp, new_id));
+        // $(link).parent().before(content.replace(regexp1, "["+new_id+"]"));
+  }
+  
+  $(".search").live('keydown', function(e){
+    if (e.keyCode == 13){
+      $.ajax({
+        type: "POST",
+        url: "/users/search",
+        data:"query="+$(this).attr('value'),
+        success: function(result){
+          $('#search_results').html(result);
+        }});
+        return false;
+    }
+  });
+
+  $(".linkAccount").live('click', function(){
+    var acc = $("#editor_"+$(this).attr('rel')).is(':checked');
+    var u_id = $(this).attr('rel');
+    if(new_site){
+      var s = $("#site_link_accounts");
+      acc_val.push($(this).attr('rel')+"_"+acc);
+      s.attr('value', acc_val);
+    }else{
+      make_request(u_id, false);
+    }
+    return false;
+  });
+  
+  function make_request(uid, rm){
+    var acc = $("#editor_"+ uid).is(':checked');
+    $.ajax({
+      type: "POST",
+      url: "/sites/site_link_account",
+      data:{site_id : siteid , user_id : uid, access : acc, remove : rm},
+      success: function(result){
+        $('#link_account').html(result);
+        if( rm == true){$('#'+uid).remove}
+      }});
+  }
+  
+  $(document).ready(function(){
+  	$(".item-wrapper ul li.item").hover(function () {
+    	$(this).find(".hotspot").fadeIn();
+  	},
+  	function () {
+   		$(this).find(".hotspot").fadeOut();
+   	})
+  })
+</script>

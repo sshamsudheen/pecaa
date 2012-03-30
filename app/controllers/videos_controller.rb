@@ -25,16 +25,24 @@ class VideosController < ApplicationController
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
         rescue
         end
-        redirect_to content_libraries_path
+         if params[:from_content]
+            redirect_to content_search_path+"?search[source_type_equals]=Video"
+          else
+            redirect_to content_libraries_path
+          end
       else
-        redirect_to content_libraries_path
+         if params[:from_content]
+            redirect_to content_search_path+"?search[source_type_equals]=Video"
+          else
+            redirect_to content_libraries_path
+          end
 #        respond_to do |format|
 #          format.html  { render(:nothing => true)}
 #        end
       end
     end
-  rescue
-    redirect_to content_libraries_path
+#  rescue
+#    redirect_to content_libraries_path
   end
 
   def edit
