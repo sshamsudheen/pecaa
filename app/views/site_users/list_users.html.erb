@@ -1,9 +1,43 @@
+ <script type="text/javascript">
+        	
+        	$(document).ready(function(){
+        		
+        		$(".ConLibra li:even").addClass("alt");
+        		$("ul.ConLibra li").each(function(){
+        			var $this = $(this);
+        			if($this.hasClass("selected")){
+        				$this.find('.pointer').show();
+        			}
+        		})
+        		$("ul.ConLibra li").click(function(){
+        			var $this = $(this);
+        			
+        			if(!$this.hasClass("selected")){
+        				$("ul.ConLibra li").removeClass("selected");
+        				$("ul.ConLibra li").find('.pointer').hide();
+        				$this.addClass("selected");
+        				$this.find('.pointer').show();
+        			}
+					var user_id = this.id.split('_')[0]
+					 $.ajax({
+				            type: "get",
+				            url: "/sites/<%=@site.id%>/site_users/user_details/"+user_id,
+				            success: function (data) {
+								$('#user_details').html(data)
+				            },
+				        });
+        			return false;
+        			
+        		})
+        	})
+        </script>
+
 <div class="pages-main">
 		    			<div class="pages-wrapper">
 		    				
 		    				<div class="usersLeftPane left">
 								<div class="title">Manage Users <span class="help"><a href="#"></a></span></div>
-								
+								<div id ="user_details">
 								<div class="userPanel">
 									<div class="searchUser">
 										<span class="searchInput left"><input type="text"></span>
@@ -22,7 +56,8 @@
 									<div class="last-activity"><span id="lastActivityVal" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled" id="lastActivityVal"> <label for="lastActivityVal">last activity</label></div>
 								</div>
 		    				</div>
-		    				
+		    				</div>
+							
 		    				
 		    				<div class="site-users left">
 								<div class="addNewUserBtn">
@@ -48,23 +83,17 @@
 				 									<div class="overview" style="top: 0px; ">
 				    									<ul class="ConLibra">
 				    										<%@site_users.each_with_index do |s_u|%>
-				    										<li class="<%= cycle('', 'alt') %>">
-				    											<span class="userName"><span class="pointer"></span> <%=s_u.user.username%><span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
+				    										<li class="<%= cycle('', 'alt') %>" id ="<%=s_u.user.id%>_detail">
+				    											<span class="userName"><span class="pointer"></span> <%=s_u.user.username%><span class="status">
+				    												<%if s_u.user.active%>
+																	<img src="/assets/btnMarkYes.png" border="0">
+																	<%else%>
+				    												<img src="/assets/btnMarkNo.png" border="0">
+																	<%end%>
+																</span></span>
 				    											<span class="group">Group X</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="selected">
-				    											<span class="userName"><span class="pointer"></span> James Smith<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">Group X</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span> James Smith<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">Group X</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
+				    											<span class="created"><%=s_u.user.created_at.strftime('%d/%m/%y')%></span>
+				    											<span class="lastActivity"><%=s_u.user.created_at.strftime('%d/%m/%y')%></span>
 				    										</li>
 															<%end%>
 				    									</ul>

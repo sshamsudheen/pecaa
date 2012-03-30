@@ -48,6 +48,8 @@ Mystore3::Application.routes.draw do
     resources :site_users do
       get 'list_users', :on => :collection 
       get 'list_groups', :on => :collection
+      get 'new_group', :on => :collection
+      get '/user_details/:user_id', :on => :collection, :to => 'site_users#user_details'
     end
   end
   
