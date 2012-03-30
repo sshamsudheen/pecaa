@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323080403) do
+ActiveRecord::Schema.define(:version => 20120327174006) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -75,6 +76,16 @@ ActiveRecord::Schema.define(:version => 20120323080403) do
     t.datetime "updated_at"
   end
 
+  create_table "groups_roles", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "group_id"
+  end
+
+  create_table "groups_users", :id => false, :force => true do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
   create_table "images", :force => true do |t|
     t.integer  "user_id"
     t.string   "upload_file_name"
@@ -89,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20120323080403) do
   create_table "pages", :force => true do |t|
     t.string   "name"
     t.string   "layout"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -154,6 +168,14 @@ ActiveRecord::Schema.define(:version => 20120323080403) do
     t.datetime "updated_at"
   end
 
+  create_table "site_groups", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "site_link_accounts", :force => true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
@@ -174,6 +196,22 @@ ActiveRecord::Schema.define(:version => 20120323080403) do
     t.text     "target"
     t.integer  "site_id"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_optional_details", :force => true do |t|
+    t.text     "key_words"
+    t.text     "google_analytics_code"
+    t.text     "description"
+    t.string   "logo_alt_text"
+    t.string   "twitter_id"
+    t.string   "google_id"
+    t.string   "facebook_id"
+    t.string   "linked_in_id"
+    t.boolean  "share"
+    t.integer  "site_id"
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -206,6 +244,26 @@ ActiveRecord::Schema.define(:version => 20120323080403) do
     t.string   "description"
     t.string   "keywords"
     t.string   "custom_url"
+  end
+
+  create_table "site_styles", :force => true do |t|
+    t.integer  "site_id"
+    t.text     "background_style"
+    t.text     "block_style"
+    t.text     "text_style"
+    t.integer  "created_by"
+    t.boolean  "is_active",        :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "site_id"
+    t.string   "name"
+    t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sites", :force => true do |t|
