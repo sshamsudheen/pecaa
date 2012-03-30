@@ -30,10 +30,9 @@
 			<label>background image</label>
 			<div class="palletBox grayBg"><span class="noImage">no image</span>
 				<div class="chooseImg right">
-					
+					 <a href='<%= new_site_site_style_path(@site, :type=>'image') %>' rel="facebox" style="display:block; float:left;" class="image_link"></a>
 					<span style="display:block; float:left;">
 						&nbsp;&nbsp;
-				   <a href='<%= new_site_site_style_path(@site, :type=>'image') %>' rel="facebox" style="display:block; float:left;"></a>
 						</span>
 				</div>
 		  <%=hidden_field_tag :bg_image%>
@@ -71,5 +70,8 @@
 
 <script type="text/javascript">
 	$('a[rel*=facebox]').facebox();
+	$('.chooseImg').click(function(){
+	  $('a.image_link').trigger('click')
+	})
 </script>
 

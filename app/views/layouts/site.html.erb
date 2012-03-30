@@ -125,12 +125,12 @@
       		<div class="main-nav">
       			<div class="navBtns">
       				<ul>
-      					<li class="siteInfo <%=params[:controller]== 'sites' ? 'active' : ''%>"></li>
-      					<li class="pages <%=params[:controller]== 'site_pages' ? 'active' : ''%>"></li>
-      					<li class="content <%= params[:controller]== 'content_libraries' ? 'active' : ''%>"></li>
-      					<li class="theme"></li>
+      					<li class="siteInfo <%=params[:controller] == 'sites' ? 'active' : ''%>" rel=<%=set_link("edit_site_path", @site)%>></li>
+      					<li class="pages <%=params[:controller] == 'site_pages' ? 'active' : ''%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
+      					<li class="content <%= params[:controller] == 'content_libraries' ? 'active' : ''%>" rel=<%=content_search_path%>></li>
+      					<li class="theme" rel=<%=set_link("site_site_styles_path", @site)%>></li>
       					<li class="optional"></li>
-  						  <li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%> "></li>
+  						  <li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%> " rel=<%=set_link("site_site_users_path", @site)%>></li>
       					<li class="done"></li>
       				</ul>
       			</div>
@@ -151,5 +151,10 @@
     	
     	</div>
       </div>
+      <script>
+      $('.navBtns ul li').click(function(){
+          window.location.href=$(this).attr('rel');
+      })
+      </script>
   </body>
 </html>

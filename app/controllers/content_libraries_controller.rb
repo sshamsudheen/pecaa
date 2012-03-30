@@ -1,4 +1,6 @@
 class ContentLibrariesController < ApplicationController
+
+  before_filter :setup
   layout 'pecaa_application'
   # GET /content_libraries
   # GET /content_libraries.json
@@ -89,4 +91,11 @@ class ContentLibrariesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  protected
+
+  def setup
+    @site = Site.find_by_id(session[:site_id]) || Site.new
+  end
+  
 end

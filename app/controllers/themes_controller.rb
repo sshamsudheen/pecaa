@@ -6,7 +6,7 @@ class ThemesController < ApplicationController
     @themes = Theme.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {render :layout=> false}# index.html.erb
       format.json { render :json =>  @themes }
     end
   end

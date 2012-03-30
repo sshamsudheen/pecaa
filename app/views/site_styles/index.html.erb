@@ -15,7 +15,7 @@
     		<ul>
     		  <%["text", "background", "block"].each do |d|%>
             <li class=<%=@style_type == d ? "active" : ''%>>
-              <a href="#" class='style_tab' rel='<%=d%>' ><%=d.capitalize%></a>
+              <span><a href="#" class='style_tab' rel='<%=d%>' ><%=d.capitalize%></a></span>
             </li>
     			<% end %>
     		</ul>
