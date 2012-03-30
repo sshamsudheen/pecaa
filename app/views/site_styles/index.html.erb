@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
+
 <div class="themes-main">
 	<div class="themes-wrapper">
 		<div class="tabs">
@@ -41,7 +43,9 @@
   	  var $this = $(this);
   	  $this.parent().find('li.active').removeClass('active');
   	  $this.addClass('active');
+  	  $this.parent().siblings(".pallet_box").attr('value', $this.attr('id'));
     })
+    // $('.tileBox ul').find('li.active').parent().siblings(".pallet_box").attr('value');
     // $('#cp1').colorpicker({
     //     onClose: function(hex, rgba, inst){
     //         console.log('onClose: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
@@ -70,12 +74,14 @@
   	change: refreshOpacity});
 
   function refreshOpacity() {
-    var transparency = $("#opacity").slider("value")
+    var val = $("#opacity").slider("value")
     // $("#swatch").css("background-color", "rgb(" + red + ", " + green + ", " + blue + ")");
     // $("#swatch").css("opacity", transparency);
     // $(".hexResults").text("#" + hex);
     // $(".rgbResults").text("rgb(" + red + ", " + green + ", " + blue + ")");
-  	$("#opacity_val").text(transparency + "%");
+  	$("#opacity_val").text(val + "%");
+  	$("#bg_color_opacity").attr('value', val + "%")
+  	return true;
     // $(".rgbaResults").text("rgba(" + red + ", " + green + ", " + blue + ", " + transparency + ")");
   }
   
@@ -89,9 +95,11 @@
   
   
   function refreshBlockOpacity() {
-    var transparency = $("#opacity_block").slider("value")
-		$("#opacity_block_val").text(transparency + "px");
+    var val = $("#opacity_block").slider("value")
+		$("#opacity_block_val").text(val + "%");
+  	$("#block_opacity").attr('value', val + "%");
 	}
+
   $( "#opacity_text" ).slider({
     orientation: "horizontal",
     min: 0,
@@ -102,12 +110,12 @@
   
   
   function refreshTextOpacity() {
-    var transparency = $("#opacity_text").slider("value")
-		$("#opacity_text_val").text(transparency + "px");
+    var val = $("#opacity_text").slider("value")
+		$("#opacity_text_val").text(val + "%");
+		$("#text_opacity").attr('value', val + "%");
 	}
 
-  
-  $( "#border_width" ).slider({
+  $( "#borderwidth" ).slider({
     orientation: "horizontal",
     min: 0,
     max: 10,
@@ -116,11 +124,12 @@
 		change: refreshBwidth});
     
     function refreshBwidth() {
-      var transparency = $("#border_width").slider("value")
-    	$("#border_width_val").text(transparency + "px");
+      var val = $("#borderwidth").slider("value")
+    	$("#border_width_val").text(val + "px");
+		  $("#border_width").attr('value', val + "px");
     }
   	
-  	$( "#border_radius" ).slider({
+  	$( "#borderradius" ).slider({
       orientation: "horizontal",
       min: 0,
       max: 10,
@@ -129,11 +138,12 @@
   		change: refreshBradius});
 
       function refreshBradius() {
-        var transparency = $("#border_radius").slider("value")
-    		$("#border_radius_val").text(transparency + "px");
+        var val = $("#borderradius").slider("value")
+    		$("#border_radius_val").text(val + "px");
+  		  $("#border_radius").attr('value', val + "px");
     	}
     	
-    $( "#box_shadow" ).slider({
+    $( "#boxshadow" ).slider({
       orientation: "horizontal",
       range:true,
       min: 0,
@@ -143,12 +153,14 @@
     	change: refreshShadow});
 
       function refreshShadow() {
-        var val1 = $("#box_shadow").slider("values")[0];
-        var val2 = $("#box_shadow").slider("values")[1];
+        var val1 = $("#boxshadow").slider("values")[0];
+        var val2 = $("#boxshadow").slider("values")[1];
     		$("#box_shadow_val1").text(val1 + "px");
         $("#box_shadow_val2").text(val2 + "px");
+        $("#box_shadow").attr('value', [val1+"px", val2+"px"]);
+  		  
     	}
-    $("#text_shadow").slider({
+    $("#textshadow").slider({
       orientation: "horizontal",
       range:true,
       min: 0,
@@ -158,13 +170,13 @@
     	change: refreshTextShadow});
 
       function refreshTextShadow() {
-        var val1 = $("#text_shadow").slider("values")[0];
-        var val2 = $("#text_shadow").slider("values")[1];
+        var val1 = $("#textshadow").slider("values")[0];
+        var val2 = $("#textshadow").slider("values")[1];
     		$("#text_shadow_val1").text(val1 + "px");
         $("#text_shadow_val2").text(val2 + "px");
+        $("#text_shadow").attr('value', [val1+"px", val2+"px"]);
     	}
-    	
-    
+
   	refreshOpacity();
   	refreshBwidth();
     refreshBradius();
@@ -173,16 +185,16 @@
     refreshTextOpacity();
     refreshBlockOpacity();
     
-$('.style_tab').click(function(){
-  $(".subTab-Content-tab").hide();
-  $("#"+$(this).attr('rel')+'_form').show();
-  $(this).parent().siblings(".active").removeClass('active');
-  $(this).parent().addClass('active');
+  $('.style_tab').click(function(){
+    $(".subTab-Content-tab").hide();
+    $("#"+$(this).attr('rel')+'_form').show();
+    $(this).parent().siblings(".active").removeClass('active');
+    $(this).parent().addClass('active');
   
-});
+  });
 
-$('#form_submit').click(function(){
-  $('form')[0].submit();
-});
+  $('#form_submit').click(function(){
+    $('form')[0].submit();
+  });
 
 </script>

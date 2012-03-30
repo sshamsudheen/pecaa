@@ -35,21 +35,25 @@
 			<div class="palletBox">
 				<div class="tileBox left">
 					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li class="active"></li>
+						<li id="topLeft"></li>
+						<li id="topCenter"></li>
+						<li id="topRight"></li>
+						<li id="middleLeft"></li>
+						<li id="middleCenter"></li>
+						<li id="middleRight"></li>
+						<li id="bottomLeft"></li>
+						<li id="bottomMiddle"></li>
+						<li id="bottomLeft" class="active"></li>
 					</ul>
-          <%=hidden_field_tag :image_position%>
+          <%=hidden_field_tag :image_position, '', :class=>"pallet_box"%>
 			</div>
 			<div class="repeatBox left">
-				<div class="repeatXY"><input type="checkbox" class="styled" id="repeatX" value='repeatX'/> <label for="repeatX">repeat-x</label></div>
-				<div class="repeatXY"><input type="checkbox" class="styled" id="repeatY" value='repeatY'/> <label for="repeatY">repeat-y</label></div>
+				<div class="repeatXY">
+				  <input type="checkbox" class="styled" id="repeatX" value='repeatX'/> <label for="repeatX">repeat-x</label>
+				</div>
+				<div class="repeatXY">
+				  <input type="checkbox" class="styled" id="repeatY" value='repeatY'/> <label for="repeatY">repeat-y</label>
+				</div>
 			</div>
 			</div>
 		</div>
