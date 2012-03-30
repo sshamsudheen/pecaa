@@ -8,9 +8,9 @@ class SiteStylesController < ApplicationController
   end
   
   def new
-    @site_style = @site.site_style|| SiteStyle.new
+    @site_style = @site.site_style || SiteStyle.new
     if params[:type]=='image'
-      render :image_form, :layout=>false
+      render :image_form, :layout => false
     end
   end
   def create
