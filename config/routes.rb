@@ -25,6 +25,7 @@ Mystore3::Application.routes.draw do
   
   resources :sites do
     get 'optional', :on => :member
+    get 'done', :on => :member
     post 'optional_create', :on => :member
     get 'preview', :on => :member
     post 'site_link_account', :on => :collection
@@ -37,6 +38,9 @@ Mystore3::Application.routes.draw do
       get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
+      resources :content_libraries do 
+        get 'search', :on => :collection
+      end
     end
     resources :site_styles do
       

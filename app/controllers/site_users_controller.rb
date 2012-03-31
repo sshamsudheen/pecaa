@@ -2,6 +2,11 @@ class SiteUsersController < ApplicationController
   before_filter :setup
   layout 'site'  
   
+  def index
+    @site_users = @site.site_users
+    render :action => "list_users"
+  end
+  
   def list_users
     @site_users = @site.site_users
   end

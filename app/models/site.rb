@@ -9,6 +9,7 @@ class Site < ActiveRecord::Base
   has_one  :address
   has_and_belongs_to_many :content_libraries
   has_many :site_groups
+  has_one  :site_optional_detail
   
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by"
   accepts_nested_attributes_for :address
