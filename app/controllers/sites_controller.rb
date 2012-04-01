@@ -86,7 +86,7 @@ class SitesController < ApplicationController
     elsif !params[:query].blank? && params[:date_added].blank?
       @sites = Site.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
     elsif params[:query].blank? && !params[:date_added].blank?
-      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y").Date.strptime(params[:end_date],"%m-%d-%Y")))
     end
     render :action => 'index'
   end
