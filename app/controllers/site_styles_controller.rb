@@ -17,6 +17,13 @@ class SiteStylesController < ApplicationController
     raise params.inspect
   end
   
+  def choose_theme
+  end
+  
+  def choose_basecolor
+    @base_color = BaseColor.new
+  end
+  
   protected
 
   def setup

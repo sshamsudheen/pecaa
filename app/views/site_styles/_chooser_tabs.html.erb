@@ -1,0 +1,13 @@
+<div class="tabs">
+	<ul>
+		<li class="<%=params[:action] == 'choose_theme' ? 'active' : ''%>">
+		  <a href="<%=choose_theme_site_site_styles_path%>">Choose Theme</a>
+		</li>
+		<li class="<%=params[:action] == 'choose_basecolor' ? 'active' : ''%>">
+		  <a href="<%=choose_basecolor_site_site_styles_path%>">Choose Base Colors</a>
+		</li>
+		<li class="<%=params[:action] == 'index' ? 'active' : ''%>">
+		  <a href="<%=site_site_styles_path(@site)%>">Edit All Styles</a>
+		</li>
+	</ul>
+</div>

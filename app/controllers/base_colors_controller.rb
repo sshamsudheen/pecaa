@@ -42,7 +42,7 @@ class BaseColorsController < ApplicationController
     @base_color.created_by = current_user.id
     respond_to do |format|
       if @base_color.save
-        format.html { redirect_to "/base_colors/new", :notice => 'Base color was successfully created.' }
+        format.html { redirect_to choose_basecolor_site_site_styles_path(session[:site_id]), :notice => 'Base color was successfully created.' }
       else
         format.html { render :action => "new" }
       end

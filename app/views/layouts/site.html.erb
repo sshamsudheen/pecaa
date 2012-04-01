@@ -129,13 +129,13 @@
       		<div class="main-nav">
       			<div class="navBtns">
       				<ul>
-      					<li class="siteInfo <%=(params[:controller] == 'sites' and params[:action] != 'optional' and params[:action] != 'done') ? 'active' : ''%>" rel=<%=set_link("edit_site_path", @site)%>></li>
-      					<li class="pages <%=params[:controller] == 'site_pages' ? 'active' : ''%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
-      					<li class="content <%= params[:controller] == 'content_libraries' ? 'active' : ''%>" rel='#'></li>
-      					<li class="theme <%=params[:controller] == 'site_styles' ? 'active' : ''%>"" rel=<%=set_link("site_site_styles_path", @site)%>></li>
-      					<li class="optional <%= (params[:controller] == 'sites' and params[:action] == 'optional') ? 'active' : ''%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
-  						  <li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%> " rel=<%=set_link("site_site_users_path", @site)%>></li>
-      					<li class="done <%= (params[:controller] == 'sites' and params[:action] == 'done') ? 'active' : ''%>" rel="/sites/<%=@site.id%>/done"></li>
+      					<li class="siteInfo <%=site_top_nav('siteInfo')%>" rel=<%=set_link("edit_site_path", @site)%>></li>
+      					<li class="pages <%=site_top_nav('pages')%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
+      					<li class="content <%=site_top_nav('content')%>" rel=<%=set_link("search_site_site_page_content_libraries_path", @site, 1)%>></li>
+      					<li class="theme <%=site_top_nav('theme')%>" rel=<%=set_link("site_site_styles_path", @site)%>></li>
+      					<li class="optional <%=site_top_nav('optional')%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
+  						  <li class="users  <%=site_top_nav('users')%>" rel=<%=set_link("site_site_users_path", @site)%>></li>
+      					<li class="done <%=site_top_nav('done')%>" rel="/sites/<%=@site.id%>/done"></li>
       				</ul>
       			</div>
       			<div class="rightBtns"><button class="btn_Save" id="form_submit">Save and go to next step</button></div>
