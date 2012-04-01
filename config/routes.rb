@@ -1,6 +1,8 @@
 Mystore3::Application.routes.draw do
 
 
+  resources :miscs
+
   get "model/site_style"
 
   get "site_pages/index"

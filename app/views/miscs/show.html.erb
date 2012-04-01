@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @misc.user_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @misc.title %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @misc.address %>
+</p>
+
+<p>
+  <b>Is deleted:</b>
+  <%= @misc.is_deleted %>
+</p>
+
+
+<%= link_to 'Edit', edit_misc_path(@misc) %> |
+<%= link_to 'Back', miscs_path %>
