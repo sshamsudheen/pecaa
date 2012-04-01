@@ -193,7 +193,9 @@
   });
 
   $('#form_submit').click(function(){
-    $('form')[0].submit();
+  	  //changes for flow. Rajesh pls take care of this.
+  	  window.location.href = "/sites/<%=params[:site_id]%>/optional"
+   // $('form')[0].submit();
   });
 
 </script>
