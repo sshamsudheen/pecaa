@@ -23,10 +23,14 @@
 	  <%if ["site_pages", "sites", "site_styles"].include?(params[:controller])%>
 	  <%#CSS as per Rajesh's Modules%>
         <link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
+		  <%if params[:action] == 'optional' or params[:action]=='done'%>
+		  <%= stylesheet_link_tag "siteinfo", "layout", "content", "done", "pages", "users", 'themes', 'optional','done'%>
+		  <%else%>
 	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
+		  <%end%>
 	  <%else%>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users"%>
+	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional"%>
 	  <%end%>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
@@ -125,13 +129,13 @@
       		<div class="main-nav">
       			<div class="navBtns">
       				<ul>
-      					<li class="siteInfo <%=params[:controller] == 'sites' ? 'active' : ''%>" rel=<%=set_link("edit_site_path", @site)%>></li>
+      					<li class="siteInfo <%=(params[:controller] == 'sites' and params[:action] != 'optional' and params[:action] != 'done') ? 'active' : ''%>" rel=<%=set_link("edit_site_path", @site)%>></li>
       					<li class="pages <%=params[:controller] == 'site_pages' ? 'active' : ''%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
-      					<li class="content <%= params[:controller] == 'content_libraries' ? 'active' : ''%>" rel=<%=content_search_path%>></li>
-      					<li class="theme" rel=<%=set_link("site_site_styles_path", @site)%>></li>
-      					<li class="optional"></li>
+      					<li class="content <%= params[:controller] == 'content_libraries' ? 'active' : ''%>" rel='#'></li>
+      					<li class="theme <%=params[:controller] == 'site_styles' ? 'active' : ''%>"" rel=<%=set_link("site_site_styles_path", @site)%>></li>
+      					<li class="optional <%= (params[:controller] == 'sites' and params[:action] == 'optional') ? 'active' : ''%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
   						  <li class="users <%= params[:controller]== 'site_users' ? 'active' : ''%> " rel=<%=set_link("site_site_users_path", @site)%>></li>
-      					<li class="done"></li>
+      					<li class="done <%= (params[:controller] == 'sites' and params[:action] == 'done') ? 'active' : ''%>" rel="/sites/<%=@site.id%>/done"></li>
       				</ul>
       			</div>
       			<div class="rightBtns"><button class="btn_Save" id="form_submit">Save and go to next step</button></div>

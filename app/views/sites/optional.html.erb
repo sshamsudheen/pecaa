@@ -1,4 +1,4 @@
-<%=form_tag "/sites/#{params[:id]}/optional_create" do %>
+<%=form_tag "/sites/#{params[:id]}/optional_create", :id=>"optional_form" do %>
 <div class="siteInfo-main">
 		    			<div class="intro-text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae purus id mauris mollis tincidunt. Curabitur in pellentesque mi. Nulla facilisi. Nam vel venenatis diam. Curabitur urna arcu, egestas at vehicula ullamcorper, scelerisque non est. Pellentesque pulvinar massa eu velit pulvinar accumsan ac in est. Fusce mauris nulla, vestibulum ac semper id, mollis at lectus. Nullam placerat tempor nisl, quis tincidunt sapien lacinia ac. </p></div>
 		    			<div class="colum-wrapper">
@@ -7,19 +7,19 @@
     							<div class="group">
     								<div class="title"><label for="siteKeyWords">Site Keywords</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :key_words, :id => "siteKeyWords"%>
+    									<%=text_area :optional, :key_words, :id => "siteKeyWords",:rows=>4%>
 									</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="googleAnlt">Google Analitics Code</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :google_analytics_code, :id => "googleAnlt"%>
+    									<%=text_area :optional, :google_analytics_code, :id => "googleAnlt",:rows=>4%>
 									</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="siteDesc">Site Description</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :description, :id => "siteDesc"%>
+    									<%=text_area :optional, :description, :id => "siteDesc",:rows=>4%>
 									</span>
     							</div>
 								<div class="group">
@@ -59,7 +59,8 @@
     								</span>
     							</div>
     							<div class="group enableThis">
-    								<span id="shareThis" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" id="shareThis" class="styled"><label for="shareThis">enable "Share this plugin"</label><span class="help"><a href="#"></a></span>
+									<input type="checkbox" id="shareThis" class="styled"><label for="shareThis">enable "Share this plugin"</label>
+									<span class="help"><a href="#"></a></span>
     							</div>
 		    				</div>
 		    			</div>
@@ -67,3 +68,9 @@
 		    		
 		    		</div>
 <%end%>					
+
+<script>
+	$('#form_submit').click(function(){
+          $('#optional_form').submit();
+      })
+</script>

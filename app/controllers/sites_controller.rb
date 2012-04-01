@@ -108,13 +108,24 @@ class SitesController < ApplicationController
   end
   
   def optional
-    @optional = SiteOptionalDetail.new
+     @site = Site.find(params[:id])
+    @optional = @site.site_optional_detail || SiteOptionalDetail.new
     render :layout => "site"
   end
 
-  def create_optional
-    @optional = SiteOptionalDetail.create(params[:optional])
+  def optional_create
+    @site = Site.find(params[:id])
+    if (@optional = @site.site_optional_detail) 
+      @optional.update_attributes(patams[:optional])
+    else
+      @optional = @site.site_optional_detail.create(params[:optional])
+    end
     redirect_to "/sites/#{params[:id]}/site_users/list_users"
+  end
+
+  def done
+    @site = Site.find(params[:id])
+    render :layout => "site"
   end
   
   protected
