@@ -23,15 +23,15 @@
 	  <%if ["site_pages", "sites", "site_styles"].include?(params[:controller])%>
 	  <%#CSS as per Rajesh's Modules%>
         <link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
-		  <%if params[:action] == 'optional' or params[:action]=='done'%>
-		  <%= stylesheet_link_tag "siteinfo", "layout", "content", "done", "pages", "users", 'themes', 'optional','done'%>
-		  <%else%>
+		  <% if params[:action] == 'optional' or params[:action]=='done'%>
+		    <%= stylesheet_link_tag "siteinfo", "layout", "content", "done", "pages", "users", 'themes', 'optional'%>
+		  <% else %>
 	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
-		  <%end%>
-	  <%else%>
+		  <% end %>
+	  <% else %>
 	  <%#CSS as per Mani's Modules%>
 	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional"%>
-	  <%end%>
+	  <% end %>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
       <%= csrf_meta_tag %>
@@ -131,7 +131,7 @@
       				<ul>
       					<li class="siteInfo <%=site_top_nav('siteInfo')%>" rel=<%=set_link("edit_site_path", @site)%>></li>
       					<li class="pages <%=site_top_nav('pages')%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
-      					<li class="content <%=site_top_nav('content')%>" rel=<%=set_link("search_site_site_page_content_libraries_path", @site, 1)%>></li>
+      					<li class="content <%=site_top_nav('content')%>"      rel=<%=set_link("search_site_site_page_content_libraries_path", @site, 1)%>></li>
       					<li class="theme <%=site_top_nav('theme')%>" rel=<%=set_link("site_site_styles_path", @site)%>></li>
       					<li class="optional <%=site_top_nav('optional')%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
   						  <li class="users  <%=site_top_nav('users')%>" rel=<%=set_link("site_site_users_path", @site)%>></li>

@@ -124,7 +124,7 @@
 <div class="themes-wrapper">
   <%=render :partial => "chooser_tabs"%>
   <div class="theme-content" id="content_1" style="display: none"></div>
-  <%=form_for @base_color do |f| %>
+  <%=form_for @base_color, :url => {:controller=>:base_colors, :action => :create, :site_id => params[:site_id]} do |f| %>
     <div class="theme-content" id="content_2">
         <div class="theme-section">
             <div class="theme-column">
@@ -212,7 +212,7 @@
                 <div class="color-schemes">
                     <div class="variation-wrapper">
                         <%BaseColor.where(:created_by=>current_user.id).order('created_at').limit(4).each do |b_c| %>
-                        <div class="variation">
+                        <div class="variation" rel='<%=b_c.id%>'>
                             <ul>
                                 <%b_c.colors.split(';').each do |color| %>
                                 <li style="background:none repeat scroll 0	 0 #<%=color%>">
@@ -225,11 +225,10 @@
                     </div>
                     <div class="variation-wrapper">
                         <%BaseColor.where(:created_by=>current_user.id).order('created_at').offset(4).limit(4).each do |b_c| %>
-                        <div class="variation">
+                        <div class="variation" rel='<%=b_c.id%>'>
                             <ul>
                                 <%b_c.colors.split(';').each do |color| %>
-                                <li style="background:none repeat scroll 0	 0 #<%=color%>">
-                                </li>
+                                <li style="background:none repeat scroll 0	 0 #<%=color%>"></li>
                                 <%end %>
                             </ul>
                             <span class="variationTitle"><%=b_c.name %></span>
@@ -248,3 +247,21 @@
     <div class="grid-board">
     </div>
 </div>
+<script>
+  $('#form_submit').click(function(){
+  	  //changes for flow. Rajesh pls take care of this.
+  	  window.location.href = "/sites/<%=params[:site_id]%>/optional"
+  });
+  
+  $('.variation').hover(function(){
+    $(this).css({backgroundColor:"#0099CC", border:"blue"});
+    }, function () {
+        var cssObj = {
+          backgroundColor: "#ddd"
+        }
+        $(this).css(cssObj);
+  });
+  $('.variation').click(function(){
+    window.location.href = "/sites/<%=params[:site_id]%>/site_styles/choose_basecolor?basecolr_id="+ $(this).attr('rel');
+  })
+</script>
