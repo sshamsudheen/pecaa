@@ -25,8 +25,10 @@ module ContentLibrariesHelper
   end
 
   def filename(name)
+    if name
     f = name.gsub("\\","/")
     File.basename(f, File.extname(f))
+    end
   end
 
 end

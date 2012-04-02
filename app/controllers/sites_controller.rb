@@ -118,7 +118,8 @@ class SitesController < ApplicationController
     if (@optional = @site.site_optional_detail) 
       @optional.update_attributes(patams[:optional])
     else
-      @optional = @site.site_optional_detail.create(params[:optional])
+      params[:site_id] = params[:id]
+      @optional = SiteOptional.create(params[:optional])
     end
     redirect_to "/sites/#{params[:id]}/site_users/list_users"
   end
