@@ -1,10 +1,8 @@
 jQuery(function($) {
 	$.colorpicker.regional['nl'] = {
-		done:			'Sluiten',
-		none:			'Geen',
-		revert:			'Kleur',
-		button:			'Kleur',
-		title:			'Kies een kleur',
+		done:			'Ok',
+		revert:			'Cancel',
+		title:			'Choose Color',
 		transparent:	'Transparant',
 		hueShort:		'H',
 		saturationShort:'S',

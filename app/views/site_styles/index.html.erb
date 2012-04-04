@@ -1,3 +1,66 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+<script src="http://jqueryui.com/themeroller/themeswitchertool/"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<%= javascript_include_tag "jquery.colorpicker" %>
+<%= stylesheet_link_tag "colorpicker" %>
+<%= javascript_include_tag "jquery.ui.colorpicker-nl" %>
+<script>
+$(function(){
+  $('#text_color').colorpicker({
+      onClose: function(hex, rgba, inst){
+          console.log('onClose: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      onSelect: function(hex, rgba, inst){
+          console.log('onSelect: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      showOn: 'both',
+      showSwatches: true,
+      showNoneButton: true,
+      buttonColorize: true,
+      altField: '.text_color_alt',
+      limit: 'websafe',
+      parts: 'full',
+      altProperties: 'color'
+  });
+  
+  $('#block_color').colorpicker({
+      onClose: function(hex, rgba, inst){
+          console.log('onClose: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      onSelect: function(hex, rgba, inst){
+          console.log('onSelect: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      showOn: 'both',
+      showSwatches: true,
+      showNoneButton: true,
+      buttonColorize: true,
+      altField: '.cp2-alt',
+      limit: 'websafe',
+      parts: 'full',
+      altProperties: 'color'
+  });
+  
+  $('#bg_color').colorpicker({
+      onClose: function(hex, rgba, inst){
+          console.log('onClose: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      onSelect: function(hex, rgba, inst){
+          console.log('onSelect: ' + hex + ', (' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')');
+      },
+      showOn: 'both',
+      showSwatches: true,
+      showNoneButton: true,
+      buttonColorize: true,
+      altField: '.bg_color-alt',
+      limit: 'websafe',
+      parts: 'full',
+      altProperties: 'color'
+  });
+
+  
+});
+</script>
 <div class="themes-main">
 	<div class="themes-wrapper">
     <%=render :partial => "chooser_tabs"%>
@@ -14,7 +77,7 @@
     		</ul>
     	</div>
     	<div class="subTab-Content left" style="display: none"></div>
-    	<%= form_tag [@site, @site_style] do |f| %>
+    	<%= form_tag :url=>{:action=>:create} do |f| %>
         <%=render :partial=>"background_form"%>
         <%=render :partial=>"block_form"%>
         <%=render :partial=>"text_form"%>
@@ -180,15 +243,15 @@
   $('.style_tab').click(function(){
     $(".subTab-Content-tab").hide();
     $("#"+$(this).attr('rel')+'_form').show();
-    $(this).parent().siblings(".active").removeClass('active');
-    $(this).parent().addClass('active');
+    $(this).parent().parent().siblings(".active").removeClass('active');
+    $(this).parent().parent().addClass('active');
   
   });
 
   $('#form_submit').click(function(){
   	  //changes for flow. Rajesh pls take care of this.
-  	  window.location.href = "/sites/<%=params[:site_id]%>/optional"
-   // $('form')[0].submit();
+      // window.location.href = "/sites/<%=params[:site_id]%>/optional"
+   $('form')[0].submit();
   });
 
 </script>

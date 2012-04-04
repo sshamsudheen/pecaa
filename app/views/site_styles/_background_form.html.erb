@@ -8,7 +8,7 @@
 			<label>color</label>
 			<div class="palletBox">
 				<div class="solidColor">
-				  <%=hidden_field_tag :bg_color%>
+				  <%=hidden_field_tag :bg_color, "fe9810", :name=>"background[bg_color]"%>
 				  <span class="piller"></span>
           <span class="add"></span>
         </div>
@@ -20,7 +20,7 @@
 			<div class="palletBox">
 				  <div class="slider-alpha" id='opacity'>
 					<div class="alphaPointer"><span id="opacity_val" class="val">100%</span></div>
-				  <%=hidden_field_tag :bg_color_opacity%>
+				  <%=hidden_field_tag :bg_color_opacity, '',:name=>"background[bg_color_opacity]"%>
 				</div>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 						&nbsp;&nbsp;
 						</span>
 				</div>
-		  <%=hidden_field_tag :bg_image%>
+		  <%=hidden_field_tag :bg_image, '',:name=>"background[bg_image]"%>
 			</div>
 		</div>
 		<div class="changePanel">
@@ -53,14 +53,14 @@
 						<li id="bottomMiddle"></li>
 						<li id="bottomLeft" class="active"></li>
 					</ul>
-          <%=hidden_field_tag :image_position, '', :class=>"pallet_box"%>
+          <%=hidden_field_tag :image_position, '', :class=>"pallet_box", :name=>"background[image_position]"%>
 			</div>
 			<div class="repeatBox left">
 				<div class="repeatXY">
-				  <input type="checkbox" class="styled" id="repeatX" value='repeatX'/> <label for="repeatX">repeat-x</label>
+				  <input type="checkbox" class="styled" id="repeatX" value='repeatX' name="background[repeatX]"/> <label for="repeatX">repeat-x</label>
 				</div>
 				<div class="repeatXY">
-				  <input type="checkbox" class="styled" id="repeatY" value='repeatY'/> <label for="repeatY">repeat-y</label>
+				  <input type="checkbox" class="styled" id="repeatY" value='repeatY' name="background[repeatY]"/> <label for="repeatY">repeat-y</label>
 				</div>
 			</div>
 			</div>

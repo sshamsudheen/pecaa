@@ -14,7 +14,10 @@ class SiteStylesController < ApplicationController
     end
   end
   def create
-    raise params.inspect
+    (@site.site_style ||= SiteStyle.new).attributes = {:background_style => params[:background], :text_style => params[:text], :block_style => params[:block], :site_id => params[:site_id]}
+    if @site.site_style.save
+      redirect_to optional_site_path(@site)
+    end
   end
   
   def choose_theme
