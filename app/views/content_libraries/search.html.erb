@@ -102,7 +102,7 @@
 											<%end%>
 										</ul>
 									</div>
-									<div><%=link_to('',"/sites/1/site_pages/"content_search_url(:page =>params[:page].to_i+1),:class=>"navRight")%></div>
+									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
 								</div>
 		    				</div>
 		    				<div  id="content_2"  class="tabContent">
