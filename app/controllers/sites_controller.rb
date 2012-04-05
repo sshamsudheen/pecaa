@@ -86,7 +86,7 @@ class SitesController < ApplicationController
     elsif !params[:query].blank? && params[:date_added].blank?
       @sites = Site.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
     elsif params[:query].blank? && !params[:date_added].blank?
-      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y").Date.strptime(params[:end_date],"%m-%d-%Y")))
     end
     render :action => 'index'
   end
@@ -118,7 +118,8 @@ class SitesController < ApplicationController
     if (@optional = @site.site_optional_detail) 
       @optional.update_attributes(patams[:optional])
     else
-      @optional = @site.site_optional_detail.create(params[:optional])
+      params[:site_id] = params[:id]
+      @optional = SiteOptional.create(params[:optional])
     end
     redirect_to "/sites/#{params[:id]}/site_users/list_users"
   end

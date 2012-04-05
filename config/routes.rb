@@ -45,7 +45,8 @@ Mystore3::Application.routes.draw do
       end
     end
     resources :site_styles do
-      
+      get 'choose_theme', :on => :collection
+      get 'choose_basecolor', :on => :collection
     end
     resources :site_links do
       post 'search', :on => :collection

@@ -1,0 +1,115 @@
+<div class="themes-main">
+	<div class="themes-wrapper">
+		<%=render :partial => "chooser_tabs"%>
+		<div class="theme-content" id="content_1">
+			<div class="theme-section">
+				<div class="theme-column">
+					<div class="searchTheme">
+						<input type="text" placeholder="search themes" />
+						<span class="searchIcon"><a href="#"></a></span>
+					</div>
+					<div class="choose-baseColor">
+						<div class="colorPick"><span class="piller"></span><span class="add"></span></div>
+						<span class="nameText">choose base color</span>
+						<span class="iconDelete"><a href="#"></a></span>
+					</div>
+					<div class="sortBy">
+						<select>
+							<option>sort by..</option>
+							<option>theme</option>
+						</select>
+					</div>
+					
+				</div>
+				<div class="theme-column-right">
+					<div class="theme-tabs">
+						<ul>
+							<li><a href="#">Purchased</a></li>
+							<li><a href="#">Premium</a></li>
+							<li class="active"><a href="#">Free</a></li>
+							<li><a href="#">Favorites</a></li>
+						</ul>
+					</div>
+					<div id="tab-purchased" class="theme-tabContent">
+						<div class="theme-carousel">
+							<div class="leftBtn"><a href="#"></a></div>
+							<div class="carousel-content">
+							  <%@themes.each do |theme|
+							    x = check_theme_status(theme, @site)
+							    %>
+									<div class="theme-item">
+										<div class="theme-title"><%=theme.name%></div>
+										<div class="theme-snap">
+											<div class="hover-box">
+												<div class="pointer"></div>
+												<div class="colorSnap"></div>
+												<div class="themeDetail">
+													<div class="theme-name"><%=theme.name%></div>
+													<div><%=theme.id%></div>
+													<div><%=x[0]%></div>
+													<div class="theme-rating"><%#theme.rating%></div>
+												</div>
+												<div class="themeBtns">
+													<button class="btn_Fav"></button>
+													<button class="btn_Edit"></button>
+												</div>
+											</div>
+										</div>
+										<div class="theme-rating"></div>
+										<div class="theme-price">$<%=theme.price%></div>
+										<div class="theme-action"><button class="<%=x[1]%>" rel=<%=theme.id%>></button></div>
+									</div>
+							  <% end %>
+							</div>
+							<div class="rightBtn"><a href="#"></a></div>
+						</div>
+					</div>
+					<div id="tab-premium" class="theme-tabContent" style="display: none">
+						
+					</div>
+					<div id="tab-free" class="theme-tabContent" style="display: none">
+						
+					</div>
+					<div id="tab-favorites" class="theme-tabContent" style="display: none">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="theme-content" id="content_2" style="display: none">
+			
+		</div>
+		<div class="theme-content" id="content_3" style="display: none">
+			
+		</div>
+	</div>
+	<div class="themes-board">
+		<div class="grid-board">
+			
+		</div>
+	</div>
+	
+</div>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  	
+  	$(".theme-snap").hover(function () {
+    	$(this).find(".hover-box").fadeIn();
+  	},
+  	function () {
+   		$(this).find(".hover-box").fadeOut();
+  	}
+    )
+  })
+
+  </script>
+  <script>
+    $('#form_submit').click(function(){
+      //changes for flow. Rajesh pls take care of this.
+      window.location.href = "/sites/<%=params[:site_id]%>/optional"
+    });
+    
+    $('.btnApply').click(function(){
+      window.location.href = "/sites/<%=params[:site_id]%>/site_styles/choose_theme?theme_id="+ $(this).attr('rel');
+    });
+  </script>

@@ -14,7 +14,35 @@ class SiteStylesController < ApplicationController
     end
   end
   def create
-    raise params.inspect
+    (@site.site_style ||= SiteStyle.new).attributes = {:background_style => params[:background], :text_style => params[:text], :block_style => params[:block], :site_id => params[:site_id]}
+    if @site.site_style.save
+      redirect_to optional_site_path(@site)
+    end
+  end
+  
+  def choose_theme
+    unless params[:theme_id]
+      @themes = Theme.limit(7)
+    else
+      if theme = Theme.find_by_id(params[:theme_id])
+        (@site.site_style ||= SiteStyle.new).theme_id = theme.id
+        @site.save
+        redirect_to :action => :choose_basecolor
+      end
+    end
+    # render :layout => false
+  end
+    
+  def choose_basecolor
+    unless params[:basecolr_id]
+      @base_color = BaseColor.new
+    else
+      if base_color = BaseColor.find_by_id(params[:basecolr_id])
+        (@site.site_style ||= SiteStyle.new).base_color_id = base_color.id
+        @site.save
+        redirect_to :action => :index
+      end
+    end
   end
   
   protected

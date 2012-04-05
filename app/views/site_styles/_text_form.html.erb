@@ -4,8 +4,11 @@
 		<div class="changePanel">
 			<label>color</label>
 			<div class="palletBox">
-				<div class="solidColor left"><span class="piller"></span><span class="add"></span></div>
-				<span class="textColor">text color</span>
+				<div class="solidColor left">
+				  <%=hidden_field_tag :text_color, "fe9810", :name=>"text[text_color]"%>
+  				<span class="piller"></span><span class="add"></span>
+  			</div>
+				<span class="textColor text_color_alt">text color</span>
 			</div>
 		</div>
 		<div class="changePanel">
@@ -13,7 +16,7 @@
 			<div class="palletBox">
 			  <div class="slider-alpha" id='opacity_text'>
 				<div class="alphaPointer"><span id="opacity_text_val" class="val">100%</span></div>
-				<%=hidden_field_tag :text_opacity%>
+				<%=hidden_field_tag :text_opacity, '', :name=>"text[text_opacity]"%>
 				</div>
 			</div>
 		</div>
@@ -27,7 +30,7 @@
 					<div class="slider-boxShadow left" id='textshadow'>
 						<div class="amt"><span id='text_shadow_val1' class="val">amt</span></div>
 						<div class="spread"><span id='text_shadow_val2' class="val">spread</span></div>
-						<%=hidden_field_tag :text_shadow %>
+						<%=hidden_field_tag :text_shadow, '', :name=>"text[text_shadow]" %>
 					</div>
 				</div>
 				
@@ -48,7 +51,7 @@
 						<li id="bottomMiddle"></li>
 						<li id="bottomLeft" class="active"></li>
 					</ul>
-					<%= hidden_field_tag :text_shadow_direction, '', :class=>"pallet_box"%>
+					<%= hidden_field_tag :text_shadow_direction, '', :class=>"pallet_box", :name=>"text[text_shadow_direction]"%>
 			</div>
 			<div class="textShadowPrev left">
 				<div class="textShadow">shadow</div>

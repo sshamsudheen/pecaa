@@ -4,8 +4,10 @@
 		<div class="changePanel">
 			<label>color</label>
 			<div class="palletBox">
-				<div class="solidColor left"><span class="piller"></span><span class="add"></span></div>
-				
+				<div class="solidColor left">
+				  <%=hidden_field_tag :block_color, "fe9810", :name=>"block[block_color]"%>
+				  <span class="piller"></span>
+				    <span class="add"></span></div>
 				<div class="boxType left">
 					<div class="boxTypeLabel"><label class="left">gradient color</label></div>
 					<ul>
@@ -22,7 +24,7 @@
 			<div class="palletBox">
 			  <div class="slider-alpha" id='opacity_block'>
 				  <div class="alphaPointer"><span id="opacity_block_val" class="val">100%</span></div>
-				  <%=hidden_field_tag :block_opacity%>
+				  <%=hidden_field_tag :block_opacity, '', :name=>"block[block_opacity]]"%>
 				</div>
 			</div>
 		</div>
@@ -33,7 +35,7 @@
 			<div class="palletBox">
 				<div class="slider-alpha steps" id='borderwidth'>
 					<div class="alphaPointer"><span id='border_width_val' class="val">4px</span></div>
-				  <%=hidden_field_tag :border_width %>
+				  <%=hidden_field_tag :border_width, '', :name=>"block[border_width]" %>
 				</div>
 			</div>
 		</div>
@@ -42,7 +44,7 @@
 			<div class="palletBox">
 				<div class="slider-alpha steps" id='borderradius'>
 					<div class="alphaPointer"><span id="border_radius_val"class="val">6px</span></div>
-					<%=hidden_field_tag :border_radius %>
+					<%=hidden_field_tag :border_radius, '',:name=>"block[border_radius]"%>
 				</div>
 			</div>
 		</div>
@@ -56,7 +58,7 @@
 					<div class="slider-boxShadow left" id='boxshadow'>
 						<div class="pointStart"><span class="col"></span><span class="val" id='box_shadow_val1'>4px</span></div>
 						<div class="pointEnd"><span class="col"></span><span class="val" id='box_shadow_val2'>4px</span></div>
-						<%=hidden_field_tag :box_shadow%>
+						<%=hidden_field_tag :box_shadow, '',:name => "block[box_shadow]"%>
 					</div>
 				</div>
 				
@@ -77,7 +79,7 @@
 						<li id="bottomMiddle"></li>
 						<li id="bottomLeft" class="active"></li>
 					</ul>
-					<%=hidden_field_tag :shadow_direction, '', :class=>"pallet_box"%>
+					<%=hidden_field_tag :shadow_direction, '', :class=>"pallet_box", :name=>"block[shadow_direction]"%>
 			</div>
 			<div class="showPreview left">
 				<div class="boxSquare"></div>

@@ -33,4 +33,6 @@ site= Site.create(:name=>"Test", :description=>"Lorem ipsum dolor sit amet, cons
 SiteLink.create(:name=>"Home", :description=>'Some text',:created_by => admin, :is_active => true, :title=>'Home', :target=>"www.google.com", :site_id=>site)
 SiteLink.create(:name=>"About Us", :description=>'Some text',:created_by => admin, :is_active => true, :title=>'About Us', :target=>"www.google.com", :site_id=>site)
 
-
+5.times do |i|
+  Theme.create(:name=>"theme#{i}", :theme_type=>"Free", :created_by=>admin)
+end
