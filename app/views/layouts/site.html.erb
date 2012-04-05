@@ -30,7 +30,7 @@
 		  <% end %>
 	  <% else %>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional"%>
+	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional", "pecaa"%>
 	  <% end %>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
@@ -79,7 +79,13 @@
 				$( this ).removeClass( "ui-state-default" );
 			}
 		});
+		
+		$( ".themes-board div.expandable" ).resizable({
+			containment: ".themes-board"
+		});
 	});
+	
+	    
 	
 	</script>
     

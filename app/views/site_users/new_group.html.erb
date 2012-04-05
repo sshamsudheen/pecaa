@@ -1,0 +1,29 @@
+<%=form_tag "/sites/params[:site_id]/" do |g|%>
+<div class="userDetailPanel">
+									<h2>Group X</h2>
+									<div class="userDetailSet">
+										<span class="key">created :</span>
+										<span class="val">12/30/11</span>
+									</div>
+									<div class="userDetailSet bottomBorder">
+										<span class="key">last activity :</span>
+										<span class="val">09/22/12</span>
+									</div>
+									<div class="showGroupDetail">
+										<span class="val"><input type="checkbox" class="styled"></span>
+										<span class="key">active</span>
+										<div class="groupNameLabel">group name :</div>
+										<div class="groupNameField"><%=g.text_field :name%></div>
+									</div>
+									<div class="showRolesDetail">
+										<ul>
+											<%Role.all.each do |role|%>
+											<li><span class="val"><input type="checkbox" class="styled"></span>
+										<span class="key"><%=role.name%></span>
+										</li>
+										<%end%>
+										</ul>
+									</div>
+									<div class="groupEditBtnPanel"><div class="left"><button class="redBtn">delete</button></div><div class="right"><button class="primary">save changes</button></div></div>
+								</div>
+<%end%>								

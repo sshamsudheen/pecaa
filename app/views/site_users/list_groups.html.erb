@@ -16,23 +16,20 @@
 								<div class="userPanelDevider"></div>
 								
 								<div class="userPanel">
-									<div class="date-created"><span id="dateCreated" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled" id="dateCreated"> <label for="dateCreated">date created</label></div>
+									<div class="date-created"><input type="checkbox" class="styled" id="dateCreated"> <label for="dateCreated">date created</label></div>
 									<div class="rangeSlider">range slider comes here</div>
-									<div class="last-activity"><span id="lastActivityVal" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled" id="lastActivityVal"> <label for="lastActivityVal">last activity</label></div>
-									<div class="last-activity"><span id="noOfUsers" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled" id="noOfUsers"> <label for="noOfUsers"># of users</label></div>
+									<div class="last-activity"><input type="checkbox" class="styled" id="lastActivityVal"> <label for="lastActivityVal">last activity</label></div>
+									<div class="last-activity"><input type="checkbox" class="styled" id="noOfUsers"> <label for="noOfUsers"># of users</label></div>
 									<div class="rangeSlider">range slider comes here</div>
 								</div>
 								
 								<div class="userPanelDevider"></div>
 								
 								<div class="userPanel">
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show all roles</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role X</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role Y</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role Z</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role 1</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role 2</label></span></div>
-									<div class="showRoles"><span class="val"><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled"></span><span class="key"><label>show role 3</label></span></div>
+									<div class="showRoles"><span class="val"><input type="checkbox" class="styled"></span><span class="key"><label>show all roles</label></span></div>
+									<%Role.all.each do |role|%>
+									  <div class="showRoles"><span class="val"><input type="checkbox" class="styled"></span><span class="key"><label>show <%=role.name%></label></span></div>
+									<%end%>
 								</div>
 		    				</div>
 		    				

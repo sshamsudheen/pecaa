@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "pecaa"%>
+<%#= stylesheet_link_tag "pecaa"%>
 <div class="addFileHolder" style="margin-top:10px">
     <div class="addFileTop">Add Text Block <img src="/assets/icon-help-grey.png" class="help" /></div>
     <%= form_for(@text, :html => { :multipart => true }, :remote => true) do |f| %>
@@ -19,13 +19,3 @@
     <% end %>
 </div>
 
-
-<script type="text/javascript">
-  $(function() {
-    $('textarea').tinymce({
-      width: "98%",
-      height: "50%",
-      theme: 'advanced'
-    });
-  });
-</script>
