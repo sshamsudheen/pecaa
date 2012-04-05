@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327174006) do
+ActiveRecord::Schema.define(:version => 20120404174449) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -63,6 +63,11 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
+  create_table "content_libraries_site_pagess", :id => false, :force => true do |t|
+    t.integer "content_library_id"
+    t.integer "site_page_id"
+  end
+
   create_table "content_libraries_sites", :id => false, :force => true do |t|
     t.integer "content_library_id"
     t.integer "site_id"
@@ -97,12 +102,26 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.string   "layout"
+  create_table "miscs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "address"
+    t.boolean  "is_deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
     t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "layout"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,14 +175,11 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
   end
 
   create_table "site_contacts", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "position"
-    t.text     "email"
-    t.text     "phone"
-    t.integer  "created_by"
     t.integer  "site_id"
-    t.boolean  "is_active"
+    t.string   "name"
+    t.string   "position"
+    t.string   "email"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -255,6 +271,8 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.boolean  "is_active",        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "theme_id"
+    t.integer  "base_color_id"
   end
 
   create_table "site_users", :force => true do |t|
@@ -310,6 +328,7 @@ ActiveRecord::Schema.define(:version => 20120327174006) do
     t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "price",         :default => 0.0
   end
 
   create_table "uploads", :force => true do |t|

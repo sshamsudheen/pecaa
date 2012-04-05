@@ -16,7 +16,7 @@ class SiteUsersController < ApplicationController
   end
   
   def new_group
-    @site_groups = @site.site_groups.new
+    @group = @site.site_groups.new
   end
   
   def user_details

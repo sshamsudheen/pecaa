@@ -30,7 +30,7 @@
 		  <% end %>
 	  <% else %>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional"%>
+	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional", "pecaa"%>
 	  <% end %>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
@@ -79,7 +79,13 @@
 				$( this ).removeClass( "ui-state-default" );
 			}
 		});
+		
+		$( ".themes-board div.expandable" ).resizable({
+			containment: ".themes-board"
+		});
 	});
+	
+	    
 	
 	</script>
     
@@ -149,10 +155,22 @@
 		    		</div>
       		</div>
 		<%end%>
-      	<div class="content-section">
+      	</div>
+		<div class="content-section">
       	  	<%=yield%>
       	</div>
-    	
+<%if params[:controller] == "content_libraries"%>
+	<div class="themes-board">
+		    				<div class="grid-board">
+		    					<div id="cart" >
+		    						<div class="ui-droppable ui-sortable" style="height:400px;width:100%">
+										<li class="placeholder">Drop Here to Edit</li>
+									</div>
+		    					</div>
+		    				</div>
+		    			</div>
+						
+<%end%>						    	
     	</div>
       </div>
       <script>

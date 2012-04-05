@@ -627,10 +627,6 @@ ul.ConLibraHeads .edit {
 	float:left; width:433px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font:bold 25px Arial, Helvetica, sans-serif; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
 }
 
-.help {
-	 position:absolute; top:5px; right:17px;
-}
-
 .addFileBody {
 	float:left; width:420px; background-color:#dbe6eb; padding:15px;
 }
