@@ -159,7 +159,18 @@
 		<div class="content-section">
       	  	<%=yield%>
       	</div>
-    	
+<%if params[:controller] == "content_libraries"%>
+	<div class="themes-board">
+		    				<div class="grid-board">
+		    					<div id="cart" >
+		    						<div class="ui-droppable ui-sortable" style="height:400px;width:100%">
+										<li class="placeholder">Drop Here to Edit</li>
+									</div>
+		    					</div>
+		    				</div>
+		    			</div>
+						
+<%end%>						    	
     	</div>
       </div>
       <script>

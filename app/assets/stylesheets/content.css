@@ -189,6 +189,8 @@
 .themes-board{
 	height:70%;
 	top:270px;
+	margin-left: 43px;
+	width:983px;
 }
 .contentObject{
 	position: absolute;
