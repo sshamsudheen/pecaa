@@ -150,7 +150,7 @@ button.redBtn{
 	width: 105px;
 }
 .main-nav ul li.theme.active{
-	background: url(/assets/btn_theme_on.png) no-repeat;
+	background: url(img/btn_theme_on.png) no-repeat;
 }
 .main-nav ul li.theme.complete{
 	background: url(img/btn_theme_done.png) no-repeat;
@@ -211,7 +211,7 @@ button.redBtn{
 }
 .content-section{
 	clear:both;
-	width:100%;
+	width:95%;
 	min-height:500px;
 	/*padding: 0 25px;*/
 	margin-bottom:20px;
@@ -219,7 +219,7 @@ button.redBtn{
 .themes-board{
 	background: url(img/bg_grid.gif) repeat;
 	height:60%;
-	width:1015px;
+	width:1024px;
 	position: absolute;
 	top:290px;
 	border-top:1px solid black;
