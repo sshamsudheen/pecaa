@@ -1,6 +1,6 @@
 .content-section{
-	padding-left:10px;
-	padding-right:0px;
+	/*padding-left:10px;
+	padding-right:0px;*/
 	width:auto;
 	min-height: 0;
 }
@@ -537,7 +537,7 @@
 }
 .subTab-Content .resetAll{
 	position: absolute;
-	right:1px;
+	right:11px;
 	top:30%;
 	background:url(img/btnResetAll.png) no-repeat;
 	width:22px;
