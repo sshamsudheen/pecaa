@@ -28,9 +28,11 @@
 		  <% else %>
 	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
 		  <% end %>
-	  <% else %>
+	  <% elsif params[:controller] == "content_libraries" %>
+	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa"%>
+	  <%else%>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "layout", "content", "site_pages","pages", "users", "optional", "pecaa"%>
+	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional"%>
 	  <% end %>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>

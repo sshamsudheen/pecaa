@@ -150,7 +150,7 @@ button.redBtn{
 	width: 105px;
 }
 .main-nav ul li.theme.active{
-	background: url(img/btn_theme_on.png) no-repeat;
+	background: url(/assets/btn_theme_on.png) no-repeat;
 }
 .main-nav ul li.theme.complete{
 	background: url(img/btn_theme_done.png) no-repeat;
@@ -213,7 +213,7 @@ button.redBtn{
 	clear:both;
 	width:100%;
 	min-height:500px;
-	padding: 0 25px;
+	/*padding: 0 25px;*/
 	margin-bottom:20px;
 }
 .themes-board{
