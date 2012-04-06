@@ -4,6 +4,7 @@ class SiteStylesController < ApplicationController
   
   def index
     @style_type = params[:type] || 'background'
+    @site_style = @site.site_style || SiteStyle.new
     #@site_style = @site.site_style || SiteStyle.new
   end
   
@@ -13,6 +14,7 @@ class SiteStylesController < ApplicationController
       render :image_form, :layout => false
     end
   end
+  
   def create
     (@site.site_style ||= SiteStyle.new).attributes = {:background_style => params[:background], :text_style => params[:text], :block_style => params[:block], :site_id => params[:site_id]}
     if @site.site_style.save
