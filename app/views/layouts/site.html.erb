@@ -30,7 +30,7 @@
 		  <% end %>
 	  <% else %>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "layout", "content", "site_pages", "facebox", "pages", "users", "optional", "pecaa"%>
+	      <%= stylesheet_link_tag "layout", "content", "site_pages","pages", "users", "optional", "pecaa"%>
 	  <% end %>
 	  
       <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
@@ -153,9 +153,9 @@
 			    		    <li class="<%= params[:action]== 'list_groups' ? 'active' : ''%>"><%=link_to "groups", "/sites/#{@site.id}/site_users/list_groups"%></li>
 		    			</ul>
 		    		</div>
-      		</div>
 		<%end%>
       	</div>
+		
 		<div class="content-section">
       	  	<%=yield%>
       	</div>
