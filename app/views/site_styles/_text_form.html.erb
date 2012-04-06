@@ -5,7 +5,7 @@
 			<label>color</label>
 			<div class="palletBox">
 				<div class="solidColor left">
-				  <%=hidden_field_tag :text_color, "fe9810", :name=>"text[text_color]"%>
+				  <%=hidden_field_tag :text_color, @site_style.text_style[:text_color], :name=>"text[text_color]"%>
   				<span class="piller"></span><span class="add"></span>
   			</div>
 				<span class="textColor text_color_alt">text color</span>
@@ -15,7 +15,7 @@
 			<label>opacity</label>
 			<div class="palletBox">
 			  <div class="slider-alpha" id='opacity_text'>
-				<div class="alphaPointer"><span id="opacity_text_val" class="val">100%</span></div>
+				<div class="alphaPointer"><span id="opacity_text_val" class="val"><%=@site_style.text_style[:text_opacity]%></span></div>
 				<%=hidden_field_tag :text_opacity, '', :name=>"text[text_opacity]"%>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 					<div class="slider-boxShadow left" id='textshadow'>
 						<div class="amt"><span id='text_shadow_val1' class="val">amt</span></div>
 						<div class="spread"><span id='text_shadow_val2' class="val">spread</span></div>
-						<%=hidden_field_tag :text_shadow, '', :name=>"text[text_shadow]" %>
+						<%=hidden_field_tag :text_shadow, @site_style.text_style[:text_shadow], :name=>"text[text_shadow]" %>
 					</div>
 				</div>
 				
@@ -41,7 +41,10 @@
 			<div class="palletBox">
 				<div class="tileBox left">
 					<ul>
-						<li id="topLeft"></li>
+					  <%["topLeft", "topCenter", "topRight", "middleLeft", "middleCenter", "middleRight", "bottomLeft", "bottomMiddle","bottomLeft"].each do |ld|%>
+						<li id="<%=ld%>" <%if(ld == @site_style.text_style[:text_shadow_direction])%>
+						  class = 'active'
+						  <%end%>></li>
 						<li id="topCenter"></li>
 						<li id="topRight"></li>
 						<li id="middleLeft"></li>
@@ -49,9 +52,10 @@
 						<li id="middleRight"></li>
 						<li id="bottomLeft"></li>
 						<li id="bottomMiddle"></li>
-						<li id="bottomLeft" class="active"></li>
+						<li id="bottomLeft"></li>
+					<% end %>
 					</ul>
-					<%= hidden_field_tag :text_shadow_direction, '', :class=>"pallet_box", :name=>"text[text_shadow_direction]"%>
+					<%= hidden_field_tag :text_shadow_direction, @site_style.text_style[:text_shadow_direction], :class=>"pallet_box", :name=>"text[text_shadow_direction]"%>
 			</div>
 			<div class="textShadowPrev left">
 				<div class="textShadow">shadow</div>

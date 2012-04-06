@@ -9,9 +9,9 @@ class SitePagesController < ApplicationController
   def new
     @site_page = @site.site_pages.new
     if params[:type]=='page'
-      render :page_form, :layout=>false
+      render :page_form, :layout => false
     elsif params[:type]=='link'
-      render :link_form, :layout=>false
+      render :link_form, :layout => false
     end
   end
   
