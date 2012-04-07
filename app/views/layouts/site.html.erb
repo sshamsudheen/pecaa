@@ -176,8 +176,11 @@
     	</div>
       </div>
       <script>
-      $('.navBtns ul li').click(function(){
+      $('.location').click(function(){
           window.location.href=$(this).attr('rel');
+      })
+      $('.logout').click(function(){
+          window.location.href='/logout';
       })
       </script>
   </body>
