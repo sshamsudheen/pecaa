@@ -1,33 +1,61 @@
-<%= form_for(@misc) do |f| %>
-  <% if @misc.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@misc.errors.count, "error") %> prohibited this misc from being saved:</h2>
-
-      <ul>
-      <% @misc.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :is_deleted %><br />
-    <%= f.check_box :is_deleted %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    
+    <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
+    <%=hidden_field_tag :from_content, @from_content%>
+					<div class="themes-board">
+		    				<div class="grid-board">
+		    					<div class="contentObject">
+		    						<div class="alphaBg"></div>
+									<div class="expandable">
+										<span class="delete"></span>
+										<span class="drag"></span>
+										<span class="scale"></span>
+										<div class="objectContent">
+											<div class="mapTitle">store map</div>
+											<div class="map-holder" id="map-canvas" style="width:250px; height=250px" ></div>
+									</div>
+								</div>
+		    					<div class="dragableObject">
+									<div class="dragable">
+										<span class="drag"></span>
+										<div class="dragContent">
+											<div class="mapDetail">
+												<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
+												<span class="key">address :</span><span class="val"><input type="text" value="1234 Fake St, Crested Butte CO 8120"></span>
+											</div>
+										</div>
+										<div class="dragContentBottom"></div>	
+									</div>
+								</div>
+		    				</div>
+		    			</div>
+	    	</div>
+	    
+	   
+    <script type="text/javascript">
+      function mapInitialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        alert ("map creation");
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            myOptions);
+      }
+      
+     
+	     $(document).ready(function(){
+	    	  var myOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        alert ("map creation");
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            myOptions);
+      });
+        
+	   
+	    
+    </script>	
+	  <% end %>

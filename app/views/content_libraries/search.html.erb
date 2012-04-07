@@ -21,6 +21,18 @@
 															</div>
 												</li>
 												<%end%>
+												
+												<%if params[:search].blank? or params[:search][:source_type_equals]=="Misc"%>
+												<li class="item newItem"><span class="title">New Misc Block</span>
+												<%=hidden_field_tag 'source',"Misc"%>
+															<div style="display:none;width:200px;" id="doc_form">
+																<%#@text = Text.new()%>
+																<%@from_content=true%>
+																<%=render :partial=>"miscs/form"%>
+															</div>
+												</li>
+												<%end%>
+												
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Form"%>
 												<li class="item newItem"><span class="title">New Form</span>
 												<%=hidden_field_tag 'source',"AddForm"%>
@@ -96,6 +108,12 @@
 															<%@from_content=true%>
 															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
 												  </div>
+												  <%elsif content.source_type == "Misc"%>
+												  <div style="display:none;width:200px;" id="doc_form">
+															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
+															<%@from_content=true%>
+															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+												  </div>
 												  
 												<%end%>
 											</li>
@@ -105,20 +123,11 @@
 									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
 								</div>
 		    				</div>
-		    				<div  id="content_2"  class="tabContent">
-		    				</div>
-		    				<div style="display: none" id="content_3" class="tabContent">
-		    					
-		    				</div>
-		    				<div style="display: none" id="content_4" class="tabContent">
-		    					
-		    				</div>
-		    				<div style="display: none" id="content_5" class="tabContent">
-		    					
-		    				</div>
+		    				
 		    			</div>
 		    			
 		    		</div>
+		    	
 					
 				
 <script>
