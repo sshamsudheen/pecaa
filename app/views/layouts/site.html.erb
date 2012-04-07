@@ -182,6 +182,10 @@
       $('.logout').click(function(){
           window.location.href='/logout';
       })
+ 
+      $('.navBtns ul li').click(function(){
+          window.location.href=$(this).attr('rel');
+      })
       </script>
   </body>
 </html>
