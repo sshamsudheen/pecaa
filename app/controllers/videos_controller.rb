@@ -15,6 +15,8 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(params[:video])
     @video.user_id = current_user
+    @site  = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id])
     Video.transaction do
       if @video.save
         begin
@@ -22,17 +24,17 @@ class VideosController < ApplicationController
 #        flash[:notice] = 'Video has been uploaded'
         ContentLibrary.create({:name => @video.source_file_name,
           :source_id => @video.id, :source_type => 'Video',
-          :last_used => nil, :times_used => nil, :added_by => current_user.username})
+          :last_used => nil, :times_used => nil, :added_by => current_user.username,:site_page_ids=>[@site_page.id]})
         rescue
         end
          if params[:from_content]
-            redirect_to content_search_path+"?search[source_type_equals]=Video"
+           redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Video"
           else
             redirect_to content_libraries_path
           end
       else
          if params[:from_content]
-            redirect_to content_search_path+"?search[source_type_equals]=Video"
+            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Video"
           else
             redirect_to content_libraries_path
           end
