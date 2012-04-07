@@ -91,11 +91,6 @@
 			<div class="group" id="site_link_account">
         <div id="search_results"></div>
       </div>
-			<div class="main-nav">
-      	<div class="rightBtns"><button class="btn_Save">
-      	  <%= f.submit("Save and go to next step") %></button>
-      	</div>
-      </div>
     <% end %>
 		</div>
 	</div>
@@ -165,4 +160,9 @@ var siteid = <%=@site.id ? @site.id : 0%>;
    		$(this).find(".hotspot").fadeOut();
    	})
   })
+  $('#form_submit').click(function(){
+  	  //changes for flow. Rajesh pls take care of this.
+      // window.location.href = "/sites/<%=params[:site_id]%>/optional"
+   $('form')[0].submit();
+  });
 </script>

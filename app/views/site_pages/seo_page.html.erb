@@ -1,9 +1,7 @@
-<%= stylesheet_link_tag "sites", "layout", "content", "site_pages", "facebox", "modal_layout", 'themes' %>
+<%= stylesheet_link_tag  "layout", "content", "site_pages","facebox", "modal_layout", 'themes' %>
 
 <%= form_for [@site, @site_page] do |f| %>
-  <%= f.hidden_field :page_layout %>
   <%= f.hidden_field :category, :value=>'page' %>
-
   <div class="main-container midium">
   	<div class="header">SEO for "Our Mission" Page<span class="helpIcon"></span></div>
   	<div class="main-content">
@@ -39,10 +37,5 @@
 $('#cancelBtn').click(function(){
     $(document).trigger('close.facebox');
     return false;
-});
-$('.pageLayout').click(function(){
-  $('#site_page_page_layout').attr('value', $(this).attr('id'));
-  $(this).attr('style', 'border:1px;');
-  return false;
 });
 </script>

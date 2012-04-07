@@ -78,7 +78,7 @@
 												<%end%>
 											<%end%>
 											<%@content_libraries.each do |content|%>
-											<li class="item newItem ui-draggable">
+											<li class="item ui-draggable">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
 												<%if content.source_type == "Image"%>
 												<div class="hotspot" style="display: none;">
@@ -123,7 +123,7 @@
 									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
 								</div>
 		    				</div>
-		    				
+
 		    			</div>
 		    			
 		    		</div>
