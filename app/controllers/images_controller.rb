@@ -14,19 +14,21 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(params[:image])
     @image.user_id = current_user
+    @site  = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id])
     Image.transaction do
       if @image.save
         ContentLibrary.create({:name => @image.upload_file_name,
           :source_id => @image.id, :source_type => 'Image',
-          :last_used => nil, :times_used => nil, :added_by => current_user.username})
+          :last_used => nil, :times_used => nil, :added_by => current_user.username,:site_page_ids=>[@site_page.id]})
          if params[:from_content]
-            redirect_to content_search_path+"?search[source_type_equals]=Image"
+            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Image"
           else
             redirect_to content_libraries_path
           end
       else
          if params[:from_content]
-            redirect_to content_search_path+"?search[source_type_equals]=Image"
+            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Image"
           else
             redirect_to content_libraries_path
           end
@@ -35,8 +37,8 @@ class ImagesController < ApplicationController
 #        end
       end
     end
-  rescue
-    redirect_to content_libraries_path
+#  rescue
+#    redirect_to content_libraries_path
   end
 
   def edit

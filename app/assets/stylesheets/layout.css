@@ -211,15 +211,15 @@ button.redBtn{
 }
 .content-section{
 	clear:both;
-	width:100%;
+	/*width:95%;*/
 	min-height:500px;
-	padding: 0 25px;
+	/*padding: 0 25px;*/
 	margin-bottom:20px;
 }
 .themes-board{
 	background: url(img/bg_grid.gif) repeat;
 	height:60%;
-	width:1015px;
+	width:1024px;
 	position: absolute;
 	top:290px;
 	border-top:1px solid black;

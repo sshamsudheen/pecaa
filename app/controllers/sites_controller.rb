@@ -119,7 +119,7 @@ class SitesController < ApplicationController
       @optional.update_attributes(patams[:optional])
     else
       params[:site_id] = params[:id]
-      @optional = SiteOptional.create(params[:optional])
+      @optional = SiteOptionalDetail.create(params[:optional])
     end
     redirect_to "/sites/#{params[:id]}/site_users/list_users"
   end

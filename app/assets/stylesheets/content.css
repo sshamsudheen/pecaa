@@ -183,14 +183,12 @@
 	width:155px;
 	vertical-align: middle;
 	border:0;
-	padding-left:3px;
+	padding:0 0 0 3px;
 	font-size:16px;
 }
 .themes-board{
-	height:70%;
+	/*height:70%;*/
 	top:270px;
-	margin-left: 43px;
-	width:983px;
 }
 .contentObject{
 	position: absolute;

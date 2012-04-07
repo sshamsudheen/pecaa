@@ -9,6 +9,8 @@
     <div class="addFileTop">Add File <img src="/assets/icon-help.png" class="help" /></div>
     <%= form_for(@add_file, :html => { :multipart => true }, :remote => true) do |f| %>
 	<%=hidden_field_tag :from_content, @from_content%>
+	<%=hidden_field_tag :site_id, params[:site_id]%>
+	<%=hidden_field_tag :site_page_id, params[:site_page_id]%>
     <%#= f.object.errors %>
     <div class="addFileBody">
       <%= f.file_field :upload %>
