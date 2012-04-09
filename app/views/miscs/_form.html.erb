@@ -1,4 +1,3 @@
-    
     <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
 					<div class="themes-board">
@@ -11,7 +10,7 @@
 										<span class="scale"></span>
 										<div class="objectContent">
 											<div class="mapTitle">store map</div>
-											<div class="map-holder" id="map-canvas" style="width:250px; height=250px" ></div>
+											<div  id="map-canvas-new" style="width:250px; height:250px"></div>
 									</div>
 								</div>
 		    					<div class="dragableObject">
@@ -38,24 +37,14 @@
           zoom: 6,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        alert ("map creation");
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
+        var map = new google.maps.Map(document.getElementById("map-canvas-new"),
             myOptions);
       }
       
      
 	     $(document).ready(function(){
-	    	  var myOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 6,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        alert ("map creation");
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            myOptions);
-      });
+	    	  mapInitialize();
         
-	   
-	    
+      });
     </script>	
 	  <% end %>
