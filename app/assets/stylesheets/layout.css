@@ -162,6 +162,11 @@ button.redBtn{
 .main-nav ul li.optional.active{
 	background: url(img/btn_optional_on.png) no-repeat;
 }
+
+.main-nav ul li.optional.complete{
+	background: url(img/btn_optional_done.png) no-repeat;
+}
+
 .main-nav ul li.users{
 	background: url(img/btn_users.png) no-repeat;
 	width: 94px;
