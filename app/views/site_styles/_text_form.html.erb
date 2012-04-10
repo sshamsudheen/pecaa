@@ -45,14 +45,6 @@
 						<li id="<%=ld%>" <%if(ld == @site_style.text_style[:text_shadow_direction])%>
 						  class = 'active'
 						  <%end%>></li>
-						<li id="topCenter"></li>
-						<li id="topRight"></li>
-						<li id="middleLeft"></li>
-						<li id="middleCenter"></li>
-						<li id="middleRight"></li>
-						<li id="bottomLeft"></li>
-						<li id="bottomMiddle"></li>
-						<li id="bottomLeft"></li>
 					<% end %>
 					</ul>
 					<%= hidden_field_tag :text_shadow_direction, @site_style.text_style[:text_shadow_direction], :class=>"pallet_box", :name=>"text[text_shadow_direction]"%>
