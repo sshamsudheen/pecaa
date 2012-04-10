@@ -7,25 +7,25 @@
     							<div class="group">
     								<div class="title"><label for="siteKeyWords">Site Keywords</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :key_words, :id => "siteKeyWords",:rows=>4%>
+    									<%=text_area :optional, :key_words, :id => "siteKeyWords",:rows=>4, :value => @optional.key_words%>
 									</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="googleAnlt">Google Analitics Code</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :google_analytics_code, :id => "googleAnlt",:rows=>4%>
+    									<%=text_area :optional, :google_analytics_code, :id => "googleAnlt",:rows=>4, :value => @optional.google_analytics_code%>
 									</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="siteDesc">Site Description</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_area :optional, :description, :id => "siteDesc",:rows=>4%>
+    									<%=text_area :optional, :description, :id => "siteDesc",:rows=>4, :value => @optional.description%>
 									</span>
     							</div>
 								<div class="group">
     								<div class="title"><label for="logoAltText">Logo Alt Text</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_field :optional, :logo_alt_text, :id => "logoAltText"%>
+    									<%=text_field :optional, :logo_alt_text, :id => "logoAltText", :value => @optional.logo_alt_text%>
     								</span>
     							</div>
     							
@@ -37,25 +37,25 @@
     							<div class="group">
     								<div class="title"><label for="twitterID">Twitter ID</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_field :optional, :twitter_id, :id => "twitterID"%>
+    									<%=text_field :optional, :twitter_id, :id => "twitterID", :value => @optional.twitter_id%>
     								</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="googleID">Google+ ID</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_field :optional, :google_id, :id => "googleID"%>
+    									<%=text_field :optional, :google_id, :id => "googleID", :value => @optional.google_id%>
 									</span>
     							</div>
     							<div class="group">
     								<div class="title"><label for="facebookId">Facebook ID</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_field :optional, :facebook_id, :id => "facebookID"%>
+    									<%=text_field :optional, :facebook_id, :id => "facebookID", :value => @optional.facebook_id%>
 									</span>
     							</div>
 								<div class="group">
     								<div class="title"><label for="linkedIn">Linked In ID</label><span class="help"><a href="#"></a></span></div>
     								<span class="val">
-    									<%=text_field :optional, :linked_in_id, :id => "linkedIn"%>
+    									<%=text_field :optional, :linked_in_id, :id => "linkedIn", :value => @optional.linked_in_id%>
     								</span>
     							</div>
     							<div class="group enableThis">
