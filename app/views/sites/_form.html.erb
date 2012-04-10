@@ -34,7 +34,7 @@
           <span class="val"><%= f.text_field :company_name %></span>
         </div>
 			</div>
-  		  <%= f.fields_for @site.new_record? ? :address_attributes : :address do |site| %>
+  		  <%= f.fields_for ((@site.new_record? || !@site.address) ? :address_attributes : :address) do |site| %>
   		  <div class="group">
   				<span class="key">address:</span>
           <span class="val"><%= site.text_field :address_one %></span>
