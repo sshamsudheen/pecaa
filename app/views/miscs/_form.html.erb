@@ -1,29 +1,32 @@
     <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
-					
+								<div class="contentObject" id="mapObj">
+
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
-										<span class="delete"></span>
+										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
 										<span class="drag"></span>
 										<span class="scale"></span>
 										<div class="objectContent">
 											<div class="mapTitle">store map</div>
 											<div  id="map-canvas-new" style="width:250px; height:250px"></div>
+										</div>
 									</div>
 								</div>
-		    					<div class="dragableObject">
-									<div class="dragable">
-										<span class="drag"></span>
-										<div class="dragContent">
-											<div class="mapDetail">
-												<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
-												<span class="key">address :</span><span class="val"><input type="text" value="1234 Fake St, Crested Butte CO 8120"></span>
+								<div class="contentObject" id="mapAddr">
+		    						<div class="dragableObject">
+										<div class="dragable">
+											<span class="drag"></span>
+											<div class="dragContent">
+												<div class="mapDetail">
+													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
+													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>"></span>
+												</div>
 											</div>
+											<div class="dragContentBottom"></div>	
 										</div>
-										<div class="dragContentBottom"></div>	
-									</div>
-							
-	    	</div>
+	    							</div>
+	    						</div>
 	    
 	   
     <script type="text/javascript">
@@ -39,6 +42,11 @@
       
      
 	     $(document).ready(function(){
+	     	$('#mapObj').css("left", "150px");
+	     	$('#mapObj').css("top", "50px");
+	     	
+	     	$('#mapAddr').css("right", "150px");
+	     	$('#mapAddr').css("top", "50px");
 	    	  mapInitialize();
         
       });
