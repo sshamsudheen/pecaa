@@ -64,7 +64,11 @@ class SitesController < ApplicationController
     session[:site_id] = @site.id
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to site_site_pages_path(@site), :notice => 'Site was successfully updated.' }
+        if params[:site_pages]
+          format.html { redirect_to search_site_site_page_content_libraries_path(@site, 1)}
+        else
+          format.html { redirect_to site_site_pages_path(@site), :notice => 'Site was successfully updated.' }
+        end
       else
         format.html { render :action => "edit", :layout=>"site"}
       end

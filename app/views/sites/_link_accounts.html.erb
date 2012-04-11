@@ -12,7 +12,9 @@
     </div>
   <%end%>
 <%else%>
-  <div class="linkAc">
-    <span> No records found</span>
-  </div>
+  <% unless @site.new_record? %>
+    <div class="linkAc">
+      <span> No records found</span>
+    </div>
+  <% end %>
 <%end%>

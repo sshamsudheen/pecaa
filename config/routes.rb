@@ -33,6 +33,7 @@ Mystore3::Application.routes.draw do
     post 'site_link_account', :on => :collection
     get 'rendering_partial', :on => :member
     post 'search', :on => :collection
+    post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
     resources :site_pages do
       get 'copy_page', :on => :member

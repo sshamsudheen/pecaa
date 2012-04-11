@@ -90,22 +90,25 @@
     	  <span style="clear:both;"></span>
 			</div>
 		</div>
-		
-
-	<div class="subNav">
-		<div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
-			<div class="subNav-wrapper">
-				<div class="subNav-section">
-					<div><input type="radio" checked="checked" class="styled" name="site_nav_type" value='dropdown'/>use dropdown type</div>
-					<div class="dropDownType"><img src="/assets/img_dropdown1.png" border="0"></div>
-				</div>
-				<div class="subNav-section">
-					<div><input type="radio" checked="checked" class="styled" name="site_nav_type" value='sidebar'/>use left sidebar type</div>
-					<div class="dropDownType"><img src="/assets/img_dropdown2.png" border="0"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <%= form_tag update_site_site_path(@site.id, :site_pages=>true) do |f| %>
+	  <div class="subNav">
+  		<div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
+  			<div class="subNav-wrapper">
+  				<div class="subNav-section">
+  					<div>
+  					  <%=radio_button(:site, :site_nav_type, 'dropdown', :class=>"styled", :checked => true)%>use dropdown type
+  					</div>
+  					<div class="dropDownType"><img src="/assets/img_dropdown1.png" border="0"></div>
+  				</div>
+  				<div class="subNav-section">
+  					<div>
+  					  <%=radio_button(:site, :site_nav_type, 'sidebar', :class=>"styled")%>use left sidebar type</div>
+  					<div class="dropDownType"><img src="/assets/img_dropdown2.png" border="0"></div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  <% end %>
 </div>
 </div>
 
@@ -153,6 +156,15 @@
     $('.pageName').editable(rename_url, editor_options());
     // get_sortables_ready();
   }
+  var pages = <%=@site_pages.length > 0%>;
+  $('#form_submit').click(function(){
+    if(pages){
+      $('form')[0].submit();
+    }else{
+      alert("No pages added, Please add some pages")
+    }
+  });
+  
 </script>
 
 <script type="text/javascript">
