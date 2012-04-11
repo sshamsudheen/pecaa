@@ -49,7 +49,9 @@
   			</div>
   			<div class="group">
   				<span class="key">state:</span>
-          <span class="val"><%= site.text_field :state %></span>
+          <span class="val"><%= site.select(:state, options_for_select(US_STATES.map {|state|
+            ["#{state[0]}", "#{state[0]}" ]}), :prompt=>"Select State")%>
+          </span>
         </div>
         <div class="group">
           <span class="zipCode">
@@ -60,8 +62,7 @@
   			<div class="group country">
   				<span class="key">country:</span>
           <span class="val">
-          <%= site.select(:country, options_for_select(TZInfo::Country.all_codes.map {|code|
-            ["#{TZInfo::Country.get(code).name}", "#{code}" ]}), :prompt=>"Select Country")%>
+          <%= site.select(:country, options_for_select(["United States Of America"]))%>
           </span>
   			</div>
       <% end -%>
@@ -133,6 +134,7 @@ var siteid = <%=@site.id ? @site.id : 0%>;
     if(new_site){
       var s = $("#site_link_accounts");
       acc_val.push($(this).attr('rel')+"_"+acc);
+      $("#link_account").append($(this).parent());
       s.attr('value', acc_val);
     }else{
       make_request(u_id, false);
