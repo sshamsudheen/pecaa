@@ -9,7 +9,7 @@
 										<span class="scale"></span>
 										<div class="objectContent">
 											<div class="mapTitle">store map</div>
-											<div  id="map-canvas-new" style="width:250px; height:250px"></div>
+											<div  id="map-canvas-new" style="left: 10px; width:450px; height:350px"></div>
 										</div>
 									</div>
 								</div>
@@ -20,7 +20,7 @@
 											<div class="dragContent">
 												<div class="mapDetail">
 													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
-													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>"></span>
+													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
 												</div>
 											</div>
 											<div class="dragContentBottom"></div>	
@@ -30,23 +30,44 @@
 	    
 	   
     <script type="text/javascript">
+     var map;
+     var geocoder;
+     geocoder = new google.maps.Geocoder();
       function mapInitialize() {
         var myOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 6,
+          //center: new google.maps.LatLng(-34.397, 150.644),
+         zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas-new"),
-            myOptions);
+        map = new google.maps.Map(document.getElementById("map-canvas-new"), myOptions);
+        codeAddress();
       }
+      function codeAddress() {
+    	var address = $("#mapAddress").val();
+    	geocoder.geocode( { 'address': address}, function(results, status) {
+      	if (status == google.maps.GeocoderStatus.OK) {
+      		console.log (results);
+      		//console.log(results[0].geometry.location);
+        	map.setCenter(results[0].geometry.location);
+        	var marker = new google.maps.Marker({
+            	map: map,
+            	position: results[0].geometry.location
+        	});
+        	console.log (marker);
+      	} else {
+        	alert("Geocode was not successful for the following reason: " + status);
+      	}
+    	});
+  	}
+      
       
      
 	     $(document).ready(function(){
-	     	$('#mapObj').css("left", "150px");
-	     	$('#mapObj').css("top", "50px");
+	     	$('#mapObj').css("left", "50px");
+	     	$('#mapObj').css("top", "30px");
 	     	
-	     	$('#mapAddr').css("right", "150px");
-	     	$('#mapAddr').css("top", "50px");
+	     	$('#mapAddr').css("right", "50px");
+	     	$('#mapAddr').css("top", "30px");
 	    	  mapInitialize();
         
       });
