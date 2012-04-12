@@ -5,7 +5,7 @@ class MiscsController < ApplicationController
     @miscs = Misc.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html# index.html.erb
       format.json { render json: @miscs }
     end
   end
@@ -27,7 +27,7 @@ class MiscsController < ApplicationController
     @misc = Misc.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => false}# new.html.erb
       format.json { render json: @misc }
     end
   end

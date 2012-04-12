@@ -22,7 +22,7 @@
 												<%end%>
 												
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Misc"%>
-												<li class="item newItem"><span class="title">New Misc Block</span>
+												<li class="item newItem misc_form"><span class="title">New Misc Block</span>
 												<%=hidden_field_tag 'source',"Misc"%>
 															<div style="display:none;width:200px;" id="doc_form">
 																<%#@text = Text.new()%>

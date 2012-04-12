@@ -57,29 +57,6 @@
 
 		<script type="text/javascript">
 	$(function() {
-		$( "#catalog" ).accordion();
-		$( "#catalog li" ).draggable({
-			appendTo: "body",
-			helper: "clone"
-		});
-		$( "#cart div" ).droppable({
-			activeClass: "ui-state-default",
-			hoverClass: "ui-state-hover",
-			accept: ":not(.ui-sortable-helper)",
-			drop: function( event, ui ) {
-				$( this ).find( ".placeholder" ).remove();
-				$( this ).find('li').remove();
-				$( "<li></li>" ).html( ui.draggable.clone() ).appendTo( this );
-				$('.ui-droppable div.contentObject').show();
-			}
-		}).sortable({
-			items: "li:not(.placeholder)",
-			sort: function() {
-				// gets added unintentionally by droppable interacting with sortable
-				// using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
-				$( this ).removeClass( "ui-state-default" );
-			}
-		});
 		
 		$( ".themes-board div.expandable" ).resizable({
 			containment: ".themes-board"
@@ -89,8 +66,23 @@
 	    
 	
 	</script>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ6l2aLnsxjVoGZP-Un9UnPeJJZ03PJoI&sensor=false">
+    </script>
     
 <script type="text/javascript">
+	 function mapInitialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(-73.9614669, 40.7142298),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas-new"),
+            myOptions);
+      }
+      
+     
+	    
 	$(function() {
 		$( "#catalog" ).accordion();
 		$( "#catalog li" ).draggable({
@@ -104,24 +96,29 @@
 			drop: function( event, ui ) {
 				$( this ).find( ".placeholder" ).remove();
 				$( this ).find('li').remove();
-				$( "<li></li>" ).html( ui.draggable.clone() ).appendTo( this );
-				$('.ui-droppable div#doc_form').show();
+				$( this ).html('');
+				if (ui.draggable.attr('class') == "item newItem misc_form ui-draggable") {
+					 $.ajax({
+				            type: "get",
+				            url: "/miscs/new",
+				            success: function (data) {
+								$('.misc_form div#doc_form').remove();
+								$('#cart div.ui-droppable').html(data)
+								
+				            },
+				        });
+				}
+
+					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
+					$('.ui-droppable div#doc_form').show();
+					$('.ui-droppable li.ui-draggable').draggable("disable");
 			}
-		}).sortable({
-			items: "li:not(.placeholder)",
-			sort: function() {
-				// gets added unintentionally by droppable interacting with sortable
-				// using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
-				$( this ).removeClass( "ui-state-default" );
-			}
-		});
+		})
 	});
 	
 	</script>
 	
-	 <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ6l2aLnsxjVoGZP-Un9UnPeJJZ03PJoI&sensor=false">
-    </script>
+	
 	
   </head>
   <body style=" height:100%; width:100%">
