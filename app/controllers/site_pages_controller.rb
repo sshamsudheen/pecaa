@@ -30,8 +30,6 @@ class SitePagesController < ApplicationController
   
   def update
     @site_page = SitePage.find(params[:id])
-    @site_page.site = @site
-    @site_page.created_by = current_user
     if @site_page.update_attributes(params[:site_page])
       flash[:notice] = "#{@site_page.category} was successfully saved"
     else

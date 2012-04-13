@@ -5,8 +5,9 @@
 <title><%=@site.name%></title>
 <%= stylesheet_link_tag "preview" %>
 <%= csrf_meta_tag %>
-</head>
+<%=get_the_styles(@site)%>
 
+</head>
 <body>
   <div class="roundedBox" id="loginBox">
     <div class="ueNavMid">
@@ -18,24 +19,53 @@
         <% end %>
       </ul>
     </div>
-    <div>
-    <H1><%=@site_page.name%></H1>
-    <%=!(@site.description && @site.description.length < 100) ? "
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec neque 
-        a ligula elementum posuere. Nunc mollis vulputate vulputate. Sed pellentesque tincidunt leo, 
-        a lacinia libero ornare vitae. Nullam id diam quam, a tempor eros. Nulla quis nunc ante. 
-        Etiam fermentum porta velit, a malesuada ante ullamcorper sit amet. Sed vel gravida metus. 
-        Sed at fringilla est." : @site.description %>
+    <div class='clear'></div>
+    <div class="box">
+      <H1><%=@site_page.name%></H1>
+      <%=!(@site.description && @site.description.length < 100) ? "
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec neque 
+          a ligula elementum posuere. Nunc mollis vulputate vulputate. Sed pellentesque tincidunt leo, 
+          a lacinia libero ornare vitae. Nullam id diam quam, a tempor eros. Nulla quis nunc ante. 
+          Etiam fermentum porta velit, a malesuada ante ullamcorper sit amet. Sed vel gravida metus. 
+          Sed at fringilla est." : @site.description %>
     </div>
     <div>
-    <ul class="ueNavBottom">
-      <li>
-        <%= link_to 'Edit', edit_site_path(@site) %> 
-      </li>
-      <li>
-        <%= link_to 'Back to Site Settings', site_site_pages_path(@site) %> 
-      </li>
-    </ul>
+      <% @site_page.content_libraries.each do |c| %>
+        <%if c.source_type == "Video"%>
+          <div class="viewVideoHolder">
+            <div class="viewVideoTop">
+              <%= c.source_file_name %><img src="/assets/icon-help-grey.png" class="help" />
+            </div>
+            <div class="viewVideoBody">
+              <div class="videoDisplay">
+                <embed src ="/flash/mediaplayer.swf?file=<%= c.source.url %>" width="480" height="320" allowfullscreen="true" />
+              </div>
+            </div>
+          <div>
+        <%elsif c.source_type == "Image"%>
+          <div class="viewImgHolder">
+            <div class="viewImgTop"><%= @c.upload_file_name %>
+              <img src="images/icon-help-grey.png" class="help" />
+            </div>
+            <div class="viewImgBody">
+              <div class="imgDisplay">
+                <% image = c.upload.url(:medium).split('?')[0] %>
+                <img src="<%= image %>" />
+              </div>
+            </div>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+    <div>
+      <ul class="ueNavBottom">
+        <li>
+          <%= link_to 'Edit', edit_site_path(@site) %> 
+        </li>
+        <li>
+          <%= link_to 'Back to Site Settings', site_site_pages_path(@site) %> 
+        </li>
+      </ul>
     </div>
   </div>
 </body>
