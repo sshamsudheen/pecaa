@@ -29,9 +29,10 @@
           Etiam fermentum porta velit, a malesuada ante ullamcorper sit amet. Sed vel gravida metus. 
           Sed at fringilla est." : @site.description %>
     </div>
+    
     <div>
       <% @site_page.content_libraries.each do |c| %>
-        <%if c.source_type == "Video" && v = Video.find_by_id(c[:id])%>
+        <%if c.source_type == "Video" && v = Video.find_by_id(c[:source_id])%>
           <div class="viewVideoHolder">
             <div class="viewVideoTop">
               <%= v.source_file_name %><img src="/assets/icon-help-grey.png" class="help" />
@@ -42,7 +43,7 @@
               </div>
             </div>
           <div>
-        <%elsif c.source_type == "Image" && img = Image.find_by_id(c[:id])%>
+        <%elsif c.source_type == "Image" && img = Image.find_by_id(c[:source_id])%>
           <div class="viewImgHolder">
             <div class="viewImgTop"><%= img.upload_file_name %>
               <img src="images/icon-help-grey.png" class="help" />
