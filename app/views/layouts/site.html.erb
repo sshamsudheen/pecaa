@@ -151,7 +151,10 @@
       					<li class="done <%=site_top_nav('done')%>" rel="/sites/<%=@site.id%>/done"></li>
       				</ul>
       			</div>
-      			<div class="rightBtns"><button class="btn_Save" id="form_submit">Save and go to next step</button></div>
+      			<div class="rightBtns">
+      			  <button class="btn_External" id="preview_button">ext</button>
+      			  <button class="btn_Save" id="form_submit">Save and go to next step</button>
+      			</div>
       		</div>
 			<%if params[:controller] == "site_users"%>
 			<div class="user-tabs">
@@ -191,8 +194,6 @@
       $('.navBtns ul li').click(function(){
           window.location.href=$(this).attr('rel');
       })
-      
-     
       </script>
   </body>
 </html>

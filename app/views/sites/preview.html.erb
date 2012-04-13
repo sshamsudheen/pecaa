@@ -11,17 +11,21 @@
   <div class="roundedBox" id="loginBox">
     <div class="ueNavMid">
       <ul class="ueNav">
-        <%@site.site_links.each do |sl|%>
-          <li><a href=# onclick='javascript:alert("Targeted to <%=sl.target%>)' title="<%=sl.title%>"><span><%=sl.name%></span></a></li>
+        <%@site.site_pages.each_with_index do |sl,i|%>
+          <li <%=((!params[:page_id] && i == 0) || (sl.id.to_s == params[:page_id]))? "class='select'" : "" %>>
+            <a href="<%=preview_site_path(@site, :page_id=>sl.id)%>" title="<%=sl.name%>"><span><%=sl.name%></span></a>
+          </li>
         <% end %>
       </ul>
     </div>
     <div>
-    <H1><%=@site.name%></H1>
-    <%=@site.description.length < 100 ? "    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec neque 
-    a ligula elementum posuere. Nunc mollis vulputate vulputate. Sed pellentesque tincidunt leo, a lacinia libero 
-    ornare vitae. Nullam id diam quam, a tempor eros. Nulla quis nunc ante. Etiam fermentum porta velit, a malesuada 
-    ante ullamcorper sit amet. Sed vel gravida metus. Sed at fringilla est." : @site.description%>
+    <H1><%=@site_page.name%></H1>
+    <%=!(@site.description && @site.description.length < 100) ? "
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec neque 
+        a ligula elementum posuere. Nunc mollis vulputate vulputate. Sed pellentesque tincidunt leo, 
+        a lacinia libero ornare vitae. Nullam id diam quam, a tempor eros. Nulla quis nunc ante. 
+        Etiam fermentum porta velit, a malesuada ante ullamcorper sit amet. Sed vel gravida metus. 
+        Sed at fringilla est." : @site.description %>
     </div>
     <div>
     <ul class="ueNavBottom">
@@ -29,7 +33,7 @@
         <%= link_to 'Edit', edit_site_path(@site) %> 
       </li>
       <li>
-        <%= link_to 'Back to all Sites', sites_path %> 
+        <%= link_to 'Back to Site Settings', site_site_pages_path(@site) %> 
       </li>
     </ul>
     </div>

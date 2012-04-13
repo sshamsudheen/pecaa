@@ -97,7 +97,8 @@ class SitesController < ApplicationController
   
   def preview
     @site = Site.find(params[:id])
-    render :layout=> false
+    @site_page = params[:page_id] ? @site.site_pages.find(params[:page_id]) : @site.site_pages.first
+    render :layout => false
   end
   
   def rendering_partial
