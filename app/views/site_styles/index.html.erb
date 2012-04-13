@@ -212,7 +212,7 @@ $(function(){
         var val2 = $("#boxshadow").slider("values")[1];
     		$("#box_shadow_val1").text(val1 + "px");
         $("#box_shadow_val2").text(val2 + "px");
-        $("#box_shadow").attr('value', [val1+"px" val2+"px"]);
+        $("#box_shadow").attr('value', val1+"px"+" "+val2+"px");
   		  
     	}
     $("#textshadow").slider({
@@ -229,7 +229,7 @@ $(function(){
         var val2 = $("#textshadow").slider("values")[1];
     		$("#text_shadow_val1").text(val1 + "px");
         $("#text_shadow_val2").text(val2 + "px");
-        $("#text_shadow").attr('value', [val1+"px" val2+"px"]);
+        $("#text_shadow").attr('value', val1+"px"+" "+val2+"px");
     	}
 
   	refreshOpacity();
