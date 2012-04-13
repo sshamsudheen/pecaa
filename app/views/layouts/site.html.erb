@@ -191,9 +191,13 @@
       $('.navBtns ul li').click(function(){
           window.location.href=$(this).attr('rel');
       })
-      $('#preview_button').click(function(){
-      window.location.href = "<%=preview_site_path(@site)%>";
-      })
       </script>
+    <%unless @site.new_record?%>
+      <script>
+        $('#preview_button').click(function(){
+          window.location.href = "<%=preview_site_path(@site)%>";
+        })
+      </script>
+    <%end%>
   </body>
 </html>
