@@ -1,6 +1,4 @@
-<script type="text/javascript" src="/assets/externals/released-externals/interface-1.2.js"></script>
-<script type="text/javascript" src="/assets/compressed/nested_sortable/inestedsortable.js"></script>
-
+<%= javascript_include_tag 'facebox'%>
 <div class="subTab-Content left subTab-Content-tab" id='background_form'>
 	<div class="resetAll"><a href="#"></a></div>
 	<div class="colum-wrapper left">
@@ -69,7 +67,6 @@
 </div>
 
 <script type="text/javascript">
-	// $('a[rel*=facebox]').facebox();
 	$('.chooseImg').click(function(){
 	  $('a.image_link').trigger('click')
 	})
