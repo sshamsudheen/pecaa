@@ -41,6 +41,7 @@ Mystore3::Application.routes.draw do
       get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
+      post 'content_save', :on => :member
       resources :content_libraries do 
         get 'search', :on => :collection
       end

@@ -67,6 +67,14 @@ class SitePagesController < ApplicationController
     redirect_to site_site_pages_path(@site)
   end
   
+  def content_save
+    @site_page = SitePage.find(params[:id])
+    
+    @site_page.content_library_ids = (@site_page.content_library_ids + [params[:content_id]]) unless params[:content_id].blank?
+    
+    redirect_to site_site_styles_path(@site)
+  end
+  
     
   protected
 

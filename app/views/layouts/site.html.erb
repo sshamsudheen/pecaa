@@ -167,6 +167,7 @@
 		    <%=yield%>
       	</div>
 <%if params[:controller] == "content_libraries"%>
+<%=form_tag "/sites/#{@site.id}/site_pages/#{params[:site_page_id]}/content_save" , :id => 'content_page_save' do |s| %>
 	<div class="themes-board">
 		    				<div class="grid-board">
 		    					<div id="cart" >
@@ -176,7 +177,7 @@
 		    					</div>
 		    				</div>
 		    			</div>
-						
+<%end%>						    							
 <%end%>						    	
     	</div>
       </div>

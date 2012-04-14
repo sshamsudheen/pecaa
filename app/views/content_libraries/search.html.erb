@@ -79,9 +79,11 @@
 											<%@content_libraries.each do |content|%>
 											<li class="item ui-draggable">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
+												<%= hidden_field_tag "content_id", content.id%>
 												<%if content.source_type == "Image"%>
 												<div class="hotspot" style="display: none;">
 													<span class="pointer"></span>
+													
 													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
 												</div>
 												<div style="display:none;width:200px;" id="doc_form">
@@ -131,6 +133,7 @@
 				
 <script>
 	$('#form_submit').click(function(){
-          window.location.href = "/sites/<%=params[:site_id]%>/site_styles"
+		$('#content_page_save').submit();
+        //  window.location.href = "/sites/<%=params[:site_id]%>/site_styles"
       })
 </script>
