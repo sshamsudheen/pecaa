@@ -1,7 +1,8 @@
 class ContentLibrary < ActiveRecord::Base
   belongs_to :source, :polymorphic => true
   has_and_belongs_to_many :sites
-  has_and_belongs_to_many :site_pages
+  has_many :content_libraries_site_pages
+  has_many :site_pages, :through => :content_libraries_site_pages
   
   scope :by_source_type, lambda{ |arg|
     where(:source_type => arg)  
