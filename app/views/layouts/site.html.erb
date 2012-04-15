@@ -54,18 +54,13 @@
         })
       </script>
 		
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
-		<script type="text/javascript">
-	$(function() {
-		
-		$( ".themes-board div.expandable" ).resizable({
-			containment: ".themes-board"
-		});
-	});
-	
-	    
-	
-	</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+
+
+
+
 	<script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ6l2aLnsxjVoGZP-Un9UnPeJJZ03PJoI&sensor=false">
     </script>
@@ -111,7 +106,7 @@
 
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
-					$('.ui-droppable li.ui-draggable').draggable("disable");
+					$('.resizable_content').resizable();
 			}
 		})
 	});
@@ -171,7 +166,7 @@
 	<div class="themes-board">
 		    				<div class="grid-board">
 		    					<div id="cart" >
-		    						<div class="ui-droppable ui-sortable" style="height:400px;width:100%">
+		    						<div class="ui-droppable ui-sortable" style="height:900px;width:1024px;">
 										<li class="placeholder">Drop Here to Edit</li>
 									</div>
 		    					</div>

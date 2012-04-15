@@ -69,8 +69,7 @@ class SitePagesController < ApplicationController
   
   def content_save
     @site_page = SitePage.find(params[:id])
-    
-    @site_page.content_library_ids = (@site_page.content_library_ids + [params[:content_id]]) unless params[:content_id].blank?
+    @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position])
     
     redirect_to site_site_styles_path(@site)
   end
