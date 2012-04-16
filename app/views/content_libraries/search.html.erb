@@ -134,9 +134,16 @@
 					
 				
 <script>
+	
 	$('#form_submit').click(function(){
 		$('#cart div#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
 		$('#content_page_save').submit();
-      })
+  });
+  
+  $('#preview_button').click(function(){
+    $('#is_preview').attr("value", true)
+    $('#content_page_save').submit();
+  });
+      
 </script>

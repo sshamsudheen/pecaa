@@ -136,7 +136,7 @@ $('#cart div.ui-droppable').html(data)
       				<ul>
       					<li class="siteInfo <%=site_top_nav('siteInfo')%>" rel=<%=set_link("edit_site_path", @site)%>></li>
       					<li class="pages <%=site_top_nav('pages')%>" rel=<%=set_link("site_site_pages_path", @site)%>></li>
-      					<li class="content <%=site_top_nav('content')%>"      rel=<%=set_link("search_site_site_page_content_libraries_path", @site, 1)%>></li>
+      					<li class="content <%=site_top_nav('content')%>"      rel=<%=set_link("search_site_site_page_content_libraries_path", @site, site_content_link(@site))%>></li>
       					<li class="theme <%=site_top_nav('theme')%>" rel=<%=set_link("site_site_styles_path", @site)%>></li>
       					<li class="optional <%=site_top_nav('optional')%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
   						  <li class="users  <%=site_top_nav('users')%>" rel=<%=set_link("site_site_users_path", @site)%>></li>
@@ -162,38 +162,33 @@ $('#cart div.ui-droppable').html(data)
 		    <%=yield%>
       	</div>
 <%if params[:controller] == "content_libraries"%>
-<%=form_tag "/sites/#{@site.id}/site_pages/#{params[:site_page_id]}/content_save" , :id => 'content_page_save' do |s| %>
-	<div class="themes-board">
-		    				<div class="grid-board">
-		    					<div id="cart" >
-		    						<div class="ui-droppable ui-sortable" style="height:900px;width:1024px;">
-										<li class="placeholder">Drop Here to Edit</li>
-									</div>
-		    					</div>
-		    				</div>
-		    			</div>
-<%end%>						    							
-<%end%>						    	
+  <%=form_tag "/sites/#{@site.id}/site_pages/#{params[:site_page_id]}/content_save" , :id => 'content_page_save' do |s| %>
+  <%=hidden_field_tag :is_preview, false%>
+  <div class="themes-board">
+      <div class="grid-board">
+        <div id="cart" >
+          <div class="ui-droppable ui-sortable" style="height:900px;width:1024px;">
+            <li class="placeholder">Drop Here to Edit</li>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<%end%>
     	</div>
       </div>
       <script>
-      $('.location').click(function(){
-          window.location.href=$(this).attr('rel');
-      })
-      $('.logout').click(function(){
-          window.location.href='/logout';
-      })
- 
-      $('.navBtns ul li').click(function(){
-          window.location.href=$(this).attr('rel');
-      })
-      </script>
-    <%unless @site.new_record?%>
-      <script>
-        $('#preview_button').click(function(){
-          window.location.href = "<%=preview_site_path(@site)%>";
+        $('.location').click(function(){
+            window.location.href=$(this).attr('rel');
+        })
+        
+        $('.logout').click(function(){
+            window.location.href='/logout';
+        })
+        
+        $('.navBtns ul li').click(function(){
+            window.location.href=$(this).attr('rel');
         })
       </script>
-    <%end%>
   </body>
 </html>
