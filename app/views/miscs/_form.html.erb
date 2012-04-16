@@ -1,4 +1,4 @@
-    <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
+    <%= form_for([@site,@site_page,Misc.new], :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
 								<div class="contentObject" id="mapObj">
 

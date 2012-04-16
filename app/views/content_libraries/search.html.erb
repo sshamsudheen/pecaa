@@ -27,6 +27,7 @@
 															<div style="display:none;" id="doc_form">
 																<%#@text = Text.new()%>
 																<%@from_content=true%>
+																
 																<%=render :partial=>"miscs/form"%>
 															</div>
 												</li>
@@ -135,6 +136,7 @@
 <script>
 	$('#form_submit').click(function(){
 		$('#cart div#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
+		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
 		$('#content_page_save').submit();
       })
 </script>

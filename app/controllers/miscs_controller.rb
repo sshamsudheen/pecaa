@@ -24,6 +24,8 @@ class MiscsController < ApplicationController
   # GET /miscs/new
   # GET /miscs/new.json
   def new
+    @site = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id])
     @misc = Misc.new
 
     respond_to do |format|

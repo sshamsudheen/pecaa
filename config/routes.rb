@@ -1,7 +1,7 @@
 Mystore3::Application.routes.draw do
 
 
-  resources :miscs
+  
 
   get "model/site_style"
 
@@ -45,6 +45,10 @@ Mystore3::Application.routes.draw do
       resources :content_libraries do 
         get 'search', :on => :collection
       end
+      
+      resources :miscs do 
+      end
+      
     end
     resources :site_styles do
       get 'choose_theme', :on => :collection

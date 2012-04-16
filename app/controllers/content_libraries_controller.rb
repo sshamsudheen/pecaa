@@ -88,6 +88,7 @@ class ContentLibrariesController < ApplicationController
     @text = Text.new()
     @misc = Misc.new()
     @site = Site.find(params[:site_id]) rescue nil
+    @site_page = SitePage.find(params[:site_page_id])
     @address = Address.find_by_site_id(params[:site_id])
     @content_libraries = ContentLibrary.search(params[:search]).page(params[:page]).per(12)
     respond_to do |format|
