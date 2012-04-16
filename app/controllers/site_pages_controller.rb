@@ -70,8 +70,12 @@ class SitePagesController < ApplicationController
   def content_save
     @site_page = SitePage.find(params[:id])
     @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position])
-    
-    redirect_to site_site_styles_path(@site)
+
+    if params[:is_preview] == "true"
+      redirect_to preview_site_path(@site)
+    else
+      redirect_to site_site_styles_path(@site)
+    end
   end
   
     

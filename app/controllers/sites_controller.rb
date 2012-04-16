@@ -65,10 +65,15 @@ class SitesController < ApplicationController
     respond_to do |format|
       if @site.update_attributes(params[:site])
         if params[:site_pages]
-          format.html { redirect_to search_site_site_page_content_libraries_path(@site, 1)}
+          if params[:is_preview] == "true"
+            path_to = preview_site_path(@site)
+          else
+            path_to = search_site_site_page_content_libraries_path(@site, @site.site_pages.first)
+          end
         else
-          format.html { redirect_to site_site_pages_path(@site), :notice => 'Site was successfully updated.' }
+          path_to = site_site_pages_path(@site)
         end
+        format.html { redirect_to path_to, :notice => 'Site was successfully updated.' }
       else
         format.html { render :action => "edit", :layout=>"site"}
       end

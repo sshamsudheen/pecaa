@@ -78,6 +78,8 @@ $(function(){
     	</div>
     	<div class="subTab-Content left" style="display: none"></div>
     	<%= form_tag :url=>{:action=>:create} do |f| %>
+    	<%=hidden_field_tag :is_preview, false%>
+      
         <%=render :partial=>"background_form"%>
         <%=render :partial=>"block_form"%>
         <%=render :partial=>"text_form"%>
@@ -253,4 +255,11 @@ $(function(){
       // window.location.href = "/sites/<%=params[:site_id]%>/optional"
    $('form')[0].submit();
   });
+  
+  $('#preview_button').click(function(){
+    $('#is_preview').attr("value", true)
+    $('form')[0].submit();
+  });
+  
+  
 </script>
