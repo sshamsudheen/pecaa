@@ -1,5 +1,7 @@
 <script type="text/javascript" src="/assets/externals/released-externals/interface-1.2.js"></script>
 <script type="text/javascript" src="/assets/compressed/nested_sortable/inestedsortable.js"></script>
+<%= javascript_include_tag  'facebox'%>
+
 <% if @site_page && @site_page.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@site_page.errors.count, "error") %> prohibited this site_link from being saved:</h2>

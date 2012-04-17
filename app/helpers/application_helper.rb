@@ -10,7 +10,13 @@ module ApplicationHelper
   end
   
   def site_content_link(site)
-    site.new_record? ? 1 : site.site_pages.first.id
+    if site.new_record? 
+       1 
+    elsif (c = site.site_pages) != []
+      c.first.id
+    else
+      1
+    end
   end
   
   def site_top_nav(sym)
