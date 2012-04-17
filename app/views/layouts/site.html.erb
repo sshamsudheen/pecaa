@@ -61,24 +61,11 @@
 
 
 
-	<script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ6l2aLnsxjVoGZP-Un9UnPeJJZ03PJoI&sensor=false">
-    </script>
+	
     
 <script type="text/javascript">
-	 function mapInitialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(-73.9614669, 40.7142298),
-          zoom: 6,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas-new"),
-            myOptions);
-      }
-      
-     
-	    
-	$(function() {
+	
+    $(function() {
 		$( "#catalog" ).accordion();
 		$( "#catalog li" ).draggable({
 			appendTo: "body",

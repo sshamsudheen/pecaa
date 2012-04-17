@@ -1,4 +1,4 @@
-	 <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
+<%= form_for(:misc, :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
 								<div class="contentObject" id="mapObj">
 		    						<div class="alphaBg"></div>
@@ -21,6 +21,7 @@
 												<div class="mapDetail">
 													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
 													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
+													<button id="changeMap" class="primary">Go</button>								
 												</div>
 											</div>
 											<div class="dragContentBottom"></div>	
@@ -30,51 +31,14 @@
 	    
 	   
     <script type="text/javascript">
-     var map;
-     var geocoder;
-     geocoder = new google.maps.Geocoder();
-      function mapInitialize() {
-        var myOptions = {
-          //center: new google.maps.LatLng(-34.397, 150.644),
-         zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas-new"), myOptions);
-        codeAddress();
-      }
-      function codeAddress() {
-    	var address = $("#mapAddress").val();
-    	geocoder.geocode( { 'address': address}, function(results, status) {
-      	if (status == google.maps.GeocoderStatus.OK) {
-      		//console.log (results);
-      		//console.log(results[0].geometry.location);
-        	map.setCenter(results[0].geometry.location);
-        	var marker = new google.maps.Marker({
-            	map: map,
-            	position: results[0].geometry.location
-        	});
-        	//console.log (marker);
-      	} else {
-        	alert("Geocode was not successful for the following reason: " + status);
-      	}
-    	});
-  	}
-      
-      
-     
-	     $(document).ready(function(){
+         $(document).ready(function(){
 	     	$('#mapObj').css("left", "50px");
 	     	$('#mapObj').css("top", "30px");
-	     	
 	     	$('#mapAddr').css("right", "50px");
 	     	$('#mapAddr').css("top", "30px");
 	     	var address = $("#mapAddress").val();
-	     	
-	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|" + address + "&sensor=false"; 
-	     	//$("#map-canvas-image").attr('src', mapURL);
-	     	//http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|Williamsburg,Brooklyn,NY&sensor=false     	
-	    	 // mapInitialize();
-        
+	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&markers=color:blue|" + address + "&sensor=false"; 
+	     	$("#map-canvas-image").attr('src', mapURL);
       });
     </script>	
 	  <% end %>
