@@ -1,4 +1,4 @@
-    <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
+    <%= form_for([@site,@site_page,Misc.new], :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
 								<div class="contentObject" id="mapObj">
 
@@ -9,7 +9,8 @@
 										<span class="scale"></span>
 										<div class="objectContent">
 											<div class="mapTitle">store map</div>
-											<div  id="map-canvas-new" style="left: 10px; width:450px; height:350px"></div>
+											<img src="" id="map-canvas-image"> </img>
+											
 										</div>
 									</div>
 								</div>
@@ -68,7 +69,12 @@
 	     	
 	     	$('#mapAddr').css("right", "50px");
 	     	$('#mapAddr').css("top", "30px");
-	    	  mapInitialize();
+	     	var address = $("#mapAddress").val();
+	     	
+	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|" + address + "&sensor=false"; 
+	     	//$("#map-canvas-image").attr('src', mapURL);
+	     	//http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|Williamsburg,Brooklyn,NY&sensor=false     	
+	    	 // mapInitialize();
         
       });
     </script>	

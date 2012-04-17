@@ -95,17 +95,17 @@
 				if (ui.draggable.attr('class') == "item newItem misc_form ui-draggable") {
 					 $.ajax({
 				            type: "get",
-				            url: "/miscs/new",
+				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
-								$('#cart div.ui-droppable').html(data)
-								
+$('#cart div.ui-droppable').html(data)					
 				            },
 				        });
 				}
 
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
+					$('#cart .contentObject').draggable();
 					$('.resizable_content').resizable();
 			}
 		})
