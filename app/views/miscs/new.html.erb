@@ -1,7 +1,6 @@
 	 <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
 								<div class="contentObject" id="mapObj">
-
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
 										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>

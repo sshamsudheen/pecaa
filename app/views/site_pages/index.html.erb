@@ -91,6 +91,7 @@
 			</div>
 		</div>
   <%= form_tag update_site_site_path(@site.id, :site_pages=>true) do |f| %>
+    <%=hidden_field_tag :is_preview, false%>
 	  <div class="subNav">
   		<div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
   			<div class="subNav-wrapper">
@@ -157,13 +158,20 @@
     // get_sortables_ready();
   }
   var pages = <%=@site_pages.length > 0%>;
-  $('#form_submit').click(function(){
+    $('#form_submit').click(submit_form);
+    
+    $('#preview_button').click(function(){
+      $('#is_preview').attr("value", true)
+      submit_form();
+    });
+  
+  function submit_form(){
     if(pages){
       $('form')[0].submit();
     }else{
-      alert("No pages added, Please add some pages")
+      alert("No pages added, Please add some pages");
     }
-  });
+  }
   
 </script>
 

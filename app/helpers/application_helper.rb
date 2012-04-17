@@ -9,6 +9,10 @@ module ApplicationHelper
     modelObj ? modelObj.new_record? ? '#' : other_id ? eval("#{path} #{modelObj.id}, #{other_id}") : eval("#{path} #{modelObj.id}") : ''
   end
   
+  def site_content_link(site)
+    site.new_record? ? 1 : site.site_pages.first.id
+  end
+  
   def site_top_nav(sym)
     if sym == "siteInfo" 
       (params[:controller] == 'sites' && ['new', 'edit'].include?(params[:action])) ? ' active' :
