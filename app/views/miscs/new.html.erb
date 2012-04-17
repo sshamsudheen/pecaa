@@ -1,10 +1,82 @@
-	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa"%>
-      <%= csrf_meta_tag %>
-      <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
-        <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ6l2aLnsxjVoGZP-Un9UnPeJJZ03PJoI&sensor=false">
-    </script>
-	
-<%= render 'form' %>
+	 <%= form_for(@misc, :html => { :multipart => true }, :remote => true) do |f| %>
+    <%=hidden_field_tag :from_content, @from_content%>
+								<div class="contentObject" id="mapObj">
 
+		    						<div class="alphaBg"></div>
+									<div class="expandable">
+										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
+										<span class="drag"></span>
+										<span class="scale"></span>
+										<div class="objectContent">
+											<div class="mapTitle">store map</div>
+											<img src="" id="map-canvas-image"> </img>
+											
+										</div>
+									</div>
+								</div>
+								<div class="contentObject" id="mapAddr">
+		    						<div class="dragableObject">
+										<div class="dragable">
+											<span class="drag"></span>
+											<div class="dragContent">
+												<div class="mapDetail">
+													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
+													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
+												</div>
+											</div>
+											<div class="dragContentBottom"></div>	
+										</div>
+	    							</div>
+	    						</div>
+	    
+	   
+    <script type="text/javascript">
+     var map;
+     var geocoder;
+     geocoder = new google.maps.Geocoder();
+      function mapInitialize() {
+        var myOptions = {
+          //center: new google.maps.LatLng(-34.397, 150.644),
+         zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas-new"), myOptions);
+        codeAddress();
+      }
+      function codeAddress() {
+    	var address = $("#mapAddress").val();
+    	geocoder.geocode( { 'address': address}, function(results, status) {
+      	if (status == google.maps.GeocoderStatus.OK) {
+      		//console.log (results);
+      		//console.log(results[0].geometry.location);
+        	map.setCenter(results[0].geometry.location);
+        	var marker = new google.maps.Marker({
+            	map: map,
+            	position: results[0].geometry.location
+        	});
+        	//console.log (marker);
+      	} else {
+        	alert("Geocode was not successful for the following reason: " + status);
+      	}
+    	});
+  	}
+      
+      
+     
+	     $(document).ready(function(){
+	     	$('#mapObj').css("left", "50px");
+	     	$('#mapObj').css("top", "30px");
+	     	
+	     	$('#mapAddr').css("right", "50px");
+	     	$('#mapAddr').css("top", "30px");
+	     	var address = $("#mapAddress").val();
+	     	
+	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|" + address + "&sensor=false"; 
+	     	//$("#map-canvas-image").attr('src', mapURL);
+	     	//http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=400x400&markers=color:blue|Williamsburg,Brooklyn,NY&sensor=false     	
+	    	 // mapInitialize();
+        
+      });
+    </script>	
+	  <% end %>
 

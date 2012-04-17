@@ -25,7 +25,9 @@ class MiscsController < ApplicationController
   # GET /miscs/new.json
   def new
     @misc = Misc.new
-
+    p params
+    p "***************"
+    @address = Address.find_by_site_id(params[:site_id])
     respond_to do |format|
       format.html { render :layout => false}# new.html.erb
       format.json { render json: @misc }
