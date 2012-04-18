@@ -21,7 +21,7 @@
 												<div class="mapDetail">
 													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
 													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
-													<button id="changeMap" class="primary">Go</button>								
+													<button id="reloadMap" class="primary">Reload</button>								
 												</div>
 											</div>
 											<div class="dragContentBottom"></div>	
@@ -32,13 +32,15 @@
 	   
     <script type="text/javascript">
          $(document).ready(function(){
-	     	$('#mapObj').css("left", "50px");
+	     	/*$('#mapObj').css("left", "50px");
 	     	$('#mapObj').css("top", "30px");
 	     	$('#mapAddr').css("right", "50px");
 	     	$('#mapAddr').css("top", "30px");
 	     	var address = $("#mapAddress").val();
-	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?zoom=10&size=400x400&markers=color:blue|" + address + "&sensor=false"; 
-	     	$("#map-canvas-image").attr('src', mapURL);
+	     	var uri = "zoom=10&size=400x400&markers=color:blue|" + address + "&sensor=false";
+	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + encodeURIComponent(uri); 
+	     	$("#map-canvas-image").attr('src', mapURL);*/
+	     	initMisc();
       });
     </script>	
 	  <% end %>
