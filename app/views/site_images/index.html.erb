@@ -1,0 +1,31 @@
+<h1>Listing site_images</h1>
+
+<table>
+  <tr>
+    <th>Site</th>
+    <th>Site page</th>
+    <th>Upload file name</th>
+    <th>Upload content type</th>
+    <th>Upload file size</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @site_images.each do |site_image| %>
+  <tr>
+    <td><%= site_image.site_id %></td>
+    <td><%= site_image.site_page_id %></td>
+    <td><%= site_image.upload_file_name %></td>
+    <td><%= site_image.upload_content_type %></td>
+    <td><%= site_image.upload_file_size %></td>
+    <td><%= link_to 'Show', site_image %></td>
+    <td><%= link_to 'Edit', edit_site_image_path(site_image) %></td>
+    <td><%= link_to 'Destroy', site_image, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Site image', new_site_image_path %>

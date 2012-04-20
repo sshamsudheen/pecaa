@@ -3,6 +3,8 @@ Mystore3::Application.routes.draw do
 
   
 
+  resources :site_images
+
   get "model/site_style"
 
   get "site_pages/index"

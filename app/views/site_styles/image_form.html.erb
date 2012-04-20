@@ -43,7 +43,7 @@
         		})
         	})
         </script>
-<%= form_for [@site, @site_style] do |f| %>
+
   <div class="main-container imgPicker">
 			<div class="header">Choose or Upload an Image<span class="helpIcon"></span></div>
 			<div class="main-content">
@@ -128,10 +128,13 @@
 						</div>
 						<!-- end of box view-->
 					</div>
+						<%= form_for :site_image, :url => "sites/#{@site.id}/site_image/create", :html => {:multipart => true } do |f| %>
 					<div class="imgDetailColumn left">
 						<div class="addImageToLib">
 							<h3>Add Image to Library</h3>
-							<div class="addImgBar"><span class="imgSelection left"><input type="text" placeholder="no image selected" /></span><button class="secondary right">choose new image</button></div>
+							<div class="addImgBar"><span class="imgSelection left">
+								<%= f.file_field :upload %>
+							</div>
 							<div class="imgTypeThumb left"></div>
 							<div class="setDetail left">
 								<span class="chooseImgName"><input type="text" placeholder="choose image name" /></span>
@@ -140,6 +143,7 @@
 								<span class="addImgeBtn clear right"><button class="blueBtn"  type="button">add image to library</button></span>
 							</div>
 						</div>
+						<% end %>
 						<div class="showImgDetail">
 							<div class="selectedImgDetail">
 								<span class="key">image name :</span>
@@ -162,7 +166,7 @@
 			</div>
 		</div>
 
-<% end %>
+
 <script>
 $('#cancelBtn').click(function(){
     $(document).trigger('close.facebox');
