@@ -1,24 +1,14 @@
-<!DOCTYPE >
-<html xmlns="http://www.w3.org/1999/xhtml" style=" height:100%">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PECAA</title>
-	<%if false%>
-      <%= stylesheet_link_tag "layout", "facebox", "pages", "themes"%>
-	  <%if params[:controller] == "content_libraries"%>
-	  	<%= stylesheet_link_tag "content"%>
-	  <%elsif params[:controller] == "site_users"%>
-	    <%= stylesheet_link_tag "users"%>
-	  <%elsif (params[:controller] == "sites" or params[:controller] == "sites_pages")%>
-	    <%if params[:action] =="optional"%>
-			  <%= stylesheet_link_tag "optional"%>
-		  <%else%>
-	  		<%= stylesheet_link_tag "site_pages", "sites"%>
-		  <%end%>
-	  <%end%>
-	  <%end%>
-	  
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript" charset="utf-8">
+			google.load("jquery", "1.3.2");
+		</script>
+  
 	  <%if ["site_pages", "sites", "site_styles"].include?(params[:controller])%>
 	  <%#CSS as per Rajesh's Modules%>
         <link rel="stylesheet" href="/assets/themes/base/jquery.ui.all.css" type="text/css">
@@ -34,14 +24,20 @@
 	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional"%>
 	  <% end %>
 	  
-      <%= javascript_include_tag 'jquery-1.4.2.min','rails.js','jquery.watermark.js', 'facebox', 'inputstyle'%>
-      <%= csrf_meta_tag %>
+      <%= javascript_include_tag 'jquery-1.4.2.min', 'facebox'%>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
+      <%= javascript_include_tag 'facebox'%>
+      <%= javascript_include_tag 'tinymce-jquery'%>
+      <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 
+<<<<<<< Updated upstream
       <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
      <%= javascript_include_tag 'common'%>
      <%= javascript_include_tag 'js/misc'%>
 
+=======
+<%= csrf_meta_tag %>
+>>>>>>> Stashed changes
       <script type="text/javascript">
 
         $(document).ready(function(){
@@ -93,7 +89,14 @@ $('#cart div.ui-droppable').html(data)
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
 					$('#cart .contentObject').draggable();
+    $('#cart textarea').tinymce({
+      width: "98%",
+      height: "50%",
+      theme: 'advanced'
+    });
+
 					$('.resizable_content').resizable();
+
 			}
 		})
 	});
@@ -177,5 +180,22 @@ $('#cart div.ui-droppable').html(data)
             window.location.href=$(this).attr('rel');
         })
       </script>
+
+      <%= javascript_include_tag 'common'%>      	  
+<script type="text/javascript">
+      tinyMCE.init({
+        theme : "advanced",
+        mode: "textareas"
+      });
+</script>
+<script type="text/javascript">
+  $(function() {
+    $('textarea').tinymce({
+      width: "98%",
+      height: "50%",
+      theme: 'advanced'
+    });
+  });
+</script>
   </body>
 </html>
