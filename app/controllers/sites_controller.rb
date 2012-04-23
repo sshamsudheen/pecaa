@@ -111,8 +111,9 @@ class SitesController < ApplicationController
   end
   
   def site_link_account
+    @site = Site.find(params[:site_id])
     if SiteLinkAccount.save_link(params)
-      @link_accounts = Site.find(params[:site_id]).site_link_accounts
+      @link_accounts = @site.site_link_accounts
       render :partial => "link_accounts"
     end
   end

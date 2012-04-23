@@ -6,6 +6,8 @@
 <%= stylesheet_link_tag "preview" %>
 <%= csrf_meta_tag %>
 <%=get_the_styles(@site)%>
+<%= javascript_include_tag 'jquery-1.4.2.min'%>
+<%= javascript_include_tag 'tinymce-jquery'%>
 
 </head>
 <body>
@@ -56,6 +58,34 @@
                 </div>
               </div>
             </div>
+          <%elsif c.source_type == "Text" && t = ActiveRecord::Base::Text.find_by_id(c[:source_id])%>
+          <%= form_for(t, :url=> "#",  :remote => true) do |f| %>
+          <div class="main-container">
+            <div class="header">Edit Text Block</div>
+            <div class="main-content">
+              <div class="text-editer">
+                <%= f.text_area :description, :rows => 40, :cols => 120 %>
+
+              </div>
+            </div>
+            <div class="footer-section">
+              <div class="leftBtns"><button class="secondary btnCancelForm" id="cancelBtn">Cancel</button> </div>
+              <div class="rightBtns"><%= f.text_field :text_block_name %>
+                <button class="primary" id="saveBtn">Submit</button>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <script type="text/javascript">
+            $(function() {
+              $('textarea').tinymce({
+                width: "98%",
+                height: "50%",
+                theme: 'advanced'
+              });
+            });
+          </script>
+
           <%end%>
         <%end%>
       <% end %>

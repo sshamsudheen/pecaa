@@ -138,6 +138,7 @@ var siteid = <%=@site.id ? @site.id : 0%>;
       s.attr('value', acc_val);
     }else{
       make_request(u_id, false);
+      $(this).parent().remove;
     }
     return false;
   });
