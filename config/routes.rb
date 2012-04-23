@@ -3,7 +3,8 @@ Mystore3::Application.routes.draw do
 
   
 
-  resources :site_images
+
+  get "site_ecomm/dashboard"
 
   get "model/site_style"
 
@@ -66,6 +67,13 @@ Mystore3::Application.routes.draw do
       get 'new_group', :on => :collection
       get '/user_details/:user_id', :on => :collection, :to => 'site_users#user_details'
     end
+    
+    resources :site_ecomm do
+      get 'dashboard', :on => :collection 
+      
+    end
+    
+    
   end
   
   resources :images
