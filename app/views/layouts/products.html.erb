@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>PECAA</title>
+        <%= stylesheet_link_tag "layout" %>
+		<%= stylesheet_link_tag "users" %>
+		<%= stylesheet_link_tag "tinyscroll" %>
+		<%= stylesheet_link_tag "ecomm_dashboard" %>
+		<%= stylesheet_link_tag "products" %>
+		<%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js'%>
+		<%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js'%>
+		<script type="text/javascript">
+        	
+        	$(document).ready(function(){
+        		$('#scrollbar1').tinyscrollbar();
+        		$(".ConLibra li:even").addClass("alt");
+
+        		$("ul.ConLibra li").click(function(){
+        			var $this = $(this);
+        			//$this.parent().find('.misc img').hide();
+        			
+        			if(!$this.hasClass("selected")){
+        				$("ul.ConLibra li").removeClass("selected");
+        				$("ul.ConLibra li").find('.pointer').hide();
+        				$this.addClass("selected");
+        				$this.find('.pointer').show();
+        				//$this.find('.misc img').show();
+        			}
+        			return false;
+        			
+        		})
+        	})
+        </script>
+    </head>
+    <body>
+    	<div class="mainContainer">
+	    	<div class="userEditHolder">
+	    		<%= render :partial => 'shared/main_header'%>	
+		    	
+		    	
+		    	<div class="main-nav">
+        			<div class="navBtns">
+          				<ul>
+            				<li class="products active"></li>
+            				<li class="payments"></li>
+            				<li class="taxes"></li>
+            				<li class="shipping"></li>
+            				<li class="features"></li>
+            				<li class="orders"></li>
+            				<li class="reports"></li>
+          				</ul>
+        			</div>
+      			</div>
+      			
+      			<div class="user-tabs">
+        			<ul>
+          				<li class="active">products</li>
+          				<li>product categories</li>
+          				<li>featured products</li>
+          				<li>product options</li>
+          				<li>catalogs</li>
+        			</ul>
+      			</div>
+    		</div>
+    			<div class="content-section">
+		    		<%=yield%>	
+		    	</div>
+		    	
+		    	
+        	</div>
+    </body>
+</html>
