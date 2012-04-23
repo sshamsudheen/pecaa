@@ -67,7 +67,7 @@ Mystore3::Application.routes.draw do
       get 'dashboard', :on => :collection 
     end
     
-    resources :product do
+    resources :products do
       get 'index', :on => :collection
     end
     
