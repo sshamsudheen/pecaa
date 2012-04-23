@@ -1,11 +1,6 @@
 Mystore3::Application.routes.draw do
 
 
-  
-
-
-  get "site_ecomm/dashboard"
-
   get "model/site_style"
 
   get "site_pages/index"
@@ -70,7 +65,10 @@ Mystore3::Application.routes.draw do
     
     resources :site_ecomm do
       get 'dashboard', :on => :collection 
-      
+    end
+    
+    resources :product do
+      get 'index', :on => :collection
     end
     
     
