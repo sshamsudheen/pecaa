@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @option.name %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @option.question_id %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @option.created_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_option_path(@option) %> |
+<%= link_to 'Back', options_path %>

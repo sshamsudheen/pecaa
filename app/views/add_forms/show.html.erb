@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @add_form.name %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @add_form.created_by %>
+</p>
+
+<p>
+  <b>Subject line:</b>
+  <%= @add_form.subject_line %>
+</p>
+
+<p>
+  <b>Delivery email address:</b>
+  <%= @add_form.delivery_email_address %>
+</p>
+
+<p>
+  <b>Confirmation text:</b>
+  <%= @add_form.confirmation_text %>
+</p>
+
+<p>
+  <b>Use captcha:</b>
+  <%= @add_form.use_captcha %>
+</p>
+
+<p>
+  <b>Use field label:</b>
+  <%= @add_form.use_field_label %>
+</p>
+
+
+<%= link_to 'Edit', edit_add_form_path(@add_form) %> |
+<%= link_to 'Back', add_forms_path %>

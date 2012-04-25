@@ -1,132 +1,300 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-	<head>
-		<title>Add Form - Form Setting</title>
-		<style>
-			.main-container{
-				width: 970px;
-				font-family: Arial;
-			}
-			.header{
-				clear:both;
-				background: #616161;
-				font-size: 18px;
-				color: #dae5eb;
-				padding:10px;
-				font-weight: bold;
-			}
-			.main-content {
-				overflow: hidden;
-				background:#dbe6eb;
-			}
-			.column-wrapper{
-				float:left;
-				width: 255px;
-				background:#ffffff;
-				margin:10px 20px 10px 10px;
-				padding:20px;
-				height:380px;
-			}
-			.column-wrapper.last-colum{
-				margin-right:0;
-				background:#616161;
-
-			}
-			.column-wrapper ul{
-				list-style: none;
-				padding:0;
-				margin:0 0 10px 0;
-			}
-			.column-wrapper ul li{
-				list-style: none;
-				padding: 3px;
-				border: 1px solid #CCC;
-				margin:0;
-			}
-			.column-wrapper div,
-			.column-wrapper p{
-				margin:0 0 15px 0;
-			}
-			.column-wrapper div input[type="text"],
-			.column-wrapper div textarea{
-				margin-bottom:10px;
-				width: 100%;
-			}
-			.column-wrapper .close-settings{
-				padding: 5px 0 5px 0;
-				margin:0;
-				background: #849fb9;
-				text-align:center;
-			}
-			.footer-section{
-				background: #616161;
-				padding:20px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="main-container">
-			<div class="header">Add Form</div>
-			<div class="main-content">
-				<div class="column-wrapper">
-					<p>form elements</p>
-					<ul>
-						<li>section break /title</li>
-						<li>single line text</li>
-						<li>paragraph text</li>
-						<li>multiple choice</li>
-						<li>check boxes</li>
-						<li>date/time</li>
-					</ul>
-					<p>grouped social form elements</p>
-					<ul>
-						<li>address</li>
-						<li>name</li>
-						<li>email</li>
-						<li>website (url)</li>
-						<li>phone #</li>
-					</ul>
-				</div>
-
-				<div class="column-wrapper">
-					<p>form settings</p>
-					<div>
-						<label>form subject line</label>
-						<input type="text" placeholder="form name">
-					</div>
-					<div>
-						<label>deliver email address</label>
-						<input type="text" placeholder="jim@gmail.com">
-						<input type="text" placeholder="jim@gmail.com">
-					</div>
-					<div>
-						<label>form confirmation text</label>
-						<textarea type="text" placeholder="Thanks for filling out the form, you're being brought back to where you were."></textarea>
-					</div>
-					<div>
-						<input type="checkbox" />
-						<label>use CAPTCHA</label>
-					</div>
-					<div>
-						<input type="checkbox" />
-						<label>use Field labels</label>
-					</div>
-					<div class="close-settings">
-						Close Form Settings
-					</div>
-				</div>
-
-				<div class="column-wrapper last-colum"></div>
-			</div>
-			<div class="footer-section">
-				<button id="cancelBtn" class="btnCancelForm">Cancel</button>
-				<input type="text" placeholder="form name">
-				<button id="saveBtn">Save</button>
-
-				</div>
+<script>
+	
+    $(function(){
+        $("#catalog").accordion();
+        $("#catalog li").draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $("#cart").droppable({
+            activeClass: "ui-state-default",
+            hoverClass: "ui-state-hover",
+            accept: ":not(.ui-sortable-helper)",
+            drop: function(event, ui){
+                $(this).find(".placeholder").remove();
+                $("<div></div>").html(ui.draggable.clone()).appendTo(this);
+                $(".ui-droppable  div.form-set").show();
+				$(".ui-droppable  div.question_title").hide();
+                 $(".ui-draggable").attr('style', 'list-style:none');
+				 $(".ui-droppable div.form-set").click(function () {
+			      $(this).addClass('selected');
+				   $.ajax({
+				            type: "get",
+				            url: '<%="/add_forms/question_detail"%>',
+				            success: function (data) {
+								$('#field_edit').html(data)					
+				            },
+				        });
+			    });
+            }
+        }).sortable({
+            items: "li:not(.placeholder)",
+            sort: function(){
+            
+                $(this).removeClass("ui-state-default");
+            }
+        });
+		
+    });
+	
+</script>
+<div class="header">
+    Add Form
+</div>
+<div class="main-content">
+    <div class="column-wrapper" id="catalog">
+        <ul class="formElements">
+            <li>
+                <div class="question_title">
+                    section break /title<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set info section_break" style="display:none">
+                    <div class="infoGroup">
+                        <p class="infoTitle">
+                            Other Info
+                        </p>
+                    </div>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    single line text<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">Label :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    paragraph text<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set info text_area_question" style="display:none">
+                	<span class="key">Label :</span>
+                    <div class="infoGroup">
+                        <input type="text" class="infoPara">
+                    </div><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    multiple choice<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set makeSlection multiple_choise_question" style="display:none">
+                    <span class="selTitle">Make a selection</span>
+                    <ul>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals">this</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">that</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">one</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">two</span>
+                        </li>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    check boxes<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set makeSlection" style="display:none">
+                    <span class="selTitle">Check all that apply</span>
+                    <ul>
+                        <li>
+                            <span><span id="" class="checkbox" style="background-position: 0px -50px; "></span><input class="styled" type="checkbox" checked="checked"></span><span class="vals">selection x</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input class="styled" type="checkbox"></span><span class="vals">selection y</span>
+                        </li>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                date/time<span><a href="#" class="drag"></a></span>
+            </li>
+        </ul>
+        <p class="group-header">
+            grouped social form elements
+        </p>
+        <ul class="groupElements">
+            <li>
+                <div class="question_title">
+                    address<span><a href="#" class="drag"></a></span>
+                </div>
+				<div class="form-set" style="display:none">
+                    <span class="key">address1 :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">address2 :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+				<div class="form-set" style="display:none">
+                    <span class="key">City :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">State :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+				<div class="form-set" style="display:none">
+                    <span class="key">Zip :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key"></span>
+                    <span class="val">
+							<select>
+								<option>Country</option>
+								<option>India</option>
+								<option></option>
+							</select>
+						</span>
+						<span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    name<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">first name :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">last name :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    email<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">email :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    website (url)<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">Website url :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    phone #<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set" style="display:none">
+                    <span class="key">phone number :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="column-wrapper middle" id="cart">
+        <p class="form-title">
+            Your Form<span class="dragable"><a href="#" class="noDragBtn"></a></span>
+        </p>
+        <div class="ui-droppable ui-sortable">
+            <%if false %>
+            <div class="form-set">
+                <span class="key"></span>
+                <span class="val">
+                    <select>
+                        <option>Choose Your Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </span>
+                <span class="dragable"><a href="#" class="dragBtn"></a></span>
+            </div>
+            <div class="form-set">
+                <span class="key">address1 :</span>
+                <span class="val"><input type="text" value="1075 1st St" /></span><span class="key">address2 :</span>
+                <span class="val"><input type="text" value=" " /></span><span class="key">city :</span>
+                <span class="val"><input type="text" value="Omaha" /></span><span class="key">state :</span>
+                <span class="val"><input type="text" value="Nebraska" /></span><span class="key">zip :</span>
+                <span class="val"><input type="text" value="56611" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+            </div>
+            <div class="form-set makeSlection">
+                <span class="selTitle">Make a selection</span>
+                <ul>
+                    <li>
+                        <span><input type="radio" value="on" />this</span>
+                    </li>
+                    <li>
+                        <span><input type="radio" value="off" />that</span>
+                    </li>
+                    <li>
+                        <span><input type="radio" value="off" />one</span>
+                    </li>
+                    <li>
+                        <span><input type="radio" value="off" />two</span>
+                    </li>
+                </ul><span class="dragable"><a href="#" class="dragBtn"></a></span>
+            </div>
+            <div class="form-set makeSlection">
+                <span class="selTitle">Check all that apply</span>
+                <ul>
+                    <li>
+                        <span><input type="checkbox" checked="checked" />selection x</span>
+                    </li>
+                    <li>
+                        <span><input type="checkbox" />selection y</span>
+                    </li>
+                </ul><span class="dragable"><a href="#" class="dragBtn"></a></span>
+            </div>
+            <div class="form-set info">
+                <div class="infoGroup">
+                    <p class="infoTitle">
+                        Other Info
+                    </p>
+                    <input type="text" class="infoPara">
+                </div><span class="dragable"><a href="#" class="dragBtn"></a></span>
+            </div>
+            <div class="form-set centerAlign">
+                <button type="button" class="submitBtn">
+                    Submit
+                </button>
+                <span class="dragable"><a href="#" class="noDragBtn"></a></span>
+            </div>
+            <div class="close-settings">
+                <a href="#">Close Form Settings</a>
+            </div>
+            <%end %>
+            <div class="trashBtn">
+            </div>
+        </div>
+    </div>
+    <div class="column-wrapper last-colum">
+        <div class="pointer">
+        </div>
+		<div id='field_edit'>
+			
 		</div>
-
-	</body>
-</html>
+    </div>
+</div>
+<div class="footer-section">
+    <button class="secondary" id="cancelBtn">
+        Cancel
+    </button>
+    <div class="rightBtns">
+        <span>form name : </span>
+        <input type="text" placeholder="form name">
+        <button class="primary" id="saveBtn">
+            Save Changes
+        </button>
+    </div>
+</div>
