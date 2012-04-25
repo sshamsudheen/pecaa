@@ -17,14 +17,18 @@
 				$(".ui-droppable  div.question_title").hide();
                  $(".ui-draggable").attr('style', 'list-style:none');
 				 $(".ui-droppable div.form-set").click(function () {
-			      $(this).addClass('selected');
-				   $.ajax({
-				            type: "get",
-				            url: '<%="/add_forms/question_detail"%>',
-				            success: function (data) {
-								$('#field_edit').html(data)					
-				            },
-				        });
+				  var question_type = $(this).attr('class').split(' ').pop();
+				   $('.ui-droppable div.form-set').removeClass('selected');
+				  $(this).addClass('selected');
+				  if (question_type != "selected") {
+				  	$.ajax({
+				  		type: "get",
+				  		url: '/add_forms/question_detail?question_type=' + question_type,
+				  		success: function(data){
+				  			$('#field_edit').html(data)
+				  		},
+				  	});
+				  }
 			    });
             }
         }).sortable({
@@ -81,7 +85,7 @@
                 <div class="question_title">
                     multiple choice<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set makeSlection multiple_choise_question" style="display:none">
+                <div class="form-set makeSlection multiple_choice_question" style="display:none">
                     <span class="selTitle">Make a selection</span>
                     <ul>
                         <li>
@@ -104,7 +108,7 @@
                 <div class="question_title">
                     check boxes<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set makeSlection" style="display:none">
+                <div class="form-set makeSlection radio_button_choise_question" style="display:none">
                     <span class="selTitle">Check all that apply</span>
                     <ul>
                         <li>
@@ -129,27 +133,27 @@
                 <div class="question_title">
                     address<span><a href="#" class="drag"></a></span>
                 </div>
-				<div class="form-set" style="display:none">
+				<div class="form-set text_field_question" style="display:none">
                     <span class="key">address1 :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">address2 :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-				<div class="form-set" style="display:none">
+				<div class="form-set text_field_question" style="display:none">
                     <span class="key">City :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">State :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-				<div class="form-set" style="display:none">
+				<div class="form-set text_field_question" style="display:none">
                     <span class="key">Zip :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set single_selection_question" style="display:none">
                     <span class="key"></span>
                     <span class="val">
 							<select>
@@ -165,11 +169,11 @@
                 <div class="question_title">
                     name<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">first name :</span>
                     <span class="val"><input type="text" value="" /></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">last name :</span>
                     <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
                 </div>
@@ -178,7 +182,7 @@
                 <div class="question_title">
                     email<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">email :</span>
                     <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
                 </div>
@@ -187,7 +191,7 @@
                 <div class="question_title">
                     website (url)<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">Website url :</span>
                     <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
                 </div>
@@ -196,7 +200,7 @@
                 <div class="question_title">
                     phone #<span><a href="#" class="drag"></a></span>
                 </div>
-                <div class="form-set" style="display:none">
+                <div class="form-set text_field_question" style="display:none">
                     <span class="key">phone number :</span>
                     <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
                 </div>
