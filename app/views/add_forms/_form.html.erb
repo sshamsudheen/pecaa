@@ -1,3 +1,4 @@
+<%add_form = content.source%>
 <div class="contentObject">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
@@ -5,21 +6,38 @@
 										<span class="drag"></span>
 										<span class="scale"></span>
 										<div class="objectContent">
-											<div class="formRow">
-											<label>name :</label><input type="text">
-											</div>
-											<div class="formRow">
-												<label>landing page :</label><input type="text">
-											</div>
-											<div class="formRow">
-												<label>this :</label><input type="text">
-											</div>
-											<div class="formRow">
-												<label>that :</label><input type="text">
-											</div>
-											<div class="formRow">
-												<label>other :</label><input type="text">
-											</div>
+											<%add_form.questions.each do |question|%>
+												<div class="formRow">
+													<label><%=question.name%> :</label>
+													<%if question.type == "TextQuestion" and question.field_type == "text_field"%>
+													   <input type="text">
+													<%elsif question.type == "TextQuestion" and question.field_type == "text_area"%>
+														<input type="text" style="width:200px;height:200px;" >
+													<%elsif question.type == "SingleOptionQuestion" and question.field_type == "select"%>
+													
+													<%elsif question.type == "SingleOptionQuestion" and question.field_type == "radio_button"%>
+													<%elsif question.type == "MultipleOptionQuestion" and question.field_type == "check_box"%>
+													                <div class="form-set makeSlection multiple_choice_question">
+												                    <ul>
+												                        <li>
+												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals">this</span>
+												                        </li>
+												                        <li>
+												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">that</span>
+												                        </li>
+												                        <li>
+												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">one</span>
+												                        </li>
+												                        <li>
+												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">two</span>
+												                        </li>
+												                    </ul>
+												                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+												                </div>
+
+													<%end%>
+												</div>
+											<%end%>
 											<div class="formRow">
 												<button class="primary submitBtn right">Submit</button>
 											</div>

@@ -13,29 +13,29 @@
                 </label>
             </span>
             <div class="mainField">
-                <input type="text" value="this">
+                <input type="text" value="Make a selection">
             </div>
         </div>
-        <div class="rowSet">
+        <div class="rowSet" id="multiple_choice">
             <span class="rowTitle">
                 <label>
                     options
                 </label>
             </span>
             <div class="mainField">
-                <input type="text"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0"></span>
+                <input type="text" value="this"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
             </div>
             <div class="mainField">
-                <input type="text"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0"></span>
+                <input type="text" value="that"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
             </div>
             <div class="mainField">
-                <input type="text"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0"></span>
+                <input type="text" value="one"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
             </div>
             <div class="mainField">
-                <input type="text"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0"></span>
+                <input type="text" value="two"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
             </div>
-            <div class="mainField">
-                <span class="btns"><img src="/assets/btnAddElement.png" border="0"></span>
+            <div>
+                <span class="btns" onclick="add_more();"><img src="/assets/btnAddElement.png" border="0"></span>
             </div>
         </div>
 <%elsif params[:question_type] == "text_field_question"%>
@@ -55,6 +55,7 @@
             <div class="mainField">
                 <input type="text" value="this">
             </div>
+	
         </div>
 <%elsif params[:question_type] == "text_area_question"%>
  <div class="rowSet">
@@ -91,3 +92,20 @@
         </div>
 				
 <%end%>
+			<button class="secondary detail_exchange">Ok</button>
+
+<script type="text/javascript">
+	$('.detail_exchange').click(function () {
+		var title = $('.mainField input').val();
+           if (title != '') {
+             $('.selected span.key').html(title + ' :');
+             $('.selected span.selTitle').html(title);
+             var a=[];       
+             $('#multiple_choice input').each(function(){ a = a + ' ' +$(this).attr('value')});
+           }
+    });
+	
+	function add_more(){
+	  $('#multiple_choice').append('<div class="mainField"><input type="text" value="this"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span></div>');	
+	}
+</script>

@@ -1,5 +1,29 @@
-<script>
+<script type="text/javascript">
 	
+function save_form(){
+var parameters = [];
+$('#cart div.form-set').each(function(){
+  $('.ui-droppable div.form-set').removeClass('selected');
+  key = $(this).find('span.key').html();
+  if (key == null){
+  	key = $(this).find('span.selTitle').html();
+  }
+  if (key == null){
+  	key = $(this).find('button.submitBtn').html();
+  }
+  if (key != null) {
+  	key = key.replace(':', '')
+  } 
+  question_type = $(this).attr("class").split(' ').pop();
+  parameters= parameters + ';' + $.trim(key) + '+' + $.trim(question_type)
+});
+$('#add_form_question_detail').attr('value',parameters);
+$('#add_forms_name').attr('value',$('#add_form_name').val());  
+$('#new_add_form').submit();
+}
+
+</script>	
+<script type="text/javascript">
     $(function(){
         $("#catalog").accordion();
         $("#catalog li").draggable({
@@ -42,6 +66,8 @@
     });
 	
 </script>
+
+
 <div class="header">
     Add Form
 </div>
@@ -208,80 +234,26 @@
         </ul>
     </div>
     <div class="column-wrapper middle" id="cart">
+    	<%=form_for AddForm.new do |f|%>
         <p class="form-title">
             Your Form<span class="dragable"><a href="#" class="noDragBtn"></a></span>
         </p>
+        
         <div class="ui-droppable ui-sortable">
-            <%if false %>
-            <div class="form-set">
-                <span class="key"></span>
-                <span class="val">
-                    <select>
-                        <option>Choose Your Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </span>
-                <span class="dragable"><a href="#" class="dragBtn"></a></span>
-            </div>
-            <div class="form-set">
-                <span class="key">address1 :</span>
-                <span class="val"><input type="text" value="1075 1st St" /></span><span class="key">address2 :</span>
-                <span class="val"><input type="text" value=" " /></span><span class="key">city :</span>
-                <span class="val"><input type="text" value="Omaha" /></span><span class="key">state :</span>
-                <span class="val"><input type="text" value="Nebraska" /></span><span class="key">zip :</span>
-                <span class="val"><input type="text" value="56611" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
-            </div>
-            <div class="form-set makeSlection">
-                <span class="selTitle">Make a selection</span>
-                <ul>
-                    <li>
-                        <span><input type="radio" value="on" />this</span>
-                    </li>
-                    <li>
-                        <span><input type="radio" value="off" />that</span>
-                    </li>
-                    <li>
-                        <span><input type="radio" value="off" />one</span>
-                    </li>
-                    <li>
-                        <span><input type="radio" value="off" />two</span>
-                    </li>
-                </ul><span class="dragable"><a href="#" class="dragBtn"></a></span>
-            </div>
-            <div class="form-set makeSlection">
-                <span class="selTitle">Check all that apply</span>
-                <ul>
-                    <li>
-                        <span><input type="checkbox" checked="checked" />selection x</span>
-                    </li>
-                    <li>
-                        <span><input type="checkbox" />selection y</span>
-                    </li>
-                </ul><span class="dragable"><a href="#" class="dragBtn"></a></span>
-            </div>
-            <div class="form-set info">
-                <div class="infoGroup">
-                    <p class="infoTitle">
-                        Other Info
-                    </p>
-                    <input type="text" class="infoPara">
-                </div><span class="dragable"><a href="#" class="dragBtn"></a></span>
-            </div>
-            <div class="form-set centerAlign">
-                <button type="button" class="submitBtn">
-                    Submit
-                </button>
-                <span class="dragable"><a href="#" class="noDragBtn"></a></span>
-            </div>
-            <div class="close-settings">
-                <a href="#">Close Form Settings</a>
-            </div>
-            <%end %>
+        	
+        </div>
+<div class="form-set centerAlign SubmitButton" style="bottom:60px;position:absolute;right:114px;">
+<button type="button" class="submitBtn">Submit</button>
+</div>
+<div class="close-settings">
+						<a href="#">Form Settings</a>
+					</div>
             <div class="trashBtn">
             </div>
-        </div>
+<%=hidden_field_tag 'add_form[question_detail]',''%>
+<%=hidden_field_tag 'add_forms[name]',''%>
     </div>
+<%end%>	
     <div class="column-wrapper last-colum">
         <div class="pointer">
         </div>
@@ -289,15 +261,17 @@
 			
 		</div>
     </div>
+	
 </div>
+
 <div class="footer-section">
-    <button class="secondary" id="cancelBtn">
+    <button class="secondary" id="cancelBtn" onclick="window.location.href = '/content_libraries';">
         Cancel
     </button>
     <div class="rightBtns">
         <span>form name : </span>
-        <input type="text" placeholder="form name">
-        <button class="primary" id="saveBtn">
+        <input type="text" placeholder="form name" name="add_form[name]" id="add_form_name">
+        <button class="primary" id="saveBtn" onclick="save_form();">
             Save Changes
         </button>
     </div>
