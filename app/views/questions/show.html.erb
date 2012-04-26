@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Add form:</b>
+  <%= @question.add_form_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @question.type %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @question.name %>
+</p>
+
+<p>
+  <b>Field type:</b>
+  <%= @question.field_type %>
+</p>
+
+<p>
+  <b>Validation:</b>
+  <%= @question.validation %>
+</p>
+
+<p>
+  <b>Mandatory:</b>
+  <%= @question.mandatory %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

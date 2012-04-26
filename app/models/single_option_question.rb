@@ -1,0 +1,2 @@
+class SingleOptionQuestion < Question
+end

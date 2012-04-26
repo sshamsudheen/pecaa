@@ -20,8 +20,10 @@ Mystore3::Application.routes.draw do
   post "roles/index"
   resources :roles
   resources :add_files
-  resources :add_forms
-  resources :external_links
+  resources :add_forms do
+    get 'question_detail', :on => :collection
+  end
+  resources :external_links 
   
   resources :sites do
     get 'optional', :on => :member

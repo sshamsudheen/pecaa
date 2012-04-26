@@ -1,0 +1,35 @@
+<h1>Listing add_forms</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Created by</th>
+    <th>Subject line</th>
+    <th>Delivery email address</th>
+    <th>Confirmation text</th>
+    <th>Use captcha</th>
+    <th>Use field label</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @add_forms.each do |add_form| %>
+  <tr>
+    <td><%= add_form.name %></td>
+    <td><%= add_form.created_by %></td>
+    <td><%= add_form.subject_line %></td>
+    <td><%= add_form.delivery_email_address %></td>
+    <td><%= add_form.confirmation_text %></td>
+    <td><%= add_form.use_captcha %></td>
+    <td><%= add_form.use_field_label %></td>
+    <td><%= link_to 'Show', add_form %></td>
+    <td><%= link_to 'Edit', edit_add_form_path(add_form) %></td>
+    <td><%= link_to 'Destroy', add_form, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Add form', new_add_form_path %>
