@@ -19,18 +19,11 @@
 													<%elsif question.type == "MultipleOptionQuestion" and question.field_type == "check_box"%>
 													                <div class="form-set makeSlection multiple_choice_question">
 												                    <ul>
-												                        <li>
-												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals">this</span>
-												                        </li>
-												                        <li>
-												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">that</span>
-												                        </li>
-												                        <li>
-												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">one</span>
-												                        </li>
-												                        <li>
-												                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">two</span>
-												                        </li>
+												                    	<%question.options.each do |option|%>
+													                        <li>
+													                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals"><%=option.name%></span>
+													                        </li>
+												                        <%end%>
 												                    </ul>
 												                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
 												                </div>
