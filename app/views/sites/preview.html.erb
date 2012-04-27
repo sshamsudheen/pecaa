@@ -93,45 +93,25 @@
             <% @site_page.content_libraries.each do |x| %>
               <%if c = x.content_library %>
                 <%if c.source_type == "Video" && v = Video.find_by_id(c[:source_id])%>
-                  <div class="block">
-                    <div class="content">
-                      <div class="viewVideoHolder">
-                        <div class="viewVideoTop">
-                          <%= v.source_file_name %><img src="/assets/icon-help-grey.png" class="help" />
-                        </div>
-                        <div class="viewVideoBody">
-                          <div class="videoDisplay">
-                            <embed src ="/flash/mediaplayer.swf?file=<%= v.source.url %>" width="480" height="320" allowfullscreen="true" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div class="block">
+                  <h2><%= v.source_file_name %></h2>
+                  <div class="content">
+                    <embed src ="/flash/mediaplayer.swf?file=<%= v.source.url %>" width="480" height="320" allowfullscreen="true" />
                   </div>
+                </div>
                 <%elsif c.source_type == "Image" && img = Image.find_by_id(c[:source_id])%>
                   <div class="block">
+                    <h2><%= img.upload_file_name %></h2>
                     <div class="content">
-                      <div class="viewImgHolder">
-                        <div class="viewImgTop"><%= img.upload_file_name %>
-                          <img src="images/icon-help-grey.png" class="help" />
-                        </div>
-                        <div class="viewImgBody">
-                          <div class="imgDisplay">
-                            <% image = img.upload.url(:medium).split('?')[0] %>
-                            <img src="<%= image %>" />
-                          </div>
-                        </div>
-                      </div>
+                      <% image = img.upload.url(:medium).split('?')[0] %>
+                      <img src="<%= image %>" />
                     </div>
                   </div>
                 <%elsif c.source_type == "Text" && t = ActiveRecord::Base::Text.find_by_id(c[:source_id])%>
                   <div class="block">
+                    <h2><%= t.text_block_name %></h2>
                     <div class="content">
-                      <div class="header"><%= t.text_block_name %></div>
-                        <div class="main-content">
-                          <div class="text-block">
-                            <%= raw  t.description %>
-                          </div>
-                        </div>
+                      <%= raw  t.description %>
                     </div>
                   </div>
                 <%end%>
