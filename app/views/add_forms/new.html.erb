@@ -2,6 +2,7 @@
 	
 function save_form(){
 var parameters = [];
+
 $('#cart div.form-set').each(function(){
   $('.ui-droppable div.form-set').removeClass('selected');
   key = $(this).find('span.key').html();
@@ -15,10 +16,15 @@ $('#cart div.form-set').each(function(){
   	key = key.replace(':', '')
   } 
   question_type = $(this).attr("class").split(' ').pop();
-  parameters= parameters + ';' + $.trim(key) + '+' + $.trim(question_type)
+  var multiple_existing_option = '---'
+	$(this).find('span.vals').each(function(){
+		multiple_existing_option = multiple_existing_option + 'seperatoruiui' + $(this).html();
+	});
+	parameters= parameters + ';' + $.trim(key) + '+' + $.trim(question_type) + multiple_existing_option
 });
+
 $('#add_form_question_detail').attr('value',parameters);
-$('#add_forms_name').attr('value',$('#add_form_name').val());  
+$('#add_forms_name').attr('value',$('#add_form_name').val()); 
 $('#new_add_form').submit();
 }
 
@@ -45,9 +51,24 @@ $('#new_add_form').submit();
 				   $('.ui-droppable div.form-set').removeClass('selected');
 				  $(this).addClass('selected');
 				  if (question_type != "selected") {
+				  	if (question_type == 'multiple_choice_question'){
+						var multiple_existing_option = []
+						$(this).find('li span.vals').each(function(){
+							multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+						});						
+					}
+					
+    			  	if (question_type == 'radio_button_choise_question'){
+						var multiple_existing_option = []
+						$(this).find('li span.vals').each(function(){
+							multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+						});						
+					}
+
+					
 				  	$.ajax({
 				  		type: "get",
-				  		url: '/add_forms/question_detail?question_type=' + question_type,
+				  		url: '/add_forms/question_detail?question_type=' + question_type + '&option_values=' + multiple_existing_option,
 				  		success: function(data){
 				  			$('#field_edit').html(data)
 				  		},
@@ -148,7 +169,14 @@ $('#new_add_form').submit();
                 </div>
             </li>
             <li>
+            	<div class="question_title">
                 date/time<span><a href="#" class="drag"></a></span>
+				</div>
+				<div class="form-set dateTime" style="display:none">
+						<div class="dateFeild"><label for="dateF">Choose a date: </label><input type="date" class="pickDate"></div>
+						<div class="dateFeild"><label for="dateF">Choose a time: </label><input type="time" class="pickTime"></div>
+						<span class="dragable"><a href="#" class="dragBtn"></a></span>
+			 </div>
             </li>
         </ul>
         <p class="group-header">
@@ -252,6 +280,7 @@ $('#new_add_form').submit();
             </div>
 <%=hidden_field_tag 'add_form[question_detail]',''%>
 <%=hidden_field_tag 'add_forms[name]',''%>
+<%=hidden_field_tag 'add_form[option]',''%>
     </div>
 <%end%>	
     <div class="column-wrapper last-colum">

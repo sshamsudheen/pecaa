@@ -1,10 +1,10 @@
-body textarea{resize:none;}
 button{
 	font-size: 12px;
 	line-height: 12px;
-	padding: 5px 15px 8px;
+	padding: 8px 15px 8px 15px;
 	margin-right:10px;
 	color:#FFFFFF;
+	font-weight: bold;
 	border-radius: 6px;
 	cursor: pointer;
 }
@@ -25,48 +25,15 @@ button.secondary{
 	background: -moz-linear-gradient(top,  #b5b5b5,  #999999);
 	border:1px solid #666666;
 }
-button.redBtn{
-	background: -webkit-gradient(linear, left top, left bottom, from(#fd6868), to(#dc4f57));
-	background: -moz-linear-gradient(top,  #fd6868,  #dc4f57);
-	border:1px solid #ff9999;
-	color:#FFFFFF;
-}
-button.blueBtn{
-	background: -webkit-gradient(linear, left top, left bottom, from(#8bb5cb), to(#779caf));
-	background: -moz-linear-gradient(top,  #8bb5cb,  #779caf);
-	border:1px solid #437187;
-	color:#FFFFFF;
-}
-.left {
-    float: left;
-}
-.right {
-    float: right;
-}
-.clear {
-    clear: both;
-}
 .main-container{
 	width: 980px;
 	font-family: Arial;
 	font-size:13px;
 	color:#333;
 }
-.main-container.midium{
-	width: 550px;
-}
-.main-container.midium .main-content{
-	background: #999999;
-}
-.main-container.imgPicker{
-	width: 900px;
-}
-.main-container.imgPicker .main-content{
-	background: #999999;
-}
 .header{
 	clear:both;
-	background: #616161 url(img/bg_grayGrain.gif) repeat;
+	background: #616161 url(img/bg_gray_grain.gif) repeat;
 	font-size: 22px;
 	color: #dae5eb;
 	padding:8px 10px 8px 20px;
@@ -82,21 +49,8 @@ button.blueBtn{
 	border-top: 1px solid #333;
 	border-bottom: 1px solid #333;
 }
-
-.main-container.imgPicker .main-content{
-	background: #999999 !important;
-	
-}
-
-.header .helpIcon{
-	float:right;
-	background: url(img/icon_Help.png)no-repeat;
-	width:20px;
-	height:20px;
-	margin-top:5px;
-}
 .footer-section{
-	background: #616161 url(img/bg_grayGrain.gif) repeat;
+	background: #616161 url(img/bg_gray_grain.gif) repeat;
 	padding:10px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
@@ -104,12 +58,18 @@ button.blueBtn{
 	margin:0 1px 0 1px;
 	overflow: hidden;
 }
-.footer-section .rightBtns{
-	float: right;
-}
-.footer-section .rightBtns button{
-	margin-right:0;
-}
-.footer-section .leftBtns{
+.left{
 	float: left;
+}
+.right{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.pickDate{
+	background:url(img/bg_DatePicker.png) no-repeat right top #FFF;
+}
+.pickTime{
+	background:url(img/bg_TimePicker.png) no-repeat right top #FFF;
 }

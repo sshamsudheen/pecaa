@@ -15,8 +15,9 @@ class AddFormsController < ApplicationController
         TextQuestion.new(:name => q.split('+').first,:type => TextQuestion, :field_type =>"text_area") if q.split('+').first
       elsif q.split('+').last == "radio_button_choise_question"
         SingleOptionQuestion.new(:name => q.split('+').first,:type => SingleOptionQuestion, :field_type =>"radio_button") if q.split('+').first
-      elsif q.split('+').last == "multiple_choice_question"  
-        MultipleOptionQuestion.new(:name => q.split('+').first,:type => MultipleOptionQuestion, :field_type =>"check_box") if q.split('+').first
+      elsif q.split('+').last and q.split('+').last.split('---').first == "multiple_choice_question"
+        options = q.split('+').last.split('---').last.split('seperatoruiui').collect{|a| Option.new(:name=> a) unless a.blank?}.compact
+        MultipleOptionQuestion.new(:name => q.split('+').first,:type => MultipleOptionQuestion, :field_type =>"check_box", :options=>options) if q.split('+').first
       end
     end.compact
     respond_to do |format|

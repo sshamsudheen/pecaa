@@ -22,21 +22,18 @@
                     options
                 </label>
             </span>
-            <div class="mainField">
-                <input type="text" value="this"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
-            </div>
-            <div class="mainField">
-                <input type="text" value="that"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
-            </div>
-            <div class="mainField">
-                <input type="text" value="one"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
-            </div>
-            <div class="mainField">
-                <input type="text" value="two"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
-            </div>
-            <div>
+			<div>
                 <span class="btns" onclick="add_more();"><img src="/assets/btnAddElement.png" border="0"></span>
             </div>
+			
+			<%params[:option_values].split(' seperatoruiui ').each do |option|%>
+				<%unless option.blank?%>
+	            <div class="mainField">
+	                <input type="text" value="<%=option%>" class="new_options"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
+	            </div>
+				<%end%>
+			<%end%>
+            
         </div>
 <%elsif params[:question_type] == "text_field_question"%>
  <div class="rowSet">
@@ -53,7 +50,7 @@
                 </label>
             </span>
             <div class="mainField">
-                <input type="text" value="this">
+                <input type="text" value="Label">
             </div>
 	
         </div>
@@ -78,7 +75,68 @@
             </div>
         </div>
 <%elsif params[:question_type] == "radio_button_choise_question"%>
+        <div class="rowSet">
+            <span><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled"></span><span class="makeRq">
+                <label>
+                    make this element required
+                </label>
+            </span>
+        </div>
+        <div class="rowSet">
+            <span class="rowTitle">
+                <label>
+                    title
+                </label>
+            </span>
+            <div class="mainField">
+                <input type="text" value="Make a selection">
+            </div>
+        </div>
+        <div class="rowSet" id="multiple_choice">
+            <span class="rowTitle">
+                <label>
+                    options
+                </label>
+            </span>
+			<div>
+                <span class="btns" onclick="add_more();"><img src="/assets/btnAddElement.png" border="0"></span>
+            </div>
+			
+			<%params[:option_values].split(' seperatoruiui ').each do |option|%>
+				<%unless option.blank?%>
+	            <div class="mainField">
+	                <input type="text" value="<%=option%>" class="new_options"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span>
+	            </div>
+				<%end%>
+			<%end%>
+            
+        </div>
+
 <%elsif params[:question_type] == "single_selection_question"%>
+<%elsif params[:question_type] == "SubmitButton"%>
+<div class="rowSet">
+            <span class="rowTitle">
+                <label>
+                    Button Text
+                </label>
+            </span>
+            <div class="mainField">
+                <input type="text" value="">
+            </div>
+</div>
+<%elsif params[:question_type] == "dateTime"%>
+
+ <div class="rowSet">
+            <span class="rowTitle">
+                <label>
+                    Label
+                </label>
+            </span>
+            <div class="mainField">
+                <input type="text" value="">
+            </div>
+</div>
+
 <%elsif params[:question_type] == "section_break"%>
  <div class="rowSet">
             <span class="rowTitle">
@@ -87,7 +145,7 @@
                 </label>
             </span>
             <div class="mainField">
-                <input type="text" value="this">
+                <input type="text" value="Other info">
             </div>
         </div>
 				
@@ -100,12 +158,15 @@
            if (title != '') {
              $('.selected span.key').html(title + ' :');
              $('.selected span.selTitle').html(title);
-             var a=[];       
-             $('#multiple_choice input').each(function(){ a = a + ' ' +$(this).attr('value')});
+			 $('.selected button.submitBtn').html(title)
+             $('.selected ul').html('');       
+             $('#multiple_choice').find("input.new_options").each(function(){ 
+			    $('.selected ul').append('<li class="ui-draggable" style="list-style:none"><span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals">'+$(this).attr('value')+'</span></li>')
+			 });
            }
     });
 	
 	function add_more(){
-	  $('#multiple_choice').append('<div class="mainField"><input type="text" value="this"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span></div>');	
+	  $('#multiple_choice').append('<div class="mainField"><input type="text" value="" class="new_options"><span class="btns"><img src="/assets/btn_grayCircle.png" border="0"><img src="/assets/btn_delete.png" border="0" onclick="$(this).parent().parent().remove();"></span></div>');	
 	}
 </script>
