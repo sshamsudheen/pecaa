@@ -55,7 +55,7 @@ button.redBtn{
 }
 .column-wrapper.last-colum{
 	margin-right:0;
-	background: #616161 url(/assets/bg_gray_grain.gif) repeat;
+	background: #616161 url(img/bg_gray_grain.gif) repeat;
 	border: 1px solid #333;
 	border-right:0;
 	border-top-left-radius: 6px;
@@ -72,7 +72,7 @@ button.redBtn{
 	height:25px;
 	position: absolute;
 	left:-14px;
-	background:url(/assets/pointer.png) no-repeat;
+	background:url(img/pointer.png) no-repeat;
 }
 
 .column-wrapper .dragable{
@@ -87,10 +87,14 @@ button.redBtn{
 	height:24px;
 }
 .column-wrapper .dragable a.dragBtn{
-	background:url(/assets/dragBtn.png) no-repeat scroll center center transparent;
+	background:url(img/dragBtn.png) no-repeat scroll center center transparent;
 }
+.column-wrapper .form-set.selected .dragable a.dragBtn{
+	background:url(img/dragBtnSelected.png) no-repeat scroll center center transparent;
+}
+
 .column-wrapper .dragable a.noDragBtn{
-	background:url(/assets/noDragBtn.png) no-repeat scroll center center transparent;
+	background:url(img/noDragBtn.png) no-repeat scroll center center transparent;
 }
 .column-wrapper .trashBtn{
 	position: absolute;
@@ -98,7 +102,7 @@ button.redBtn{
 	bottom: 0px;
 	width:40px;
 	height:50px;
-	background: url(/assets/bg_Trash.png) no-repeat;	
+	background: url(img/bg_Trash.png) no-repeat;	
 	margin:0;
 }
 
@@ -117,7 +121,16 @@ button.redBtn{
 	background:#f3f3f3;
 	width:200px;
 }
-
+.form-set.dateTime{
+	padding: 5px 5px 5px 85px;
+}
+.form-set.dateTime .dateFeild .pickDate,
+.form-set.dateTime .dateFeild .pickTime{
+	border-radius: 6px;
+	padding: 4px 35px 4px 4px;
+	width:75px;
+	border:1px solid #666;
+}
 .form-set .key{
 	display: inline-block;
 	width:85px;
@@ -162,7 +175,7 @@ ul.groupElements li span{
 }
 ul.formElements li span .drag,
 ul.groupElements li span .drag{
-	background: url(/assets/icon_Drag.gif) no-repeat scroll center center;
+	background: url(img/icon_Drag.gif) no-repeat scroll center center;
 	display: block;
 	height: 100%;
 }
@@ -292,15 +305,24 @@ ul.groupElements li span .drag{
 	border-radius: 4px;
 	height:24px;
 }
-.rowSet .mainField input[type="text"]{
+.email-section .mainField {
+	position: relative;
+	margin-bottom:6px;
+	background: #CCCCCC;
+	border-radius: 4px;
+	height:25px;
+	width:227px;
+}
+
+.mainField input[type="text"]{
 	display: block;
 	background:#FFFFFF;
 	border-radius:4px;
 	border: 1px solid #333333;
 	padding:4px;
-	width:96%;
+	width:200px;
 }
-.rowSet .mainField .btns{
+.mainField .btns{
 	position: absolute;
 	right:0;
 	top:1px;
@@ -323,7 +345,7 @@ ul.groupElements li span .drag{
 }
 /* Checkbox customization*/
 span.checkbox {
-    background: url("/assets/checkbox.png") no-repeat scroll 0 0 transparent;
+    background: url("img/checkbox.png") no-repeat scroll 0 0 transparent;
     clear: left;
     display: inline-block;
     float: left;
@@ -334,7 +356,7 @@ span.checkbox {
     cursor:pointer;
 }
 span.radio {
-    background: url("/assets/radio.png") no-repeat scroll 0 0 transparent;
+    background: url("img/radio.png") no-repeat scroll 0 0 transparent;
     clear: left;
     display: inline-block;
     float: left;
@@ -344,7 +366,7 @@ span.radio {
     vertical-align: middle;
 }
 span.select {
-    background: url("/assets/select.png") no-repeat scroll 0 0 transparent;
+    background: url("img/select.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     font: 12px/21px arial,sans-serif;
     height: 21px;
@@ -352,6 +374,31 @@ span.select {
     padding: 0 24px 0 8px;
     position: absolute;
     width: 158px;
+}
+.column-wrapper .email-section,
+.column-wrapper .checkBoxes
+{
+	padding-left:75px;
+	margin-bottom:10px;
+	position: relative;
+}
+.column-wrapper .email-section label{
+	display:block;
+	margin-bottom:2px;
+	color:#000000;
+}
+.column-wrapper .email-section input[type="text"],
+.column-wrapper .email-section textarea{
+	padding:3px;
+	border-radius:4px;
+	border:1px solid #333333;
+	font-size:14px;
+	width:220px;
+	resize:none;
+	margin-bottom:5px;
+}
+.column-wrapper .email-section textarea{
+	height:120px;	
 }
 .footer-section .rightBtns{
 	float: right;

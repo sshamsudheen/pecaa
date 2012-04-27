@@ -33,7 +33,7 @@
 												</li>
 												<%end%>
 												
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="Form"%>
+												<%if false and (params[:search].blank? or params[:search][:source_type_equals]=="Form")%>
 												<li class="item newItem"><span class="title">New Form</span>
 												<%=hidden_field_tag 'source',"AddForm"%>
 															<div style="display:none;" id="doc_form">
@@ -117,7 +117,11 @@
 															<%@from_content=true%>
 															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
 												  </div>
-												  
+												  <%elsif content.source_type == "AddForm"%>
+												  <div style="display:none;" id="doc_form">
+															<%@from_content=true%>
+															<%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
+												  </div>
 												<%end%>
 											</li>
 											<%end%>

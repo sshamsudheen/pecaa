@@ -1,2 +1,2 @@
-class MultipleAnswerQuestion < Question
+class MultipleOptionQuestion < Question
 end
