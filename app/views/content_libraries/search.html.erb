@@ -79,9 +79,9 @@
 												<%end%>
 											<%end%>
 											<%@content_libraries.each do |content|%>
-											<li class="item ui-draggable active">
+											<li class="item ui-draggable active <%=content.id%>">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
-												<%= hidden_field_tag "content_id", content.id%>
+												<%= hidden_field_tag "content_id", ''%>
 												<%= hidden_field_tag "style_position","width:100%;height:100%"%>
 												<%if content.source_type == "Image"%>
 												<div class="hotspot" style="display: none;">
@@ -141,8 +141,10 @@
 <script>
 	
 	$('#form_submit').click(function(){
-		$('#cart div#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
+		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
+		var content_id = $('#cart li').attr('class').split(' ').pop()
+		$('#cart input#content_id').attr('value',content_id)
 		$('#content_page_save').submit();
   });
   
