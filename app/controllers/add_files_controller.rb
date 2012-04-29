@@ -14,15 +14,17 @@ class AddFilesController < ApplicationController
   def create
     @add_file = AddFile.new(params[:add_file])
     @add_file.user_id = current_user
-    @site  = Site.find(params[:site_id])
-    @site_page = SitePage.find(params[:site_page_id])
+    
+    @site_page = SitePage.find(session[:site_page_id])
+    @site = @site_page.site
     AddFile.transaction do
       if @add_file.save
-        ContentLibrary.create({:name => @add_file.upload_file_name,
+        content_lib = ContentLibrary.create({:name => @add_file.upload_file_name,
           :source_id => @add_file.id, :source_type => 'File',
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
           if params[:from_content]
-            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=File"
+            ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
+            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=File&content_lib=#{content_lib.id}"
           else
             redirect_to content_libraries_path
           end
