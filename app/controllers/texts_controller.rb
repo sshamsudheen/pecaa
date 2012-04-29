@@ -45,15 +45,24 @@ class TextsController < ApplicationController
 
   # POST /texts
   # POST /texts.json
+  
   def create
+    
     @text = Text.new(params[:text])
     @text.user_id = current_user
+    @site  = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id]) 
     Text.transaction do
       if @text.save
-        ContentLibrary.create({:name => @text.text_block_name,
+        content_lib = ContentLibrary.create({:name => @text.text_block_name,
           :source_id => @text.id, :source_type => 'Text',
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
-        redirect_to content_libraries_path
+        if @site
+           ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
+           redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Text&content_lib=#{content_lib.id}"
+        else
+          redirect_to content_libraries_path
+        end
       else
         redirect_to content_libraries_path
 #        respond_to do |format|
@@ -61,8 +70,8 @@ class TextsController < ApplicationController
 #        end
       end
     end
-  rescue
-    redirect_to content_libraries_path
+#  rescue
+#    redirect_to content_libraries_path
   end
 
   # PUT /texts/1
