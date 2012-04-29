@@ -1,0 +1,30 @@
+.main-content .img-block{
+	margin: 40px 150px;
+	width: 640px;
+	background: #616161;
+	border-radius: 6px;
+	padding: 40px;
+	font-size:16px;
+	font-weight:bold;
+	color:#333333;
+	-moz-box-shadow: inset 0px 1px 4px #333333;
+	-webkit-box-shadow: inset 0px 1px 4px #333333;
+	 box-shadow: inset 0px 1px 4px #333333;
+}
+.img-block .img-path{
+	border: 1px solid #000000;
+	border-radius:6px;
+	color:#FFFFFF;
+	text-align: center;
+	overflow: hidden;
+}
+.img-path button{
+	float: right;
+	margin:0;
+	vertical-align: middle;
+}
+.img-path span{
+	vertical-align: middle;
+	padding-top:12px;
+}
+			

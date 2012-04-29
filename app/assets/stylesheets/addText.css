@@ -1,0 +1,181 @@
+.main-content .text-editer{
+	margin: 20px 40px;
+	width:900px;
+	
+}
+.text-editer .tool-wrapper{
+	margin-bottom:10px;
+	overflow:hidden;
+}
+.text-editer .tool-wrapper .toolset{
+	background:#ccc;
+	background: -moz-linear-gradient(top,  #ffffff,  #ededed);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+	float:left;
+	margin:0 10px 0 0;
+	padding:0;
+	overflow:hidden;
+	border-radius:4px;
+	border: 1px solid #cccccc;
+	height:25px;
+}
+.toolset span{
+	display: table-cell;
+	width:25px;
+	height:25px;
+	margin:0;
+	padding: 4px 0;
+	border-left:1px solid #cccccc;
+	text-align: center;
+	color:#666666;
+}
+.text-editer .tool-wrapper .toolset span:first-child{
+	border-left:0;
+}
+.text-editer .tool-wrapper .toolset span a,
+.editor-tabs ul li a{
+	display: block;
+	text-decoration: none;
+	color:#666666;
+}
+.text-editer .tool-wrapper .toolset span a{
+	width: 25px;
+	height: 17px;
+	display: block;
+}
+.text-editer .tool-wrapper .toolset .heading{
+	width: 105px;
+	background: url(img/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.text-editer .tool-wrapper .toolset .font{
+	width: 105px;
+	background: url(img/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.text-editer .tool-wrapper .toolset .fontSize{
+	width: 45px;
+	background: url(img/icon_DropDownArrow.gif) no-repeat right center;
+	padding-right:15px;
+}
+.editor-tab-wrapper .editor-tabs{
+	position: relative;
+	height:27px;
+}
+.toolset .underline{
+	background:url(img/icon_Underline.gif) no-repeat center center;
+}
+.toolset .strike{
+	background:url(img/icon_Strike.gif) no-repeat center center;
+}
+.toolset .bold{
+	background:url(img/icon_Bold.gif) no-repeat center center;
+}
+.toolset .italic{
+	background:url(img/icon_Italic.gif) no-repeat center center;
+}
+.toolset .xSq{
+	background:url(img/icon_Xsq.gif) no-repeat center center;
+}
+.toolset .x2{
+	background:url(img/icon_X2.gif) no-repeat center center;
+}
+.toolset .threeA{
+	background:url(img/icon_3A.gif) no-repeat center center;
+}
+.toolset .highlight{
+	background:url(img/icon_Highlight.gif) no-repeat center center;
+}
+.toolset .rightIndent{
+	background:url(img/icon_RightIndent.gif) no-repeat center center;
+}
+.toolset .leftIndent{
+	background:url(img/icon_LeftIndent.gif) no-repeat center center;
+}
+.toolset .format{
+	background:url(img/icon_Format.gif) no-repeat center center;
+}
+.toolset .cells{
+	background:url(img/icon_Cells.gif) no-repeat center center;
+}
+.toolset .bullets{
+	background:url(img/icon_Bullets.gif) no-repeat center center;
+}
+.toolset .numberList{
+	background:url(img/icon_NumberList.gif) no-repeat center center;
+}
+.toolset .link{
+	background:url(img/icon_Link.gif) no-repeat center center;
+}
+.toolset .unLink{
+	background:url(img/icon_UnLink.gif) no-repeat center center;
+}
+.toolset .img{
+	background:url(img/icon_Img.gif) no-repeat center center;
+	width:30px;
+}
+.toolset .flash{
+	background:url(img/icon_Flash.gif) no-repeat center center;
+	width:28px;
+}
+.editor-tab-wrapper .editor-tabs ul{
+	overflow: hidden;
+	padding:0;
+	margin:0;
+	list-style: none;
+	width: auto;
+	float: left;
+	position: absolute;
+}
+.editor-tab-wrapper .editor-tabs ul li{
+	display:table-cell;
+	padding:5px 25px;
+	min-width:45px;
+	text-align:center;
+	margin:0;
+	list-style: none;
+	border:1px solid #CCC;
+	background: -moz-linear-gradient(top,  #ffffff,  #ededed);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.editor-tab-wrapper .editor-tabs ul li:first-child{
+	border-right:0;
+}
+ .editor-tabs ul li.active{
+	background: #ffffff;
+	border-bottom:1px solid #FFF;
+}
+.editor-tab-wrapper .text-input{
+	float:none;
+	clear:both;
+	background:#ffffff;
+	height:160px;
+	border: 1px solid #CCCCCC;
+	padding:15px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+
+.footer-section .leftBtns{
+	float:left;
+}
+.footer-section .rightBtns{
+	float:right;
+}
+.footer-section .leftBtns button{
+	margin-right:10px;
+}
+.footer-section .rightBtns button{
+	margin-left:10px;
+}
+.footer-section .rightBtns input[type="text"]{
+	border-radius: 6px;
+	padding:8px;
+	border: 1px solid #999999;
+	width:245px;
+}
