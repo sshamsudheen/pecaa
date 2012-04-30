@@ -60,6 +60,7 @@
 <script type="text/javascript">
 	
     $(function() {
+		$('.resizable_content').resizable();
 		$( "#catalog" ).accordion();
 		$( "#catalog li.active" ).draggable({
 			appendTo: "body",
@@ -73,7 +74,7 @@
 				$( this ).find( ".placeholder" ).remove();
 				$( this ).find('li').remove();
 				$( this ).html('');
-				if (ui.draggable.attr('class') == "item newItem misc_form ui-draggable") {
+				if (ui.draggable.attr('class') == "item active newItem misc_form ui-draggable") {
 					 $.ajax({
 				            type: "get",
 				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
