@@ -58,3 +58,4 @@ gem 'ffmpeg'
 gem 'tinymce-rails'
 
 gem 'tzinfo'
+gem "zip"

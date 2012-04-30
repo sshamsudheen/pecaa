@@ -1,18 +1,33 @@
-<%= form_for(@theme, :multipart => true) do |f| %>
-  <div class="main-container">
-    <div class="header">Upload Theme</div>
-    <div class="main-content">
-      <div class="text-editer">
-        <%= f.text_field :name, :placeholder=>"theme name" %>
-      </div>
-      <div class="addFileBody">
-        <%= f.file_field :theme_file %>
-      </div>
-    </div>
-    <div class="footer-section">
-      <div class="leftBtns"><button class="secondary btnCancelForm" id="cancelBtn">Cancel</button> </div>
-        <button class="primary" id="saveBtn">Add Text Block</button> </div>
-    </div>
-  </div>
-<% end %>
+<%= stylesheet_link_tag "pecaa", "facebox"%>
+<%= csrf_meta_tag %>
 
+<div class="addFileHolder">
+  <div class="helpPopUp">
+  <p>Add Theme info</p>
+  <span><span class="helpGreyTxt">File type:</span> Zip</span><br />
+  <span><span class="helpGreyTxt">max file size:</span> 5mb</span>
+  </div>
+  
+  <% if flash[:notice]%>
+    <%=flash[:notice]%>
+  <% end %>
+
+  <%= form_for(@theme, :multipart => true) do |f| %>
+    <div>
+      <div class="header">Upload Theme</div>
+      <div class="main-content">
+        <div class="text-editer">
+          <%= f.text_field :name, :placeholder=>"theme name" %>
+        </div>
+        <div class="addFileBody">
+          <%= f.file_field :theme_file %>
+        </div>
+      </div>
+      <div class="footer-section">
+        <div class="leftBtns"><button class="secondary btnCancelForm" id="cancelBtn">Cancel</button> </div>
+          <button class="primary" id="saveBtn">Add Theme</button> </div>
+      </div>
+    </div>
+  <% end %>
+  
+</div>
