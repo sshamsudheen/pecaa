@@ -1,3 +1,4 @@
+ 
 <i></i><div class="content-main">
 						<div class="content-wrapper" >
 							<%=render :partial=>"content_header"%>	
@@ -11,7 +12,7 @@
 										<ul class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons">
 											<%if params[:page].blank? or params[:page] == 0 or params[:page] == 1%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Text"%>
-												<li class="item newItem"><span class="title">New Text Block</span>
+												<li class="item newItem"><span class="title"><%= link_to 'New Text Block', (new_text_path + "?from_content=true&site_id=#{params[:site_id]}&site_page_id=#{params[:site_page_id]}"  ),:class=>'facebox_click'%></span>
 												<%=hidden_field_tag 'source',"Text"%>
 															<div style="display:none;" id="doc_form">
 																<%#@text = Text.new()%>
@@ -22,7 +23,7 @@
 												<%end%>
 												
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Misc"%>
-												<li class="item newItem misc_form"><span class="title">New Misc Block</span>
+												<li class="item active newItem misc_form"><span class="title">New Misc Block</span>
 												<%=hidden_field_tag 'source',"Misc"%>
 															<div style="display:none;" id="doc_form">
 																<%#@text = Text.new()%>
@@ -45,7 +46,7 @@
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Image"%>
 												<li class="item newItem">
-													<span class="title">New Image</span>
+													<span class="title"><%= link_to 'New Image', (new_image_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
 													<%=hidden_field_tag 'source',"Image"%>
 															<div style="display:none;" id="doc_form">
 																<%@image = Image.new%>
@@ -55,7 +56,7 @@
 												</li>
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Video"%>
-												<li class="item newItem"><span class="title">New Video</span>
+												<li class="item newItem"><span class="title"><%= link_to 'New Video', (new_video_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
 												<%=hidden_field_tag 'source',"Video"%>
 															<div style="display:none;" id="doc_form">
 																<%@video = Video.new%>
@@ -66,7 +67,7 @@
 												<%end%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="File"%>
 													<li class="item newItem">
-														<span class="title">New Doc</span>
+														<span class="title"><%= link_to 'New Doc', (new_add_file_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
 															<%=hidden_field_tag 'source',"File"%>
 															<div style="display:none;" id="doc_form">
 																<%@add_file = AddFile.new%>
@@ -78,9 +79,9 @@
 												<%end%>
 											<%end%>
 											<%@content_libraries.each do |content|%>
-											<li class="item ui-draggable">
+											<li class="item ui-draggable active <%=content.id%>">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
-												<%= hidden_field_tag "content_id", content.id%>
+												<%= hidden_field_tag "content_id", ''%>
 												<%= hidden_field_tag "style_position","width:100%;height:100%"%>
 												<%if content.source_type == "Image"%>
 												<div class="hotspot" style="display: none;">
@@ -109,13 +110,13 @@
 												  <div style="display:none;" id="doc_form">
 															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
 															<%@from_content=true%>
-															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+															<%#=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
 												  </div>
 												  <%elsif content.source_type == "Misc"%>
 												  <div style="display:none;" id="doc_form">
 															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
 															<%@from_content=true%>
-															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+															<%#=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
 												  </div>
 												  <%elsif content.source_type == "AddForm"%>
 												  <div style="display:none;" id="doc_form">
@@ -140,8 +141,10 @@
 <script>
 	
 	$('#form_submit').click(function(){
-		$('#cart div#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
+		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
+		var content_id = $('#cart li').attr('class').split(' ').pop()
+		$('#cart input#content_id').attr('value',content_id)
 		$('#content_page_save').submit();
   });
   
@@ -149,5 +152,9 @@
     $('#is_preview').attr("value", true)
     $('#content_page_save').submit();
   });
+
+jQuery(document).ready(function($) {
+  $('.facebox_click').facebox()
+}) 
       
 </script>

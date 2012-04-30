@@ -18,19 +18,21 @@
 	      <%= stylesheet_link_tag "siteinfo", "layout", "content", "site_pages", "facebox", "pages", "users", 'themes'%>
 		  <% end %>
 	  <% elsif params[:controller] == "content_libraries" %>
-	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa"%>
+	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa","facebox"%>
 	  <%else%>
 	  <%#CSS as per Mani's Modules%>
 	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional"%>
 	  <% end %>
 	  
-      <%= javascript_include_tag 'jquery-1.4.2.min', 'facebox'%>
+      <%= javascript_include_tag 'jquery-1.4.2.min'%>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
-      <%= javascript_include_tag 'tinymce-jquery'%>
+      
       <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 
       <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
-     <%= javascript_include_tag 'common'%>
+
+	
+     
      <%= javascript_include_tag 'js/misc'%>
 
 <%= csrf_meta_tag %>
@@ -59,7 +61,7 @@
 	
     $(function() {
 		$( "#catalog" ).accordion();
-		$( "#catalog li" ).draggable({
+		$( "#catalog li.active" ).draggable({
 			appendTo: "body",
 			helper: "clone"
 		});
@@ -85,11 +87,7 @@ $('#cart div.ui-droppable').html(data)
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
 					$('#cart .contentObject').draggable();
-    $('#cart textarea').tinymce({
-      width: "98%",
-      height: "50%",
-      theme: 'advanced'
-    });
+    
 
 					$('.resizable_content').resizable();
 
@@ -99,7 +97,8 @@ $('#cart div.ui-droppable').html(data)
 	
 	</script>
 	
-	
+<%= javascript_include_tag 'facebox'%>
+	  <%= javascript_include_tag 'common'%>	
 	
   </head>
   <body style=" height:100%; width:100%">
@@ -131,7 +130,7 @@ $('#cart div.ui-droppable').html(data)
       			</div>
       			<div class="rightBtns">
       			  <button class="btn_External" id="preview_button">ext</button>
-      			  <button class="btn_Save" id="form_submit">Save and go to next step</button>
+      			  <button class="btn_Save" id="form_submit" form='#'>Save and go to next step</button>
       			</div>
       		</div>
 			<%if params[:controller] == "site_users"%>
@@ -154,7 +153,9 @@ $('#cart div.ui-droppable').html(data)
       <div class="grid-board">
         <div id="cart" >
           <div class="ui-droppable ui-sortable" style="height:900px;width:1024px;">
-            <li class="placeholder">Drop Here to Edit</li>
+            <li class="placeholder">
+            	<%=render :partial => '/content_libraries/existed_sources'%>
+            </li>
           </div>
         </div>
       </div>
@@ -176,22 +177,5 @@ $('#cart div.ui-droppable').html(data)
             window.location.href=$(this).attr('rel');
         })
       </script>
-
-      <%= javascript_include_tag 'common'%>      	  
-<script type="text/javascript">
-      tinyMCE.init({
-        theme : "advanced",
-        mode: "textareas"
-      });
-</script>
-<script type="text/javascript">
-  $(function() {
-    $('textarea').tinymce({
-      width: "98%",
-      height: "50%",
-      theme: 'advanced'
-    });
-  });
-</script>
   </body>
 </html>

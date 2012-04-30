@@ -1,12 +1,11 @@
 class ThemesController < ApplicationController
   # GET /themes
   # GET /themes.json
-  layout 'site'
-  before_filter :setup
   
   def index
     @themes = Theme.all
     @theme = Theme.new
+    render :layout=>nil
   end
 
   def show
@@ -15,6 +14,7 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new
+    render :layout=>nil
   end
 
   def edit
@@ -22,10 +22,10 @@ class ThemesController < ApplicationController
   end
 
   def create
-    unless @theme = Theme.upload_theme(params[:theme])
+    unless (params[:theme][:theme_file].original_filename.split('.').last == "zip") && 
+      (@theme = Theme.upload_theme(params[:theme]))
       flash[:notice] = "Theme cannot be Uploaded... Please try again"
-    else
-      
+      redirect_to :action => "index"
     end
   end
 
@@ -48,11 +48,7 @@ class ThemesController < ApplicationController
     redirect_to themes_path
   end
   
-  private
   
-  def setup
-    @site = Site.first
-  end
   # def destroy
   #   @theme = Theme.find(params[:id])
   #   @theme.destroy

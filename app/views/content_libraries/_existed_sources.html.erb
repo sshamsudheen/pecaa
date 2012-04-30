@@ -1,0 +1,50 @@
+<%if params[:content_lib]%>
+<%content = ContentLibrary.find(params[:content_lib])%>
+  <li class="item ui-draggable active">
+												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
+												<%= hidden_field_tag "content_id", content.id%>
+												<%= hidden_field_tag "style_position","width:100%;height:100%"%>
+												<%if content.source_type == "Image"%>
+												<div class="hotspot" style="display: none;">
+													<span class="pointer"></span>
+													
+													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
+												</div>
+												<div  id="doc_form">
+															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
+												  </div>
+												<%elsif content.source_type == "Video"%>
+												<div class="hotspot" style="display: none;">
+													<span class="pointer"></span>
+													<div class="hotspotContent"><img border="0" src="<%=content.source.source%>" width="120" height="90"></div>
+												</div>
+												<div  id="doc_form">
+															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
+												  </div>
+												<%elsif content.source_type == "File"%>
+												  <div  id="doc_form">
+															<%@add_file = AddFile.find(content.source_id)%>
+															<%@from_content=true%>
+															<%=render :partial=>"add_files/edit_content_form",:locals=>{:content=>content}%>
+												  </div>
+												 <%elsif content.source_type == "Text"%>
+												  <div  id="doc_form">
+															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
+															<%@from_content=true%>
+															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+												  </div>
+												  <%elsif content.source_type == "Misc"%>
+												  <div  id="doc_form">
+															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
+															<%@from_content=true%>
+															<%#=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+												  </div>
+												  <%elsif content.source_type == "AddForm"%>
+												  <div  id="doc_form">
+															<%@from_content=true%>
+															<%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
+												  </div>
+												<%end%>
+											</li>
+
+<%end%>
