@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+.createEditDiv .site-users {
+    margin-bottom: 30px;
+    width: 98%;
+}
+
+.createEditDiv #scrollbar1 {
+width:100%;	
+}
+.createEditDiv #scrollbar1 .viewport {
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.createEditDiv #scrollbar1 .overview{
+width:822px;
+}
+
+.createEditDiv .site-users ul.ConLibra li span.userName {
+    height: 19px;
+    padding-top: 5px;
+    position: relative;
+    vertical-align: top;
+    width: 139px;
+}
+
+

@@ -2,8 +2,6 @@
 	min-height: 180px;
 	position: relative;
 	margin-top: 10px;
-	padding-left: 20px;
-    padding-right: 25px;
 }
 .content-tabs{
 	position: relative;
@@ -134,7 +132,7 @@
 .item span.title{
 	display: inline-block;
     overflow: hidden;
-    /*width: 120px;*/
+    width: 120px;
     line-height: 26px;
     vertical-align: middle;
 }
@@ -183,11 +181,11 @@
 	width:155px;
 	vertical-align: middle;
 	border:0;
-	padding:0 0 0 3px;
+	padding-left:3px;
 	font-size:16px;
 }
 .themes-board{
-	/*height:70%;*/
+	height:70%;
 	top:270px;
 }
 .contentObject{
@@ -274,7 +272,6 @@
 	border-radius: 6px;
 	border: 1px solid #579DC4;
 	padding:40px;
-	overflow: hidden;
 }
 .objectContent .title{
 	vertical-align: middle;
@@ -315,6 +312,7 @@
 
 .objectContent .formRow{
 	margin-bottom:5px;
+	overflow: hidden;
 }
 .objectContent label{
 	display: inline-block;
@@ -328,23 +326,12 @@
 	background:#FFFFFF;
 	border:1px solid #CCCCCC;
 	height:24px;
-	-moz-box-shadow: inset 0px 0px 1px #999;
-	-webkit-box-shadow: inset 0px 0px 1px #999;
-}
-.objectContent select{
-	width:200px;
 }
 .formRow button.submitBtn{
 	margin:0;
 	width:200px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#9bbcff), to(#6699ff));
 	background: -moz-linear-gradient(top,  #9bbcff,  #6699ff);
-	padding: 9px 0;
-	font-size: 14px;
-    font-weight: bold;
-    border:1px solid #1040ff;
-    -moz-box-shadow: 0px 0px 3px #999;
-	-webkit-box-shadow: 0px 0px 3px #999;
 }
 .objectContent .video-wrapper {
 	background:#f5f6f6;
@@ -525,25 +512,4 @@
 	background:url(img/icon_Doc.gif) no-repeat center center;
 	width:28px;
 }
-
-.ui-resizable { position: relative;}
-.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
-.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
-.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0px; }
-.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0px; }
-.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0px; height: 100%; }
-.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0px; height: 100%; }
-.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
-.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
-.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
-.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
-.ui-icon {
-    background: url("img/btn_ContentScale.png") no-repeat scroll 0 0 transparent;
-    bottom: -2px;
-    height: 22px;
-    right: -2px;
-    width: 22px;
-}}
-.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
-/* Slider
 /* end of text editing tool classes*/

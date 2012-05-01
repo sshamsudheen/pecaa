@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+
+.dashBoardCont{
+	width:100%;
+
+}
+.dashBoardCont h2{
+color: #99AEC0;
+    font-size: 20px;
+    margin-bottom: 5px;}
+.dashBoardScroll{
+ clear: both;
+    float: left;
+}
+.dashBoardScroll #scrollbar1{
+width:450px;	
+}
+.dashBoardScroll .site-users {
+    margin-bottom: 30px;
+    width: 400px;
+}
+.dashBoardScroll #scrollbar1 .viewport {
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    width: 450px;
+}
+
+.dashBoardScroll #scrollbar1 .overview {
+	left: 10px;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: -1px;
+	width: 450px;
+}
+.dashBoardScroll .site-users {
+    margin-bottom: 30px;
+    width: 450px;
+}
+.dashBdLeftCol{
+	width:230px;
+	float:left;
+	padding:5px 30px 5px 0px
+}
+.dashBdLeftCol ul,li{
+list-style:none;
+margin:0; 
+padding:0;
+}
+.dashBdLeftCol li {
+background-image:url(img/btn_dashBoardBg1.jpg); 
+border-radius:6px;
+border:solid 1px #457289;
+color:#fff;
+text-align:center;
+height:28px;
+line-height:28px;
+font-size:14px;
+margin:5px 0;
+}
+
+.dashBdLeftCol li a{
+text-decoration:none;
+display:block;
+}
+.dashBordBtn{
+background-image:url(img/btn_dashBoardBg1.jpg); 
+border-radius:5px;
+border:solid 1px #457289;
+color:#fff;
+padding:3px;
+	
+}
+.dashBdRightCol{
+	width:450	px;
+	float:left;
+	padding:5px 0px 5px 0px
+	
+	
+}
+
+.dashBdRightCol span{
+	
+float:left;
+}
+.dashBdRightCol h2{
+	
+float:left;
+width:340px;
+padding-left:10px;
+}
+.dashBdRightCol input{
+display:block;
+margin-top:10px;
+}
+.dashBoardLeftDiv{
+	float:left;
+	
+}
+.notifiDiv{
+float:left;
+clear:left;
+}
+
+.dashBordNotifi{
+	
+background-image:url(img/bg_dashnotification.png);
+background-position:right;
+height:28px;
+padding:6px;
+line-height:28px;
+padding-right:20px;
+margin:0 0 10px 0;
+}
+.dashBordNotifi h4{
+margin:0;
+padding:0;
+float:left;
+font-style:normal;
+color:#666;
+}
+.dashBordNotifi h4 a{
+text-decoration:underline;	
+}
+.noPadding{
+	padding-right:10px;
+}
