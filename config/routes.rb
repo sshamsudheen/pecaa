@@ -5,7 +5,10 @@ Mystore3::Application.routes.draw do
 
   get "site_pages/index"
 
-  resources :themes
+  resources :themes do 
+    get 'download_theme', :on => :member
+    get 'copy_theme', :on => :member
+  end
 
   resources :base_colors
 

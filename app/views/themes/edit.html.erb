@@ -1,6 +1,124 @@
-<h1>Editing theme</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @theme %> |
-<%= link_to 'Back', themes_path %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>PECAA</title>
+		    <%= stylesheet_link_tag  "layout"%>
+        <link rel="stylesheet" href="/assets/editCode.css" type="text/css">
+        <script src="/assets/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
+        <script type="text/javascript">
+        	
+        	$(document).ready(function(){
+        		$('#fileListView').tinyscrollbar();
+        		$(".ConLibra li:even").addClass("alt");
+        		
+            // $("ul.ConLibra li").click(function(){
+            //  var $this = $(this);
+            //  //$this.parent().find('.misc img').hide();
+            //  var $point = $($this).parents(".userGridBody").find('.pointer');
+            //  if(!$this.hasClass("selected")){
+            //    $("ul.ConLibra li").removeClass("selected");
+            //    $point.show();
+            //    $point.css("top", ($this.height()+1)*($this.index()));
+            //    //alert($this.height()*($this.index()+1))
+            //    $this.addClass("selected");
+            //    $($this).parents(".userGridBody").find('.pointer').show();
+            //    //$this.find('.pointer').show();
+            //    //$this.find('.misc img').show();
+            //  }
+            //  return false;
+            //  
+            // })
+        	})
+        </script>
+    </head>
+    <body>
+    	<div class="mainContainer">
+	    	<div class="userEditHolder">	
+		    	<div class="header-section">
+		    		<div class="topHeader">
+		    			<div class="logoHolder"></div>
+		    			<div class="rightPanel">
+		    				<ul>
+		    					<li class="help"></li>
+		    					<li class="myAccount"></li>
+		    					<li class="logout"></li>
+		    				</ul>
+		    			</div>
+		    		</div>
+		    		<!-- <div class="main-nav">
+		    			<div class="navBtns">
+		    				<ul>
+		    					<li class="siteInfo active"></li>
+		    					<li class="pages"></li>
+		    					<li class="content"></li>
+		    					<li class="theme"></li>
+		    					<li class="optional"></li>
+		    					<li class="users"></li>
+		    					<li class="done"></li>
+		    				</ul>
+		    			</div>
+		    			<div class="rightBtns"><button class="btn_Save">Save and go to next step</button></div>
+		    		</div> -->
+		    	</div>
+		    	<div class="content-section">
+		    		<div class="editCode-wrapper">
+		    			<div class="fileList left">
+		    				<div class="goToFolder">
+		    					<select>
+		    						<option>go to folder</option>
+		    					</select>
+		    				</div>
+		    				<div class="userGrid">
+								<div class="userGridHeader">
+									<ul class="ConLibraHeads">
+										<li>
+											<span class="fileName">File Name</span>
+										</li>
+									</ul>
+								</div>
+								<div class="userGridBody">
+									<div id="fileListView">
+										<span class="pointer"></span>
+										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+										<div class="viewport">
+											<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+		 									<div class="overview">
+		    									<ul class="ConLibra">
+		    									  <% @files.each do |file|%>
+  		    										<li <%= (@selected_file == file ? "class='selected'" : '')%>
+  		    											<span class="fileName"><a href="?file_name=<%=file%>"><%=file%></a></span>
+  		    											</li>
+		    										<% end %>
+		    									</ul>
+		    								</div>
+    									</div>
+    								</div>
+    							</div>
+    							<div class="userGridFooter"></div>
+	    					</div>
+		    			</div>
+		    			<div class="editCode left">
+		    				<div class="fileDetail">
+		    					<div class="fileNameField left"><span class="showName"><%=@selected_file%></span><span class="trashBtn"><img src="/assets/btn_EditCode_Trash.png" border="0" /></span><span class="newFileBtn"><img src="/assets/btn_EditCode_New.png" border="0" /></span></div>
+		    					<div class="closeAndReturn right"><span class="closeLabel">close & return to themes</span><span class="closeButton"><img src="/assets/btnDelete.png" border="0" /></span></div>
+		    				</div>
+		    				<div class="editFileView clear">
+                  <%= form_for(@theme) do |f| %>
+                    <%=hidden_field_tag :file_name, @selected_file%>
+                    <textarea cols='500' rows='60' name='file_content'><%=raw @file_content%></textarea>
+		    				</div>
+		    				  <div class="rightBtns">
+		    				    <button class="theme_btn_Save" id="form_submit" >Save</button>
+		    				</div>
+                <% end %>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	
+	    	</div>
+        </div>
+    </body>
+</html>
