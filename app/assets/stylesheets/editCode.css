@@ -132,9 +132,7 @@
     padding-left:10px;
 }
 
-#fileListView .shadows{
-	margin:0;
-}
+
 /* Tiny Scrollbar */
 #fileListView { width: 200px;  position: relative}
 #fileListView .viewport { width: 200px; height: 450px; overflow: hidden; position: relative; }

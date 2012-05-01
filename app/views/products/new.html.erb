@@ -1,4 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+		<%= stylesheet_link_tag "siteinfo" %>		
+ 		<%= stylesheet_link_tag "layout" %>
+		<%= stylesheet_link_tag "users" %>
+		<%= stylesheet_link_tag "tinyscroll" %>
+		<%= stylesheet_link_tag "createEdit" %>
+		<%= stylesheet_link_tag "content" %>
+		<%= stylesheet_link_tag "products" %>
+		<%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js'%>
+		<%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js'%>
+		
+		<script type="text/javascript">
+               $(document).ready(function(){
+        		$('#productsEdit').tinyscrollbar();
+        		$(".ConLibra li:even").addClass("alt");
+
+        		$("ul.ConLibra li").click(function(){
+        			var $this = $(this);
+        			//$this.parent().find('.misc img').hide();
+        			
+        			if(!$this.hasClass("selected")){
+        				$("ul.ConLibra li").removeClass("selected");
+        				$("ul.ConLibra li").find('.pointer').hide();
+        				$this.addClass("selected");
+        				$this.find('.pointer').show();
+        				//$this.find('.misc img').show();
+        			}
+        			return false;
+        			
+        		})
+        	})
+        </script>
+        <script type="text/javascript">
+$(document).ready(function(){
+    //  When user clicks on tab, this code will be executed
+    $("#tabs li").click(function() {
+        //  First remove class "active" from currently active tab
+        $("#tabs li").removeClass('active');
+ 
+        //  Now add class "active" to the selected/clicked tab
+        $(this).addClass("active");
+ 
+        //  Hide all tab content
+        $(".tab_content").hide();
+ 
+        //  Here we get the href value of the selected tab
+        var selected_tab = $(this).find("a").attr("href");
+ 
+        //  Show the selected tab content
+        $(selected_tab).fadeIn();
+ 
+        //  At the end, we add return false so that the click on the link is not executed
+        return false;
+    });
+});
+</script>
+        
+        </head>
+        <body>
 <div class="modelWindow">
+	
   <div class="headSection">
     <h2>Create / Edit Project</h2>
     <span><a href="#"><img src="assets/ecomm/images/helpIcon.png" width="20" height="20"></a></span> </div>
@@ -14,139 +78,8 @@
       </ul>
     </div>
     <div id="tabs_content_container">
-      <div id="tab1" class="tab_content" style="display: block;">
-        <div class="tab2topDiv">
-          <div class="editImgDiv"><img src="assets/ecomm/images/productimg.jpg" width="136" height="100"></div>
-          <div class="eiditTextDiv">
-            <h2>Red Sunglasses</h2>
-            <h3>created : 02/12/10</h3>
-            <h3>last modified : 02/12/10</h3>
-            <span><img src="assets/ecomm/images/stars.jpg" width="73" height="13"></span> </div>
-          <div class="eiditTextDiv">
-            <div class="user"> <span>featured product </span>
-              <input type="checkbox" checked="checked">
-            </div>
-            <div class="user">activate product
-              <input type="checkbox" checked="checked">
-            </div>
-          </div>
-        </div>
-        <div class="tab2bottomDiv">
-          <div class="bottomDivRepeat">
-            <div class="colum-section">
-              <div class="title">Product Info <span class="help"><a href="#"></a></span></div>
-              <div class="group"> <span class="key">Product info:</span> <span class="val">
-                <input type="text" disabled value="red sunglasses">
-                </span> </div>
-              <div class="group"> <span class="key">sku:</span> <span class="val">
-                <input type="text" value="1234">
-                </span> </div>
-              <div class="group next"> <span class="key">case price $:</span> <span class="val">
-                <input type="text" value="Active Eyeware Ltd.">
-                </span> </div>
-              <div class="group"> <span class="key">base price $</span> <span class="val">
-                <input type="text" value="39">
-                </span> </div>
-              <div class="group"> <span class="key">total price $</span> <span class="val">
-                <input type="text" value="39">
-                </span> </div>
-              <div class="group"> <span class="key">cost:</span> <span class="val">
-                <input type="text" value="15">
-                </span> </div>
-              <div class="group"> <span class="key">weight(lbs):</span> <span class="val">
-                <input type="text" value=".6">
-                </span> </div>
-              <div class="group"> <span class="key">shipping modifier $:</span><span class="val">
-                <input type="text" value="3">
-                </span></div>
-            </div>
-          </div>
-          <div class="bottomDivRepeat">
-            <div class="colum-section last">
-              <div class="title2">Link to Existing Account <span class="help"><a href="#"></a></span></div>
-              <div class="group">
-                <div class="searchAC">
-                  <input type="text" class="search" placeholder="search accounts"><span><input name="" type="button" value="view all" class="blueBtn"></span>
-                  
-                  <span class="lightBlueBtn">sunglasses</span><a href="#"><span class="lightBlueBtn">frames</span></a> </div>
-              </div>
-              <div class="group"></div>
-            </div>
-          </div>
-          
-          
-          <div class="bottomDivRepeat ">
-            <div class="colum-section last">
-              <div class="title2">product vendors <span class="help"><a href="#"></a></span></div>
-              <div class="group">
-                <div class="searchAC">
-                  <input type="text" class="search" placeholder="search accounts"><span><input name="" type="button" value="view all" class="blueBtn"></span>
-                  
-                  <span class="lightBlueBtn">sunglasses</span><a href="#"><span class="lightBlueBtn">frames</span></a> </div>
-              </div>
-              <div class="group"></div>
-            </div>
-          </div>
-          
-          
-          <div class="bottomDivRepeat ">
-            <div class="colum-section last">
-              <div class="title2">product discription <span class="help"><a href="#"></a></span></div>
-              <div class="group"><img src="assets/ecomm/images/richtexteditor.jpg" width="383" height="138"></div>
-              <div class="group"></div>
-            </div>
-          </div>
-          
-          
-        </div>
-      </div>
-      <div id="tab2" class="tab_content" >
-        <div class="tab2topDiv">dsfsdf</div>
-        <div class="pages-main createEditDiv">
-          <div class="pages-wrapper">
-            <div class="usersLeftPane">
-              <div class="title">Choose / Order Images<span class="help"><a href="#"></a></span></div>
-            </div>
-            <div class="site-users ">
-              <div class="page-data clear ">
-                <div class="userGrid ">
-                  <div class="userGridHeader">
-                    <ul class="ConLibraHeads">
-                      <li> <span class="userName">Image</span> <span class="group">Image file name</span> <span class="created">Primary</span><span class="created">Date Added</span> </li>
-                    </ul>
-                  </div>
-                  <div class="userGridBody">
-                    <div id="productsEdit">
-                      <div class="scrollbar">
-                        <div class="track">
-                          <div class="thumb">
-                            <div class="end"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="viewport">
-                        <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
-                        <div class="overview">
-                          <ul class="ConLibra">
-                            <li><span class="imgs">Company1</span><span class="imgFile">Catalog1</span><span class="primary">12/22/11</span><span class="thumb">12/22/11</span><span class="dateAdded"><img border="0" src="assets/ecomm/images/bg_On.png"></span><span class="removeBtn"><span></li>
-                            <li><span class="imgs">Company1</span><span class="imgFile">Catalog1</span><span class="primary">12/22/11</span><span class="thumb">12/22/11</span><span class="dateAdded"><img border="0" src="assets/ecomm/images/bg_On.png"></span><span class="removeBtn"><span></li>
-                            <li><span class="imgs">Company1</span><span class="imgFile">Catalog1</span><span class="primary">12/22/11</span><span class="thumb">12/22/11</span><span class="dateAdded"><img border="0" src="assets/ecomm/images/bg_On.png"></span><span class="removeBtn"><span></li>
-                            <li><span class="imgs">Company1</span><span class="imgFile">Catalog1</span><span class="primary">12/22/11</span><span class="thumb">12/22/11</span><span class="dateAdded"><img border="0" src="assets/ecomm/images/bg_On.png"></span><span class="removeBtn"><span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="userGridFooter"></div>
-                </div>
-              </div>
-              <div class="addNewUserBtn">
-                <button class="addProductBtn">add product category</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    	<%= render :partial => "product_setup"%>
+      	
       <div id="tab3" class="tab_content">
         <p>Suspendisse blandit velit eget erat suscipit in malesuada odio venenatis.</p>
       </div>
@@ -166,3 +99,5 @@
     <input name="" type="button" class="greenBtn" value="save changes" >
   </div>
 </div>
+</body>
+</html>

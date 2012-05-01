@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
   # GET /products/new
   
   def new
-    # temporary fix 
     @product = Product.new
-    respond_to do |format|
-      format.html { render :layout => false}# new.html.erb
-    end
+    render :layout => nil
+    # respond_to do |format|
+      # format.html { render :layout => false}# new.html.erb
+    # end
   end
 
 end
