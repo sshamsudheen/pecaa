@@ -36,7 +36,7 @@ class Video < ActiveRecord::Base
     if success && $?.exitstatus == 0
       self.converted!
     else
-      self.failure!
+      self.failed!
     end
   end
 

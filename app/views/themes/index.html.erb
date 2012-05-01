@@ -67,10 +67,10 @@
 										<h3><%=theme.name%></h3>
 										<div class="thumb"><img src="/assets/sampleThemeThumb.png" /></div>
 										<ul class="tools">
-											<li class="edit">Edit Theme</li>
-											<li class="temp">Edit Templates</li>
-											<li class="dup">Duplicate Theme</li>
-											<li class="down">Download Theme</li>
+											<li class="edit"><a href="<%=edit_theme_path(theme)%>">Edit Theme</a></li>
+											<li class="temp"><a href="<%=edit_theme_path(theme)%>">Edit Templates</a></li>
+											<li class="dup"><a href="<%=copy_theme_theme_path(theme)%>">Duplicate Theme</a></li>
+                      <li class="down"><a href="<%=download_theme_theme_path(theme)%>">Download Theme</a></li>
 										</ul>
 										<a href="#" class="activateLink on">Active</a>
 									</li>

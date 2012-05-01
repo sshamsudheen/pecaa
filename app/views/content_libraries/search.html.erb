@@ -98,6 +98,7 @@
 													<div class="hotspotContent"><img border="0" src="<%=content.source.source%>" width="120" height="90"></div>
 												</div>
 												<div style="display:none;" id="doc_form">
+												            <%@video = content.source%>
 															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
 												  </div>
 												<%elsif content.source_type == "File"%>
@@ -110,7 +111,7 @@
 												  <div style="display:none;" id="doc_form">
 															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
 															<%@from_content=true%>
-															<%#=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
+															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
 												  </div>
 												  <%elsif content.source_type == "Misc"%>
 												  <div style="display:none;" id="doc_form">

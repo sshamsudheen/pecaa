@@ -32,7 +32,7 @@ class SiteStylesController < ApplicationController
     else
       if theme = Theme.find_by_id(params[:theme_id])
         (@site.site_style ||= SiteStyle.new).theme_id = theme.id
-        @site.save
+        @site.site_style.save
         redirect_to :action => :choose_basecolor
       end
     end

@@ -1,10 +1,11 @@
 <%add_form = content.source%>
 <div class="contentObject">
+	<div class="resizable_content">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
 								        <span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
 										<span class="drag"></span>
-										<span class="scale"></span>
+										
 										<div class="objectContent">
 											<%add_form.questions.each do |question|%>
 												<div class="formRow">
@@ -37,3 +38,4 @@
 										</div>
 									</div>
 								</div>
+</div>								

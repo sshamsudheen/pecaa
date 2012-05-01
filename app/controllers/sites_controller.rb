@@ -102,6 +102,7 @@ class SitesController < ApplicationController
   def preview
     @site = Site.find(params[:id])
     @site_page = params[:page_id] ? @site.site_pages.find(params[:page_id]) : @site.site_pages.first
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
     render :layout => false
   end
   
@@ -143,6 +144,21 @@ class SitesController < ApplicationController
 
   def setup
     @symbol="Website_List"
+  end
+  
+  def get_files_to_load(theme)
+    files = ""
+    theme.get_files.each do |n|
+      if Theme.check_file_type(n)
+        case (n.split('.').last.downcase)
+          when 'js'
+            files += "<script type='text/javascript' src='#{theme.get_load_path}/#{n}'></script>"
+          when 'css'
+            files += "<link rel='stylesheet' href='#{theme.get_load_path}/#{n}' type='text/css'>"
+        end
+      end
+    end
+    files.blank? ? nil : files.html_safe
   end
   
 end

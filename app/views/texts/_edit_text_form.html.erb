@@ -1,13 +1,15 @@
 
 
 <div class="contentObject">
+	<div class="resizable_content">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
 										<span class="delete"></span>
 										<span class="drag"></span>
-										<span class="scale"></span>
+										
 										<div class="objectContent">
-											<p style="width: 300px"><%=@text.description%></p>
+											<p style="width: 300px"><%=@text.description.html_safe%></p>
 										</div>
 									</div>
+								</div>
 								</div>

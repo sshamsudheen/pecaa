@@ -59,5 +59,4 @@ module SitesHelper
     (k.to_i > 0) ? k.to_f/100 : 1
   end
   
-     
 end

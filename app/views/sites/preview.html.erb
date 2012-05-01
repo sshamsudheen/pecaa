@@ -4,64 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 	  <title><%=@site.name%></title>
-    <%= stylesheet_link_tag "layout", "content", "preview" %>
+	  <%if @site_theme%>
+  	  <%= @site_theme%>
+    <%else%>
+      <%= stylesheet_link_tag "layout", "content", "preview" %>
+      <%= javascript_include_tag 'jquery-1.7.1.min'%>
+	  <%end%>
     <%= csrf_meta_tag %>
-    <%=get_the_styles(@site)%>
-    <%= javascript_include_tag 'jquery-1.4.2.min'%>
-    <%= javascript_include_tag 'tinymce-jquery'%>
-		<style>
-			body{
-				background: url("/images/bg.gif") repeat scroll 0 0 transparent;
-    			font-family: arial,sans-serif;
-			}
-			#box .block {
-			    background: none repeat scroll 0 0 white;
-			    border-radius: 6px 6px 6px 6px;
-			    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
-			    text-shadow: 0 1px 0 white;
-			    margin-bottom: 20px;
-			}
-			
-			#box .block h2 {
-			    background: url(css/img/bg_grayGrain.gif) #666;
-			    border-top-left-radius: 6px;
-			    border-top-right-radius: 6px;
-			    color: white;
-			    text-shadow: none;
-			    margin: 0;
-    			padding: 10px 15px;
-			}
-			#box{
-				 background:#ACC0D1;
-				 padding:20px;
-			   	 border-top-right-radius: 6px;
-			   	 border-bottom-right-radius: 6px;
-			   	 border-bottom-left-radius: 6px;
-			}
-			#box .block .content {
-			    padding: 10px 20px;
-			}
-			.content-tabs{
-				margin-top:30px;
-			}
-			.content-tabs ul{
-				width:100%;
-			    border-top-right-radius: 6px;
-			}
-			.content-tabs ul li{
-				border-left:0;
-				border-right:0;
-				border-top:0;
-			}
-			.content{
-				text-align:center;
-				margin: auto;
-			}
-			.textStyle{
-				padding:10px;
-				margin-bottom:20px;
-			}
-		</style>
+    <%= get_the_styles(@site)%>
+
 	</head>
 	<body>
 		<div class="mainContainer">

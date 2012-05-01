@@ -49,17 +49,11 @@
       </script>
 		
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
-
-
-
-
-	
-    
 <script type="text/javascript">
 	
     $(function() {
+		$('.resizable_content').resizable();
 		$( "#catalog" ).accordion();
 		$( "#catalog li.active" ).draggable({
 			appendTo: "body",
@@ -73,7 +67,7 @@
 				$( this ).find( ".placeholder" ).remove();
 				$( this ).find('li').remove();
 				$( this ).html('');
-				if (ui.draggable.attr('class') == "item newItem misc_form ui-draggable") {
+				if (ui.draggable.attr('class') == "item active newItem misc_form ui-draggable") {
 					 $.ajax({
 				            type: "get",
 				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
@@ -87,8 +81,6 @@ $('#cart div.ui-droppable').html(data)
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
 					$('#cart .contentObject').draggable();
-    
-
 					$('.resizable_content').resizable();
 
 			}
