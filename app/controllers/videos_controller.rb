@@ -15,7 +15,6 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(params[:video])
     @video.user_id = current_user
-    
     @site_page = SitePage.find(session[:site_page_id])
     @site  = @site_page.site
     Video.transaction do
@@ -25,7 +24,7 @@ class VideosController < ApplicationController
 #        flash[:notice] = 'Video has been uploaded'
         content_lib = ContentLibrary.create({:name => @video.source_file_name,
           :source_id => @video.id, :source_type => 'Video',
-          :last_used => nil, :times_used => nil, :added_by => current_user.username,:site_page_ids=>[@site_page.id]})
+          :last_used => nil, :times_used => nil, :added_by => current_user.username})
         rescue
         end
          if params[:from_content]
