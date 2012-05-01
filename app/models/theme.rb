@@ -25,7 +25,7 @@ class Theme < ActiveRecord::Base
       Zip::ZipFile.open("#{get_file_path}/#{self.filename}") { |zip_file|
           zip_file.each { |f|
           f_path=File.join(get_file_path, f.name)
-          File.makedirs(File.dirname(f_path))
+          FileUtils.makedirs(File.dirname(f_path))
           zip_file.extract(f, f_path)
         }
        }
