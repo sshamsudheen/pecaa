@@ -46,7 +46,7 @@ desc "Create all symlinks "
   task :create_symlinks, :roles => :app do
     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
     run "ln -nsf #{shared_path}/system #{current_path}/public/system"
-    run "ln -nsf #{shared_path}/system #{current_path}/public/system"
+    run "ln -nsf #{shared_path}/themes #{current_path}/public/themes"
     run "ln -nsf #{shared_path}/config/production.rb #{current_path}/config/environments/production.rb"
 end
 

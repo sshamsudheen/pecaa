@@ -64,7 +64,7 @@ class Theme < ActiveRecord::Base
   end
       
   def get_file_path
-    "public/themes/#{self.secret_code}"
+    "#{Rails.root}/public/themes/#{self.secret_code}"
   end
   
   def get_load_path
