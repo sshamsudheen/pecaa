@@ -2,24 +2,13 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
-		<%= stylesheet_link_tag "siteinfo" %>		
- 		<%= stylesheet_link_tag "layout" %>
-		<%= stylesheet_link_tag "users" %>
-		<%= stylesheet_link_tag "tinyscroll" %>
-		<%= stylesheet_link_tag "createEdit" %>
-		<%= stylesheet_link_tag "content" %>
-		<%= stylesheet_link_tag "products" %>
-		<%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js'%>
-		<%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js'%>
-		
 		<script type="text/javascript">
                $(document).ready(function(){
         		$('#productsEdit').tinyscrollbar();
         		$(".ConLibra li:even").addClass("alt");
 
         		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);
+        			var $this = $(this);	
         			//$this.parent().find('.misc img').hide();
         			
         			if(!$this.hasClass("selected")){
@@ -101,3 +90,4 @@ $(document).ready(function(){
 </div>
 </body>
 </html>
+	
