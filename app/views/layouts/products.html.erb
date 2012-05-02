@@ -14,9 +14,8 @@
 		<%= stylesheet_link_tag "content" %>
 		<%= stylesheet_link_tag "createEdit" %>
 		
-		
 		<%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js'%>
-		<%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js'%>
+		<%= javascript_include_tag 'inputstyle.js','jquery.tinyscrollbar.min.js'%>
 		<%= javascript_include_tag 'facebox'%>
 		<%= javascript_include_tag 'common'%>
 		<script type="text/javascript">
@@ -41,17 +40,18 @@
         		})
         	})
         </script>
-    </head>
+    </head>	
     <body>
     	<div class="mainContainer">
 	    	<div class="userEditHolder">
-	    		<%= render :partial => 'shared/main_header'%>	
+	    		<div class="header-section">
+	    			<%= render :partial => 'shared/main_header'%>	
 		    	
 		    	
 		    	<div class="main-nav">
         			<div class="navBtns">
           				<ul>
-            				<li class="products active"></li>
+            				<li class="products"></li>
             				<li class="payments"></li>
             				<li class="taxes"></li>
             				<li class="shipping"></li>
@@ -70,6 +70,7 @@
           				<li>product options</li>
           				<li>catalogs</li>
         			</ul>
+      			</div>
       			</div>
     		
     			<div class="content-section">

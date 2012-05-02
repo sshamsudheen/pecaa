@@ -1,6 +1,10 @@
 Mystore3::Application.routes.draw do
 
 
+  resources :product_categories
+
+  resources :product_vendors
+
   get "model/site_style"
 
   get "site_pages/index"

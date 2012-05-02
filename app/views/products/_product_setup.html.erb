@@ -1,3 +1,4 @@
+<%= semantic_form_for [site, product] do |f| %>
 <div id="tab1" class="tab_content" >
         <div class="tab2topDiv">
           <div class="editImgDiv"><img src="assets/ecomm/images/productimg.jpg" width="136" height="100"></div>
@@ -10,38 +11,33 @@
             <div class="user"> <span>featured product </span>
               <input type="checkbox" checked="checked">
             </div>
-            <div class="user">activate product
-              <input type="checkbox" checked="checked">
-            </div>
+            <%= f.input :is_active %>
           </div>	
         </div>
         <div class="tab2bottomDiv">
           <div class="bottomDivRepeat">
             <div class="colum-section">
               <div class="title">Product Info <span class="help"><a href="#"></a></span></div>
-              <div class="group"> <span class="key">Product info:</span> <span class="val">
-                <input type="text" disabled value="red sunglasses">
+              	<div class="group"> <span class="key">Product info:</span> <span class="val">
+              	<%= f.text_field :name %>	
                 </span> </div>
               <div class="group"> <span class="key">sku:</span> <span class="val">
-                <input type="text" value="1234">
-                </span> </div>
-              <div class="group next"> <span class="key">case price $:</span> <span class="val">
-                <input type="text" value="Active Eyeware Ltd.">
+              	<%= f.text_field :sku %>
                 </span> </div>
               <div class="group"> <span class="key">base price $</span> <span class="val">
-                <input type="text" value="39">
+                <%= f.text_field :base_price %>
                 </span> </div>
               <div class="group"> <span class="key">total price $</span> <span class="val">
                 <input type="text" value="39">
                 </span> </div>
               <div class="group"> <span class="key">cost:</span> <span class="val">
-                <input type="text" value="15">
+              	 <%= f.text_field :cost %>
                 </span> </div>
               <div class="group"> <span class="key">weight(lbs):</span> <span class="val">
-                <input type="text" value=".6">
+              	<%= f.text_field :weight %>
                 </span> </div>
               <div class="group"> <span class="key">shipping modifier $:</span><span class="val">
-                <input type="text" value="3">
+                <%= f.text_field :shipping_modifier %>
                 </span></div>
             </div>
           </div>
@@ -81,6 +77,11 @@
             </div>
           </div>
           
-          
+         <%= f.actions do %>
+      		<%= f.action :submit, :as => :button %>
+      	<% end %>
         </div>
       </div>
+      
+<% end %>      
+      

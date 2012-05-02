@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @product_vendor.name %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%= @product_vendor.is_active %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_vendor_path(@product_vendor) %> |
+<%= link_to 'Back', product_vendors_path %>
