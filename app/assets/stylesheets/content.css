@@ -189,7 +189,6 @@
 	top:270px;
 }
 .contentObject{
-	position: absolute;
 	z-index: 99999;
 	left: 10%;
 	top:10%;
