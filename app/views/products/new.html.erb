@@ -2,34 +2,23 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-		<script type="text/javascript">
-               $(document).ready(function(){
-        		$('#productsEdit').tinyscrollbar();
-        		$(".ConLibra li:even").addClass("alt");
-
-        		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);	
-        			//$this.parent().find('.misc img').hide();
-        			
-        			if(!$this.hasClass("selected")){
-        				$("ul.ConLibra li").removeClass("selected");
-        				$("ul.ConLibra li").find('.pointer').hide();
-        				$this.addClass("selected");
-        				$this.find('.pointer').show();
-        				//$this.find('.misc img').show();
-        			}
-        			return false;
-        			
-        		})
-        	})
-        </script>
-        <script type="text/javascript">
+ <script type="text/javascript">
+ 
+ function selectTab(tabId) {
+ 	var tab  = $("#tabs li#"+tabId)
+	tab.addClass("active");
+	var tab_content = tab.find("a").attr("href");
+    $(tab_content).fadeIn();
+ }
+ 
 $(document).ready(function(){
+	
+	
     //  When user clicks on tab, this code will be executed
     $("#tabs li").click(function() {
         //  First remove class "active" from currently active tab
         $("#tabs li").removeClass('active');
- 
+        
         //  Now add class "active" to the selected/clicked tab
         $(this).addClass("active");
  
@@ -45,6 +34,11 @@ $(document).ready(function(){
         //  At the end, we add return false so that the click on the link is not executed
         return false;
     });
+    
+    // by defautl highlight first tab
+    selectTab("product_setup")
+ 
+    
 });
 </script>
         
@@ -58,34 +52,16 @@ $(document).ready(function(){
   <div class="midSection">
     <div id="tabs_container">
       <ul id="tabs">
-        <li class="active"><a href="#tab1">product setup</a></li>
-        <li ><a  href="#tab2">images</a></li>
-        <li><a href="#tab3">product options</a></li>
-        <li><a href="#tab4">inventory</a></li>
-        <li><a href="#tab5">related products</a></li>
-        <li><a href="#tab6">try it on</a></li>
+        <li class="active" id="product_setup" name="product_setup"><a href="#tab1">product setup</a></li>
       </ul>
     </div>
     <div id="tabs_content_container">
-    	<%= render :partial => "product_setup"%>
-      	
-      <div id="tab3" class="tab_content">
-        <p>Suspendisse blandit velit eget erat suscipit in malesuada odio venenatis.</p>
-      </div>
-      <div id="tab4" class="tab_content">
-        <p>Suspendisse blandit velit eget erat suscipit in malesuada odio venenatis.</p>
-      </div>
-      <div id="tab5" class="tab_content">
-        <p>Suspendisse blandit velit eget erat suscipit in malesuada odio venenatis.</p>
-      </div>
-      <div id="tab6" class="tab_content">
-        <p>Suspendisse blandit velit eget erat suscipit in malesuada odio venenatis.</p>
-      </div>
+    	<%= render :partial => "product_setup" ,:locals => {:site => @site, :product => @product }%>
     </div>
   </div>
   <div class="footSection">
-    <input name="" type="button" class="grayBtn" value="cancel" >
-    <input name="" type="button" class="greenBtn" value="save changes" >
+    <input name="product_cancel" id="product_cancel" type="button" class="btnCancelForm grayBtn" value="cancel" >
+    <input name="product_save" id="product_save" type="button" class="greenBtn" value="save changes" >
   </div>
 </div>
 </body>

@@ -61,6 +61,8 @@ GEM
       multi_json (~> 1.0)
     fastthread (1.0.7)
     ffmpeg (0.2.5)
+    formtastic (2.2.0)
+      actionpack (>= 3.0)
     gem_plugin (0.2.3)
     highline (1.6.2)
     hike (1.2.1)
@@ -158,6 +160,7 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.0.6)
       rack (>= 1.0)
+    zip (2.0.2)
 
 PLATFORMS
   ruby
@@ -170,6 +173,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   devise
   ffmpeg
+  formtastic
   jquery-rails
   json
   kaminari
@@ -183,3 +187,4 @@ DEPENDENCIES
   tinymce-rails
   tzinfo
   uglifier (>= 1.0.3)
+  zip
