@@ -112,4 +112,9 @@
     $('.btnApply').click(function(){
       window.location.href = "/sites/<%=params[:site_id]%>/site_styles/choose_theme?theme_id="+ $(this).attr('rel');
     });
+    
+  	$('#preview_button').click(function(){
+  	  window.location.href = "/sites/<%=params[:site_id]%>/preview";
+    });
+    
   </script>

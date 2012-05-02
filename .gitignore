@@ -10,4 +10,5 @@ config/database.yml
 *.lock
 nbproject/**/*
 public/system/uploads/*
+public/themes/*
 
