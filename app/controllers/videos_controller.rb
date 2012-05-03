@@ -15,8 +15,8 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(params[:video])
     @video.user_id = current_user
-    @site_page = SitePage.find(session[:site_page_id])
-    @site  = @site_page.site
+    @site_page = SitePage.find(session[:site_page_id]) rescue nil
+    @site  = @site_page.site rescue nil
     Video.transaction do
       if @video.save
         begin

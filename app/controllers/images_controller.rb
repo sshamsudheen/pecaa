@@ -15,8 +15,8 @@ class ImagesController < ApplicationController
     @image = Image.new(params[:image])
     @image.user_id = current_user
 #    @site  = Site.find(params[:site_id])
-    @site_page = SitePage.find(session[:site_page_id])
-    @site = @site_page.site
+    @site_page = SitePage.find(session[:site_page_id]) rescue nil
+    @site = @site_page.site rescue nil
     Image.transaction do
       if @image.save
         content_lib = ContentLibrary.create({:name => @image.upload_file_name,

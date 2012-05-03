@@ -13,6 +13,8 @@ button{
 	color:#FFFFFF;
 	border-radius: 6px;
 	cursor: pointer;
+	-moz-box-shadow: 0px 0px 3px #999;
+	-webkit-box-shadow: 0px 0px 3px #999;
 }
 a,
 a:hover,
@@ -46,7 +48,7 @@ button.redBtn{
     width: 1024px;
 }
 .header-section{
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 .header-section .topHeader{
 	background: url("img/bg_topHeader.gif") repeat-x;
@@ -160,6 +162,9 @@ button.redBtn{
 .main-nav ul li.optional.active{
 	background: url(img/btn_optional_on.png) no-repeat;
 }
+.main-nav ul li.optional.complete{
+	background: url(img/btn_optional_done.png) no-repeat;
+}
 .main-nav ul li.users{
 	background: url(img/btn_users.png) no-repeat;
 	width: 94px;
@@ -209,15 +214,15 @@ button.redBtn{
 }
 .content-section{
 	clear:both;
-	width:95%;
+	/*width:95%;*/
 	min-height:500px;
-	padding: 0 25px;
+	/*padding: 0 25px;*/
 	margin-bottom:20px;
 }
 .themes-board{
 	background: url(img/bg_grid.gif) repeat;
 	height:60%;
-	width:1015px;
+	width:1024px;
 	position: absolute;
 	top:290px;
 	border-top:1px solid black;
@@ -285,20 +290,78 @@ span.select {
 	background: url("img/bg_TableBottomShadow.png") repeat-x scroll 0 0 transparent;
 	bottom:0;
 }
-.pickDate{
-	background:url(img/bg_DatePicker.png) no-repeat right top #FFF;
+.alert-box,
+.info-box{
+	width:240px;
+	min-height:100px;
+	padding:10px;
+	border-radius:4px;
+	border:1px solid #666666;
+	-moz-box-shadow: 0px 1px 6px #333;
+	-webkit-box-shadow: 0px 1px 6px #333;
+	/*background: url(img/bg_grayGrain.gif) repeat;*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#bdbdbd), to(#8a8a8a));
+	background: -moz-linear-gradient(top,  #bdbdbd,  #8a8a8a);
+	position: absolute;
+	left: 40%;
+	top:30%;
 }
-.pickTime{
-	background:url(img/bg_TimePicker.png) no-repeat right top #FFF;
+.alert-slider,
+.info-slider{
+	width:180px;
+	height:45px;
+	padding:10px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border:1px solid #666666;
+	-moz-box-shadow: 0px 1px 6px #333;
+	-webkit-box-shadow: 0px 1px 6px #333;
+	/*background: url(img/bg_grayGrain.gif) repeat;*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#bdbdbd), to(#8a8a8a));
+	background: -moz-linear-gradient(top,  #bdbdbd,  #8a8a8a);
+	position: fixed;
+	bottom:0;
+}
+.info-slider{
+	left:500px;
+}
+.info-box{
+	left: 20%;
+}
+.alert-box .msgTitle,
+.info-box .msgTitle,
+.alert-slider .msgTitle,
+.info-slider .msgTitle {
+	font-size:26px;
+	padding:5px 35px 10px 0;
 }
 
-button.theme_btn_Save{
-	background:url(img/btn-save-changes.png)no-repeat;
-	width: 189px;
-	height:30px;
-	border:0;
-	font-size:11px;
+.alert-box .msgTitle{
+	background:url(img/bg_AlertTitle.png) no-repeat 100% center;
+	color:#ff6666;
+}
+.alert-slider .msgTitle{
+	background:url(img/bg_GreenTickMark.png) no-repeat 100% center;
+	color:#99cc99;
+}
+
+.info-box .msgTitle,
+.info-slider .msgTitle{
+	background:url(img/bg_InfoTitle.png) no-repeat 100% center;
+	color:#accce6;
+}
+
+.alert-box .msgContent,
+.info-box .msgContent{
+	font-size:14px;
 	color:#FFF;
-	text-indent:-9999px;
-	cursor: pointer;
+	margin-bottom:20px;
+}
+.msgFooter .secondary{
+	float: left;
+	margin:0;
+}
+.msgFooter .primary{
+	float: right;
+	margin:0;
 }

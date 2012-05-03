@@ -4,7 +4,7 @@
 	<div class='resizable_content'>
 	<div class="alphaBg "></div>
 	<div class="expandable">
-		<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
+		<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>""$(this).parents('.contentObject').html('');""%></span>
 		<span class="drag"></span>
 		<div class="objectContent"><img src="/assets/iconDoc.png" border="0"><span class="title"><%=content.name%></span></div>
 	</div>

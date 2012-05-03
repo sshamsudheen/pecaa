@@ -50,8 +50,8 @@ class TextsController < ApplicationController
     
     @text = Text.new(params[:text])
     @text.user_id = current_user
-    @site_page = SitePage.find(params[:site_page_id]) || SitePage.find(session[:site_page_id]) 
-    @site  = Site.find(params[:site_id]) || @site_page.id
+    @site_page = SitePage.find(params[:site_page_id]) rescue SitePage.find(session[:site_page_id]) rescue nil
+    @site  = Site.find(params[:site_id]) rescue @site_page.site rescue nil
     Text.transaction do
       if @text.save
         content_lib = ContentLibrary.create({:name => @text.text_block_name,
