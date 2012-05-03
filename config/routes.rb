@@ -79,6 +79,10 @@ Mystore3::Application.routes.draw do
     resources :products do
       get 'index', :on => :collection
     end
+
+    resources :payments do
+      put 'enable', :on => :member
+    end
     
     
   end

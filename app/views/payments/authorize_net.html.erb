@@ -1,0 +1,72 @@
+<div class="content-section">
+  <div class="siteInfo-main cartBg">
+
+    <div class="cartColumsMain">
+      <%= form_for(@payment_gateway.payment_gateway_attributes, :url => site_payment_path(@site.id, params[:id]), :method => :put) do |payment_gateway_attribute| %>
+      <div class="rowDiv">
+        <h2>payment gateway setup <span><a href="$"><img src="/images/helpIcon2.png"></a></span></h2>
+        <dl>
+          <dt>enable payment gateway :</dt>
+          <dd>
+          <span class="status">
+            <%= link_to(enable_site_payment_path(@site.id, params[:id]), :method => 'put') do %>
+            <img class="<%= @site_payment_gateway.is_enable ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_enable ? "enable_authorize_net" : "disable_authorize_net" %>">
+            <% end %>
+          </span>
+          </dd>
+
+
+          
+          <dt>select payment gateway :</dt>
+          <dd>
+            <%= select("payment_gateway", "id", [["Authorize.net", 4]]) %>            
+          </dd>
+        </dl>
+      </div>
+
+      <div class="rowDiv2 divAlpha">
+        <h2>payment gateway setup <span><a href="$"><img src="/images/helpIcon.png"></a></span></h2>
+        <dl>
+          <%= render :partial => "payment_attributes", :locals => {:payment_gateway_attribute => payment_gateway_attribute} %>
+          <dt>authorize funds only :</dt>
+
+          <dd>
+            <span class="status">
+              <img class="<%= @site_payment_gateway.authorize_funds_only ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.authorize_funds_only ? "enable_authorize_funds_only" : "disable_authorize_funds_only" %>">
+              <%= hidden_field(:site_payment_gateway, :authorize_funds_only, :value => @site_payment_gateway.authorize_funds_only.blank? ? "0" : "1") %>
+          </span>
+
+            </dd>
+          <dt>use CV2/CVV2 code :</dt>
+          <dd>
+            <span class="status">
+                <img class="<%= @site_payment_gateway.is_cvv ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_cvv ? "enable_is_cvv" : "disable_is_cvv" %>">
+              <%= hidden_field(:site_payment_gateway, :is_cvv, :value => @site_payment_gateway.is_cvv.blank? ? "0" : "1") %>
+            </span>
+
+            </dd>
+          <dt>credit card options :</dt>
+          <dd>
+            <% CreditCardType.all.each do |credit_card_type| %>
+              <label>
+                <%= check_box("credit_card_type[id]", credit_card_type.id, {:class => {:size => 20}, :checked => @site_payment_gateway.credit_card_types.where(:id => credit_card_type.id).blank? ? false : true }, credit_card_type.id, 0) %>
+                <%= credit_card_type.name %></label>
+              <br>
+              <% end %>
+              
+
+          </dd>
+                        <dt>&nbsp;</dt>
+          <dd><input name="" type="submit" value="save changes" class="btnGreen"></dd>
+
+        </dl>
+
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<%= render "payment_javascript" %>
+

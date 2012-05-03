@@ -20,6 +20,14 @@ margin-left:0;
 	left:0;
 }
 /*end common */
+.main-nav ul li.products{
+	background: url(img/btn_products.png) no-repeat;
+	width: 103px;
+}
+.main-nav ul li.products.active{
+	background: url(img/btn_products.png) no-repeat;
+	width: 103px;
+}
 
 .main-nav ul li.payments {
 	background: url(img/btn_payments.png) no-repeat;

@@ -1,0 +1,44 @@
+<div class="content-section">
+  <div class="siteInfo-main cartBg">
+    <div class="cartColumsMain">
+      <%= form_for(@payment_gateway.payment_gateway_attributes, :url => site_payment_path(@site.id, params[:id]), :method => :put) do |payment_gateway_attribute| %>
+      <div class="rowDiv">
+        <h2>PayPal setup
+          <span><a href="$"><img src="/images/helpIcon2.png"></a></span>
+        </h2>
+        <dl>
+          <dt>enable payment gateway :</dt>
+          <dd>
+            <span class="status">
+            <%= link_to(enable_site_payment_path(@site.id, params[:id]), :method => 'put') do %>
+            <img class="<%= @site_payment_gateway.is_enable ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_enable ? "enable_authorize_net" : "disable_authorize_net" %>">
+            <% end %>
+          </span>
+          </span>
+
+            </dd>
+          <dt>&nbsp;</dt>
+          <dd>&nbsp;</dd>
+        </dl>
+      </div>
+
+      <div class="rowDiv2">
+        <h2>PayPal options</h2>
+
+        <dl>
+          <%= render :partial => "payment_attributes", :locals => {:payment_gateway_attribute => payment_gateway_attribute} %>
+          <dt>select payment Method :</dt>          
+          <dd>
+            <%= select("payment_gateway_attribute", "payment_method", [["standard payments", "standard payments"], ["website payments pro", "website payments pro"]]) %>
+          </dd>
+          <dt>&nbsp;</dt>
+          <dd><input name="" type="submit" value="save changes" class="btnGreen"></dd>
+
+        </dl>
+      </div>
+     <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "payment_javascript" %>
