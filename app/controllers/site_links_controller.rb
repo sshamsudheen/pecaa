@@ -66,7 +66,6 @@ class SiteLinksController < ApplicationController
     respond_to do |format|
       if @site_link.update_attributes(params[:site_link])
         format.html { redirect_to site_site_link_path(@site, @site_link), :notice => 'Site link was successfully updated.' }
-}
       else
         format.html { render :action => "edit" }
         format.json { render :json => @site_link.errors, :status => :unprocessable_entity }
