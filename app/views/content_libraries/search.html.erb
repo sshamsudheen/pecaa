@@ -5,7 +5,14 @@
 		    				<div id="content_1" class="tabContent">
 								<div class="tabContent-wrapper">
 									<%params[:page] ||=1%>
-									<div ><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i-1}",:class=>"navLeft")%></div>
+                                                                            
+									<div >
+<%if params[:search] and params[:search][:source_type_equals]%>
+<%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i-1}&search[source_type_equals]=#{params[:search][:source_type_equals]}",:class=>"navLeft")%>
+<%else%>
+<%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i-1}",:class=>"navLeft")%>
+<%end%>
+</div>
 									<div class="item-wrapper" id="catalog">
 										<span class="leftShadow"></span>
 										<span class="rightShadow"></span>
@@ -129,7 +136,13 @@
 											<%end%>
 										</ul>
 									</div>
-									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
+									<div>
+<%if params[:search] and params[:search][:source_type_equals]%>
+<%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}&search[source_type_equals]=#{params[:search][:source_type_equals]}",:class=>"navRight")%>
+<%else%>
+<%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%>
+<%end%>
+</div>
 								</div>
 		    				</div>
 

@@ -217,6 +217,9 @@ button.redBtn{
 	width:100%;
 	min-height:500px;
 	padding: 0 0 0 10px;
+	/*width:95%;*/
+	min-height:500px;
+	/*padding: 0 25px;*/
 	margin-bottom:20px;
 }
 .themes-board{
@@ -365,6 +368,7 @@ span.select {
 	float: right;
 	margin:0;
 }
+
 .pickDate{
 	background:url(img/bg_DatePicker.png) no-repeat right top #FFF;
 }

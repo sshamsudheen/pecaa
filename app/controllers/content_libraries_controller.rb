@@ -5,6 +5,7 @@ class ContentLibrariesController < ApplicationController
   # GET /content_libraries
   # GET /content_libraries.json
   def index
+    session[:site_page_id] =nil
     @content_libraries = ContentLibrary.order("created_at desc")
 
     respond_to do |format|

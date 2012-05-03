@@ -185,14 +185,14 @@
 	font-size:16px;
 }
 .themes-board{
-	height:70%;
+	height:100%;
 	top:270px;
 }
 .contentObject{
-	position: absolute;
 	z-index: 99999;
 	left: 10%;
 	top:10%;
+	margin:10px;
 }
 
 .dragableObject{
