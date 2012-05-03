@@ -214,6 +214,9 @@ button.redBtn{
 }
 .content-section{
 	clear:both;
+	width:100%;
+	min-height:500px;
+	padding: 0 0 0 10px;
 	/*width:95%;*/
 	min-height:500px;
 	/*padding: 0 25px;*/
@@ -364,4 +367,11 @@ span.select {
 .msgFooter .primary{
 	float: right;
 	margin:0;
+}
+
+.pickDate{
+	background:url(img/bg_DatePicker.png) no-repeat right top #FFF;
+}
+.pickTime{
+	background:url(img/bg_TimePicker.png) no-repeat right top #FFF;
 }
