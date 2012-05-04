@@ -5,15 +5,15 @@
             <div class="userPanel">
               <div class="searchUser"> <span class="searchInput left">
                 <input type="text" />
-                </span> <span class="addSearch left"><img src="/assets/ecomm/images/btn_AddNewSearch.png" border="0" /></span> <span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img src="/assets/ecomm/images/btnDropDownSelectColum.png" border="0" /></span></span> </div>
-              <span class="showUser clear"><span class="userLastname">smith <img src="/assets/ecomm/images/btn_deleteUser_active.png" /></span><span class="user-label">name</span></span> <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/ecomm/images/btn_deleteUser_disabled.png" /></span><span class="user-label">role</span></span> </div>
+                </span> <span class="addSearch left"><img src="/assets/btn_AddNewSearch.png" border="0" /></span> <span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img src="/assets/btnDropDownSelectColum.png" border="0" /></span></span> </div>
+              <span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png" /></span><span class="user-label">name</span></span> <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png" /></span><span class="user-label">role</span></span> </div>
             <div class="userPanelDevider"></div>
             <div class="userPanel productp">
               <div class="date-created">
                 <input type="checkbox"  class="styled" />
                 <label for="shareThis">show date created</label>
               </div>
-              <div class="rangeSlider"><img src="/assets/ecomm/images/sideBar.png" width="212" height="22"></div>
+              <div class="rangeSlider"><img src="/assets/sideBar.png" width="212" height="22"></div>
               <div class="last-activity">
                 <input type="checkbox" class="styled" id="lastActivityVal" />
                 <label for="lastActivityVal">last activity</label>
@@ -59,8 +59,7 @@
                       <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                       <div class="overview">
                         <ul class="ConLibra">
-                        <% @products.each {|product| %>	
-                         <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="/assets/ecomm/images/btnMarkNo.png" border="0" /></span></span> <span class="sku">Group X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
+                        <% @products.each do |product| %>	
                           <li class="selected"> 
                           	<span class="userName">
                           	<span class="pointer"></span>
@@ -72,14 +71,11 @@
                           	</span> <span class="vender">Zeiss</span>
                           	<span class="sold">124</span> 
                           	<span class="view">1234</span>
-                          	<span class="rating"><img src="/assets/ecomm/images/rating_4.png" border="0" /></span>
-                          	
-                          	<span class="active"><img src="/assets/ecomm/images/<%= product.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" /></span>
-                          		
-                          	
-                          	<span class="close"><img src="/assets/ecomm/images/btnDelete.png" border="0" /></span>
+                          	<span class="rating"><img src="/assets/rating_4.png" border="0" /></span>
+                          	<span class="active"><img src="/assets/images/<%= product.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" /></span>
+                          	<span class="close"><img src="/assets/images/btnDelete.png" border="0" /></span>
                           	</li>
-                        <% } %>
+                        <% end %>
                         </ul>
                       </div>
                     </div>
@@ -91,5 +87,3 @@
           </div>
         </div>
       </div>
- 
-  

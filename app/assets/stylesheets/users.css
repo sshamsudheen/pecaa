@@ -14,7 +14,6 @@
 	list-style: none;
 }
 .user-tabs ul li{
-	width:60px;
 	height:20px;
 	border:1px solid #acbecb;
 	display:inline-block;
@@ -24,8 +23,8 @@
 	color:#8495a2;
 	text-align: center;
 	font-size:14px;
-	padding-top:4px;
 	margin-right:5px;
+	padding:4px 10px 2px;
 }
 .user-tabs ul li.active{
 	background:#96acbf;
