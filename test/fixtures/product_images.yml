@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  file_name: MyString
+  is_primary: false
+  date_added: 2012-05-06 17:27:40
+
+two:
+  file_name: MyString
+  is_primary: false
+  date_added: 2012-05-06 17:27:40
