@@ -42,7 +42,7 @@
         <div class="navBtns">
           <ul>
             <li class="products"></li>
-            <li><%= link_to "<li class='payments active'></li>".html_safe, site_payments_path(@site.id) %></li>
+            <li class="payments acttive"></li>
             <li class="taxes"></li>
             <li class="shipping"></li>
             <li class="features"></li>
@@ -64,6 +64,8 @@
           <% payment_gateway_id = PaymentGateway.find_by_name('Google Checkout').id %>
           <% payment_gateway_class = (payment_gateway_id == params[:id].to_i) ? "active" : "" %>
           <%= link_to "<li class='#{payment_gateway_class}'>Google Checkout</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('Google Checkout').id) %>
+          <% payment_gateway_id = PaymentGateway.find_by_name('No Payment').id %>
+          <% payment_gateway_class = (payment_gateway_id == params[:id].to_i) ? "active" : "" %>
           <%= link_to "<li class='#{payment_gateway_class}'>no payment required</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('No Payment').id) %>
         </ul>
       </div>

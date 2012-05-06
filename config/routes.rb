@@ -81,7 +81,7 @@ Mystore3::Application.routes.draw do
     end
 
     resources :payments do
-      put 'enable', :on => :member
+      get 'enable', :on => :member
     end
     
     
