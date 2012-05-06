@@ -11,5 +11,5 @@ config/database.yml
 nbproject/**/*
 public/system/uploads/*
 public/themes/*
-
-.idea
+.DS_Store/
+.idea/
