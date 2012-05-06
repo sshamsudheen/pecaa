@@ -1,20 +1,19 @@
 <dt>user name :</dt>
 <dd>
-  <% payment_gateway_attribute_value = @payment_gateway.payment_gateway_attributes.where(:name => "username").last.site_payment_gateway_attribute_values.last %>
-  <% payment_username = payment_gateway_attribute_value.blank? ? "" : payment_gateway_attribute_value.value %>
+  <% payment_username = @payment_gateway.get_value_of("username") %>  
   <%= payment_gateway_attribute.text_field(:username, :class => {:size => 20}, :value => payment_username) %>
 </dd>
 <dt>password :</dt>
 <dd>
-  <% payment_gateway_attribute_value = @payment_gateway.payment_gateway_attributes.where(:name => "password").last.site_payment_gateway_attribute_values.last %>
-  <% payment_password = payment_gateway_attribute_value.blank? ? "" : payment_gateway_attribute_value.value %>
+  <% payment_password = @payment_gateway.get_value_of("password") %>
   <%= payment_gateway_attribute.password_field(:password, :class => {:size => 20}, :value => payment_password) %>
 </dd>
 <dt>test mode :</dt>
 <dd>
             <span class="status">
               <% @site_payment_gateway.reload %>
-              <img class="<%= @site_payment_gateway.is_test_mode ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_test_mode ? "enable_is_test_mode" : "disable_is_test_mode" %>">
-              <%= hidden_field(:site_payment_gateway, :is_test_mode, :value => @site_payment_gateway.is_test_mode ? "1" : "0") %>
+              <% site_payment_gateway_test_mode_arr = site_payment_gateway_test_mode %>
+              <img class="<%= site_payment_gateway_test_mode_arr[0] %>" width="48" height="21" id="<%= site_payment_gateway_test_mode_arr[1] %>">
+              <%= hidden_field(:site_payment_gateway, :is_test_mode, :value => site_payment_gateway_test_mode_arr[2]) %>
           </span>
 </dd>

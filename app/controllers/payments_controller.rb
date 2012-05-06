@@ -17,21 +17,7 @@ class PaymentsController < ApplicationController
 
   def update
     site_payment_gateway = SitesPaymentGateway.find_by_site_id_and_payment_gateway_id(@site.id, @payment_gateway.id)
-    SitePaymentGatewayAttributeValue.transaction do
-      begin
-        params[:payment_gateway_attribute].each do |payment_attribute, payment_value|
-          payment_gateway_attribute = @payment_gateway.payment_gateway_attributes.where(:name => payment_attribute).last
-          site_payment_gateway_attribute_value = SitePaymentGatewayAttributeValue.find_or_initialize_by_site_payment_gateway_id_and_payment_gateway_attribute_id(site_payment_gateway.id, payment_gateway_attribute.id)
-          site_payment_gateway_attribute_value.update_attributes(:site_payment_gateway_id =>site_payment_gateway.id, :payment_gateway_attribute_id => payment_gateway_attribute.id, :value => payment_value)
-        end
-        site_payment_gateway.credit_card_types = CreditCardType.where(:id => params[:credit_card_type][:id].values) rescue []
-
-        site_payment_gateway.update_attributes(params[:site_payment_gateway])
-        flash[:notice] = "Updated Successfully"
-      rescue
-        flash[:notice] = "Problem saving the gateway, please try again"
-      end
-    end
+    flash[:notice] = SitePaymentGatewayAttributeValue.create_or_update_site_payment_gateway_details(site_payment_gateway, params)    
     render :template => template_name
   end
 
