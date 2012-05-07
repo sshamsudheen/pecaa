@@ -7,8 +7,7 @@
  function selectTab(tabId) {
  	var tab  = $("#tabs li#"+tabId)
 	tab.addClass("active");
-	var tab_content = tab.find("a").attr("href");
-    $(tab_content).fadeIn();
+	var tahetyI content).fadeIn();
  }
  
 $(document).ready(function(){
@@ -53,10 +52,20 @@ $(document).ready(function(){
     <div id="tabs_container">
       <ul id="tabs">
         <li class="active" id="product_setup" name="product_setup"><a href="#tab1">product setup</a></li>
+        <li><a href="#tab2">images</a></li>
+        <li><a href="#tab3">product options</a></li>
+        <li><a href="#tab4">inventory</a></li>
+        <li><a href="#tab5">related products</a></li>
+        <li><a href="#tab6">try it on</a></li>
       </ul>
     </div>
     <div id="tabs_content_container">
     	<%= render :partial => "product_setup" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "images" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "product_options" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "inventory" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "related_products" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "try_it_on" ,:locals => {:site => @site, :product => @product }%>
     </div>
   </div>
   <div class="footSection">
