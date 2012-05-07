@@ -22,8 +22,8 @@ class AddFilesController < ApplicationController
         content_lib = ContentLibrary.create({:name => @add_file.upload_file_name,
           :source_id => @add_file.id, :source_type => 'File',
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
-          if @site_page
-            ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id,:site_page_id => @site_page.id )
+          if params[:from_content]
+            ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
             redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=File&content_lib=#{content_lib.id}"
           else
             redirect_to content_libraries_path

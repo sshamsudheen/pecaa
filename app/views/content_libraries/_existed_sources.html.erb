@@ -2,15 +2,17 @@
 <%common_details=@site_page.content_libraries_site_pages%>
 <%common_details.each do |common_detail|%>
   <%content = common_detail.content_library%>
-  <%if content%>
-  <li class="item" id = "resize_<%=content.id%>" style="width:400px;height:300px;position:relative;float:left;">
+  <li class="item ui-draggable active">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
 												<%= hidden_field_tag "content_id", content.id%>
-												<%= hidden_field_tag "style_position",""%>
-												<div  id="doc_form">
+												<%= hidden_field_tag "style_position","width:100%;height:100%"%>
 												<%if content.source_type == "Image"%>
-															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
-												<%elsif content.source_type == "Video"%>
+												<div class="hotspot" style="display: none;">
+													<span class="pointer"></span>
+													
+													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
+												</div>
+]												<%elsif content.source_type == "Video"%>
 															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
 												<%elsif content.source_type == "File"%>
 															<%@add_file = AddFile.find(content.source_id)%>
@@ -28,7 +30,7 @@
 															<%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
 												<%end%>
 												</div>
-											
+
 <script>											
 $('#resize_<%=content.id%>').resizable({
 			maxHeight: 250,
@@ -39,6 +41,5 @@ $('#resize_<%=content.id%>').resizable({
 
 </script>
 </li>
-<%end%>
 <%end%>
 <%end%>

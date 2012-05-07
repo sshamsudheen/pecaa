@@ -1,7 +1,7 @@
 <div class="contentObject">
 	<div class="resizable_content">
 	<div class="expandable">
-		<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$(this).parents('.contentObject').html('');"%></span>
+		<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
 		<span class="drag"></span>
 		
 		<div class="objectContent"><span style="" class="title"><img border="0" src="<%=content.source.upload%>" width="100%" height="100%"></span></div>
