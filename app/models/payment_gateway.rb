@@ -8,7 +8,7 @@ class PaymentGateway < ActiveRecord::Base
     payment_gateway_attribute_value.blank? ? "" : payment_gateway_attribute_value.value
   end
 
-  def find_active_payment(gateway)
-    (find_by_name(gateway).id == params[:id].to_i) ? "active" : ""
+  def self.find_active_payment(gateway, payment_gateway_id)
+    (find_by_name(gateway).id == payment_gateway_id.to_i) ? "active" : ""
   end
 end
