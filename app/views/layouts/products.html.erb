@@ -49,7 +49,7 @@
         <div class="navBtns">
           <ul>
             <li class="products active"></li>
-            <li class="payments"></li>
+            <li><%= link_to "<li class='payments'></li>".html_safe, site_payments_path(@site.id)%></li>
             <li class="taxes"></li>
             <li class="shipping"></li>
             <li class="features"></li>

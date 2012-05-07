@@ -1,0 +1,9 @@
+<script type="text/javascript">
+  <% if @site_payment_gateway.is_enable %>
+    $(".rowDiv2").removeClass("divAlpha");
+    $('.rowDiv2 :input').attr('disabled', false);
+  <% else %>
+    $(".rowDiv2").addClass("divAlpha");
+    $('.rowDiv2 :input').attr('disabled', true);
+  <% end %>
+</script>

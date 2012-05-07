@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120415072200) do
+ActiveRecord::Schema.define(:version => 20120504160446) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.boolean  "is_deleted",          :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "add_forms", :force => true do |t|
+    t.string   "name"
+    t.integer  "created_by"
+    t.string   "subject_line"
+    t.text     "delivery_email_address"
+    t.string   "confirmation_text"
+    t.boolean  "use_captcha"
+    t.boolean  "use_field_label"
+    t.string   "submit_button_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,16 +83,18 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.string  "height"
     t.string  "position"
     t.integer "site_id"
-  end
-
-  create_table "content_libraries_site_pagess", :id => false, :force => true do |t|
-    t.integer "content_library_id"
-    t.integer "site_page_id"
+    t.integer "id"
   end
 
   create_table "content_libraries_sites", :id => false, :force => true do |t|
     t.integer "content_library_id"
     t.integer "site_id"
+  end
+
+  create_table "credit_card_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "external_links", :force => true do |t|
@@ -118,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.boolean  "is_deleted"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_page_id"
+    t.integer  "site_id"
   end
 
   create_table "notes", :force => true do |t|
@@ -128,9 +145,10 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", :force => true do |t|
+  create_table "options", :force => true do |t|
     t.string   "name"
-    t.string   "layout"
+    t.integer  "question_id"
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -143,11 +161,68 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.datetime "updated_at"
   end
 
+  create_table "payment_gateway_attributes", :force => true do |t|
+    t.integer  "payment_gateway_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_gateways", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.string   "display_name"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_categories", :force => true do |t|
+    t.string   "name"
+    t.decimal  "price_modifier", :precision => 10, :scale => 0
+    t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_vendors", :force => true do |t|
+    t.string   "name"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "sku"
+    t.string   "vendor"
+    t.integer  "sold"
+    t.integer  "viewed"
+    t.integer  "rating"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "base_price",        :precision => 10, :scale => 0
+    t.decimal  "retail_price",      :precision => 10, :scale => 0
+    t.decimal  "cost",              :precision => 10, :scale => 0
+    t.decimal  "weight",            :precision => 10, :scale => 0
+    t.decimal  "shipping_modifier", :precision => 10, :scale => 0
+    t.decimal  "case_price",        :precision => 10, :scale => 0
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "add_form_id"
+    t.string   "type"
+    t.string   "name"
+    t.string   "field_type"
+    t.text     "validation"
+    t.boolean  "mandatory"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -184,11 +259,14 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
   end
 
   create_table "site_contacts", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "position"
-    t.string   "email"
-    t.string   "phone"
+    t.text     "email"
+    t.text     "phone"
+    t.integer  "created_by"
+    t.integer  "site_id"
+    t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -197,6 +275,17 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.integer  "site_id"
     t.string   "name"
     t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_images", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "site_page_id"
+    t.integer  "user_id"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -271,6 +360,14 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.string   "custom_url"
   end
 
+  create_table "site_payment_gateway_attribute_values", :force => true do |t|
+    t.integer  "site_payment_gateway_id"
+    t.integer  "payment_gateway_attribute_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "site_styles", :force => true do |t|
     t.integer  "site_id"
     t.text     "background_style"
@@ -310,6 +407,24 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
   add_index "sites", ["domain_name"], :name => "index_sites_on_domain_name"
   add_index "sites", ["name"], :name => "index_sites_on_name"
 
+  create_table "sites_payment_gateways", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "payment_gateway_id"
+    t.boolean  "is_enable"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_test_mode"
+    t.boolean  "authorize_funds_only"
+    t.boolean  "is_cvv"
+  end
+
+  create_table "sites_payment_gateways_credit_card_types", :force => true do |t|
+    t.integer  "site_payment_gateway_id"
+    t.integer  "credit_card_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sub_permissions", :force => true do |t|
     t.string   "name"
     t.string   "display_name"
@@ -338,6 +453,10 @@ ActiveRecord::Schema.define(:version => 20120415072200) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "price",         :default => 0.0
+    t.text     "secret_code"
+    t.text     "filename"
+    t.text     "content_type"
+    t.boolean  "is_active",     :default => true
   end
 
   create_table "uploads", :force => true do |t|
