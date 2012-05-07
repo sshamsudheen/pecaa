@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_id: 1
+  size: MyString
+  material: MyString
+  sub_sku: MyString
+  inventory: 1
+  trigger: 1
+  track_inventory: false
+  allow_negative_inventory: false
+
+two:
+  product_id: 1
+  size: MyString
+  material: MyString
+  sub_sku: MyString
+  inventory: 1
+  trigger: 1
+  track_inventory: false
+  allow_negative_inventory: false

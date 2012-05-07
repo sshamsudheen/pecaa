@@ -38,12 +38,7 @@ class ProductsController < ApplicationController
   
   private
   
-  def ensure_site_id
-    unless @site = Site.find_by_id(params[:site_id])
-      #format.html { render template: 'errors/error_404', layout: 'layouts/application', status: 404 }
-      render :nothing => true, :status=> 404
-    end  
-  end
+  
   
   def ensure_product_id
     unless @product = Product.find_by_id(params[:product_id])

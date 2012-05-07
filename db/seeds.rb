@@ -33,6 +33,29 @@ site= Site.create(:name=>"Test", :description=>"Lorem ipsum dolor sit amet, cons
 SiteLink.create(:name=>"Home", :description=>'Some text',:created_by => admin, :is_active => true, :title=>'Home', :target=>"www.google.com", :site_id=>site)
 SiteLink.create(:name=>"About Us", :description=>'Some text',:created_by => admin, :is_active => true, :title=>'About Us', :target=>"www.google.com", :site_id=>site)
 
+authorize_net = PaymentGateway.create(:name => 'Authorize.net')
+paypal = PaymentGateway.create(:name => 'Pay Pal')
+google_checkout = PaymentGateway.create(:name => 'Google Checkout')
+no_payment = PaymentGateway.create(:name => 'No Payment')
+
+authorize_net.payment_gateway_attributes.create(:name => 'username')
+authorize_net.payment_gateway_attributes.create(:name => 'password')
+
+paypal.payment_gateway_attributes.create(:name => 'username')
+paypal.payment_gateway_attributes.create(:name => 'password')
+paypal.payment_gateway_attributes.create(:name => 'payment_method')
+
+google_checkout.payment_gateway_attributes.create(:name => 'username')
+google_checkout.payment_gateway_attributes.create(:name => 'password')
+
+no_payment.payment_gateway_attributes.create(:name => 'friendly_name')
+
+CreditCardType.create(:name => 'MasterCard')
+CreditCardType.create(:name => 'Visa')
+CreditCardType.create(:name => 'Discover')
+CreditCardType.create(:name => 'American Express')
+
+
 # 5.times do |i|
 #   Theme.create(:name=>"theme#{i}", :theme_type=>"Free", :created_by=>admin)
 # end

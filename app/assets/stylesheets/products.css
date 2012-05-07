@@ -1,25 +1,14 @@
 @charset "utf-8";
 /* CSS Document */
-/* common class*/
 
-.site-users .userGridHeader{
-margin-left:0;	
+.main-nav ul li.products{
+    background: url(img/btn_products.png) no-repeat;
+    width: 103px;
 }
-.site-users .userGridFooter{
-	margin-left:0;
+.main-nav ul li.products.active{
+    background: url(img/btn_products.png) no-repeat;
+    width: 103px;
 }
-.page-data {
-margin: 0 10px;	
-	
-}
-
-#scrollbar1 .shadows{
-margin-left:0;	
-}
-#scrollbar1 .overview{
-	left:0;
-}
-/*end common */
 
 .main-nav ul li.payments {
 	background: url(img/btn_payments.png) no-repeat;
@@ -27,7 +16,7 @@ margin-left:0;
 }
 .main-nav ul li.payments.acttive {
 	background: url(img/btn_payments_on.png) no-repeat;
-	width: 84px;
+	width: 120px;
 }
 .main-nav ul li.taxes {
 	background: url(img/btn_taxes.png) no-repeat;
@@ -79,7 +68,7 @@ margin-left:0;
 }
 .productGrid ul.ConLibraHeads li span.userName {
 	display: inline-block;
-	width: 170px;
+	width: 120px;
 }
 .productGrid ul.ConLibraHeads li span.group {
 	border: 0 none;
@@ -121,7 +110,7 @@ margin-left:0;
 	padding-top: 5px;
 	position: relative;
 	vertical-align: top;
-	width: 168px;
+	width: 120px;
 }
 .productGrid ul.ConLibra li span.group {
 	border-left: 1px solid #999999;
@@ -136,7 +125,7 @@ margin-left:0;
 	padding-top: 5px;
 	text-align: center;
 	vertical-align: top;
-	width: 65px;
+	width: 85px;
 }
 .productGrid ul.ConLibra li span.vender {
 	border-left: 1px solid #999999;
@@ -213,16 +202,16 @@ margin-left:0;
 }
 .categoryMain .site-users {
 	margin-bottom: 30px;
-	width: 95%;
+	width: 100%;
 }
 .categoryMain #scrollbar1 {
-	width: 100%;
+	width: 972px;
 }
 .categoryMain #scrollbar1 .overview {
-	width: 100%;
+	width:972px;
 }
 .categoryMain #scrollbar1 .viewport {
-	width: 100%;
+	width: 956px;
 }
 .categoryMain ul.ConLibraHeads li span.userName {
 	display: inline-block;
@@ -441,14 +430,11 @@ img {
 .ProductOptions.userGridHeader {
 	margin-left:10px 0 10px 0;
 }
-.ProductOptions #scrollbar1{
-width:100%;	
-}
 .ProductOptions #scrollbar1 .viewport {
 	height: 70px;
 	overflow: hidden;
 	position: relative;
-	width: 100%;
+	width: 713px;
 }
 .ProductOptions .addNewUserBtn {
 	margin-bottom:5px;
@@ -459,11 +445,10 @@ width:100%;
 }
 .ProductOptions .manageDateLeftBox {
 	float:left;
-	width:402px;
+	width:370px;
 	background-image:url(img/pOptionsleftBg.png);
 	height: 121px;
 }
-
 .ProductOptions .site-users {
 	float: right;
 	margin-bottom: 30px;
@@ -483,8 +468,6 @@ width:100%;
 	border-bottom-left-radius: 0px;
 }
 .ProductOptions .shadows, .ProductOptions .site-users .userGridFooter {
-	
-	  margin-left: 0px;
 }
 .ProductOptions #scrollbar1 .overview {
 	left:0
@@ -559,7 +542,9 @@ width:100%;
 .ProductOptions .group .val img {
 	padding:0;
 }
-
+.ProductOptions span img {
+	padding:5px;
+}
 .noEdit {
 	background-color:#adb5be;
 	border:solid 1px #999;
@@ -573,18 +558,19 @@ width:100%;
 	padding:2px;
 }
 #productsEdit {
-	width:100%;
+	width:847px;
 }
 #productsEdit .viewport {
-	width: 100%;
+	width: 847px;
 	height: 170px;
 	overflow: hidden;
 	position: relative;
 }
 #productsEdit .overview {
-width: 100%;
+	width: 836px;
 	list-style: none;
 	position: absolute;
+	left: 10px;
 	top: 0;
 	padding: 0;
 	margin: 0;
@@ -777,30 +763,6 @@ span img {
 }
 /* end tabd*/
 
-/* images styles*/
-
-.createEditDiv #productsEdit{
-	width: 100%;
-}
-.createEditDiv #productsEdit .overview{
-
-	 width:100%;
-}
-
-
-	
-.createEditDiv .site-users{
-	width:100%;
-	
-}
-
-.createEditDiv .site-users .userGridHeader{
- margin-left: 0px;	
-}
-
-.createEditDiv  .site-users .userGridFooter{
- margin-left: 0px;		
-}
 .tab2bottomDiv {
 	float:left;
 	width:99%;
@@ -968,7 +930,7 @@ span img {
 .MProductOptions .manageDateLeftBox {
 	background-image: url("img/pOptionsleftBg.png");
 	float: left;
-	height: 153px;
+	height: 148px;
 	width: 370px;
 }
 .group .key {
@@ -1046,16 +1008,11 @@ span img {
 	width:370px;
 	background-image: url("img/pOptionsleftBg.png");
 	height: 150px;
-	  margin-left: 11px;
-}
-.manageDateLeftBox span:first-of-type img{
-padding:5px 0 0 5px;	
 }
 .manageProductRightDiv {
 	float:left;
 	width:470px;
 }
-
 .MProductOptions .site-users .userGridHeader {
 	margin-left: 0px;
 	border-top-left-radius:0px;
@@ -1068,18 +1025,6 @@ padding:5px 0 0 5px;
 	height: 100%;
 	position: relative;
 }
-
-.MProductOptions #scrollbar1{
-	
-width:471px;	
-}
-.colum-section .group{
-padding:3px 0px	
-}
-
-.MProductOptions #scrollbar1 .shadows{
-margin-left:0;	
-}
 .MProductOptions #scrollbar1 .overview {
 	left:0px;
 	list-style: none outside none;
@@ -1090,29 +1035,10 @@ margin-left:0;
 	width: 470px;
 }
 .MProductOptions #scrollbar1 .viewport {
-	height: 102px;
+	height: 99px;
 	overflow: hidden;
 	position: relative;
 	width: 470px;
-}
-.eiditTextDiv span.onBtn {
-	display:block;
-	background-image:url("img/onoffBtn.jpg");
-	width:50px;
-	height:20px;
-cursor:pointer;
-float:left;
-	
-}
-.eiditTextDiv span.offBtn {
-	display:block;
-	background-image:url("img/onoffBtn.jpg");
-	background-position:-50px;
-	width:50px;
-	height:20px;
-cursor:pointer;
-float:left;
-	
 }
 .MProductOptions .site-users .userGridFooter {
 	background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
@@ -1133,7 +1059,7 @@ float:left;
 
 .inventoryDiv .site-users {
 	margin-bottom: 30px;
-	width: 99%;
+	width: 98%;
 }
 .inventoryDiv .site-users ul.ConLibraHeads li {
 	background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
@@ -1188,7 +1114,7 @@ float:left;
 	height: 19px;
 	padding-top: 9px;
 	vertical-align: top;
-	background:url("img/leftArrow.png") no-repeat right 5px;
+	background:url(../assets/ecomm/images/leftArrow.png) no-repeat right 5px;
 }
 .inventoryDiv .trigger {
 	width:100px;
@@ -1198,7 +1124,7 @@ float:left;
 	height: 19px;
 	padding-top: 9px;
 	vertical-align: top;
-	background:url("img/leftArrow.png") no-repeat right 5px;
+	background:url(../assets/ecomm/images/leftArrow.png) no-repeat right 5px;
 }
 .inventoryDiv .trackInv {
 	width:100px;
@@ -1225,7 +1151,7 @@ float:left;
 /* Related Products*/
 .relatedProducts .site-users {
 	margin-bottom: 30px;
-	width: 99%;
+	width: 98%;
 }
 .relatedProducts .sectionTitleDiv .title {
 	color: #666666;
@@ -1338,14 +1264,14 @@ text-align:center;
 
 }
 .tryItonDiv #scrollbar1{
-width:201px	
+width:220px	
 }
 .tryItonDiv #scrollbar1 .overview{
 width:220px	
 }
 .tryItonDiv #scrollbar1 .viewport{
 height:350px;	
-width:199px	
+width:220px	
 }
 
 .tryItonDiv .site-users {
@@ -1397,9 +1323,10 @@ margin:10px 50px;
 }
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#products1 { width: 100%;  }
-#products1 .viewport { width:100%; height: 400px; overflow: hidden; position: relative; }
-#products1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
+#products1 { width: 729px;  }
+#products1 .shadows { margin-left:10px; }
+#products1 .viewport { width: 715px; height: 400px; overflow: hidden; position: relative; }
+#products1 .overview { width: 715px; list-style: none; position: absolute; left: 10px; top: 0; padding: 0; margin: 0; }
 #products1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
 #products1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #333333;}
 #products1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
