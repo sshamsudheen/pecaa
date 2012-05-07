@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504160446) do
+ActiveRecord::Schema.define(:version => 20120507191724) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
     t.text     "colors"
     t.string   "name"
     t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -122,6 +129,19 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.boolean  "is_deleted",          :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inventories", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "size"
+    t.string   "material"
+    t.string   "sub_sku"
+    t.integer  "inventory"
+    t.integer  "trigger"
+    t.boolean  "track_inventory"
+    t.boolean  "allow_negative_inventory"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -191,6 +211,22 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
     t.datetime "updated_at"
   end
 
+  create_table "product_images", :force => true do |t|
+    t.string   "file_name"
+    t.boolean  "is_primary"
+    t.datetime "date_added"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_options", :force => true do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.decimal  "price_modifier", :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_vendors", :force => true do |t|
     t.string   "name"
     t.boolean  "is_active"
@@ -223,6 +259,13 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
     t.string   "field_type"
     t.text     "validation"
     t.boolean  "mandatory"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "related_products", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "related_product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -361,7 +404,7 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
   end
 
   create_table "site_payment_gateway_attribute_values", :force => true do |t|
-    t.integer  "site_payment_gateway_id"
+    t.integer  "sites_payment_gateway_id"
     t.integer  "payment_gateway_attribute_id"
     t.string   "value"
     t.datetime "created_at"
@@ -419,8 +462,16 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
   end
 
   create_table "sites_payment_gateways_credit_card_types", :force => true do |t|
-    t.integer  "site_payment_gateway_id"
+    t.integer  "sites_payment_gateway_id"
     t.integer  "credit_card_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites_tax_gateways", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "tax_gateway_id"
+    t.boolean  "is_enable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -431,6 +482,26 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
     t.integer  "permission_id"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_gateway_attribute_values", :force => true do |t|
+    t.string   "value"
+    t.integer  "tax_gateway_attribute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_gateway_attributes", :force => true do |t|
+    t.string   "name"
+    t.integer  "tax_gateway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_gateways", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -498,6 +569,13 @@ ActiveRecord::Schema.define(:version => 20120504160446) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "videos", :force => true do |t|
     t.string   "source_content_type"
