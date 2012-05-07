@@ -1,6 +1,14 @@
 @charset "utf-8";
 /* CSS Document */
 
+.main-nav ul li.products{
+    background: url(img/btn_products.png) no-repeat;
+    width: 103px;
+}
+.main-nav ul li.products.active{
+    background: url(img/btn_products.png) no-repeat;
+    width: 103px;
+}
 
 .main-nav ul li.payments {
 	background: url(img/btn_payments.png) no-repeat;
@@ -8,7 +16,7 @@
 }
 .main-nav ul li.payments.acttive {
 	background: url(img/btn_payments_on.png) no-repeat;
-	width: 84px;
+	width: 120px;
 }
 .main-nav ul li.taxes {
 	background: url(img/btn_taxes.png) no-repeat;
