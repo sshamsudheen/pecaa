@@ -6,7 +6,7 @@
     width: 103px;
 }
 .main-nav ul li.products.active{
-    background: url(img/btn_products.png) no-repeat;
+    background: url(img/btn_products_on.png) no-repeat;
     width: 103px;
 }
 
