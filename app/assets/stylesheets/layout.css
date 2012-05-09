@@ -108,7 +108,7 @@ button.redBtn{
 	background:0;
 }
 .main-nav ul li{
-	display:table-cell;
+	display:inline-block;
 	margin:0;
 	padding:0;
 	list-style: none;
@@ -219,6 +219,7 @@ button.redBtn{
 	padding: 0 0 0 10px;
 	margin-bottom:20px;
 }
+.track { background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
 .themes-board{
 	background: url(img/bg_grid.gif) repeat;
 	height:60%;
@@ -280,7 +281,7 @@ span.select {
 	position: absolute;
 	width:100%;
 	height:12px;
-	z-index: 999;
+	z-index: 1;
 }
 .shadows .topShadow{
 	background: url("img/bg_TableTopShadow.png") repeat-x scroll 0 0 transparent;
