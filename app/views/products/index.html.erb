@@ -37,7 +37,7 @@
           </div>
           <div class="site-users left">
             <div class="addNewUserBtn">
-              <a class="addNewUser" rel="facebox" href="products/new" onclick="openTabs()" >create product</a>
+              <a class="addNewUser" rel="facebox" href="products/new" " >create product</a>
             </div>
             <div class="page-data clear">
               <div class="userGrid productGrid">
@@ -61,9 +61,10 @@
                         <ul class="ConLibra">
                         <% @products.each do |product| %>	
                         <li> 
-                          <span class="userName">
-                            <span class="pointer"></span>
-ksks                      		<span class="status"></span></span> 
+                           <span class="userName">
+                            	<span class="pointer"></span>
+                      			<span class="status"></span>
+							</span> 
                       		<span class="group"><%= product.name%> </span> 
                       		<span class="created"><%= product.created_at.strftime("%d/%m/%y")%> </span> 
                       		<span class="vender">Zeiss</span>

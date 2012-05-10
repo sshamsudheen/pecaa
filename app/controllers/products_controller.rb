@@ -16,6 +16,12 @@ class ProductsController < ApplicationController
   end
   
   
+  # GET /products/:id/edit
+  def edit
+    render :layout => false
+  end
+  
+  
   # POST /products
   def create
     @product = Product.new(params[:product])
@@ -28,7 +34,7 @@ class ProductsController < ApplicationController
   
   # PUT /products/1
   def update
-    @product = Product.find(params[:id])
+    
     if @product.update_attributes(params[:product])
       redirect_to products_url
     else
@@ -37,7 +43,6 @@ class ProductsController < ApplicationController
   end
   
   private
-  
   
   
   def ensure_product_id
