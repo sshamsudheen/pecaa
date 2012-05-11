@@ -78,6 +78,9 @@ Mystore3::Application.routes.draw do
     
     resources :products do
       get 'index', :on => :collection
+      resources :product_images do
+        get 'index', :on => :collection
+      end 
     end
 
     resources :payments do

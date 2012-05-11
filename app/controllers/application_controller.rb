@@ -36,6 +36,13 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def ensure_product_id
+    unless @product = Product.find_by_id(params[:product_id])
+      render :nothing => true, :status=> 404
+    end  
+  end
+  
 end
 
   
