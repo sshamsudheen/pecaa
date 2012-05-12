@@ -11,6 +11,8 @@
 												<%if content.source_type == "Image"%>
 															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
 												<%elsif content.source_type == "Video"%>
+															<%@video = Video.find(content.source_id)%>
+															<%@from_content=true%>
 															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
 												<%elsif content.source_type == "File"%>
 															<%@add_file = AddFile.find(content.source_id)%>
