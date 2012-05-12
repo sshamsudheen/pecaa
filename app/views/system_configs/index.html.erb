@@ -1,0 +1,79 @@
+<%=form_for (@system_tag = (SystemConfig.first || SystemConfig.new)) do |f| %>
+<div class="ctrlTabContent">
+    <div class="sysConfg">
+        <dl>
+            <dd class="logoDD">
+                <img border="0" src="/assets/logo_PecaaConfg.png">
+            </dd>
+            <dt>
+                controller logo :
+            </dt>
+            <dd class="grayBg">
+                <%=f.file_field :controller_logo,:class=> "imgInput",:style=>"width:295px;" %>
+            </dd>
+            <dt>
+                controller title :
+            </dt>
+            <dd class="grayBg">
+            	<%=f.text_field :controller_title,:class=> "imgInput" , :style => "width:90%" %>
+            </dd>
+            <dt>
+                image max size :
+            </dt>
+            <dd>
+               <%=f.text_field :image_max_size,:class=> "grayBg maxSize"  %>mb
+            </dd>
+            <dt>
+                image types :
+            </dt>
+            <dd>
+            	
+                <span class="formatGr"><%=check_box_tag "image[types][]",'.png',(@system_tag.image_types.split(';').include?('.png') rescue nil),{:class=>"styled"} %><span class="format">.png</span></span>
+                <span class="formatGr"><%=check_box_tag "image[types][]",'.jpg',(@system_tag.image_types.split(';').include?('.jpg') rescue nil),{:class=>"styled"} %><span class="format">.jpg</span></span>
+                <span class="formatGr"><%=check_box_tag "image[types][]",'.gif',(@system_tag.image_types.split(';').include?('.gif') rescue nil),{:class=>"styled"} %><span class="format">.gif</span></span>
+            </dd>
+            <dt>
+                video max size :
+            </dt>
+            <dd>
+                <%=f.text_field :video_max_size,:class=> "grayBg maxSize"  %>mb
+            </dd>
+            <dt>
+                video types :
+            </dt>
+            <dd>
+                <span class="formatGr"><%=check_box_tag "video[types][]",'.mp4',(@system_tag.video_types.split(';').include?('.mp4') rescue nil),{:class=>"styled"} %><span class="format">.mp4</span></span>
+                <span class="formatGr"><%=check_box_tag "video[types][]",'.mpeg',(@system_tag.video_types.split(';').include?('.mpeg') rescue nil),{:class=>"styled"} %><span class="format">.mpeg</span></span>
+                <span class="formatGr"><%=check_box_tag "video[types][]",'.flv',(@system_tag.video_types.split(';').include?('.flv') rescue nil),{:class=>"styled"} %><span class="format">.flv</span></span>
+                <span class="formatGr"><%=check_box_tag "video[types][]",'.f4v',(@system_tag.video_types.split(';').include?('.f4v') rescue nil),{:class=>"styled"} %><span class="format">.f4v</span></span>
+            </dd>
+            <dt>
+                file max size :
+            </dt>
+            <dd>
+                <%=f.text_field :file_max_size,:class=> "grayBg maxSize"  %>mb
+            </dd>
+            <dt>
+                file types :
+            </dt>
+            <dd class="nomargin">
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.pdf',(@system_tag.file_types.split(';').include?('.pdf') rescue nil),{:class=>"styled"} %><span class="format">.pdf</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.doc',(@system_tag.file_types.split(';').include?('.doc') rescue nil),{:class=>"styled"} %><span class="format">.doc</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.docx',(@system_tag.file_types.split(';').include?('.docx') rescue nil),{:class=>"styled"} %><span class="format">.docx</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.xls',(@system_tag.file_types.split(';').include?('.xls') rescue nil),{:class=>"styled"} %><span class="format">.xls</span></span>
+            </dd>
+            <dd>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.xlsx',(@system_tag.file_types.split(';').include?('.xlsx') rescue nil),{:class=>"styled"} %><span class="format">.xlsx</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.ppt',(@system_tag.file_types.split(';').include?('.ppt') rescue nil),{:class=>"styled"} %><span class="format">.ppt</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.pptx',(@system_tag.file_types.split(';').include?('.pptx') rescue nil),{:class=>"styled"} %><span class="format">.pptx</span></span>
+                <span class="formatGr"><%=check_box_tag "file[types][]",'.rtf',(@system_tag.file_types.split(';').include?('.rtf') rescue nil),{:class=>"styled"} %><span class="format">.rtf</span></span>
+            </dd>
+            <dd class="center">
+                <button class="saveBtn">
+                    Save
+                </button>
+            </dd>
+        </dl>
+    </div>
+</div>
+<%end%>

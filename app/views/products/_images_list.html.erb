@@ -1,0 +1,40 @@
+            <div class="site-users ">
+              <div class="page-data clear ">
+                <div class="userGrid imageTab">
+                  <div class="userGridHeader">
+                    <ul class="ConLibraHeads">
+                      <li> <span class="gridColHeaddings w150">Image</span> <span class="gridColHeaddings w350">Image file name</span><span class="gridColHeaddings w100">Primary</span><span class="gridColHeaddings w100">Thumbnil</span><span class="gridColHeaddings w100"	>Date Added</span> </li>
+                    </ul>
+                  </div>
+                  <div class="userGridBody">
+                    <div id="productsEdit">
+                      <div class="scrollbar">
+                        <div class="track">
+                          <div class="thumb">
+                            <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="viewport">
+                        <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                        <div class="overview">
+                          <ul class="ConLibra">
+                          	<% product_images.each do |product_image| %>
+                          	
+                            <li>
+                            	<span class="imgs"><img src="assets/ecomm/images/productImg1.png" width="56" height="19"></span>
+                            	<span class="imgFile"><%= product_image.file_name %></span>
+                            	<span class="primary"><img src="assets/ecomm/images/<%= product_image.is_primary? ? 'radioOn' : 'radioOff'%>.jpg" width="17" height="17"></span>
+                            	<span class="thumbnil"><img src="assets/ecomm/images/radioOff.jpg" width="17" height="17"></span><span class="dateAdded">08/12/11</span><span class="removeBtn"><img src="assets/ecomm/images/btnDelete.png" width="19" height="19"></span></li>
+                            <% end %>         
+                           
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="userGridFooter"></div>
+                </div>
+              </div>
+            </div>
+          

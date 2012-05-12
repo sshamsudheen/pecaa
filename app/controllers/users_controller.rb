@@ -148,6 +148,10 @@ class UsersController < ApplicationController
     render :partial=>"sites/search_link_account"
   end
   
+  def update_account
+    render :layout => false
+  end
+  
   protected  
   
   def setup

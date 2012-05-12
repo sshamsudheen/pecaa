@@ -82,6 +82,17 @@
 	padding-left:5px;
 	margin-bottom: 5px;
 }
+
+.siteInfo-main .group .val input[type="password"]{
+	background: #f5f5f5;
+	border-radius: 6px;
+	border:0;
+	color:#333;
+	width: 245px;
+	height: 24px;
+	padding-left:5px;
+	margin-bottom: 5px;
+}
 .siteInfo-main .group .val .zipCode{
 	float: right;
 }

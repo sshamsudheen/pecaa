@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507191724) do
+ActiveRecord::Schema.define(:version => 20120512104234) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -211,12 +211,22 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.datetime "updated_at"
   end
 
+  create_table "product_filters", :force => true do |t|
+    t.string   "name"
+    t.string   "friendly_name"
+    t.boolean  "status"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_images", :force => true do |t|
     t.string   "file_name"
     t.boolean  "is_primary"
     t.datetime "date_added"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_id"
   end
 
   create_table "product_options", :force => true do |t|
@@ -310,6 +320,16 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.integer  "created_by"
     t.integer  "site_id"
     t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_features", :force => true do |t|
+    t.boolean  "product_filtering_status"
+    t.integer  "site_id"
+    t.boolean  "advertising_status"
+    t.boolean  "show_reviews_from_last_login"
+    t.boolean  "cart_setup"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -468,14 +488,6 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.datetime "updated_at"
   end
 
-  create_table "sites_tax_gateways", :force => true do |t|
-    t.integer  "site_id"
-    t.integer  "tax_gateway_id"
-    t.boolean  "is_enable"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sub_permissions", :force => true do |t|
     t.string   "name"
     t.string   "display_name"
@@ -486,22 +498,18 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.datetime "updated_at"
   end
 
-  create_table "tax_gateway_attribute_values", :force => true do |t|
-    t.string   "value"
-    t.integer  "tax_gateway_attribute_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tax_gateway_attributes", :force => true do |t|
-    t.string   "name"
-    t.integer  "tax_gateway_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tax_gateways", :force => true do |t|
-    t.string   "name"
+  create_table "system_configs", :force => true do |t|
+    t.string   "controller_title"
+    t.integer  "image_max_size"
+    t.string   "image_types"
+    t.integer  "video_max_size"
+    t.string   "video_types"
+    t.integer  "file_max_size"
+    t.string   "file_types"
+    t.string   "controller_logo_file_name"
+    t.string   "controller_logo_content_type"
+    t.integer  "controller_logo_file_size"
+    t.datetime "controller_logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -530,15 +538,6 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.boolean  "is_active",     :default => true
   end
 
-  create_table "uploads", :force => true do |t|
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "username"
     t.datetime "created_at"
@@ -565,6 +564,8 @@ ActiveRecord::Schema.define(:version => 20120507191724) do
     t.string   "launch_link"
     t.integer  "created_by"
     t.datetime "last_password_change"
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
