@@ -1,6 +1,12 @@
 Mystore3::Application.routes.draw do
 
 
+  resources :system_configs
+
+  resources :site_features
+
+  resources :product_filters
+
   resources :product_categories
 
   resources :product_vendors
@@ -133,6 +139,7 @@ resources :content_libraries do
 # devise_for :users,  :controllers => { :registrations => "users/registrations" }
  resources :users do 
    post 'search', :on => :collection
+   get 'update_account', :on => :collection
  end
 
  devise_for :user

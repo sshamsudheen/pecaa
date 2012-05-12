@@ -47,7 +47,7 @@ gem 'cancan'
 #gem 'spree_store_credits'
 #, :git => 'git://github.com/spree/spree_store_credits.git'
 
-# gem 'therubyracer'
+ gem 'therubyracer'
 # gem 'libv8', '3.3.10.4'
 
 gem 'kaminari'

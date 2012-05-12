@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  controller_logo: MyString
+  controller_title: MyString
+  image_max_size: 1
+  image_types: MyString
+  video_max_size: 1
+  video_types: MyString
+  file_max_size: 1
+  file_types: MyString
+
+two:
+  controller_logo: MyString
+  controller_title: MyString
+  image_max_size: 1
+  image_types: MyString
+  video_max_size: 1
+  video_types: MyString
+  file_max_size: 1
+  file_types: MyString

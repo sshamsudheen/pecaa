@@ -172,3 +172,87 @@
 .themeSection ul li .activateLink.off{
 	background:url(/assets/btnMarkNo.png) no-repeat 95% center;
 }
+
+.ctrlTabContent .sysConfg{
+	padding:40px 0 0 200px;
+}
+.ctrlTabContent .sysConfg dl{
+	margin-bottom:10px;
+	width:430px;
+}
+.ctrlTabContent .sysConfg dt,
+.ctrlTabContent .sysConfg dd{
+	vertical-align: middle;
+	margin-bottom:5px;
+	display: inline-table;
+	height:24px;
+}
+.ctrlTabContent .sysConfg dt{
+	clear: both;
+	width: 100px;
+	text-align: right;
+	color:#999;
+	padding:6px 0 1px 3px ;
+	margin-right: 5px;
+	float: left;
+	display: block;
+}
+.ctrlTabContent .sysConfg dd{
+	width:320px;
+	float: right;
+}
+.ctrlTabContent .sysConfg dl .grayBg{
+	background:#EEE;
+	border-radius:6px;
+	border:0;
+	height:24px;
+}
+.ctrlTabContent .sysConfg dd .imgInput{
+	border:0;
+	background:none;
+	padding:2px;
+	margin-top:3px;
+}
+.ctrlTabContent .sysConfg dd .pickImg{
+	border:1px solid #333333;
+	background: #999;
+	margin:0;
+}
+.ctrlTabContent .sysConfg dd .maxSize{
+	width:50px; 
+	margin-right: 5px;
+	padding-left:3px;
+	text-align: center;
+}
+.ctrlTabContent .sysConfg dd span.formatGr{
+	display: inline-block;
+	vertical-align: middle;
+	float:left;
+}
+.ctrlTabContent .sysConfg dd span.formatGr span.format{
+	vertical-align: middle;
+	padding-top:3px;
+	font-weight: bold;
+	color:#666666;
+	width:45px;
+	display: inline-block;
+	margin-right: 10px;
+}
+.ctrlTabContent .sysConfg .nomargin{
+	margin:0;
+}
+.ctrlTabContent .sysConfg dl .center{
+	text-align: center;
+}
+.ctrlTabContent .sysConfg dl dd.logoDD{
+	margin-bottom:15px;
+}
+.ctrlTabContent .sysConfg dl dd button.saveBtn{
+	background: -webkit-gradient(linear, left top, left bottom, from(#9BDC5C), to(#87C564));
+	background: -moz-linear-gradient(top,  #9BDC5C,  #87C564);
+	border:1px solid #40A011;
+	font-size: 15px;
+    font-weight: bold;
+    padding: 6px 80px;
+    margin-top:20px;
+}
