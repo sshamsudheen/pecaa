@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_id: 1
+  is_active: false
+  name: MyString
+  supplier_name: MyString
+  price_modifier: 9.99
+
+two:
+  site_id: 1
+  is_active: false
+  name: MyString
+  supplier_name: MyString
+  price_modifier: 9.99
