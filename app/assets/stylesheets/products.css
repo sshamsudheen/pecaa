@@ -340,16 +340,15 @@ img {
 	margin-left:10px;
 }
 .searchResultBox {
-	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #666666;
-	border-radius: 4px 4px 4px 4px;
-	box-shadow: 0 0 3px #999999 inset;
-	height: 300px;
-	position: absolute;
-	right: 180px;
-	top: 120px;
-	width: 191px;
-	z-index: 1000;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #666666;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 0 3px #999999 inset;
+  position: absolute;
+  right: -32px;
+  top: 18px;
+  width: 191px;
+  z-index: 1000;
 }
 .searchResultBox ul, li {
 	list-style:none;

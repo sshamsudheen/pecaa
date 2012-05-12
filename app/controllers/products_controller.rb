@@ -1,12 +1,10 @@
 class ProductsController < ApplicationController
   
-  before_filter :ensure_site_id, :only => [:index,:new,:create,:update]
-  before_filter :ensure_product_id, :only => [:update]
+  before_filter :ensure_site_id
   
   def index
     @products = Product.all
   end
-  
   
   # GET /products/new
   
@@ -30,20 +28,21 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
-      redirect_to products_url
-    else
-      render :action => "edit"
+      if (params[:featured])
+        redirect_to featured_products_site_products_path(@site)
+      else
+        redirect_to site_products_path(@site)
+      end
     end
   end
   
-  private
+  def featured_products
+    @featured_products = Product.find(:all, :conditions=>["is_featured = ?", true])
+  end
   
-  
-  
-  def ensure_product_id
-    unless @product = Product.find_by_id(params[:product_id])
-      render :nothing => true, :status=> 404
-    end  
+  def search
+    @products = Product.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
+    render :partial=>"search"# :text => @products.map{|i| "#{i.name}.#{i.name}\n"}
   end
 
 end

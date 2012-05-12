@@ -1,7 +1,14 @@
 Mystore3::Application.routes.draw do
 
+  get "catalogs_controller/index"
 
-  resources :product_categories
+  get "catalogs_controller/new"
+
+  get "catalogs_controller/create"
+
+  get "catalogs_controller/update"
+
+  get "catalogs_controller/destroy"
 
   resources :product_vendors
 
@@ -52,7 +59,6 @@ Mystore3::Application.routes.draw do
       resources :content_libraries do 
         get 'search', :on => :collection
       end
-      
       resources :miscs do 
       end
       
@@ -78,12 +84,22 @@ Mystore3::Application.routes.draw do
     
     resources :products do
       get 'index', :on => :collection
+      get 'featured_products', :on => :collection
+      post 'search', :on => :collection
+      get 'add_featured', :on => :member, :to => 'products#update'
     end
-
+    
+    resources :product_categories do 
+      post 'search', :on => :collection
+    end
+    
+    resources :catalogs do 
+      post 'search', :on => :collection
+    end
+    
     resources :payments do
       get 'enable', :on => :member
     end
-    
     
   end
   
