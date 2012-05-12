@@ -63,21 +63,20 @@
                         <li> 
                           <span class="userName">
                             <span class="pointer"></span>
-ksks                      		<span class="status"></span></span> 
-                      		<span class="group"><%= product.name%> </span> 
-                      		<span class="created"><%= product.created_at.strftime("%d/%m/%y")%> </span> 
-                      		<span class="vender">Zeiss</span>
-                      		<span class="sold">124</span>
-                      		<span class="view">1234</span>
-                      		<span class="rating">
-                      		  <img src="/assets/rating_4.png" border="0" />
-                      		</span>
-                      		<span class="active">
-                      		  <img src="/assets/<%= product.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
-                      		</span>
-                      		<span class="close">
-                      		  <img src="/assets/btnDelete.png" border="0" />
-                      		</span>
+                            <span class="status"></span>
+                          </span> 
+                          <span class="group"><%= product.name%> </span> 
+                          <span class="created"><%= product.created_at.strftime("%d/%m/%y")%></span> 
+                          <span class="vender">Zeiss</span>
+                          <span class="sold">124</span>
+                          <span class="view">1234</span>
+                          <span class="rating">
+                            <img src="/assets/rating_4.png" border="0" />
+                          </span>
+                          <span class="active">
+                            <img src="/assets/<%= product.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
+                          </span>
+                          <span class="close"><img src="/assets/btnDelete.png" border="0" /></span>
                           </li>
                         <% end %>
                         </ul>

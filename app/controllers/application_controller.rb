@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     unless @site = Site.find_by_id(params[:site_id])
      respond_to do |format|
       #format.html { render template: 'errors/error_404', layout: 'layouts/application', status: 404 }
-      format.all { render nothing: true, status: 404 }
+      format.all { render :nothing=> true, :status => 404 }
       end
     end
   end

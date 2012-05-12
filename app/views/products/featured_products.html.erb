@@ -1,0 +1,132 @@
+<link rel="stylesheet" type="text/css" href="/assets/autocomplete/jquery.autocomplete.css" />
+<link rel="stylesheet" type="text/css" href="/assets/autocomplete/thickbox.css" />
+<script type='text/javascript' src='/assets/autocomplete/jquery.bgiframe.min.js'></script>
+<script type='text/javascript' src='/assets/autocomplete/jquery.ajaxQueue.js'></script>
+<script type='text/javascript' src='/assets/autocomplete/thickbox-compressed.js'></script>
+<script type='text/javascript' src='/assets/jquery.autocomplete.js'></script>
+<script type='text/javascript' src='/assets/auto_complete.js'></script>
+
+<div class="content-section categoryMain">
+  <div class="pages-main">
+    <div class="pages-wrapper">
+      <div class="usersLeftPane productsTitle">
+        <div class="title">Choose Featured Products<span class="help"><a href="#"></a></span></div>
+      </div><div class="searchContent">
+        <input type="text" id="query" name="query" placeholder="search">
+        <div id="search_results"></div>
+    	</div>
+            <!-- <div class="searchResultBox">
+              <ul>
+                <li class="active">pants<span><a href="#"><img src="/assets/searchCloseBtn.png" width="20" height="22"></a></span></li>
+            </ul>
+            </div> -->
+      <div class="site-users left">
+        <div class="page-data clear">
+          <div class="userGrid productGrid">
+            <div class="userGridHeader">
+              <ul class="ConLibraHeads">
+                <li> <span class="userName">Product Name</span> <span class="group">Date Added</span> <span class="created">Enabled</span> </li>
+              </ul>
+            </div>
+            <div class="userGridBody">
+              <div id="scrollbar1">
+                <div class="scrollbar">
+                  <div class="track">
+                    <div class="thumb">
+                      <div class="end"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="viewport">
+                  <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                  <div class="overview featureProduct">
+                    <ul class="ConLibra ">
+                      <%@featured_products.each do |fp|%>
+                        <li class="selected"> 
+                          <span class="userName">
+                            <span class="pointer"></span>
+                            <%=fp.name%>
+                            <span class="status"></span>
+                          </span> 
+                          <span class="group"><%=fp.created_at.strftime("%b/%d/%y")%></span>
+                          <span class="close"><img src="/assets/btnDelete.png" border="0" /></span>
+                        </li>
+                      <%end%>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="userGridFooter"></div>
+          </div>
+        </div>
+        <div class="fpruductFDiv">
+         featured product text : <input name="featured_product_text" id="featured_product_text" type="text" value="featured products" >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#scrollbar1').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+
+		$("ul.ConLibra li").click(function(){
+			var $this = $(this);
+			//$this.parent().find('.misc img').hide();
+			
+			if(!$this.hasClass("selected")){
+				$("ul.ConLibra li").removeClass("selected");
+				$("ul.ConLibra li").find('.pointer').hide();
+				$this.addClass("selected");
+				$this.find('.pointer').show();
+				//$this.find('.misc img').show();
+			}
+			return false;
+			
+		});
+	});
+	
+  // $().ready(function() {
+  //    $("#query").autocomplete("<%=search_site_products_path(@site)%>", {
+  //      width: 320,
+  //      max: 4,
+  //      highlight: false,
+  //      scroll: true,
+  //      scrollHeight: 300,
+  //       // formatItem: function(data, i, n, value) {
+  //       //   var ret = value.split(".")[0];
+  //       //         // if(i == n){ ret = ret + "<li><br/>Displaying "+ n +" results</li>";}
+  //       //         return ret
+  //       // },
+  //      formatResult: function(data, value) {
+  //        return data;
+  //      }
+  //     });
+  // 
+  //   });
+     $("#query").keyup(function(){
+       $.ajax({
+         type: "POST",
+         url: "<%=search_site_products_path(@site)%>",
+         data:"query="+$(this).attr('value'),
+         success: function(result){
+           $('#search_results').html(result);
+       }});
+      return false;
+     });
+     
+     // $("featured_product").click(function(){
+     //    $.ajax({
+     //      type: "POST",
+     //      url: $(this).attr('href'),
+     //      data:"query="+$(this).attr('value'),
+     //      success: function(result){
+     //        window.location.reload(true);
+     //    }});
+     //   return false;
+     // });
+  
+</script>
