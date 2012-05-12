@@ -5,7 +5,7 @@ class ProductCategoriesController < ApplicationController
   layout "products"
   
   def index
-    @product_catogories = ProductCategory.all
+    @product_categories = ProductCategory.all
   end
 
   def new
