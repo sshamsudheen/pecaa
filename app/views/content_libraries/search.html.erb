@@ -143,8 +143,10 @@
 	$('#form_submit').click(function(){
 		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
-		var content_id = $('#cart li').attr('class').split(' ').pop()
-		$('#cart input#content_id').attr('value',content_id)
+		if ($('#cart input#content_type').attr('value') != "Misc") {
+			var content_id = $('#cart li').attr('class').split(' ').pop()
+			$('#cart input#content_id').attr('value', content_id)
+		}
 		$('#content_page_save').submit();
   });
   

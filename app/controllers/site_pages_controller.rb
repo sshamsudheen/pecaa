@@ -69,7 +69,12 @@ class SitePagesController < ApplicationController
   
   def content_save
     @site_page = SitePage.find(params[:id])
-    @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position])
+    if params[:content_type] == "Misc"
+      @site_page.content_libraries_site_pages.create(:content_type=>"Misc",:position=>params[:style_position],:site_id=>@site.id)
+    else
+      @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
+    end
+    
 
     if params[:is_preview] == "true"
       redirect_to preview_site_path(@site)
