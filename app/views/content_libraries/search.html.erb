@@ -147,7 +147,12 @@
 			var content_id = $('#cart li').attr('class').split(' ').pop()
 			$('#cart input#content_id').attr('value', content_id)
 		}
-		$('#content_page_save').submit();
+		if ($('#cart input#dropped').attr('value') == 'true') {
+			$('#content_page_save').submit();
+		}
+		else{
+			window.location.href='/sites/<%=@site.id%>/site_styles'
+		}
   });
   
   $('#preview_button').click(function(){
