@@ -86,7 +86,7 @@ class SiteFeaturesController < ApplicationController
     @site_feature = SiteFeature.first || SiteFeature.new
     @site_feature.advertising_status = params[:advertise_status] == 'true' ? true : false
     @site_feature.save
-    redirect_to :action => :index
+    render :action => :index
   end
   
   def ssl_setup_status

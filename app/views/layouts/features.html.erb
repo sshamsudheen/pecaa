@@ -67,13 +67,13 @@
                             <li class="<%=params[:controller] == 'product_filters' ? ' active' : ''%>">
                                 product filters
                             </li>
-                            <li class="<%=params[:controller] == 'site_features' ? ' active' : ''%>">
+                            <li class="<%=params[:controller] == 'site_features' and (params[:action] == 'change_adv_status' or params[:action] =='index') ? ' active' : ''%>">
                                 advertising
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'ssl_setup_status' ? ' active' : ''%>">
                                 SSL setup
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'review_management' ? ' active' : ''%>">
                                 reviews
                             </li>
                             <li>

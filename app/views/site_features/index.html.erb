@@ -8,9 +8,9 @@
                       <dt>enable advertising:</dt>
                       <dd><span class="status">
                       	<%if SiteFeature.first and SiteFeature.first.advertising_status%>
-                      	<a href="site_features/change_adv_status?advertise_status=false" class="on"></a>
+                      	<a href="/sites/<%=params[:site_id]%>/site_features/change_adv_status?advertise_status=false" class="on"></a>
 						<%else%>
-						<a href="site_features/change_adv_status?advertise_status=true" class="off"></a>
+						<a href="/sites/<%=params[:site_id]%>/site_features/change_adv_status?advertise_status=true" class="off"></a>
 						<%end%>
 						</span></dd>
                       
