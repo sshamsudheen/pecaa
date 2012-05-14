@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Controller logo:</b>
+  <%= @system_config.controller_logo %>
+</p>
+
+<p>
+  <b>Controller title:</b>
+  <%= @system_config.controller_title %>
+</p>
+
+<p>
+  <b>Image max size:</b>
+  <%= @system_config.image_max_size %>
+</p>
+
+<p>
+  <b>Image types:</b>
+  <%= @system_config.image_types %>
+</p>
+
+<p>
+  <b>Video max size:</b>
+  <%= @system_config.video_max_size %>
+</p>
+
+<p>
+  <b>Video types:</b>
+  <%= @system_config.video_types %>
+</p>
+
+<p>
+  <b>File max size:</b>
+  <%= @system_config.file_max_size %>
+</p>
+
+<p>
+  <b>File types:</b>
+  <%= @system_config.file_types %>
+</p>
+
+
+<%= link_to 'Edit', edit_system_config_path(@system_config) %> |
+<%= link_to 'Back', system_configs_path %>

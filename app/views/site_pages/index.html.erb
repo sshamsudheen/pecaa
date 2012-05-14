@@ -135,15 +135,6 @@
 		
   	});
 	});
-
-  $('.confirm_delete').click(function(){
-    $("#alertBox_"+$(this).attr("rel")).show();
-    return false;
-  });
-  $('.cancel_alert').click(function(){
-    $("#alertBox_"+$(this).attr("rel")).hide();
-    return false;
-  });
 	
   function editor_options(){
     return {
@@ -196,3 +187,4 @@ function get_sortables_ready(){
   });
 }
 </script>
+<script type="text/javascript" src="/assets/alertbox.js"></script>

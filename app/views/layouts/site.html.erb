@@ -63,9 +63,9 @@
 			hoverClass: "ui-state-hover",
 			accept: ":not(.ui-sortable-helper)",
 			drop: function( event, ui ) {
-                                $( this ).find( ".placeholder" ).remove();
+				$( this ).find( ".placeholder" ).remove();
 				$( this ).find('li').remove();
-				$(this).html('')
+				$( this ).html('');
 				if (ui.draggable.attr('class') == "item active newItem misc_form ui-draggable") {
 					 $.ajax({
 				            type: "get",
@@ -76,10 +76,10 @@ $('#cart div.ui-droppable').html(data)
 				            },
 				        });
 				}
-                                 
 
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
+					$('#cart input#dropped').attr('value','true')
 					
 
 			}
@@ -143,11 +143,11 @@ $('#cart div.ui-droppable').html(data)
   <div class="themes-board">
       <div class="grid-board">
         <div id="cart" >
-          <div class="ui-droppable ui-sortable">
+        	<%=hidden_field_tag "dropped",''%>
+          <div class="ui-droppable ui-sortable" style="height:900px;">
             <li class="placeholder">
             	<%=render :partial => '/content_libraries/existed_sources'%>
             </li>
-            <li></li>
           </div>
         </div>
       </div>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">
+  
+  function selectTab(tabId) {
+ 	var tab  = $("#tabs li#"+tabId)
+	tab.addClass("active");
+	
+	var tabContent = tab.find("a").attr("href");
+	   //  Show the selected tab content
+    $(tabContent).fadeIn();
+ }
+  
+	$(document).ready(function() {
+		$('#searchResults').hide();
+		$('.autoRelCont').hide();
+		$('#relSearchResults').hide();
+		$('.productVenBox').hide();
+		$('#linktoExisting').hide();
+
+		$('#productsEdit').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+
+		$("ul.ConLibra li").click(function() {
+			var $this = $(this);
+			//$this.parent().find('.misc img').hide();
+
+			if(!$this.hasClass("selected")) {
+				$("ul.ConLibra li").removeClass("selected");
+				$("ul.ConLibra li").find('.pointer').hide();
+				$this.addClass("selected");
+				$this.find('.pointer').show();
+				//$this.find('.misc img').show();
+			}
+			return false;
+
+		})
+		
+		/* select option*/
+		$('#selectOption').click(function() {
+			$('#searchResults').show();
+		})
+		/* enable products*/
+		$('#enableProductBtn').click(function() {
+			$('.onBtn').addClass('offBtn');
+		})
+		/* enable inventory*/
+		$('#disableInvBtn').click(function() {
+			$('.onBtn').addClass('offBtn');
+			$('#manageInvDiv').addClass('DivHide');
+		})
+		/* related Projects*/
+		$('#disableRelPro').click(function() {
+			$('.onBtn').addClass('offBtn');
+		})
+		$('#disableAutoRelPro').click(function() {
+			$('.offRadio').addClass('onRadio');
+			$('.autoRelCont').show();
+			$('#relWrapper').hide();
+		})
+		$('#disableCustRelPro').click(function() {
+			$('.onRadio').toggleClass('offRadio');
+		})
+		$('.searchContent').click(function() {
+			$('#relSearchResults').show();
+		})
+		/*try it*/
+		$('#disableTryIt').click(function() {
+
+			$('.onBtn').addClass('offBtn');
+			$('.tryItonDiv').addClass("DivHide");
+		})
+		/* product setup*/
+		$('.proVenDiv').click(function() {
+
+			$('.productVenBox').show();
+		})
+		$('.linkExeAccDiv').click(function() {
+			$('#linktoExisting').show();
+		})
+		 
+			$("#tabs li").click(function() {
+				//  Here we get the href value of the selected tab
+				var selected_tab = $(this).find("a").attr("href");
+				
+				if ((selected_tab != "#tab1") && ($("#product_id").val() == "")) {
+					alert("Please save your changes first");
+					return false;
+				}
+				
+				//  First remove class "active" from currently active tab
+		        $("#tabs li").removeClass('active');
+		        //  Now add class "active" to the selected/clicked tab
+		        $(this).addClass("active");
+		        //  Hide all tab content
+		        $(".tab_content").hide();
+		        
+		        //  Show the selected tab content
+		        $(selected_tab).fadeIn();
+		        //  At the end, we add return false so that the click on the link is not executed
+		        return false;
+		    });
+	})
+	selectTab("product_setup");
+
+</script>
+          
+ </head>
+ <body>
+<div class="modelWindow">
+	<input type="hidden" id="product_id" name="product_id" value="<%= @product.id%>">
+ <%= semantic_form_for [@site, @product] do |form| %>	
+ 
+  <div class="headSection">
+    <h2><%= @is_new_product ? "Create" : "Edit" %>Product</h2>
+    <span><a href="#"><img src="/assets/helpIcon.png" width="20" height="20"></a></span> </div>
+    
+  <div class="midSection">
+    <div id="tabs_container">
+      <ul id="tabs">
+        <li class="active" id="product_setup" name="product_setup"><a href="#tab1">product setup</a></li>
+        <li><a href="#tab2">images</a></li>
+        <li><a href="#tab3">product options</a></li>
+        <li><a href="#tab4">inventory</a></li>
+        <li><a href="#tab5">related products</a></li>
+        <li><a href="#tab6">try it on</a></li>
+      </ul>
+    </div>
+    <div id="tabs_content_container">
+    	<%= render :partial => "product_setup" ,:locals => {:site => @site, :product => @product, :form => form }%>
+    	<%= render :partial => "images" ,:locals => {:site => @site, :product => @product }%>
+    	<%= render :partial => "product_options" ,:locals => {:site => @site, :product => @product }%>
+    	<%#= render :partial => "inventory" ,:locals => {:site => @site, :product => @product }%>
+    	<%#= render :partial => "related_products" ,:locals => {:site => @site, :product => @product }%>
+    	<%#= render :partial => "try_it_on" ,:locals => {:site => @site, :product => @product }%>
+    </div>
+  </div>
+  <div class="footSection">
+    <input name="product_cancel" id="product_cancel" type="button" class="btnCancelForm grayBtn" value="cancel" >
+    <%= form.action :submit, :as => :button, :label => 'save changes', :button_html =>{:name => "product_save", :id => "product_save", :class => "greenBtn" } %>
+  </div>
+  <% end %>
+</div>
+</body>
+</html>
+	

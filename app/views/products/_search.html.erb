@@ -1,0 +1,12 @@
+<div class="searchResultBox">
+  <ul>
+    <%@products.each do |p|%>
+      <li class="active">
+      <%=p.name%>
+      <span>
+        <a href="<%=add_featured_site_product_path(@site, p, :featured=>true, :product=>{:is_featured => !p.is_featured})%>" id="featured_product"><img src="/assets/<%= p.is_featured ? 'searchCloseBtn' : 'searchAddBtn'%>.png" width="20" height="22"></a>
+      </span>
+      </li>
+    <% end %>
+  </ul>
+</div>

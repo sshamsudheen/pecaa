@@ -1,5 +1,10 @@
 Mystore3::Application.routes.draw do
 
+  resources :system_configs
+
+  resources :site_features
+
+  resources :product_filters
 
   resources :product_categories
 
@@ -52,7 +57,6 @@ Mystore3::Application.routes.draw do
       resources :content_libraries do 
         get 'search', :on => :collection
       end
-      
       resources :miscs do 
       end
       
@@ -78,12 +82,27 @@ Mystore3::Application.routes.draw do
     
     resources :products do
       get 'index', :on => :collection
+      get 'featured_products', :on => :collection
+      post 'search', :on => :collection
+      get 'add_featured', :on => :member, :to => 'products#update'
+      resources :product_images do
+        get 'index', :on => :collection
+      end 
     end
-
+    
+    resources :product_categories do 
+      post 'search', :on => :collection
+      get 'delete', :on => :member, :to => 'product_categories#destroy'
+      get 'update_pc', :on => :member, :to => 'product_categories#update'
+    end
+    
+    resources :catalogs do 
+      post 'search', :on => :collection
+    end
+    
     resources :payments do
       get 'enable', :on => :member
     end
-    
     
   end
   
@@ -130,6 +149,7 @@ resources :content_libraries do
 # devise_for :users,  :controllers => { :registrations => "users/registrations" }
  resources :users do 
    post 'search', :on => :collection
+   get 'update_account', :on => :collection
  end
 
  devise_for :user

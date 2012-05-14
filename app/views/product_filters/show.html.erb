@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @product_filter.name %>
+</p>
+
+<p>
+  <b>Friendly name:</b>
+  <%= @product_filter.friendly_name %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @product_filter.status %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @product_filter.product_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_filter_path(@product_filter) %> |
+<%= link_to 'Back', product_filters_path %>

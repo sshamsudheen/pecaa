@@ -1,18 +1,19 @@
-    <%= form_for([@site,@site_page,Misc.new], :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
+	    <%=hidden_field_tag :content_type, "Misc"%>
 								<div class="contentObject" id="mapObj">
-								<div class="resizable_content">
+									<div class="resizable_content">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
 										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
 										<span class="drag"></span>
+										
 										<div class="objectContent">
 											<div class="mapTitle">store map</div>
 											<img src="" id="map-canvas-image"> </img>
 											
 										</div>
 									</div>
-								</div>
+									</div>
 								</div>
 								<div class="contentObject" id="mapAddr">
 		    						<div class="dragableObject">
@@ -22,6 +23,7 @@
 												<div class="mapDetail">
 													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
 													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
+													<button id="reloadMap" class="primary">Reload</button>								
 												</div>
 											</div>
 											<div class="dragContentBottom"></div>	
@@ -30,5 +32,19 @@
 	    						</div>
 	    
 	   
-   
-	  <% end %>
+    <script type="text/javascript">
+         $(document).ready(function(){
+	     	/*$('#mapObj').css("left", "50px");
+	     	$('#mapObj').css("top", "30px");
+	     	$('#mapAddr').css("right", "50px");
+	     	$('#mapAddr').css("top", "30px");
+	     	var address = $("#mapAddress").val();
+	     	var uri = "zoom=10&size=400x400&markers=color:blue|" + address + "&sensor=false";
+	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + encodeURIComponent(uri); 
+	     	$("#map-canvas-image").attr('src', mapURL);*/
+	     	initMisc();
+      		$('.resizable_content').resizable();
+	  });
+	  
+    </script>	
+

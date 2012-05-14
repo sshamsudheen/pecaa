@@ -219,7 +219,6 @@ button.redBtn{
 	padding: 0 0 0 10px;
 	margin-bottom:20px;
 }
-.track { background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
 .themes-board{
 	background: url(img/bg_grid.gif) repeat;
 	height:60%;
@@ -372,3 +371,4 @@ span.select {
 .pickTime{
 	background:url(img/bg_TimePicker.png) no-repeat right top #FFF;
 }
+.track { background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}

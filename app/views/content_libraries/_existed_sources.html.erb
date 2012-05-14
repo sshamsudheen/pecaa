@@ -3,7 +3,7 @@
 <%common_details.each do |common_detail|%>
   <%content = common_detail.content_library%>
   <%if content%>
-  <li class="item" id = "resize_<%=content.id%>" style="width:400px;height:300px;position:relative;float:left;">
+  <li class="item" id = "resize_<%=content.id%>" style="width:400px;height:500px;position:relative;float:left;">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
 												<%= hidden_field_tag "content_id", content.id%>
 												<%= hidden_field_tag "style_position",""%>
@@ -11,6 +11,8 @@
 												<%if content.source_type == "Image"%>
 															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
 												<%elsif content.source_type == "Video"%>
+															<%@video = Video.find(content.source_id)%>
+															<%@from_content=true%>
 															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
 												<%elsif content.source_type == "File"%>
 															<%@add_file = AddFile.find(content.source_id)%>
@@ -23,6 +25,7 @@
 												  <%elsif content.source_type == "Misc"%>
 															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
 															<%@from_content=true%>
+															<%=render :partial=>"miscs/form",:locals=>{:content=>content}%>
 												  <%elsif content.source_type == "AddForm"%>
 															<%@from_content=true%>
 															<%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
@@ -39,6 +42,22 @@ $('#resize_<%=content.id%>').resizable({
 
 </script>
 </li>
+<%elsif common_detail.content_type=="Misc"%>
+<li class="item"  style="width:506px;height:500px;position:relative;float:left;">
+<div id="misc_existed"></div>
+</li>
+<script>
+	$(function() {
+	$.ajax({
+				            type: "get",
+				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new?from_existing_content=true"%>',
+				            success: function (data) {
+								$('.misc_form div#doc_form').remove();
+$('#misc_existed').html(data)					
+				            },
+				        });
+});
+</script>	
 <%end%>
 <%end%>
 <%end%>

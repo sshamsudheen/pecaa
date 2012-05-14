@@ -1,0 +1,49 @@
+<%= form_for(@system_config) do |f| %>
+  <% if @system_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@system_config.errors.count, "error") %> prohibited this system_config from being saved:</h2>
+
+      <ul>
+      <% @system_config.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :controller_logo %><br />
+    <%= f.text_field :controller_logo %>
+  </div>
+  <div class="field">
+    <%= f.label :controller_title %><br />
+    <%= f.text_field :controller_title %>
+  </div>
+  <div class="field">
+    <%= f.label :image_max_size %><br />
+    <%= f.number_field :image_max_size %>
+  </div>
+  <div class="field">
+    <%= f.label :image_types %><br />
+    <%= f.text_field :image_types %>
+  </div>
+  <div class="field">
+    <%= f.label :video_max_size %><br />
+    <%= f.number_field :video_max_size %>
+  </div>
+  <div class="field">
+    <%= f.label :video_types %><br />
+    <%= f.text_field :video_types %>
+  </div>
+  <div class="field">
+    <%= f.label :file_max_size %><br />
+    <%= f.number_field :file_max_size %>
+  </div>
+  <div class="field">
+    <%= f.label :file_types %><br />
+    <%= f.text_field :file_types %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

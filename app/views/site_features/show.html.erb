@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product filtering status:</b>
+  <%= @site_feature.product_filtering_status %>
+</p>
+
+<p>
+  <b>Site:</b>
+  <%= @site_feature.site_id %>
+</p>
+
+<p>
+  <b>Advertising status:</b>
+  <%= @site_feature.advertising_status %>
+</p>
+
+<p>
+  <b>Show reviews from last login:</b>
+  <%= @site_feature.show_reviews_from_last_login %>
+</p>
+
+<p>
+  <b>Cart setup:</b>
+  <%= @site_feature.cart_setup %>
+</p>
+
+
+<%= link_to 'Edit', edit_site_feature_path(@site_feature) %> |
+<%= link_to 'Back', site_features_path %>

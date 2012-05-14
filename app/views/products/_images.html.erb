@@ -2,9 +2,9 @@
         <div class="tab2topDiv">
           <div class="editImgDiv"><img src="assets/ecomm/images/productimg.jpg" width="136" height="100"></div>
           <div class="eiditTextDiv">
-            <h2>Red Sunglasses</h2>
-            <h3>created : 02/12/10</h3>
-            <h3>last modified : 02/12/10</h3>
+            <h2><%= @is_new_product ? '' : @product.name%></h2>
+            <h3>created : <%= @is_new_product ? '' : @product.created_at.strftime("%m/%d/%y")%></h3>
+            <h3>last modified : <%= @is_new_product ? '' : @product.updated_at.strftime("%m/%d/%y")%></h3>
             <span><img src="assets/ecomm/images/stars.jpg" width="73" height="13"></span> </div>
           <div class="eiditTextDiv">
            
@@ -15,49 +15,11 @@
             <div class="sectionTitleDiv">
               <div class="title">Choose / Order Images<span class="help"><a href="#"></a></span></div>
               <div class="buttonSection">
-              <button class="addNewUser">add new image</button>
+              <a class="addNewUser" rel="facebox" href="products/<%= @product.id%>/product_images/new" > add new image </a>
+              	
             	</div>
             </div>
-            <div class="site-users ">
-              <div class="page-data clear ">
-                <div class="userGrid imageTab">
-                  <div class="userGridHeader">
-                    <ul class="ConLibraHeads">
-                      <li> <span class="gridColHeaddings w150">Image</span> <span class="gridColHeaddings w350">Image file name</span><span class="gridColHeaddings w100">Primary</span><span class="gridColHeaddings w100">Thumbnil</span><span class="gridColHeaddings w100"	>Date Added</span> </li>
-                    </ul>
-                  </div>
-                  <div class="userGridBody">
-                    <div id="productsEdit">
-                      <div class="scrollbar">
-                        <div class="track">
-                          <div class="thumb">
-                            <div class="end"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="viewport">
-                        <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
-                        <div class="overview">
-                          <ul class="ConLibra">
-                          	<% product.product_images.each do |product_image| %>
-                          	
-                            <li>
-                            	<span class="imgs"><img src="assets/ecomm/images/productImg1.png" width="56" height="19"></span>
-                            	<span class="imgFile"><%= product_image.file_name %></span>
-                            	<span class="primary"><img src="assets/ecomm/images/<%= product_image.is_primary? ? 'radioOn' : 'radioOff'%>.jpg" width="17" height="17"></span>
-                            	<span class="thumbnil"><img src="assets/ecomm/images/radioOff.jpg" width="17" height="17"></span><span class="dateAdded">08/12/11</span><span class="removeBtn"><img src="assets/ecomm/images/btnDelete.png" width="19" height="19"></span></li>
-                            <% end %>         
-                           
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="userGridFooter"></div>
-                </div>
-              </div>
-             
-            </div>
+            <%= render :partial => "images_list" ,:locals => {:product_images => @product.product_images}%>
           </div>
         </div>
       </div>

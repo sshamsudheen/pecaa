@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>Add Form - Form Setting</title>
+        <%= stylesheet_link_tag "modal_layout", "addForm", "siteinfo" %>
+    </head>
+    <body>
+        <div class="main-container">
+            <%=form_for current_user do |f| %>
+            <div class="header">
+                My Account
+            </div>
+            <div class="main-content">
+                <div class="myACForm siteInfo-main">
+                    <p class="instText">
+                        Explanatory text about my account. Explanatory text about my account. Explanatory text about my account.
+                    </p>
+                    <div class="formContent">
+                        <div class="group">
+                            <span class="key">first name:</span>
+                            <span class="val"><%=f.text_field :firstname %></span>
+                        </div>
+                        <div class="group">
+                            <span class="key">last name:</span>
+                            <span class="val"><%=f.text_field :lastname%></span>
+                        </div>
+                        <div class="group next">
+                            <span class="key">email:</span>
+                            <span class="val"><%=f.text_field :email %></span>
+                        </div>
+                        <div class="group">
+                            <span class="key">phone:</span>
+                            <span class="val"><%=f.text_field :phone_number %>
+                            </span>
+                        </div>
+                        <div class="group">
+                            <span class="key">company:</span>
+                            <span class="val"><%=f.text_field :company %>
+                            </span>
+                        </div>
+                        <div class="group">
+                            <span class="key">job title:</span>
+                            <span class="val"><%=f.text_field :role_title %>
+                            </span>
+                        </div>
+                        <div class="group">
+                            <span class="key">user name:</span>
+                            <span class="val"><%=f.text_field :username %>
+                            </span>
+                        </div>
+                        <div class="group">
+                            <span class="key">password:</span>
+                            <span class="val pswSection"><%=password_field :users, :password %><br/>
+                                <%=password_field :users,:password %><br/>
+                                <%=password_field :users,:password %>
+                            </span>
+                        </div>
+                        <div class="group">
+                            <span class="key">landing page:</span>
+                            <span class="val">
+                                <select name="users[launch_link]">
+                                    <option value="/">Dashboard</option>
+                                    <option value="/sites">Website List</option>
+                                    <option>System Statistics</option>
+                                    <option>Reports</option>
+                                    <option>Ad Setup</option>
+                                    <option value="/users">Users</option>
+                                    <option value="/content_libraries">Content Library</option>
+                                    <option value="/system_configs">System Config</option>
+                                    <option value="/sites/new">Create New Site</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <button class="secondary" id="cancelBtn" onclick="window.location.href = '/users';">
+                    Cancel
+                </button>
+                <div class="rightBtns">
+                    <button class="primary" id="saveBtn">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+            <%end %>
+        </div>
+    </body>
+</html>

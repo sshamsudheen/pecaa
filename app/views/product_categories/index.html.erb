@@ -1,27 +1,106 @@
-<h1>Listing product_categories</h1>
+  <div class="content-section categoryMain">
+    <div class="pages-main">
+      <div class="pages-wrapper">
+        <div class="usersLeftPane">
+          <div class="title">Categories<span class="help"><a href="#"></a></span></div>
+        </div><div class="searchContent">
+          <%=form_tag search_site_product_categories_path(@site) do %>
+            <input type="text" id="query" name="query" placeholder="search">
+	    	 <% end %>
+	    								<span class="searchIcon"><a href="#"></a></span>
+	    							</div>
+        <div class="site-users left">
+          <div class="page-data clear">
+            <div class="userGrid productGrid">
+              <div class="userGridHeader">
+                <ul class="ConLibraHeads">
+                  <li> <span class="userName">Category Name</span> <span class="group">Price Modifier</span> <span class="created">Enabled</span> </li>
+                </ul>
+              </div>
+              <div class="userGridBody">
+                <div id="scrollbar1">
+                  <div class="scrollbar">
+                    <div class="track">
+                      <div class="thumb">
+                        <div class="end"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="viewport">
+                    <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                    <div class="overview">
+                      <ul class="ConLibra">
+                        <% @product_categories.each do |pc| %>
+                          <li class="selected"> 
+                            <span class="userName">
+                              <span class="pointer"></span>
+                              <%=pc.name%>
+                              <span class="status"></span>
+                            </span>
+                            <span class="group">
+                              <span>
+                                <a href="#"><img src="/assets/btn_deleteActive.png" width="40" height="20"></a>
+                              </span>
+                              <span>
+                                <input name="" type="text" class="modifierTextBg" value=<%=pc.price_modifier%> size="4" maxlength="6">
+                              </span>
+                            </span> 
+                            <span class="active">
+                              <a href="<%=update_pc_site_product_category_path(@site, pc, :product_category=>{:is_active => !(pc.is_active)})%>" >
+                                <img src="/assets/<%= pc.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
+                              </a>
+                            </span>
+                            <%= link_to image_tag("/assets/btnDelete.png", :border=>"0"), '#',:class=>'confirm_delete', :rel=>pc.id %>
+            							  <!-- Alert message box start -->
+                            <div id="alertBox_<%=pc.id%>" class="alert-box" style="display:none">
+                              <div class="msgTitle">Are you sure?!</div>
+                              <div class="msgContent">
+                                Hey, you are about to delete the entire "<%=pc.name%>. Are you sure you want to do this?
+                              </div>
+                            	<div class="msgFooter">
+                                <%= link_to "Cancel","#", :class=>'secondary cancel_alert', :rel=>pc.id%>
+                                <%= link_to "OK!", delete_site_product_category_path(@site, pc), :method => :delete, :class=>'primary' %>
+                            	</div>
+                          </div>
+                          <!-- Alert message box ends -->
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="userGridFooter"></div>
+            </div>
+          </div>
+          <div class="addNewUserBtn">
+            <a class="addNewUser" rel="facebox" href="<%=new_site_product_category_path(@site)%>" class="addProductBtn">add product category</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#scrollbar1').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price modifier</th>
-    <th>Enabled</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @product_categories.each do |product_category| %>
-  <tr>
-    <td><%= product_category.name %></td>
-    <td><%= product_category.price_modifier %></td>
-    <td><%= product_category.enabled %></td>
-    <td><%= link_to 'Show', product_category %></td>
-    <td><%= link_to 'Edit', edit_product_category_path(product_category) %></td>
-    <td><%= link_to 'Destroy', product_category, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Product category', new_product_category_path %>
+    // $("ul.ConLibra li").click(function(){
+    //  var $this = $(this);
+    //  //$this.parent().find('.misc img').hide();
+    //  
+    //  if(!$this.hasClass("selected")){
+    //    $("ul.ConLibra li").removeClass("selected");
+    //    $("ul.ConLibra li").find('.pointer').hide();
+    //    $this.addClass("selected");
+    //    $this.find('.pointer').show();
+    //    //$this.find('.misc img').show();
+    //  }
+    //       return false;
+    //  
+    // })
+	})
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>

@@ -14,12 +14,5 @@ development:
   database: PECAA_development
   pool: 5
   username: root
-  password:
+  password: root
 
-production:
-  adapter: mysql
-  encoding: utf8
-  database: PECAA_production
-  pool: 5
-  username: root
-  password:

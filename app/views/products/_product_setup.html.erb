@@ -1,17 +1,16 @@
-<%= semantic_form_for [site, product] do |f| %>
 <div id="tab1" class="tab_content" >
         <div class="tab2topDiv">
           <div class="editImgDiv"><img src="img/productimg.jpg" width="136" height="100"></div>
           <div class="eiditTextDiv">
-            <h2>Red Sunglasses</h2>
-            <h3>created : 02/12/10</h3>
-            <h3>last modified : 02/12/10</h3>
-            <span><img src="assets/stars.jpg" width="73" height="13"></span> </div>
+            <h2><%= @is_new_product ? '' : @product.name%></h2>
+            <h3>created : <%= @is_new_product ? '' : @product.created_at.strftime("%m/%d/%y")%></h3>
+            <h3>last modified : <%= @is_new_product ? '' : @product.updated_at.strftime("%m/%d/%y")%></h3>
+            <span><img src="/assets/stars.jpg" width="73" height="13"></span> </div>
           <div class="eiditTextDiv">
             <div class="user"> <span>featured product </span>
               <input type="checkbox" checked="checked">
             </div>
-            <%= f.input :is_active %>
+            <%= form.input :is_active %>
           </div>	
         </div>
         <div class="tab2bottomDiv">
@@ -19,25 +18,25 @@
             <div class="colum-section">
               <div class="title">Product Info <span class="help"><a href="#"></a></span></div>
               	<div class="group"> <span class="key">Product info:</span> <span class="val">
-              	<%= f.text_field :name %>	
+              	<%= form.text_field :name %>	
                 </span> </div>
               <div class="group"> <span class="key">sku:</span> <span class="val">
-              	<%= f.text_field :sku %>
+              	<%= form.text_field :sku %>
                 </span> </div>
               <div class="group"> <span class="key">base price $</span> <span class="val">
-                <%= f.text_field :base_price %>
+                <%= form.text_field :base_price %>
                 </span> </div>
               <div class="group"> <span class="key">total price $</span> <span class="val">
                 <input type="text" value="39">
                 </span> </div>
               <div class="group"> <span class="key">cost:</span> <span class="val">
-              	 <%= f.text_field :cost %>
+              	 <%= form.text_field :cost %>
                 </span> </div>
               <div class="group"> <span class="key">weight(lbs):</span> <span class="val">
-              	<%= f.text_field :weight %>
+              	<%= form.text_field :weight %>
                 </span> </div>
               <div class="group"> <span class="key">shipping modifier $:</span><span class="val">
-                <%= f.text_field :shipping_modifier %>
+                <%= form.text_field :shipping_modifier %>
                 </span></div>
             </div>
           </div>
@@ -72,16 +71,12 @@
           <div class="bottomDivRepeat ">
             <div class="colum-section last">
               <div class="title2">product discription <span class="help"><a href="#"></a></span></div>
-              <div class="group"><img src="assets/richtexteditor.jpg" width="383" height="138"></div>
+              <div class="group"><img src="/assets/richtexteditor.jpg" width="383" height="138"></div>
               <div class="group"></div>
             </div>
           </div>
-          
-         <%= f.actions do %>
-      		<%= f.action :submit, :as => :button %>
-      	<% end %>
         </div>
       </div>
       
-<% end %>      
+      
       

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_filtering_status: false
+  site_id: 1
+  advertising_status: false
+  show_reviews_from_last_login: false
+  cart_setup: false
+
+two:
+  product_filtering_status: false
+  site_id: 1
+  advertising_status: false
+  show_reviews_from_last_login: false
+  cart_setup: false
