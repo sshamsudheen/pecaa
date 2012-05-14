@@ -46,11 +46,23 @@
                               </span>
                             </span> 
                             <span class="active">
-                              <a href="#<%=%>">
+                              <a href="<%=update_pc_site_product_category_path(@site, pc, :product_category=>{:is_active => !(pc.is_active)})%>" >
                                 <img src="/assets/<%= pc.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
                               </a>
                             </span>
-                            <span class="close"><img src="/assets/btnDelete.png" border="0" /></span>
+                            <%= link_to image_tag("/assets/btnDelete.png", :border=>"0"), '#',:class=>'confirm_delete', :rel=>pc.id %>
+            							  <!-- Alert message box start -->
+                            <div id="alertBox_<%=pc.id%>" class="alert-box" style="display:none">
+                              <div class="msgTitle">Are you sure?!</div>
+                              <div class="msgContent">
+                                Hey, you are about to delete the entire "<%=pc.name%>. Are you sure you want to do this?
+                              </div>
+                            	<div class="msgFooter">
+                                <%= link_to "Cancel","#", :class=>'secondary cancel_alert', :rel=>pc.id%>
+                                <%= link_to "OK!", delete_site_product_category_path(@site, pc), :method => :delete, :class=>'primary' %>
+                            	</div>
+                          </div>
+                          <!-- Alert message box ends -->
                           </li>
                         <% end %>
                       </ul>
@@ -70,24 +82,25 @@
   </div>
 </div>
 <script type="text/javascript">
-        	
-        	$(document).ready(function(){
-        		$('#scrollbar1').tinyscrollbar();
-        		$(".ConLibra li:even").addClass("alt");
+	
+	$(document).ready(function(){
+		$('#scrollbar1').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
 
-        		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);
-        			//$this.parent().find('.misc img').hide();
-        			
-        			if(!$this.hasClass("selected")){
-        				$("ul.ConLibra li").removeClass("selected");
-        				$("ul.ConLibra li").find('.pointer').hide();
-        				$this.addClass("selected");
-        				$this.find('.pointer').show();
-        				//$this.find('.misc img').show();
-        			}
-        			return false;
-        			
-        		})
-        	})
-        </script>
+    // $("ul.ConLibra li").click(function(){
+    //  var $this = $(this);
+    //  //$this.parent().find('.misc img').hide();
+    //  
+    //  if(!$this.hasClass("selected")){
+    //    $("ul.ConLibra li").removeClass("selected");
+    //    $("ul.ConLibra li").find('.pointer').hide();
+    //    $this.addClass("selected");
+    //    $this.find('.pointer').show();
+    //    //$this.find('.misc img').show();
+    //  }
+    //       return false;
+    //  
+    // })
+	})
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>

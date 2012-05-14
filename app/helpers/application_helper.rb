@@ -4,6 +4,11 @@ module ApplicationHelper
      params[:controller] == sym ? 'class=select' : ''
   end
   
+  def check_active(cltr, atn)
+     (params[:controller] == cltr && params[:action] == atn) ? 'class=active' : ''
+  end
+  
+  
   def set_link(path, modelObj, other_id=nil)
     # modelObj ? (link_to "   ", "#{modelObj.new_record? ?  '#' : path}", :style => "display:block;") : ""
     modelObj ? modelObj.new_record? ? '#' : other_id ? eval("#{path} #{modelObj.id}, #{other_id}") : eval("#{path} #{modelObj.id}") : ''

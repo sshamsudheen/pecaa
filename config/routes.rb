@@ -92,6 +92,8 @@ Mystore3::Application.routes.draw do
     
     resources :product_categories do 
       post 'search', :on => :collection
+      get 'delete', :on => :member, :to => 'product_categories#destroy'
+      get 'update_pc', :on => :member, :to => 'product_categories#update'
     end
     
     resources :catalogs do 

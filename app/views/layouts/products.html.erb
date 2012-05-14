@@ -25,17 +25,17 @@
         		$('#products1').tinyscrollbar();
         		$(".ConLibra li:even").addClass("alt");
 
-        		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);
-        			if(!$this.hasClass("selected")){
-        				$("ul.ConLibra li").removeClass("selected");
-        				$("ul.ConLibra li").find('.pointer').hide();
-        				$this.addClass("selected");
-        				$this.find('.pointer').show();
-        				//$this.find('.misc img').show();
-        			}
-        			return false;
-        		})
+            $("ul.ConLibra li").click(function(){
+             var $this = $(this);
+             if(!$this.hasClass("selected")){
+               $("ul.ConLibra li").removeClass("selected");
+               $("ul.ConLibra li").find('.pointer').hide();
+               $this.addClass("selected");
+               $this.find('.pointer').show();
+               //$this.find('.misc img').show();
+             }
+             //return false;
+            })
         	})
         </script>
 <link href="/assets/products.css" rel="stylesheet" type="text/css">
@@ -69,11 +69,19 @@
       </div>
       <div class="user-tabs">
         <ul>
-          <li class="active">products</li>
-          <li>product categories</li>
-          <li>featured products</li>
+          <li <%=check_active('products','index')%>>
+            <a href=<%=site_products_path(@site)%>>products</a>
+          </li>
+          <li <%=check_active('product_categories', 'index')%>>
+            <a href=<%=site_product_categories_path(@site)%>>product categories</a>
+          </li>
+          <li <%=check_active('products', 'featured_products')%>>
+            <a href=<%=featured_products_site_products_path(@site)%>>featured products</a>
+          </li>
           <li>product options</li>
-          <li>catalogs</li>
+          <li <%=check_active('product_categories', 'featured_products')%>>
+            <a href=<%=site_catalogs_path(@site)%>>catalogs</a>
+          </li>
         </ul>
       </div>
     </div>
