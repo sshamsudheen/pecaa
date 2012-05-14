@@ -34,7 +34,7 @@
                   <div class="overview featureProduct">
                     <ul class="ConLibra ">
                       <%@featured_products.each do |fp|%>
-                        <li class="selected"> 
+                        <li> 
                           <span class="userName">
                             <span class="pointer"></span>
                             <%=fp.name%>
@@ -79,21 +79,6 @@
 	$(document).ready(function(){
 		$('#scrollbar1').tinyscrollbar();
 		$(".ConLibra li:even").addClass("alt");
-
-		$("ul.ConLibra li").click(function(){
-			var $this = $(this);
-			//$this.parent().find('.misc img').hide();
-			
-			if(!$this.hasClass("selected")){
-				$("ul.ConLibra li").removeClass("selected");
-				$("ul.ConLibra li").find('.pointer').hide();
-				$this.addClass("selected");
-				$this.find('.pointer').show();
-				//$this.find('.misc img').show();
-			}
-			//return false;
-			
-		});
 	});
 	
   // $().ready(function() {
