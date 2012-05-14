@@ -1,0 +1,77 @@
+<div class="siteInfo-main cartBg sslBg">
+                <div class="cartColumsMain2 noBg">
+                  <div class="rowDiv">
+                    <h2>SSL setup
+                    <span><a href="#"><img src="css/img/helpIcon.png"></a></span>
+                    </h2>
+                    <dl>
+                      <dt>If you decide to use your own domain name you will need a custom SSL certificate. Which can be purchased for $25.00</dt>
+                      
+                      
+                    </dl>
+                  </div>
+                
+                </div>
+                <div class="cartCollumsBottom">
+               <div class="rowDiv2">
+                   <div class="content-section featuresMain">
+      <div class="pages-main">
+        <div class="pages-wrapper">
+          <div class="usersLeftPane productsTitle">
+            <div class="title">SSL options</div>
+          </div>
+          <div class="site-users left">
+            
+            
+            
+            <div class="page-data clear">
+              <div class="userGrid customTax1">
+                <div class="userGridHeader">
+                  <ul class="ConLibraHeads">
+                    <li> <span class="domainName">DomainName</span> <span class="ssl">SSL Purchased</span> <span class="ssl">SSL Renewal</span><span class="enabled">Auto-Renew</span><span class="enabled"></span> </li>
+                    </ul>
+                  </div>
+                <div class="userGridBody">
+                  <div id="scrollbar1">
+                    <div class="scrollbar disable" style="height: 25px;">
+                      <div class="track" style="height: 25px;">
+                        <div class="thumb" style="top: 0px; height: 25px;">
+                          <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="viewport height25">
+                      
+                      <div class="overview featureProduct" style="top: 0px;">
+                        <ul class="ConLibra ">
+                          <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="css/img/btnMarkNo.png" border="0" /></span></span> <span class="sku">type X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
+                          
+                          
+                          <li class="alt"> <span class="nameText"><span class="pointer"></span><%=Site.find(params[:site_id]).domain_name || Site.find(params[:site_id]).name%><span class="status"></span></span> <span class="sslText">state</span>  <span class="sslText">state</span>
+						  
+						  <span class="review status">
+                          	
+                          	<%if SiteFeature.first and SiteFeature.first.ssl_setup%>
+							<a class="on" href="#" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=false'"></a>
+							<%else%>						
+								<a href="#" class="off" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=true'"></a>
+							<%end%>
+							</span>
+							<span class="purchase"><input name="" value="purchase" class="button" type="button"></span> </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="userGridFooter"></div>
+                </div>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+                  </div>
+                </div>
+           
+              </div>

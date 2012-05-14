@@ -1,6 +1,7 @@
 class SiteFeaturesController < ApplicationController
   # GET /site_features
   # GET /site_features.json
+  layout 'features'
   def index
     @site_features = SiteFeature.all
 
@@ -79,5 +80,21 @@ class SiteFeaturesController < ApplicationController
       format.html { redirect_to site_features_url }
       format.json { head :ok }
     end
+  end
+  
+  def change_adv_status
+    @site_feature = SiteFeature.first || SiteFeature.new
+    @site_feature.advertising_status = params[:advertise_status] == 'true' ? true : false
+    @site_feature.save
+    redirect_to :action => :index
+  end
+  
+  def ssl_setup_status
+    @site_feature = SiteFeature.first || SiteFeature.new
+    @site_feature.ssl_setup = params[:ssl_status] == 'true' ? true : false
+    @site_feature.save
+  end
+  
+  def review_management
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513092355) do
+ActiveRecord::Schema.define(:version => 20120514184740) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(:version => 20120513092355) do
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_id"
   end
 
   create_table "product_images", :force => true do |t|
@@ -352,6 +353,7 @@ ActiveRecord::Schema.define(:version => 20120513092355) do
     t.boolean  "cart_setup"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "ssl_setup"
   end
 
   create_table "site_groups", :force => true do |t|
