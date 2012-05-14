@@ -1,14 +1,14 @@
   <div class="content-section categoryMain">
     <div class="pages-main">
       <div class="pages-wrapper">
-        <div class="usersLeftPane">
+        <div class="usersLeftPane left">
           <div class="title">Categories<span class="help"><a href="#"></a></span></div>
-        </div><div class="searchContent">
+        </div>
+        <div class="searchContent right">
           <%=form_tag search_site_product_categories_path(@site) do %>
-            <input type="text" id="query" name="query" placeholder="search">
+            <input type="text" id="query" name="query" placeholder="search"><span class="searchIcon"><a href="#"></a></span>
 	    	 <% end %>
-	    								<span class="searchIcon"><a href="#"></a></span>
-	    							</div>
+	    </div>
         <div class="site-users left">
           <div class="page-data clear">
             <div class="userGrid productGrid">
