@@ -41,7 +41,7 @@ class ProductFiltersController < ApplicationController
 
     respond_to do |format|
       if @product_filter.save
-        format.html { redirect_to '/product_filters' }
+        format.html { redirect_to "/sites/#{params[:site_id]}/product_filters" }
         format.json { render json: @product_filter, status: :created, location: @product_filter }
       else
         format.html { render action: "new" }
