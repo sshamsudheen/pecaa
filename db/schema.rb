@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512104234) do
+ActiveRecord::Schema.define(:version => 20120513092355) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(:version => 20120512104234) do
     t.datetime "updated_at"
   end
 
+  create_table "catalogs", :force => true do |t|
+    t.integer  "site_id"
+    t.boolean  "is_active",                                     :default => true
+    t.string   "name"
+    t.string   "supplier_name"
+    t.decimal  "price_modifier", :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.boolean  "is_active"
@@ -91,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20120512104234) do
     t.string  "position"
     t.integer "site_id"
     t.integer "id"
+    t.string  "content_type"
   end
 
   create_table "content_libraries_sites", :id => false, :force => true do |t|
@@ -209,6 +220,10 @@ ActiveRecord::Schema.define(:version => 20120512104234) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
+    t.integer  "list_order"
+    t.integer  "site_id"
+    t.boolean  "is_active",                                     :default => true
   end
 
   create_table "product_filters", :force => true do |t|
@@ -254,12 +269,17 @@ ActiveRecord::Schema.define(:version => 20120512104234) do
     t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "base_price",        :precision => 10, :scale => 0
-    t.decimal  "retail_price",      :precision => 10, :scale => 0
-    t.decimal  "cost",              :precision => 10, :scale => 0
-    t.decimal  "weight",            :precision => 10, :scale => 0
-    t.decimal  "shipping_modifier", :precision => 10, :scale => 0
-    t.decimal  "case_price",        :precision => 10, :scale => 0
+    t.decimal  "base_price",          :precision => 10, :scale => 0
+    t.decimal  "retail_price",        :precision => 10, :scale => 0
+    t.decimal  "cost",                :precision => 10, :scale => 0
+    t.decimal  "weight",              :precision => 10, :scale => 0
+    t.decimal  "shipping_modifier",   :precision => 10, :scale => 0
+    t.decimal  "case_price",          :precision => 10, :scale => 0
+    t.integer  "product_category_id"
+    t.integer  "site_id"
+    t.boolean  "is_featured",                                        :default => false
+    t.datetime "featured_at"
+    t.string   "featured_text"
   end
 
   create_table "questions", :force => true do |t|

@@ -44,11 +44,12 @@ class MiscsController < ApplicationController
   # POST /miscs.json
   def create
     @misc = Misc.new(params[:misc])
-
+    @site  = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id]) 
     respond_to do |format|
       if @misc.save
-        format.html { redirect_to @misc, notice: 'Misc was successfully created.' }
-        format.json { render json: @misc, status: :created, location: @misc }
+        ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => nil,:site_page_id => @site_page.id,:content_type=>"Misc" )
+        redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Misc"
       else
         format.html { render action: "new" }
         format.json { render json: @misc.errors, status: :unprocessable_entity }

@@ -28,6 +28,29 @@ class SiteUsersController < ApplicationController
     @user_obj = User.new
   end
   
+  def create
+    params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
+    params[:user].delete(:addresses1)
+    params[:user].delete(:addresses2)
+    params[:user][:role_ids] = params[:users][:role_ids] if params[:users]
+    @user_obj = User.new(params[:user])
+    @user_obj.created_by = current_user
+    if @user_obj.save
+      if params[:site_id]
+        SiteUser.create(:user_id=>@user_obj.id,:site_id=>params[:site_id],:name=>@user_obj.username)
+        redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
+      else
+        redirect_to :action => :index        
+      end
+    else
+      if params[:site_id]
+        render :template => "site_users/new", :status => :unprocessable_entity, :layout => 'site'
+      else
+       render :action => :new, :status => :unprocessable_entity
+      end
+    end
+  end
+  
   protected
 
   def setup

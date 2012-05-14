@@ -1,4 +1,13 @@
+
 <div class="pages-main">
+	<ul>
+    <% @user_obj.errors.full_messages.each do |msg| %>
+    <li>
+        <%= msg %>
+    </li>
+    <% end %>
+</ul>
+
 		    			<div class="pages-wrapper">
 		    				
 		    				<div class="usersLeftPane userEdit">
@@ -170,7 +179,7 @@
 											<div class="left"><button class="redBtn">delete user</button></div>
 											<div class="right">
 												<button class="secondary">cancel</button>
-												<button class="primary" >save changes</button>
+												<button class="primary" id='user_form_submit'>save changes</button>
 												
 											</div>
 										</div>
@@ -181,3 +190,9 @@
 		    		<%end%>
 		    			</div>
 		    		</div>
+					<script>
+						$('#user_form_submit').click(function(){
+							$('#new_user').attr('action','/sites/<%=@site.id%>/site_users');
+							$('#new_user').submit();
+						  });
+					</script>

@@ -58,7 +58,7 @@ class TextsController < ApplicationController
           :source_id => @text.id, :source_type => 'Text',
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
         if @site
-           ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
+           ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id,:site_page_id => @site_page.id )
            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Text&content_lib=#{content_lib.id}"
         else
           redirect_to content_libraries_path

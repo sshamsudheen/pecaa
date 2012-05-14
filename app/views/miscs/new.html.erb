@@ -1,5 +1,5 @@
-<%= form_for(:misc, :html => { :multipart => true }, :remote => true) do |f| %>
     <%=hidden_field_tag :from_content, @from_content%>
+	    <%=hidden_field_tag :content_type, "Misc"%>
 								<div class="contentObject" id="mapObj">
 									<div class="resizable_content">
 		    						<div class="alphaBg"></div>
@@ -15,6 +15,7 @@
 									</div>
 									</div>
 								</div>
+								<%unless params[:from_existing_content] == "true"%>
 								<div class="contentObject" id="mapAddr">
 		    						<div class="dragableObject">
 										<div class="dragable">
@@ -30,7 +31,7 @@
 										</div>
 	    							</div>
 	    						</div>
-	    
+	                            <%end%>
 	   
     <script type="text/javascript">
          $(document).ready(function(){
@@ -47,5 +48,4 @@
 	  });
 	  
     </script>	
-	  <% end %>
 

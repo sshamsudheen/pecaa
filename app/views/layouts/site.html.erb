@@ -79,6 +79,7 @@ $('#cart div.ui-droppable').html(data)
 
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
+					$('#cart input#dropped').attr('value','true')
 					
 
 			}
@@ -142,6 +143,7 @@ $('#cart div.ui-droppable').html(data)
   <div class="themes-board">
       <div class="grid-board">
         <div id="cart" >
+        	<%=hidden_field_tag "dropped",''%>
           <div class="ui-droppable ui-sortable" style="height:900px;">
             <li class="placeholder">
             	<%=render :partial => '/content_libraries/existed_sources'%>
