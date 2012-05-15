@@ -1,6 +1,7 @@
 class SiteVendorsController < ApplicationController
   # GET /site_vendors
   # GET /site_vendors.json
+  layout 'features'
   def index
     @site_vendors = SiteVendor.all
 
@@ -25,16 +26,13 @@ class SiteVendorsController < ApplicationController
   # GET /site_vendors/new.json
   def new
     @site_vendor = SiteVendor.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @site_vendor }
-    end
+    render :layout => false
   end
 
   # GET /site_vendors/1/edit
   def edit
     @site_vendor = SiteVendor.find(params[:id])
+    render :layout => false
   end
 
   # POST /site_vendors
@@ -44,7 +42,7 @@ class SiteVendorsController < ApplicationController
 
     respond_to do |format|
       if @site_vendor.save
-        format.html { redirect_to @site_vendor, notice: 'Site vendor was successfully created.' }
+        format.html { redirect_to "/sites/#{params[:site_id]}/site_vendors", notice: 'Site vendor was successfully created.' }
         format.json { render json: @site_vendor, status: :created, location: @site_vendor }
       else
         format.html { render action: "new" }

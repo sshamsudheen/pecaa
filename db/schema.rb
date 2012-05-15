@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515152820) do
+ActiveRecord::Schema.define(:version => 20120515173312) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -482,6 +482,22 @@ ActiveRecord::Schema.define(:version => 20120515152820) do
     t.integer  "site_id"
     t.string   "name"
     t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_vendors", :force => true do |t|
+    t.string   "name"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "phone_number"
+    t.string   "email"
+    t.string   "account_number"
+    t.boolean  "status"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
