@@ -165,7 +165,6 @@
 	padding-bottom: 2px;
 	text-align: center;
 	vertical-align: top;
-	width: 70px;
 }
 .productGrid ul.ConLibra li span.close {
 	border-left: 1px solid #999999;
@@ -329,7 +328,7 @@ background-position:20px 5px
 	vertical-align: middle;
 	width: 165px;
 }
-.addProductBtn {
+button.addProductBtn {
 	background: url("img/btn_bg200.png") no-repeat scroll 0 0 transparent;
 	border: 0 none;
 	float: right;
@@ -340,6 +339,19 @@ background-position:20px 5px
 	padding-right: 27px;
 	padding-top: 5px;
 	width:200px;
+}
+a.addProductBtn {
+	background: url("img/btn_bg200.png") no-repeat scroll 0 0 transparent;
+	border: 0 none;
+	float: right;
+	font-size: 14px;
+	height: 30px;
+	margin: 0;
+	padding-left: 25px;
+	padding-right: 27px;
+	padding-top: 6px;
+	width: 150px;
+	color: white;
 }
 .productGrid .modifierTextBg {
 	background-image:url(img/arrowIcon.png);
