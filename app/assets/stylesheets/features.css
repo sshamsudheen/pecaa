@@ -1,0 +1,359 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Feature*/
+
+.featuresMain .site-users ul.ConLibraHeads li span.featureTitle {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 275px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.friendlyName {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 475px;
+}
+
+.featuresMain .site-users ul.ConLibra li span.location {
+    border-right: 1px solid #999999;
+    padding-left: 10px;
+    text-align: left;
+	vertical-align: top;
+	padding-top: 5px;
+	height: 19px;
+    width: 275px;
+}
+
+.featuresMain .site-users ul.ConLibra li span.type {
+    border-right: 1px solid #999999;
+    display: inline-block;
+    height: 19px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 490px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.enabled {
+    border: 0 none;
+    display: inline-block;
+    width: 100px;
+}
+.featuresMain .site-users ul.ConLibra li span {
+    display: inline-block;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li {
+    background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
+    border-top: 1px solid #333333;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 25px;
+    padding-top: 8px;
+}
+
+.featuresMain #scrollbar1 {
+    width: 890px;
+}
+
+.sslBg .rowDiv dl {
+    margin-left: 100px;
+    width: 425px;
+    margin-top: 10px;
+}
+
+.sslBg .rowDiv dt {
+    float: left;
+    margin: 0;
+    padding: 5px 5px 0 0;
+    width: 650px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.domainName {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 435px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.ssl {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 100px;
+}
+
+.featuresMain .site-users ul.ConLibra li span.nameText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 440px;
+}
+
+.featuresMain .site-users ul.ConLibra li span.sslText {
+    border-right: 1px solid #999999;
+    display: inline-block;
+    height: 19px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 100px;
+	color:#000;
+}
+
+.featuresMain .site-users ul.ConLibra li span.review {
+	border-right: 1px solid #999999;
+    display: inline-block;
+    padding-left: 15px;
+	vertical-align: top;
+	height: 24px;
+    text-align: center;
+}
+.featuresMain .site-users ul.ConLibra li span.purchase {
+	display: inline-block;
+    padding-left: 15px;
+	vertical-align: top;
+	height: 24px;
+    text-align: center;
+}
+
+.review .on {
+    display: inline-block;
+}
+
+.review .on {
+    background: url("img/bg_On.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 21px;
+    width: 65px;
+}
+
+.button {
+	background-color:#666;
+    border: 1px solid #666667;
+	border-right:none;
+    border-radius: 4px 4px 4px 4px;
+    color: #999999;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.reviewBg .rowDiv dt {
+    float: left;
+    margin: 0;
+    padding: 10px 5px 0 0;
+    width: 225px;
+}
+
+.reviewBg .rowDiv dl {
+    margin-left: 100px;
+    margin-top: 0;
+    width: 436px;
+}
+
+
+/*Reviews*/
+.cartCollumsBottom .usersRightPane {
+    float: right;
+    padding-right: 10px;
+    width: 127px;
+}
+
+.featuresMain .searchContent {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 3px #999999 inset;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 180px;
+   
+}
+
+.cartCollumsBottom .usersRightPane .search .inputBox {
+    border-radius: 4px 4px 4px 4px;
+    color: #999999;
+    height: 20px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.user {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 200px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.date {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: center;
+    width: 60px;
+}
+.featuresMain .site-users ul.ConLibraHeads li span.product {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.review {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: center;
+    width: 200px;
+}
+.featuresMain .site-users ul.ConLibraHeads li span.rating {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: center;
+    width: 65px;
+}
+
+.featuresMain .site-users ul.ConLibraHeads li span.approved {
+    border: 0 none;
+    display: inline-block;
+    padding-left: 10px;
+    text-align: center;
+    width: 70px;
+}
+
+.featuresMain .site-users ul.ConLibra li span.userText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 200px;
+}
+.featuresMain .site-users ul.ConLibra li span.dateText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 70px;
+}
+.featuresMain .site-users ul.ConLibra li span.productText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-top: 5px;
+    text-align: center;
+	 vertical-align: top;
+    width: 150px;
+}
+.featuresMain .site-users ul.ConLibra li span.reviewText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 200px;
+}
+.featuresMain .site-users ul.ConLibra li span.ratingText {
+    border-right: 1px solid #999999;
+	background-image:url(img/rating_5.png);
+	background-repeat:no-repeat;
+    height: 19px;
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 70px;
+	background-position:0px 10px;
+}.featuresMain .site-users ul.ConLibra li span.approvedText {
+    border-right: 1px solid #999999;
+    height: 19px;
+    padding-top: 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 70px;
+}
+
+
+
+.height25 {
+    height: 25px !important;
+    
+}
+
+.featuresMain #scrollbar1 .overview {
+    width: 880px;
+}
+
+.featuresMain #scrollbar1 .viewport {
+    height: 215px;
+    width: 890px;
+}
+
+.noBg {
+    background: none;
+ 
+}
+
+.detailsPopDiv1{
+	background-color:#fff;
+	width:350px;
+	height:200px;
+	border:solid 1px #343434;
+	border-radius:10px;
+	position:absolute;
+	z-index:1000;
+	left: 640px;
+	top:150px;
+
+}
+.detailsPopDiv2{
+	background-color:#fff;
+width:346px;
+height:196px;
+border:solid 1px #fe9e0e;
+border-radius:10px;
+margin:1px;
+}
+.bottmArIcon{
+background-image:url(img/bottomArrowIcon.png);
+height:14px;
+width:28px;
+position:relative;
+bottom:0;
+margin-top:-2px;
+margin-left:50px;	
+z-index:200;
+
+}
+	
+	.closeBtn{
+	background-image:url(img/btn_PopupClose.png);
+	height:18px;
+	width:18px;
+	cursor:pointer;
+	float:right;
+	margin:5px;
+	}
+	
+	
+	.detailsPopDiv2 p{
+	 padding:5px 10px;
+	}

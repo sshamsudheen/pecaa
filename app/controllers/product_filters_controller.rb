@@ -26,11 +26,7 @@ class ProductFiltersController < ApplicationController
   # GET /product_filters/new.json
   def new
     @product_filter = ProductFilter.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @product_filter }
-    end
+    render :layout => false
   end
 
   # GET /product_filters/1/edit
@@ -45,7 +41,7 @@ class ProductFiltersController < ApplicationController
 
     respond_to do |format|
       if @product_filter.save
-        format.html { redirect_to @product_filter, notice: 'Product filter was successfully created.' }
+        format.html { redirect_to "/sites/#{params[:site_id]}/product_filters" }
         format.json { render json: @product_filter, status: :created, location: @product_filter }
       else
         format.html { render action: "new" }
@@ -81,4 +77,11 @@ class ProductFiltersController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def update_status
+    @product_filter = ProductFilter.first || ProductFilter.new
+    @product_filter.site_id = params[:product_filtering] == 'true' ? 1 : 0
+    @product_filter.save
+    render :action => 'index'
+  end  
 end

@@ -1,64 +1,109 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>PECAA</title>
-  <link rel="stylesheet" href="/assets/layout.css" type="text/css">
-  <link rel="stylesheet" href="/assets/users.css" type="text/css">
-  <link rel="stylesheet" href="/assets/tinyscroll.css" type="text/css">
-  <script src="/assets/jquery-1.7.1.min.js" type="text/javascript"></script>
-  <script src="/assets/inputstyle.js" type="text/javascript"></script>
-  <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
-  <%= javascript_include_tag 'facebox.js'%>
-  <%= javascript_include_tag 'common.js'%>
-  <link href="/assets/products.css" rel="stylesheet" type="text/css">
-  <link href="/assets/cart.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<div class="mainContainer">
-  <div class="userEditHolder">
-    <div class="header-section">
-      <%= render :partial => 'shared/main_header' %>
-
-
-      <div class="main-nav">
-        <div class="navBtns">
-          <ul>
-            <li class="products"></li>
-            <li class="payments"></li>
-            <li class="taxes"></li>
-            <li class="shipping"></li>
-            <li class="features acttive"></li>
-            <li class="orders"></li>
-            <li class="reports"></li>
-          </ul>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>PECAA</title>
+        <%= stylesheet_link_tag "layout","pages","users","tinyscroll","siteinfo","cart","features", "facebox" %>
+        <%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js','jquery.watermark.js' %>
+        <%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js' %>
+		<%= javascript_include_tag 'facebox'%>
+	  <%= javascript_include_tag 'common'%>
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                $('#scrollbar1').tinyscrollbar();
+                $(".ConLibra li:even").addClass("alt");
+                
+                $("ul.ConLibra li").click(function(){
+                    var $this = $(this);
+                    //$this.parent().find('.misc img').hide();
+                    
+                    if (!$this.hasClass("selected")) {
+                        $("ul.ConLibra li").removeClass("selected");
+                        $("ul.ConLibra li").find('.pointer').hide();
+                        $this.addClass("selected");
+                        $this.find('.pointer').show();
+                        //$this.find('.misc img').show();
+                    }
+                    return false;
+                    
+                })
+                /* enable products*/
+                
+                $('#enableProductBtn').click(function(){
+                    $('.rBtnOn').addClass('rBtnOff');
+                })
+                
+            })
+        </script>
+    </head>
+    <body>
+        <div class="mainContainer">
+            <div class="userEditHolder">
+                <div class="header-section">
+                    <%= render :partial => 'shared/main_header'%>
+                    <div class="main-nav">
+                        <div class="navBtns">
+                            <ul>
+                                <li class="products">
+                                </li>
+                                <li class="payments">
+                                </li>
+                                <li class="taxes">
+                                </li>
+                                <li class="shipping">
+                                </li>
+                                <li class="features active">
+                                </li>
+                                <li class="orders">
+                                </li>
+                                <li class="reports">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="user-tabs">
+                        <ul>
+                            <li class="<%=params[:controller] == 'product_filters' ? ' active' : ''%>">
+                                product filters
+                            </li>
+                            <li class="<%=params[:controller] == 'site_features' and (params[:action] == 'change_adv_status' or params[:action] =='index') ? ' active' : ''%>">
+                                advertising
+                            </li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'ssl_setup_status' ? ' active' : ''%>">
+                                SSL setup
+                            </li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'review_management' ? ' active' : ''%>">
+                                reviews
+                            </li>
+                            <li>
+                                try it
+                            </li>
+                            <li>
+                                gift certs
+                            </li>
+                            <li>
+                                coupons
+                            </li>
+                            <li>
+                                vendors
+                            </li>
+                            <li>
+                                inventory
+                            </li>
+                            <li>
+                                cart options
+                            </li>
+                            <li>
+                                Rx
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-section">
+                    <%=yield%>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="user-tabs">
-        <ul>          
-          <%= link_to "<li>Product Filters</li>".html_safe, product_filters_path %>
-          <%= link_to "<li>advertising</li>".html_safe  %>
-          <%= link_to "<li>SSL Setup</li>".html_safe  %>
-          <%= link_to "<li>reviews</li>".html_safe  %>
-		  <%= link_to "<li>Try it on</li>".html_safe  %>
-		  <%= link_to "<li>gifts certs.</li>".html_safe  %>
-		  <%= link_to "<li>coupons</li>".html_safe  %>
-		  <%= link_to "<li>vendors</li>".html_safe  %>
-		  <%= link_to "<li>inventory</li>".html_safe  %>
-		  <%= link_to "<li>Cart Options</li>".html_safe  %>
-		  <%= link_to "<li>Rx</li>".html_safe  %>
-        </ul>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <%= yield %>
-    </div>
-  </div>
-
-</div>
-</body>
+    </body>
 </html>
-

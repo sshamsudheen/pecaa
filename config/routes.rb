@@ -2,10 +2,6 @@ Mystore3::Application.routes.draw do
 
   resources :system_configs
 
-  resources :site_features
-
-  resources :product_filters
-
   resources :product_categories
 
   resources :product_vendors
@@ -47,6 +43,17 @@ Mystore3::Application.routes.draw do
     post 'search', :on => :collection
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
+    
+    resources :site_features do 
+      get 'change_adv_status', :on => :collection
+      get 'ssl_setup_status', :on => :collection
+      get 'review_management', :on => :collection
+    end
+
+    resources :product_filters do
+      get 'update_status', :on => :collection
+    end
+    
     resources :site_pages do
       get 'copy_page', :on => :member
       post 'rename_page', :on => :collection

@@ -1,31 +1,36 @@
-<h1>Listing site_features</h1>
-
-<table>
-  <tr>
-    <th>Product filtering status</th>
-    <th>Site</th>
-    <th>Advertising status</th>
-    <th>Show reviews from last login</th>
-    <th>Cart setup</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @site_features.each do |site_feature| %>
-  <tr>
-    <td><%= site_feature.product_filtering_status %></td>
-    <td><%= site_feature.site_id %></td>
-    <td><%= site_feature.advertising_status %></td>
-    <td><%= site_feature.show_reviews_from_last_login %></td>
-    <td><%= site_feature.cart_setup %></td>
-    <td><%= link_to 'Show', site_feature %></td>
-    <td><%= link_to 'Edit', edit_site_feature_path(site_feature) %></td>
-    <td><%= link_to 'Destroy', site_feature, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Site feature', new_site_feature_path %>
+<div class="siteInfo-main cartBg">
+                <div class="cartColumsMain2">
+                  <div class="rowDiv">
+                    <h2>advertising setup
+                    <span><a href="$"><img src="/assets/helpIcon.png"></a></span>
+                    </h2>
+                    <dl>
+                      <dt>enable advertising:</dt>
+                      <dd><span class="status">
+                      	<%if SiteFeature.first and SiteFeature.first.advertising_status%>
+                      	<a href="/sites/<%=params[:site_id]%>/site_features/change_adv_status?advertise_status=false" class="on"></a>
+						<%else%>
+						<a href="/sites/<%=params[:site_id]%>/site_features/change_adv_status?advertise_status=true" class="off"></a>
+						<%end%>
+						</span></dd>
+                      
+                    </dl>
+                  </div>
+                
+                </div>
+                <div class="cartCollumsBottom">
+               <div class="rowDiv2">
+                   <div class="content-section featuresMain">
+      <div class="pages-main">
+        <div class="pages-wrapper">
+          <div class="usersLeftPane productsTitle">
+            <div class="title">advertising options</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+                  </div>
+                </div>
+           
+              </div>
