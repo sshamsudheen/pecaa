@@ -1,0 +1,57 @@
+<%= form_for(@inventory_option) do |f| %>
+  <% if @inventory_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inventory_option.errors.count, "error") %> prohibited this inventory_option from being saved:</h2>
+
+      <ul>
+      <% @inventory_option.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br />
+    <%= f.number_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :trigger_email %><br />
+    <%= f.text_field :trigger_email %>
+  </div>
+  <div class="field">
+    <%= f.label :inventory_level %><br />
+    <%= f.text_field :inventory_level %>
+  </div>
+  <div class="field">
+    <%= f.label :trigger_level %><br />
+    <%= f.text_field :trigger_level %>
+  </div>
+  <div class="field">
+    <%= f.label :track_status %><br />
+    <%= f.check_box :track_status %>
+  </div>
+  <div class="field">
+    <%= f.label :allow_negative %><br />
+    <%= f.check_box :allow_negative %>
+  </div>
+  <div class="field">
+    <%= f.label :show_inventory %><br />
+    <%= f.check_box :show_inventory %>
+  </div>
+  <div class="field">
+    <%= f.label :low_inventory_text %><br />
+    <%= f.text_field :low_inventory_text %>
+  </div>
+  <div class="field">
+    <%= f.label :low_inventory_trigger %><br />
+    <%= f.text_field :low_inventory_trigger %>
+  </div>
+  <div class="field">
+    <%= f.label :out_of_stock_text %><br />
+    <%= f.text_field :out_of_stock_text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

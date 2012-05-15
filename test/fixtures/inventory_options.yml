@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_id: 1
+  trigger_email: MyString
+  inventory_level: MyString
+  trigger_level: MyString
+  track_status: false
+  allow_negative: false
+  show_inventory: false
+  low_inventory_text: MyString
+  low_inventory_trigger: MyString
+  out_of_stock_text: MyString
+
+two:
+  site_id: 1
+  trigger_email: MyString
+  inventory_level: MyString
+  trigger_level: MyString
+  track_status: false
+  allow_negative: false
+  show_inventory: false
+  low_inventory_text: MyString
+  low_inventory_trigger: MyString
+  out_of_stock_text: MyString

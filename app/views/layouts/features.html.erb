@@ -65,37 +65,37 @@
                     <div class="user-tabs">
                         <ul>
                             <li class="<%=params[:controller] == 'product_filters' ? ' active' : ''%>">
-                                product filters
+                                <%=link_to 'Product filters',"/sites/#{params[:site_id]}/product_filters"%>
                             </li>
                             <li class="<%=params[:controller] == 'site_features' and (params[:action] == 'change_adv_status' or params[:action] =='index') ? ' active' : ''%>">
-                                advertising
+                                <%=link_to 'advertising',"/sites/#{params[:site_id]}/site_features/change_adv_status"%>
                             </li>
                             <li class="<%=params[:controller] == 'site_features' and params[:action] == 'ssl_setup_status' ? ' active' : ''%>">
-                                SSL setup
+								<%=link_to 'SSL setup',"/sites/#{params[:site_id]}/site_features/ssl_setup_status"%>
                             </li>
                             <li class="<%=params[:controller] == 'site_features' and params[:action] == 'review_management' ? ' active' : ''%>">
-                                reviews
+                                <%=link_to 'reviews',"/sites/#{params[:site_id]}/site_features/review_management"%>
                             </li>
                             <li>
                                 try it
                             </li>
                             <li class="<%=params[:controller] == 'gift_certificates' ? ' active' : ''%>">
-                                gift certs
+                            	<%=link_to 'gift certs',"/sites/#{params[:site_id]}/gift_certificates"%>
                             </li>
                             <li>
                                 coupons
                             </li>
-                            <li>
-                                vendors
+                            <li class="<%=params[:controller] == 'site_vendors' ? ' active' : ''%>">
+                            	<%=link_to 'vendors',"/sites/#{params[:site_id]}/site_vendors"%>
                             </li>
-                            <li>
-                                inventory
+                            <li class="<%=params[:controller] == 'inventory_options' ? ' active' : ''%>">
+                            	<%=link_to 'inventory',"/sites/#{params[:site_id]}/inventory_options"%>
                             </li>
-                            <li>
-                                cart options
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'cart_status'? ' active' : ''%>">
+                                <%=link_to 'cart options',"/sites/#{params[:site_id]}/site_features/cart_status"%>
                             </li>
-                            <li>
-                                Rx
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'rx_manage'? ' active' : ''%>">
+                                <%=link_to 'Rx',"/sites/#{params[:site_id]}/site_features/rx_manage"%>
                             </li>
                         </ul>
                     </div>

@@ -1,0 +1,104 @@
+<%@inventory_option = Site.find(params[:site_id]).inventory_options.first || InventoryOption.new%>
+<%=form_for [Site.find(params[:site_id]),@inventory_option] do |f|%>
+<div class="content-section">
+    <div class="siteInfo-main cartBg">
+        <div class="cartColumsMain2">
+            <div class="rowDiv">
+                <h2>inventory setup<span><a href="$"><img src="css/img/helpIcon.png"></a></span></h2>
+                <dl>
+                    <dt>
+                        enable inventory:
+                    </dt>
+                    <dd>
+                    	<%=f.hidden_field "enable_inventory",:value=>"false"%>
+                        <span class="status">
+                        	<%if @inventory_option and @inventory_option.enable_inventory%>
+                             	<a href="javascript:void(0);" class="on"></a>
+							<%else%>
+	                        	<a href="javascript:void(0);" class="off" ></a>
+							<%end%>
+							</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="cartCollumsBottom">
+            <div class="rowDiv2">
+                <div class="content-section featuresMain">
+                    <div class="pages-main">
+                        <div class="pages-wrapper">
+                            <div class="usersLeftPane productsTitle">
+                                <div class="title">
+                                    inventory options<span class="help"><a href="#"></a></span>
+                                </div>
+                            </div>
+                            <div class="site-users left">
+                                <div class="rowDiv2">
+                                    <div class="extForm">
+                                        <div class="form-row">
+                                            <span class="key">inventory trigger email  :</span>
+                                            <span class="val">
+                                            	<%=f.text_field :trigger_email,:class => "inputBox"%>
+											</span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">default inventory level:</span>
+                                            <span class="val"><%=f.text_field :inventory_level,:class => "inputBox"%>
+											</span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">default trigger level:</span>
+                                            <span class="val"><%=f.text_field :trigger_level,:class => "inputBox"%></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">track inventory by default:</span>
+                                            <span class="val"><span class="status"><a href="#" class="on"></a></span></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">allow negative inventory by defalut :</span>
+                                            <span class="val"><span class="status"><a href="#" class="on"></a></span></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">show inventory on store front:</span>
+                                            <span class="val"><span class="status"><a href="#" class="on"></a></span></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">low inventory text  :</span>
+                                            <span class="val"><%=f.text_field :low_inventory_text,:class => "inputBox"%></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">low inventory trigger :</span>
+                                            <span class="val"><%=f.text_field :low_inventory_trigger,:class => "inputBox"%></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">out of stock text :</span>
+                                            <span class="val"><%=f.text_field :out_of_stock_text,:class => "inputBox"%></span>
+                                        </div>
+                                        <div class="form-row">
+                                            <span class="key">&nbsp;</span>
+                                            <span class="val"><input type="submit" name="" value="save changes" class="greenBtn" style="float:left; width:250px"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>
+
+<script>
+	$(document).ready(function(){
+		$('.on').click(function () {
+		  $(this).attr('class','off');	
+		});
+	     $('.off').click(function () {
+		  $(this).attr('class','on');	
+		})
+
+	})
+	
+</script>

@@ -1,5 +1,6 @@
 Mystore3::Application.routes.draw do
 
+
   resources :system_configs
 
   resources :product_categories
@@ -45,6 +46,7 @@ Mystore3::Application.routes.draw do
     get 'pages_list', :on => :collection
     get 'site_preview', :on => :member
     
+    resources :inventory_options
     resources :gift_certificates
     resources :site_vendors 
     
@@ -52,6 +54,8 @@ Mystore3::Application.routes.draw do
       get 'change_adv_status', :on => :collection
       get 'ssl_setup_status', :on => :collection
       get 'review_management', :on => :collection
+      get 'cart_status',:on => :collection
+      get 'rx_manage',:on => :collection
     end
 
     resources :product_filters do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515173312) do
+ActiveRecord::Schema.define(:version => 20120515193436) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -166,6 +166,22 @@ ActiveRecord::Schema.define(:version => 20120515173312) do
     t.boolean  "allow_negative_inventory"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "inventory_options", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "trigger_email"
+    t.string   "inventory_level"
+    t.string   "trigger_level"
+    t.boolean  "track_status"
+    t.boolean  "allow_negative"
+    t.boolean  "show_inventory"
+    t.string   "low_inventory_text"
+    t.string   "low_inventory_trigger"
+    t.string   "out_of_stock_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "enable_inventory"
   end
 
   create_table "miscs", :force => true do |t|
