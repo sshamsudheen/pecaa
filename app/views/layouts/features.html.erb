@@ -85,16 +85,16 @@
                             <li>
                                 coupons
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'site_vendors' ? ' active' : ''%>">
                                 vendors
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'inventory_options' ? ' active' : ''%>">
                                 inventory
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'cart_status'? ' active' : ''%>">
                                 cart options
                             </li>
-                            <li>
+                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'rx_manage'? ' active' : ''%>">
                                 Rx
                             </li>
                         </ul>

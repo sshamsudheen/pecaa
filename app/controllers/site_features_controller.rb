@@ -97,4 +97,13 @@ class SiteFeaturesController < ApplicationController
   
   def review_management
   end
+
+  def rx_management
+  end
+
+  def cart_status
+    @site_feature = SiteFeature.first || SiteFeature.new
+    @site_feature.cart_setup = params[:cart_status] == 'true' ? true : false
+    @site_feature.save
+  end
 end
