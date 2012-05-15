@@ -110,11 +110,6 @@
 	text-align: center;
 	margin:0;
 }
-.galleryMain ul.ConLibra{
-	border-left:1px solid #333333;
-	border-right:1px solid #333333;
-}
-
 .galleryMain ul.ConLibra li{
 	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
 	border-bottom: 1px solid #CBCBCA;
@@ -217,7 +212,6 @@
 	height:200px;
 	width: 430px;
 }
-
 .imgDetailColumn .showImgDetail .selectedImgDetail{
 	margin-bottom:5px;
 }

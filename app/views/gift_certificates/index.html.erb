@@ -1,0 +1,73 @@
+<div class="siteInfo-main cartBg reviewBg">
+                <div class="cartColumsMain2">
+                  <div class="rowDiv">
+                    <h2>manage Gift Certificates
+                    <span><a href="$"><img src="/assets/helpIcon.png"></a></span>
+                    </h2>
+                  </div>
+                
+                </div>
+                <div class="cartCollumsBottom">
+               <div class="rowDiv2">
+                   <div class="content-section featuresMain">
+      <div class="pages-main">
+        <div class="pages-wrapper">
+          <div class="usersLeftPane productsTitle">
+            <div class="title">Gift Certificates</div>
+            </div>
+			<div class="addNewUserBtn"><a rel="facebox" href="/sites/<%=params[:site_id]%>/gift_certificates/new" class="addNewUser">create new Gift</a></div>
+          
+          <div class="site-users left">
+          	<div class="detailsPopDiv1" style="display:none;">
+        
+        	 <div class="detailsPopDiv2">
+        <span class="closeBtn" onclick="$('.detailsPopDiv1').hide();"></span>
+        	       
+        </div>
+         <div class="bottmArIcon"></div>
+        
+        </div>
+            
+            
+            
+            <div class="page-data clear">
+              <div class="userGrid customTax1">
+                <div class="userGridHeader">
+                  <ul class="ConLibraHeads">
+                    <li> <span class="user">Certificate ID</span> <span class="date">Created</span><span class="product">Expires</span><span class="review">Purchased By</span><span class="rating">Assign</span><span class="approved">Value</span><span class="close"></span> </li>
+                    </ul>
+                  </div>
+                <div class="userGridBody">
+                  <div id="scrollbar1">
+                    <div style="height: 215px;" class="scrollbar">
+                      <div style="height: 215px;" class="track">
+                        <div style="top: 0px; height: 168.091px;" class="thumb">
+                          <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="viewport">
+                      <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                      <div style="top: 0px;" class="overview featureProduct">
+                        <ul class="ConLibra ">
+							<%GiftCertificate.all.each do |gf|%>
+	                          <li class="selected alt"> <span class="userText"><%=gf.certificate_id%></span><span class="dateText"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="productText"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="approvedText">James</span> <span class="userText"><%=User.find(gf.assigned_to).username rescue ''%></span> <span class="close"><%=gf.value%></span> </li>
+							<%end%>  
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="userGridFooter"></div>
+                </div>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+                  </div>
+                </div>
+           
+              </div>
+			  

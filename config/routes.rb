@@ -1,5 +1,7 @@
 Mystore3::Application.routes.draw do
 
+  resources :site_vendors
+
   resources :system_configs
 
   resources :product_categories
@@ -43,6 +45,8 @@ Mystore3::Application.routes.draw do
     post 'search', :on => :collection
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
+    
+    resources :gift_certificates
     
     resources :site_features do 
       get 'change_adv_status', :on => :collection

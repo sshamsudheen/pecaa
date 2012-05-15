@@ -8,7 +8,7 @@ body textarea{resize:none;}
 button{
 	font-size: 12px;
 	line-height: 12px;
-	padding: 5px 15px 8px;
+	padding: 5px 10px 8px;
 	margin-right:10px;
 	color:#FFFFFF;
 	border-radius: 6px;
@@ -273,6 +273,15 @@ span.select {
 }
 .clear {
     clear: both;
+}
+.taLeft{
+	text-align:left;
+}
+.taRight{
+	text-align: right;
+}
+.taCenter{
+	text-align: center;
 }
 .shadows {position: relative; height:100%;}
 .shadows .topShadow,

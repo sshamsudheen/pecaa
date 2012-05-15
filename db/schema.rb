@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514184740) do
+ActiveRecord::Schema.define(:version => 20120515152820) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -119,6 +119,17 @@ ActiveRecord::Schema.define(:version => 20120514184740) do
     t.string   "name"
     t.string   "link_url"
     t.string   "target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gift_certificates", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "certificate_id"
+    t.datetime "expired_date"
+    t.string   "purchased_by"
+    t.integer  "assigned_to"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,6 @@
 .content-section .ctrlTabSection{
 	width:970px;
-	margin:20px 0;
+	margin:20px 0 20px 15px;
 	position: relative;
 }
 .content-section .ctrlTabSection .ctrl-footer{
@@ -10,7 +10,7 @@
 	width:970px;
 }
 .content-section .ctrlTabSection .ctrl-footer .ctrlHomeBtn{
-	background: url(/assets/btn_home.png) no-repeat;
+	background: url(img/btn_home.png) no-repeat;
 	width: 28px;
 	height: 28px;
 	margin:5px 5px 5px 10px;
@@ -34,10 +34,11 @@
 	cursor: pointer;
 	color: #6C95A9;
 	font-size: 14px;
+	font-weight: bold;
 }
 
 .content-section .ctrlTabs{
-	background:url(/assets/bg_CtrlTabs.png) no-repeat 0 10px;
+	background:url(img/bg_CtrlTabs.png) no-repeat 0 10px;
 	height:52px;
 	color:#CCCCCC;
 	font-size:16px;
@@ -57,6 +58,20 @@
 	padding:18px 15px;
 }
 .content-section .ctrlTabs ul li.active{
+	background:#FFF;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding-top: 8px;
+	color: #666666;
+	font-size: 22px;
+}
+.content-section .ctrlTabs ul li.last.active{
+    width: 102px;
+    font-size: 24px;
+}
+.content-section .ctrlTabs ul li.first.active{
+    width: 134px;
+    font-size: 22px;
 }
 .content-section .ctrlTabContent{
 	background:#FFF;
@@ -86,12 +101,12 @@
 	cursor: pointer;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup button.getTheme{
-	background: url(/assets/bg_GetTheme.png) no-repeat;
+	background: url(img/bg_GetTheme.png) no-repeat;
 	margin-left:50px;
 	margin-right:60px;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup button.upTheme{
-	background: url(/assets/bg_UpTheme.png) no-repeat;
+	background: url(img/bg_UpTheme.png) no-repeat;
 }
 .content-section .ctrlTabContent .themeSection h2{
 	font-size:24px;
@@ -146,16 +161,16 @@
 	cursor: pointer;
 }
 .ctrlTabContent .themeSection ul li ul.tools li.edit{
-	background:url(/assets/btns_editTools.png) no-repeat 0 5px;
+	background:url(img/btns_editTools.png) no-repeat 0 5px;
 } 
 .ctrlTabContent .themeSection ul li ul.tools li.temp{
-	background:url(/assets/btns_editTools.png) no-repeat 0 -16px;
+	background:url(img/btns_editTools.png) no-repeat 0 -16px;
 } 
 .ctrlTabContent .themeSection ul li ul.tools li.dup{
-	background:url(/assets/btns_editTools.png) no-repeat 0 -35px;
+	background:url(img/btns_editTools.png) no-repeat 0 -35px;
 } 
 .ctrlTabContent .themeSection ul li ul.tools li.down{
-	background:url(/assets/btns_editTools.png) no-repeat 0 -55px;
+	background:url(img/btns_editTools.png) no-repeat 0 -55px;
 } 
 .content-section .ctrlTabContent .themeSection ul li .activateLink{
 	padding:7px 35px 7px 10px;
@@ -167,12 +182,11 @@
 	width:40px;
 }
 .themeSection ul li .activateLink.on{
-	background:url(/assets/btnMarkYes.png) no-repeat 95% center;
+	background:url(img/btnMarkYes.png) no-repeat 95% center;
 }
 .themeSection ul li .activateLink.off{
-	background:url(/assets/btnMarkNo.png) no-repeat 95% center;
+	background:url(img/btnMarkNo.png) no-repeat 95% center;
 }
-
 .ctrlTabContent .sysConfg{
 	padding:40px 0 0 200px;
 }

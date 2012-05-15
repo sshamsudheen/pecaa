@@ -17,6 +17,10 @@
 }
 /*end common */
 
+.main-nav ul li.products {
+	background: url(img/btn_products.png) no-repeat;
+	width: 102px;
+}
 .main-nav ul li.payments {
 	background: url(img/btn_payments.png) no-repeat;
 	width: 120px;
@@ -77,6 +81,14 @@
 	display: inline-block;
 	width: 170px;
 }
+.productGrid ul.ConLibraHeads li span.dateCol {
+	display: inline-block;
+	width: 80px;
+}
+.productGrid ul.ConLibraHeads li span.customCol {
+	display: inline-block;
+	width: 140px;
+}
 .productGrid ul.ConLibraHeads li span.group {
 	border: 0 none;
 	display: inline-block;
@@ -118,6 +130,8 @@
 	position: relative;
 	vertical-align: top;
 	width: 168px;
+	text-align: left;
+	padding-left: 10px;
 }
 .productGrid ul.ConLibra li span.group {
 	border-left: 1px solid #999999;
@@ -149,6 +163,23 @@
 	text-align: center;
 	vertical-align: top;
 	width: 70px;
+}
+.productGrid ul.ConLibra li span.dateCol{
+	border-left: 1px solid #999999;
+	height: 19px;
+	padding-top: 5px;
+	text-align: center;
+	vertical-align: top;
+	width: 80px;
+}
+.productGrid ul.ConLibra li span.customCol{ 
+	border-left: 1px solid #999999;
+	height: 19px;
+	padding-top: 5px;
+	text-align: left;
+	vertical-align: top;
+	padding-left:10px;
+	width: 140px;
 }
 .productGrid ul.ConLibra li span.view {
 	border-left: 1px solid #999999;
@@ -196,7 +227,9 @@
 .productGrid .userName .pointer {
 	background-image:none;
 }
-
+#orders1 .userName .pointer {
+	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
+}
 /*product setup*/
 
 .productsetup .productVenBox {
@@ -306,7 +339,7 @@ background-position:20px 5px
 	padding-top: 5px;
 	text-align: center;
 	vertical-align: top;
-	width: 50px;
+	width: 45px;
 }
 .categoryMain ul.ConLibra li span.active {
 	border-left: 1px solid #999999;
@@ -1664,3 +1697,14 @@ z-index:300;
 #products1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
 #products1 .disable { display: none; }
 #products1 ul.ConLibra{border:0}
+/* for products page grid styles */
+/* Tiny Scrollbar */
+#orders1 { /*width: 100%;*/  }
+#orders1 .viewport { /*width:100%;*/ height: 465px; overflow: hidden; position: relative; background:#CCC; border-right:1px solid #333333; }
+#orders1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
+#orders1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
+#orders1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
+#orders1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#orders1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
+#orders1 .disable { display: none; }
+#orders1 ul.ConLibra{border-left:1px solid #333333;}

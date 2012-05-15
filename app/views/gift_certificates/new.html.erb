@@ -1,0 +1,94 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PECAA</title>
+		    <%= stylesheet_link_tag "layout", "pages", "users", 'tinyscroll', 'siteinfo', 'cart', 'features'%>
+<script type="text/javascript">
+        	
+        	$(document).ready(function(){
+									   $('.productVenBox').hide();
+        		$('#scrollbar1').tinyscrollbar();
+        		$(".ConLibra li:even").addClass("alt");
+
+        		$("ul.ConLibra li").click(function(){
+        			var $this = $(this);
+        			//$this.parent().find('.misc img').hide();
+        			
+        			if(!$this.hasClass("selected")){
+        				$("ul.ConLibra li").removeClass("selected");
+        				$("ul.ConLibra li").find('.pointer').hide();
+        				$this.addClass("selected");
+        				$this.find('.pointer').show();
+        				//$this.find('.misc img').show();
+        			}
+        			return false;
+        			
+        		})
+				/* enable products*/
+				
+				$('#enableProductBtn').click(function(){
+					$('.rBtnOn').addClass('rBtnOff');
+				})
+				
+				/* product setup*/
+		$('.searchContent1').click(function() {
+
+			$('.productVenBox').show();
+		})
+        	})
+        </script>
+</head>
+<body>
+<div class="popWindow">
+	<%=form_for [Site.find(params[:site_id]), GiftCertificate.new] do |f|%>	
+  <div class="headSection">
+    <h2>New Gift Certificate</h2>
+    <span><a href="#"><img src="/assets/helpIcon.png" width="20" height="20"></a></span> </div>
+  <div class="midSection">
+    <div class="cartColumsMain3">
+      <div class="rowDiv2">
+        <dl class="noMargin">
+          <dt>ID :</dt>
+          <dd>
+          	<%=f.text_field 'certificate_id',:class=>"inputReadOnly"%>
+          </dd>
+          <dt>expiration date:</dt>
+          <dd>
+            <%=f.text_field 'expired_date'%>
+            <input type="text" name="button" id="button" value="" class="btnDate">
+          </dd>
+          
+           <dt>assigened to:</dt>
+          <dd><div class="searchResultBox productVenBox" id="productVender">
+                  <ul>
+                    <li class="active">size<span><a href="#"><img width="20" height="22" src="/assets/searchCloseBtn.png"></a></span></li>
+                    <%User.all.each do |user|%>
+						<li><%=user.username%> <span><a href="#" onclick="$('#gift_certificate_assigned_to').attr('value','<%=user.username%>');$('#productVender').hide();"><img width="20" height="22" src="/assets/searchAddBtn.png"></a></span></li>
+					<%end%>
+                  </ul>
+                </div>
+            <div class="searchContent1">
+            	<%=f.text_field 'assigned_to',:placeholder=>"search"%>
+		    	<span class="searchIcon"><a href="#"></a></span>
+		    </div>
+          </dd>
+          
+           <dt>value ($):</dt>
+          <dd>
+          	<%=f.text_field 'value',:class=>"inputReadOnly"%>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="footSection">
+    <a  type="button" href="/sites/<%=params[:site_id]%>/gift_certificates" class="grayBtn" >cancel</a>
+    <input name="" type="submit" class="greenBtn" value="save changes" >
+  </div>
+  <%end%>
+</div>
+</body>
+</html>
