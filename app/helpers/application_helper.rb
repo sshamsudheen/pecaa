@@ -47,4 +47,9 @@ module ApplicationHelper
       (params[:controller] == 'sites' and params[:action] == 'done') ? 'active' : ''
     end
   end
+  
+  def liquidize(content)
+    RedCloth.new(Liquid::Template.parse(content).render).to_html
+  end
+
 end

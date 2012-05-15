@@ -56,10 +56,8 @@ gem 'paperclip-ffmpeg'
 gem 'ffmpeg'
 #gem 'tiny_mce'
 gem 'tinymce-rails'
-
 gem 'tzinfo'
-
 gem "zip"
-
 gem 'formtastic'
-
+gem "liquid", "~> 2.3.0"
+gem "RedCloth", "~> 4.2.9"

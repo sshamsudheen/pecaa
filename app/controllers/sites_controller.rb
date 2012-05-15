@@ -106,6 +106,17 @@ class SitesController < ApplicationController
     render :layout => false
   end
   
+  def site_preview
+    @site = Site.find(params[:id])
+    record = params[:file_name].split('.').first
+    @site.site_style.theme.get_files('templates')
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
+    lcontent = Liquid::Template.parse(@content).render("#{record.downcase}" => eval("#{record.classify}.all"))
+    # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
+    render :text => lcontent
+  end
+  
+  
   def rendering_partial
     render :partial => "contact_form"
   end

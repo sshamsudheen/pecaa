@@ -85,7 +85,7 @@ end
 
 end
 
-after 'deploy:symlink', 'deploy:create_symlinks'
+after 'deploy:update', 'deploy:create_symlinks'
 # after 'deploy:start', 'deploy:apache_restart'
 # after 'deploy:db_backup', 'deploy:db_seed'
 # after 'deploy:db_backup', 'deploy:migrate'

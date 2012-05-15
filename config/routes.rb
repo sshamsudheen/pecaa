@@ -43,6 +43,7 @@ Mystore3::Application.routes.draw do
     post 'search', :on => :collection
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
+    get 'site_preview', :on => :member
     
     resources :gift_certificates
     resources :site_vendors 
