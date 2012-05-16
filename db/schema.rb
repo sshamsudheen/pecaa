@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515193436) do
+ActiveRecord::Schema.define(:version => 20120516164828) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -107,6 +107,20 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
   create_table "content_libraries_sites", :id => false, :force => true do |t|
     t.integer "content_library_id"
     t.integer "site_id"
+  end
+
+  create_table "coupons", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "code"
+    t.string   "free_text"
+    t.datetime "expired_at"
+    t.integer  "created_by"
+    t.string   "coupon_type"
+    t.string   "amount"
+    t.boolean  "multi_use"
+    t.integer  "no_of_users"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "credit_card_types", :force => true do |t|

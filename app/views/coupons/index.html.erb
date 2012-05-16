@@ -1,0 +1,156 @@
+<div class="content-section">
+    <div class="pages-main">
+        <div class="pages-wrapper couponWrapper">
+            <div class="usersLeftPane left">
+                <div class="title">
+                    manage coupons <span class="help"><a href="#"></a></span>
+                </div>
+                <div class="userPanel">
+                    <div class="searchUser">
+                        <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="css/img/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="css/img/btnDropDownSelectColum.png"></span></span>
+                    </div><span class="showUser clear"><span class="userLastname">order <img src="css/img/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>
+                    <span class="showUser clear"><span class="userLastname">use <img src="css/img/btn_deleteUser_active.png"></span><span class="user-label">multiuse</span></span>
+                </div>
+                <div class="userPanelDevider">
+                </div>
+                <div class="userPanel productp">
+                    <div class="date-created">
+                        <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
+                        <input type="checkbox" checked="checked" class="styled">
+                        <label for="shareThis">
+                            date created
+                        </label>
+                    </div>
+                    <div class="rangeSlider">
+                        <img width="212" height="22" src="css/img/sideBar.png">
+                    </div>
+                    <div class="last-activity">
+                        <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                        <input type="checkbox" id="lastActivityVal" class="styled">
+                        <label for="lastActivityVal">
+                            date expires
+                        </label>
+                    </div>
+                    <div class="last-activity">
+                        <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                        <input type="checkbox" id="lastActivityVal" class="styled">
+                        <label for="lastActivityVal">
+                            date used
+                        </label>
+                    </div>
+                </div>
+                <div class="userPanelDevider">
+                </div>
+                <div class="userPanel">
+                    <div class="date-created">
+                        <span id="" class="radio" style="background-position: 0pt -50px;"></span>
+                        <input type="radio" class="styled" checked="checked">
+                        <label for="dateCreated">
+                            show all
+                        </label>
+                    </div>
+                    <div class="date-created">
+                        <span id="" class="radio" style="background-position: 0pt 0pt;"></span>
+                        <input type="radio" class="styled">
+                        <label for="dateCreated">
+                            show active only
+                        </label>
+                    </div>
+                    <div class="date-created">
+                        <span id="" class="radio" style="background-position: 0pt 0pt;"></span>
+                        <input type="radio" class="styled">
+                        <label for="dateCreated">
+                            show multiuse only
+                        </label>
+                    </div>
+                </div>
+                <div class="userPanelDevider">
+                </div>
+                <div class="userPanel">
+                    <div class="date-created">
+                        <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
+                        <input type="checkbox" class="styled" checked="checked">
+                        <label for="dateCreated">
+                            free
+                        </label>
+                    </div>
+                    <div class="date-created">
+                        <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                        <input type="checkbox" class="styled">
+                        <label for="dateCreated">
+                            %based
+                        </label>
+                    </div>
+                    <div class="date-created">
+                        <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                        <input type="checkbox" class="styled">
+                        <label for="dateCreated">
+                            $based
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="site-users left ">
+                <div class="addNewUserBtn"><a class="addNewUser" href="/sites/<%=params[:site_id]%>/coupons/new" rel="facebox">create new Coupon</a></div>
+                <div class="page-data clear">
+                    <div class="userGrid couponGrid">
+                        <div class="userGridHeader">
+                            <ul class="ConLibraHeads">
+                                <li>
+                                    <span class="coupon">Coupon</span>
+                                    <span class="text">Text</span>
+                                    <span class="created">Created</span>
+                                    <span class="expires">Expires</span>
+                                    <span class="createdBy">Created By</span>
+                                    <span class="type">Type</span>
+                                    <span class="amount">Amount</span>
+                                    <span class="multiuse">Multiuse</span>
+                                    <span class="uses">Users</span>
+                                    <span class="on">On</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="userGridBody">
+                            <div id="products1">
+                                <div class="scrollbar" style="height: 400px;">
+                                    <div class="track" style="height: 400px;">
+                                        <div class="thumb" style="top: 0px; height: 386.473px;">
+                                            <div class="end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="viewport">
+                                    <div class="shadows">
+                                        <span class="topShadow"></span>
+                                        <span class="bottomShadow"></span>
+                                    </div>
+                                    <div class="overview" style="top: 0px;">
+                                        <ul class="ConLibra">
+                                            <%Coupon.all.each do |coupon|%>
+                                            <li class="selected alt">
+                                                <span class="couponText"><span class="pointer"></span><%=coupon.code%><span class="status"></span></span>
+                                                <span class="textData"><%=coupon.free_text%></span>
+                                                <span class="createdDate"><%=coupon.created_at.strftime('%y/%m/%d') rescue ''%></span>
+                                                <span class="expiresText"><%=coupon.expired_at.strftime('%y/%m/%d') rescue ''%></span>
+                                                <span class="createdByText"><%=User.find(coupon.create_by).username rescue ''%></span>
+                                                <span class="typeData"><%=coupon.coupon_type%></span>
+                                                <span class="amountText"><%=coupon.amount%></span>
+                                                <span class="multiuseText"><%=coupon.multi_use ? "yes" : "No"%></span>
+                                                <span class="usersCount">25/250</span>
+                                                <span class="onStatus"><span style="background-position: 0pt -50px;" class="checkbox" id=""></span></span>
+                                            </li>
+											<%end%>
+                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="userGridFooter">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
