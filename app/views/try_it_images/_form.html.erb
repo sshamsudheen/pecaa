@@ -1,0 +1,22 @@
+<%#= stylesheet_link_tag "pecaa"%>
+<div class="addFileHolder" style="margin-top:10px">
+    <div class="addFileTop">Add Image <img src="/assets/icon-help-grey.png" class="help" /></div>
+    <%= form_for([Site.find(params[:site_id]),@try_it_image], :html => { :multipart => true }, :remote => true) do |f| %>
+	<%=hidden_field_tag :site_id, params[:site_id]%>
+    <div class="addFileBody">
+    	<%= f.text_field :name %>
+		<%= f.text_field :type, :value=>"eye wear",:read_only=>true %>
+      <%= f.file_field :upload %>
+      <p>File Path</p>
+      <p>users/jim/desktop/image.png</p>
+    </div>
+    <div class="addFileBottom">
+      <div class="btnCancelLeft">
+        <input type="submit" value="Cancel" class="btnCancel" />
+      </div>
+      <div class="btnUploadFileLeft">
+        <%= f.submit "Upload Image", :class => "btnUploadFile" %>
+      </div>
+    </div>
+    <% end %>
+</div>

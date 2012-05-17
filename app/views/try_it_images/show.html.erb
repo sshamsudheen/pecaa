@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @try_it_image.name %>
+</p>
+
+<p>
+  <b>Hotspot type:</b>
+  <%= @try_it_image.hotspot_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_try_it_image_path(@try_it_image) %> |
+<%= link_to 'Back', try_it_images_path %>

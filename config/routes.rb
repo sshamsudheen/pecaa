@@ -50,6 +50,7 @@ Mystore3::Application.routes.draw do
     resources :gift_certificates
     resources :site_vendors 
     resources :coupons
+    resources :try_it_images
     
     resources :site_features do 
       get 'change_adv_status', :on => :collection

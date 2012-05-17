@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516164828) do
+ActiveRecord::Schema.define(:version => 20120517141054) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -615,6 +615,21 @@ ActiveRecord::Schema.define(:version => 20120516164828) do
     t.text     "filename"
     t.text     "content_type"
     t.boolean  "is_active",     :default => true
+  end
+
+  create_table "try_it_images", :force => true do |t|
+    t.string   "name"
+    t.string   "hotspot_type"
+    t.string   "left_eye_position"
+    t.string   "right_eye_position"
+    t.integer  "user_id"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "is_deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
