@@ -94,8 +94,14 @@
 	margin:0;
 	padding:0;
 }
-.site-users .userGridHeader{
+/*.site-users .userGridHeader{
 	margin-left:10px;
+}*/
+.site-users .leftMargin{
+	margin-left:10px !important;
+}
+.site-users .noBg{
+	background:none !important;
 }
 .site-users ul.ConLibraHeads li {
 	background: url(img/bg_grayGrain.gif) repeat;
