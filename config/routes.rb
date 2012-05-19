@@ -128,6 +128,10 @@ Mystore3::Application.routes.draw do
       post 'create_tax_gateway', :on => :collection
       get 'enable_custom', :on => :member
     end
+
+    resources :shippings do
+      get 'enable', :on => :member
+    end
     
   end
   

@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  $('.payments').live('click', function() {
+    window.location = '<%= site_payments_path(@site.id)%>';
+  });
+  $('.taxes').live('click', function() {
+    window.location = '<%= site_taxs_path(@site.id)%>';
+  });
+
+  $('.shipping').live('click', function(){
+    window.location = '<%= site_shippings_path(@site.id)%>';
+  });
+</script>

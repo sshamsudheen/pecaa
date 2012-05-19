@@ -1,0 +1,80 @@
+<div class="content-section">
+    <div class="siteInfo-main cartBg">
+      <div class="cartColumsMain2">
+        <div class="rowDiv">
+          <h2>usps shipping setup <span><a href="$"><img src="css/img/helpIcon2.png"></a></span> </h2>
+          <dl>
+            <dt>enable usps shipping:</dt>
+            <dd><span class="status">
+              <%= link_to(enable_site_shipping_path(@site.id, params[:id])) do %>
+                <img class="<%= @site_payment_gateway.is_enable ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_enable ? "enable_authorize_net" : "disable_authorize_net" %>">
+              <% end %>
+            </span></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="cartCollumsBottom">
+        <div class="rowDiv2 ">
+          <div class="content-section categoryMain">
+            <%= form_for(@payment_gateway.shipping_gateway_attributes, :url => site_shipping_path(@site.id, params[:id]), :method => :put) do |shipping_gateway_attribute| %>
+            <div class="pages-main">
+              <div class="pages-wrapper">
+                <div class="usersLeftPane productsTitle">
+                  <div class="title">
+                    usps shipping options
+                    <span class="help"><a href="#"></a></span> </div>
+                </div>
+                <div class="site-users left">
+                  <div class="rowDiv2">
+                    <div class="extForm">
+                      <div class="form-row"><span class="key">user id  :</span><span class="val">
+                        <%= shipping_gateway_attribute.text_field(:username, :class => {:size => 20}, :value => @site_payment_gateway.get_value_of("username"))%>
+                        </span></div>
+                          <div class="form-row"><span class="key">password :</span><span class="val">
+                        <%= shipping_gateway_attribute.text_field(:password, :class => {:size => 20}, :value => @site_payment_gateway.get_value_of("password"))%>
+                        </span></div>
+                        <div class="form-row"><span class="key">test mode  :</span><span class="val">
+                       <span class="status">
+                          <% site_payment_gateway_test_mode_arr = site_payment_gateway_test_mode %>
+                          <img class="<%= site_payment_gateway_test_mode_arr[0] %>" width="48" height="21" id="<%= site_payment_gateway_test_mode_arr[1] %>">
+                          <%= hidden_field(:site_payment_gateway, :is_test_mode, :value => site_payment_gateway_test_mode_arr[2]) %>
+                        </span>
+                        </span></div>
+
+
+
+                          <div class="form-row"><span class="key">modify rate  :</span><span class="valS"><select class="noEdit selectW" name="">
+                          <option>+</option></select></span><span>
+                            <%= shipping_gateway_attribute.text_field(:modify_rate, :class => 'inputBox2', :value => @site_payment_gateway.get_value_of("modify_rate"))%>
+
+                            </span><span>
+                            <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'id', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEdit selectW") %>
+                            </span> </div>
+
+
+                           <div class="form-row"><span class="key">select services :</span>
+
+                           <div class="upstypeDiv">
+                             <% @payment_gateway.shipping_gateway_attributes.where(:name => 'service_type').last.children.each_with_index do |shipping_gateway_attribute_types, i|  %>
+                              <span class="val2">
+                                <% shipping_service_type = shipping_gateway_attribute_types.shipping_gateway_attribute_values.where(:sites_shipping_gateway_id => @site_payment_gateway.id).last %>
+                                <%= check_box_tag('service_type[ups_type_'+(i+1).to_s+']', shipping_gateway_attribute_types.id, !shipping_service_type.blank?, :class => 'styled') %>Usps Type <%= i+1 %>
+                              </span>
+                           <% end %>
+
+                        </div>
+                          <input name="" type="submit" value="save changes" class="greenBtn" style="float:left; width:250px">
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+             <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%= render "payments/payment_javascript", :locals => {:site_gateway => @site_payment_gateway} %>

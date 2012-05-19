@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120517141054) do
+ActiveRecord::Schema.define(:version => 20120519131607) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -129,6 +129,12 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.datetime "updated_at"
   end
 
+  create_table "custom_shipping_methods", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "external_links", :force => true do |t|
     t.string   "name"
     t.string   "link_url"
@@ -207,6 +213,12 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.datetime "updated_at"
     t.integer  "site_page_id"
     t.integer  "site_id"
+  end
+
+  create_table "modifier_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "notes", :force => true do |t|
@@ -358,6 +370,30 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
+  end
+
+  create_table "shipping_gateway_attribute_values", :force => true do |t|
+    t.integer  "shipping_gateway_attribute_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sites_shipping_gateway_id"
+    t.integer  "custom_shipping_method_id"
+  end
+
+  create_table "shipping_gateway_attributes", :force => true do |t|
+    t.integer  "shipping_gateway_id"
+    t.string   "name"
+    t.string   "type"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shipping_gateways", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "site_company_infos", :force => true do |t|
@@ -567,6 +603,15 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.integer  "credit_card_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sites_shipping_gateways", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "shipping_gateway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_enable"
+    t.boolean  "is_test_mode"
   end
 
   create_table "sub_permissions", :force => true do |t|

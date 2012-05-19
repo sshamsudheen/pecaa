@@ -1,5 +1,5 @@
 class TaxsController < ApplicationController
-  before_filter :ensure_site_id, :get_tax_gateway
+  before_filter :ensure_site_id
   layout 'payments'
 
 
@@ -69,11 +69,5 @@ class TaxsController < ApplicationController
     end
   end
 
-  def get_tax_gateway
-#    @tax_gateway = TaxGateway.find_by_id(params[:id])
-#    @tax_gateway = TaxGateway.last if @tax_gateway.blank?
-#    params[:id] = @tax_gateway.id
-#    @site_tax_gateway = SitesTaxGateway.find_by_site_id(@site.id)
-#    @custom_tax_payment = ((@tax_gateway.name == Gateway::CUSTOM) || @site_tax_gateway.blank?)
-  end
+
 end
