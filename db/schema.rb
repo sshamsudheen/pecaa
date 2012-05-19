@@ -536,13 +536,15 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.text     "description"
     t.string   "name"
     t.integer  "created_by"
-    t.boolean  "is_active",     :default => true
+    t.boolean  "is_active",      :default => true
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "domain_name"
     t.string   "company_name"
     t.string   "site_nav_type"
+    t.boolean  "enable_tax"
+    t.integer  "tax_gateway_id"
   end
 
   add_index "sites", ["created_by"], :name => "index_sites_on_created_by"
@@ -589,6 +591,28 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.string   "controller_logo_content_type"
     t.integer  "controller_logo_file_size"
     t.datetime "controller_logo_updated_at"
+	t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+  create_table "tax_gateway_attribute_values", :force => true do |t|
+    t.string   "value"
+    t.integer  "tax_gateway_attribute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "site_id"
+    t.integer  "parent_id"
+    t.boolean  "is_enable",                :default => false
+  end
+
+  create_table "tax_gateway_attributes", :force => true do |t|
+    t.string   "name"
+    t.integer  "tax_gateway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_gateways", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -628,6 +652,15 @@ ActiveRecord::Schema.define(:version => 20120517141054) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.boolean  "is_deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+   create_table "uploads", :force => true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

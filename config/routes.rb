@@ -120,6 +120,14 @@ Mystore3::Application.routes.draw do
     resources :payments do
       get 'enable', :on => :member
     end
+
+    resources :taxs, :only => [:index, :create] do
+      put 'enable', :on => :collection
+      get 'tax_type', :on => :collection
+      get 'destroy', :on => :member
+      post 'create_tax_gateway', :on => :collection
+      get 'enable_custom', :on => :member
+    end
     
   end
   

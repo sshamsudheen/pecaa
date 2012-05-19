@@ -14,6 +14,9 @@ gem 'paperclip'
 gem 'json'
 
 gem 'meta_search'
+gem 'country-select'
+gem "state_select"
+gem 'acts_as_tree'
 # gem "railties", "~> 4.0.0"
 
 # Gems used only for assets and not required

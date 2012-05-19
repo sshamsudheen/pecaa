@@ -56,6 +56,20 @@ CreditCardType.create(:name => 'Discover')
 CreditCardType.create(:name => 'American Express')
 
 
+striketron = TaxGateway.create(:name => 'Striketron')
+custom_tax = TaxGateway.create(:name => 'Custom Tax Rates')
+
+striketron.tax_gateway_attributes.create(:name => 'username')
+striketron.tax_gateway_attributes.create(:name => 'password')
+
+custom_tax.tax_gateway_attributes.create(:name => 'location')
+custom_tax.tax_gateway_attributes.create(:name => 'type')
+custom_tax.tax_gateway_attributes.create(:name => 'tax_rate')
+
+
+
+
+
 # 5.times do |i|
 #   Theme.create(:name=>"theme#{i}", :theme_type=>"Free", :created_by=>admin)
 # end

@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="/assets/users.css" type="text/css">
   <link rel="stylesheet" href="/assets/tinyscroll.css" type="text/css">
   <link rel="stylesheet" href="/assets/cart.css" type="text/css">
+
   <script src="/assets/jquery-1.7.1.min.js" type="text/javascript"></script>
-  <script src="/assets/inputstyle.js" type="text/javascript"></script>
   <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
   <%= javascript_include_tag 'jquery-1.4.2.min'%>
   <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
@@ -17,6 +17,8 @@
   <%= javascript_include_tag 'common.js'%>
   <%= javascript_include_tag 'taxs.js'%>
   <%= stylesheet_link_tag "facebox" %>
+
+
   <script type="text/javascript">
 
     $(document).ready(function() {
@@ -49,17 +51,15 @@
         <div class="navBtns">
           <ul>
             <li class="products"></li>
-            <li class="payments acttive"></li>
-            <li class="taxes"></li>
+            <li class="payments"></li>
+            <li class="taxes active"></li>
             <li class="shipping"></li>
             <li class="features"></li>
             <li class="orders"></li>
             <li class="reports"></li>
           </ul>
         </div>
-      </div>
-
-      <%= render "shared/#{params[:controller]}" %>
+      </div>      
     </div>
 
     <div class="content-section">
