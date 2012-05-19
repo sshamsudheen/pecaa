@@ -1,0 +1,101 @@
+<div class="content-section">
+    <div class="users-main">
+        <div class="pages-wrapper">
+            <div class="usersLeftPane userEdit">
+                <div class="title">
+                    manage orders <span class="help"><a href="#"></a></span>
+                </div>
+                <div class="userEditPanel orderPanel">
+                    <div class="orderHeader">
+                        <div class="orderNum left">
+                            Order : <%=@order.order_id%>
+                        </div>
+                        <div class="tabWraper left">
+                            <ul class="pTabs">
+                                <li>
+                                    payment / shipping
+                                </li>
+                                <li>
+                                    products
+                                </li>
+                                <li class="active">
+                                    notes / history
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="exportBtn">
+                            <button class="secondary">
+                                export pdf of this order
+                            </button>
+                        </span>
+                    </div>
+                    <!-- start of colum wrapper -->
+                    <div class="notes-wrapper left">
+                        <h3>History</h3>
+						
+                        <dl>
+                        	<%History.where(:order_id=>@order.id).each do |history|%>
+	                            <dt>
+	                                <%=history.created_at.strftime('%D')%>
+	                                <br>
+	                                <%=history.created_at.strftime('%T')%> PM
+	                            </dt>
+	                            <dd>
+	                                <%=history.changes_txt%>
+	                            </dd>
+							<%end%>
+                        </dl>
+                    </div>
+                    <div class="notes-wrapper last left">
+                        <h3>Notes</h3>
+                        <dl id='notes'>
+                        	<%@order.order_notess.each do |o_n|%>
+	                            <dt>
+	                                <%=User.find(o_n.created_by).username rescue nil%>
+	                                <br>
+	                               <%=o_n.created_at.strftime('%D')%>
+	                                <br>
+	                                <%=o_n.created_at.strftime('%T')%> PM
+	                            </dt>
+	                            <dd>
+	                            	<%=o_n.description%>
+	                              <span class="deleteBtn"><img border="0" src="/assets//btn_cross.png"></span>
+	                            </dd>
+                            <%end%>
+                        </dl>
+						<dl>
+							<dt class="greenTxt">
+                                new note
+                            </dt>
+                            <dd>
+                            	<%=text_area_tag :new_note,"enter note text"%>
+                            </dd>
+							  <button class="secondary" onclick="notes_submit();">
+                                add this note
+                            </button>
+						</dl>
+                    </div>
+                    <div class="userEditBtnPanel clear">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	
+function notes_submit(){
+	var desc=$('#new_note').val()
+	alert(desc)
+	if (desc != 'enter note text' && desc != '') {
+		$.ajax({
+			type: "get",
+			url: '<%="/sites/#{params[:site_id]}/orders/#{@order.id}"%>/create_notes?desc=' + desc,
+			success: function(data){
+				$('#notes').append(data);
+			},
+		})
+	}
+}
+</script>

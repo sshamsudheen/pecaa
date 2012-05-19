@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>PECAA</title>
         <%= stylesheet_link_tag "layout","pages","users","tinyscroll","siteinfo","cart","features", "facebox" %>
-		<%= stylesheet_link_tag "products" if params[:controller] == "coupons" or params[:controller] == "gift_certificates"%>
+		<%= stylesheet_link_tag "products" if params[:controller] == "coupons" or params[:controller] == "gift_certificates" or params[:controller] == "orders"%>
         <%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js','jquery.watermark.js' %>
         <%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js' %>
 		<%= javascript_include_tag 'facebox'%>
@@ -17,7 +17,6 @@
             $(document).ready(function(){
                 $('#scrollbar1').tinyscrollbar();
                 $(".ConLibra li:even").addClass("alt");
-                
                 $("ul.ConLibra li").click(function(){
                     var $this = $(this);
                     //$this.parent().find('.misc img').hide();
@@ -57,15 +56,16 @@
                                 </li>
                                 <li class="shipping">
                                 </li>
-                                <li class="features active">
+                                <li class="features <%= params[:controller] != 'orders' ? 'active' : ''%>">
                                 </li>
-                                <li class="orders">
+                                <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>">
                                 </li>
                                 <li class="reports">
                                 </li>
                             </ul>
                         </div>
                     </div>
+					<%unless params[:controller] == "orders"%>
                     <div class="user-tabs">
                         <ul>
                             <li class="<%=params[:controller] == 'product_filters' ? ' active' : ''%>">
@@ -103,6 +103,7 @@
                             </li>
                         </ul>
                     </div>
+					<%end%>
                 </div>
                 <div class="content-section">
                     <%=yield%>

@@ -52,6 +52,16 @@ Mystore3::Application.routes.draw do
     resources :coupons
     resources :try_it_images
     
+    resources :shipping_detials
+    resources :shipping_addresses
+    resources :billing_addresses
+    resources :billings
+    resources :orders do
+      get 'product_list', :on => :member
+      get 'notes_and_history', :on => :member
+      get 'create_notes', :on => :member
+    end
+    
     resources :site_features do 
       get 'change_adv_status', :on => :collection
       get 'ssl_setup_status', :on => :collection
