@@ -16,4 +16,15 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def total_amt
+    total = 0
+    self.products.each do |p| 
+      total = total + p.cost.to_i + 2.50
+    end
+    return total
+  end
+  
 end
+
+
+

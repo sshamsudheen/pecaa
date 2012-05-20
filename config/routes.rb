@@ -61,6 +61,7 @@ Mystore3::Application.routes.draw do
       get 'notes_and_history', :on => :member
       get 'create_notes', :on => :member
     end
+    resources :reports
     
     resources :site_features do 
       get 'change_adv_status', :on => :collection
