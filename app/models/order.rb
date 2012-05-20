@@ -24,6 +24,10 @@ class Order < ActiveRecord::Base
     return total
   end
   
+  def self.total_on(date)
+    where("date(created_at) = ?", date).to_a.sum(&:total_amt)
+  end
+  
 end
 
 
