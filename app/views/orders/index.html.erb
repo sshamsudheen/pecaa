@@ -1,7 +1,7 @@
 <div class="content-section">
     <div class="pages-main">
         <div class="pages-wrapper">
-            <div class="usersLeftPane left">
+            <div class="usersLeftPane left" id="show_order_list">
                 <div class="title">
                     manage orders <span class="help"><a href="#"></a></span>
                 </div>
@@ -119,7 +119,7 @@
                                     <div class="overview leftMargin" style="top: 0px;">
                                         <ul class="ConLibra">
                                             <%Order.all.each do |order| %>
-                                            <li class="alt">
+                                            <li class="alt" onclick="show_order('<%=order.id%>')">
                                                 <span class="dateCol"><span class="pointer" style="display: none;"></span><%=order.order_id%></span>
                                                 <span class="dateCol"><%=order.created_at.strftime("%y/%m/%d")%></span>
                                                 <span class="dateCol"><%=order.status%></span>
@@ -143,3 +143,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+	
+function show_order(id){
+		$.ajax({
+			type: "get",
+			url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
+			success: function(data){
+				$('#show_order_list').html(data);
+			},
+	});
+}
+</script>
