@@ -56,11 +56,11 @@
                                 </li>
                                 <li class="shipping">
                                 </li>
-                                <li class="features <%= params[:controller] != 'orders' ? 'active' : ''%>">
+                                <li class="features <%= (params[:controller] != 'orders' and params[:controller] != 'reports') ? 'active' : ''%>">
                                 </li>
                                 <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>">
                                 </li>
-                                <li class="reports">
+                                <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>">
                                 </li>
                             </ul>
                         </div>
