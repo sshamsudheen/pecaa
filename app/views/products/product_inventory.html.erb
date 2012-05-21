@@ -28,7 +28,7 @@
                     <ul class="ConLibraHeads">
                       <li> <span class="gridColHeaddings w50">Size</span> <span class="gridColHeaddings w250">Material</span><span class="gridColHeaddings w100">Sub SKU</span><span class="gridColHeaddings w100">Inventory</span><span class="gridColHeaddings w100">Trigger</span>
                         <span class="gridColHeaddings w95">Track Inventory<span>
-                           <a href="<%=update_pi_site_product_path(@site, @product, :all => true, :product_inventory => {:track_inventory => !(@tracked_inventories) ?  ? 1 : 0})%>">
+                           <a href="<%=update_pi_site_product_path(@site, @product, :all => true, :product_inventory => {:track_inventory => !(@tracked_inventories) ? 1 : 0})%>">
                              <img src="/assets/<%= (@tracked_inventories ? 'checkOn.png' : 'radioOff.jpg')%>"/>
                           </a>
                         </span></span> 
