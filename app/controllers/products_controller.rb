@@ -49,25 +49,77 @@ class ProductsController < ApplicationController
   
   def search
     @products = Product.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
-    render :partial=>"search"# :text => @products.map{|i| "#{i.name}.#{i.name}\n"}
+    render :partial => "search"
   end
   
-  # GET /products/:id/edit
   def images_list
-    render :partial => "images_list", :locals => {:product_images => @product.product_images} 
+    @product_images = @product.product_images
   end
   
-  # GET /products/:id/add_image
+  def videos_list
+    @product_videos = @product.product_videos
+  end
+  
+  
+  def related_products
+    if !params[:related_product_id].blank?
+      related_product = @product.related_products.find(params[:related_product_id])
+      related_product.destroy
+    elsif !params[:link_product_id].blank?
+      related_product = @product.related_products.find_or_initialize_by_product_id_and_related_product_id(@product.id, params[:link_product_id])
+      related_product.save!
+    end
+    @related_products = @product.related_products
+  end
+    
+  def product_options
+    if !params[:link_option].blank? && product_option = ProductOption.find_by_id(params[:link_option])
+      new_product_option = product_option.dup
+      new_product_option.product_id = @product.id
+      new_product_option.save
+    end
+    @product_options = @product.product_options 
+    # @all_product_options = ProductOption.find(:all, :conditions =>['product_id != ? OR product_id = ?', @product.id, nil], :limit=>10, :select=>"name, id")
+    @all_product_options = ProductOption.all
+  end
+  
+  def update_intentory
+    if !params[:inventory_id].blank?
+      @product_inventory = @product.inventories.find(params[:inventory_id])
+      @product_inventory.update_attributes(params[:product_inventory])
+    else !params[:all].blank?
+      @product_inventory = @product.inventories.update_all(params[:product_inventory])
+    end
+    product_inventory_options
+  end
+  
+  def product_inventory
+    product_inventory_options
+  end
+  
+  def create_inventory
+    ["XS", "S", "M", "XL", "L", "XXL", "XXS"].each do |i|
+      Inventory.create({:product_id => @product.id, :size => i, :sub_sku => "1234QWER",
+      :inventory => rand(70), :trigger => rand(6), :track_inventory => false, :allow_negative_inventory => false,
+      :material => ["cotton", "polyster", "terra cotta"][rand(2)]
+      })
+    end if @product.inventories == []
+    product_inventory_options
+  end
+  
   def add_image
     @product_image = ProductImage.new(:product_id => @product.id)
   end  
-  
-  # GET /products/:id/images_list
-  def images_list
-    render :partial => "images_list", :locals => {:product_images => @product.product_images} 
-  end
-  
+    
   private
+  
+  def product_inventory_options
+    @product_inventories = @product.inventories 
+    @tracked_inventories = @product.inventories.where(:track_inventory => true).count == @product.inventories.count
+    @negative_inventories = @product.inventories.where(:allow_negative_inventory => true).count ==  @product.inventories.count
+    
+    render :template => '/products/product_inventory'
+  end
   
   def ensure_product_id
     unless @product = Product.find_by_id(params[:id])
