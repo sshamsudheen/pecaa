@@ -1,28 +1,21 @@
 class ProductsController < ApplicationController
   
   before_filter :ensure_site_id
-  before_filter :ensure_product_id, :only => [:edit, :update,:add_image,:images_list]
+  before_filter :ensure_product_id, :except => [:index, :new, :search, :create, :featured_products]
+  # edit, :update,:add_image,:images_list, :videos_list, :related_products
   
   def index
     @products = Product.all
   end
   
-  # GET /products/new
-  
   def new
     @product = Product.new
-    @is_new_product = true
-    render :layout => false
   end
   
-  
-  # GET /products/:id/edit
   def edit
-    render :layout => false
+    render :action => :new
   end
   
-  
-  # POST /products
   def create
     @product = Product.new(params[:product])
     if @product.save
@@ -32,7 +25,6 @@ class ProductsController < ApplicationController
     end
   end
   
-  # PUT /products/1
   def update
     if @product.update_attributes(params[:product])
       if (params[:featured])
