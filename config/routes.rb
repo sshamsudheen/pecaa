@@ -1,6 +1,18 @@
 Mystore3::Application.routes.draw do
 
 
+  get "product_videos/index"
+
+  get "product_videos/new"
+
+  get "sub_product_options/index"
+
+  get "sub_product_options/new"
+
+  get "product_options/index"
+
+  get "product_options/new"
+
   resources :system_configs
 
   resources :product_categories
@@ -100,9 +112,36 @@ Mystore3::Application.routes.draw do
       get 'featured_products', :on => :collection
       post 'search', :on => :collection
       get 'add_featured', :on => :member, :to => 'products#update'
-      resources :product_images do
-        get 'index', :on => :collection
+      get 'images_list', :on => :member
+      get 'videos_list', :on => :member
+      get 'product_options', :on => :member
+      get 'related_products', :on => :member
+      get 'remove_rel', :on => :member
+      get 'product_inventory', :on => :member
+      get 'create_inventory', :on => :member
+      get 'update_pi', :on => :member, :to => 'products#update_intentory'
+      
+      resources :product_videos do
+        get 'update_pvid', :on => :member, :to => 'product_videos#update'
+        get 'delete', :on => :member, :to => 'product_videos#destroy'
+        get 'link_video', :on => :member, :to => 'product_videos#link_video'
       end 
+      
+      resources :product_images do
+        get 'update_pimg', :on => :member, :to => 'product_images#update'
+        get 'delete', :on => :member, :to => 'product_images#destroy'
+      end 
+    end
+    
+    resources :product_options do
+      get 'update_po', :on => :member, :to => 'product_options#update'
+      get 'delete', :on => :member, :to => 'product_options#destroy'
+      
+      resources :sub_product_options do
+        get 'update_spo', :on => :member, :to => 'sub_product_options#update'
+        get 'delete', :on => :member, :to => 'sub_product_options#destroy'
+      end
+      
     end
     
     resources :product_categories do 
@@ -127,7 +166,7 @@ Mystore3::Application.routes.draw do
 
   match 'content_libraries/search', :to=> 'content_libraries#search',:as=>:content_search
   
-resources :content_libraries do
+  resources :content_libraries do
     
   end
   
