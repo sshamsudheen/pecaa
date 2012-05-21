@@ -1,0 +1,36 @@
+<div id="tabs_container">
+  <ul id="tabs">
+    <% flag = @product && !@product.new_record? %>
+    <li <%= check_active('products', "#{flag ? 'edit' : 'new'}") %>>
+      <a href=<%= (flag ? edit_site_product_path(@site, @product) : '#')%>>
+        product setup
+      </a>
+    </li>
+    <li <%= check_active('products', 'images_list') %>>
+      <a href=<%= (flag ? images_list_site_product_path(@site, @product)  : '#')%>>
+        images
+      </a>
+    </li>
+    <li <%= check_active('products', 'videos_list') %>>
+      <a href=<%= (flag ? images_list_site_product_path(@site, @product)  : '#')%>>
+        videos
+      </a>
+    </li>
+    <li <%= check_active('products', 'product_options') %>>
+      <a href=<%= (flag ? product_options_site_product_path(@site, @product)  : '#')%>>
+        product options
+      </a>
+    </li>
+    <li <%= check_active('products', "#{(@product_inventories ? params[:action] : '')}") %>>
+      <a href=<%= (flag ? product_inventory_site_product_path(@site, @product)  : '#')%>>
+        inventory
+      </a>
+    </li>
+    <li <%= check_active('products', 'related_products') %>>
+      <a href=<%= (flag ? related_products_site_product_path(@site, @product)  : '#')%>>
+        related options
+      </a>
+    </li>
+    <li <%= check_active('products', '#') %>><a href="#tab6">try it on</a></li>
+  </ul>
+</div>

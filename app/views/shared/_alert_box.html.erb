@@ -1,0 +1,14 @@
+  <%= link_to image_tag(img_path, :border => "0"), '#',:class =>'confirm_delete', :rel => obj.id %>
+  <!-- Alert message box start -->
+  <div id="alertBox_<%=obj.id%>" class="alert-box" style="display:none">
+    <div class="msgTitle">Are you sure?!</div>
+    <div class="msgContent">
+      Hey, you are about to delete the entire "<%=obj.name%>. 
+      Are you sure you want to do this?
+    </div>
+  	<div class="msgFooter">
+    <%= link_to "Cancel","#", :class=>'secondary cancel_alert', :rel=>obj.id%>
+    <%= link_to "OK!", path, :method => :delete, :class=>'primary' %>
+  	</div>
+</div>
+<!-- Alert message box ends -->
