@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shipping_id: MyString
+  shipping_gateway_id: 1
+  cost: MyString
+  tracking_id: MyString
+  status: MyString
+
+two:
+  shipping_id: MyString
+  shipping_gateway_id: 1
+  cost: MyString
+  tracking_id: MyString
+  status: MyString

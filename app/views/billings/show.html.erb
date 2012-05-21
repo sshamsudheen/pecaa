@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Method:</b>
+  <%= @billing.method %>
+</p>
+
+<p>
+  <b>Site:</b>
+  <%= @billing.site_id %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @billing.order_id %>
+</p>
+
+<p>
+  <b>Auth code:</b>
+  <%= @billing.auth_code %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @billing.amount %>
+</p>
+
+<p>
+  <b>Site user:</b>
+  <%= @billing.site_user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_billing_path(@billing) %> |
+<%= link_to 'Back', billings_path %>

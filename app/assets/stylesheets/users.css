@@ -47,7 +47,7 @@
 	background:url(img/btn_addNewUser.png)no-repeat;
 	font-size: 14px;
     height: 30px;
-    padding-right: 74px;
+    padding-right: 38px;
     padding-top: 5px;
     padding-left: 5px;
     border:0;
@@ -93,9 +93,9 @@
 	margin:0;
 	padding:0;
 }
-.site-users .userGridHeader{
+/*.site-users .userGridHeader{
 	margin-left:10px;
-}
+}*/
 .site-users .leftMargin{
 	margin-left:10px !important;
 }
@@ -155,7 +155,6 @@
 	border: 1px solid #333333;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
-	margin-left:10px;
 }
 .site-users ul.ConLibra .alt {
 	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
@@ -220,7 +219,7 @@
 }
 .site-users ul.ConLibra li span.created,
 .site-users ul.ConLibra li span.lastActivity{
-	width:100px;	
+	width:100px;
 	text-align: center;
 	border-left: 1px solid #999999;
 	height: 19px;
@@ -283,6 +282,11 @@
 	background:url(img/userPanelDevider.png) no-repeat center 0 transparent;
 	height:12px;
 	margin-bottom:10px;
+}
+.usersLeftPane .lineDevider{
+	margin:10px 10px 2px;
+	border-top:1px solid #d3d3d3;
+	border-bottom:1px solid #FFF;
 }
 .userPanel .showUser{
 	height:24px;
@@ -434,7 +438,7 @@
 	    width: 203px;
 	    margin-bottom:1px;
 	}
-	
+
 .usersLeftPane .bottomBorder{
 	border-bottom:1px solid #575a5b;
 	padding-bottom: 10px;
@@ -567,7 +571,7 @@
 }
 .orderPanel .products-wrapper table{
 	width:100%;
-	
+
 }
 .orderPanel .products-wrapper table thead th{
 	font-weight: normal;
@@ -603,7 +607,7 @@
 	margin-top:0;
 }
 .orderPanel .products-wrapper .costDetails dt{
-	float:left;	
+	float:left;
 	text-align: right;
 	width:100px;
 	color:#CCCCCC;
@@ -836,6 +840,9 @@
 	margin-left:10px;
 }
 /* Tiny Scrollbar */
+#scrollbar1 .userGridHeader{
+	margin-left:10px;
+}
 #scrollbar1 { width: 768px;  }
 #scrollbar1 .viewport { width: 752px; height: 400px; overflow: hidden; position: relative;}
 #scrollbar1 .overview { width: 765px; list-style: none; position: absolute; left: 10px; top: 0; padding: 0; margin: 0; }

@@ -12,6 +12,10 @@ class Site < ActiveRecord::Base
   has_one  :site_optional_detail
   has_many :sites_payment_gateways
   has_many :payment_gateways, :through => :sites_payment_gateways
+  has_many :tax_gateway_attribute_values
+  belongs_to :tax_gateway
+  has_many :sites_shipping_gateways
+  has_many :shipping_gateways, :through => :sites_shipping_gateways
   has_many :inventory_options
   
   belongs_to :created_by, :class_name => "User", :foreign_key => "created_by"

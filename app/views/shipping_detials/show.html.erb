@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Shipping:</b>
+  <%= @shipping_detial.shipping_id %>
+</p>
+
+<p>
+  <b>Shipping gateway:</b>
+  <%= @shipping_detial.shipping_gateway_id %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @shipping_detial.cost %>
+</p>
+
+<p>
+  <b>Tracking:</b>
+  <%= @shipping_detial.tracking_id %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @shipping_detial.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_shipping_detial_path(@shipping_detial) %> |
+<%= link_to 'Back', shipping_detials_path %>

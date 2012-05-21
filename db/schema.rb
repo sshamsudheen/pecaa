@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515193436) do
+ActiveRecord::Schema.define(:version => 20120519224444) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,31 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.datetime "updated_at"
   end
 
+  create_table "billing_addresses", :force => true do |t|
+    t.integer  "billing_id"
+    t.string   "nickname"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "billings", :force => true do |t|
+    t.string   "method"
+    t.integer  "site_id"
+    t.integer  "order_id"
+    t.string   "auth_code"
+    t.string   "amount"
+    t.integer  "site_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "card_number"
+    t.string   "type_of_card"
+  end
+
   create_table "catalogs", :force => true do |t|
     t.integer  "site_id"
     t.boolean  "is_active",                                     :default => true
@@ -109,7 +134,27 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.integer "site_id"
   end
 
+  create_table "coupons", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "code"
+    t.string   "free_text"
+    t.datetime "expired_at"
+    t.integer  "created_by"
+    t.string   "coupon_type"
+    t.string   "amount"
+    t.boolean  "multi_use"
+    t.integer  "no_of_users"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "credit_card_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "custom_shipping_methods", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -142,6 +187,16 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "group_id"
     t.integer "user_id"
+  end
+
+  create_table "histories", :force => true do |t|
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
+    t.integer  "order_id"
+    t.text     "changes_txt"
   end
 
   create_table "images", :force => true do |t|
@@ -195,6 +250,12 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.integer  "site_id"
   end
 
+  create_table "modifier_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notes", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -209,6 +270,35 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "order_notes", :force => true do |t|
+    t.text     "description"
+    t.integer  "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
+  end
+
+  create_table "order_products", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "number_of_product"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "order_id"
+    t.string   "status"
+    t.string   "customer_email"
+    t.string   "pay_status"
+    t.string   "ship_status"
+    t.integer  "site_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "grand_total"
   end
 
   create_table "password_histories", :force => true do |t|
@@ -344,6 +434,53 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
+  end
+
+  create_table "shipping_addresses", :force => true do |t|
+    t.string   "nickname"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "shipping_detial_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shipping_detials", :force => true do |t|
+    t.string   "shipping_id"
+    t.integer  "shipping_gateway_id"
+    t.string   "cost"
+    t.string   "tracking_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "order_id"
+  end
+
+  create_table "shipping_gateway_attribute_values", :force => true do |t|
+    t.integer  "shipping_gateway_attribute_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sites_shipping_gateway_id"
+    t.integer  "custom_shipping_method_id"
+  end
+
+  create_table "shipping_gateway_attributes", :force => true do |t|
+    t.integer  "shipping_gateway_id"
+    t.string   "name"
+    t.string   "type"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shipping_gateways", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "site_company_infos", :force => true do |t|
@@ -522,13 +659,15 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.text     "description"
     t.string   "name"
     t.integer  "created_by"
-    t.boolean  "is_active",     :default => true
+    t.boolean  "is_active",      :default => true
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "domain_name"
     t.string   "company_name"
     t.string   "site_nav_type"
+    t.boolean  "enable_tax"
+    t.integer  "tax_gateway_id"
   end
 
   add_index "sites", ["created_by"], :name => "index_sites_on_created_by"
@@ -551,6 +690,15 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.integer  "credit_card_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sites_shipping_gateways", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "shipping_gateway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_enable",           :default => false
+    t.boolean  "is_test_mode"
   end
 
   create_table "sub_permissions", :force => true do |t|
@@ -579,6 +727,29 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.datetime "updated_at"
   end
 
+  create_table "tax_gateway_attribute_values", :force => true do |t|
+    t.string   "value"
+    t.integer  "tax_gateway_attribute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "site_id"
+    t.integer  "parent_id"
+    t.boolean  "is_enable",                :default => false
+  end
+
+  create_table "tax_gateway_attributes", :force => true do |t|
+    t.string   "name"
+    t.integer  "tax_gateway_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tax_gateways", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "texts", :force => true do |t|
     t.integer  "user_id"
     t.string   "text_block_name"
@@ -601,6 +772,21 @@ ActiveRecord::Schema.define(:version => 20120515193436) do
     t.text     "filename"
     t.text     "content_type"
     t.boolean  "is_active",     :default => true
+  end
+
+  create_table "try_it_images", :force => true do |t|
+    t.string   "name"
+    t.string   "hotspot_type"
+    t.string   "left_eye_position"
+    t.string   "right_eye_position"
+    t.integer  "user_id"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "is_deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -61,6 +61,21 @@ Mystore3::Application.routes.draw do
     resources :inventory_options
     resources :gift_certificates
     resources :site_vendors 
+    resources :coupons
+    resources :try_it_images
+    
+    resources :shipping_detials
+    resources :shipping_addresses
+    resources :billing_addresses
+    resources :billings
+    resources :orders do
+      get 'product_list', :on => :member
+      get 'notes_and_history', :on => :member
+      get 'create_notes', :on => :member
+    end
+    resources :reports do
+      get 'graph_index', :on => :collection
+    end
     
     resources :site_features do 
       get 'change_adv_status', :on => :collection
@@ -155,6 +170,18 @@ Mystore3::Application.routes.draw do
     end
     
     resources :payments do
+      get 'enable', :on => :member
+    end
+
+    resources :taxs, :only => [:index, :create] do
+      put 'enable', :on => :collection
+      get 'tax_type', :on => :collection
+      get 'destroy', :on => :member
+      post 'create_tax_gateway', :on => :collection
+      get 'enable_custom', :on => :member
+    end
+
+    resources :shippings do
       get 'enable', :on => :member
     end
     

@@ -1,0 +1,44 @@
+<div id='easy_tax_gateway' style="display:none">
+  <div class="cartCollumsBottom">
+    <div class="rowDiv2">
+      <div class="content-section categoryMain">
+        <div class="pages-main">
+          <div class="pages-wrapper">
+            <div class="usersLeftPane productsTitle">
+              <div class="title">easy tax rate options<span class="help"><a href="#"></a></span></div>
+            </div>
+            <div class="site-users left">
+
+              <%= form_tag create_tax_gateway_site_taxs_path(@site.id) do |f| %>
+              <div class="rowDiv2">
+
+                <dl>
+                  <dt>tax integration :</dt>
+                  <dd>
+                    <%= select_tag "tax_gateway_id", options_from_collection_for_select(TaxGateway.where("name != '#{TaxGateway::Gateway::CUSTOM}'"), 'id', 'name'), :class => "noEdit" %>                    
+                  </dd>
+                  <dt>user name :</dt>
+                  <dd>
+                    <% tax_gateway_attribute_username_value = TaxGatewayAttributeValue.where(:tax_gateway_attribute_id => TaxGatewayAttribute.where(:name => 'username').last.id, :site_id => @site.id).last.value %>
+                    <%= text_field_tag('tax_gateway_attribute[username]', tax_gateway_attribute_username_value,:class => 'inputReadOnly') %>
+
+                  </dd>
+                  <dt>password :</dt>
+                  <% tax_gateway_attribute_password_value = TaxGatewayAttributeValue.where(:tax_gateway_attribute_id => TaxGatewayAttribute.where(:name => 'password').last.id, :site_id => @site.id).last.value %>
+                  <dd><%= text_field_tag('tax_gateway_attribute[password]', tax_gateway_attribute_password_value,:class => 'inputBox') %></dd>
+
+                  <dt>&nbsp;</dt>
+                  <dd><%= submit_tag('Save Changes',:class => 'greenBtn') %></dd>
+                </dl>
+              </div>
+
+            <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,185 @@
+<div class="content-section">
+    <div class="users-main">
+        <div class="pages-wrapper">
+            <div class="usersLeftPane userEdit">
+                <div class="title">
+                    manage orders <span class="help"><a href="#"></a></span>
+                </div>
+                <div class="userEditPanel orderPanel">
+                    <div class="orderHeader">
+                        <div class="orderNum left">
+                            Order : <%=@order.order_id %>
+                        </div>
+                        <div class="tabWraper left">
+                            <ul class="pTabs">
+                                <li>
+                                    payment / shipping
+                                </li>
+                                <li class="active">
+                                    products
+                                </li>
+                                <li>
+                                    notes / history
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="exportBtn">
+                            <button class="secondary">
+                                export pdf of this order
+                            </button>
+                        </span>
+                    </div>
+                    <!-- start of colum wrapper -->
+                    <div class="products-wrapper">
+                        <h3>Order Items</h3>
+                        <table class="products_tbl">
+                            <thead>
+                                <tr>
+                                    <th class="taLeft">
+                                        product
+                                    </th>
+                                    <th class="taLeft">
+                                        description
+                                    </th>
+                                    <th>
+                                        quantity
+                                    </th>
+                                    <th class="taRight">
+                                        price
+                                    </th>
+                                    <th class="taRight">
+                                        options
+                                    </th>
+                                    <th>
+                                        cost
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%o_total=0 %>
+                                <%@order.order_products.each do |o_product| %>
+                                <%product = o_product.product %>
+                                <tr>
+                                    <td class="products">
+                                        <%=product.sku %>
+                                    </td>
+                                    <td class="discrip">
+                                        <span><%=product.name %></span>
+                                        <br>
+                                        <span>left eye 2.0</span>
+                                        <br>
+                                        <span>right eye 2.0</span>
+                                        <br>
+                                        <span><%#=product.description %></span>
+                                        <br>
+                                    </td>
+                                    <td class="qty taLeft">
+                                        <%=o_product.number_of_product %>
+                                    </td>
+                                    <td class="price taRight">
+                                        $<%=product.cost.to_i %>
+                                    </td>
+                                    <td class="options taRight">
+                                        $0.00
+                                    </td>
+                                    <td class="cost">
+                                        <dl class="costDetails">
+                                            <dt>
+                                                product
+                                            </dt>
+                                            <dd class="taRight">
+                                                $<%=p_cost = o_product.number_of_product.to_i * product.cost.to_i %>
+                                            </dd>
+                                            <dt>
+                                                shipping
+                                            </dt>
+                                            <dd class="taRight">
+                                                $0.00
+                                            </dd>
+                                            <dt>
+                                                tax
+                                            </dt>
+                                            <dd class="taRight">
+                                                $2.50
+                                            </dd>
+                                            <dt>
+                                                total
+                                            </dt>
+                                            <dd class="greenTxt taRight">
+                                                $<%=p_total=p_cost + 2.50 %>
+                                            </dd>
+                                            <%o_total = o_total + p_total %>
+                                        </dl>
+                                    </td>
+                                </tr>
+                                <%end %>
+                            </tbody>
+                        </table>
+                        <div class="adjSection right" style="opacity:0.2;">
+                            <div class="adjDetails">
+                                <dl class="costDetails expanded taRight">
+                                    <dt>
+                                        OR sales tax, 5.3%
+                                    </dt>
+                                    <dd class="taRight">
+                                        $3.00
+                                    </dd>
+                                    <dt>
+                                        shipping
+                                    </dt>
+                                    <dd class="taRight">
+                                        $5.00
+                                    </dd>
+                                    <dt>
+                                        <img border="0" src="css/img/btn_cross.png">store credit
+                                    </dt>
+                                    <dd class="taRight">
+                                        -$5.00
+                                    </dd>
+                                    <dt>
+                                        <img border="0" src="css/img/btn_cross.png">customer special discount (+5.5%)
+                                    </dt>
+                                    <dd class="taRight">
+                                        -$5.00
+                                    </dd>
+                                    <dt>
+                                        total
+                                    </dt>
+                                    <dd class="greenTxt taRight">
+                                        $3.00
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <h3 class="right" style="opacity:0.2;">Adjustments</h3>
+                        <div class="grandTotal clear right">
+                            <dl class="costDetails expanded taRight">
+                                <dt class="taRight">
+                                    Grand Total
+                                </dt>
+                                <dd class="taRight">
+                                    $<%=o_total %>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="userEditBtnPanel clear">
+                        <div class="left">
+                            <button class="redBtn">
+                                delete user
+                            </button>
+                        </div>
+                        <div class="right">
+                            <button class="secondary">
+                                cancel
+                            </button>
+                            <button class="primary" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/notes_and_history'">
+                                save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

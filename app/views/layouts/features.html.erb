@@ -4,16 +4,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>PECAA</title>
         <%= stylesheet_link_tag "layout","pages","users","tinyscroll","siteinfo","cart","features", "facebox" %>
+		<%= stylesheet_link_tag "products" if params[:controller] == "coupons" or params[:controller] == "gift_certificates" or params[:controller] == "orders" or params[:controller] == "reports"%>
         <%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js','jquery.watermark.js' %>
         <%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js' %>
 		<%= javascript_include_tag 'facebox'%>
 	  <%= javascript_include_tag 'common'%>
+	  <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+      <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+	  
         <script type="text/javascript">
             
             $(document).ready(function(){
                 $('#scrollbar1').tinyscrollbar();
                 $(".ConLibra li:even").addClass("alt");
-                
                 $("ul.ConLibra li").click(function(){
                     var $this = $(this);
                     //$this.parent().find('.misc img').hide();
@@ -53,15 +56,26 @@
                                 </li>
                                 <li class="shipping">
                                 </li>
-                                <li class="features active">
+                                <li class="features <%= (params[:controller] != 'orders' and params[:controller] != 'reports') ? 'active' : ''%>">
                                 </li>
-                                <li class="orders">
+                                <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>">
                                 </li>
-                                <li class="reports">
+                                <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>">
                                 </li>
                             </ul>
                         </div>
                     </div>
+<%if params[:controller] =="reports"%>
+<div class="user-tabs">
+        <ul>
+          <li>sales</li>
+          <li>products</li>
+          <li>inventory</li>
+          <li class="active">custom</li>
+         </ul>
+      </div>
+<%end%>
+					<%unless params[:controller] == "orders" or params[:controller] == "reports"%>
                     <div class="user-tabs">
                         <ul>
                             <li class="<%=params[:controller] == 'product_filters' ? ' active' : ''%>">
@@ -76,14 +90,14 @@
                             <li class="<%=params[:controller] == 'site_features' and params[:action] == 'review_management' ? ' active' : ''%>">
                                 <%=link_to 'reviews',"/sites/#{params[:site_id]}/site_features/review_management"%>
                             </li>
-                            <li>
-                                try it
+                            <li class="<%=params[:controller] == 'try_it_images' ? ' active' : ''%>">
+                            	<%=link_to 'try it',"/sites/#{params[:site_id]}/try_it_images"%>
                             </li>
                             <li class="<%=params[:controller] == 'gift_certificates' ? ' active' : ''%>">
                             	<%=link_to 'gift certs',"/sites/#{params[:site_id]}/gift_certificates"%>
                             </li>
-                            <li>
-                                coupons
+							<li class="<%=params[:controller] == 'coupons' ? ' active' : ''%>">
+                            	<%=link_to 'coupons',"/sites/#{params[:site_id]}/coupons"%>
                             </li>
                             <li class="<%=params[:controller] == 'site_vendors' ? ' active' : ''%>">
                             	<%=link_to 'vendors',"/sites/#{params[:site_id]}/site_vendors"%>
@@ -99,6 +113,7 @@
                             </li>
                         </ul>
                     </div>
+					<%end%>
                 </div>
                 <div class="content-section">
                     <%=yield%>

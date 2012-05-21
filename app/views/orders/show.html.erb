@@ -1,0 +1,71 @@
+<div class="title">
+    manage orders <span class="help"><a href="#"></a></span>
+</div>
+<div class="userDetailPanel ordersLeft">
+    <h2>Order: <%=@order.order_id %></h2>
+    <div class="userDetailSet">
+        <span class="key">order :</span>
+        <span class="val"><%=@order.order_id %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">placed :</span>
+        <span class="val"><%=@order.created_at.strftime("D") %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">status :</span>
+        <span class="val"><%=@order.status %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">paid status :</span>
+        <span class="val"><%=@order.pay_status %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">ship status :</span>
+        <span class="val"><%=@order.ship_status %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">customer :</span>
+        <span class="val"><%=@order.customer_email %></span>
+    </div>
+    <div class="clear bottomBorder">
+        <button class="secondary left">
+            view customer
+        </button>
+        <button class="secondary right">
+            view all orders
+        </button>
+    </div>
+    <div style="padding-right: 10px" class="userDetailSet clear">
+        <span class="key">items :</span>
+        <%total_cost = 0 %>
+        <%@order.products.each do |product| %>
+        <div>
+            - <%=product.name %><span class="right taRight">$<%=product.cost %>.00</span>
+        </div>
+        <%total_cost = total_cost + product.cost.to_i %>
+        <%end %>
+        <span class="key">shipping :</span>
+        <span class="val right taRight">$0.00</span>
+    </div>
+    <div style="padding-right: 10px" class="userDetailSet bottomBorder">
+        <span class="key">total :</span>
+        <span class="val right taRight">$<%=total_cost %>.00</span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">payment :</span>
+        <span class="val"><%=(billing = @order.billing).created_at.strftime('D') %></span>
+    </div>
+    <div class="userDetailSet bottomBorder">
+        <span class="key">Master Card :</span>
+        <span class="val"><%=billing.card_number %></span>
+    </div>
+    <div class="userDetailSet">
+        <span class="key">shipping :</span>
+        <span class="val">UPS 3day select</span>
+    </div>
+    <div class="buttonPanel taCenter">
+        <button class="secondary">
+            export pdf of this order
+        </button>
+    </div>
+</div>

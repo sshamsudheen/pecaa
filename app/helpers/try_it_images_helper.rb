@@ -1,0 +1,2 @@
+module TryItImagesHelper
+end

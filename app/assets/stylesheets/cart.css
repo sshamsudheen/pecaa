@@ -13,20 +13,20 @@
 	width: 120px;
 }
 .upstypeDiv{
-	
+
 	display:block;
 
 	width:500px;
 	float:left;
-	
+
 }
 .upstypeDiv2{
-	
+
 	display:block;
 
 	width:400px;
 	float:left;
-	
+
 }
 
 .main-nav ul li.taxes{
@@ -85,14 +85,14 @@
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-background:url(img/bg_vline.png) repeat-y ;	
+background:url(img/bg_vline.png) repeat-y ;
 background-position:top;
 width:665px;
 margin-top:5px;
 height:500px;
 }
 .cartColumsMain2{
-background:url(img/bg_vline2.png) repeat-y ;	
+background:url(img/bg_vline2.png) repeat-y ;
 background-position:top;
 width:665px;
 margin-top:5px;
@@ -110,7 +110,7 @@ height:120px;
 }
 .cartColumsMain .rowDiv{
 float:left;
-padding:5px;	
+padding:5px;
 margin:0;
 display:inline;
 height:100px;
@@ -119,11 +119,11 @@ height:100px;
 
 .firstRaw .rowDiv1{
 float:left;
-padding:5px;	
+padding:5px;
 margin:0;
 display:inline;
 height:100px;
-background:url(img/bg_vline2.png) repeat-y ;	
+background:url(img/bg_vline2.png) repeat-y ;
 
 
 }
@@ -133,7 +133,7 @@ margin:0;
 color:#FFF;
 /*background:url(img/helpIcon2.png) no-repeat ;*/
 background-position:left;
-	
+
 padding-right:30px
 }
 
@@ -142,12 +142,12 @@ margin:0;
 color:#FFF;
 /*background:url(img/helpIcon2.png) no-repeat ;*/
 background-position:left;
-	
+
 padding-right:30px
 }
 .rowDiv dl{
 width:400px;
-margin-left:160px;	
+margin-left:160px;
 }
 .rowDiv dt{
 text-align:right;
@@ -157,23 +157,23 @@ color:#fff;
 
 .rowDiv dt{
 float:left;
-width:160px;	
+width:160px;
 margin:0;
 padding:5px 5px 0 0;
 }
 .rowDiv dd{
 float:left;
-width:150px;	
+width:150px;
 margin:0;
 padding:5px 0px 0 15px;
 color:#fff;
 }
 .dlCont{
-margin-top:-5px;	
+margin-top:-5px;
 }
 .cartColumsMain .rowDiv2{
 float:left;
-padding:5px;	
+padding:5px;
 margin:10px 0;
 }
 
@@ -186,11 +186,11 @@ padding-right:30px
 
 
 .noMargin{
-margin-left:10px !important;	
+margin-left:10px !important;
 }
 .rowDiv2 dl{
 width:400px;
-margin-left:160px;	
+margin-left:160px;
 }
 .rowDiv2 dt{
 text-align:right;
@@ -198,23 +198,23 @@ padding-right:20px;
 color:#666;
 }
 .rowDiv2 dd{
-color:#666;	
+color:#666;
 }t
 
 .rowDiv2 dt,dd{
 float:left;
-width:150px;	
+width:150px;
 margin:0;
 padding:5px 10px ;
 }
 .inputReadOnly{
 background-color:#f5f5f5;
 border:none;
-padding:5px;		
+padding:5px;
 }
 .divAlpha{
 opacity:0.4;
-filter:alpha(opacity=40);	
+filter:alpha(opacity=40);
 }
 
 .btnGreen{
@@ -233,13 +233,13 @@ h2 span{
 	padding-top:10px;
 }
 img{
-border:none;	
+border:none;
 }
-	
+
 /* sankar button end*/
 
 .cartCollumsBottom{
-width:900px;	
+width:900px;
 }
 .cartCollumsBottom .site-users .title, .usersLeftPane .title {
     color: #999;
@@ -259,7 +259,7 @@ width:200px;
 border-radius:4px;
 color:#999999;
 border:solid 1px #666667;
-height:15px;	
+height:15px;
 }
 .inputBox2{
 border-radius:4px;
@@ -267,7 +267,7 @@ color:#999999;
 border:solid 1px #666667;
 width:40px;
 height:20px; margin-right:5px;
-	
+
 }
 
 
@@ -287,9 +287,9 @@ height:20px; margin-right:5px;
     height: 30px;
 padding-top:0;
     margin: 0;
-  
+
     padding-right: 27px;
- 
+
     width: 150px;
 }
 
@@ -302,9 +302,9 @@ padding-top:0;
     height: 30px;
 padding-top:0;
     margin: 0;
-  
+
     padding-right: 27px;
- 
+
     width: 170px;
 }
 .cartCollumsBottom .addWeightBtn {
@@ -316,9 +316,9 @@ padding-top:0;
     height: 30px;
 padding-top:0;
     margin: 0;
-  
+
     padding-right: 27px;
- 
+
     width: 230px;
 }
 
@@ -342,12 +342,12 @@ padding-top:0;
 }
 
 .cartCollumsBottom #scrollbar1 .overview {
-   
+
     width: 875px;
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.userName {
-  
+
     width: 507px;
 	text-align:left;
 	padding-left:10px
@@ -416,7 +416,7 @@ padding-top:0;
 	width:130px;
 	  height: 19px;
     padding-top: 5px;
-    vertical-align: top;	
+    vertical-align: top;
 }
 .customTax .site-users {
     margin-bottom: 30px;
@@ -432,7 +432,7 @@ padding-top:0;
 
 .customTax .usersLeftPane .userDetailSet {
     margin-bottom: 10px;
-  
+
 
 }
 .customTax .inputBg{
@@ -452,10 +452,10 @@ padding-top:0;
     width: 94%;
 	border-radius:4px;
 	color:#999;
-	
+
 }
 .customTax .listItem{
-	
+
 background-color:#a2a2a2;
 	border:none;
 	color:#fff;
@@ -542,7 +542,7 @@ bottom:20px;
 
 }
 .buttonsDiv .redBtn{
-margin-right:40px;	
+margin-right:40px;
 }
 .cartCollumsBottom .site-users ul.ConLibraHeads li {
     background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
@@ -561,7 +561,7 @@ span.rBtnOn {
 	height:24px;
 cursor:pointer;
 vertical-align:top;
-	
+
 }
 
 .rightBorder{
@@ -576,14 +576,14 @@ span.rBtnOff {
 cursor:pointer;
 vertical-align:top;
 
-	
+
 }
 .status .on{
-display:inline-block;	
+display:inline-block;
 }
 
 .status .off{
-display:inline-block;	
+display:inline-block;
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.location {
@@ -618,7 +618,7 @@ display:inline-block;
 	 padding-left: 10px;
     text-align: left;
     width: 565px;
-	
+
 }
 
 
@@ -631,7 +631,7 @@ display:inline-block;
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-background:url(img/bg_vline.png) repeat-y ;	
+background:url(img/bg_vline.png) repeat-y ;
 background-position:top;
 width:665px;
 margin-top:5px;
@@ -639,7 +639,7 @@ height:500px;
 }
 .cartColumsMain .rowDiv{
 float:left;
-padding:5px;	
+padding:5px;
 margin:0;
 display:inline;
 height:100px;
@@ -649,13 +649,13 @@ margin:0;
 color:#FFF;
 /*background:url(img/helpIcon2.png) no-repeat ;*/
 background-position:left;
-	
+
 padding-right:30px
 }
 .rowDiv dl{
 width:400px;
 margin-left:160px;
-margin-top:0px;	
+margin-top:0px;
 }
 .rowDiv dt{
 text-align:right;
@@ -665,20 +665,20 @@ color:#fff;
 
 .rowDiv dt{
 float:left;
-width:160px;	
+width:160px;
 margin:0;
 padding:5px 5px 0 0;
 }
 .rowDiv dd{
 float:left;
-width:150px;	
+width:150px;
 margin:0;
 padding:5px 0px 0 15px;
 }
 
 .cartColumsMain .rowDiv2{
 float:left;
-padding:5px;	
+padding:5px;
 margin:10px 0;
 }
 .rowDiv2 h2{
@@ -689,7 +689,7 @@ padding-right:30px
 }
 .rowDiv2 dl{
 width:400px;
-margin-left:160px;	
+margin-left:160px;
 }
 .rowDiv2 dt{
 text-align:right;
@@ -697,23 +697,23 @@ padding-right:20px;
 color:#666;
 }
 .rowDiv2 dd{
-color:#666;	
+color:#666;
 }
 
 .rowDiv2 dt,dd{
 float:left;
-width:150px;	
+width:150px;
 margin:0;
 padding:5px 10px ;
 }
 .inputReadOnly{
 background-color:#f5f5f5;
 border:none;
-padding:5px;		
+padding:5px;
 }
 .divAlpha{
 opacity:0.4;
-filter:alpha(opacity=40);	
+filter:alpha(opacity=40);
 }
 
 .btnGreen{
@@ -732,7 +732,7 @@ h2 span{
 	padding-top:10px;
 }
 img{
-border:none;	
+border:none;
 }
 
 .noEdit {
@@ -741,16 +741,16 @@ border:none;
     border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
     padding: 2px;
-}	
+}
 
 .inputReadOnly{
 background-color:#f5f5f5;
 border:none;
-padding:5px;		
+padding:5px;
 }
 .divAlpha{
 opacity:0.4;
-filter:alpha(opacity=40);	
+filter:alpha(opacity=40);
 }
 .popWindow {
     background-image: url("img/popWindow_2.png");
@@ -794,7 +794,7 @@ filter:alpha(opacity=40);
 }
 .extForm{
 	margin:40px  0 0 230px;
-	
+
 	overflow: hidden;
 }
 .extForm .form-row{
@@ -810,7 +810,7 @@ filter:alpha(opacity=40);
 	width:auto;
 	text-align: right;
 	margin-right:5px;
-	
+
 }
 .extForm .form-row span.val{
 	width:250px;
@@ -875,7 +875,7 @@ filter:alpha(opacity=40);
 }
 .CartOptions .colum-section{
 	  margin-right: 10px;
-	
+
 }
 .CartOptions .group .val input[type="text"] {
     background: none repeat scroll 0 0 #F5F5F5;
@@ -902,7 +902,7 @@ filter:alpha(opacity=40);
 }
 
 .cartGrid #scrollbar1 .shadows{
-margin-left:0;	
+margin-left:0;
 }
 .cartGrid .site-users ul.ConLibraHeads li {
     border-top: 1px solid #333333;
@@ -918,7 +918,7 @@ margin-left:0;
 	    border-top-left-radius: 0px;
 }
 .cartGrid .site-users .userGridFooter{
- margin-left: 0px !important;	
+ margin-left: 0px !important;
 }
 .flatRate{
     margin-bottom: 30px;
@@ -960,7 +960,7 @@ margin-left:0;
 }
 
 .categoryMain ul.ConLibra li span.close1 {
- 
+
     height: 19px;
     padding-top: 3px;
     text-align: center;
@@ -974,13 +974,19 @@ margin-left:0;
 }
 
 .margin{
-margin:10px 5px 0 10px;	
+margin:10px 5px 0 10px;
 }
 
 .noHeight{
-min-height:150px !important	
+min-height:150px !important
 }
 
 .nobMargin{
-	margin-bottom:0px  !important	
+	margin-bottom:0px  !important
+}
+
+.butDelete{
+  background: url(img/btnDelete.png) no-repeat;
+  width: 48px;
+  height: 21px;
 }
