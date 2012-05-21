@@ -75,6 +75,8 @@ Mystore3::Application.routes.draw do
     end
     resources :reports do
       get 'graph_index', :on => :collection
+      get 'show_all_products', :on => :collection
+      get 'show_custom_fields', :on => :collection
     end
     
     resources :site_features do 

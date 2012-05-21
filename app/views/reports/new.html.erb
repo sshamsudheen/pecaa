@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>PECAA</title>
+		        <%= stylesheet_link_tag "modal_layout","themes" %>
+	</head>
+	<body>
+		<div class="main-container midium">
+			<div class="header">Save / Load Custom Report<span class="helpIcon"></span></div>
+			<div class="main-content">
+				<div class="newExt-Link">
+					<div class="templateList">
+						<h3>Click to load a saved report template</h3>
+						<ul class="tempList">
+							<li>long form template<a href="#"><img src="/assets/btn_cross.png" border="0" /></a></li>
+							<li>very, extremely, undoubtedly long form report name<a href="#"><img src="/assets/btn_cross.png" border="0" /></a></li>
+							<li>short report name<a href="#"><img src="/assets/btn_cross.png" border="0" /></a></li>
+						</ul>
+					</div>
+					<div class="saveDetail">
+						<h3>Save current template</h3>
+						<div><label>new template name :</label><input type="text" value="my favourite template!" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-section">
+				<div class="leftBtns"><button class="secondary" id="cancelBtn">Cancel</button> </div>
+				<div class="rightBtns"><button class="primary" id="saveBtn">Save</button> </div>
+			</div>
+		</div>
+		
+	</body>
+</html>

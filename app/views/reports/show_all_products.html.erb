@@ -58,7 +58,9 @@
           <div class="site-users left ">
             <div class="addNewUserBtn">
             	<div class="left">
-            	<button class="blueBtn" onclick="window.location.href='/sites/<%=params[:site_id]%>/reports/graph_index'">show graph</button>
+            		<div class="addNewUserBtn" style="float:left;margin-right:4px;"><a class="addNewUser" style="width:206px" href="/sites/<%=params[:site_id]%>/reports/new" rel="facebox">Save/load report template</a></div>
+					
+				<button class="blueBtn">show/hide column headers</button>
 				</div>
             	<div class="right">
             		<select class="graySelect selectExp"><option value="">select export type</option></select>
@@ -70,14 +72,11 @@
                 <div class="userGridHeader">
                   <ul class="ConLibraHeads">
                     <li> 
-                    	<span class="orderCol">Order</span>
-						<span class="dtCol">Placed</span>
-						<span class="orderCol">Customer</span>
-						<span class="amtCol">Tax</span>
-						<span class="amtCol">Shipping</span>
-						<span class="amtCol">Adjustments</span>
-						<span class="amtCol">Total</span>
-						<span class="amtCol">Grand Total</span>
+					   <%Product.column_names.each do |col|%>
+					        <%unless ["id"].include?(col)%>
+                    			<span class="amtCol"><%=col%></span>
+							<%end%>
+						<%end%>
 					</li>
                   </ul>
                 </div>
@@ -94,8 +93,14 @@
                       <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                       <div class="overview" style="top: 0px;">
                         <ul class="ConLibra">
-                          <%Order.all.each do |order|%>
-                          	<li class="alt"> <span class="orderCol"><%=order.order_id%></span> <span class="dtCol"><%=order.created_at.strftime('%D')%></span> <span class="orderCol borderLeft"><%=order.customer_email%></span><span class="amtCol">$2.50</span> <span class="amtCol">$0.00</span><span class="amtCol">$0.00</span><span class="amtCol">$<%=order.total_amt%></span><span class="amtCol">$<%=order.total_amt%></span></li>
+                          <%Product.all.each do |product|%>
+                          	<li class="alt"> 
+                          		<%Product.column_names.each do |col|%>
+	                          		<%unless ["id"].include?(col)%>
+	                          			<span class="amtCol"><%=product.send(col)%></span>
+								    <%end%> 
+							     <%end%>
+							</li>
 						  <%end%>
                       </ul></div>
                     </div>
@@ -104,14 +109,7 @@
                 <div class="userGridFooter showVals">
                 	<ul class="totals">
                     <li> 
-                    	<span class="orderCol"></span>
-						<span class="dtCol"></span>
-						<span class="orderCol"></span>
-						<span class="amtCol">$<%=Order.all.length * 2.50%></span>
-						<span class="amtCol">$0.00</span>
-						<span class="amtCol">$0.00</span>
-						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
-						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
+                    
 					</li>
                   </ul>
                 </div>

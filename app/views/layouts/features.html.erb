@@ -68,10 +68,10 @@
 <%if params[:controller] =="reports"%>
 <div class="user-tabs">
         <ul>
-          <li>sales</li>
-          <li>products</li>
+          <li class="<%=['index','graph_index'].include?(params[:action]) ? 'active' : ''%>"><%=link_to 'sales', "/sites/#{params[:site_id]}/reports"%></li>
+          <li class="<%=['show_all_products'].include?(params[:action]) ? 'active' : ''%>"><%=link_to 'products', "/sites/#{params[:site_id]}/reports/show_all_products"%></li>
           <li>inventory</li>
-          <li class="active">custom</li>
+          <li>custom</li>
          </ul>
       </div>
 <%end%>
