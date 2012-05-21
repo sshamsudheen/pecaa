@@ -13,7 +13,8 @@ namespace :import do
       "Payments Management","System_Configs Mangement","Miscs Management","Product_Filters Management", 
       "Site_Features Management","Gift_Certificates Management","Site_Vendors Management",
       "Inventory_Options Management", "Coupons Management", "try_it_images", "orders", "reports", "product_categories",
-      "product_options","product_images","product_videos", "catalogs", "sub_product_options"].each do |sub_per|
+      "product_options","product_images","product_videos", "catalogs", "sub_product_options", "shipping_addresses", 
+      "shipping_detials", "taxs"].each do |sub_per|
         sub_per_obj = role.sub_permissions.create(:name=>sub_per,:display_name=>sub_per,:permission_id=>per.id)
 
     end
