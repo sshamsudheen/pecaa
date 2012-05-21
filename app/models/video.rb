@@ -1,6 +1,7 @@
 class Video < ActiveRecord::Base
   # Paperclip
   # http://www.thoughtbot.com/projects/paperclip
+  has_one :product_video
   has_attached_file :source
 
   # Paperclip Validations

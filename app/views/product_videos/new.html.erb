@@ -1,0 +1,86 @@
+<div class="popWindow">
+  <div class="headSection">
+    <h2>
+      Add Video
+    </h2><span><a href="#"><img src="/assets/helpIcon.png" width="20" height="20" /></a></span>
+  </div>
+  <div class="midSection">
+    <h3>
+      choose a video from the library
+    </h3>
+    <div class="pages-wrapper">
+      <div class="site-users">
+        <div class="page-data clear">
+          <div class="userGrid imageTab">
+            <div class="userGridHeader">
+              <ul class="ConLibraHeads">
+                <li>
+                  <span class="gridColHeaddings w100">Video</span> <span class="gridColHeaddings w250">Video File Name</span><span class="gridColHeaddings w100">Date Added</span>
+                </li>
+              </ul>
+            </div>
+            <div class="userGridBody">
+              <div id="videoAddDiv">
+                <div class="scrollbar">
+                  <div class="track">
+                    <div class="thumb">
+                      <div class="end"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="viewport">
+                  <div class="shadows"></div>
+                  <div class="overview">
+                    <ul class="ConLibra">
+                      <% @videos.each do |vid| %>
+                        <li class='video_li' id="<%=vid.id%>">
+                          <span class="video">
+                            <img width="56" height="19" src="/assets/productImg1.png" />
+                          </span>
+                          <span class="fileName"><%= filename(vid.name) %></span>
+                          <span class="date"><%= vid.created_at.strftime('%m/%d/%y') %></span>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="userGridFooter"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3>
+      upload a new video
+    </h3>
+    <div class="contCenter">
+      <input type="button" class="blueBtn" value="choose a video file to upload" id="video_uploader" />
+    </div>
+    <div class="colum-section">
+      <%= form_for([@site, @product, @product_video], :html => { :multipart => true }, :remote => true) do |f| %>
+        <div class="group">
+          <span class="key">File path :</span>
+          <span class="val"><%= f.file_field :source %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="footSection">
+    <input name="" type="button" class="grayBtn" value="cancel" />
+    <input name="" type="button" class="greenBtn" value="save changes" />
+  </div>
+</div>
+<script>
+$('#video_uploader').click(function(){
+  $('form')[0].submit();
+});
+
+$('.video_li').click(function(){
+  alert('hi');
+  vid_id = %(this).attr('id');
+  alert("/site/"+<%= @site.id %>+"/product/"+<%= @product.id %>+"/product_video/"+vid_id+"/link_video");
+  // window.href.location = "/site/"+<%= @site.id %>+"/product/"+<%= @site.id %>+"/product_video/"+vid_id+"/link_video";
+});
+
+</script>
