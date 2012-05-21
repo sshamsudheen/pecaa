@@ -1,12 +1,22 @@
-class ProductImage < ActiveRecord::Base
-  belongs_to :user
-  has_one :content_library, :as => :source
-  has_attached_file :upload,
-                    :whiny => false,
-                    :styles => { :medium => "300x300",
-                                 :thumb  => "150x150" }
-
-  validates_attachment_presence :upload
-  validates_attachment_size :upload, :less_than=>10.megabyte
-  validates_attachment_content_type :upload, :content_type=>['image/jpeg', 'image/png', 'image/gif']
+class ProductImage < ActiveRecord::Base  
+  belongs_to :sub_product_option
+  belongs_to :product
+  belongs_to :image, :foreign_key => 'source_id'
+  
+  def save_product_image(image)
+    self.source_id = image.id
+    self.name = image.upload_file_name
+    self.save
+  end
+  
+  def image_path
+    self.image.upload.url(:thumb).split('?')[0] 
+  end
+  
+  def remove_p_img
+    image.is_deleted = true
+    image.save 
+    self.destroy
+  end  
+  
 end

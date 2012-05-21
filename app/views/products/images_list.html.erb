@@ -1,0 +1,101 @@
+<div class="modelWindow">
+  <div class="midSection">
+    <%= render :partial => "shared/products_tab"%>
+    <div id="tabs_content_container">
+      <div id="tab2" class="tab_content">
+        <div class="tab2topDiv">
+          <div class="editImgDiv">
+            <img src="/assets/productimg.jpg" width="136" height="100">
+          </div>
+          <div class="eiditTextDiv">
+            <%unless @product.new_record? %>
+              <h2><%= @product.name%></h2>
+              <h3>created : <%= @product.created_at.strftime("%m/%d/%y")%></h3>
+              <h3>last modified : <%= @product.updated_at.strftime("%m/%d/%y")%></h3>
+              <span><img src="/assets/stars.jpg" width="73" height="13"></span>
+            <% end %>
+          </div>
+          <div class="eiditTextDiv"></div>
+        </div>
+        <div class="pages-main createEditDiv">
+          <div class="pages-wrapper">
+            <div class="sectionTitleDiv">
+              <div class="title">
+                Choose / Order Images<span class="help"><a href="#"></a></span>
+              </div>
+              <div class="buttonSection">
+                <a class="addNewUser" rel='facebox' href="<%= new_site_product_product_image_path(@site, @product)%>">add new image</a>
+                
+              </div>
+            </div>
+            <div class="site-users">
+              <div class="page-data clear">
+                <div class="userGrid imageTab">
+                  <div class="userGridHeader">
+                    <ul class="ConLibraHeads">
+                      <li>
+                        <span class="gridColHeaddings w150">Image</span> <span class="gridColHeaddings w350">Image file name</span><span class="gridColHeaddings w100">Primary</span><span class="gridColHeaddings w100">Thumbnail</span><span class="gridColHeaddings w100">Date Added</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="userGridBody">
+                    <div id="productsEdit">
+                      <div class="scrollbar" style="height: 0px;">
+                        <div class="track" style="height: 0px;">
+                          <div class="thumb">
+                            <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="viewport">
+                        <div class="shadows"></div>
+                        <div class="overview">
+                          <ul class="ConLibra">
+                            <% @product_images.each do |img| %>
+                              <li>
+                                <span class="imgs">
+                                  <img src="<%=img.image_path%>" width="56" height="19">
+                                </span>
+                                <span class="imgFile"><%= img.name %></span>
+                                <span class="primary">
+                                  <a href="<%=update_pimg_site_product_product_image_path(@site, @product, img, :product_image=>{:is_primary => !(img.is_primary)})%>">
+                                    <img src="/assets/<%= img.is_primary? ? 'radioOn' : 'radioOff'%>.jpg" width="17" height="17">
+                                  </a>
+                                </span>
+                                <span class="thumbnil">
+                                  <a href="<%=update_pimg_site_product_product_image_path(@site, @product, img, :product_image=>{:is_thumbnail => !(img.is_thumbnail)})%>">
+                                    <img src="/assets/<%= img.is_thumbnail? ? 'radioOn' : 'radioOff'%>.jpg" width="17" height="17">
+                                  </a>
+                                </span>
+                                <span class="dateAdded"><%= img.created_at.strftime('%m/%d/%y')%></span>
+                                <span class="removeBtn">
+                                  <%= render :partial=>'shared/alert_box', :locals=>{:obj => img,
+                                     :path => delete_site_product_product_image_path(@site, @product, img),
+                                     :img_path => "/assets/btnDelete.png"}%> 
+                                  
+                                </span>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="userGridFooter"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#productsEdit').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+	})
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>
