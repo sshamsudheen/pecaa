@@ -1,0 +1,167 @@
+<div class="modelWindow">
+  <div class="midSection">
+    <%= render :partial => "shared/products_tab"%>
+    <div id="tabs_content_container">
+      <div id="tab3" class="tab_content">
+        <div class="tab2topDiv">
+          <div class="editImgDiv"><img src="/assets/productimg.jpg" width="136" height="100"></div>
+          <div class="eiditTextDiv">
+            <%unless @product.new_record? %>
+              <h2><%= @product.name%></h2>
+              <h3>created : <%= @product.created_at.strftime("%m/%d/%y")%></h3>
+              <h3>last modified : <%= @product.updated_at.strftime("%m/%d/%y")%></h3>
+              <span><img src="/assets/stars.jpg" width="73" height="13"></span>
+            <% end %>
+          <div class="eiditTextDiv"> <span class="onBtn" id="enableProductBtn">&nbsp; </span><span>enable product options</span> </div>
+        </div>
+        <div class="pages-main MProductOptions " id="disableState">
+          <div class="pages-wrapper">
+            <div class="sectionTitleDiv">
+              <div class="title">Manage Product Options<span class="help"><a href="#"></a></span></div>
+              <div class="buttonSection">
+                <select name="choose product option" class="noEdit" id="selectOption" >
+                                      <option >choose product option</option>
+                  <%@all_product_options.each do |i|%>
+                    <option value="<%=product_options_site_product_path(@site, @product, :link_option => i.id)%>"><a href="<%=product_options_site_product_path(@site, @product, :link_option => i.id)%>"><%=i.name%></a></option>
+                  <% end %>
+                </select>
+                <!-- <div class="searchResultBox productOptBox" id="searchResults">
+                  <ul>
+                    <li class="active">size<span><a href="#"><img width="20" height="22" src="css/img/searchCloseBtn.png"></a></span></li>
+                    <li>color <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>material <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>others <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>others <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>short pants <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>yellow pants <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>green pants <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li>clear pants <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                    <li class="last">leather pants <span><a href="#"><img width="20" height="22" src="css/img/searchAddBtn.png"></a></span></li>
+                  </ul>
+                </div> -->
+              </div>
+            </div>
+            
+            <%@product_options.each do |pos|%>
+              <div class="site-users">
+                <div class="page-data clear">
+                  <div class="manageDateLeftBox"> 
+                    <span>
+                      <a href="<%=update_po_site_product_option_path(@site, pos, :product_option=>{:is_active => !(pos.is_active)})%>">
+                        <img src="/assets/<%= pos.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" width="48" height="21"/>
+                      </a>
+                    </span>
+                    <div class="colum-section">
+                      <div class="group"> 
+                        <span class="key">name</span> 
+                        <span class="val">
+                          <input type="text" disabled value="size"  class="noEdit">
+                        </span>
+                      </div>
+                      <div class="group">
+                        <span class="key">friendly name:</span> 
+                        <span class="val">
+                          frame size
+                        </span>
+                      </div>
+                      <div class="group next">
+                        <span class="key">price modifier:</span>
+                        <span class="val">
+                          <select class="noEdit">
+                            <option>%</option>
+                          </select>
+                        </span>
+                      <div class="group">
+                        <span class="key"></span>
+                        <span class="val">
+                          <%= render :partial=>'shared/alert_box', :locals=>{:obj => pos,
+                             :path => delete_site_product_option_path(@site, pos),
+                             :img_path => "/assets/deleteBtn.png"}%> 
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="userGrid productGrid">
+                    <div class="userGridHeader">
+                      <ul class="ConLibraHeads">
+                        <li> <span class="userName">Name</span> <span class="group">Image</span> <span class="created">Sub - SKU</span> <span class="created">Price Mofifier</span></li>
+                      </ul>
+                    </div>
+                    <div class="userGridBody">
+                      <div id="scrollbar">
+                        <div class="scrollbar">
+                          <div class="track">
+                            <div class="thumb">
+                              <div class="end"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="viewport">
+                          <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                          <div class="overview featureProduct">
+                            <ul class="ConLibra">
+                              <%pos.sub_product_options.each do |spo|%>
+                                <li>
+                                  <span class="userName">
+                                    <%=spo.name%>
+                                    <span class="smallArrow">&nbsp;</span>
+                                  </span>
+                                  <span class="group">
+                                    <img src="/assets/productImg1.png" width="56" height="19">
+                                  </span>
+                                  <span class="sku"><%=spo.sub_sku%></span>
+                                  <span class="modifier"><%= spo.price_modifier %><span>
+                                  <span><%= spo.price_modifier_value %></span>
+                                  <span class="close">
+                                    <%= render :partial => 'shared/alert_box', :locals => {:obj => pos,
+                                    :path => delete_site_product_option_sub_product_option_path(@site, pos, spo),
+                                    :img_path => "/assets/btnDelete.png"}%> 
+                                  </span>
+                                </li>
+                              <% end %>
+                              <li>
+                                <span class="userName">
+                                  <a rel="facebox" href="<%=new_site_product_option_sub_product_option_path(@site, pos)%>">new sub options</a>
+                                </span>
+                                <span class="group">
+                                </span>
+                                <span class="sku"></span>
+                                <span class="modifier"><span>
+                                <span>
+                                </span>
+                                <span class="close">
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="userGridFooter"></div>
+                </div>
+              </div>
+            </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#productsEdit').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+
+		$("#selectOption").change(function(){
+		  var link = $(this).attr('value');
+		  if (link != "choose product option"){
+		    alert($(this).attr('value'));
+		    window.location = $(this).attr('value');
+		  }
+		})
+	})
+	
+</script>
