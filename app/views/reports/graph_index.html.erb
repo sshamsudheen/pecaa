@@ -86,7 +86,8 @@ data: <%= (3.weeks.ago.to_date..Date.today).map {|date| Order.total_on(date).to_
           </div>
           <div class="site-users left ">
             <div class="addNewUserBtn">
-            	<div class="left"><button class="blueBtn">save/load report template</button><button class="blueBtn">show/hide column headers</button></div>
+            	<div class="left">
+					<button class="blueBtn" onclick="window.location.href='/sites/<%=params[:site_id]%>/reports'">hide graph</button></div>
             	<div class="right">
             		<select class="graySelect selectExp"><option value="">select export type</option></select>
               		<button class="blueBtn">export report</button>
