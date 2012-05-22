@@ -27,3 +27,5 @@
       <%= render 'weight_rate' %>
       </div>
     </div>
+
+<%= render "payments/payment_javascript", :locals => {:site_gateway => @site_payment_gateway} %>
