@@ -1926,3 +1926,27 @@ z-index:300;
 	display: inline-block;
 	background-image: url(img/rating_5.png);
 }
+
+.colHeadWrapper {
+    background: url("img/bg_colHeaders.png") repeat scroll 0 0 transparent;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+    padding: 5px;
+    text-align: right;
+}
+.colHeadWrapper .colHeads {
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.colHeadWrapper .colHeads li {
+    background: none repeat scroll 0 0 #666666;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    margin: 2px 2px 0;
+    overflow: hidden;
+    padding: 3px 5px;
+}

@@ -71,7 +71,7 @@
           <li class="<%=['index','graph_index'].include?(params[:action]) ? 'active' : ''%>"><%=link_to 'sales', "/sites/#{params[:site_id]}/reports"%></li>
           <li class="<%=['show_all_products'].include?(params[:action]) ? 'active' : ''%>"><%=link_to 'products', "/sites/#{params[:site_id]}/reports/show_all_products"%></li>
           <li>inventory</li>
-          <li>custom</li>
+                    <li class="<%=['show_custom_fields'].include?(params[:action]) ? 'active' : ''%>"><%=link_to 'customs', "/sites/#{params[:site_id]}/reports/show_custom_fields"%></li>
          </ul>
       </div>
 <%end%>
