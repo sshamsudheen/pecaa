@@ -18,4 +18,8 @@ class ReportsController < ApplicationController
   def show_custom_fields
     
   end
+  
+  def show_inventory_details
+    
+  end
 end

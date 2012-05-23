@@ -5,3 +5,9 @@
           <%= link_to "<li class='#{ShippingGateway.find_active_payment('fedex', params[:id])}'>fedex</li>".html_safe, site_shipping_path(@site.id, ShippingGateway.find_by_name('fedex').id) %>
         </ul>
       </div>
+
+<script type="text/javascript">
+  $('.payments').attr('class','payments')
+    $('.taxes').attr('class','taxes')
+    $('.shipping').attr('class','shipping active')
+</script>

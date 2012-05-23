@@ -1926,3 +1926,83 @@ z-index:300;
 	display: inline-block;
 	background-image: url(img/rating_5.png);
 }
+
+.colHeadWrapper {
+    background: url("img/bg_colHeaders.png") repeat scroll 0 0 transparent;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+    padding: 5px;
+    text-align: right;
+}
+.colHeadWrapper .colHeads {
+    list-style: none outside none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.colHeadWrapper .colHeads li {
+    background: none repeat scroll 0 0 #666666;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    margin: 2px 2px 0;
+    overflow: hidden;
+    padding: 3px 5px;
+}
+
+
+.userGrid .ConLibraHeads .amtCol,
+.userGrid .userGridFooter ul.totals .amtCol{
+	width: 88px;
+	display: inline-block;
+	text-align: right;
+}
+.userGrid .ConLibraHeads .amtCol-narrow,
+.userGrid .userGridFooter ul.totals .amtCol-narrow{
+	width: 65px;
+	display: inline-block;
+	text-align: right;
+}
+.userGrid ul.ConLibra li .orderCol.borderLeft{
+	border-left: 1px solid #999999;
+}
+.userGrid ul.ConLibra li .orderCol{
+	width: 100px;
+    height: 19px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    vertical-align: top;
+}
+.userGrid ul.ConLibra li .dtCol{
+	width: 60px;
+	border-left: 1px solid #999999;
+    height: 19px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    vertical-align: top;
+}
+.userGrid ul.ConLibra li .amtCol{
+	width: 85px;
+	text-align:right;
+	border-left: 1px solid #999999;
+    height: 19px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+.userGrid ul.ConLibra li .amtCol-narrow{
+	width: 60px;
+	text-align:right;
+	border-left: 1px solid #999999;
+    height: 19px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+.userGrid ul.totalsRow li.blackRow{
+	background:#000000;
+	color:white;
+}
