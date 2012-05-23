@@ -11,17 +11,18 @@
                             Order : <%=@order.order_id %>
                         </div>
                         <div class="tabWraper left">
-                            <ul class="pTabs">
-                                <li>
+                                                      <ul class="pTabs">
+                                <li class="<%=params[:action] == 'edit' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/edit'">
                                     payment / shipping
                                 </li>
-                                <li class="active">
+                                <li class="<%=params[:action] == 'product_list' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/product_list'">
                                     products
                                 </li>
-                                <li>
+                                <li class="<%=params[:action] == 'notes_and_history' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/notes_and_history'">
                                     notes / history
                                 </li>
                             </ul>
+
                         </div>
                         <span class="exportBtn">
                             <button class="secondary">

@@ -56,11 +56,11 @@
                                 </li>
                                 <li class="shipping">
                                 </li>
-                                <li class="features <%= (params[:controller] != 'orders' and params[:controller] != 'reports') ? 'active' : ''%>">
+                                <li class="features <%= (params[:controller] != 'orders' and params[:controller] != 'reports') ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/product_filters'">
                                 </li>
-                                <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>">
+                                <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders'">
                                 </li>
-                                <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>">
+                                <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/reports'">
                                 </li>
                             </ul>
                         </div>
