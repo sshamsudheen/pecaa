@@ -37,7 +37,7 @@
                           <span class="video">
                             <img width="56" height="19" src="/assets/productImg1.png" />
                           </span>
-                          <span class="fileName"><%= filename(vid.name) %></span>
+                          <span class="fileName"><a href="<%=link_video_site_product_product_video_path(@site, @product, vid.source_id)%>"><%= filename(vid.name) %></a></span>
                           <span class="date"><%= vid.created_at.strftime('%m/%d/%y') %></span>
                         </li>
                       <% end %>
@@ -55,7 +55,7 @@
       upload a new video
     </h3>
     <div class="contCenter">
-      <input type="button" class="blueBtn" value="choose a video file to upload" id="video_uploader" />
+      <input type="button" class="blueBtn" value="choose a video file to upload" id="video_uploader", onClick="javascript:$('form')[0].submit();" />
     </div>
     <div class="colum-section">
       <%= form_for([@site, @product, @product_video], :html => { :multipart => true }, :remote => true) do |f| %>
@@ -73,10 +73,11 @@
 </div>
 <script>
 $('#video_uploader').click(function(){
+  alert('kajflkj');
   $('form')[0].submit();
 });
 
-$('.video_li').click(function(){
+$('.video_li a').click(function(){
   alert('hi');
   vid_id = %(this).attr('id');
   alert("/site/"+<%= @site.id %>+"/product/"+<%= @product.id %>+"/product_video/"+vid_id+"/link_video");

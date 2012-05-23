@@ -34,7 +34,7 @@ class ProductVideosController < ApplicationController
   
   def link_video
     ProductVideo.transaction do
-      video = Video.find_by_id(params[:vid])
+      video = Video.find_by_id(params[:id])
       product_vid = @product.product_videos.new
       if video && product_vid.save_product_video(video)
         redirect_to videos_list_site_product_path(@site, @product)
