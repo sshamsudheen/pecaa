@@ -83,5 +83,12 @@ class ProductFiltersController < ApplicationController
     @product_filter.site_id = params[:product_filtering] == 'true' ? 1 : 0
     @product_filter.save
     render :action => 'index'
+  end
+  
+  def enable_status
+    @product_filter = ProductFilter.find(params[:id])
+    @product_filter.status = !@product_filter.status
+    @product_filter.save
+    redirect_to "/sites/#{params[:site_id]}/product_filters"
   end  
 end

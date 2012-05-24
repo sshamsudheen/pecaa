@@ -61,10 +61,10 @@
                                                     <ul class="ConLibra ">
                                                         <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="css/img/btnMarkNo.png" border="0" /></span></span> <span class="sku">type X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
 														<%ProductFilter.all.each_with_index do |product_filter,i|%>
-                                                        <li class="<% i%2==0 ? 'alt' : ''%>">
+                                                        <li class="alt">
                                                             <span class="location"><span class="pointer"></span><%=product_filter.name%><span class="status"></span></span>
                                                             <span class="type"><%=product_filter.friendly_name%></span>
-                                                            <span class="status"><a class="<%=product_filter.status ? 'on' : 'off'%>" href="#"></a></span>
+                                                            <span class="status"><a class="<%=product_filter.status ? 'on' : 'off'%>" href="/sites/<%=params[:site_id]%>/product_filters/<%=product_filter.id%>/enable_status"></a></span>
                                                         </li>
 														<%end%>
                                                     </ul>

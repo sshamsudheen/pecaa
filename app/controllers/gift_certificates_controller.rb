@@ -15,11 +15,8 @@ class GiftCertificatesController < ApplicationController
   # GET /gift_certificates/1.json
   def show
     @gift_certificate = GiftCertificate.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @gift_certificate }
-    end
+    @gift_certificate.destroy
+    redirect_to "/sites/#{params[:site_id]}/gift_certificates"
   end
 
   # GET /gift_certificates/new
@@ -76,5 +73,12 @@ class GiftCertificatesController < ApplicationController
       format.html { redirect_to gift_certificates_url }
       format.json { head :ok }
     end
+  end
+  
+    def approve
+    @review = GiftCertificate.find(params[:id])
+    @review.status =!@review.status
+    @review.save
+    redirect_to "/sites/#{params[:site_id]}/gift_certificates"
   end
 end

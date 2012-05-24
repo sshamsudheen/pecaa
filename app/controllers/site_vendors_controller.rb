@@ -16,10 +16,7 @@ class SiteVendorsController < ApplicationController
   def show
     @site_vendor = SiteVendor.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @site_vendor }
-    end
+    render :layout => false
   end
 
   # GET /site_vendors/new
