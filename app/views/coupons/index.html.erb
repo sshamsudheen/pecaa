@@ -130,8 +130,8 @@
                                             <li class="selected alt">
                                                 <span class="couponText"><span class="pointer"></span><%=coupon.code%><span class="status"></span></span>
                                                 <span class="textData"><%=coupon.free_text%></span>
-                                                <span class="createdDate"><%=coupon.created_at.strftime('D') rescue ''%></span>
-                                                <span class="expiresText"><%=coupon.expired_at.strftime('D') rescue '25/05/12'%></span>
+                                                <span class="createdDate"><%=coupon.created_at.strftime('%D') rescue ''%></span>
+                                                <span class="expiresText"><%=coupon.expired_at.strftime('%D') rescue '25/05/12'%></span>
                                                 <span class="createdByText"><%=User.find(coupon.created_by).username rescue ''%></span>
                                                 <span class="typeData"><%=coupon.coupon_type%></span>
                                                 <span class="amountText"><%=coupon.amount%></span>
