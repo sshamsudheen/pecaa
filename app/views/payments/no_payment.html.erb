@@ -27,7 +27,7 @@
           <dl>
             <dt>friendly name :</dt>
             <dd>
-              <% payment_gateway_attribute_value = @payment_gateway.payment_gateway_attributes.where(:name => "friendly_name").last.site_payment_gateway_attribute_values.last %>
+              <% payment_gateway_attribute_value = @payment_gateway.payment_gateway_attributes.where(:name => "friendly_name").last.site_payment_gateway_attribute_values.where(:sites_payment_gateway_id => @site_payment_gateway.id).last %>
               <% payment_username = payment_gateway_attribute_value.blank? ? "" : payment_gateway_attribute_value.value %>
               <%= payment_gateway_attribute.text_field(:friendly_name, :class => {:size => 20}, :value => payment_username) %>
             </dd>
