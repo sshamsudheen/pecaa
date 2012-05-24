@@ -66,8 +66,8 @@
                             <li class="<%=params[:controller] == 'site_features' and params[:action] == 'ssl_setup_status' ? ' active' : ''%>">
 								<%=link_to 'SSL setup',"/sites/#{params[:site_id]}/site_features/ssl_setup_status"%>
                             </li>
-                            <li class="<%=params[:controller] == 'site_features' and params[:action] == 'review_management' ? ' active' : ''%>">
-                                <%=link_to 'reviews',"/sites/#{params[:site_id]}/site_features/review_management"%>
+                            <li class="<%=params[:controller] == 'reviews' ? ' active' : ''%>">
+                                <%=link_to 'reviews',"/sites/#{params[:site_id]}/reviews"%>
                             </li>
                             <li class="<%=params[:controller] == 'try_it_images' ? ' active' : ''%>">
                             	<%=link_to 'try it',"/sites/#{params[:site_id]}/try_it_images"%>
