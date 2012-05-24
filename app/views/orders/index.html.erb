@@ -16,7 +16,7 @@
                 <div class="userPanel productp">
                     <div class="date-created">
                         <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" class="styled">
+                        
                         <label for="shareThis">
                             total
                         </label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="last-activity">
                         <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" id="lastActivityVal" class="styled">
+                        
                         <label for="lastActivityVal">
                             date placed
                         </label>
@@ -39,42 +39,42 @@
                 </div>
                 <div class="userPanel">
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 paid
                             </label>
                         </span>
                     </div>
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 complete
                             </label>
                         </span>
                     </div>
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 in progress
                             </label>
                         </span>
                     </div>
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 on hold
                             </label>
                         </span>
                     </div>
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 shipped
                             </label>
                         </span>
                     </div>
                     <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span><input type="radio" class="styled"></span><span class="key">
+                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
                             <label>
                                 cancelled
                             </label>
@@ -127,7 +127,7 @@
                                                 <span class="dateCol"><%=order.ship_status%></span>
                                                 <span class="customCol"><%=order.customer_email%></span>
                                                 <span class="dateCol">250</span>
-												<span class="dateCol"><%=link_to "Edit","/sites/#{params[:site_id]}/orders/#{order.id}",:onclick => "window.location.href='/sites/#{params[:site_id]}/orders/#{order.id}/edit'"%></span>
+												<span class="dateCol"><%=link_to "Edit","/sites/#{params[:site_id]}/orders/#{order.id}/edit",:onclick => "window.location.href='/sites/#{params[:site_id]}/orders/#{order.id}/edit'"%></span>
                                             </li>
                                             <%end %>
                                         </ul>

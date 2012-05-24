@@ -90,5 +90,13 @@ class ProductFiltersController < ApplicationController
     @product_filter.status = !@product_filter.status
     @product_filter.save
     redirect_to "/sites/#{params[:site_id]}/product_filters"
+  end
+  
+  def rename_editable
+    @site_page = ProductFilter.find(params[:id].split('div_').last)
+    @site_page.friendly_name = params[:value]
+    @site_page.save
+    render :text => params[:value] || ''
   end  
 end
+

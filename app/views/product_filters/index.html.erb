@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'jquery.jeditable'%>
 <div class="siteInfo-main cartBg">
     <div class="cartColumsMain2">
         <div class="rowDiv">
@@ -63,7 +64,7 @@
 														<%ProductFilter.all.each_with_index do |product_filter,i|%>
                                                         <li class="alt">
                                                             <span class="location"><span class="pointer"></span><%=product_filter.name%><span class="status"></span></span>
-                                                            <span class="type"><%=product_filter.friendly_name%></span>
+                                                            <span class="type"> <span class="edit" id="div_<%=product_filter.id%>"><%=product_filter.friendly_name%></span></span>
                                                             <span class="status"><a class="<%=product_filter.status ? 'on' : 'off'%>" href="/sites/<%=params[:site_id]%>/product_filters/<%=product_filter.id%>/enable_status"></a></span>
                                                         </li>
 														<%end%>
@@ -83,3 +84,9 @@
         </div>
     </div>
 </div>
+
+<script>
+	 $(document).ready(function() {
+    	 $('.edit').editable('/sites/<%=params[:site_id]%>/product_filters/rename_editable',{width     : '120px'});
+ 	});
+</script>

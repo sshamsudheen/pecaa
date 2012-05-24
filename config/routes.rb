@@ -99,6 +99,7 @@ Mystore3::Application.routes.draw do
     resources :product_filters do
       get 'update_status', :on => :collection
       get 'enable_status', :on => :member
+      post 'rename_editable', :on => :collection
     end
     
     resources :site_pages do
