@@ -77,4 +77,11 @@ class CouponsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def approve
+    @review = Coupon.find(params[:id])
+    @review.status =!@review.status
+    @review.save
+    redirect_to "/sites/#{params[:site_id]}/coupons"
+  end
 end

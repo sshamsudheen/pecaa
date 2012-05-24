@@ -1,60 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="userDetailPanel">
+									<h3>name:</h3>
+									
+									<div class="userDetailSet">
+                                        <label><%=@site_vendor.name%></label>
+									</div>
+                                    <h3>address:</h3>
+                                    <div class="userDetailSet">
+										<label><%=@site_vendor.address_line1%> </label>
+										<label><%=@site_vendor.address_line2%></label>
+                                        <label><%=@site_vendor.city%> </label>
+                                        <label><%=@site_vendor.zip_code%> </label>
+									</div>
+                                    
 
-<p>
-  <b>Name:</b>
-  <%= @site_vendor.name %>
-</p>
-
-<p>
-  <b>Address line1:</b>
-  <%= @site_vendor.address_line1 %>
-</p>
-
-<p>
-  <b>Address line2:</b>
-  <%= @site_vendor.address_line2 %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @site_vendor.city %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @site_vendor.state %>
-</p>
-
-<p>
-  <b>Zip code:</b>
-  <%= @site_vendor.zip_code %>
-</p>
-
-<p>
-  <b>Phone number:</b>
-  <%= @site_vendor.phone_number %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @site_vendor.email %>
-</p>
-
-<p>
-  <b>Account number:</b>
-  <%= @site_vendor.account_number %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @site_vendor.status %>
-</p>
-
-<p>
-  <b>Site:</b>
-  <%= @site_vendor.site_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_site_vendor_path(@site_vendor) %> |
-<%= link_to 'Back', site_vendors_path %>
+									<div class="userDetailSet">
+                                    <h3>phone number:</h3>
+										<label><%=@site_vendor.phone_number%></label>
+									</div>
+                                    <div class="userDetailSet">
+                                    <h3>email:</h3>
+    									  <label><%=@site_vendor.email%></label>
+									</div>
+                                    <div class="userDetailSet">
+                                    <h3>account number:</h3>
+									
+									  <label><%=@site_vendor.account_number%></label>
+									</div>
+								  
+								</div>

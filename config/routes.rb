@@ -59,15 +59,23 @@ Mystore3::Application.routes.draw do
     get 'site_preview', :on => :member
     
     resources :inventory_options
-    resources :gift_certificates
+    resources :gift_certificates do 
+      get 'approve', :on => :member
+    end
+    
     resources :site_vendors 
-    resources :coupons
+    resources :coupons do
+      get 'approve', :on => :member
+    end
     resources :try_it_images
     
     resources :shipping_detials
     resources :shipping_addresses
     resources :billing_addresses
     resources :billings
+    resources :reviews do
+      get 'approve', :on => :member
+    end
     resources :orders do
       get 'product_list', :on => :member
       get 'notes_and_history', :on => :member
@@ -90,6 +98,7 @@ Mystore3::Application.routes.draw do
 
     resources :product_filters do
       get 'update_status', :on => :collection
+      get 'enable_status', :on => :member
     end
     
     resources :site_pages do

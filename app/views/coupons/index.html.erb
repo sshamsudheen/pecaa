@@ -7,33 +7,32 @@
                 </div>
                 <div class="userPanel">
                     <div class="searchUser">
-                        <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="css/img/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="css/img/btnDropDownSelectColum.png"></span></span>
-                    </div><span class="showUser clear"><span class="userLastname">order <img src="css/img/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>
-                    <span class="showUser clear"><span class="userLastname">use <img src="css/img/btn_deleteUser_active.png"></span><span class="user-label">multiuse</span></span>
+                        <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="/assets/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="/assets/btnDropDownSelectColum.png"></span></span>
+                    </div><span class="showUser clear"><span class="userLastname">order <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>
+                    <span class="showUser clear"><span class="userLastname">use <img src="/assets/btn_deleteUser_active.png"></span><span class="user-label">multiuse</span></span>
                 </div>
                 <div class="userPanelDevider">
                 </div>
                 <div class="userPanel productp">
                     <div class="date-created">
                         <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
-                        <input type="checkbox" checked="checked" class="styled">
                         <label for="shareThis">
                             date created
                         </label>
                     </div>
                     <div class="rangeSlider">
-                        <img width="212" height="22" src="css/img/sideBar.png">
+                        <img width="212" height="22" src="/assets/sideBar.png">
                     </div>
                     <div class="last-activity">
                         <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" id="lastActivityVal" class="styled">
+                        
                         <label for="lastActivityVal">
                             date expires
                         </label>
                     </div>
                     <div class="last-activity">
                         <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" id="lastActivityVal" class="styled">
+                        
                         <label for="lastActivityVal">
                             date used
                         </label>
@@ -44,21 +43,21 @@
                 <div class="userPanel">
                     <div class="date-created">
                         <span id="" class="radio" style="background-position: 0pt -50px;"></span>
-                        <input type="radio" class="styled" checked="checked">
+                        
                         <label for="dateCreated">
                             show all
                         </label>
                     </div>
                     <div class="date-created">
                         <span id="" class="radio" style="background-position: 0pt 0pt;"></span>
-                        <input type="radio" class="styled">
+                        
                         <label for="dateCreated">
                             show active only
                         </label>
                     </div>
                     <div class="date-created">
                         <span id="" class="radio" style="background-position: 0pt 0pt;"></span>
-                        <input type="radio" class="styled">
+                        
                         <label for="dateCreated">
                             show multiuse only
                         </label>
@@ -69,21 +68,21 @@
                 <div class="userPanel">
                     <div class="date-created">
                         <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
-                        <input type="checkbox" class="styled" checked="checked">
+                        
                         <label for="dateCreated">
                             free
                         </label>
                     </div>
                     <div class="date-created">
                         <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" class="styled">
+                        
                         <label for="dateCreated">
                             %based
                         </label>
                     </div>
                     <div class="date-created">
                         <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        <input type="checkbox" class="styled">
+                        
                         <label for="dateCreated">
                             $based
                         </label>
@@ -138,7 +137,7 @@
                                                 <span class="amountText"><%=coupon.amount%></span>
                                                 <span class="multiuseText"><%=coupon.multi_use ? "yes" : "No"%></span>
                                                 <span class="usersCount">25/250</span>
-                                                <span class="onStatus"><span style="background-position: 0pt -50px;" class="checkbox" id=""></span></span>
+												<span><span onclick="window.location.href='/sites/<%=params[:site_id]%>/coupons/<%=coupon.id%>/approve'"><input type="checkbox" id="shareThis" <%= coupon.status ? "checked='yes'" : ''%> class="styled"></span></span><span>
                                             </li>
 											<%end%>
                                          </ul>

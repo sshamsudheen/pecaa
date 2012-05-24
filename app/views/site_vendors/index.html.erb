@@ -61,7 +61,7 @@
 				 									<div class="overview" style="top: 0px; ">
 				    									<ul class="ConLibra">
 				    										<%SiteVendor.all.each do|sv|%>
-				    										<li class="alt" onclick="edit_site_vendors('<%=sv.id%>')">
+				    										<li class="alt" onmouseover="show_site_vendors('<%=sv.id%>')" onclick="edit_site_vendors('<%=sv.id%>')">
 				    											<span class="nameText"><span class="pointer"></span><%=sv.name%></span>
                                                                 <span class="dateText"><%=sv.created_at.strftime('%y/%m/%d')%></span>
                                                                 <span class="productsText">3000</span>
@@ -105,6 +105,17 @@ function edit_site_vendors(id){
 $.ajax({
                                             type: "get",
                                             url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id +'/edit',
+                                            success: function (data) {
+												$('#user_detail').removeClass('greyOut')
+$('#user_detail').html(data)                                  
+                                            },
+                                        })
+}
+
+function show_site_vendors(id){
+$.ajax({
+                                            type: "get",
+                                            url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id,
                                             success: function (data) {
 												$('#user_detail').removeClass('greyOut')
 $('#user_detail').html(data)                                  

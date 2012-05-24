@@ -29,7 +29,8 @@
           <%= render :partial => "payment_attributes", :locals => {:payment_gateway_attribute => payment_gateway_attribute} %>
           <dt>select payment Method :</dt>          
           <dd>
-            <%= select("payment_gateway_attribute", "payment_method", [["standard payments", "standard payments"], ["website payments pro", "website payments pro"]]) %>
+
+            <%= select_tag("payment_gateway_attribute[payment_method]", options_for_select(["standard payments", "website payments pro"], @site_payment_gateway.get_value_of("payment_method"))) %>
           </dd>
           <dt>&nbsp;</dt>
           <dd><input name="" type="submit" value="save changes" class="btnGreen"></dd>

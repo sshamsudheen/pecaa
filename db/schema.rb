@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120519224444) do
+ActiveRecord::Schema.define(:version => 20120524175052) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -146,10 +146,19 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
     t.integer  "no_of_users"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   create_table "credit_card_types", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "custom_reports", :force => true do |t|
+    t.text     "column_headers"
+    t.string   "custom_name"
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -177,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   create_table "groups_roles", :id => false, :force => true do |t|
@@ -354,12 +364,17 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
   end
 
   create_table "product_images", :force => true do |t|
-    t.string   "file_name"
-    t.boolean  "is_primary"
+    t.string   "name"
+    t.boolean  "is_primary",   :default => false
     t.datetime "date_added"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"
+    t.integer  "source_id"
+    t.boolean  "is_active",    :default => true
+    t.integer  "parent_id"
+    t.integer  "list_order"
+    t.boolean  "is_thumbnail", :default => false
   end
 
   create_table "product_options", :force => true do |t|
@@ -368,11 +383,26 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
     t.decimal  "price_modifier", :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",                                     :default => true
+    t.integer  "site_id"
+    t.integer  "product_id"
   end
 
   create_table "product_vendors", :force => true do |t|
     t.string   "name"
     t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_videos", :force => true do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.integer  "source_id"
+    t.boolean  "is_active",  :default => true
+    t.integer  "parent_id"
+    t.integer  "list_order"
+    t.boolean  "is_primary", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -414,6 +444,16 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
   create_table "related_products", :force => true do |t|
     t.integer  "product_id"
     t.integer  "related_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.text     "description"
+    t.integer  "rating"
+    t.boolean  "approved"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -707,6 +747,21 @@ ActiveRecord::Schema.define(:version => 20120519224444) do
     t.integer  "permission_id"
     t.integer  "created_by"
     t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sub_product_options", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "parent_id"
+    t.integer  "list_order"
+    t.integer  "product_option_id"
+    t.string   "sub_sku"
+    t.integer  "product_image_id"
+    t.decimal  "price_modifier_value", :precision => 10, :scale => 0
+    t.string   "price_modifier"
+    t.string   "name"
+    t.boolean  "is_active",                                           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
