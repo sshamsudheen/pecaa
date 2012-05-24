@@ -35,7 +35,7 @@ class GiftCertificatesController < ApplicationController
   # POST /gift_certificates.json
   def create
     @gift_certificate = GiftCertificate.new(params[:gift_certificate])
-#    @gift_certificate.assigned_to = User.find_by_username(params[:gift_certificate][:assigned_to]).id
+    @gift_certificate.assigned_to = User.find_by_username(params[:gift_certificate][:assigned_to]).id rescue nil
 
     respond_to do |format|
       if @gift_certificate.save
