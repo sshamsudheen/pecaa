@@ -55,7 +55,7 @@ class SiteVendorsController < ApplicationController
 
     respond_to do |format|
       if @site_vendor.update_attributes(params[:site_vendor])
-        format.html { redirect_to @site_vendor, notice: 'Site vendor was successfully updated.' }
+        format.html { redirect_to "/sites/#{params[:site_id]}/site_vendors", notice: 'Site vendor was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
