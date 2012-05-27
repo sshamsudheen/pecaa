@@ -320,7 +320,7 @@ ul.groupElements li span .drag{
 	border-radius:4px;
 	border: 1px solid #333333;
 	padding:4px;
-	width:200px;
+	width:270px;
 }
 .mainField .btns{
 	position: absolute;
@@ -399,20 +399,4 @@ span.select {
 }
 .column-wrapper .email-section textarea{
 	height:120px;	
-}
-.footer-section .rightBtns{
-	float: right;
-}
-.footer-section .rightBtns input[type="text"]{
-	border-radius: 6px;
-	padding:5px;
-	border: 1px solid #999999;
-	width: 250px;
-	margin-right:10px;
-}
-.footer-section .rightBtns button{
-	margin-right:0;
-}
-.footer-section .rightBtns span{
-	color:#FFF;
 }

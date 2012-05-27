@@ -1,14 +1,22 @@
+@font-face {
+	font-family: 'helveticaPecaa';
+	src: url('font/helveticaneue-medium-webfont.ttf');
+	src: local('helveticaPecaa'), local('helvetica'), url('font/helveticaneue-medium-webfont.ttf') format('truetype');
+}
 body {
     background: url("img/bg.gif") repeat scroll 0 0 transparent;
-    font: 12px Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-family: 'helveticaPecaa', Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 body textarea{resize:none;}
-button{
+a.button, button{
 	font-size: 12px;
+    font-family: 'helveticaPecaa', Arial, sans-serif;
 	line-height: 12px;
-	padding: 5px 15px 8px;
+	padding: 5px 10px 8px;
 	margin-right:10px;
 	color:#FFFFFF;
 	border-radius: 6px;
@@ -38,6 +46,13 @@ button.redBtn{
 	background: -moz-linear-gradient(top,  #fd6868,  #dc4f57);
 	border:1px solid #ff9999;
 	color:#FFFFFF;
+}
+select.graySelect{
+	background:#9E9E9E;
+	color:#FFF;
+	padding:4px;
+	border-radius:4px;
+	border:1px solid #616161;
 }
 .mainContainer {
     margin: auto;
@@ -257,7 +272,6 @@ span.radio {
 span.select {
     background: url("img/select.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
-    font: 12px/21px arial,sans-serif;
     height: 21px;
     overflow: hidden;
     padding: 0 24px 0 8px;
@@ -273,6 +287,15 @@ span.select {
 }
 .clear {
     clear: both;
+}
+.taLeft{
+	text-align:left;
+}
+.taRight{
+	text-align: right;
+}
+.taCenter{
+	text-align: center;
 }
 .shadows {position: relative; height:100%;}
 .shadows .topShadow,

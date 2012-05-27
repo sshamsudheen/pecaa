@@ -8,7 +8,7 @@
     display: inline-block;
     padding-left: 10px;
     text-align: left;
-    width: 275px;
+    width: 330px;
 }
 
 .featuresMain .site-users ul.ConLibraHeads li span.friendlyName {
@@ -26,7 +26,23 @@
 	vertical-align: top;
 	padding-top: 5px;
 	height: 19px;
-    width: 275px;
+    width: 330px;
+}
+.created .on {
+    background: url("img/bg_On.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 21px;
+    width: 48px;
+	margin-left:5px;
+}
+.created  .off {
+    background: url("img/bg_Off.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 21px;
+    width: 48px;
+	margin-left:5px;
 }
 
 .featuresMain .site-users ul.ConLibra li span.type {
@@ -39,6 +55,18 @@
     vertical-align: top;
     width: 490px;
 }
+.featuresMain .site-users ul.ConLibra li span.typeInput {
+ border-right: 1px solid #999999;
+    display: inline-block;
+    height: 19px;
+
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 490px;
+padding-left:7px;
+}
+
 
 .featuresMain .site-users ul.ConLibraHeads li span.enabled {
     border: 0 none;
@@ -63,9 +91,12 @@
 }
 
 .featuresMain #scrollbar1 {
-    width: 890px;
+    width: 940px;
 }
-
+.featuresMain #scrollbar1 .overview {
+    width: 925px;
+	left:0;
+}
 .sslBg .rowDiv dl {
     margin-left: 100px;
     width: 425px;
@@ -197,7 +228,7 @@
     display: inline-block;
     padding-left: 10px;
     text-align: left;
-    width: 200px;
+    width: 220px;
 }
 
 .featuresMain .site-users ul.ConLibraHeads li span.date {
@@ -212,7 +243,7 @@
     display: inline-block;
     padding-left: 10px;
     text-align: center;
-    width: 150px;
+    width: 200px;
 }
 
 .featuresMain .site-users ul.ConLibraHeads li span.review {
@@ -227,7 +258,7 @@
     display: inline-block;
     padding-left: 10px;
     text-align: center;
-    width: 65px;
+    width: 100px;
 }
 
 .featuresMain .site-users ul.ConLibraHeads li span.approved {
@@ -245,7 +276,7 @@
     padding-top: 5px;
     text-align: left;
     vertical-align: top;
-    width: 200px;
+    width: 220px;
 }
 .featuresMain .site-users ul.ConLibra li span.dateText {
     border-right: 1px solid #999999;
@@ -261,7 +292,7 @@
     padding-top: 5px;
     text-align: center;
 	 vertical-align: top;
-    width: 150px;
+    width: 200px;
 }
 .featuresMain .site-users ul.ConLibra li span.reviewText {
     border-right: 1px solid #999999;
@@ -280,7 +311,7 @@
     padding-top: 5px;
     text-align: center;
     vertical-align: top;
-    width: 70px;
+    width: 100px;
 	background-position:0px 10px;
 }.featuresMain .site-users ul.ConLibra li span.approvedText {
     border-right: 1px solid #999999;
@@ -288,7 +319,7 @@
     padding-top: 5px;
     text-align: center;
     vertical-align: top;
-    width: 70px;
+    width: 30px;
 }
 
 
@@ -298,15 +329,25 @@
     
 }
 
-.featuresMain #scrollbar1 .overview {
-    width: 880px;
-}
+
 
 .featuresMain #scrollbar1 .viewport {
-    height: 215px;
-    width: 890px;
+   /* height: 215px;*/
+    width: 940px;
+	left:0;
 }
 
+.featuresMain #scrollbar1 .shadows {
+    margin-left: 0px;
+}
+
+.vendorFeatures #scrollbar1 .overview{
+left:0;	
+width:714px;
+}
+.vendorFeatures #scrollbar1 .shadows{
+	margin-left:0;
+}
 .noBg {
     background: none;
  
@@ -357,3 +398,966 @@ z-index:200;
 	.detailsPopDiv2 p{
 	 padding:5px 10px;
 	}
+	.extForm {
+    margin: 20px 0 0 130px;
+    overflow: hidden;
+}
+.extForm .form-row span.key {
+    margin-right: 5px;
+    min-width: 190px;
+    text-align: right;
+    width: auto;
+}
+
+.extForm .form-row span {
+    display: inline-block;
+    float: left;
+}
+
+.popWindow {
+    background-image: url("img/popWindow_2.png");
+    border: 1px solid #5C5E5F;
+    border-radius: 6px 6px 6px 6px;
+    height: 350px;
+    margin: 10px auto;
+    position: relative;
+    width: 550px;
+}
+
+.popWindow1 {
+    background-image: url("img/popWindow1.png");
+    border: 1px solid #5C5E5F;
+    border-radius: 6px 6px 6px 6px;
+    height: 270px;
+    margin: 10px auto;
+    position: relative;
+    width: 550px;
+}
+
+.grayBtn{
+margin-left:10px;	
+}
+
+.popWindow .headSection span img{
+margin:10px 0 0 5px;
+}
+.popWindow1 .headSection span img{
+margin:10px 0 0 5px;
+}
+
+.popWindow .midSection {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 3px #999999 inset;
+    float: left;
+    margin: 7px 10px;
+    padding: 8px;
+    width: 94%;
+}
+
+.popWindow h2 {
+    color: #FFFFFF;
+    float: left;
+    margin: 10px 0 0 10px;
+    padding: 0;
+    width: auto;
+}
+
+.popWindow1 h2 {
+    color: #FFFFFF;
+    float: left;
+    margin: 10px 0 0 10px;
+    padding: 0;
+    width: auto;
+}
+
+.popWindow1 .midSection {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 3px #999999 inset;
+    float: left;
+    margin: 10px;
+    padding: 8px;
+    width: 94%;
+}
+/*15-May-2012*/
+.vendorFeatures .site-users {
+    margin-bottom: 30px;
+    width: 729px;
+}
+
+.vendorFeatures .site-users .userName .pointer {
+    background: url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    display: none;
+    height: 24px;
+    left: -9px;
+    position: absolute;
+    top: 0;
+    width: 9px;
+    z-index: 1;
+}
+
+.rowDiv dd {
+    float: left;
+    margin: 0;
+    padding: 2px 0 0 16px;
+    width: 150px;
+}
+
+.vendorFeatures .usersLeftPane .userDetailSet {
+    margin-bottom: 10px;
+  
+
+}
+.vendorFeatures .inputBg{
+	background-color:#262626;
+	border:none;
+	color:#fff;
+	 padding: 3px;
+    width: 94%;
+	border-radius:4px;
+}
+
+.vendorFeatures .inputBgColor{
+	background-color:#262626;
+	border:none;
+
+	 padding: 3px;
+    width: 94%;
+	border-radius:4px;
+	color:#999;
+	
+}
+.vendorFeatures .listItem{
+	
+background-color:#a2a2a2;
+	border:none;
+	color:#fff;
+	 padding:2px;
+    width: 96%;
+	border-radius:4px;
+}
+
+.vendorFeatures  h3{
+margin:0;
+padding:2px;
+font-weight:normal;
+}
+
+.greenBtn {
+    background-image: url("img/greenBtnBg.jpg");
+    border: 1px solid #2E6D36;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    float: right;
+    height: 28px;
+	margin-right:10px;
+}
+.vendorFeatures  .left{
+	padding-right:-100px;
+}
+
+.vendorFeatures .site-users ul.ConLibra li span.created, .vendorFeatures .site-users ul.ConLibra li span.lastActivity {
+    border-left: 1px solid #999999;
+    height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+    width: 70px;
+}
+
+.vendorFeatures .site-users ul.ConLibra li span.userName {
+    float: left;
+    height: 19px;
+    padding-top: 5px;
+    position: relative;
+    vertical-align: top;
+    width: 474px;
+	 padding-left:10px;
+}
+.vendorFeatures .site-users ul.ConLibra li span {
+   text-align: left;
+}
+.vendorFeatures .site-users ul.ConLibra li span.group {
+    border-left: 1px solid #999999;
+    height: 19px;
+    padding-top: 5px;
+    vertical-align: top;
+    width: 70px;
+	text-align: center;
+}
+
+.vendorFeatures .site-users ul.ConLibraHeads li span.userName {
+    display: inline-block;
+    width: 470px;
+	padding-left:10px;
+	text-align:left;
+}
+.vendorFeatures .site-users ul.ConLibraHeads li span.group {
+    border: 0 none;
+    display: inline-block;
+    width: 80px;
+}
+
+.vendorFeatures .site-users ul.ConLibraHeads li span.created {
+    border: 0 none;
+    display: inline-block;
+    width:72px;
+}
+
+.vendorFeatures .usersLeftPane .userDetailPanel {
+    background: none repeat scroll 0 0 #000000;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    color: #FFFFFF;
+    height: 435px;
+    margin-right: -20px;
+    padding: 8px 16px 8px 8px;
+    position: relative;
+}
+
+.featuresBg .rowDiv dl {
+    margin-left: 100px;
+    margin-top: 10px;
+    width: 425px;
+}
+.featuresBg .rowDiv dt {
+    float: left;
+    margin: 0;
+    padding: 5px 5px 0 0;
+    width: 650px;
+}
+
+.vendorFeatures .searchContent {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 3px #999999 inset;
+  
+    float: right;
+    right: 180px;
+}
+.vendorFeatures .searchContent input {
+	border:none;
+	padding-left:5px;
+}
+.vendorFeatures .searchContent .searchIcon {
+    background: url("img/icon_Search.gif") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    width: 30px;
+}
+.vendorFeatures .addNewUser {
+    background: url("img/btn_addNewUser.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: left;
+    font-size: 14px;
+    height: 30px;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 38px;
+    padding-top: 5px;
+}
+
+.vendorFeatures .site-users ul.ConLibraHeads li span.name {
+    display: inline-block;
+    width: 180px;
+	padding-left:10px;
+	text-align:left;
+}
+.vendorFeatures .site-users ul.ConLibraHeads li span.dateAdded {
+    border: 0 none;
+    display: inline-block;
+    width:110px;
+}
+
+
+
+.vendorFeatures .site-users ul.ConLibraHeads li span.products {
+    border: 0 none;
+    display: inline-block;
+    width:110px;
+}
+.vendorFeatures .site-users ul.ConLibraHeads li span.empty {
+    border: 0 none;
+    display: inline-block;
+    width: 200px;
+}
+.vendorFeatures .site-users ul.ConLibra li span.nameText {
+    border-right: 1px solid #999999;
+    display: inline-block;
+    width: 180px;
+	padding-left: 10px;
+	text-align: left;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: left;
+    vertical-align: top;
+}
+.vendorFeatures .site-users ul.ConLibra li span.dateText {
+    border-right: 1px solid #999999;
+    display: inline-block;
+    width: 90px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.vendorFeatures .site-users ul.ConLibra li span.productsText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 110px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+.vendorFeatures .site-users ul.ConLibra li span.emptyText {
+    border: 0 none;
+    display: inline-block;
+    width: 200px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+.vendorFeatures .buttonsDiv .grayBtn {
+    margin-right: 118px;
+}
+.vendorFeatures .addNewUserBtn {
+    float: left;
+    margin-bottom: 5px;
+    min-height: 30px;
+    overflow: hidden;
+    width: 300px;
+}
+.vendorFeatures .greyOut{
+	background-color:#e5e5e5 !important;
+	text-align:center;
+	
+}
+
+
+.rowDiv2 dl {
+    margin-left: 160px;
+    width: 440px;
+}
+.cartColumsMain3{
+width:500px;
+margin-top:5px;
+height:220px;
+}
+.noMargin{
+margin:0	
+}
+.rowDiv2 dd{
+float:left;
+width:220px;	
+margin:0;
+padding:5px 10px ;
+}
+
+.btnId{
+background-image:url(img/btn_createId.png);
+height:24px;
+width:63px;
+border:none;
+
+}
+
+.btnDate{
+background-image:url(img/bg_DatePicker.png);
+height:24px;
+width:32px;
+border:none;
+
+}
+
+.searchContent1 .searchIcon {
+    background: url("img/icon_Search.gif") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 32px;
+    vertical-align: middle;
+    width: 30px;
+}
+
+.searchContent1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 3px #999999 inset;
+    margin-bottom: 10px;
+    right: 130px;
+}
+.searchContent1 input{
+border:none;
+padding:5px;
+width:160px;
+}
+
+
+.productsetup .productVenBox {
+    left: 429px;
+    top: 378px;
+    width: 250px;
+}
+
+.searchResultBox ul li {
+    background-color: #F3F3F3;
+    border-bottom: 1px solid #D6D6D6;
+    list-style: none outside none;
+    padding: 7px;
+}
+.searchResultBox ul, li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.searchResultBox ul li.active {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #D6D6D6;
+    border-radius: 4px 4px 0 0;
+    list-style: none outside none;
+    padding: 7px;
+}
+.searchResultBox span {
+    float: right;
+}
+.searchResultBox {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 3px #999999 inset;
+    height: 300px;
+    position: absolute;
+    right:150px;
+    top: 138px;
+    width: 191px;
+    z-index: 1000;
+}
+
+
+/*sankar eveing*/
+.cartColumsMain3 {
+    height: 120px;
+    margin-top: 5px;
+    width: 665px;
+}
+
+
+.tryItonDiv .rowLeftDiv {
+
+	width:579px;	
+
+	float:left;
+	margin-right:10px;
+}
+.tryItonDiv .rowRightDiv {
+
+	width:330px;	
+	float:left
+}
+
+.tryItonDiv .rowRightDiv .hotspotMid {
+    background-color: #F9F9F9;
+    border: 1px solid #C0C0C0;
+    border-radius: 8px 8px 8px 8px;
+    float: left;
+    height: 471px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 330px;
+	text-align:center;
+}
+.tryItonDiv .rowRightDiv #hotspotLeft {
+    float: left;
+    height: 50px;
+    margin: 10px 50px;
+    width: 50px;
+}
+.tryItonDiv .rowRightDiv #hotspotRight {
+    float: left;
+    height: 50px;
+    margin: 10px 50px;
+    width: 50px;
+}
+
+.tryItonDiv  .rowRightDiv .hotspotWindow {
+  
+    border: 1px solid #C0C0C0;
+    float: left;
+    height: 176px;
+    margin: 10px;
+    width: 310px;
+	padding-top:10px;
+	text-align:center;
+	background-color:#fff;
+	border-radius: 8px 8px 8px 8px;
+}
+.tryItonDiv .rowRightDiv .hotspotArrows {
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+    width: 285px;
+}
+
+.tryItonDiv  dl{
+	margin-left:0;
+	
+}
+.tryItonDiv  dt{
+	width:110px;
+	
+}
+
+.tryItonDiv  dd{
+	width:110px;
+	
+}
+
+.Btncenter{
+margin: 10px 34%;
+}
+
+.cartCollumsBottom {
+    width: 951px;
+}
+
+.tryItonDiv .site-users .userGridHeader {
+  
+    margin-left: 0;
+}
+.tryItonDiv #scrollbar1 {
+    width: 579px;
+}
+.tryItonDiv .site-users .userGridFooter {
+ 
+    margin-left: 0;
+}
+
+.tryItonDiv #scrollbar1 .viewport {
+    height: 432px;
+    width: 579px;
+}
+.tryItonDiv #scrollbar1 .overview {
+    width: 579px;
+	left:0;
+}
+
+.tryItonDiv #scrollbar1 .shadows {
+    margin-left: 0px;
+}
+.tryItonDiv .site-users ul.ConLibraHeads li span.cName {
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 220px;
+}
+.tryItonDiv .site-users ul.ConLibraHeads li span.ImgTitle {
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    width: 60px;
+}
+
+.tryItonDiv .site-users ul.ConLibra li span.cName {
+    border-right: 1px solid #999999;
+    height: 41px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 220px;
+}
+
+.tryItonDiv .site-users ul.ConLibra li span.close1 {
+    border-right: 1px solid #999999;
+    height: 41px;
+    padding-left: 5px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 30px;
+}
+
+.tryItonDiv .site-users ul.ConLibra li span.ImgName {
+    border-right: 1px solid #999999;
+    height: 41px;
+    padding-left: 10px;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 60px;
+}
+
+
+
+
+.tryItonDiv .rightButtonDiv {
+    float: right;
+    width: 200px;
+	margin-right:253px;
+	margin-bottom:10px;
+}
+
+
+.couponGrid  ul.ConLibraHeads li span.coupon {
+    display: inline-block;
+    width: 90px;
+	text-align:left;
+	padding-left:5px;
+}
+.couponGrid ul.ConLibraHeads li span.text {
+    border: 0 none;
+    display: inline-block;
+    width: 90px;
+}
+
+.couponGrid ul.ConLibraHeads li span.created {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+.couponGrid ul.ConLibraHeads li span.expires {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+
+.couponGrid ul.ConLibraHeads li span.createdBy {
+    border: 0 none;
+    display: inline-block;
+    width: 102px;
+}
+
+.couponGrid ul.ConLibraHeads li span.type {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+
+.couponGrid ul.ConLibraHeads li span.amount {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+
+.couponGrid ul.ConLibraHeads li span.multiuse {
+    border: 0 none;
+    display: inline-block;
+    width: 55px;
+}
+
+
+.couponGrid ul.ConLibraHeads li span.uses {
+    border: 0 none;
+    display: inline-block;
+    width: 50px;
+}
+
+
+.couponGrid ul.ConLibraHeads li span.on {
+    border: 0 none;
+    display: inline-block;
+    width: 30px;
+}
+
+.couponGrid  ul.ConLibra li span.couponText {
+    width: 90px;
+	text-align:left;
+	padding-left:5px;
+	border-right: 1px solid #999999;	
+    display: inline-block;
+    height: 21px;
+    padding-top: 1px;
+    vertical-align: top;
+}
+.couponGrid ul.ConLibra li span.textData {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 90px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponGrid ul.ConLibra li span.createdDate {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+.couponGrid ul.ConLibra li span.expiresText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponGrid ul.ConLibra li span.createdByText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 102px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponGrid ul.ConLibra li span.typeData {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponGrid ul.ConLibra li span.amountText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponGrid ul.ConLibra li span.multiuseText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.couponGrid ul.ConLibra li span.usersCount {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 50px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.couponGrid ul.ConLibra li span.onStatus {
+    display: inline-block;
+    width: 30px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.couponWrapper .addNewUser {
+    background: url("img/giftCertificateBtn.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: right;
+    font-size: 14px;
+    height: 30px;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 18px;
+    padding-top: 5px;
+}
+
+.couponWrapper .userPanel .showUser {
+    background: none repeat scroll 0 0 #A7C7D8;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    display: inline-block;
+    height: 24px;
+    margin-bottom: 5px;
+    margin-left: 13px;
+    overflow: hidden;
+    width: auto;
+}
+.couponWrapper .userPanel .searchUser .searchInput {
+    background: url("img/bg_SearchUser.png") no-repeat scroll 0 0 transparent;
+    height: 26px;
+    padding-left: 5px;
+    padding-top: 8px;
+    width: 192px;
+}
+
+.couponWrapper .left {
+    float: left;
+}
+.couponWrapper .searchInput input[type="text"] {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 16px;
+    padding: 0 0 0 3px;
+    vertical-align: middle;
+    width: 155px;
+}
+
+.couponWrapper .usersLeftPane .userPanel {
+    background: url("img/bg_SearchUserPanel.png") repeat scroll 0 0 transparent;
+    border-radius: 4px 4px 4px 4px;
+    margin-bottom: 10px;
+    min-height: 31px;
+    padding-bottom: 5px;
+}
+
+.couponWrapper .userPanel .date-created, .userPanel .last-activity {
+    margin-bottom: 0;
+    padding: 5px 0 0 10px;
+    overflow: hidden;
+}
+
+/*Gift Certification*/
+.giftCertGrid  ul.ConLibraHeads li span.certificate {
+    display: inline-block;
+    width: 150px;
+	text-align:left;
+	padding-left:5px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.created {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+.giftCertGrid ul.ConLibraHeads li span.expires {
+    border: 0 none;
+    display: inline-block;
+    width: 70px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.purchasedBy {
+    border: 0 none;
+    display: inline-block;
+    width: 150px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.assigned {
+    border: 0 none;
+    display: inline-block;
+    width: 100px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.value {
+    border: 0 none;
+    display: inline-block;
+    width: 65px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.remaining {
+    border: 0 none;
+    display: inline-block;
+    width: 65px;
+}
+
+.giftCertGrid ul.ConLibraHeads li span.on {
+    border: 0 none;
+    display: inline-block;
+    width: 30px;
+}
+
+.giftCertGrid  ul.ConLibra li span.certificateText {
+    width: 150px;
+	text-align:left;
+	padding-left:5px;
+	border-right: 1px solid #999999;	
+    display: inline-block;
+    height: 21px;
+    padding-top: 1px;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.createdDate {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+.giftCertGrid ul.ConLibra li span.expiresText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.purchasedByText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 150px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.assignedData {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 100px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.valueText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.remainingText {
+    border-right: 1px solid #999999;	
+    display: inline-block;
+    width: 70px;
+	height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.giftCertGrid ul.ConLibra li span.onStatus {
+    display: inline-block;
+    width: 30px;
+	 height: 21px;
+    padding-top: 1px;
+    text-align: center;
+    vertical-align: top;
+}	
+
+.featuresMain .site-users {
+    margin-bottom: 30px;
+    width: 940px;
+}
+#features1 { /*width: 100%;*/  }
+#features1 .viewport { /*width:100%;*/ height: 300px; overflow: hidden; position: relative; background:#CCC; border-right:1px solid #333333; }
+#features1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
+#features1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
+#features1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
+#features1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#features1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
+#features1 .disable { display: none; }
+#features1 ul.ConLibra{border-left:1px solid #333333;}

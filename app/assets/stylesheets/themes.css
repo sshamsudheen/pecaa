@@ -103,11 +103,8 @@
     left: 1px;
     bottom: 0px;
 }
-.theme-section{
-/*  float:left;*/
-}
-.theme-column-right{
-/*  float:right;*/
+.theme-section .theme-column-right{
+	float:left;
 }
 .variation-wrapper{
 	padding:5px;
@@ -534,7 +531,7 @@
 .subTab-Content{
 	background:#FFFFFF;
 	height: 150px;
-	width:636px;
+	width:695px;
 	margin-top:-10px;
 	padding:10px;
 }

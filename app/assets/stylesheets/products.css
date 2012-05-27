@@ -17,11 +17,19 @@
 }
 /*end common */
 
+.main-nav ul li.products {
+	background: url(img/btn_products.png) no-repeat;
+	width: 102px;
+}
+.main-nav ul li.products.active {
+	background: url(img/btn_products_on.png) no-repeat;
+	width: 102px;
+}
 .main-nav ul li.payments {
 	background: url(img/btn_payments.png) no-repeat;
 	width: 120px;
 }
-.main-nav ul li.payments.acttive {
+.main-nav ul li.payments.active {
 	background: url(img/btn_payments_on.png) no-repeat;
 	width: 84px;
 }
@@ -77,6 +85,14 @@
 	display: inline-block;
 	width: 170px;
 }
+.productGrid ul.ConLibraHeads li span.dateCol {
+	display: inline-block;
+	width: 80px;
+}
+.productGrid ul.ConLibraHeads li span.customCol {
+	display: inline-block;
+	width: 140px;
+}
 .productGrid ul.ConLibraHeads li span.group {
 	border: 0 none;
 	display: inline-block;
@@ -117,7 +133,9 @@
 	padding-top: 5px;
 	position: relative;
 	vertical-align: top;
-	width: 168px;
+	width: 162px;
+	text-align: left;
+	padding-left: 10px;
 }
 .productGrid ul.ConLibra li span.group {
 	border-left: 1px solid #999999;
@@ -150,6 +168,23 @@
 	vertical-align: top;
 	width: 70px;
 }
+.productGrid ul.ConLibra li span.dateCol{
+	border-left: 1px solid #999999;
+	height: 19px;
+	padding-top: 5px;
+	text-align: center;
+	vertical-align: top;
+	width: 80px;
+}
+.productGrid ul.ConLibra li span.customCol{ 
+	border-left: 1px solid #999999;
+	height: 19px;
+	padding-top: 5px;
+	text-align: left;
+	vertical-align: top;
+	padding-left:10px;
+	width: 140px;
+}
 .productGrid ul.ConLibra li span.view {
 	border-left: 1px solid #999999;
 	height: 19px;
@@ -165,6 +200,7 @@
 	padding-bottom: 2px;
 	text-align: center;
 	vertical-align: top;
+	width: 65px;
 }
 .productGrid ul.ConLibra li span.close {
 	border-left: 1px solid #999999;
@@ -195,7 +231,9 @@
 .productGrid .userName .pointer {
 	background-image:none;
 }
-
+#orders1 .userName .pointer {
+	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
+}
 /*product setup*/
 
 .productsetup .productVenBox {
@@ -305,7 +343,7 @@ background-position:20px 5px
 	padding-top: 5px;
 	text-align: center;
 	vertical-align: top;
-	width: 50px;
+	width: 45px;
 }
 .categoryMain ul.ConLibra li span.active {
 	border-left: 1px solid #999999;
@@ -328,7 +366,7 @@ background-position:20px 5px
 	vertical-align: middle;
 	width: 165px;
 }
-button.addProductBtn {
+.addProductBtn {
 	background: url("img/btn_bg200.png") no-repeat scroll 0 0 transparent;
 	border: 0 none;
 	float: right;
@@ -339,19 +377,6 @@ button.addProductBtn {
 	padding-right: 27px;
 	padding-top: 5px;
 	width:200px;
-}
-a.addProductBtn {
-	background: url("img/btn_bg200.png") no-repeat scroll 0 0 transparent;
-	border: 0 none;
-	float: right;
-	font-size: 14px;
-	height: 30px;
-	margin: 0;
-	padding-left: 25px;
-	padding-right: 27px;
-	padding-top: 6px;
-	width: 150px;
-	color: white;
 }
 .productGrid .modifierTextBg {
 	background-image:url(img/arrowIcon.png);
@@ -386,19 +411,34 @@ img {
 	padding-left:20px;
 	height:20px;
 }
+
+.psubItems2 {
+	background:url(img/subleftArrow.png) no-repeat;
+	padding-left:20px;
+	margin-left:20px !important;		
+	height:20px;
+}
 .psubSubItems {
 	background:url(img/leftArrow.png) no-repeat;
 	padding-left:20px;
 	height:20px;
 	margin-left:20px !important;
 }
+.psubSubItems1 {
+	background:url(img/leftArrow.png) no-repeat;
+	padding-left:20px;
+	height:20px;
+	margin-left:40px !important;
+}
 .productsTitle {
-	width:30%
+	width:30%;
+	float:left;	
 }
 .featureProductMain {
 }
 .featureProduct ul.ConLibra li span.group {
 	border-left: 1px solid #999999;
+	hfpruductFDiveight: 19px;
 	padding-top: 5px;
 	vertical-align: top;
 	width: 437px;
@@ -415,6 +455,11 @@ img {
 	padding:5px;
 	margin-left:10px;
 }
+
+.pSearchResultBox{ 
+	right: 202px;
+    top: 128px;
+}
 .searchResultBox {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #666666;
@@ -426,6 +471,11 @@ img {
 	top: 20px;
 	width: 191px;
 	z-index: 1000;
+}
+
+.pSearchResultBox{ 
+	right: 202px;
+    top: 128px;
 }
 .searchResultBox ul, li {
 	list-style:none;
@@ -496,7 +546,7 @@ img {
 	width: 160px;
 }
 .ProductOptions.userGridHeader {
-	margin:10px 0 10px 0;
+	margin-left:10px 0 10px 0;
 }
 .ProductOptions #scrollbar1{
 width:100%;	
@@ -511,14 +561,16 @@ width:100%;
 	margin-bottom:5px;
 	overflow: hidden;
 	width:200px;
-	float:left;
-	clear:both;
+	float:right;
+
 }
 .ProductOptions .manageDateLeftBox {
 	float:left;
-	width:402px;
+	width:412px;
 	background-image:url(img/pOptionsleftBg.png);
 	height: 121px;
+	 border-top-left-radius: 6px;
+	  border-bottom-left-radius: 6px;
 }
 
 .ProductOptions .site-users {
@@ -575,6 +627,26 @@ width:100%;
 	display: inline-block;
 	text-align:left;
 	padding-left:5px;
+}
+
+.ProductOptions ul.ConLibra li span.userName {
+	height: 19px;
+	padding-top: 5px;
+	position: relative;
+	vertical-align: top;
+	width: 303px;
+	background: url("img/icon_movable.png") no-repeat scroll 98% center transparent;
+	display: inline-block;
+	text-align:left;
+	padding-left:5px;
+}
+
+.smallArrow{
+	background: url("img/arrowsmall1.png") no-repeat;
+	background-position:0px 2px;
+width:10px;	
+display:inline-block;
+height:12px;
 }
 .ProductOptions ul.ConLibra li span.sku {
 	border-left: 1px solid #999999;
@@ -996,7 +1068,7 @@ span img {
 	font-size: 20px;
 	margin-bottom: 10px;
 	padding-left: 0px;
-	width: 220px;
+	width: 22 0px;
 }
 .bottomDivRepeat .group .key {
 	color: #666666;
@@ -1031,7 +1103,8 @@ span img {
 	height:30px;
 	border-radius:5px;
 	color:#fff;
-	padding-bottom:5px;
+	padding-bottom:8px;
+	font-size: 14px;
 }
 .bottomDivRepeat .searchAC span {
 	margin-left:5px;
@@ -1509,9 +1582,10 @@ font-weight:normal
 	margin-right:34px;
 }
 /*Try It On*/
-.tryItonDiv {
-	float: left;
-	padding: 10px;
+
+.tryItonDiv{
+ float:left;
+ padding:10px;	
 }
 .eiditTextDiv .help {
 	background: url("img/helpIcon.png") no-repeat scroll 0 0 transparent;
@@ -1519,42 +1593,46 @@ font-weight:normal
 	height: 20px;
 	width: 20px;
 }
-.tryItonDiv .hotspotImgBlock {
-	width: 220px;
-	float: left;
-	margin-right: 10px;
+.tryItonDiv .hotspotImgBlock{
+width:220px;
+float:left;	
+margin-right:10px;
+	
+
 }
-.tryItonDiv .hotspotMid {
-	width: 330px;
-	float: left;
-	margin-right: 10px;
-	background-color: #f9f9f9;
-	border: solid #c0c0c0 1px;
-	border-radius: 8px;
-	height: 400px;
-	padding: 10px;
+.tryItonDiv .hotspotMid{
+width:330px;
+float:left;	
+margin-right:10px;
+background-color:#f9f9f9;
+border:solid #c0c0c0 1px;
+border-radius:8px;
+height:400px;
+padding:10px;
 }
-.tryItonDiv .hotspotPreview {
-	width: 250px;
-	float: left;
+.tryItonDiv .hotspotPreview{
+width:250px;
+float:left;	
+
 }
-.hotspotPreview h4 {
-	text-align: center;
-	color: #999999;
-}
-.tryItonDiv .ConLibraHeads {
-	text-align: center;
+.hotspotPreview h4{
+text-align:center;
+color:#999999;	
 }
 
-.tryItonDiv .hotspotImages {
-	float: left;
-	border-top: solid 1px #333333;
-	border-left: solid 1px #333333;
-	height: 60px;
-	width: 100px;
-	background-color: #fff;
-	position: relative;
-	z-index: 100;
+.tryItonDiv .ConLibraHeads{
+text-align:center;	
+}
+
+.tryItonDiv .hotspotImages{
+ float:left;
+ border-top:solid 1px #333333;
+  border-left:solid 1px #333333;
+ height:60px;
+ width:100px;	
+ background-color:#fff;
+ position:relative;
+ z-index:100;
 }
 .tryItonDiv .hoverImg{
 /*background-image:url(img/imgOverImg.png);
@@ -1564,19 +1642,28 @@ z-index:900;
 display:block;
 position:absolute;*/
 }
-.tryItonDiv .noleftBorder {
-	border-right: solid 1px #333333;
+.tryItonDiv .noleftBorder{
+ border-right:solid 1px #333333;
+
+
 }
-.tryItonDiv #scrollbar1 {
-	width: 221px
+.tryItonDiv #scrollbar1{
+width:221px	
 }
-.tryItonDiv #scrollbar1 .overview {
-	width: 220px
+
+
+.tryItonDiv #scrollbar1{
+width:221px	
 }
-.tryItonDiv #scrollbar1 .viewport {
-	height: 350px;
-	width: 220px
+
+.tryItonDiv #scrollbar1 .overview{
+width:220px	
 }
+.tryItonDiv #scrollbar1 .viewport{
+height:350px;	
+width:220px	
+}
+
 
 
 .tryItonDiv .site-users {
@@ -1584,22 +1671,21 @@ position:absolute;*/
     width: 100%;
 }
 
-
-.tryItonDiv #hotspotRight {
-	width: 50px;
-	height: 50px;
-	position: relative;
-	float: left;
-	margin: 10px 50px;
-}
-.tryItonDiv #hotspotLeft {
-	width: 50px;
-	position: relative;
-	height: 50px;
-	float: left;
-	margin: 10px 50px;
+.tryItonDiv #hotspotRight{
+width:50px;
+height:50px;
+positon:relative;	
+float:left;
+margin:10px 50px;
 }
 
+.tryItonDiv #hotspotLeft{
+width:50px;
+positon:relative;
+height:50px;	
+float:left;
+margin:10px 50px;
+}
 .tryItonDiv .hotspotArrows{
 	float:left;
 	padding:5px 10px;
@@ -1657,9 +1743,6 @@ z-index:300;
     height: 20px;
     width: 50px;
 }
-
-
-/* for products page grid styles */
 .userGrid .userGridFooter.showVals{height:auto}
 .userGrid .userGridFooter ul.totals li {
 	color:white;
@@ -1668,7 +1751,7 @@ z-index:300;
 }
 .userGrid .ConLibraHeads .orderCol,
 .userGrid .userGridFooter ul.totals .orderCol{
-	width: 110px;
+	width: 100px;
 	display: inline-block;
 }
 .userGrid .ConLibraHeads .dtCol,
@@ -1682,11 +1765,17 @@ z-index:300;
 	display: inline-block;
 	text-align: right;
 }
+.userGrid .ConLibraHeads .amtCol-narrow,
+.userGrid .userGridFooter ul.totals .amtCol-narrow{
+	width: 65px;
+	display: inline-block;
+	text-align: right;
+}
 .userGrid ul.ConLibra li .orderCol.borderLeft{
 	border-left: 1px solid #999999;
 }
 .userGrid ul.ConLibra li .orderCol{
-	width: 110px;
+	width: 100px;
     height: 19px;
     padding-bottom: 2px;
     padding-top: 3px;
@@ -1710,42 +1799,34 @@ z-index:300;
     padding-right: 5px;
     vertical-align: top;
 }
+.userGrid ul.ConLibra li .amtCol-narrow{
+	width: 60px;
+	text-align:right;
+	border-left: 1px solid #999999;
+    height: 19px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+.userGrid ul.totalsRow li.blackRow{
+	background:#000000;
+	color:white;
+}
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#products1 { /*width: 100%;*/  }
-#products1 .viewport { /*width:100%;*/ height: 400px; overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; border-right:1px solid #333333; }
-#products1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
-#products1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
-#products1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
-#products1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#products1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
-#products1 .disable { display: none; }
+#products1 .viewport { height: 400px; overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
 #products1 ul.ConLibra{border:0}
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#orders1 { /*width: 100%;*/  }
-#orders1 .viewport { /*width:100%;*/ height: 465px; overflow: hidden; position: relative; background:#CCC; border-right:1px solid #333333; }
-#orders1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
-#orders1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
-#orders1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
-#orders1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#orders1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
-#orders1 .disable { display: none; }
+#orders1 .viewport {height: 465px; }
 #orders1 ul.ConLibra{border-left:1px solid #333333;}
 
 /* Tiny Scrollbar */
 .taxPagesMain{width:950px; overflow:visible;}
 .taxPagesMain .addNewTaxRate{margin-bottom:5px;}
 
-#taxTable1 { /*width: 100%;*/  }
 #taxTable1 .viewport { /*width:100%;*/ height: 300px; overflow: hidden; position: relative; background:#CCC; border-right:1px solid #333333; }
-#taxTable1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
-#taxTable1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
-#taxTable1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
-#taxTable1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#taxTable1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
-#taxTable1 .disable { display: none; }
-#taxTable1 ul.ConLibra{border-left:1px solid #333333;}
 
 .greenText {
 	color: #3d9642;
@@ -1830,4 +1911,31 @@ z-index:300;
 	width: 70px;
 	display: inline-block;
 	background-image: url(img/rating_5.png);
+}
+.topSharpCorners{
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+.colHeadWrapper{
+	background:url(img/bg_colHeaders.png);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	text-align: right;
+	overflow:hidden;
+	padding:5px;
+}
+.colHeadWrapper .colHeads{
+	list-style: none;
+	margin:0;
+	padding: 0;
+	overflow:hidden;
+}
+.colHeadWrapper .colHeads li{
+	padding:3px 5px;
+	margin:2px 2px 0;
+	display:inline-block;
+	border-radius:4px;
+	background:#666;
+	color:#FFF;
+	overflow:hidden;
 }

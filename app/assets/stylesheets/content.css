@@ -2,6 +2,8 @@
 	min-height: 180px;
 	position: relative;
 	margin-top: 10px;
+	padding-left: 20px;
+    padding-right: 25px;
 }
 .content-tabs{
 	position: relative;
@@ -181,11 +183,11 @@
 	width:155px;
 	vertical-align: middle;
 	border:0;
-	padding-left:3px;
+	padding:0 0 0 3px;
 	font-size:16px;
 }
 .themes-board{
-	height:100%;
+	/*height:70%;*/
 	top:270px;
 }
 .contentObject{
@@ -193,7 +195,6 @@
 	z-index: 99999;
 	left: 10%;
 	top:10%;
-	margin:10px;
 }
 
 .dragableObject{
@@ -273,6 +274,7 @@
 	border-radius: 6px;
 	border: 1px solid #579DC4;
 	padding:40px;
+	overflow: hidden;
 }
 .objectContent .title{
 	vertical-align: middle;
@@ -313,7 +315,6 @@
 
 .objectContent .formRow{
 	margin-bottom:5px;
-	overflow: hidden;
 }
 .objectContent label{
 	display: inline-block;
@@ -327,12 +328,23 @@
 	background:#FFFFFF;
 	border:1px solid #CCCCCC;
 	height:24px;
+	-moz-box-shadow: inset 0px 0px 1px #999;
+	-webkit-box-shadow: inset 0px 0px 1px #999;
+}
+.objectContent select{
+	width:200px;
 }
 .formRow button.submitBtn{
 	margin:0;
 	width:200px;
 	background: -webkit-gradient(linear, left top, left bottom, from(#9bbcff), to(#6699ff));
 	background: -moz-linear-gradient(top,  #9bbcff,  #6699ff);
+	padding: 9px 0;
+	font-size: 14px;
+    font-weight: bold;
+    border:1px solid #1040ff;
+    -moz-box-shadow: 0px 0px 3px #999;
+	-webkit-box-shadow: 0px 0px 3px #999;
 }
 .objectContent .video-wrapper {
 	background:#f5f6f6;

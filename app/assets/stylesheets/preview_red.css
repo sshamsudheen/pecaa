@@ -69,8 +69,8 @@ a:focus{
 	border: 1px solid #333;
 }
 .content-tabs ul li.active{
-	background:#acc0d1;
-	border-bottom: 1px solid #acc0d1;
+	background:brown;
+	border-bottom: 1px solid brown;
 }
 .tabContent{
 	background:#acc0d1;
@@ -95,14 +95,14 @@ a:focus{
 }
 
 #box{
-	 background:#ACC0D1;
+	 background:brown;
 	 padding:20px;
    	 border-top-right-radius: 6px;
    	 border-bottom-right-radius: 6px;
    	 border-bottom-left-radius: 6px;
 }
 #box .block h2 {
-    background: url(css/img/bg_grayGrain.gif) #666;
+    background: #000;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     color: white;
@@ -132,4 +132,5 @@ a:focus{
 .textStyle{
 	padding:10px;
 	margin-bottom:20px;
+	color:#FFFFFF;
 }

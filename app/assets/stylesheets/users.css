@@ -46,14 +46,13 @@
 .addNewUser{
 	background:url(img/btn_addNewUser.png)no-repeat;
 	font-size: 14px;
-    height: 24px;
-    padding-right: 45px;
-    padding-top: 6px;
-   	padding-left: 15px;
+    height: 30px;
+    padding-right: 38px;
+    padding-top: 5px;
+    padding-left: 5px;
     border:0;
     float:right;
     margin:0;
-    color: #FFF;
 }
 .site-users{
 	width:768px;
@@ -156,7 +155,6 @@
 	border: 1px solid #333333;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
-	margin-left:10px;
 }
 .site-users ul.ConLibra .alt {
 	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #dedede;
@@ -285,6 +283,11 @@
 	height:12px;
 	margin-bottom:10px;
 }
+.usersLeftPane .lineDevider{
+	margin:10px 10px 2px;
+	border-top:1px solid #d3d3d3;
+	border-bottom:1px solid #FFF;
+}
 .userPanel .showUser{
 	height:24px;
 	background:#a7c7d8;
@@ -340,6 +343,9 @@
     padding:8px 16px 8px 8px;
     color:#FFFFFF;
     position: relative;
+}
+.usersLeftPane .userDetailPanel.ordersLeft{
+	height:500px;
 }
 .usersLeftPane h2{
 	border-bottom: 1px solid #575A5B;
@@ -421,6 +427,7 @@
 		margin-right:6px;
 		color:#CCCCCC;
 	}
+	.ordersLeft .userDetailSet span.key{text-align:left;}
 	.userDetailSet span.val{
 		width:138px;
 	}
@@ -432,9 +439,10 @@
 	    margin-bottom:1px;
 	}
 	
-.usersLeftPane .userDetailSet.bottomBorder{
+.usersLeftPane .bottomBorder{
 	border-bottom:1px solid #575a5b;
 	padding-bottom: 10px;
+	overflow: hidden;
 }
 
 .userEditPanel{
@@ -448,12 +456,240 @@
 .usersLeftPane.userEdit .userEditPanel{
 	height: auto;
 }
-
+.orderPanel h3{
+	color:#9DC350;
+	font-size: 14px;
+	margin:0 0 15px;
+}
+.orderPanel .orderDetailSet dt{
+	float: left;
+	width:120px;
+	margin-bottom:2px;
+	overflow: hidden;
+	color:#C0C0C0;
+	padding: 2px 0;
+	font-size: 12px;
+}
+.orderPanel .orderDetailSet dd{
+	margin:0 0 1px;
+	overflow: hidden;
+	width:180px;
+	padding: 2px 0;
+	color:#FFF;
+	font-size: 12px;
+}
+.orderPanel .orderDetailSet dd input[type="text"]{
+	background:none;
+	width:95%;
+	border:0;
+	color:#FFF;
+	font-size: 12px;
+}
+.orderPanel .orderDetailSet dd select{
+	width:100%;
+	background:#9E9E9E;
+	border:0;
+	color:#FFF;
+	padding:2px;
+}
+.orderPanel .btns{
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.orderPanel .btns button{
+	margin:0;
+}
+.orderPanel .orderDetailSet dd.grayBg{
+	background: #272727;
+    border-radius: 2px;
+}
+.userEditPanel .orderHeader{
+	padding:10px 5px 5px;
+	border-bottom:1px solid #666;
+	overflow: hidden;
+	position: relative;
+}
+.orderHeader .exportBtn{
+	position: absolute;
+	right:0;
+	top:0;
+}
+.exportBtn button{
+	margin:0;
+}
+.orderHeader .tabWraper {
+	margin-bottom:-10px;
+}
+.orderHeader .pTabs {
+	padding:0;
+	margin:0;
+	list-style: none;
+	background:none;
+}
+.orderHeader .pTabs li{
+	padding:5px 10px 10px;
+	margin:0 10px 0 0;
+	list-style: none;
+	float:left;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	background:#505050;
+	font-size: 14px;
+	color:#CCCCCC;
+}
+.orderHeader .pTabs li.active{
+	background:#9DC350;
+	color:#333;
+}
+.orderHeader .orderNum{
+	color:#FFF;
+	font-size: 16px;
+	width:31%;
+}
 .userEditPanel .colum-wrapper{
 	width:31%;
 	margin-right:30px;
 	padding-top:15px;
 	margin-bottom: 20px;
+}
+.orderPanel .colum-wrapper{
+	border-left: 1px solid #666666;
+	border-right: 0;
+    margin: 10px 5px;
+    padding: 0 5px 0;
+    width: 31%;
+}
+.orderPanel .colum-wrapper.first{
+	margin-right:0;
+	padding-left:0;
+	border-left:0;
+}
+.orderPanel .products-wrapper h3{
+	color: #9DC350;
+    font-size: 14px;
+    margin: 15px 0 15px;
+}
+.orderPanel .products-wrapper table{
+	width:100%;
+	
+}
+.orderPanel .products-wrapper table thead th{
+	font-weight: normal;
+	color:#CCCCCC;
+	border-bottom: 1px solid #666666;
+	padding: 5px 5px 5px 10px;
+}
+.orderPanel .products-wrapper table tbody td{
+	border-bottom: 1px solid #666666;
+	vertical-align: top;
+	padding: 5px 5px 5px 10px;
+}
+.orderPanel .products-wrapper table .products{
+	width:140px;
+}
+.orderPanel .products-wrapper table .discrip{
+	width:200px;
+}
+.orderPanel .products-wrapper table .qty{
+	width:150px;
+	text-align: center;
+}
+.orderPanel .products-wrapper table .price{
+	width:150px;
+}
+.orderPanel .products-wrapper table .options{
+	width:150px;
+}
+.orderPanel .products-wrapper table .cost{
+	width:250px;
+}
+.orderPanel .products-wrapper dl{
+	margin-top:0;
+}
+.orderPanel .products-wrapper .costDetails dt{
+	float:left;	
+	text-align: right;
+	width:100px;
+	color:#CCCCCC;
+}
+.orderPanel .notes-wrapper{
+	width:47%;
+	margin:10px 5px 20px;
+	border-right:1px solid #616161;
+	padding:0 5px;
+}
+.orderPanel .notes-wrapper.last{
+	padding-right: 0;
+	border-right:0px;
+	margin-right:0;
+}
+.orderPanel .notes-wrapper dl dt{
+	clear: both;
+    float: left;
+    margin: 0 0 10px;
+    width: 110px;
+}
+.orderPanel .notes-wrapper dl dd{
+	clear: right;
+    float: left;
+    margin: 0 0 10px;
+    width: 330px;
+    position: relative;
+    padding: 0 20px 0 0;
+}
+.orderPanel .notes-wrapper dl dd textarea{
+	background:#3F3F3F;
+	border:0;
+	border-radius:4px;
+	padding:4px;
+	width:100%;
+	color:#C0C0C0;
+}
+.orderPanel .notes-wrapper dl dd .deleteBtn{
+	position: absolute;
+	right:0;
+	top:3px;
+}
+.orderPanel .products-wrapper{
+	margin-bottom:20px;
+	overflow: hidden;
+}
+.orderPanel .products-wrapper .costDetails dd{
+	width:100px;
+	margin:0;
+	float:left;
+}
+.orderPanel .products-wrapper .adjSection{
+	width: 400px;
+	border-bottom:1px solid #666666;
+	margin-bottom:10px;
+}
+.orderPanel .products-wrapper .grandTotal{
+	margin-right:20px;
+}
+.orderPanel .products-wrapper .grandTotal dl dt{
+	color:#9DC350;
+	font-size: 16px;
+	font-weight: bold;
+	width:100px;
+}
+.orderPanel .products-wrapper .grandTotal dl dd{
+	color:#9DC350;
+	font-weight: bold;
+	width:100px;
+	margin:0;
+	float:left;
+}
+.orderPanel .products-wrapper .expanded dt{
+	width:280px;
+}
+.orderPanel .products-wrapper .expanded dd{
+	width:100px;
+	margin:0;
+	float:left;
+}
+.orderPanel .products-wrapper .greenTxt{
+	color:#9DC350;
 }
 .userEditPanel .colum-wrapper.last{
 	margin-right:0;
@@ -600,15 +836,12 @@
 	border-bottom-right-radius:4px;
 	color:#999999;
 }
-#scrollbar1 .shadows{
+#users1 .shadows{
 	margin-left:10px;
 }
 /* Tiny Scrollbar */
-#scrollbar1 { width: 768px;  }
-#scrollbar1 .viewport { width: 752px; height: 400px; overflow: hidden; position: relative;}
-#scrollbar1 .overview { width: 765px; list-style: none; position: absolute; left: 10px; top: 0; padding: 0; margin: 0; }
-#scrollbar1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
-#scrollbar1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
-#scrollbar1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#scrollbar1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
-#scrollbar1 .disable { display: none; }
+#users1 .userGridHeader{
+	margin-left:10px;
+}
+#users1 .viewport { height: 400px;}
+#users1 .overview { left: 10px; }
