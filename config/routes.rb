@@ -1,5 +1,18 @@
 Mystore3::Application.routes.draw do
 
+
+  get "product_videos/index"
+
+  get "product_videos/new"
+
+  get "sub_product_options/index"
+
+  get "sub_product_options/new"
+
+  get "product_options/index"
+
+  get "product_options/new"
+
   resources :system_configs
 
   resources :product_categories
@@ -43,15 +56,50 @@ Mystore3::Application.routes.draw do
     post 'search', :on => :collection
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
+    get 'site_preview', :on => :member
+    
+    resources :inventory_options
+    resources :gift_certificates do 
+      get 'approve', :on => :member
+    end
+    
+    resources :site_vendors 
+    resources :coupons do
+      get 'approve', :on => :member
+    end
+    resources :try_it_images
+    
+    resources :shipping_detials
+    resources :shipping_addresses
+    resources :billing_addresses
+    resources :billings
+    resources :reviews do
+      get 'approve', :on => :member
+    end
+    resources :orders do
+      get 'product_list', :on => :member
+      get 'notes_and_history', :on => :member
+      get 'create_notes', :on => :member
+    end
+    resources :reports do
+      get 'graph_index', :on => :collection
+      get 'show_all_products', :on => :collection
+      get 'show_custom_fields', :on => :collection
+      get 'show_inventory_details', :on => :collection
+    end
     
     resources :site_features do 
       get 'change_adv_status', :on => :collection
       get 'ssl_setup_status', :on => :collection
       get 'review_management', :on => :collection
+      get 'cart_status',:on => :collection
+      get 'rx_manage',:on => :collection
     end
 
     resources :product_filters do
       get 'update_status', :on => :collection
+      get 'enable_status', :on => :member
+      post 'rename_editable', :on => :collection
     end
     
     resources :site_pages do
@@ -92,9 +140,36 @@ Mystore3::Application.routes.draw do
       get 'featured_products', :on => :collection
       post 'search', :on => :collection
       get 'add_featured', :on => :member, :to => 'products#update'
-      resources :product_images do
-        get 'index', :on => :collection
+      get 'images_list', :on => :member
+      get 'videos_list', :on => :member
+      get 'product_options', :on => :member
+      get 'related_products', :on => :member
+      get 'remove_rel', :on => :member
+      get 'product_inventory', :on => :member
+      get 'create_inventory', :on => :member
+      get 'update_pi', :on => :member, :to => 'products#update_intentory'
+      
+      resources :product_videos do
+        get 'update_pvid', :on => :member, :to => 'product_videos#update'
+        get 'delete', :on => :member, :to => 'product_videos#destroy'
+        get 'link_video', :on => :member, :to => 'product_videos#link_video'
       end 
+      
+      resources :product_images do
+        get 'update_pimg', :on => :member, :to => 'product_images#update'
+        get 'delete', :on => :member, :to => 'product_images#destroy'
+      end 
+    end
+    
+    resources :product_options do
+      get 'update_po', :on => :member, :to => 'product_options#update'
+      get 'delete', :on => :member, :to => 'product_options#destroy'
+      
+      resources :sub_product_options do
+        get 'update_spo', :on => :member, :to => 'sub_product_options#update'
+        get 'delete', :on => :member, :to => 'sub_product_options#destroy'
+      end
+      
     end
     
     resources :product_categories do 
@@ -110,6 +185,18 @@ Mystore3::Application.routes.draw do
     resources :payments do
       get 'enable', :on => :member
     end
+
+    resources :taxs, :only => [:index, :create] do
+      get 'enable', :on => :collection
+      get 'tax_type', :on => :collection
+      get 'destroy', :on => :member
+      post 'create_tax_gateway', :on => :collection
+      get 'enable_custom', :on => :member
+    end
+
+    resources :shippings do
+      get 'enable', :on => :member
+    end
     
   end
   
@@ -119,7 +206,7 @@ Mystore3::Application.routes.draw do
 
   match 'content_libraries/search', :to=> 'content_libraries#search',:as=>:content_search
   
-resources :content_libraries do
+  resources :content_libraries do
     
   end
   

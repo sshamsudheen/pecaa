@@ -342,12 +342,12 @@ padding-left:7px;
 }
 
 .vendorFeatures #scrollbar1 .overview{
-left:0;	
-width:714px;
+	left:0;	
 }
-.vendorFeatures #scrollbar1 .shadows{
-	margin-left:0;
+.featuresMain #scrollbar1 .shadows {
+    margin-left: 0px;
 }
+
 .noBg {
     background: none;
  
@@ -670,9 +670,6 @@ font-weight:normal;
     display: inline-block;
     width:110px;
 }
-
-
-
 .vendorFeatures .site-users ul.ConLibraHeads li span.products {
     border: 0 none;
     display: inline-block;
@@ -990,9 +987,6 @@ margin: 10px 34%;
     vertical-align: top;
     width: 60px;
 }
-
-
-
 
 .tryItonDiv .rightButtonDiv {
     float: right;
@@ -1352,12 +1346,5 @@ margin: 10px 34%;
     margin-bottom: 30px;
     width: 940px;
 }
-#features1 { /*width: 100%;*/  }
-#features1 .viewport { /*width:100%;*/ height: 300px; overflow: hidden; position: relative; background:#CCC; border-right:1px solid #333333; }
-#features1 .overview { width: 100%; list-style: none; position: absolute; left: 0px; top: 0; padding: 0; margin: 0; }
-#features1 .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
-#features1 .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
-#features1 .thumb { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
-#features1 .thumb .end { background: transparent url(img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%; overflow: hidden; height: 5px; width: 25px; }
-#features1 .disable { display: none; }
+#features1 .viewport { height: 300px; border-right:0; }
 #features1 ul.ConLibra{border-left:1px solid #333333;}

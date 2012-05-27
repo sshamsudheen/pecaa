@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  method: MyString
+  site_id: 1
+  order_id: 1
+  auth_code: MyString
+  amount: MyString
+  site_user_id: 1
+
+two:
+  method: MyString
+  site_id: 1
+  order_id: 1
+  auth_code: MyString
+  amount: MyString
+  site_user_id: 1

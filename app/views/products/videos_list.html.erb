@@ -1,0 +1,95 @@
+<div class="modelWindow">
+  <div class="midSection">
+    <%= render :partial => "shared/products_tab"%>
+    <div id="tabs_content_container">
+      <div id="tab2" class="tab_content">
+        <div class="tab2topDiv">
+          <div class="editImgDiv">
+            <img src="/assets/productimg.jpg" width="136" height="100">
+          </div>
+          <div class="eiditTextDiv">
+            <%unless @product.new_record? %>
+              <h2><%= @product.name%></h2>
+              <h3>created : <%= @product.created_at.strftime("%m/%d/%y")%></h3>
+              <h3>last modified : <%= @product.updated_at.strftime("%m/%d/%y")%></h3>
+              <span><img src="/assets/stars.jpg" width="73" height="13"></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="pages-main createEditDiv">
+          <div class="pages-wrapper">
+            <div class="sectionTitleDiv">
+              <div class="title">
+                Choose / Order Videos<span class="help"><a href="#"></a></span>
+              </div>
+              <div class="buttonSection">
+                <a class="addNewUser" rel='facebox' href="<%= new_site_product_product_video_path(@site, @product)%>">add new video</a>
+              </div>
+            </div>
+            <div class="site-users">
+              <div class="page-data clear">
+                <div class="userGrid imageTab">
+                  <div class="userGridHeader">
+                    <ul class="ConLibraHeads">
+                      <li>
+                        <span class="gridColHeaddings w350">Video File Name</span>
+                        <span class="gridColHeaddings w150">Primary</span>
+                        <span class="gridColHeaddings w150">Video</span>
+                        <span class="gridColHeaddings w150">Date Added</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="userGridBody">
+                    <div id="productsEdit">
+                      <div class="scrollbar" style="height: 0px;">
+                        <div class="track" style="height: 0px;">
+                          <div class="thumb">
+                            <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="viewport">
+                        <div class="shadows"></div>
+                        <div class="overview">
+                          <ul class="ConLibra">
+                            <% @product_videos.each do |vid| %>
+                              <li>
+                                <span class="imgFile imgs"><%= filename(vid.name) %></span>
+                                <span class="primary">
+                                  <a href="<%=update_pvid_site_product_product_video_path(@site, @product, vid, :product_video => {:is_primary => !(vid.is_primary)})%>">
+                                    <img src="/assets/<%= vid.is_primary? ? 'radioOn' : 'radioOff'%>.jpg" width="17" height="17">
+                                  </a>
+                                </span>
+                              	<span class="imgs"><img src="/assets/productImg1.png" width="56" height="19"></span>
+                                <span class="dateAdded w150"><%= vid.created_at.strftime('%m/%d/%y') %></span>
+                                <span class="removeBtn">
+                                  <%= render :partial=>'shared/alert_box', :locals=>{:obj => vid,
+                                     :path => delete_site_product_product_video_path(@site, @product, vid),
+                                     :img_path => "/assets/btnDelete.png"}%> 
+                                  
+                                </span>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="userGridFooter"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#productsEdit').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+	})
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>

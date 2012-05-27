@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_id: 1
+  order_id: MyString
+  status: MyString
+  customer_emil: MyString
+  site_user_id: 1
+
+two:
+  site_id: 1
+  order_id: MyString
+  status: MyString
+  customer_emil: MyString
+  site_user_id: 1

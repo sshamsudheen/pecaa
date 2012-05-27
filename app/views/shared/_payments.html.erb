@@ -1,0 +1,14 @@
+<div class="user-tabs">
+        <ul>
+          <%= link_to "<li class='#{PaymentGateway.find_active_payment('Authorize.net', params[:id])}'>payment gateway</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('Authorize.net').id) %>
+          <%= link_to "<li class='#{PaymentGateway.find_active_payment('Pay Pal', params[:id])}'>Pay Pal</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('Pay Pal').id) %>
+          <%= link_to "<li class='#{PaymentGateway.find_active_payment('Google Checkout', params[:id])}'>Google Checkout</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('Google Checkout').id) %>
+          <%= link_to "<li class='#{PaymentGateway.find_active_payment('No Payment', params[:id])}'>no payment required</li>".html_safe, site_payment_path(@site.id, PaymentGateway.find_by_name('No Payment').id) %>
+        </ul>
+      </div>
+
+<script type="text/javascript">
+  $('.payments').attr('class','payments active')
+    $('.taxes').attr('class','taxes')
+    $('.shipping').attr('class','shipping')
+</script>

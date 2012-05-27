@@ -1,0 +1,44 @@
+<%=form_for [Site.find(params[:site_id]),@site_vendor] do |f|%>
+<h3>name:</h3>
+<div class="userDetailSet">
+	<%=f.text_field 'name', :class=>"inputBg"%>
+</div><h3>address:</h3>
+<div class="userDetailSet">
+	<%=f.text_field 'address_line1', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <%=f.text_field 'address_line2', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <%=f.text_field 'city', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <select class="listItem" name="country">
+        <option>state</option>
+        State
+    </select>
+</div>
+<div class="userDetailSet">
+    <%=f.text_field 'zip_code', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <h3>phone number:</h3>
+    <%=f.text_field 'phone_number', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <h3>email:</h3>
+    <%=f.text_field 'email', :class=>"inputBg"%>
+</div>
+<div class="userDetailSet">
+    <h3>account number:</h3>
+    <%=f.text_field 'account_number', :class=>"inputBg"%>
+</div>
+<div class="buttonsDiv">
+    <button class="grayBtn" href="/sites/<%=params[:site_id]%>/site_vendors">
+        cancel
+    </button>
+    <button class="greenBtn" >
+        save
+    </button>
+</div>
+<%end%>

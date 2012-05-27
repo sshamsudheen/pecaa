@@ -1,0 +1,51 @@
+<div class="popWindow" id="new_tax" style="display:none">
+  <div class="headSection">
+    <h2>New tax rate</h2>
+    <span><a href="#"><img src="css/img/helpIcon.png" width="20" height="20"></a></span></div>
+  <%= form_for(TaxGatewayAttribute.find_by_tax_gateway_id(custom_tax_gateway_id), :url => site_taxs_path(@site.id), :method => 'post' ) do |f| %>
+  <div class="midSection">
+    <div class="cartColumsMain3">
+      <div class="rowDiv2">
+
+        <dl class="noMargin">
+
+
+          <dt>location type :</dt>
+          <dd>
+
+            <%= select_tag "tax_gateway_attribute[location]", options_for_select(TaxGatewayAttributeValue::Location::TYPE), :class => "noEdit" %>
+
+          </dd>
+          <div style="display:block" id="country_names">
+          <dt>choose country :</dt>
+          <dd>
+              <%= country_select("tax_gateway_attribute", "country_type", nil, {}, :class => "noEdit") %>
+          </dd>
+          </div>
+            <div style="display:none" id="state_names">
+              <dt>choose state :</dt>
+            <dd>
+              <%= state_select('tax_gateway_attribute', 'state_type', 'US', {}, :class => "noEdit") %>
+             </dd>
+            </div>
+            <div style="display:none" id="zip_code">
+              <dt>enter zip code:</dt>
+              <dd>
+              <%= text_field_tag('tax_gateway_attribute[zip_type]', "",:class => 'inputReadOnly') %>
+              </dd>
+            </div>
+
+          <dt>tax rate(%) :</dt>
+          <dd><%= text_field_tag('tax_gateway_attribute[tax_rate]', "",:class => 'inputReadOnly') %></dd>
+
+
+        </dl>
+      </div>
+
+    </div>
+  </div>
+  <div class="footSection">
+    <%= submit_tag('Save Changes',:class => 'greenBtn') %>
+  </div>
+          <% end %>
+</div>

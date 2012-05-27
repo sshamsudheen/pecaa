@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shipping_gateway_attribute_id: 1
+  value: MyString
+  site_shipping_gateway_id: 1
+
+two:
+  shipping_gateway_attribute_id: 1
+  value: MyString
+  site_shipping_gateway_id: 1

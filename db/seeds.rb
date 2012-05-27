@@ -56,6 +56,82 @@ CreditCardType.create(:name => 'Discover')
 CreditCardType.create(:name => 'American Express')
 
 
+striketron = TaxGateway.create(:name => 'Striketron')
+custom_tax = TaxGateway.create(:name => 'Custom Tax Rates')
+
+striketron.tax_gateway_attributes.create(:name => 'username')
+striketron.tax_gateway_attributes.create(:name => 'password')
+
+custom_tax.tax_gateway_attributes.create(:name => 'location')
+custom_tax.tax_gateway_attributes.create(:name => 'type')
+custom_tax.tax_gateway_attributes.create(:name => 'tax_rate')
+
+
+ups = ShippingGateway.create(:name => 'ups')
+usps = ShippingGateway.create(:name => 'usps')
+fedex = ShippingGateway.create(:name => 'fedex')
+
+ups.shipping_gateway_attributes.create(:name => 'xml_access_key')
+ups.shipping_gateway_attributes.create(:name => 'shipper')
+ups.shipping_gateway_attributes.create(:name => 'username')
+ups.shipping_gateway_attributes.create(:name => 'password')
+ups.shipping_gateway_attributes.create(:name => 'modify_rate')
+ups.shipping_gateway_attributes.create(:name => 'modifier_type')
+shipping_gateway_attributes = ups.shipping_gateway_attributes.create(:name => 'service_type')
+shipping_gateway_attributes.children.create(:name => 'ups_type_1')
+shipping_gateway_attributes.children.create(:name => 'ups_type_2')
+shipping_gateway_attributes.children.create(:name => 'ups_type_3')
+shipping_gateway_attributes.children.create(:name => 'ups_type_4')
+shipping_gateway_attributes.children.create(:name => 'ups_type_5')
+shipping_gateway_attributes.children.create(:name => 'ups_type_6')
+shipping_gateway_attributes.children.create(:name => 'ups_type_7')
+shipping_gateway_attributes.children.create(:name => 'ups_type_8')
+shipping_gateway_attributes.children.create(:name => 'ups_type_9')
+shipping_gateway_attributes.children.create(:name => 'ups_type_10')
+shipping_gateway_attributes.children.create(:name => 'ups_type_11')
+shipping_gateway_attributes.children.create(:name => 'ups_type_12')
+
+usps.shipping_gateway_attributes.create(:name => 'username')
+usps.shipping_gateway_attributes.create(:name => 'password')
+usps.shipping_gateway_attributes.create(:name => 'modify_rate')
+usps.shipping_gateway_attributes.create(:name => 'modifier_type')
+
+shipping_gateway_attributes = usps.shipping_gateway_attributes.create(:name => 'service_type')
+shipping_gateway_attributes.children.create(:name => 'usps_type_1')
+shipping_gateway_attributes.children.create(:name => 'usps_type_2')
+shipping_gateway_attributes.children.create(:name => 'usps_type_3')
+shipping_gateway_attributes.children.create(:name => 'usps_type_4')
+shipping_gateway_attributes.children.create(:name => 'usps_type_5')
+shipping_gateway_attributes.children.create(:name => 'usps_type_6')
+shipping_gateway_attributes.children.create(:name => 'usps_type_7')
+shipping_gateway_attributes.children.create(:name => 'usps_type_8')
+shipping_gateway_attributes.children.create(:name => 'usps_type_9')
+shipping_gateway_attributes.children.create(:name => 'usps_type_10')
+shipping_gateway_attributes.children.create(:name => 'usps_type_11')
+shipping_gateway_attributes.children.create(:name => 'usps_type_12')
+
+fedex.shipping_gateway_attributes.create(:name => 'shipper')
+fedex.shipping_gateway_attributes.create(:name => 'username')
+fedex.shipping_gateway_attributes.create(:name => 'password')
+fedex.shipping_gateway_attributes.create(:name => 'modify_rate')
+fedex.shipping_gateway_attributes.create(:name => 'modifier_type')
+
+shipping_gateway_attributes = fedex.shipping_gateway_attributes.create(:name => 'service_type')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_1')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_2')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_3')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_4')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_5')
+shipping_gateway_attributes.children.create(:name => 'fedex_type_6')
+
+
+ModifierType.create(:name => '%')
+ModifierType.create(:name => '$')
+
+
+#no_payment = ShippingGateway.create(:type => 'custom ')
+
+
 # 5.times do |i|
 #   Theme.create(:name=>"theme#{i}", :theme_type=>"Free", :created_by=>admin)
 # end

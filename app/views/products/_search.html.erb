@@ -2,10 +2,20 @@
   <ul>
     <%@products.each do |p|%>
       <li class="active">
-      <%=p.name%>
-      <span>
-        <a href="<%=add_featured_site_product_path(@site, p, :featured=>true, :product=>{:is_featured => !p.is_featured})%>" id="featured_product"><img src="/assets/<%= p.is_featured ? 'searchCloseBtn' : 'searchAddBtn'%>.png" width="20" height="22"></a>
-      </span>
+        <%=p.name%>
+        <%if(params[:related_product]=="true") %>
+          <span>
+          <a href="<%=related_products_site_product_path(@site, params[:product_id], :link_product_id => p.id) %>" id="related_product">
+            <img src="/assets/searchAddBtn.png" width="20" height="22">
+          </a>
+        </span>
+        <%else%>
+          <span>
+          <a href="<%=add_featured_site_product_path(@site, p, :featured=>true, :product=>{:is_featured => !p.is_featured})%>" id="featured_product">
+            <img src="/assets/<%= p.is_featured ? 'searchCloseBtn' : 'searchAddBtn'%>.png" width="20" height="22">
+          </a>
+        </span>
+      <% end %>
       </li>
     <% end %>
   </ul>

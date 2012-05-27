@@ -1,1 +1,101 @@
-<%= render 'form' %>	
+<div class="modelWindow">
+  <%= form_for [@site, @product] do |f| %>	
+    <div class="headSection">
+      <h2><%= @is_new_product ? "Create" : "Edit" %>Product</h2>
+      <span><a href="#"><img src="/assets/helpIcon.png" width="20" height="20"></a></span> 
+    </div>
+    <div class="midSection">
+        <%= render :partial => "shared/products_tab"%>
+        <div id="tabs_content_container">
+        <div class="tab_content">
+          <div class="tab2topDiv">
+            <div class="editImgDiv"><img src="img/productimg.jpg" width="136" height="100"></div>
+            <div class="eiditTextDiv">
+              <%unless @product.new_record? %>
+                <h2><%= @product.name%></h2>
+                <h3>created : <%= @product.created_at.strftime("%m/%d/%y")%></h3>
+                <h3>last modified : <%= @product.updated_at.strftime("%m/%d/%y")%></h3>
+                <span><img src="/assets/stars.jpg" width="73" height="13"></span>
+             <% end %>
+            </div>
+            <div class="eiditTextDiv">
+              <div class="user"><%= f.check_box :is_featured %> <span>featured product</span></div>
+              <div class="user"><%= f.check_box :is_active %>   <span>active product</span></div>
+              
+            </div>	
+          </div>
+          <div class="tab2bottomDiv">
+            <div class="bottomDivRepeat">
+              <div class="colum-section">
+                <div class="title">Product Info <span class="help"><a href="#"></a></span></div>
+                	<div class="group"> <span class="key">Product info:</span> <span class="val">
+                	<%= f.text_field :name %>	
+                  </span> </div>
+                <div class="group"> <span class="key">sku:</span> <span class="val">
+                	<%= f.text_field :sku %>
+                  </span> </div>
+                <div class="group"> <span class="key">base price $</span> <span class="val">
+                  <%= f.text_field :base_price %>
+                  </span> </div>
+                <div class="group"> <span class="key">total price $</span> <span class="val">
+                  <input type="text" value="39">
+                  </span> </div>
+                <div class="group"> <span class="key">cost:</span> <span class="val">
+                	 <%= f.text_field :cost %>
+                  </span> </div>
+                <div class="group"> <span class="key">weight(lbs):</span> <span class="val">
+                	<%= f.text_field :weight %>
+                  </span> </div>
+                <div class="group"> <span class="key">shipping modifier $:</span><span class="val">
+                  <%= f.text_field :shipping_modifier %>
+                  </span></div>
+              </div>
+            </div>
+
+            <div class="bottomDivRepeat">
+              <div class="colum-section last">
+                <div class="title2">Product Categories<span class="help"><a href="#"></a></span></div>
+                <div class="group">
+                  <div class="searchAC">
+                    <input type="text" class="search" placeholder="search categories">
+                    <span><input name="" type="button" value="view all" class="blueBtn"></span>
+                    <span class="lightBlueBtn">sunglasses</span><a href="#">
+                    <span class="lightBlueBtn">frames</span></a> 
+                  </div>
+                </div>
+                <div class="group"></div>
+              </div>
+            </div>
+
+            <div class="bottomDivRepeat ">
+              <div class="colum-section last">
+                <div class="title2">Product Vendors <span class="help"><a href="#"></a></span></div>
+                <div class="group">
+                  <div class="searchAC">
+                    <input type="text" class="search" placeholder="search vendors">
+                    <span><input name="" type="button" value="view all" class="blueBtn"></span>
+                    <span class="lightBlueBtn">Sunglasses</span><a href="#">
+                    <span class="lightBlueBtn">frames</span></a>    
+                  </div>
+                </div>
+                <div class="group"></div>
+              </div>
+            </div>
+
+            <div class="bottomDivRepeat ">
+              <div class="colum-section last">
+                <div class="title2">Product Description <span class="help"><a href="#"></a></span></div>
+                <div class="group"><img src="/assets/richtexteditor.jpg" width="383" height="138"></div>
+                <div class="group"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footSection">
+      <button class="btnCancelForm grayBtn">Cancel</button>
+      <button class="greenBtn">Save Changes</button>
+    </div>
+  <% end %>
+</div>

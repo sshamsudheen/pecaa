@@ -1,0 +1,147 @@
+<div class="content-section">
+      <div class="pages-main">
+        <div class="pages-wrapper couponWrapper">
+          <div class="usersLeftPane left">
+            <div class="title">custom report <span class="help"><a href="#"></a></span></div>
+            <div class="userPanel">
+              <div class="searchUser"> <span class="searchInput left"><input type="text" placeholder="search"></span> 
+              	<span class="addSearch left"><img border="0" src="css/img/btn_AddNewSearch.png"></span> <span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="css/img/btnDropDownSelectColum.png"></span></span> </div>
+              	<span class="showUser clear"><span class="userLastname">205 <img src="css/img/btn_deleteUser_disabled.png"></span><span class="user-label">value</span></span> 
+            </div>
+            <div class="userPanelDevider"></div>
+            <div class="userPanel productp">
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
+                <label for="shareThis">total</label>
+              </div>
+              <div class="rangeSlider"><img width="212" height="22" src="css/img/sideBar.png"></div>
+              
+               <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
+                <label for="shareThis">date placed</label>
+              </div>
+              <div class="rangeSlider"><img width="212" height="22" src="css/img/sideBar.png"></div>
+            </div>
+            <div class="userPanelDevider"></div>
+            <div class="userPanel">
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt -50px;"></span>
+                <label for="dateCreated">complete</label>
+              </div>
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                <label for="dateCreated">in progress</label>
+              </div>
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                <label for="dateCreated">on hold</label>
+              </div>
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                <label for="dateCreated">shipped</label>
+              </div>
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                <label for="dateCreated">cancelled</label>
+              </div>
+              <div class="lineDevider"></div>
+              <div class="date-created">
+                <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                <label for="dateCreated">predefined period</label>
+                <select class="graySelect clear left">
+                	<option>previous month</option>
+                </select>
+              </div>
+            </div>
+                        
+          </div>
+          <div class="site-users left ">
+            <div class="addNewUserBtn">
+            	<div class="left">
+            		            		<div class="addNewUserBtn" style="float:left;margin-right:4px;"><a class="addNewUser" style="width:206px" href="/sites/<%=params[:site_id]%>/reports/new" rel="facebox">Save/load report template</a></div>
+					<button id="toggleColHead" class="blueBtn">show/hide column headers</button>
+				</div>
+            	<div class="right">
+            		<select class="graySelect selectExp"><option value="">select export type</option></select>
+              		<button class="blueBtn">export report</button>
+              	</div>
+            </div>
+			<div id="colHeaders" class="colHeadWrapper">
+            	<ul class="colHeads">
+            		<%column_array = Order.column_names + ShippingDetial.column_names + ShippingAddress.column_names + Billing.column_names + BillingAddress.column_names%>
+						<%column_array.each do |a|%>
+							<%unless ["site_id","site_user_id","id","created_at","updated_at","shipping_gateway_id"].include?(a)%>
+		            		<li class="draggable"><%=a.split('_id').first%></li>
+							<%end%>
+					<%end%>
+            	</ul>
+            </div>
+            <div class="page-data clear">
+              <div class="userGrid">
+                <div class="userGridHeader">
+                  <ul class="ConLibraHeads">
+                    <li> 
+                    	<span class="orderCol">Order</span>
+						<span class="dtCol">Placed</span>
+						<span class="orderCol">Customer</span>
+						<span class="amtCol">Tax</span>
+						<span class="amtCol">Shipping</span>
+						<span class="amtCol">Adjustments</span>
+						<span class="amtCol">Total</span>
+						<span class="amtCol">Grand Total</span>
+					</li>
+                  </ul>
+                </div>
+                <div class="userGridBody">
+                  <div id="products1">
+                    <div class="scrollbar" style="height: 400px;">
+                      <div class="track" style="height: 400px;">
+                        <div class="thumb" style="top: 0px; height: 336.842px;">
+                          <div class="end"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="viewport">
+                      <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                      <div class="overview" style="top: 0px;">
+                        <ul class="ConLibra" id="droppable">
+                          <%Order.all.each do |order|%>
+                          	<li class="alt"> <span class="orderCol"><%=order.order_id%></span> <span class="dtCol"><%=order.created_at.strftime('%D')%></span> <span class="orderCol borderLeft"><%=order.customer_email%></span><span class="amtCol">$2.50</span> <span class="amtCol">$0.00</span><span class="amtCol">$0.00</span><span class="amtCol">$<%=order.total_amt%></span><span class="amtCol">$<%=order.total_amt%></span></li>
+						  <%end%>
+                      </ul></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="userGridFooter showVals">
+                	<ul class="totals">
+                    <li> 
+                    	<span class="orderCol"></span>
+						<span class="dtCol"></span>
+						<span class="orderCol"></span>
+						<span class="amtCol">$<%=Order.all.length * 2.50%></span>
+						<span class="amtCol">$0.00</span>
+						<span class="amtCol">$0.00</span>
+						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
+						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
+					</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+	$(function() {
+		$( ".draggable" ).draggable({ revert: "invalid" });;
+		$( "#droppable" ).droppable({
+			drop: function( event, ui ) {
+				$( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+					.html( "Dropped!" );
+			}
+		});
+	});
+	</script>

@@ -31,7 +31,7 @@
                     <div class="overview">
                       <ul class="ConLibra">
                         <% @product_categories.each do |pc| %>
-                          <li> 
+                          <li class="selected"> 
                             <span class="userName">
                               <span class="pointer"></span>
                               <%=pc.name%>
@@ -42,7 +42,7 @@
                                 <a href="#"><img src="/assets/btn_deleteActive.png" width="40" height="20"></a>
                               </span>
                               <span>
-                                <input name="" type="text" class="modifierTextBg" value="<%=pc.price_modifier%>" size="4" maxlength="6">
+                                <input name="" type="text" class="modifierTextBg" value=<%=pc.price_modifier%> size="4" maxlength="6">
                               </span>
                             </span> 
                             <span class="active">
@@ -50,9 +50,7 @@
                                 <img src="/assets/<%= pc.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
                               </a>
                             </span>
-                            <span class="close">
                             <%= link_to image_tag("/assets/btnDelete.png", :border=>"0"), '#',:class=>'confirm_delete', :rel=>pc.id %>
-            				</span>			  
             							  <!-- Alert message box start -->
                             <div id="alertBox_<%=pc.id%>" class="alert-box" style="display:none">
                               <div class="msgTitle">Are you sure?!</div>
@@ -76,7 +74,7 @@
             </div>
           </div>
           <div class="addNewUserBtn">
-            <a class="addProductBtn" rel="facebox" href="<%=new_site_product_category_path(@site)%>">add product category</a>
+            <a class="addNewUser" rel="facebox" href="<%=new_site_product_category_path(@site)%>" class="addProductBtn">add product category</a>
           </div>
         </div>
       </div>

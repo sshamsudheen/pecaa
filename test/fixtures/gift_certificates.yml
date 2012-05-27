@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_id: 1
+  certificate_id: MyString
+  expired_date: 2012-05-15 20:58:20
+  purchased_by: MyString
+  assigned_to: 1
+  value: MyString
+
+two:
+  site_id: 1
+  certificate_id: MyString
+  expired_date: 2012-05-15 20:58:20
+  purchased_by: MyString
+  assigned_to: 1
+  value: MyString

@@ -1,0 +1,31 @@
+<h1>Listing shipping_detials</h1>
+
+<table>
+  <tr>
+    <th>Shipping</th>
+    <th>Shipping gateway</th>
+    <th>Cost</th>
+    <th>Tracking</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shipping_detials.each do |shipping_detial| %>
+  <tr>
+    <td><%= shipping_detial.shipping_id %></td>
+    <td><%= shipping_detial.shipping_gateway_id %></td>
+    <td><%= shipping_detial.cost %></td>
+    <td><%= shipping_detial.tracking_id %></td>
+    <td><%= shipping_detial.status %></td>
+    <td><%= link_to 'Show', shipping_detial %></td>
+    <td><%= link_to 'Edit', edit_shipping_detial_path(shipping_detial) %></td>
+    <td><%= link_to 'Destroy', shipping_detial, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shipping detial', new_shipping_detial_path %>

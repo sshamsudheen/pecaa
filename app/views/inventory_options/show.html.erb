@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Site:</b>
+  <%= @inventory_option.site_id %>
+</p>
+
+<p>
+  <b>Trigger email:</b>
+  <%= @inventory_option.trigger_email %>
+</p>
+
+<p>
+  <b>Inventory level:</b>
+  <%= @inventory_option.inventory_level %>
+</p>
+
+<p>
+  <b>Trigger level:</b>
+  <%= @inventory_option.trigger_level %>
+</p>
+
+<p>
+  <b>Track status:</b>
+  <%= @inventory_option.track_status %>
+</p>
+
+<p>
+  <b>Allow negative:</b>
+  <%= @inventory_option.allow_negative %>
+</p>
+
+<p>
+  <b>Show inventory:</b>
+  <%= @inventory_option.show_inventory %>
+</p>
+
+<p>
+  <b>Low inventory text:</b>
+  <%= @inventory_option.low_inventory_text %>
+</p>
+
+<p>
+  <b>Low inventory trigger:</b>
+  <%= @inventory_option.low_inventory_trigger %>
+</p>
+
+<p>
+  <b>Out of stock text:</b>
+  <%= @inventory_option.out_of_stock_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_inventory_option_path(@inventory_option) %> |
+<%= link_to 'Back', inventory_options_path %>

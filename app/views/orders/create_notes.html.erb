@@ -1,0 +1,12 @@
+<%o_n = @order_note%>
+<dt>
+	                                <%=User.find(o_n.created_by).username rescue nil%>
+	                                <br>
+	                               <%=o_n.created_at.strftime('%D')%>
+	                                <br>
+	                                <%=o_n.created_at.strftime('%T')%> PM
+	                            </dt>
+	                            <dd>
+	                            	<%=o_n.description%>
+	                              <span class="deleteBtn"><img border="0" src="/assets//btn_cross.png"></span>
+	                            </dd>

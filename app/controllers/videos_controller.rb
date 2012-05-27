@@ -27,7 +27,7 @@ class VideosController < ApplicationController
           :last_used => nil, :times_used => nil, :added_by => current_user.username})
         rescue
         end
-         if params[:from_content]
+         if params[:from_content] && @site
            ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
            redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Video&content_lib=#{content_lib.id}"
           else

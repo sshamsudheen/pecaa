@@ -13,24 +13,6 @@
         	$(document).ready(function(){
         		$('#fileListView').tinyscrollbar();
         		$(".ConLibra li:even").addClass("alt");
-        		
-            // $("ul.ConLibra li").click(function(){
-            //  var $this = $(this);
-            //  //$this.parent().find('.misc img').hide();
-            //  var $point = $($this).parents(".userGridBody").find('.pointer');
-            //  if(!$this.hasClass("selected")){
-            //    $("ul.ConLibra li").removeClass("selected");
-            //    $point.show();
-            //    $point.css("top", ($this.height()+1)*($this.index()));
-            //    //alert($this.height()*($this.index()+1))
-            //    $this.addClass("selected");
-            //    $($this).parents(".userGridBody").find('.pointer').show();
-            //    //$this.find('.pointer').show();
-            //    //$this.find('.misc img').show();
-            //  }
-            //  return false;
-            //  
-            // })
         	})
         </script>
     </head>
@@ -48,20 +30,6 @@
 		    				</ul>
 		    			</div>
 		    		</div>
-		    		<!-- <div class="main-nav">
-		    			<div class="navBtns">
-		    				<ul>
-		    					<li class="siteInfo active"></li>
-		    					<li class="pages"></li>
-		    					<li class="content"></li>
-		    					<li class="theme"></li>
-		    					<li class="optional"></li>
-		    					<li class="users"></li>
-		    					<li class="done"></li>
-		    				</ul>
-		    			</div>
-		    			<div class="rightBtns"><button class="btn_Save">Save and go to next step</button></div>
-		    		</div> -->
 		    	</div>
 		    	<div class="content-section">
 		    		<div class="editCode-wrapper">
@@ -85,11 +53,11 @@
 										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 										<div class="viewport">
 											<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
-		 									<div class="overview">
+		 									<div class="overview" id='products1'>
 		    									<ul class="ConLibra">
 		    									  <% @files.each do |file|%>
   		    										<li <%= (@selected_file == file ? "class='selected'" : '')%>
-  		    											<span class="fileName"><a href="?file_name=<%=file%>"><%=file%></a></span>
+  		    											<span class="fileName"><a href="?file_name=<%=file%>&file_type=<%=params[:file_type]%>"><%=file%></a></span>
   		    											</li>
 		    										<% end %>
 		    									</ul>
@@ -108,7 +76,10 @@
 		    				<div class="editFileView clear">
                   <%= form_for(@theme) do |f| %>
                     <%=hidden_field_tag :file_name, @selected_file%>
-                    <textarea cols='500' rows='60' name='file_content'><%=raw @file_content%></textarea>
+                    <%=hidden_field_tag :file_type, params[:file_type]%>
+                    <textarea cols='500' rows='60' name='file_content'>
+                      <%=raw @file_content%>
+                    </textarea>
 		    				</div>
 		    				  <div class="rightBtns">
 		    				    <button class="theme_btn_Save" id="form_submit" >Save</button>
@@ -117,7 +88,6 @@
 		    			</div>
 		    		</div>
 		    	</div>
-		    	
 	    	</div>
         </div>
     </body>

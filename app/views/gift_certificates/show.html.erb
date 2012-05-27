@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Site:</b>
+  <%= @gift_certificate.site_id %>
+</p>
+
+<p>
+  <b>Certificate:</b>
+  <%= @gift_certificate.certificate_id %>
+</p>
+
+<p>
+  <b>Expired date:</b>
+  <%= @gift_certificate.expired_date %>
+</p>
+
+<p>
+  <b>Purchased by:</b>
+  <%= @gift_certificate.purchased_by %>
+</p>
+
+<p>
+  <b>Assigned to:</b>
+  <%= @gift_certificate.assigned_to %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @gift_certificate.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_gift_certificate_path(@gift_certificate) %> |
+<%= link_to 'Back', gift_certificates_path %>

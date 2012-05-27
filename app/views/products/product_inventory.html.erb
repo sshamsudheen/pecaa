@@ -1,0 +1,98 @@
+<div class="modelWindow">
+  <div class="midSection">
+    <%= render :partial => "shared/products_tab"%>
+    <div id="tabs_content_container">
+      <div class="tab_content" >
+        <div class="tab2topDiv">
+          <div class="editImgDiv"><img width="136" height="100" src="/assets/productimg.jpg"></div>
+          <div class="eiditTextDiv">
+            <%unless @product.new_record? %>
+              <h2><%= @product.name%></h2>
+              <h3>created : <%= @product.created_at.strftime("%m/%d/%y")%></h3>
+              <h3>last modified : <%= @product.updated_at.strftime("%m/%d/%y")%></h3>
+              <span><img src="/assets/stars.jpg" width="73" height="13"></span>
+            <% end %>
+          </div>
+          <div class="eiditTextDiv"><span class="onBtn" id="disableInvBtn">&nbsp; </span><span>enable inventory</span> </div>
+        </div>
+        <div class="pages-main inventoryDiv" id="manageInvDiv">
+          <div class="pages-wrapper">
+            <div class="sectionTitleDiv">
+              <div class="title">Manage Inventory<span class="help"><a href="#"></a></span></div>
+              <div class="buttonSection"> </div>
+            </div>
+            <div class="site-users ">
+              <div class="page-data clear ">
+                <div class="userGrid imageTab">
+                  <div class="userGridHeader">
+                    <ul class="ConLibraHeads">
+                      <li> <span class="gridColHeaddings w50">Size</span> <span class="gridColHeaddings w250">Material</span><span class="gridColHeaddings w100">Sub SKU</span><span class="gridColHeaddings w100">Inventory</span><span class="gridColHeaddings w100">Trigger</span>
+                        <span class="gridColHeaddings w95">Track Inventory<span>
+                           <a href="<%=update_pi_site_product_path(@site, @product, :all => true, :product_inventory => {:track_inventory => !(@tracked_inventories) ? 1 : 0})%>">
+                             <img src="/assets/<%= (@tracked_inventories ? 'checkOn.png' : 'radioOff.jpg')%>"/>
+                          </a>
+                        </span></span> 
+                        <span class="gridColHeaddings w120">Allow Neg. Inventory<span>
+                          <a href="<%=update_pi_site_product_path(@site, @product, :all => true, :product_inventory => {:allow_negative_inventory => !(@negative_inventories) ? 1 : 0 })%>">
+                            <img src="/assets/<%= (@negative_inventories ? 'checkOn.png' : 'radioOff.jpg')%>"/>
+                         </a>
+                        </span>
+                        </span> </li>
+                    </ul>
+                  </div>
+                  <div class="userGridBody">
+                    <div id="productsEdit">
+                     <div class="scrollbar" style="height: 0px;">
+                        <div class="track" style="height: 0px;">
+                          <div class="thumb">
+                            <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="viewport">
+                        <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                        <div class="overview">
+                          <ul class="ConLibra">
+                            <%@product_inventories.each do |pi|%>
+                              <li>
+                                <span class="size"><%=pi.size%></span>
+                                <span class="material"><%=pi.material%></span>
+                                <span class="sibSKU"><%=pi.sub_sku%></span>
+                                <span class="invent"><%=pi.inventory%></span>
+                                <span class="trigger"><%=pi.trigger%></span>
+                                <span class="trackInv">
+                                  <a href="<%=update_pi_site_product_path(@site, @product, :inventory_id => pi.id, :product_inventory => {:track_inventory => !(pi.track_inventory)})%>">
+                                    <img src="/assets/<%= pi.track_inventory ? 'checkOn.png' : 'radioOff.jpg'%>"/>
+                                  </a>
+                                </span>
+                                <span class="allow">
+                                  <a href="<%=update_pi_site_product_path(@site, @product, :inventory_id => pi.id, :product_inventory => {:allow_negative_inventory => !(pi.allow_negative_inventory)})%>">
+                                  <img src="/assets/<%= pi.allow_negative_inventory ? 'checkOn.png' : 'radioOff.jpg'%>"/>
+                                  </a>
+                                </span>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="userGridFooter"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#productsEdit').tinyscrollbar();
+		$(".ConLibra li:even").addClass("alt");
+	})
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>
+

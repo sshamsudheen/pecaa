@@ -19,11 +19,11 @@ class ThemesController < ApplicationController
 
   def edit
     @theme = Theme.find(params[:id])
-    
-    @files = @theme.get_files 
+    @file_type = params[:file_type].blank? ? 'themes' : params[:file_type]
+    @files = @theme.get_files(@file_type)
     @directories = @theme.get_directories
-    @selected_file = params[:file_name] || @theme.get_first_file
-    @file_content = @theme.read_file(@selected_file)
+    @selected_file = params[:file_name] || @theme.get_first_file(@file_type)
+    @file_content = @theme.read_file(@selected_file, @file_type)
     render :layout=>false
   end
 

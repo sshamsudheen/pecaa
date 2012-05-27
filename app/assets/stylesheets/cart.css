@@ -219,7 +219,7 @@ filter:alpha(opacity=40);
 
 .btnGreen{
 	background-image:url(img/btn_greenBg.png);
-	height:28x;
+	height:28px;
 	border: solid 1px #2f6e37;
 	border-radius:4px;
 	color:#FFF;

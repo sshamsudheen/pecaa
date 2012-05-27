@@ -1,0 +1,279 @@
+<%=form_for [Site.find(params[:site_id]), @order] do |f|%>
+<div class="content-section">
+    <div class="users-main">
+        <div class="pages-wrapper">
+            <div class="usersLeftPane userEdit">
+                <div class="title">
+                    manage orders <span class="help"><a href="#"></a></span>
+                </div>
+                <div class="userEditPanel orderPanel">
+                    <div class="orderHeader">
+                        <div class="orderNum left">
+                            Order : <%=@order.order_id%>
+                        </div>
+                        <div class="tabWraper left">
+                                                       <ul class="pTabs">
+                                <li class="<%=params[:action] == 'edit' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/edit'">
+                                    payment / shipping
+                                </li>
+                                <li class="<%=params[:action] == 'product_list' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/product_list'">
+                                    products
+                                </li>
+                                <li class="<%=params[:action] == 'notes_and_history' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders/<%=params[:id]%>/notes_and_history'">
+                                    notes / history
+                                </li>
+                            </ul>
+
+                        </div>
+                        <span class="exportBtn">
+                            <button class="secondary">
+                                export pdf of this order
+                            </button>
+                        </span>
+                    </div>
+                    <!-- start of colum wrapper -->
+                    <div class="colum-wrapper left first">
+                        <h3>Order Details</h3>
+                        <dl class="orderDetailSet">
+                            <dt>
+                                order :
+                            </dt>
+                            <dd class="grayBg">
+                               <%=f.text_field :order_id%>
+                            </dd>
+                            <dt>
+                                placed :
+                            </dt>
+                            <dd class="grayBg">
+                               <%=f.text_field :created_at, :value=>@order.created_at.strftime("%y/%m/%d"),:readonly=>true%>
+                            </dd>
+                            <dt>
+                                placed :
+                            </dt>
+                            <dd>
+                                <select name="order[status]">
+                                    <option value="complete">complete</option>
+                                    <option value="inprogress">InProgress</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                customer :
+                            </dt>
+                            <dd class="grayBg">
+                                <%=f.text_field :customer_email%>
+                            </dd>
+                        </dl>
+                        <div class="btns right">
+                            <button class="secondary">
+                                view all customer details
+                            </button>
+                        </div>
+                        <div class="btns right">
+                            <button class="secondary">
+                                view customer details
+                            </button>
+                        </div>
+                    </div>
+                    <!-- end of colum wrapper --><!-- start of colum wrapper -->
+                    <div class="colum-wrapper left">
+                        <h3>Billing Details</h3>
+                        <dl class="orderDetailSet">
+                            <%billing=@order.billing%>
+                            <dt>
+                                method :
+                            </dt>
+                            <dd>
+                                <input type="text" value="<%=billing.type_of_card%>" readonly="readonly">
+                            </dd>
+                            <dt>
+                                card number :
+                            </dt>
+                            <dd>
+                                <input type="text" value="<%=billing.card_number%>" readonly="readonly">
+                            </dd>
+                            <dt>
+                                auth code :
+                            </dt>
+                            <dd>
+                                <input type="text" value="<%=billing.auth_code%>" readonly="readonly">
+                            </dd>
+                            <dt>
+                                amount :
+                            </dt>
+                            <dd>
+                                <input type="text" value="$<%=billing.amount%>" readonly="readonly">
+                            </dd>
+                        </dl>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h3>Billing Details</h3>
+                        <dl class="orderDetailSet">
+                            <dt>
+                            </dt>
+                            <dd>
+                                <select>
+                                    <option value="other">select other</option>
+                                </select>
+                            </dd>
+                            <%billing_adress = billing.billing_address%>
+                            <dt>
+                                nickname :
+                            </dt>
+                            <dd class="grayBg">
+                                <%=text_field :billing_address ,:nickname, :value => billing_adress.nickname%>
+                            </dd>
+                            <dt>
+                                address :
+                            </dt>
+                            <dd class="grayBg">
+                               <%=text_field :billing_address ,:address_line1, :value => billing_adress.address_line1%>
+                            </dd>
+                            <dt>
+                            </dt>
+                            <dd class="grayBg">
+                                <%=text_field :billing_address ,:address_line2, :value => billing_adress.address_line2%>
+
+                            </dd>
+                            <dt>
+                                city :
+                            </dt>
+                            <dd>
+                                <%=text_field :billing_address ,:city, :value => billing_adress.city%>
+
+                            </dd>
+                            <dt>
+                                state:
+                            </dt>
+                            <dd>
+                                <select name="billing_address[state]">
+                                    <option value="nebraska">Nebraska</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                zip :
+                            </dt>
+                            <dd>
+                                <%=text_field :billing_address, :state, :value => billing_adress.state%>
+
+                            </dd>
+                        </dl>
+                    </div><!-- end of colum wrapper --><!-- start of colum wrapper -->
+                    <div class="colum-wrapper last left">
+                        <h3>Shipping Details</h3>
+						<%@shipping_detail = @order.shipping_detial%>
+                        <dl class="orderDetailSet">
+                            <dt>
+                                shipping # :
+                            </dt>
+                            <dd class="grayBg">
+                            	<%=text_field :shipping_detail, :shipping_id, :value=>@shipping_detail.shipping_id%>
+                            </dd>
+                            <dt>
+                                ship method :
+                            </dt>
+                            <dd>
+                                <select name="shipping_detail[shipping_gateway_id]">
+                                    <option value="ups3">UPS 3-day select</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                ship cost :
+                            </dt>
+                            <dd>
+                                <%=text_field :shipping_detail, :cost, :value=>@shipping_detail.cost%>
+                            </dd>
+                            <dt>
+                                tracking # :
+                            </dt>
+                            <dd class="grayBg">
+                                <%=text_field :shipping_detail, :tracking_id, :value=>@shipping_detail.tracking_id%>
+                            </dd>
+                            <dt>
+                                status :
+                            </dt>
+                            <dd>
+                                <select name="shipping_detail[status]">
+                                    <option value="shipped">shipped</option>
+									<option value="processed">processed</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                date/time :
+                            </dt>
+                            <dd class="grayBg">
+                            	
+                                <input type="text" value="<%=@shipping_detail.created_at.strftime('%y/%m/%d')%> 10:55 PM" readonly="readonly">
+                            </dd>
+                        </dl><h3>Shipping Address</h3>
+                        <dl class="orderDetailSet">
+                            <dt>
+                            </dt>
+                            <dd>
+                                <select>
+                                    <option value="other">select other</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                nickname :
+                            </dt>
+							<%@shipping_address = @shipping_detail.shipping_address%>
+                            <dd class="grayBg">
+                                <%=text_field :shipping_address ,:nickname%>
+                            </dd>
+                            <dt>
+                                address :
+                            </dt>
+                            <dd class="grayBg">
+                                    <%=text_field :shipping_address ,:address_line1%>
+                            </dd>
+                            <dt>
+                            </dt>
+                            <dd class="grayBg">
+                                <%=text_field :shipping_address ,:address_line2%>
+                            </dd>
+                            <dt>
+                                city :
+                            </dt>
+                            <dd>
+                                <%=text_field :shipping_address ,:city%>
+                            </dd>
+                            <dt>
+                                state:
+                            </dt>
+                            <dd>
+                                <select name="shipping_address[state]">
+                                    <option value="nebraska">Nebraska</option>
+									<option value="nebraska">Botson</option>
+                                </select>
+                            </dd>
+                            <dt>
+                                zip :
+                            </dt>
+                            <dd>
+                                <%=text_field :shipping_address ,:zip%>
+                            </dd>
+                        </dl>
+                    </div><!-- end of colum wrapper -->
+                    <div class="userEditBtnPanel clear">
+                        <div class="left">
+                            <button class="redBtn">
+                                delete user
+                            </button>
+                        </div>
+                        <div class="right">
+                            <button class="secondary">
+                                cancel
+                            </button>
+                            <button class="primary">
+                                save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>

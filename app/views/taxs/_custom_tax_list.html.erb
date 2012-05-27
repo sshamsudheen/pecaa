@@ -1,0 +1,73 @@
+<div class="cartCollumsBottom" id="custom_tax_gateway" style="display:none">
+  <div class="rowDiv2">
+    <div class="content-section categoryMain">
+      <div class="pages-main">
+        <div class="pages-wrapper">
+          <div class="usersLeftPane productsTitle">
+            <div class="title">custom tax rate options</div>
+          </div>
+          <div class="rightButtonDiv">
+            
+            <span class="searchIcon"><%= link_to "add new tax rate", "#new_tax", :class => "addNewUser", :rel => "facebox" %></span>
+          </div>
+          <div class="site-users clear">
+            <div class="page-data clear">
+              <div class="userGrid customTax1">
+                <div class="userGridHeader">
+                  <ul class="ConLibraHeads">
+                    <li><span class="locationTitle">Location</span> <span class="type">Type</span><span class="type">Tax Rate</span>
+                      <span class="type">Enabled</span></li>
+                  </ul>
+                </div>
+                <div class="userGridBody">
+                  <div id="taxTable1">
+                    <div class="scrollbar disable" style="height: 300px; ">
+                      <div class="track" style="height: 300px; ">
+                        <div class="thumb" style="top: 0px; height: 300px; ">
+                          <div class="end"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="viewport">
+                      <div class="shadows">
+                        <span class="topShadow"></span><span class="bottomShadow"></span>
+                      </div>
+                      <% parent_custom_tax_rates = TaxGatewayAttributeValue.joins(:tax_gateway_attribute => :tax_gateway).where("parent_id is NULL and site_id = #{@site.id} and tax_gateway_id=#{custom_tax_gateway_id}")%>
+                      <div class="overview" style="top: 0px; ">
+                        <ul class="ConLibra">
+                          <% parent_custom_tax_rates.each do |parent_custom_tax| %>
+                          <li class="alt">
+                            <span class="location">
+                              <span class="pointer"></span>
+                              <%= parent_custom_tax.value %>
+                            </span>
+                            <span class="type"><%= parent_custom_tax.children.where(:tax_gateway_attribute_id => TaxGatewayAttribute.find_by_name('type').id).last.value %></span>
+                            <span class="type arrow2"><%= parent_custom_tax.children.where(:tax_gateway_attribute_id => TaxGatewayAttribute.find_by_name('tax_rate').id).last.value %>%</span>
+                            <span class="status">
+                              <%= link_to(enable_custom_site_tax_path(@site.id, parent_custom_tax.id), :method => 'put') do %>
+                                <img class="<%= parent_custom_tax.is_enable ? "on" : "off" %>" width="48" height="21">
+                              <% end %>
+                            </span>
+                            <span class="close">
+                              <%= link_to site_tax_path(@site.id, parent_custom_tax.id) do %>
+                                <img border="0" class="butDelete">
+                                <% end %>
+                              </span>
+                          </li>
+                          <% end %>
+                         
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="userGridFooter"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

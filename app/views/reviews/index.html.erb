@@ -1,0 +1,88 @@
+<div class="siteInfo-main cartBg reviewBg">
+                <div class="cartColumsMain2">
+                  <div class="rowDiv">
+                    <h2>manage reviews
+                    <span><a href="$"><img src="css/img/helpIcon.png"></a></span>
+                    </h2>
+                    <dl>
+                      <dt>show only new reviews since last login:</dt>
+                      <dd><input type="checkbox" id="shareThis" class="styled"></dd>
+                      
+                    </dl>
+                  </div>
+                
+                </div>
+                <div class="cartCollumsBottom">
+               <div class="rowDiv2">
+                   <div class="content-section featuresMain">
+      <div class="pages-main">
+        <div class="pages-wrapper">
+          <div class="usersLeftPane productsTitle">
+            <div class="title">current reviews</div>
+            </div>
+            <div class="searchContent">
+		    	<input type="text" placeholder="search">
+		    	<span class="searchIcon"><a href="#"></a></span>
+		    </div>
+          <div class="site-users left">
+          	<div class="detailsPopDiv1" style="display:none;">
+        
+        	 <div class="detailsPopDiv2">
+        <span class="closeBtn" onclick="$('.detailsPopDiv1').hide();"></span>
+       <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought that</p>
+              <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over </p>
+        	       
+        </div>
+         <div class="bottmArIcon"></div>
+        
+        </div>
+            
+            
+            
+            <div class="page-data clear">
+              <div class="userGrid customTax1">
+                <div class="userGridHeader">
+                  <ul class="ConLibraHeads">
+                    <li> <span class="user">User</span> <span class="date">Date</span><span class="product">Product</span><span class="review">Review</span><span class="rating">Rating</span><span class="approved">Approve</span><span class="close"></span> </li>
+                    </ul>
+                  </div>
+                <div class="userGridBody">
+                  <div id="scrollbar1">
+                    <div style="height: 215px;" class="scrollbar">
+                      <div style="height: 215px;" class="track">
+                        <div style="top: 0px; height: 168.091px;" class="thumb">
+                          <div class="end"></div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="viewport">
+                      <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+                      <div style="top: 0px;" class="overview featureProduct">
+                        <ul class="ConLibra ">
+                          <%Review.all.each do |review|%>
+                          	<li class="selected alt"> <span class="userText"><%=review.user.username rescue nil%></span><span class="dateText"><%=review.created_at.strftime('%D')%></span><span class="productText"><%=review.product.name%></span><span class="reviewText"><%=review.description[0..20]%></span> <span class="ratingText"></span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/reviews/<%=review.id%>/approve'"><input type="checkbox" id="shareThis" <%= review.approved ? "checked='yes'" : ''%> class="styled"></span></span><span class="close"><a href="/sites/<%=params[:site_id]%>/reviews/<%=review.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
+						  <%end%>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="userGridFooter"></div>
+                </div>
+              </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+                  </div>
+                </div>
+           
+              </div>
+			  <script>
+			  	$(document).ready(function(){
+			  	$('.reviewText').hover(function () {
+				    $('.detailsPopDiv1').show();
+				  })
+				  })
+			  </script>

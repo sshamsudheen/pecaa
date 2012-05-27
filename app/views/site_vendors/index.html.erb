@@ -1,0 +1,125 @@
+<div class="content-section">
+              <div class="siteInfo-main cartBg featuresBg">
+                <div class="cartColumsMain2">
+                  <div class="rowDiv">
+                    <h2>vendor manager <span><a href="$"><img src="assets/helpIcon.png"></a></span> </h2>
+                    <dl>
+                      <dt>Some text about managing vendors. Some text about managing vendors. Some text about managing vendors.</dt>      
+                    </dl>                    
+                  </div>
+                </div>
+                <div class="content-section vendorFeatures">
+		    		
+		    		<div class="users-main">
+		    			<div class="pages-wrapper">
+		    				
+		    				<div class="usersLeftPane left">
+								<div class="title">options</div>
+								
+								<div class="userDetailPanel greyOut" id ="user_detail">
+									<h1>Mouseover a <br>table row to <br>view details.
+                                    <br><br><br>
+
+									Click a table <br>row to edit <br>details.</h1>
+								
+								  <div class="userDetailSet"></div>
+								  <div class="buttonsDiv">
+									<button class="grayBtn">cancel</button><button class="greenBtn">save</button>
+                                  </div>
+								</div>
+		    				</div>
+		    				
+		    				
+		    				<div class="site-users left">
+                            	<div>
+								<div class="addNewUserBtn">
+								  <button class="addNewUser" onclick="new_site_vendors();">add new tax rate</button>
+                                 </div>
+                                 <div class="searchContent">
+		    						<input type="text" placeholder="search"><span class="searchIcon"><a href="#"></a></span>
+							    </div>
+                                </div>
+    							<div class="page-data clear">
+    								<div class="userGrid">
+    									<div class="userGridHeader">
+    										<ul class="ConLibraHeads">
+    											<li>
+    												<span class="name">Name</span>
+    												
+                                                    <span class="dateAdded">Date Added</span>
+                                                    <span class="products">Products</span>
+                                                    <span class="empty"></span>
+    												<span class="enabled">Enabled</span>
+    											</li>
+    										</ul>
+    									</div>
+    									<div class="userGridBody">
+    										<div id="scrollbar1">
+    											<div class="scrollbar" style="height: 400px; "><div class="track" style="height: 400px; "><div class="thumb" style="top: 0px; height: 248.44720496894408px; "><div class="end"></div></div></div></div>
+    											<div class="viewport">
+    												<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+				 									<div class="overview" style="top: 0px; ">
+				    									<ul class="ConLibra">
+				    										<%SiteVendor.all.each do|sv|%>
+				    										<li class="alt" onmouseover="show_site_vendors('<%=sv.id%>')" onclick="edit_site_vendors('<%=sv.id%>')">
+				    											<span class="nameText"><span class="pointer"></span><%=sv.name%></span>
+                                                                <span class="dateText"><%=sv.created_at.strftime('%y/%m/%d')%></span>
+                                                                <span class="productsText">3000</span>
+				    											<span class="emptyText"></span>
+				    											<span class="created"><img src="assets/bg_on.png"></span>
+				    											<span class="lastActivity"><img src="assets/btn_delete.png"></span>
+				    										</li>
+				    										<%end%>
+															
+				    									</ul>
+				    								</div>
+		    									</div>
+		    								</div>
+		    							</div>
+		    							
+    									<div class="userGridFooter"></div>
+    								
+	    							</div>
+			    				</div>
+			    			</div>
+		    		
+		    			</div>
+		    		</div>
+	    		</div>
+              </div>
+            </div>
+
+<script>
+function new_site_vendors(){
+$.ajax({
+                                            type: "get",
+                                            url: '<%="/sites/#{params[:site_id]}/site_vendors/new"%>',
+                                            success: function (data) {
+												$('#user_detail').removeClass('greyOut')
+$('#user_detail').html(data)                                  
+                                            },
+                                        })
+}
+
+function edit_site_vendors(id){
+$.ajax({
+                                            type: "get",
+                                            url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id +'/edit',
+                                            success: function (data) {
+												$('#user_detail').removeClass('greyOut')
+$('#user_detail').html(data)                                  
+                                            },
+                                        })
+}
+
+function show_site_vendors(id){
+$.ajax({
+                                            type: "get",
+                                            url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id,
+                                            success: function (data) {
+												$('#user_detail').removeClass('greyOut')
+$('#user_detail').html(data)                                  
+                                            },
+                                        })
+}
+</script>

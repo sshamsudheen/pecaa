@@ -4,8 +4,8 @@ module ApplicationHelper
      params[:controller] == sym ? 'class=select' : ''
   end
   
-  def check_active(cltr, atn)
-     (params[:controller] == cltr && params[:action] == atn) ? 'class=active' : ''
+  def check_active(cltr, atn, css_klass = 'active')
+     (params[:controller] == cltr && params[:action] == atn) ? "class=#{css_klass}" : ""
   end
   
   
@@ -47,4 +47,9 @@ module ApplicationHelper
       (params[:controller] == 'sites' and params[:action] == 'done') ? 'active' : ''
     end
   end
+  
+  def liquidize(content)
+    RedCloth.new(Liquid::Template.parse(content).render).to_html
+  end
+
 end
