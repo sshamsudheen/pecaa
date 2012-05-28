@@ -127,3 +127,18 @@ body{
 	width:200px;
 	margin-left: 200px;
 }
+.loginErrorMsg{
+
+	color:red;
+
+	border:1px solid #CCC;
+
+	padding:10px;
+
+	margin-left:1px;
+
+	width:100%;
+
+}
+
+
