@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'helveticaPecaa';
+	src: url('font/helveticaneue-medium-webfont.ttf');
+	src: local('helveticaPecaa'), local('helvetica'), url('font/helveticaneue-medium-webfont.ttf') format('truetype');
+}
 body textarea{resize:none;}
 button{
 	font-size: 12px;
@@ -54,7 +59,7 @@ button.blueBtn{
 }
 .main-container{
 	width: 980px;
-	font-family: Arial;
+	font-family: 'helveticaPecaa', Arial, sans-serif;
 	font-size:13px;
 	color:#333;
 }
@@ -74,7 +79,7 @@ button.blueBtn{
 	clear:both;
 	background: #616161 url(img/bg_grayGrain.gif) repeat;
 	font-size: 22px;
-	color: #dae5eb;
+	color: #FFF;
 	padding:8px 10px 8px 20px;
 	font-family:"Arial Black";
 	border-top-left-radius: 6px;
@@ -376,4 +381,35 @@ button.blueBtn{
 }
 .footer-section .rightBtns span{
 	color:#FFF;
+}
+.templateList{
+	margin:20px 100px 10px;
+}
+.saveDetail{
+	border-top: 1px solid #CCCCCC;
+	margin: 20px;
+	padding-top:10px;
+}
+.saveDetail input[type="text"]{
+	background:none;
+	border:0;
+}
+.templateList h3,
+.saveDetail h3{
+	margin:0;
+	padding:0;
+	font-size: 18px;
+	text-align: center;
+	margin-bottom:10px;
+}
+.templateList .tempList{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+.templateList .tempList li{
+	text-align: right;
+}
+.templateList .tempList li a{
+	margin-left:10px;
 }

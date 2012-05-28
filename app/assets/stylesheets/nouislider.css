@@ -1,0 +1,50 @@
+#slider2{
+width:210px	
+}
+#slider3{
+width:210px	
+}
+.sliderbar1				{
+	width:					400px;
+	border:					1px solid #CCC;
+	height:					8px;
+	border-radius:			4px;
+	background:				#c6c6c6;
+}
+
+.noUi_handle    			{
+	height:					8px;
+	width:					8px;
+}
+
+.noUi_midBar			{
+	height:					8px;
+}
+
+.noUi_midBar			{
+	background:				#424242;
+	background-image:		linear-gradient(bottom, rgb(113,194,117) 30%, rgb(113,194,117) 81%);
+	background-image:		-o-linear-gradient(bottom, rgb(113,194,117) 30%, rgb(113,194,117) 81%);
+	background-image:		-moz-linear-gradient(bottom, rgb(113,194,117) 30%, rgb(113,194,117) 81%);
+	background-image:		-webkit-linear-gradient(bottom, rgb(113,194,117) 30%, rgb(113,194,117) 81%);
+	background-image:		-ms-linear-gradient(bottom,rgb(113,194,117) 30%, rgb(113,194,117) 81%);
+}
+
+.noUi_sliderKnob		{
+	z-index: 				5;
+	width:					16px;
+	height:					16px;
+	position:				absolute;
+	top:					-5px;
+	left:					-5px;
+	border:					1px solid #424242;
+	border-radius:			5px;
+	background:				#9e9e9e;
+}
+
+.noUi_sliderKnob:hover,
+.noUi_activeHandle		{
+	background:				#9e9e9e;
+	border-color:			#575857	;
+	border:					1px solid #424242;
+}
