@@ -1,7 +1,8 @@
  <script type="text/javascript">
         	
         	$(document).ready(function(){
-        		
+        		$('#users1').tinyscrollbar();
+
         		$(".ConLibra li:even").addClass("alt");
         		$("ul.ConLibra li").each(function(){
         			var $this = $(this);
@@ -77,10 +78,10 @@
     										</ul>
     									</div>
     									<div class="userGridBody">
-    										<div id="scrollbar1">
-    											<div class="scrollbar" style="height: 400px; "><div class="track" style="height: 400px; "><div class="thumb" style="top: 0px; height: 355.55555555555554px; "><div class="end"></div></div></div></div>
+    										<div id="users1">
+    											<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
     											<div class="viewport">
-				 									<div class="overview" style="top: 0px; ">
+				 									<div class="overview">
 				    									<ul class="ConLibra">
 				    										<%@site_users.each_with_index do |s_u|%>
 				    										<li class="<%= cycle('', 'alt') %>" id ="<%=s_u.user.id%>_detail">
