@@ -9,6 +9,8 @@ module ContentLibrariesHelper
       "<a href=#{add_file_path(content.source_id)} rel='facebox'><img src='images/icon-eye.png' title='View' /></a>".html_safe
     elsif content.source_type == 'Text'
       "<a href=#{text_path(content.source_id)} rel='facebox'><img src='images/icon-eye.png' title='View' /></a>".html_safe
+    elsif content.source_type == 'AddForm'
+      "<a href=#{add_form_path(content.source_id)} rel='facebox'><img src='images/icon-eye.png' title='View' /></a>".html_safe      
     end
   end
 
@@ -21,6 +23,8 @@ module ContentLibrariesHelper
       "<a href=#{edit_add_file_path(content.source_id)} rel='facebox'><img src='images/btn-edit.png' /></a>".html_safe
     elsif content.source_type == 'Text'
       "<a href=#{edit_text_path(content.source_id)} rel='facebox'><img src='images/btn-edit.png' /></a>".html_safe
+    elsif content.source_type == 'AddForm'
+      "<a href=#{edit_add_form_path(content.source_id)} rel='facebox'><img src='images/btn-edit.png' /></a>".html_safe
     end
   end
 

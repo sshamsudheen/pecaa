@@ -1,6 +1,379 @@
-<h1>Editing add_form</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @add_form %> |
-<%= link_to 'Back', add_forms_path %>
+<script type="text/javascript">
+    
+    function save_form(){
+        var parameters = [];
+        
+        $('#cart div.form-set').each(function(){
+            $('.ui-droppable div.form-set').removeClass('selected');
+            key = $(this).find('span.key').html();
+            if (key == null) {
+                key = $(this).find('span.selTitle').html();
+            }
+            if (key == null) {
+                key = $(this).find('button.submitBtn').html();
+            }
+            if (key != null) {
+                key = key.replace(':', '')
+            }
+            question_type = $(this).attr("class").split(' ').pop();
+            var multiple_existing_option = '---'
+            $(this).find('span.vals').each(function(){
+                multiple_existing_option = multiple_existing_option + 'seperatoruiui' + $(this).html();
+            });
+            parameters = parameters + ';' + $.trim(key) + '+' + $.trim(question_type) + multiple_existing_option
+        });
+        
+        $('#add_form_question_detail').attr('value', parameters);
+        $('#add_forms_name').attr('value', $('#add_form_name').val());
+        $('#new_add_form').submit();
+    }
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("#catalog").accordion();
+        $("#catalog li").draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $("#cart").droppable({
+            activeClass: "ui-state-default",
+            hoverClass: "ui-state-hover",
+            accept: ":not(.ui-sortable-helper)",
+            drop: function(event, ui){
+                $(this).find(".placeholder").remove();
+                $("<div></div>").html(ui.draggable.clone()).appendTo(this);
+                $(".ui-droppable  div.form-set").show();
+                $(".ui-droppable  div.question_title").hide();
+                $(".ui-draggable").attr('style', 'list-style:none');
+                $(".ui-droppable div.form-set").click(function(){
+                    var question_type = $(this).attr('class').split(' ').pop();
+                    $('.ui-droppable div.form-set').removeClass('selected');
+                    $(this).addClass('selected');
+                    if (question_type != "selected") {
+                        if (question_type == 'multiple_choice_question') {
+                            var multiple_existing_option = []
+                            $(this).find('li span.vals').each(function(){
+                                multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+                            });
+                        }
+                        
+                        if (question_type == 'radio_button_choise_question') {
+                            var multiple_existing_option = []
+                            $(this).find('li span.vals').each(function(){
+                                multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+                            });
+                        }
+                        
+                        
+                        $.ajax({
+                            type: "get",
+                            url: '/add_forms/question_detail?question_type=' + question_type + '&option_values=' + multiple_existing_option,
+                            success: function(data){
+                                $('#field_edit').html(data)
+                            },
+                        });
+                    }
+                });
+            }
+        }).sortable({
+            items: "li:not(.placeholder)",
+            sort: function(){
+            
+                $(this).removeClass("ui-state-default");
+            }
+        });
+        
+    
+	$(".ui-droppable div.form-set").click(function(){
+                    var question_type = $(this).attr('class').split(' ').pop();
+                    $('.ui-droppable div.form-set').removeClass('selected');
+                    $(this).addClass('selected');
+                    if (question_type != "selected") {
+                        if (question_type == 'multiple_choice_question') {
+                            var multiple_existing_option = []
+                            $(this).find('li span.vals').each(function(){
+                                multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+                            });
+                        }
+                        
+                        if (question_type == 'radio_button_choise_question') {
+                            var multiple_existing_option = []
+                            $(this).find('li span.vals').each(function(){
+                                multiple_existing_option = multiple_existing_option + ' seperatoruiui ' + $(this).html();
+                            });
+                        }
+                        
+                        
+                        $.ajax({
+                            type: "get",
+                            url: '/add_forms/question_detail?question_type=' + question_type + '&option_values=' + multiple_existing_option,
+                            success: function(data){
+                                $('#field_edit').html(data)
+                            },
+                        });
+                    }
+                });
+	
+	});
+	
+	
+</script>
+<div class="header">
+    Edit Form
+</div>
+<div class="main-content">
+    <div class="column-wrapper" id="catalog">
+        <ul class="formElements">
+            <li>
+                <div class="question_title">
+                    section break /title<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set info section_break" style="display:none">
+                    <div class="infoGroup">
+                        <p class="infoTitle">
+                            Other Info
+                        </p>
+                    </div>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    single line text<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">Label :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    paragraph text<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set info text_area_question" style="display:none">
+                    <span class="key">Label :</span>
+                    <div class="infoGroup">
+                        <input type="text" class="infoPara">
+                    </div><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    multiple choice<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set makeSlection multiple_choice_question" style="display:none">
+                    <span class="selTitle">Make a selection</span>
+                    <ul>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals">this</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">that</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">one</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="off"></span><span class="vals">two</span>
+                        </li>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    check boxes<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set makeSlection radio_button_choise_question" style="display:none">
+                    <span class="selTitle">Check all that apply</span>
+                    <ul>
+                        <li>
+                            <span><span id="" class="checkbox" style="background-position: 0px -50px; "></span><input class="styled" type="checkbox" checked="checked"></span><span class="vals">selection x</span>
+                        </li>
+                        <li>
+                            <span><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input class="styled" type="checkbox"></span><span class="vals">selection y</span>
+                        </li>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    date/time<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set dateTime" style="display:none">
+                    <div class="dateFeild">
+                        <label for="dateF">
+                            Choose a date: 
+                        </label>
+                        <input type="date" class="pickDate">
+                    </div>
+                    <div class="dateFeild">
+                        <label for="dateF">
+                            Choose a time: 
+                        </label>
+                        <input type="time" class="pickTime">
+                    </div><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+        </ul>
+        <p class="group-header">
+            grouped social form elements
+        </p>
+        <ul class="groupElements">
+            <li>
+                <div class="question_title">
+                    address<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">address1 :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">address2 :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">City :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">State :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">Zip :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set single_selection_question" style="display:none">
+                    <span class="key"></span>
+                    <span class="val">
+                        <select>
+                            <option>Country</option>
+                            <option>India</option>
+                            <option></option>
+                        </select>
+                    </span>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    name<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">first name :</span>
+                    <span class="val"><input type="text" value="" /></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">last name :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    email<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">email :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    website (url)<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">Website url :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+            <li>
+                <div class="question_title">
+                    phone #<span><a href="#" class="drag"></a></span>
+                </div>
+                <div class="form-set text_field_question" style="display:none">
+                    <span class="key">phone number :</span>
+                    <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="column-wrapper middle ui-droppable ui-sortable" id="cart">
+        <%=form_for (@add_form || AddForm.new) do |f| %>
+        <p class="form-title">
+            Your Form<span class="dragable"><a href="#" class="noDragBtn"></a></span>
+        </p>
+        <div class="ui-droppable ui-sortable">
+            <%@add_form.questions.each_with_index do |question,i| %>
+            <div class="formRow">
+                <%if question.type == "TextQuestion" and question.field_type == "text_field" %>
+                <div>
+                    <li class="ui-draggable" style="list-style:none">
+                        <div class="form-set text_field_question">
+                            <span class="key"><%=question.name %>:</span>
+                            <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                        </div>
+                    </li>
+                </div>
+                <%elsif question.type == "TextQuestion" and question.field_type == "text_area" %>
+				<div>
+                    <li class="ui-draggable" style="list-style:none">
+		                <div class="form-set text_area_question">
+		                    <span class="key"><%=question.name %>:</span>
+		                    <span class="val"><input type="text" style="width:200px;height:200px;"></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+		                </div>
+					</li>
+				 </div>
+				  
+                <%elsif question.type == "SingleOptionQuestion" and question.field_type == "select" %>
+                <%elsif question.type == "SingleOptionQuestion" and question.field_type == "radio_button" %>
+                <%elsif question.type == "MultipleOptionQuestion" and question.field_type == "check_box" %>
+                <div class="form-set makeSlection multiple_choice_question">
+                    <ul>
+                        <%question.options.each do |option| %>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals"><%=option.name %></span>
+                        </li>
+                        <%end %>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+                <%end %>
+            </div>
+            <%end %>
+        </div>
+        <div class="form-set centerAlign SubmitButton" style="bottom:60px;position:absolute;right:114px;">
+            <button type="button" class="submitBtn">
+                Submit
+            </button>
+        </div>
+        <div class="close-settings">
+            <a href="#">Form Settings</a>
+        </div>
+        <div class="trashBtn">
+        </div>
+        <%=hidden_field_tag 'add_form[question_detail]','' %>
+        <%=hidden_field_tag 'add_forms[name]','' %>
+        <%=hidden_field_tag 'add_form[option]','' %>
+    </div>
+    <%end %>
+    <div class="column-wrapper last-colum">
+        <div class="pointer">
+        </div>
+        <div id='field_edit'>
+        </div>
+    </div>
+</div>
+<div class="footer-section">
+    <button class="secondary" id="cancelBtn" onclick="window.location.href = '/content_libraries';">
+        Cancel
+    </button>
+    <div class="rightBtns">
+        <span>form name : </span>
+        <input type="text" placeholder="form name" name="add_form[name]" id="add_form_name">
+        <button class="primary" id="saveBtn" onclick="save_form();">
+            Save Changes
+        </button>
+    </div>
+</div>

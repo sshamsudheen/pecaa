@@ -43,4 +43,13 @@ class AddFormsController < ApplicationController
       format.json { render :json => @text }
     end
   end
+  
+  def edit
+    @add_form = AddForm.find(params[:id])
+  end
+  
+  def show
+    @add_form = AddForm.find(params[:id])
+  end  
+
 end
