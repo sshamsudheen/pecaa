@@ -22,18 +22,6 @@
     $(document).ready(function() {
       $('#products1').tinyscrollbar();
       $(".ConLibra li:even").addClass("alt");
-
-      $("ul.ConLibra li").click(function() {
-        var $this = $(this);
-        if (!$this.hasClass("selected")) {
-          $("ul.ConLibra li").removeClass("selected");
-          $("ul.ConLibra li").find('.pointer').hide();
-          $this.addClass("selected");
-          $this.find('.pointer').show();
-          //$this.find('.misc img').show();
-        }
-        return false;
-      })
     })
   </script>
   <link href="/assets/products.css" rel="stylesheet" type="text/css">

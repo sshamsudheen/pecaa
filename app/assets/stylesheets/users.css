@@ -315,7 +315,7 @@
 }
 .userPanel .date-created label,
 .userPanel .last-activity label{
-	 display: block;
+	display: inline-block;
     margin-top: 4px;
 }
 .userPanel .showUser .user-label{
