@@ -1,40 +1,66 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @add_form.name %>
-</p>
-
-<p>
-  <b>Created by:</b>
-  <%= @add_form.created_by %>
-</p>
-
-<p>
-  <b>Subject line:</b>
-  <%= @add_form.subject_line %>
-</p>
-
-<p>
-  <b>Delivery email address:</b>
-  <%= @add_form.delivery_email_address %>
-</p>
-
-<p>
-  <b>Confirmation text:</b>
-  <%= @add_form.confirmation_text %>
-</p>
-
-<p>
-  <b>Use captcha:</b>
-  <%= @add_form.use_captcha %>
-</p>
-
-<p>
-  <b>Use field label:</b>
-  <%= @add_form.use_field_label %>
-</p>
-
-
-<%= link_to 'Edit', edit_add_form_path(@add_form) %> |
-<%= link_to 'Back', add_forms_path %>
+<div class="header">
+   Show Form
+</div>
+<div class="main-content">
+    <div class="column-wrapper" id="catalog">
+    </div>
+    <div class="column-wrapper middle ui-droppable ui-sortable" id="cart">
+        <%=form_for (@add_form || AddForm.new) do |f| %>
+        <p class="form-title">
+            <%=@add_form.name%><span class="dragable"><a href="#" class="noDragBtn"></a></span>
+        </p>
+        <div class="ui-droppable ui-sortable">
+            <%@add_form.questions.each_with_index do |question,i| %>
+            <div class="formRow">
+                <%if question.type == "TextQuestion" and question.field_type == "text_field" %>
+                <div>
+                    <li class="ui-draggable" style="list-style:none">
+                        <div class="form-set text_field_question">
+                            <span class="key"><%=question.name %>:</span>
+                            <span class="val"><input type="text" value="" /></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                        </div>
+                    </li>
+                </div>
+                <%elsif question.type == "TextQuestion" and question.field_type == "text_area" %>
+                <div>
+                    <li class="ui-draggable" style="list-style:none">
+                        <div class="form-set text_area_question">
+                            <span class="key"><%=question.name %>:</span>
+                            <span class="val"><input type="text" style="width:200px;height:200px;"></span><span class="dragable"><a href="#" class="dragBtn"></a></span>
+                        </div>
+                    </li>
+                </div>
+                <%elsif question.type == "SingleOptionQuestion" and question.field_type == "select" %>
+                <%elsif question.type == "SingleOptionQuestion" and question.field_type == "radio_button" %>
+                <%elsif question.type == "MultipleOptionQuestion" and question.field_type == "check_box" %>
+                <div class="form-set makeSlection multiple_choice_question">
+                    <ul>
+                        <%question.options.each do |option| %>
+                        <li>
+                            <span><span id="" class="radio" style="background-position: 0px 0px; "></span><input type="radio" class="styled" value="on"></span><span class="vals"><%=option.name %></span>
+                        </li>
+                        <%end %>
+                    </ul>
+                    <span class="dragable"><a href="#" class="dragBtn"></a></span>
+                </div>
+                <%end %>
+            </div>
+            <%end %>
+        </div>
+        <div class="form-set centerAlign SubmitButton" style="bottom:60px;position:absolute;right:114px;">
+            <button type="button" class="submitBtn">
+                Submit
+            </button>
+        </div>
+        <div class="close-settings">
+            <a href="#">Form Settings</a>
+        </div>
+        <div class="trashBtn">
+        </div>
+        <%=hidden_field_tag 'add_form[question_detail]','' %>
+        <%=hidden_field_tag 'add_forms[name]','' %>
+        <%=hidden_field_tag 'add_form[option]','' %>
+    </div>
+    <%end %>
+</div>
