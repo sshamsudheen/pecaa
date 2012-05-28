@@ -478,8 +478,7 @@ font-weight:normal;
     float: right;
     height: 28px;
 }
-.customTax  .left{
-	padding-right:-100px;
+.customTax .left{
 }
 
 .customTax .site-users ul.ConLibra li span.created, .customTax .site-users ul.ConLibra li span.lastActivity {
@@ -718,7 +717,7 @@ filter:alpha(opacity=40);
 
 .btnGreen{
 	background-image:url(img/btn_greenBg.png);
-	height:28x;
+	height:28px;
 	border: solid 1px #2f6e37;
 	border-radius:4px;
 	color:#FFF;
