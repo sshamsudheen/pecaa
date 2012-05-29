@@ -98,6 +98,9 @@
                     <%=yield%>
                 </div>
             </div>
+			<%if(@site = Site.find(params[:site_id]))%>
+			<%= render 'layouts/product_payment_javascript' %>
+			<%end%>
         </div>
     </body>
 </html>
