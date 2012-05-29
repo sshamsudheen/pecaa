@@ -128,6 +128,10 @@ shipping_gateway_attributes.children.create(:name => 'fedex_type_6')
 ModifierType.create(:name => '%')
 ModifierType.create(:name => '$')
 
+20.times.each do 
+  Review.create(:user_id=>User.first.id,:product_id => Product.first.id,:approved=>true,:description=>"over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought that")
+end
+
 
 #no_payment = ShippingGateway.create(:type => 'custom ')
 
