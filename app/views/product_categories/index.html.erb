@@ -50,19 +50,11 @@
                                 <img src="/assets/<%= pc.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
                               </a>
                             </span>
-                            <%= link_to image_tag("/assets/btnDelete.png", :border=>"0"), '#',:class=>'confirm_delete', :rel=>pc.id %>
-            							  <!-- Alert message box start -->
-                            <div id="alertBox_<%=pc.id%>" class="alert-box" style="display:none">
-                              <div class="msgTitle">Are you sure?!</div>
-                              <div class="msgContent">
-                                Hey, you are about to delete the entire "<%=pc.name%>. Are you sure you want to do this?
-                              </div>
-                            	<div class="msgFooter">
-                                <%= link_to "Cancel","#", :class=>'secondary cancel_alert', :rel=>pc.id%>
-                                <%= link_to "OK!", delete_site_product_category_path(@site, pc), :method => :delete, :class=>'primary' %>
-                            	</div>
-                          </div>
-                          <!-- Alert message box ends -->
+                            <span class="removeBtn">
+                              <%= render :partial=>'shared/alert_box', :locals=>{:obj => pc,
+                                 :path => delete_site_product_category_path(@site, pc)),
+                                 :img_path => "/assets/btnDelete.png"}%> 
+                            </span>
                           </li>
                         <% end %>
                       </ul>

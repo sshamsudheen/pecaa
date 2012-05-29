@@ -35,7 +35,13 @@ class SitePagesController < ApplicationController
     else
       flash[:notice] = "Saving #{@site_page.category} was unsuccessful"
     end
-    redirect_to site_site_pages_path(@site)
+    
+    if request.xhr?
+      render :nothing=> true
+    else
+      redirect_to site_site_pages_path(@site) 
+    end
+    
   end
   
   def copy_page
