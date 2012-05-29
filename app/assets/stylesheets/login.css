@@ -128,17 +128,8 @@ body{
 	margin-left: 200px;
 }
 .loginErrorMsg{
-
-	color:red;
-
+	color:#FF0000;
 	border:1px solid #CCC;
-
 	padding:10px;
-
 	margin-left:1px;
-
-	width:100%;
-
 }
-
-

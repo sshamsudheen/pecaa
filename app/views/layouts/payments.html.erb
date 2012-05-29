@@ -40,9 +40,12 @@
             <li class="payments"></li>
             <li class="taxes"></li>
             <li class="shipping"></li>
-            <li class="features"></li>
-            <li class="orders"></li>
-            <li class="reports"></li>
+          <li class="features <%= (['site_features','product_filters','reviews','try_it_images','gift_certificates','coupons','site_vendors','inventory_options'].include?(params[:controller])) ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/product_filters'">
+            </li>
+            <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders'">
+            </li>
+            <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/reports'">
+            </li>
           </ul>
         </div>
       </div>

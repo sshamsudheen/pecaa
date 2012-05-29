@@ -3,7 +3,8 @@
     <div class="sysConfg">
         <dl>
             <dd class="logoDD">
-                <img border="0" src="/assets/logo_PecaaConfg.png">
+            	
+                <img border="0" src="<%=SystemConfig.first.blank? ? '/assets/logo_PecaaConfg.png' : @system_tag.controller_logo%>" width="322px" height="66px">
             </dd>
             <dt>
                 controller logo :

@@ -16,15 +16,14 @@
 
     
     <%= javascript_include_tag 'jquery.js'%>
-    <%= javascript_include_tag 'inputstyle.js','jquery.tinyscrollbar.min.js'%>
+    <%= javascript_include_tag 'inputstyle.js','jquery.tinyscrollbar.min.js','checkScroll.js'%>
     <%= javascript_include_tag 'facebox'%>
     <%= javascript_include_tag 'common'%>
-  <script type="text/javascript">
-  $(document).ready(function(){
-  	$('#products1').tinyscrollbar();
-  	$(".ConLibra li:even").addClass("alt");
-  })
-  </script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		validateScroll('commonScroll',400);
+    	})
+    </script>
 <link href="/assets/products.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -32,7 +31,7 @@
   <div class="userEditHolder">
     <div class="header-section">
       <div class="topHeader">
-        <div class="logoHolder"></div>
+        <div class="logoHolder"><%if SystemConfig.first%><img src="<%=SystemConfig.first.controller_logo%>" width="170" height="36"/><%end%></div>
         <div class="rightPanel">
           <ul>
             <li class="help"></li>
@@ -48,9 +47,11 @@
             <li class='payments'></li>
             <li class="taxes"></li>
             <li class="shipping"></li>
-            <li class="features"></li>
-            <li class="orders"></li>
-            <li class="reports"></li>
+            <li class="features <%= (['site_features','product_filters','reviews','try_it_images','gift_certificates','coupons','site_vendors','inventory_options'].include?(params[:controller])) ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/product_filters'">
+            </li>
+            <li class="orders <%= params[:controller] == 'orders' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/orders'">
+            </li>
+            <li class="reports <%= params[:controller] == 'reports' ? 'active' : ''%>" onclick="window.location.href='/sites/<%=params[:site_id]%>/reports'">
           </ul>
         </div>
       </div>
