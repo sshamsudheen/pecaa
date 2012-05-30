@@ -846,10 +846,10 @@ button{
 			.footer-section .rightBtns{
 				float:right;
 			}
-			 input[type="text"]{
-				border-radius: 6px;
-				padding:8px;
-				border: 1px solid #999999;
+			#new_user input[type="text"]{
+				border-radius: 4px;
+				/*padding:8px;
+				border: 1px solid #999999;*/
 			}
 /* end View file */
 /* Start add Text */
