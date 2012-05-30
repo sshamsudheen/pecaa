@@ -31,7 +31,7 @@
 }
 .main-nav ul li.payments.active {
 	background: url(img/btn_payments_on.png) no-repeat;
-	width: 84px;
+	width: 120px;
 }
 .main-nav ul li.taxes {
 	background: url(img/btn_taxes.png) no-repeat;
@@ -39,7 +39,7 @@
 }
 .main-nav ul li.taxes.active {
 	background: url(img/btn_taxes_on.png) no-repeat;
-	width: 89px;
+	width: 92px;
 }
 .main-nav ul li.shipping {
 	background: url(img/btn_shipping.png) no-repeat;
@@ -47,7 +47,7 @@
 }
 .main-nav ul li.shipping.active {
 	background: url(img/btn_shipping_on.png) no-repeat;
-	width: 111px;
+	width: 114px;
 }
 .main-nav ul li.features {
 	background: url(img/btn_features.png) no-repeat;

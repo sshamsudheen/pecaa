@@ -13,23 +13,17 @@
 	width: 120px;
 }
 .upstypeDiv{
-	
 	display:block;
-
 	width:500px;
 	float:left;
-	
 }
 .upstypeDiv2{
-	
 	display:block;
-
 	width:400px;
 	float:left;
-	
 }
 
-.main-nav ul li.taxes{
+/*.main-nav ul li.taxes{
 	background: url(img/btn_taxes.png) no-repeat;
 	width: 93px;
 }
@@ -75,7 +69,7 @@
 	background: url(img/btn_reports_on.png) no-repeat;
 	width: 100px;
 }
-
+*/
 .cartBg{
 	clear:both;
 	width:95%;
@@ -85,135 +79,130 @@
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-background:url(img/bg_vline.png) repeat-y ;	
-background-position:top;
-width:665px;
-margin-top:5px;
-height:500px;
+	background:url(img/bg_vline.png) repeat-y ;	
+	background-position:top;
+	width:665px;
+	margin-top:5px;
+	height:500px;
 }
 .cartColumsMain2{
-background:url(img/bg_vline2.png) repeat-y ;	
-background-position:top;
-width:665px;
-margin-top:5px;
-height:120px;
+	background:url(img/bg_vline2.png) repeat-y ;	
+	background-position:top;
+	width:665px;
+	margin-top:5px;
+	height:120px;
 }
 .cartColumsMain3{
-width:300px;
-margin-top:5px;
-height:120px;
+	width:300px;
+	margin-top:5px;
+	height:120px;
 }
 
 .cartColumsMain2 .rowDiv{
-
-height:120px;
+	height:120px;
 }
 .cartColumsMain .rowDiv{
-float:left;
-padding:5px;	
-margin:0;
-display:inline;
-height:100px;
+	float:left;
+	padding:5px;	
+	margin:0;
+	display:inline;
+	height:100px;
 }
 
 
 .firstRaw .rowDiv1{
-float:left;
-padding:5px;	
-margin:0;
-display:inline;
-height:100px;
-background:url(img/bg_vline2.png) repeat-y ;	
-
-
+	float:left;
+	padding:5px;	
+	margin:0;
+	display:inline;
+	height:100px;
+	background:url(img/bg_vline2.png) repeat-y ;	
 }
 
 .firstRaw .rowDiv1 h2{
-margin:0;
-color:#FFF;
-/*background:url(img/helpIcon2.png) no-repeat ;*/
-background-position:left;
-	
-padding-right:30px
+	margin:0;
+	color:#FFF;
+	/*background:url(img/helpIcon2.png) no-repeat ;*/
+	background-position:left;
+	padding-right:30px
 }
 
 .rowDiv h2{
-margin:0;
-color:#FFF;
-/*background:url(img/helpIcon2.png) no-repeat ;*/
-background-position:left;
-	
-padding-right:30px
+	margin:0;
+	color:#FFF;
+	/*background:url(img/helpIcon2.png) no-repeat ;*/
+	background-position:left;
+	padding-right:30px
 }
 .rowDiv dl{
-width:400px;
-margin-left:160px;	
+	width:400px;
+	margin-left:160px;	
 }
 .rowDiv dt{
-text-align:right;
-padding-right:20px;
-color:#fff;
+	text-align:right;
+	padding-right:20px;
+	color:#fff;
 }
 
 .rowDiv dt{
-float:left;
-width:160px;	
-margin:0;
-padding:5px 5px 0 0;
+	float:left;
+	width:160px;	
+	margin:0;
+	padding:5px 5px 0 0;
 }
 .rowDiv dd{
-float:left;
-width:150px;	
-margin:0;
-padding:5px 0px 0 15px;
-color:#fff;
+	float:left;
+	width:150px;	
+	margin:0;
+	padding:5px 0px 0 15px;
+	color:#fff;
 }
 .dlCont{
-margin-top:-5px;	
+	margin-top:-5px;	
 }
 .cartColumsMain .rowDiv2{
-float:left;
-padding:5px;	
-margin:10px 0;
+	float:left;
+	padding:5px;	
+	margin:10px 0;
 }
 
 .rowDiv2 h2{
-margin:0;
-color:#999;
-/*background:url(img/helpIcon.png) no-repeat 210px;	*/
-padding-right:30px
+	margin:0;
+	color:#999;
+	/*background:url(img/helpIcon.png) no-repeat 210px;	*/
+	padding-right:30px
 }
 
 
 .noMargin{
-margin-left:10px !important;	
+	margin-left:10px !important;	
 }
 .rowDiv2 dl{
-width:400px;
-margin-left:160px;	
+	width:400px;
+	margin-left:160px;	
 }
 .rowDiv2 dt{
-text-align:right;
-padding-right:20px;
-color:#666;
+	text-align:right;
+	padding-right:20px;
+	color:#666;
 }
 .rowDiv2 dd{
-color:#666;	
+	color:#666;	
 }t
 
 .rowDiv2 dt,dd{
-float:left;
-width:150px;	
-margin:0;
-padding:5px 10px ;
+	float:left;
+	width:150px;	
+	margin:0;
+	padding:5px 10px ;
 }
 .inputReadOnly{
-background-color:#f5f5f5;
-border:none;
-padding:5px;		
+	background-color:#f5f5f5;
+	border:none;
+	padding:5px;		
 }
 .divAlpha{
-opacity:0.4;
+	opacity:0.4;
 filter:alpha(opacity=40);	
 }
 
@@ -233,13 +222,13 @@ h2 span{
 	padding-top:10px;
 }
 img{
-border:none;	
+	border:none;	
 }
 	
 /* sankar button end*/
 
 .cartCollumsBottom{
-width:900px;	
+	width:900px;	
 }
 .cartCollumsBottom .site-users .title, .usersLeftPane .title {
     color: #999;
@@ -247,8 +236,8 @@ width:900px;
     margin-bottom: 10px;
 }
 .cartCollumsBottom .rightButtonDiv{
-float:right;
-width:200px;
+	float:right;
+	width:200px;
 }
 .cartCollumsBottom .usersLeftPane {
     float: left;
@@ -256,22 +245,18 @@ width:200px;
     width: 268px;
 }
 .inputBox{
-border-radius:4px;
-color:#999999;
-border:solid 1px #666667;
-height:15px;	
+	border-radius:4px;
+	color:#999999;
+	border:solid 1px #666667;
+	height:15px;	
 }
 .inputBox2{
-border-radius:4px;
-color:#999999;
-border:solid 1px #666667;
-width:40px;
-height:20px; margin-right:5px;
-	
+	border-radius:4px;
+	color:#999999;
+	border:solid 1px #666667;
+	width:40px;
+	height:20px; margin-right:5px;
 }
-
-
-
 .cartCollumsBottom .site-users ul.ConLibraHeads li span.type {
     border: 0 none;
     display: inline-block;
@@ -285,11 +270,10 @@ height:20px; margin-right:5px;
     float: right;
     font-size: 14px;
     height: 30px;
-padding-top:0;
+	padding-top:0;
+	line-height:30px;
     margin: 0;
-  
     padding-right: 27px;
- 
     width: 150px;
 }
 
@@ -300,11 +284,9 @@ padding-top:0;
     float: right;
     font-size: 14px;
     height: 30px;
-padding-top:0;
+	padding-top:0;
     margin: 0;
-  
     padding-right: 27px;
- 
     width: 170px;
 }
 .cartCollumsBottom .addWeightBtn {
@@ -314,16 +296,11 @@ padding-top:0;
     float: right;
     font-size: 14px;
     height: 30px;
-padding-top:0;
+	padding-top:0;
     margin: 0;
-  
     padding-right: 27px;
- 
     width: 230px;
 }
-
-
-
 
 /**/
 
@@ -383,10 +360,10 @@ padding-top:0;
 }
 
 .cartCollumsBottom .site-users ul.ConLibraHeads li span.required {
-	 border: 0 none;
+	border: 0 none;
     display: inline-block;
-      width: 80px;
-	  text-align:center;
+    width: 80px;
+	text-align:center;
 }
 
 
@@ -414,7 +391,7 @@ padding-top:0;
 .cartCollumsBottom .onOffBtns{
     border-right: 1px solid #999999;
 	width:130px;
-	  height: 19px;
+	height: 19px;
     padding-top: 5px;
     vertical-align: top;	
 }
@@ -439,7 +416,7 @@ padding-top:0;
 	background-color:#262626;
 	border:none;
 	color:#fff;
-	 padding: 3px;
+	padding: 3px;
     width: 94%;
 	border-radius:4px;
 }
@@ -447,27 +424,24 @@ padding-top:0;
 .customTax .inputBgColor{
 	background-color:#262626;
 	border:none;
-
-	 padding: 3px;
+	padding: 3px;
     width: 94%;
 	border-radius:4px;
 	color:#999;
-	
 }
 .customTax .listItem{
-	
-background-color:#a2a2a2;
+	background-color:#a2a2a2;
 	border:none;
 	color:#fff;
-	 padding:2px;
+	padding:2px;
     width: 96%;
 	border-radius:4px;
 }
 
 .customTax  h3{
-margin:0;
-padding:2px;
-font-weight:normal;
+	margin:0;
+	padding:2px;
+	font-weight:normal;
 }
 
 .greenBtn {
@@ -536,12 +510,11 @@ font-weight:normal;
     width:72px;
 }
 .buttonsDiv{
-position:absolute;
-bottom:20px;
-
+	position:absolute;
+	bottom:20px;
 }
 .buttonsDiv .redBtn{
-margin-right:40px;	
+	margin-right:40px;	
 }
 .cartCollumsBottom .site-users ul.ConLibraHeads li {
     background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
@@ -558,13 +531,12 @@ span.rBtnOn {
 	background:url(img/onoffBtn.png) no-repeat;
 	width:50px;
 	height:24px;
-cursor:pointer;
-vertical-align:top;
-	
+	cursor:pointer;
+	vertical-align:top;
 }
 
 .rightBorder{
-	  border-right: 1px solid #999999;
+	border-right: 1px solid #999999;
 }
 span.rBtnOff {
 	display:block;
@@ -572,17 +544,15 @@ span.rBtnOff {
 	background-position:-50px;
 	width:50px;
 	height:24px;
-cursor:pointer;
-vertical-align:top;
-
-	
+	cursor:pointer;
+	vertical-align:top;
 }
 .status .on{
-display:inline-block;	
+	display:inline-block;	
 }
 
 .status .off{
-display:inline-block;	
+	display:inline-block;	
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.location {
@@ -595,9 +565,9 @@ display:inline-block;
     padding-left: 10px;
     text-align: left;
     width: 70px;
-	  border-right: 1px solid #999999;
-display:inline-block;
- height: 19px;
+	border-right: 1px solid #999999;
+	display:inline-block;
+	height: 19px;
     padding-top: 5px;
     vertical-align: top;
 	text-align:left;
@@ -614,10 +584,9 @@ display:inline-block;
 .cartCollumsBottom .site-users ul.ConLibraHeads li span.locationTitle {
     border: 0 none;
     display: inline-block;
-	 padding-left: 10px;
+	padding-left: 10px;
     text-align: left;
     width: 565px;
-	
 }
 
 
@@ -630,89 +599,88 @@ display:inline-block;
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-background:url(img/bg_vline.png) repeat-y ;	
-background-position:top;
-width:665px;
-margin-top:5px;
-height:500px;
+	background:url(img/bg_vline.png) repeat-y ;	
+	background-position:top;
+	width:665px;
+	margin-top:5px;
+	height:500px;
 }
 .cartColumsMain .rowDiv{
-float:left;
-padding:5px;	
-margin:0;
-display:inline;
-height:100px;
+	float:left;
+	padding:5px;	
+	margin:0;
+	display:inline;
+	height:100px;
 }
 .rowDiv h2{
-margin:0;
-color:#FFF;
-/*background:url(img/helpIcon2.png) no-repeat ;*/
-background-position:left;
-	
-padding-right:30px
+	margin:0;
+	color:#FFF;
+	/*background:url(img/helpIcon2.png) no-repeat ;*/
+	background-position:left;
+	padding-right:30px
 }
 .rowDiv dl{
-width:400px;
-margin-left:160px;
-margin-top:0px;	
+	width:400px;
+	margin-left:160px;
+	margin-top:0px;	
 }
 .rowDiv dt{
-text-align:right;
-padding-right:20px;
-color:#fff;
+	text-align:right;
+	padding-right:20px;
+	color:#fff;
 }
 
 .rowDiv dt{
-float:left;
-width:160px;	
-margin:0;
-padding:5px 5px 0 0;
+	float:left;
+	width:160px;	
+	margin:0;
+	padding:5px 5px 0 0;
 }
 .rowDiv dd{
-float:left;
-width:150px;	
-margin:0;
-padding:5px 0px 0 15px;
+	float:left;
+	width:150px;	
+	margin:0;
+	padding:5px 0px 0 15px;
 }
 
 .cartColumsMain .rowDiv2{
-float:left;
-padding:5px;	
-margin:10px 0;
+	float:left;
+	padding:5px;	
+	margin:10px 0;
 }
 .rowDiv2 h2{
-margin:0;
-color:#999;
-/*background:url(img/helpIcon.png) no-repeat 210px;	*/
-padding-right:30px
+	margin:0;
+	color:#999;
+	/*background:url(img/helpIcon.png) no-repeat 210px;	*/
+	padding-right:30px
 }
 .rowDiv2 dl{
-width:400px;
-margin-left:160px;	
+	width:400px;
+	margin-left:160px;	
 }
 .rowDiv2 dt{
-text-align:right;
-padding-right:20px;
-color:#666;
+	text-align:right;
+	padding-right:20px;
+	color:#666;
 }
 .rowDiv2 dd{
-color:#666;	
+	color:#666;	
 }
 
 .rowDiv2 dt,dd{
-float:left;
-width:150px;	
-margin:0;
-padding:5px 10px ;
+	float:left;
+	width:150px;	
+	margin:0;
+	padding:5px 10px ;
 }
 .inputReadOnly{
-background-color:#f5f5f5;
-border:none;
-padding:5px;		
+	background-color:#f5f5f5;
+	border:none;
+	padding:5px;		
 }
 .divAlpha{
-opacity:0.4;
-filter:alpha(opacity=40);	
+	opacity:0.4;
+	filter:alpha(opacity=40);	
 }
 
 .btnGreen{
@@ -731,7 +699,7 @@ h2 span{
 	padding-top:10px;
 }
 img{
-border:none;	
+	border:none;	
 }
 
 .noEdit {
@@ -743,13 +711,13 @@ border:none;
 }	
 
 .inputReadOnly{
-background-color:#f5f5f5;
-border:none;
-padding:5px;		
+	background-color:#f5f5f5;
+	border:none;
+	padding:5px;		
 }
 .divAlpha{
-opacity:0.4;
-filter:alpha(opacity=40);	
+	opacity:0.4;
+	filter:alpha(opacity=40);	
 }
 .popWindow {
     background-image: url("img/popWindow_2.png");
@@ -953,10 +921,9 @@ margin-left:0;
     text-align: left;
     width:160px;
 	height:20px;
-	  border-right: 1px solid #999999;
-	    height: 19px;
+	border-right: 1px solid #999999;
+	height: 19px;
     padding-top: 5px;
-
     vertical-align: top;
 }
 
@@ -975,11 +942,11 @@ margin-left:0;
 }
 
 .margin{
-margin:10px 5px 0 10px;	
+	margin:10px 5px 0 10px;	
 }
 
 .noHeight{
-min-height:150px !important	
+	min-height:150px !important	
 }
 
 .nobMargin{
