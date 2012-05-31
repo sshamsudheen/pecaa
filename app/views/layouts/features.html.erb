@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>PECAA</title>
+		<%= stylesheet_link_tag "products", "new_product" %>
         <%= stylesheet_link_tag "layout","pages","users","tinyscroll","siteinfo","cart","features", "facebox" %>
 		<%= stylesheet_link_tag "products" if params[:controller] == "coupons" or params[:controller] == "gift_certificates" or params[:controller] == "orders" or params[:controller] == "reports"%>
         <%= javascript_include_tag 'jquery-1.7.1.min.js','rails.js','jquery.watermark.js' %>
