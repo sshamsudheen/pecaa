@@ -1,4 +1,24 @@
 
+<%= javascript_include_tag "activatables" %>
+    <%= javascript_include_tag "validation"%>
+    <%= stylesheet_link_tag "pecaa", "layout", "controlTabLayout"%>
+    <%= stylesheet_link_tag "select" %>
+    <%= stylesheet_link_tag "tabs" %>
+    <%= stylesheet_link_tag "prettyCheckboxes" %>
+    <%= stylesheet_link_tag "website" %>
+    <%= stylesheet_link_tag "facebox" %>
+    
+    <%#= csrf_meta_tag %>
+    <%#= javascript_include_tag 'jquery.min.js','rails.js'%>
+    <%= javascript_include_tag 'jquery-1.4.2.min'%>
+    <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
+    <%#= javascript_include_tag 'jquery.min.js', 'rails.js'%>
+    <%= javascript_include_tag 'facebox'%>
+    <%= javascript_include_tag 'common'%>
+    <%= javascript_include_tag 'customSelect'%>
+    <%= javascript_include_tag 'slider'%>
+    <%= javascript_include_tag "prettyCheckboxes" %>
+    <%= javascript_include_tag "jquery.tinyscrollbar.min" %>
 <div class="pages-main">
 	<ul>
     <% @user_obj.errors.full_messages.each do |msg| %>
@@ -16,8 +36,9 @@
 										        <%= button_to "create new user", '/users/new',:class=>'addNewUser',:method=>"get" %>
 							     </div>
 							</div>
-								<%=form_for(@user_obj) do |f| %>
+
 									<div class="userEditPanel">
+							  <%=form_for(@user_obj) do |f| %>
 								<%=hidden_field_tag :site_id,params[:site_id]%>		
 										<h2><%if @user_obj and @user_obj.username%><%=@user_obj.username  %>
 										<%else%> 
@@ -174,11 +195,13 @@
 											</div>
 										</div>
 										<!-- end of colum wrapper -->
-										
+					<%end%>					
 										<div class="userEditBtnPanel clear">
-											<div class="left"><button class="redBtn">delete user</button></div>
+											<%unless @user_obj.new_record?%>
+											<div class="left"><button class="redBtn" onclick="window.location.href='/site_users/<%=@user_obj.id%>/delete'">delete user</button></div>
+											<%end%>
 											<div class="right">
-												<button class="secondary">cancel</button>
+												<button class="secondary" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_users/list_users'">cancel</button>
 												<button class="primary" id='user_form_submit'>save changes</button>
 												
 											</div>
@@ -187,7 +210,7 @@
 								
 		    				</div>
 
-		    		<%end%>
+		    		
 		    			</div>
 		    		</div>
 					<script>

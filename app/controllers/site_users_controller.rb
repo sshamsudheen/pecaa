@@ -51,6 +51,12 @@ class SiteUsersController < ApplicationController
     end
   end
   
+  def delete
+    @user_obj = User.find(params[:id])
+    @user_obj.delete
+    redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
+  end
+  
   protected
 
   def setup
