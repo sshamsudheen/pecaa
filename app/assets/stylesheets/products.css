@@ -1818,7 +1818,7 @@ z-index:300;
 }
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#products1 .viewport { height: 400px; overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
+#products1 .viewport { overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
 #products1 ul.ConLibra{border:0}
 /* for products page grid styles */
 /* Tiny Scrollbar */
@@ -1835,7 +1835,7 @@ z-index:300;
 	color: #3d9642;
 }
 
-
+.site-users .graphContainer{margin-bottom:10px;}
 .status .on {
 	background: url("img/bg_On.png") no-repeat scroll 0 0 transparent;
 	display: block;
