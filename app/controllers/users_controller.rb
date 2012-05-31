@@ -99,16 +99,16 @@ class UsersController < ApplicationController
     @user_obj = User.new(params[:user])
     @user_obj.created_by = current_user
     if @user_obj.save
-      if params[:site_id]
+      if params[:site_id].blank?
         redirect_to :action => :index
       else
         redirect_to "/sites/#{params[:id]}/site_users/list_users"
       end
     else
-      if params[:site_id]
-        render :template => "site_users/new", :status => :unprocessable_entity, :layout => 'site'
+      if params[:site_id].blank?
+        render :action => :new, :status => :unprocessable_entity
       else
-       render :action => :new, :status => :unprocessable_entity
+        render :template => "site_users/new", :status => :unprocessable_entity, :layout => 'site'       
       end
     end
   end

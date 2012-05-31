@@ -1,4 +1,5 @@
-<%if false%>
+<%= javascript_include_tag 'inputstyle.js' ,'jquery.tinyscrollbar.min.js' %>
+<%if false %>
 <ul>
     <% @user_obj.errors.full_messages.each do |msg| %>
     <li>
@@ -6,7 +7,7 @@
     </li>
     <% end %>
 </ul>
-<%end%>
+<%end %>
 <div class="ueBodyContent">
     <div class="fLeft">
         User Management
@@ -16,11 +17,11 @@
     </div>
     <div class="clear">
     </div>
-<%=form_for(@user_obj) do |f| %>
     <!-- black table -->
     <div class="rcBlack">
+<%=form_for(@user_obj,:id=>"user_form") do |f| %>    	
         <div class="ueNameDisplay">
-            <%=hidden_field_tag :site_id,params[:site_id]%>
+            <%=hidden_field_tag :site_id,params[:site_id] %>
             <%=@user_obj.username if @user_obj %>
         </div>
         <div class="lastActivity">
@@ -33,10 +34,11 @@
         </div>
         <div class="status">
             <div id="checkboxDemo">
-                <label for="checkbox-4" tabindex="4" class="txtColorWhite prettyCheckbox checkbox list">
+                <%=f.check_box "active",{:id=>"checkbox-4",:class=>"styled" },1,0 %>
+				<label for="checkbox-4" tabindex="4" class="txtColorWhite prettyCheckbox list">
                     active
                 </label>
-                <%=f.check_box "active",{:id=>"checkbox-4",:class=>"hiddenCheckbox" },1,0%>
+                
             </div>
         </div>
         <div class="clearHeight10Border">
@@ -52,7 +54,7 @@
                 </div>
                 <span id="nameInfo" class="error"></span>
             </div>
-			<%if @user_obj.new_record?%>
+            <%if @user_obj.new_record? %>
             <div class="row1">
                 <div class="inpTxt">
                     password:
@@ -62,7 +64,7 @@
                 </div>
                 <span id="passInfo" class="error"></span>
             </div>
-			<%end%>
+            <%end %>
             <div class="row1">
                 <div class="inpTxt correctFieldTxt">
                     email:
@@ -173,7 +175,7 @@
                     <div class="inpTxt">
                         zip:
                     </div>
-                    <%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}"%>
+                    <%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" %>
                 </div>
                 <div class="clear">
                 </div>
@@ -187,7 +189,7 @@
                     <div class="inpTxt">
                         nick name:
                     </div>
-                    <%=f.text_field "addresses2[nickname]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.nickname if @user_obj.addresses.second}"%>
+                    <%=f.text_field "addresses2[nickname]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.nickname if @user_obj.addresses.second}" %>
                 </div>
                 <div class="row1">
                     <div class="inpTxt">
@@ -211,14 +213,15 @@
                     <div class="inpTxt">
                         zip:
                     </div>
-                    <%=f.text_field "addresses2[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.zipcode if @user_obj.addresses.second}"%>
+                    <%=f.text_field "addresses2[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.zipcode if @user_obj.addresses.second}" %>
                 </div>
                 <div class="clear">
                 </div>
             </div>
             <%end %>
         </div>
-        <!-- end of second column --><!-- third column -->
+        <!-- end of second column -->
+        <!-- third column -->
         <div class="col3">
             <div class="col3Head">
                 roles
@@ -230,13 +233,13 @@
                 <div class="clear"></div>
                 <div class="roles"><img src="/assets/icon-close.png" /><span>Website Builder</span></div>
                 <div class="clear"></div>-->
-				
                 <div id="checkboxDemo">
                     <%Role.all.collect do |role| %>
-                    <label for="checkbox-<%=role.id%>" tabindex="<%=role.id%>" class="txtColorWhite prettyCheckbox checkbox list">
+                    <%=check_box_tag "users[role_ids][]",role.id,@user_obj.roles.include?(role),{:id=>"checkbox-#{role.id}",:class=>"styled"} %>
+					<label for="checkbox-<%=role.id%>" tabindex="<%=role.id%>" class="txtColorWhite prettyCheckbox checkbox list">
                         <%=role.display_name %>
                     </label>
-                    <%=check_box_tag "users[role_ids][]",role.id,@user_obj.roles.include?(role),{:id=>"checkbox-#{role.id}",:class=>"hiddenCheckbox"} %>
+                    
                     <%end %>
                 </div>
             </div>
@@ -244,49 +247,44 @@
                 notes
             </div>
             <!--<div class="rcNotes">
-                Here is a note about shomething 
-                to do with this account <img src="/assets/add-notes.png" class="addNotesPos" />
+            Here is a note about shomething
+            to do with this account <img src="/assets/add-notes.png" class="addNotesPos" />
             </div><span class="noteAuthor">10/22/2011 by k.keane</span>
             <div class="rcNotes">
-                Here is a note about shomething
-                to do with this account
+            Here is a note about shomething
+            to do with this account
             </div>
             <span class="noteAuthor">10/22/2011 by k.keane</span>
             <div class="rcNotes">
-                Here is a note about shomething
-                to do with this account
+            Here is a note about shomething
+            to do with this account
             </div>
             <span class="noteAuthor">10/22/2011 by k.keane</span>
             <div class="clear">
             </div>
             <div class="seeMore">
-                <a href="#">see more</a>
+            <a href="#">see more</a>
             </div>-->
         </div>
         <!-- end of third column -->
-		
         <div class="clear ueBdrBottom">
         </div>
-		
+        <%end %>
         <div class="left">
-            <%= button_to "Cancel", '/users',:class=>'btnAshGrey',:method=>"get" %>
+            <button class="secondary" onclick="window.location.href='/users';">
+                Cancel
+            </button>
         </div>
-		
         <div class="right">
-            <%=f.submit "Save",:class=>"btnGreen" %>
+            <button class="primary" type="submit" onclick="$('#<%=@user_obj.new_record? ? "new_user": "edit_user_#{params[:id]}"%>').submit();">
+                Save
+            </button>
         </div>
     </div>
     <!-- end of black table -->
-<%end %>
 </div>
 <%= javascript_include_tag "activatables" %>
 <script type="text/javascript">
-activatables('page', ['page-1', 'page-2']);
+    activatables('page', ['page-1', 'page-2']);
 </script>
-<%= javascript_include_tag "prettyCheckboxes" %>
-<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-				$('#checkboxDemo input[type=checkbox]').prettyCheckboxes();
-				$('.inlineRadios input[type=radio]').prettyCheckboxes({'display':'inline'});
-			});
-</script>
+
