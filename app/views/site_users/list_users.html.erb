@@ -31,6 +31,16 @@
         			
         		})
         	})
+						function show_user(id){
+				$.ajax({
+			type: "get",
+			url: '<%="/sites/#{params[:site_id]}/site_users/"%>' + id,
+			success: function(data){
+				$('#user_details').html(data);
+			},
+	});
+			}
+
         </script>
 
 <div class="users-main">
@@ -84,7 +94,7 @@
 				 									<div class="overview">
 				    									<ul class="ConLibra">
 				    										<%@site_users.each_with_index do |s_u|%>
-				    										<li class="<%= cycle('', 'alt') %>" id ="<%=s_u.user.id%>_detail">
+				    										<li class="<%= cycle('', 'alt') %>" id ="<%=s_u.user.id%>_detail" onclick="show_user('<%=s_u.id%>')">
 				    											<span class="userName"><span class="pointer"></span> <%=s_u.user.username%><span class="status">
 				    												<%if s_u.user.active%>
 																	<img src="/assets/btnMarkYes.png" border="0">

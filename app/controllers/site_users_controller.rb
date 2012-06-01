@@ -57,6 +57,12 @@ class SiteUsersController < ApplicationController
     redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
   end
   
+  def show
+    @site_user = SiteUser.find(params[:id])
+    @user_obj = @site_user.user
+    render :layout => false
+  end
+  
   protected
 
   def setup
