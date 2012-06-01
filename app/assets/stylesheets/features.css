@@ -94,7 +94,7 @@ padding-left:7px;
     width: 940px;
 }
 .featuresMain #scrollbar1 .overview {
-    width: 925px;
+    width: 940px;
 	left:0;
 }
 .sslBg .rowDiv dl {
@@ -481,7 +481,8 @@ margin:10px 0 0 5px;
 /*15-May-2012*/
 .vendorFeatures .site-users {
     margin-bottom: 30px;
-    width: 729px;
+    width: 713px;
+	margin-left:8px;
 }
 
 .vendorFeatures .site-users .userName .pointer {
@@ -1164,9 +1165,11 @@ margin: 10px 34%;
     font-size: 14px;
     height: 30px;
     margin: 0;
-    padding-left: 5px;
-    padding-right: 18px;
+    padding-left: 24px;
+   padding-right: 7px;
     padding-top: 5px;
+	color:#fff;
+	width:200px;
 }
 
 .couponWrapper .userPanel .showUser {

@@ -231,7 +231,7 @@ select.graySelect{
 	clear:both;
 	width:100%;
 	min-height:500px;
-	padding: 0 0 0 10px;
+	/*padding: 0 0 0 10px;*/
 	margin-bottom:20px;
 }
 .themes-board{
