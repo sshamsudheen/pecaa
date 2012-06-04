@@ -129,6 +129,7 @@ Mystore3::Application.routes.draw do
       get 'list_groups', :on => :collection
       get 'new_group', :on => :collection
       get '/user_details/:user_id', :on => :collection, :to => 'site_users#user_details'
+      get 'delete', :on => :member
     end
     
     resources :site_ecomm do
