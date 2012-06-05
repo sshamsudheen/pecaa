@@ -50,4 +50,11 @@ $('.pageLayout').click(function(){
   $(this).attr('style', 'border:1px;');
   return false;
 });
+
+$("#new_site_page").live('keydown', function(e){
+  if (e.keyCode == 13){
+    $(this).submit();
+  }
+});
+
 </script>
