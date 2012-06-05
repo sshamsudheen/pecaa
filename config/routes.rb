@@ -148,6 +148,9 @@ Mystore3::Application.routes.draw do
       get 'product_inventory', :on => :member
       get 'create_inventory', :on => :member
       get 'update_pi', :on => :member, :to => 'products#update_intentory'
+      get 'update_product', :on => :member, :to => 'products#update'
+      get 'destroy_product', :on => :member, :to => 'products#delete'
+      
       
       resources :product_videos do
         get 'update_pvid', :on => :member, :to => 'product_videos#update'
