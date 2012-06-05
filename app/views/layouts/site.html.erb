@@ -109,7 +109,7 @@ $('#cart div.ui-droppable').html(data)
       					<li class="content <%=site_top_nav('content')%>"      rel=<%=set_link("search_site_site_page_content_libraries_path", @site, site_content_link(@site))%>></li>
       					<li class="theme <%=site_top_nav('theme')%>" rel=<%=set_link("site_site_styles_path", @site)%>></li>
       					<li class="optional <%=site_top_nav('optional')%>" rel='/sites/<%=params[:site_id]%>/optional'></li>
-  						  <li class="users  <%=site_top_nav('users')%>" rel=<%=set_link("site_site_users_path", @site)%>></li>
+  						  <li class="users  <%=site_top_nav('users')%>" rel="/sites/<%=params[:site_id]%>/site_users/list_users"></li>
       					<li class="done <%=site_top_nav('done')%>" rel="/sites/<%=@site.id%>/done"></li>
       				</ul>
       			</div>

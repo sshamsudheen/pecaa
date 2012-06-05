@@ -1,6 +1,6 @@
 .content-section .ctrlTabSection{
 	width:970px;
-	margin:20px 0 20px 15px;
+	margin:10px 0 20px 15px;
 	position: relative;
 }
 .content-section .ctrlTabSection .ctrl-footer{
@@ -55,7 +55,7 @@
 	margin:0;
 	padding:0;
 	display:inline-block;
-	padding:18px 15px;
+	padding:18px 12px;
 }
 .content-section .ctrlTabs ul li.active{
 	background:#FFF;
@@ -77,8 +77,13 @@
 	background:#FFF;
 	border-radius:6px;
 	min-height: 550px;
-	text-align: left;
-	padding:30px 20px;
+	position: relative;
+    text-align: left;
+    z-index: 999;
+	padding:10px 20px;
+	margin-top:-6px;
+	-moz-box-shadow: 1px 2px 2px #999;
+	-webkit-box-shadow: 1px 2px 2px #999;
 }
 .content-section .ctrlTabContent .themeSection{
 	margin-bottom:35px;
@@ -269,4 +274,36 @@
     font-weight: bold;
     padding: 6px 80px;
     margin-top:20px;
+}
+.ueNavHolder {
+	margin:15px auto 0px auto; 
+	width:962px;
+	overflow:hidden
+}
+
+.ueNavMid {
+	float:left; width:944px; background:url(img/ue-nav-bg.png) repeat-x left top; height:47px;
+}
+
+.ueNav {
+	font:normal 18px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px;
+}
+
+.ueNav li {
+	list-style-type:none; text-decoration:none; margin-right:5px;
+}
+
+.ueNav li a {
+	float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:0px 0px 0px 0px; height:47px;
+}
+
+.ueNav li a span {
+	float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:12px 20px 0px 20px; height:47px;
+}
+
+.ueNav li a:hover, .ueNav li.select a {
+	float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666666; background:url(img/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 30px 0px 0px; text-decoration:none;
+}
+.ueNav li:hover span, .ueNav li.select span {
+	font-size: 22px; background:url(img/ue-nav-bg.png) no-repeat left bottom; height:35px; float:left; padding:7px 0 5px 30px; text-decoration:none; color:#666666;
 }

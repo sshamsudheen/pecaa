@@ -5,8 +5,8 @@ class Video < ActiveRecord::Base
   has_attached_file :source
 
   # Paperclip Validations
-#  validates_attachment_presence :source
-#  validates_attachment_size :source, :less_than=>30.megabyte
+  validates_attachment_presence :source
+  validates_attachment_size :source, :less_than=>30.megabyte
 #  validates_attachment_content_type :source, :content_type => ['video/mp4', 'video/mpeg', 'video/flv', 'video/f4v', 'video/x-flv', 'video/x-msvideo']
 #  validates_attachment_content_type :source, :content_type => 'video/quicktime'
 
@@ -50,19 +50,13 @@ class Video < ActiveRecord::Base
 
   # This method creates the ffmpeg command that we'll be using
   def convert_command
-    flv = File.join(File.dirname(source.path), "#{filename}.flv")
+    flv = File.join(File.dirname(source.path), "#{id}.flv")
     File.open(flv, 'w')
-
-#    command = <<-end_command
-#      ffmpeg -i #{ source.path } -ar 22050 -ab 32 -acodec mp3
-#    -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ flv }
-#end_command
-#    command = <<-end_command
-#      ffmpeg -i #{ source.path } -f flv -vcodec copy -acodec copy #{id}.flv
-#end_command
+    
     command = <<-end_command
-      ffmpeg -i #{ source.path } -ar 22050 -ab 32 -acodec copy -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{flv}
-end_command
+      ffmpeg -i #{ source.path } -ar 22050 -ab 32 -acodec mp3 
+    -s 480x360 -vcodec flv -r 25 -qscale 8 -f flv -y #{ flv }
+    end_command
     command.gsub!(/\s+/, " ")
   end
 

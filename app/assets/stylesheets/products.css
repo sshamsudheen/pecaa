@@ -31,7 +31,7 @@
 }
 .main-nav ul li.payments.active {
 	background: url(img/btn_payments_on.png) no-repeat;
-	width: 84px;
+	width: 120px;
 }
 .main-nav ul li.taxes {
 	background: url(img/btn_taxes.png) no-repeat;
@@ -39,7 +39,7 @@
 }
 .main-nav ul li.taxes.active {
 	background: url(img/btn_taxes_on.png) no-repeat;
-	width: 89px;
+	width: 92px;
 }
 .main-nav ul li.shipping {
 	background: url(img/btn_shipping.png) no-repeat;
@@ -47,7 +47,7 @@
 }
 .main-nav ul li.shipping.active {
 	background: url(img/btn_shipping_on.png) no-repeat;
-	width: 111px;
+	width: 114px;
 }
 .main-nav ul li.features {
 	background: url(img/btn_features.png) no-repeat;
@@ -278,7 +278,9 @@ float:left;
 padding-left:40px;	
 background-position:20px 5px
 }
-
+.pages-wrapper {
+    width: 980px;
+}
 
 /* categroy section*/
 
@@ -295,7 +297,7 @@ background-position:20px 5px
 }
 .categoryMain .site-users {
 	margin-bottom: 30px;
-	width: 95%;
+	width: 970px;
 }
 .categoryMain #scrollbar1 {
 	width: 100%;
@@ -308,7 +310,7 @@ background-position:20px 5px
 }
 .categoryMain ul.ConLibraHeads li span.userName {
 	display: inline-block;
-	width: 450px;
+	width: 450px;	
 }
 .categoryMain ul.ConLibraHeads li span.group {
 	border: 0 none;
@@ -1818,7 +1820,7 @@ z-index:300;
 }
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#products1 .viewport { height: 400px; overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
+#products1 .viewport { overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
 #products1 ul.ConLibra{border:0}
 /* for products page grid styles */
 /* Tiny Scrollbar */
@@ -1835,7 +1837,7 @@ z-index:300;
 	color: #3d9642;
 }
 
-
+.site-users .graphContainer{margin-bottom:10px;}
 .status .on {
 	background: url("img/bg_On.png") no-repeat scroll 0 0 transparent;
 	display: block;
