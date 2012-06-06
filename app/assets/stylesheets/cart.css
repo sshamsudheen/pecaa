@@ -961,10 +961,9 @@ margin-left:0;
 }
 
 .noEditone {
-      background-color: #ADB5BE;
-      border: 1px solid #999999;
-      border-radius: 4px 4px 4px 4px;
-      color: #FFFFFF;
-      padding: 2px;
-     
+  background-color: #ADB5BE;
+  border: 1px solid #999999;
+  border-radius: 4px 4px 4px 4px;
+  color: #FFFFFF;
+  padding: 2px;
 }
