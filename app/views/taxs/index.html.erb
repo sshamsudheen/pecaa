@@ -14,14 +14,14 @@
         <dt>tax method:</dt>
         <dd>
           <% tax_gateway_id = TaxGateway.find_by_name('Striketron').id %>
-          <%= radio_button_tag 'site[tax]', tax_gateway_id, @site.tax_gateway_id == tax_gateway_id, :id => 'tax_payment_eazy' %> easy tax rates
+          <%= radio_button_tag 'site[tax]', tax_gateway_id, @site.tax_gateway_id == tax_gateway_id, :id => 'tax_payment_eazy', :class => 'styled' %> easy tax rates
           </dd>
       </dl>
       <dl>
         <dt></dt>
         <dd>
           <% custom_tax_gateway_id = TaxGateway.find_by_name('Custom Tax Rates').id %>
-          <%= radio_button_tag 'site[tax]', custom_tax_gateway_id, (@site.tax_gateway_id.blank? || @site.tax_gateway_id == custom_tax_gateway_id), :id => 'tax_payment_custom' %> custom tax rates
+          <%= radio_button_tag 'site[tax]', custom_tax_gateway_id, (@site.tax_gateway_id.blank? || @site.tax_gateway_id == custom_tax_gateway_id), :id => 'tax_payment_custom', :class => 'styled'  %> custom tax rates
           </dd>
       </dl>
     </div>

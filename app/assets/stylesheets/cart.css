@@ -3,7 +3,7 @@
 
 /* sankar buttons*/
 
-.main-nav ul li.payments{
+/*.main-nav ul li.payments{
 	background: url(img/btn_payments.png) no-repeat;
 	width: 120px;
 }
@@ -79,14 +79,14 @@
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-	background:url(img/bg_vline.png) repeat-y ;	
+	background:url(img/bg_vline.png) repeat-y ;
 	background-position:top;
 	width:665px;
 	margin-top:5px;
 	height:500px;
 }
 .cartColumsMain2{
-	background:url(img/bg_vline2.png) repeat-y ;	
+	background:url(img/bg_vline2.png) repeat-y ;
 	background-position:top;
 	width:665px;
 	margin-top:5px;
@@ -103,7 +103,7 @@
 }
 .cartColumsMain .rowDiv{
 	float:left;
-	padding:5px;	
+	padding:5px;
 	margin:0;
 	display:inline;
 	height:100px;
@@ -112,11 +112,11 @@
 
 .firstRaw .rowDiv1{
 	float:left;
-	padding:5px;	
+	padding:5px;
 	margin:0;
 	display:inline;
 	height:100px;
-	background:url(img/bg_vline2.png) repeat-y ;	
+	background:url(img/bg_vline2.png) repeat-y ;
 }
 
 .firstRaw .rowDiv1 h2{
@@ -136,7 +136,7 @@
 }
 .rowDiv dl{
 	width:400px;
-	margin-left:160px;	
+	margin-left:160px;
 }
 .rowDiv dt{
 	text-align:right;
@@ -146,23 +146,23 @@
 
 .rowDiv dt{
 	float:left;
-	width:160px;	
+	width:160px;
 	margin:0;
 	padding:5px 5px 0 0;
 }
 .rowDiv dd{
 	float:left;
-	width:150px;	
+	width:150px;
 	margin:0;
 	padding:5px 0px 0 15px;
 	color:#fff;
 }
 .dlCont{
-	margin-top:-5px;	
+	margin-top:-5px;
 }
 .cartColumsMain .rowDiv2{
 	float:left;
-	padding:5px;	
+	padding:5px;
 	margin:10px 0;
 }
 
@@ -175,11 +175,11 @@
 
 
 .noMargin{
-	margin-left:10px !important;	
+	margin-left:10px !important;
 }
 .rowDiv2 dl{
 	width:400px;
-	margin-left:160px;	
+	margin-left:160px;
 }
 .rowDiv2 dt{
 	text-align:right;
@@ -187,23 +187,23 @@
 	color:#666;
 }
 .rowDiv2 dd{
-	color:#666;	
+	color:#666;
 }t
 
 .rowDiv2 dt,dd{
 	float:left;
-	width:150px;	
+	width:150px;
 	margin:0;
 	padding:5px 10px ;
 }
 .inputReadOnly{
 	background-color:#f5f5f5;
 	border:none;
-	padding:5px;		
+	padding:5px;
 }
 .divAlpha{
 	opacity:0.4;
-filter:alpha(opacity=40);	
+filter:alpha(opacity=40);
 }
 
 .btnGreen{
@@ -222,18 +222,19 @@ h2 span{
 	padding-top:10px;
 }
 img{
-	border:none;	
+	border:none;
 }
 	
 /* sankar button end*/
 
 .cartCollumsBottom{
-	width:900px;	
+	width:900px;
 }
 
 .couponWrapper .site-users {
     margin-bottom: 30px;
     width: 737px;
+
 }
 .cartCollumsBottom .site-users .title, .usersLeftPane .title {
     color: #999;
@@ -253,7 +254,7 @@ img{
 	border-radius:4px;
 	color:#999999;
 	border:solid 1px #666667;
-	height:15px;	
+	height:15px;
 }
 .inputBox2{
 	border-radius:4px;
@@ -519,7 +520,7 @@ img{
 	bottom:20px;
 }
 .buttonsDiv .redBtn{
-	margin-right:40px;	
+	margin-right:40px;
 }
 .cartCollumsBottom .site-users ul.ConLibraHeads li {
     background: url("img/bg_grayGrain.gif") repeat scroll 0 0 transparent;
@@ -553,11 +554,11 @@ span.rBtnOff {
 	vertical-align:top;
 }
 .status .on{
-	display:inline-block;	
+	display:inline-block;
 }
 
 .status .off{
-	display:inline-block;	
+	display:inline-block;
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.location {
@@ -604,7 +605,7 @@ span.rBtnOff {
 	background:#fff url(img/bg_contentSection.png) repeat-x !important;
 }
 .cartColumsMain{
-	background:url(img/bg_vline.png) repeat-y ;	
+	background:url(img/bg_vline.png) repeat-y ;
 	background-position:top;
 	width:665px;
 	margin-top:5px;
@@ -612,7 +613,7 @@ span.rBtnOff {
 }
 .cartColumsMain .rowDiv{
 	float:left;
-	padding:5px;	
+	padding:5px;
 	margin:0;
 	display:inline;
 	height:100px;
@@ -627,7 +628,7 @@ span.rBtnOff {
 .rowDiv dl{
 	width:400px;
 	margin-left:160px;
-	margin-top:0px;	
+	margin-top:0px;
 }
 .rowDiv dt{
 	text-align:right;
@@ -637,20 +638,20 @@ span.rBtnOff {
 
 .rowDiv dt{
 	float:left;
-	width:160px;	
+	width:160px;
 	margin:0;
 	padding:5px 5px 0 0;
 }
 .rowDiv dd{
 	float:left;
-	width:150px;	
+	width:150px;
 	margin:0;
 	padding:5px 0px 0 15px;
 }
 
 .cartColumsMain .rowDiv2{
 	float:left;
-	padding:5px;	
+	padding:5px;
 	margin:10px 0;
 }
 .rowDiv2 h2{
@@ -661,7 +662,7 @@ span.rBtnOff {
 }
 .rowDiv2 dl{
 	width:400px;
-	margin-left:160px;	
+	margin-left:160px;
 }
 .rowDiv2 dt{
 	text-align:right;
@@ -669,23 +670,23 @@ span.rBtnOff {
 	color:#666;
 }
 .rowDiv2 dd{
-	color:#666;	
+	color:#666;
 }
 
 .rowDiv2 dt,dd{
 	float:left;
-	width:150px;	
+	width:150px;
 	margin:0;
 	padding:5px 10px ;
 }
 .inputReadOnly{
 	background-color:#f5f5f5;
 	border:none;
-	padding:5px;		
+	padding:5px;
 }
 .divAlpha{
 	opacity:0.4;
-	filter:alpha(opacity=40);	
+	filter:alpha(opacity=40);
 }
 
 .btnGreen{
@@ -704,7 +705,7 @@ h2 span{
 	padding-top:10px;
 }
 img{
-	border:none;	
+	border:none;
 }
 
 .noEdit {
@@ -713,18 +714,19 @@ img{
     border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
     padding: 2px;
-}	
+	width:auto !important;
+}
 
 .inputReadOnly{
 	background-color:#f5f5f5;
 	border:none;
-	padding:5px;		
+	padding:5px;
 }
 .divAlpha{
 	opacity:0.4;
-	filter:alpha(opacity=40);	
+	filter:alpha(opacity=40);
 }
-.popWindow {
+.popWindowCart1 {
     background-image: url("img/popWindow_2.png");
     border: 1px solid #5C5E5F;
     border-radius: 6px 6px 6px 6px;
@@ -733,7 +735,7 @@ img{
     position: relative;
     width: 550px;
 }
-.popWindow .midSection {
+.popWindowCart1 .midSection {
     background-color: #FFFFFF;
     box-shadow: 0 0 3px #999999 inset;
     float: left;
@@ -741,14 +743,14 @@ img{
     padding: 8px;
     width: 94%;
 }
-.popWindow .footSection {
+.popWindowCart1 .footSection {
     bottom: 0;
     float: left;
     padding: 10px;
     position: absolute;
     width: 96%;
 }
-.popWindow h2 {
+.popWindowCart1 h2 {
     color: #FFFFFF;
     float: left;
     margin: 10px 0 0 10px;
@@ -813,7 +815,9 @@ img{
     background-image: url("img/pOptionsleftBg.png");
     float: left;
     height: 138px;
-    width: 270px;
+    width: 320px;
+	 border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
 }
 .CartOptions .colum-section {
     float: right;
@@ -899,7 +903,7 @@ margin-left:0;
 }
 .CartOptions .cartGrid{
     float: right;
-    width: 540px;
+    width: 570px;
 }
 .CartOptions .site-users .userGridHeader {
     margin-left: 0px;
@@ -916,7 +920,7 @@ margin-left:0;
     display: inline-block;
     padding-left: 10px;
     text-align: left;
-    width:156px;
+    width:175px;
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.cName {
@@ -945,13 +949,13 @@ margin-left:0;
 }
 
 .margin{
-	margin:10px 5px 0 10px;	
+	margin:10px 5px 0 10px;
 }
 
 .noHeight{
-	min-height:150px !important	
+	min-height:150px !important
 }
 
 .nobMargin{
-	margin-bottom:0px  !important	
+	margin-bottom:0px  !important
 }

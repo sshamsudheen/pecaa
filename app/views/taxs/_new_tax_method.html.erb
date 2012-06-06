@@ -1,7 +1,8 @@
-<div class="popWindow" id="new_tax" style="display:none">
+<div  id="new_tax" style="display:none">
+  <div class="popWindowCart1" >
   <div class="headSection">
     <h2>New tax rate</h2>
-    <span><a href="#"><img src="css/img/helpIcon.png" width="20" height="20"></a></span></div>
+    <span><a href="#"><img src="/assets/helpIcon.png" width="20" height="20"></a></span></div>
   <%= form_for(TaxGatewayAttribute.find_by_tax_gateway_id(custom_tax_gateway_id), :url => site_taxs_path(@site.id), :method => 'post' ) do |f| %>
   <div class="midSection">
     <div class="cartColumsMain3">
@@ -48,4 +49,5 @@
     <%= submit_tag('Save Changes',:class => 'greenBtn') %>
   </div>
           <% end %>
+    </div>
 </div>
