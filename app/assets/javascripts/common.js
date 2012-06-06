@@ -51,6 +51,15 @@ $(document).ready(function() {
     $(this).attr("id", "enable_is_cvv");
   });
 
+  $("#flat_shipping_rate_flat_rate").live('click',function(){
+    $("#flat_rate_option").show();
+    $("#weight_rate_option").hide();
+  });
+
+  $("#flat_shipping_rate_weight_rate").live('click',function(){
+    $("#flat_rate_option").hide();
+    $("#weight_rate_option").show();
+  });
 
 
 

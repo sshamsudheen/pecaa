@@ -169,6 +169,15 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.datetime "updated_at"
   end
 
+  create_table "custom_shipping_ranges", :force => true do |t|
+    t.string   "start_range"
+    t.string   "end_range"
+    t.string   "shipping_amount"
+    t.integer  "shipping_gateway_attribute_value_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "external_links", :force => true do |t|
     t.string   "name"
     t.string   "link_url"

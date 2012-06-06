@@ -133,6 +133,14 @@ ModifierType.create(:name => '$')
 end
 
 
+custom_shipping = ShippingGateway.create(:name => 'custom_shipping')
+custom_shipping.shipping_gateway_attributes.create(:name => 'name')
+custom_shipping.shipping_gateway_attributes.create(:name => 'display_name')
+custom_shipping.shipping_gateway_attributes.create(:name => 'modifier_type')
+custom_shipping.shipping_gateway_attributes.create(:name => 'is_enable')
+
+CustomShippingMethod.create(:name => 'flat_rate')
+CustomShippingMethod.create(:name => 'weight_rate')
 #no_payment = ShippingGateway.create(:type => 'custom ')
 
 
