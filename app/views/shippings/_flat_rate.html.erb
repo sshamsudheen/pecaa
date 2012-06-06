@@ -43,7 +43,7 @@
                                 <%= shipping_gateway_attribute.text_field(:display_name, :class => {:size => 20}, :value => get_attribute_values["display_name"]) %>
                                 </span></div>
                             <div class="group next"><span class="key">price modifier:</span> <span class="val">
-                              <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', get_attribute_values["modifier_type"]), :class => "noEdit selectW") %>
+                              <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', get_attribute_values["modifier_type"]), :class => "noEditone selectW") %>
                                 </span>
                             </div>
                             <div class="group"><span class="key"></span> <span class="val">

@@ -35,7 +35,7 @@
                                 <%= shipping_gateway_attribute.text_field(:display_name, :class => {:size => 20}, :value => @site_payment_gateway.get_value_of("display_name")) %>
                                 </span></div>
                             <div class="group next"><span class="key">price modifier:</span> <span class="val">
-                              <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEdit selectW") %>
+                              <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEditone selectW") %>
                                 </span>
                             </div>
                             <div class="group"><span class="key"></span> <span class="val">
@@ -134,7 +134,7 @@
                                                       <%= shipping_gateway_attribute.text_field(:display_name, :class => {:size => 20}, :value => @site_payment_gateway.get_value_of("display_name")) %>
                                                       </span></div>
                                                   <div class="group next"><span class="key">price modifier:</span> <span class="val">
-                                                    <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEdit selectW") %>
+                                                    <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEditone selectW") %>
                                                       </span>
                                                   </div>
                                                   <div class="group"><span class="key"></span> <span class="val">

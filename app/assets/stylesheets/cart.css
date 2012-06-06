@@ -959,3 +959,12 @@ margin-left:0;
 .nobMargin{
 	margin-bottom:0px  !important
 }
+
+.noEditone {
+      background-color: #ADB5BE;
+      border: 1px solid #999999;
+      border-radius: 4px 4px 4px 4px;
+      color: #FFFFFF;
+      padding: 2px;
+     
+}

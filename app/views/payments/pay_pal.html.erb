@@ -29,7 +29,7 @@
           <%= render :partial => "payment_attributes", :locals => {:payment_gateway_attribute => payment_gateway_attribute} %>
           <dt>select payment Method :</dt>          
           <dd>
-            <%= select("payment_gateway_attribute", "payment_method", [["standard payments", "standard payments"], ["website payments pro", "website payments pro"]], {}, :class => "noEdit") %>
+            <%= select("payment_gateway_attribute", "payment_method", [["standard payments", "standard payments"], ["website payments pro", "website payments pro"]], {}, :class => "noEditone") %>
           </dd>
           <dt>&nbsp;</dt>
           <dd><input name="" type="submit" value="save changes" class="btnGreen"></dd>

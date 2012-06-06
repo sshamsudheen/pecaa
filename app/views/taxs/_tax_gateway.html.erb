@@ -15,7 +15,7 @@
                 <dl>
                   <dt>tax integration :</dt>
                   <dd>
-                    <%= select_tag "tax_gateway_id", options_from_collection_for_select(TaxGateway.where("name != '#{TaxGateway::Gateway::CUSTOM}'"), 'id', 'name'), :class => "noEdit" %>                    
+                    <%= select_tag "tax_gateway_id", options_from_collection_for_select(TaxGateway.where("name != '#{TaxGateway::Gateway::CUSTOM}'"), 'id', 'name'), :class => "noEditone" %>
                   </dd>
                   <dt>user name :</dt>
                   <dd>

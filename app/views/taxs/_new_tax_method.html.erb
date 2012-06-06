@@ -14,19 +14,19 @@
           <dt>location type :</dt>
           <dd>
 
-            <%= select_tag "tax_gateway_attribute[location]", options_for_select(TaxGatewayAttributeValue::Location::TYPE), :class => "noEdit" %>
+            <%= select_tag "tax_gateway_attribute[location]", options_for_select(TaxGatewayAttributeValue::Location::TYPE), :class => "noEditone" %>
 
           </dd>
           <div style="display:block" id="country_names">
           <dt>choose country :</dt>
           <dd>
-              <%= country_select("tax_gateway_attribute", "country_type", nil, {}, :class => "noEdit") %>
+              <%= country_select("tax_gateway_attribute", "country_type", nil, {}, :class => "noEditone") %>
           </dd>
           </div>
             <div style="display:none" id="state_names">
               <dt>choose state :</dt>
             <dd>
-              <%= state_select('tax_gateway_attribute', 'state_type', 'US', {}, :class => "noEdit") %>
+              <%= state_select('tax_gateway_attribute', 'state_type', 'US', {}, :class => "noEditone") %>
              </dd>
             </div>
             <div style="display:none" id="zip_code">
