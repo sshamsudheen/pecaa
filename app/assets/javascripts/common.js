@@ -27,6 +27,27 @@ $(document).ready(function() {
     $(this).attr("id", "enable_is_test_mode");
   });
 
+  $("#enable_is_enable").live('click', function(){
+    $(this).attr("class", "off");
+    $(this).attr("id", "disable_is_enable");
+    $("#shipping_gateway_attribute_is_enable").attr("value", 0);
+  });
+
+  $("#addFlatBtn").live('click', function(){    
+    $(category_main[0]).insertAfter(".categoryMain");
+  });
+
+  $("#addWeightBtn").live('click', function(){
+    $(category_main_weight[0]).insertAfter(".categoryMainWeight");
+  });
+
+
+  $("#disable_is_enable").live('click',function(){
+    $(this).attr("class", "on");
+    $("#shipping_gateway_attribute_is_enable").attr("value", 1);
+    $(this).attr("id", "enable_is_enable");
+  });
+
   $("#enable_authorize_funds_only").live('click', function(){
     $(this).attr("class", "off");
     $(this).attr("id", "disable_authorize_funds_only");

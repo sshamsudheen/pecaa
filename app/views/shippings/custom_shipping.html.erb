@@ -23,8 +23,17 @@
           </dl>
         </div>
       </div>
-      <%= render 'flat_rate' %>
-      <%= render 'weight_rate' %>
+      <% if @site_payment_gateway.custom_get_value_of("name", CustomShippingMethod.where(:name => 'flat_rate').last.id).blank? %>
+        <%= render 'initial_flat_rate' %>
+      <% else %>
+        <%= render 'flat_rate' %>
+      <% end %>
+      <% if @site_payment_gateway.custom_get_value_of("name", CustomShippingMethod.where(:name => 'weight_rate').last.id).blank? %>
+          <%= render 'initial_weight_rate' %>
+      <% else %>
+        <%= render 'weight_rate' %>
+      <% end %>
+
       </div>
     </div>
 
