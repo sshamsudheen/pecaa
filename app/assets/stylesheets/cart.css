@@ -3,15 +3,7 @@
 
 /* sankar buttons*/
 
-/*.main-nav ul li.payments{
-	background: url(img/btn_payments.png) no-repeat;
-	width: 120px;
-}
 
-.main-nav ul li.payments.active{
-	background: url(img/btn_payments_on.png) no-repeat;
-	width: 120px;
-}
 .upstypeDiv{
 	display:block;
 	width:500px;
@@ -23,53 +15,7 @@
 	float:left;
 }
 
-/*.main-nav ul li.taxes{
-	background: url(img/btn_taxes.png) no-repeat;
-	width: 93px;
-}
 
-.main-nav ul li.taxes.active{
-	background: url(img/btn_taxes_on.png) no-repeat;
-	width: 93px;
-}
-.main-nav ul li.shipping{
-	background: url(img/btn_shipping.png) no-repeat;
-	width: 114px;
-}
-
-.main-nav ul li.shipping.active{
-	background: url(img/btn_shipping_on.png) no-repeat;
-	width: 114px;
-}
-
-.main-nav ul li.features{
-	background: url(img/btn_features.png) no-repeat;
-	width: 115px;
-}
-
-.main-nav ul li.features.active{
-	background: url(img/btn_features_on.png) no-repeat;
-	width: 115px;
-}
-
-.main-nav ul li.orders{
-	background: url(img/btn_orders.png) no-repeat;
-	width: 101px;
-}
-.main-nav ul li.orders.active{
-	background: url(img/btn_orders_on.png) no-repeat;
-	width: 101px;
-}
-
-.main-nav ul li.reports{
-	background: url(img/btn_reports.png) no-repeat;
-	width: 100px;
-}
-.main-nav ul li.reports.active{
-	background: url(img/btn_reports_on.png) no-repeat;
-	width: 100px;
-}
-*/
 .cartBg{
 	clear:both;
 	width:95%;
@@ -224,7 +170,7 @@ h2 span{
 img{
 	border:none;
 }
-	
+
 /* sankar button end*/
 
 .cartCollumsBottom{
@@ -325,12 +271,12 @@ img{
 }
 
 .cartCollumsBottom #scrollbar1 .overview {
-   
+
     width: 875px;
 }
 
 .cartCollumsBottom .site-users ul.ConLibra li span.userName {
-  
+
     width: 507px;
 	text-align:left;
 	padding-left:10px
@@ -399,7 +345,7 @@ img{
 	width:130px;
 	height: 19px;
     padding-top: 5px;
-    vertical-align: top;	
+    vertical-align: top;
 }
 .customTax .site-users {
     margin-bottom: 30px;
@@ -415,7 +361,7 @@ img{
 
 .customTax .usersLeftPane .userDetailSet {
     margin-bottom: 10px;
-  
+
 
 }
 .customTax .inputBg{
@@ -768,7 +714,7 @@ img{
 }
 .extForm{
 	margin:40px  0 0 230px;
-	
+
 	overflow: hidden;
 }
 .extForm .form-row{
@@ -784,7 +730,7 @@ img{
 	width:auto;
 	text-align: right;
 	margin-right:5px;
-	
+
 }
 .extForm .form-row span.val{
 	width:250px;
@@ -851,7 +797,7 @@ img{
 }
 .CartOptions .colum-section{
 	  margin-right: 10px;
-	
+
 }
 .CartOptions .group .val input[type="text"] {
     background: none repeat scroll 0 0 #F5F5F5;
@@ -878,7 +824,7 @@ img{
 }
 
 .cartGrid #scrollbar1 .shadows{
-margin-left:0;	
+margin-left:0;
 }
 .cartGrid .site-users ul.ConLibraHeads li {
     border-top: 1px solid #333333;
@@ -894,7 +840,7 @@ margin-left:0;
 	    border-top-left-radius: 0px;
 }
 .cartGrid .site-users .userGridFooter{
- margin-left: 0px !important;	
+ margin-left: 0px !important;
 }
 .flatRate{
     margin-bottom: 30px;
@@ -935,7 +881,7 @@ margin-left:0;
 }
 
 .categoryMain ul.ConLibra li span.close1 {
- 
+
     height: 19px;
     padding-top: 3px;
     text-align: center;
@@ -960,10 +906,12 @@ margin-left:0;
 	margin-bottom:0px  !important
 }
 
-.noEditone {
-  background-color: #ADB5BE;
-  border: 1px solid #999999;
-  border-radius: 4px 4px 4px 4px;
-  color: #FFFFFF;
-  padding: 2px;
+
+.noEdit1 {
+    background-color: #ADB5BE;
+    border: 1px solid #999999;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    padding: 2px;
+    width: 40px;
 }
