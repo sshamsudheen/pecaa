@@ -19,7 +19,7 @@
           
           <dt>select payment gateway :</dt>
           <dd>
-            <%= select("payment_gateway", "id", [["Authorize.net", 4]]) %>            
+            <%= select("payment_gateway", "id", [["Authorize.net", 4]], {}, :class => "noEditone") %>            
           </dd>
         </dl>
       </div>
@@ -49,7 +49,7 @@
           <dd>
             <% CreditCardType.all.each do |credit_card_type| %>
               <label>
-                <%= check_box("credit_card_type[id]", credit_card_type.id, {:class => {:size => 20}, :checked => @site_payment_gateway.credit_card_types.where(:id => credit_card_type.id).blank? ? false : true }, credit_card_type.id, 0) %>
+                <%= check_box("credit_card_type[id]", credit_card_type.id, {:class => "styled", :checked => @site_payment_gateway.credit_card_types.where(:id => credit_card_type.id).blank? ? false : true }, credit_card_type.id, 0) %>
                 <%= credit_card_type.name %></label>
               <br>
               <% end %>

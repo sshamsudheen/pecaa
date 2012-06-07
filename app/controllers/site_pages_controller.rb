@@ -30,6 +30,9 @@ class SitePagesController < ApplicationController
   
   def update
     @site_page = SitePage.find(params[:id])
+    if params[:site_page][:is_home_page]
+      @site.site_pages.update_all(:is_home_page => false)
+    end
     if @site_page.update_attributes(params[:site_page])
       flash[:notice] = "#{@site_page.category} was successfully saved"
     else

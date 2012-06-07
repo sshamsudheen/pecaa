@@ -30,9 +30,18 @@ class ProductsController < ApplicationController
       if (params[:featured])
         redirect_to featured_products_site_products_path(@site)
       else
-        redirect_to site_products_path(@site)
+        if request.xhr?
+          render :nothing=> true
+        else
+          redirect_to site_products_path(@site)
+        end
       end
     end
+  end
+  
+  def delete
+    @product.destroy
+    redirect_to site_products_path(@site)
   end
   
   def featured_products

@@ -36,4 +36,10 @@ $('#cancelBtn').click(function(){
     $(document).trigger('close.facebox');
     return false
 });
+$("form").live('keydown', function(e){
+  if (e.keyCode == 13){
+    $(this).submit();
+  }
+});
+
 </script>
