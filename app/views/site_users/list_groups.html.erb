@@ -1,3 +1,9 @@
+ <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
+ <script type="text/javascript">
+        	$(document).ready(function(){
+        		$('#users1').tinyscrollbar();
+        	});
+</script>
 <div class="users-main">
 		    			<div class="pages-wrapper">
 		    				
@@ -49,11 +55,11 @@
     										</ul>
     									</div>
     									<div class="userGridBody">
-    										<div id="scrollbar1">
-    											<div class="scrollbar" style="height: 400px; "><div class="track" style="height: 400px; "><div class="thumb" style="top: 0px; height: 355.55555555555554px; "><div class="end"></div></div></div></div>
+    										<div id="users1">
+    											<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
     											<div class="viewport">
-    												<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
-				 									<div class="overview" style="top: 0px; ">
+    												<!-- <div class="shadows" id="shadow"><span class="topShadow"></span><span class="bottomShadow"></span></div> -->
+				 									<div class="overview">
 				    									<ul class="ConLibra">
 				    										<li class="alt">
 				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
@@ -61,7 +67,7 @@
 				    											<span class="created">08/12/11</span>
 				    											<span class="lastActivity">08/12/11</span>
 				    										</li>
-				    										<li class="selected">
+				    										<li>
 				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
 				    											<span class="group">3456</span>
 				    											<span class="created">08/12/11</span>
@@ -178,11 +184,14 @@
 		    			</div>
 		    		</div>
 <script>
-	$('#form_submit').click(function(){
-          window.location.href = "/sites/<%=params[:site_id]%>/done"
-      })
-      $('#preview_button').click(function(){
-        window.location.href="<%=preview_site_path(@site)%>";
-      });
-      
+	$(document).ready(function(){
+		//validateScroll('users1', 400);
+		//$('#scrollbar1').tinyscrollbar();
+		$('#form_submit').click(function(){
+			window.location.href = "/sites/<%= params[:site_id]%>/done";
+		});
+		$('#preview_button').click(function(){
+			window.location.href="<%= preview_site_path(@site)%>";
+		});
+	})
 </script>

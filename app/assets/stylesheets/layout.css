@@ -217,16 +217,19 @@ select.graySelect{
 	color:#FFF;
 	cursor: pointer;
 	box-shadow: none;
-	padding-right:30px;
+	padding:0 30px 0 5px;
+	font-weight: normal;
 }
 .main-nav button.btn_External{
 	background:url(img/btn_External.png)no-repeat;
 	width: 45px;
 	height:30px;
+	padding:0;
 	border:0;
 	color:#FFF;
 	text-indent:-9999px;
 	cursor: pointer;
+	box-shadow: none;
 }
 .content-section{
 	clear:both;
