@@ -81,6 +81,9 @@ class SitePagesController < ApplicationController
       @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
     end
     
+   if (content = ContentLibrary.find(params[:content_id])) and content.source_type == "Image"
+    content.source.update_attributes(params[:crop].merge(:updated_at => Time.now))
+   end
 
     if params[:is_preview] == "true"
       redirect_to preview_site_path(@site)
