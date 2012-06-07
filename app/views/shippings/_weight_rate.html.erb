@@ -46,12 +46,11 @@
                             </div>
                             <div class="group"><span class="key"></span> <span class="val">
                               <%= link_to destroy_shipping_site_shipping_path(@site.id, :attr_id => shipping_gateway_attr_value.id) do %>
-                                        <img width="61" height="24" src="css/img/btn_delete.jpg">
+                                        <img width="61" height="24" src="/images/btn_delete.png">
                                          <% end %>
 
 
-                                </span>
-                              <span class="val">
+
                                                              <%= submit_tag "save" %>
                                                          </span>
                             </div>
@@ -83,28 +82,28 @@
                                     <% if shipping_gateway_attr_value.order_ranges.blank? %>
                                       <li class="selected alt">
 
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "") %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "") %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "") %></span>
-                                      <span class="close1"><img border="0" src="css/img/btnDelete.png"></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "", :class => "inputWidth") %></span>
+                                      <span class="close1"><img border="0" src="/images/btnDelete.png"></span>
                                     </li>
                                         <li class="selected alt">
 
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "") %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "") %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "") %></span>
-                                      <span class="close1"><img border="0" src="css/img/btnDelete.png"></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "", :class => "inputWidth") %></span>
+                                      <span class="close1"><img border="0" src="/images/btnDelete.png"></span>
                                     </li>
                                     <% else %>
                                     <% shipping_gateway_attr_value.order_ranges.each do |order_range| %>
                                     <li class="selected alt">
 
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", order_range.start_range) %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", order_range.end_range) %></span>
-                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", order_range.shipping_amount) %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", order_range.start_range, :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", order_range.end_range, :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", order_range.shipping_amount, :class => "inputWidth") %></span>
                                       <span class="close1">
                                         <%= link_to destroy_shipping_site_shipping_path(@site.id, shipping_gateway_attr_value.id) do %>
-                                        <img border="0" src="css/img/btnDelete.png">
+                                        <img border="0" src="/images/btnDelete.png">
                                          <% end %>
                                         </span>
                                     </li>
