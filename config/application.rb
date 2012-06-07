@@ -14,6 +14,12 @@ module Mystore3
 #    config.middleware.use "SeoAssist"
 #    config.middleware.use "RedirectLegacyProductUrl"
 
+  Paperclip::Railtie.insert
+
+ # Custom directories with classes and modules you want to be autoloadable.
+ config.autoload_paths += %W(#{Rails.root}/lib)  
+ config.autoload_paths += %W(#{Rails.root}/lib/paperclip_processors)
+ 
     config.to_prepare do
       #loads application's model / class decorators
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|

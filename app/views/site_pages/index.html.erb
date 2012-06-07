@@ -76,30 +76,30 @@
 			</div>
 			<div class="rightBtns">
 			  <a href='<%= new_site_site_page_path(:type=>'page') %>' rel="facebox" style="display:block; float:left;" class="addPage"></a>
-			  <span style="display:block; float:left;">&nbsp;&nbsp;</span>
-    	  <a href='<%= new_site_site_page_path(:type=>'link') %>' rel="facebox" style="display:block; float:left;" class="addLink"></a>
-    	  <span style="clear:both;"></span>
+        <span style="display:block; float:left;">&nbsp;&nbsp;</span>
+        <a href='<%= new_site_site_page_path(:type=>'link') %>' rel="facebox" style="display:block; float:left;" class="addLink"></a>
+        <span style="clear:both;"></span>
 			</div>
 		</div>
   <%= form_tag update_site_site_path(@site.id, :site_pages=>true) do |f| %>
     <%=hidden_field_tag :is_preview, false%>
-	  <div class="subNav">
-  		<div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
-  			<div class="subNav-wrapper">
-  				<div class="subNav-section">
-  					<div>
-  					  <%=radio_button(:site, :site_nav_type, 'dropdown', :class=>"styled", :checked => true)%>use dropdown type
-  					</div>
-  					<div class="dropDownType"><img src="/assets/img_dropdown1.png" border="0"></div>
-  				</div>
-  				<div class="subNav-section">
-  					<div>
-  					  <%=radio_button(:site, :site_nav_type, 'sidebar', :class=>"styled")%>use left sidebar type</div>
-  					<div class="dropDownType"><img src="/assets/img_dropdown2.png" border="0"></div>
-  				</div>
-  			</div>
-  		</div>
-  	</div>
+    <!-- <div class="subNav">
+      <div class="title">Choose Sub Nav Type <span class="help"><a href="#"></a></span></div>
+        <div class="subNav-wrapper">
+          <div class="subNav-section">
+            <div>
+              # <%=radio_button(:site, :site_nav_type, 'dropdown', :class=>"styled", :checked => true)%>use dropdown type
+            </div>
+            <div class="dropDownType"><img src="/assets/img_dropdown1.png" border="0"></div>
+          </div>
+          <div class="subNav-section">
+            <div>
+              # <%=radio_button(:site, :site_nav_type, 'sidebar', :class=>"styled")%>use left sidebar type</div>
+            <div class="dropDownType"><img src="/assets/img_dropdown2.png" border="0"></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
   <% end %>
 </div>
 
@@ -166,6 +166,21 @@
     }});
    return false;
   });
+  
+  $("span.home a").live("click", function(){
+    var link = $(this);
+    $.ajax({
+      type: "GET",
+      url: link.attr('href'),
+      success: function(result){        
+        // var new_rel = link.attr('rel') == 'true' ? 'false' : 'true';
+        // var new_link = (link.attr('rel') == 'true' ? link.attr('href').replace('false', 'true') : link.attr('href').replace('true', 'false'));
+        // var new_class =  link.attr('class') == 'on' ? 'off' : 'on';
+        link.children.("input['radio']")[0].check();
+    }});
+   return false;
+  });
+  
 </script>
 
 <script type="text/javascript">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524175052) do
+ActiveRecord::Schema.define(:version => 20120523151814) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -169,6 +169,15 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.datetime "updated_at"
   end
 
+  create_table "custom_shipping_ranges", :force => true do |t|
+    t.string   "start_range"
+    t.string   "end_range"
+    t.string   "shipping_amount"
+    t.integer  "shipping_gateway_attribute_value_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "external_links", :force => true do |t|
     t.string   "name"
     t.string   "link_url"
@@ -296,6 +305,15 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.integer  "number_of_product"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "order_ranges", :force => true do |t|
+    t.string   "start_range"
+    t.string   "end_range"
+    t.string   "shipping_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "shipping_gateway_attribute_value_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -506,6 +524,7 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.datetime "updated_at"
     t.integer  "sites_shipping_gateway_id"
     t.integer  "custom_shipping_method_id"
+    t.integer  "parent_id"
   end
 
   create_table "shipping_gateway_attributes", :force => true do |t|
@@ -737,7 +756,7 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.integer  "shipping_gateway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_enable",           :default => false
+    t.boolean  "is_enable"
     t.boolean  "is_test_mode"
   end
 
@@ -840,6 +859,15 @@ ActiveRecord::Schema.define(:version => 20120524175052) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.boolean  "is_deleted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

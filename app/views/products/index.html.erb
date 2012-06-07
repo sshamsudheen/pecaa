@@ -59,23 +59,28 @@
                 <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                 <div class="overview">
                   <ul class="ConLibra">
-                  <% @products.each do |product| %>	
+                  <% @products.each do |p| %>	
                   <li> 
-                      <span class="userName"> <a href="products/<%= product.id%>/edit" ><%= product.name%></a></span> 
-                		<span class="group"><%= product.sku%> </span> 
-                		<span class="created"><%= product.created_at.strftime("%d/%m/%y")%> </span> 
-                		<span class="vender">Zeiss</span>
-                		<span class="sold">124</span>
-                		<span class="view">1234</span>
-                		<span class="rating">
-                		  <img src="/assets/rating_4.png" border="0" />
-                		</span>
-                		<span class="active">
-                		  <img src="/assets/<%= product.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
-                		</span>
-                		<span class="close">
-                		  <img src="/assets/btnDelete.png" border="0" />
-                		</span>
+                      <span class="userName">
+                        <a href ="<%= edit_site_product_path(@site, p)%>"><%= p.name%></a>
+                      </span> 
+                      <span class="group"><%= p.sku%> </span> 
+                      <span class="created"><%= p.created_at.strftime("%d/%m/%y")%> </span> 
+                      <span class="vender">Zeiss</span>
+                      <span class="sold">124</span>
+                      <span class="view">1234</span>
+                      <span class="rating">
+                        <img src="/assets/rating_4.png" border="0" />
+                      </span>
+                      <span class="status">
+      								  <a rel ="<%=p.is_active%>" href="<%= update_product_site_product_path(@site, p, :product=>{:is_active => !(p.is_active)})%>" class= <%=p.is_active ? 'on' : 'off' %>>
+      								  </a>
+                      </span>
+                      <span class="close">
+                        <%= render :partial => 'shared/alert_box', :locals=> {:obj => p,
+                           :path => destroy_product_site_product_path(@site, p),
+                           :img_path => "/assets/btnDelete.png"}%> 
+                      </span>
                     </li>
                   <% end %>
                   </ul>
@@ -89,3 +94,19 @@
     </div>
   </div>
 </div>
+<script>
+$("span.status a").live("click", function(){
+  var link = $(this);
+  $.ajax({
+    type: "GET",
+    url: link.attr('href'),
+    success: function(result){        
+      var new_rel = link.attr('rel') == 'true' ? 'false' : 'true';
+      var new_link = (link.attr('rel') == 'true' ? link.attr('href').replace('false', 'true') : link.attr('href').replace('true', 'false'));
+      var new_class =  link.attr('class') == 'on' ? 'off' : 'on';
+      link.parent().html("<a rel="+ new_rel  + " href="+ new_link +" class="+ new_class +"></a>")
+  }});
+ return false;
+});
+</script>
+<script type="text/javascript" src="/assets/alert_box.js"></script>

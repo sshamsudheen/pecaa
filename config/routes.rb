@@ -27,6 +27,8 @@ Mystore3::Application.routes.draw do
     get 'download_theme', :on => :member
     get 'copy_theme', :on => :member
   end
+  
+  resources :order_ranges
 
   resources :base_colors
 
@@ -149,6 +151,9 @@ Mystore3::Application.routes.draw do
       get 'product_inventory', :on => :member
       get 'create_inventory', :on => :member
       get 'update_pi', :on => :member, :to => 'products#update_intentory'
+      get 'update_product', :on => :member, :to => 'products#update'
+      get 'destroy_product', :on => :member, :to => 'products#delete'
+      
       
       resources :product_videos do
         get 'update_pvid', :on => :member, :to => 'product_videos#update'
@@ -197,6 +202,7 @@ Mystore3::Application.routes.draw do
 
     resources :shippings do
       get 'enable', :on => :member
+      get 'destroy_shipping', :on => :member
     end
     
   end

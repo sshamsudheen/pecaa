@@ -3,11 +3,12 @@
           <%= link_to "<li class='#{ShippingGateway.find_active_payment('ups', params[:id])}'>ups</li>".html_safe, site_shipping_path(@site.id, ShippingGateway.find_by_name('ups').id) %>
           <%= link_to "<li class='#{ShippingGateway.find_active_payment('usps', params[:id])}'>usps</li>".html_safe, site_shipping_path(@site.id, ShippingGateway.find_by_name('usps').id) %>
           <%= link_to "<li class='#{ShippingGateway.find_active_payment('fedex', params[:id])}'>fedex</li>".html_safe, site_shipping_path(@site.id, ShippingGateway.find_by_name('fedex').id) %>
+          <%= link_to "<li class='#{ShippingGateway.find_active_payment('custom_shipping', params[:id])}'>custom shipping</li>".html_safe, site_shipping_path(@site.id, ShippingGateway.find_by_name('custom_shipping').id) %>
         </ul>
       </div>
 
 <script type="text/javascript">
-  $('.payments').attr('class','payments')
-    $('.taxes').attr('class','taxes')
-    $('.shipping').attr('class','shipping active')
+  $('.payments').removeClass("active");
+  $('.shipping').addClass("active");
+  $('.taxes').removeClass("active");
 </script>
