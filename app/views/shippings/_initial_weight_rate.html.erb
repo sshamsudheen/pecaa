@@ -38,11 +38,10 @@
                                 </span>
                             </div>
                             <div class="group"><span class="key"></span> <span class="val">
-                               <img width="61" height="24" src="assets/btn_delete.png">
+                                        <img src="/assets/btn_delete.png">
+
+                              <%= submit_tag "save", :class =>"greenBtn" %>
                                 </span>
-                              <span class="val">
-                                                             <%= submit_tag "save" %>
-                                                         </span>
                             </div>
 
                           </div>
@@ -64,7 +63,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="viewport">
+                              <div class="viewport vewportHeigth">
                                 <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span>
                                 </div>
                                 <div class="overview featureProduct" style="top: 0px; ">
@@ -134,11 +133,11 @@
                                                     <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', @site_payment_gateway.get_value_of("modifier_type", method_id)), :class => "noEditone selectW") %>
                                                       </span>
                                                   </div>
-                                                  <div class="group"><span class="key"></span> <span class="val">
-                                                     <img width="61" height="24" src="/images/btn_delete.png">
+                        <div class="group"><span class="key"></span> <span class="val">
+                                        <img src="/assets/btn_delete.png">
 
-                                                                                   <%= submit_tag "save" %>
-                                                                               </span>
+                              <%= submit_tag "save", :class =>"greenBtn" %>
+                                </span>
                                                   </div>
 
                                                 </div>
@@ -156,7 +155,7 @@
                       </div>
                       <div class="userGridBody">
 
-                          <div class="viewport">
+                          <div class="viewport vewportHeigth">
                             <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                             <div class="overview featureProduct" style="top: 0px; ">
                                   <ul class="ConLibra ">
