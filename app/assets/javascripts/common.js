@@ -2,7 +2,7 @@
 $(document).ready(function() {
   $('a[rel*=facebox]').facebox({
   loadingImage : '/assets/loading.gif',
-  closeImage   : '/assets/closelabel.png'
+  closeImage   : '/assets/btn_deleteUser_active.png'
   })
 
   $(".btnCancel").live('click', function(){
