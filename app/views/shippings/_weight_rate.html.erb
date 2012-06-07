@@ -46,12 +46,12 @@
                             </div>
                             <div class="group"><span class="key"></span> <span class="val">
                               <%= link_to destroy_shipping_site_shipping_path(@site.id, :attr_id => shipping_gateway_attr_value.id) do %>
-                                        <img width="61" height="24" src="/images/btn_delete.png">
+                                        <img src="/assets/btn_delete.png">
                                          <% end %>
 
 
 
-                                                             <%= submit_tag "save" %>
+                                                             <%= submit_tag "save", :class =>"greenBtn" %>
                                                          </span>
                             </div>
 
