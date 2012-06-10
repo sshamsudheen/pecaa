@@ -79,7 +79,7 @@
 				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
-$('#cart div.ui-droppable').html(data)					
+								$('#cart div.ui-droppable').html(data)					
 				            },
 				        });
 				}
@@ -92,13 +92,14 @@ $('#cart div.ui-droppable').html(data)
 					    aspectRatio: 1
 					  });
 					$('#cart input#dropped').attr('value','true')
-					
+					$('#cart div.resizable_content').resizable();
 
 			}
 		})
 	});
 	
 	</script>
+	
 	
 <%= javascript_include_tag 'facebox'%>
 	  <%= javascript_include_tag 'common'%>	
