@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 99999999;
   text-align: left;
 }
 
@@ -37,8 +37,8 @@
 
 #facebox .close{
   position:absolute;
-  top:5px;
-  right:5px;
+  top:15px;
+  right:15px;
   padding:2px;
   width:10px;
   /*background:#fff;*/

@@ -21,15 +21,14 @@
 	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa","facebox"%>
 	  <%else%>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional"%>
+	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional", "tinyscroll"%>
 	  <% end %>
 	  
 
       <%= javascript_include_tag 'jquery-1.4.2.min'%>
       <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
-       
-	   
-	     
+      <%= javascript_include_tag 'jquery.tinyscrollbar.min'%>
+      <%= javascript_include_tag 'inputstyle'%>
       
       <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 
@@ -134,7 +133,7 @@
       			</div>
       			<div class="rightBtns">
       			  <button class="btn_External" id="preview_button">ext</button>
-      			  <button class="btn_Save" id="form_submit" form='#'>Save and go to next step</button>
+      			  <button class="btn_SaveAndGo" id="form_submit" form='#'>save and go</button>
       			</div>
       		</div>
 			<%if params[:controller] == "site_users"%>

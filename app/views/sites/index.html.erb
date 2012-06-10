@@ -21,7 +21,7 @@
     <!-- slider rc -->
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
-        <input type=checkbox id="date_added" name="date_added" ><span>date added</span>
+        <input type=checkbox id="date_added" class="styled" name="date_added" ><span>date added</span>
       </div>
       <div class="clear"></div>
         <div id="date_range" style="display:none">
@@ -65,12 +65,10 @@
             <ul class="ConLibra">
               <%@sites.each do |s|%>
                 <li class="dark">
-                  <p>
-                    <span class="name">
-                    <%=link_to s.name, s, :class=>"links"%> 
-                      <%=link_to(image_tag( "/images/icon-eye.png"),"/sites/#{s.id}/preview")%>
-                    </span>
-                  </p>
+	                <span class="name">
+	                <%=link_to s.name, s, :class=>"links"%> 
+	                  <%=link_to(image_tag( "/images/icon-eye.png"),"/sites/#{s.id}/preview")%>
+	                </span>
                   <span class="type"><%=s.is_active ? "Yes": "No"%></span> 
                   <span class="name"><%=s.created_at.strftime("%m/%d/%Y %T")%></span>
 <span class="addedBy"><%if s.created_by%><%=truncate(s.created_by.username, :length => 10, :separator => '..')%> <%end%>&nbsp;</span> 

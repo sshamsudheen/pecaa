@@ -26,7 +26,10 @@ span.select{
 	background:url(../assets/user-select-field-bg.png) no-repeat 0 0;
 	cursor:default;
 	z-index:1;
-	}
+	color: #666666;
+	font-size: 14px;
+	text-align:center;
+}
 	
 /* first variation (LABEL is above the SELECT) */	
 form div.variation1 label{display:block;line-height:23px;}
