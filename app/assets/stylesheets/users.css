@@ -279,7 +279,7 @@
  .searchUser .addSearch{
 	display:inline-block;
 }
-.usersLeftPane .userPanelDevider{
+.userPanelDevider{
 	background:url(img/userPanelDevider.png) no-repeat center 0 transparent;
 	height:12px;
 	margin-bottom:10px;

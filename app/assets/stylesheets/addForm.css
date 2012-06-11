@@ -183,6 +183,9 @@ ul.groupElements li span .drag{
 .column-wrapper p{
 	margin:0 0 10px 0;
 }
+.column-wrapper .question_title{
+	margin:0;
+}
 .column-wrapper .email-section label{
 	color: #5a7c9a;
 	font-weight:bold;

@@ -537,7 +537,7 @@
 }
 .subTab-Content .resetAll{
 	position: absolute;
-	right:11px;
+	right:1px;
 	top:30%;
 	background:url(img/btnResetAll.png) no-repeat;
 	width:22px;

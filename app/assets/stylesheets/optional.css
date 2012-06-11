@@ -34,7 +34,7 @@
 }
 .optional-main .colum-section .group .help{
 	float: right;
-	background:url(img/icon_help.png) no-repeat;
+	background:url(img/icon_Help.png) no-repeat;
 	width: 20px;
 	height:20px;
 	vertical-align: middle;
@@ -91,7 +91,7 @@
 
 .optional-main .group .val input[type="text"],
 .optional-main .group .val textarea{
-	background: #f5f5f5;
+	background: #eee;
 	border-radius: 4px;
 	border:0;
 	color:#333;
