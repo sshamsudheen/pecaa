@@ -83,8 +83,10 @@ class SitePagesController < ApplicationController
     else
       @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
     end
+    sorting = params[:sorting_position].split(',').collect{|el| el.split('_').last}.join(';')
+#    @site_page.update_attributes(:content_positioning => sorting)
     
-   if (content = ContentLibrary.find(params[:content_id])) and content.source_type == "Image"
+   if (((content = ContentLibrary.find(params[:content_id])) and content.source_type == "Image") rescue nil)
     content.source.update_attributes(params[:crop].merge(:updated_at => Time.now))
    end
 

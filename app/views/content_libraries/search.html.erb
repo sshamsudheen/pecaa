@@ -138,21 +138,31 @@
 		    	
 					
 				
-<script>
+<script type="text/javascript">
 	
 	$('#form_submit').click(function(){
+		
 		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
+		a=""
+		$('#sortable').find('li').each(function(){
+		   a = a + ',' + $(this).attr('id');
+		});
+		$('input#sorting_position').attr('value',a);
+		
+			
 		if ($('#cart input#content_type').attr('value') != "Misc") {
 			var content_id = $('#cart li').attr('class').split(' ').pop()
 			$('#cart input#content_id').attr('value', content_id)
 		}
-		if ($('#cart input#dropped').attr('value') == 'true') {
+		$('#content_page_save').submit();
+/*		if ($('#cart input#dropped').attr('value') == 'true') {
+			
 			$('#content_page_save').submit();
 		}
 		else{
 			window.location.href='/sites/<%=@site.id%>/site_styles'
-		}
+		}*/
   });
   
   $('#preview_button').click(function(){
