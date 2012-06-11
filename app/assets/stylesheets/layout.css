@@ -399,3 +399,11 @@ span.select {
 	background:url(img/bg_TimePicker.png) no-repeat right top #FFF;
 }
 .track { background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #999999;}
+.userPanelDevider{
+	background:url(img/userPanelDevider.png) no-repeat center 0 transparent;
+	height:12px;
+	margin-bottom:10px;
+	display:block;
+	clear:both;
+}
+.userSearch span.checkbox{float:none}
