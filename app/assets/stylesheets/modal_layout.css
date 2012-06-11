@@ -3,6 +3,13 @@
 	src: url('font/helveticaneue-medium-webfont.ttf');
 	src: local('helveticaPecaa'), local('helvetica'), url('font/helveticaneue-medium-webfont.ttf') format('truetype');
 }
+body {
+    background: url("img/bg.gif") repeat scroll 0 0 transparent;
+    font-size: 12px;
+    font-family: 'helveticaPecaa', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 body textarea{resize:none;}
 button{
 	font-size: 12px;
@@ -59,7 +66,7 @@ button.blueBtn{
 }
 .main-container{
 	width: 980px;
-	font-family: 'helveticaPecaa', Arial, sans-serif;
+	font-family: 'helveticaPecaa';
 	font-size:13px;
 	color:#333;
 }
@@ -81,7 +88,7 @@ button.blueBtn{
 	font-size: 22px;
 	color: #FFF;
 	padding:8px 10px 8px 20px;
-	font-family:"Arial Black";
+	font-weight:bold;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
 	border: 1px solid #999999;
@@ -96,7 +103,6 @@ button.blueBtn{
 
 .main-container.imgPicker .main-content{
 	background: #999999 !important;
-	
 }
 
 .header .helpIcon{
