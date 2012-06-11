@@ -22,6 +22,17 @@ class SubProductOptionsController < ApplicationController
       redirect_to site_product_options_path(@site)
     end
   end
+  
+  def update_price
+    @sub_product_option = SubProductOption.find(params[:id])
+    if request.xhr?
+      para_hash = {:price_modifier_value=> params[:value]}
+      if @sub_product_option.update_attributes(para_hash)
+        render :text => @sub_product_option.price_modifier_value || ''
+      end
+    end
+  end
+
 
   def destroy
     @sub_product_option = SubProductOption.find(params[:id])
@@ -30,7 +41,7 @@ class SubProductOptionsController < ApplicationController
   end
 
   def search
-    @product_categories = SubProductOption.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
+    @sub_product_option = SubProductOption.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
     render :action => "index"
   end
     

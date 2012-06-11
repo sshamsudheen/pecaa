@@ -1,0 +1,16 @@
+<% unless @product_vendors.empty? %>
+  <div class="vendorSearchResultBox">
+    <ul>
+      <% @product_vendors.each do |pc|%>
+        <li class="active">
+          <%=pc.name%>
+            <span>
+            <a href="<%=add_vendor_site_product_path(@site, @product.id, :product_vendor_id => pc.id) %>" class="vendor_associate">
+              <img src="/assets/searchAddBtn.png" width="20" height="22">
+            </a>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

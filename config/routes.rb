@@ -146,6 +146,12 @@ Mystore3::Application.routes.draw do
       get 'product_options', :on => :member
       get 'related_products', :on => :member
       get 'remove_rel', :on => :member
+      get 'add_category', :on => :member
+      get 'remove_category', :on => :member
+      post 'search_category', :on => :member
+      get 'add_vendor', :on => :member
+      get 'remove_vendor', :on => :member
+      post 'search_vendors', :on => :member
       get 'product_inventory', :on => :member
       get 'create_inventory', :on => :member
       get 'update_pi', :on => :member, :to => 'products#update_intentory'
@@ -164,14 +170,17 @@ Mystore3::Application.routes.draw do
         get 'delete', :on => :member, :to => 'product_images#destroy'
       end 
     end
+  
     
     resources :product_options do
       get 'update_po', :on => :member, :to => 'product_options#update'
       get 'delete', :on => :member, :to => 'product_options#destroy'
+      post 'update_name', :on => :collection
       
       resources :sub_product_options do
         get 'update_spo', :on => :member, :to => 'sub_product_options#update'
         get 'delete', :on => :member, :to => 'sub_product_options#destroy'
+        post 'update_price', :on => :member
       end
       
     end
@@ -180,6 +189,7 @@ Mystore3::Application.routes.draw do
       post 'search', :on => :collection
       get 'delete', :on => :member, :to => 'product_categories#destroy'
       get 'update_pc', :on => :member, :to => 'product_categories#update'
+      post 'update_name', :on => :collection
     end
     
     resources :catalogs do 

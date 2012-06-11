@@ -22,7 +22,7 @@
                 <select name="choose product option" class="noEdit" id="selectOption" >
                                       <option >choose product option</option>
                   <%@all_product_options.each do |i|%>
-                    <option value="<%=product_options_site_product_path(@site, @product, :link_option => i.id)%>"><a href="<%=product_options_site_product_path(@site, @product, :link_option => i.id)%>"><%=i.name%></a></option>
+                    <option value="<%=product_options_site_product_path(@site, @product, :link_option => i.id)%>"><%=i.name%></option>
                   <% end %>
                 </select>
                 <!-- <div class="searchResultBox productOptBox" id="searchResults">

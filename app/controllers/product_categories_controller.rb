@@ -24,10 +24,23 @@ class ProductCategoriesController < ApplicationController
   def update
     @product_category = ProductCategory.find(params[:id])
     if @product_category.update_attributes(params[:product_category])
-      redirect_to site_product_categories_path(@site)
-    else
+      if request.xhr?
+        render :nothing=> true
+      else
+        redirect_to site_product_categories_path(@site)
+      end
     end
   end
+  
+  def update_name
+    @product_category = ProductCategory.find(params[:id])
+    if request.xhr?
+      if @product_category.update_attributes({:name => params[:value]})
+        render :text => @product_category.name || ''
+      end
+    end
+  end
+  
 
   def destroy
     @product_category = ProductCategory.find(params[:id])
