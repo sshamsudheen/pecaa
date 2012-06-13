@@ -15,12 +15,25 @@
               <span><img src="/assets/stars.jpg" width="73" height="13"></span>
             <% end %>
           </div>
-          <div class="eiditTextDiv"> 
-          	<ul>
-            <li><span id="disableRelPro" class="onBtn">&nbsp; </span><span>enable related products</span></li>
-            <li><span id="disableAutoRelPro" class="offRadio">&nbsp; </span><span>auto related products</span></li>
-            <li><span id="disableCustRelPro" class="onRadio">&nbsp; </span><span>custom related products</span></li>
-             </ul>
+          <div class="eiditTextDiv">
+            <ul>
+              <li>
+                <span class="status">
+                <a rel href="<%= update_product_site_product_path(@site, @product, :product=>{:enable_related_products => !(@product.enable_related_products)})%>" class= <%=@product.enable_related_products ? 'on' : 'off' %>>
+                </a><span>enable related products</span>
+                </span>
+              </li><li>
+                <span class="status">
+                <a rel href="<%= update_product_site_product_path(@site, @product, :product=>{:auto_relate_products => !(@product.auto_relate_products)})%>" class= <%=@product.auto_relate_products ? 'onRadio' : 'offRadio' %>>
+                </a><span>auto related products</span>
+                </span>
+              </li><li>
+                <span class="status">
+                <a rel href="<%= update_product_site_product_path(@site, @product, :product=>{:custom_relate_products => !(@product.custom_relate_products)})%>" class= <%=@product.custom_relate_products ? 'onRadio' : 'offRadio' %>>
+                </a><span>custom related products</span>
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="pages-wrapper" id="relWrapper">
@@ -32,7 +45,7 @@
               <span class="searchIcon"><a href="#"></a></span> </div>
           </div>
           <div id="relSearchResults" class="searchResultBox relProductOptBox" style="display:none;"></div>
-          <div class="site-users ">
+          <div class="site-users <%=@product.enable_related_products ? '' : 'DivHide' %>">
             <div class="page-data clear ">
               <div class="userGrid imageTab">
                 <div class="userGridHeader">

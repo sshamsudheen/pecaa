@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
         if request.xhr?
           render :nothing=> true
         else
-          redirect_to site_products_path(@site)
+          redirect_to request.referrer
         end
       end
     end
