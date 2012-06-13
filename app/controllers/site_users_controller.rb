@@ -34,6 +34,7 @@ class SiteUsersController < ApplicationController
     params[:user].delete(:addresses2)
     params[:user][:role_ids] = params[:users][:role_ids] if params[:users]
     @user_obj = User.new(params[:user])
+    @user_obj.role_ids = [Role.first.id] unless @user_obj.role_ids.blank?
     @user_obj.created_by = current_user
     if @user_obj.save
       if params[:site_id]

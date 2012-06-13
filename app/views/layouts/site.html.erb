@@ -21,13 +21,19 @@
 	  	<%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional","pecaa","facebox"%>
 	  <%else%>
 	  <%#CSS as per Mani's Modules%>
-	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional"%>
+	      <%= stylesheet_link_tag "siteinfo","layout", "content", "site_pages","pages", "users", "optional", "tinyscroll"%>
 	  <% end %>
 	  
-      <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.2.custom.min', 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
-	
-     
-     <%= javascript_include_tag 'js/misc'%>
+
+      <%= javascript_include_tag 'jquery-1.4.2.min'%>
+      <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
+      <%= javascript_include_tag 'jquery.tinyscrollbar.min'%>
+      <%= javascript_include_tag 'inputstyle'%>
+      
+      <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+
+      <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
+<%= javascript_include_tag 'js/misc'%>
 
 <%= csrf_meta_tag %>
       <script type="text/javascript">
@@ -45,7 +51,17 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
 <script type="text/javascript">
-	
+	$(function() {
+	$('#sortable').sortable();	
+	$('#sortable').disableSelection();
+	});
+    function update_crop(coords) {  
+      $('#crop_x').val(coords.x);  
+      $('#crop_y').val(coords.y);  
+      $('#crop_w').val(coords.w);  
+      $('#crop_h').val(coords.h);    
+    }  
+		
     $(function() {
 		$( "#catalog" ).accordion();
 		$( "#catalog li.active" ).draggable({
@@ -66,21 +82,26 @@
 				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
-$('#cart div.ui-droppable').html(data)					
+								$('#cart div.ui-droppable').html(data)					
 				            },
 				        });
 				}
 
 					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
 					$('.ui-droppable div#doc_form').show();
+					$('.ui-droppable img.cropbox').Jcrop({
+					    onChange: update_crop,
+					    onSelect: update_crop,
+					    aspectRatio: 1
+					  });
 					$('#cart input#dropped').attr('value','true')
-					
-
+					$('#cart div.resizable_content').resizable();
 			}
 		})
 	});
 	
 	</script>
+	
 	
 <%= javascript_include_tag 'facebox'%>
 	  <%= javascript_include_tag 'common'%>	
@@ -115,7 +136,7 @@ $('#cart div.ui-droppable').html(data)
       			</div>
       			<div class="rightBtns">
       			  <button class="btn_External" id="preview_button">ext</button>
-      			  <button class="btn_Save" id="form_submit" form='#'>Save and go to next step</button>
+      			  <button class="btn_SaveAndGo" id="form_submit" form='#'>save and go</button>
       			</div>
       		</div>
 			<%if params[:controller] == "site_users"%>
@@ -133,12 +154,17 @@ $('#cart div.ui-droppable').html(data)
       	</div>
 <%if params[:controller] == "content_libraries"%>
   <%=form_tag "/sites/#{@site.id}/site_pages/#{params[:site_page_id]}/content_save" , :id => 'content_page_save' do |s| %>
+   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>  
+    <%= hidden_field :crop, attribute, :id => attribute %>  
+  <% end %>  
   <%=hidden_field_tag :is_preview, false%>
+  <%=hidden_field_tag :sorting_position,''%>
+  
   <div class="themes-board">
       <div class="grid-board">
         <div id="cart" >
         	<%=hidden_field_tag "dropped",''%>
-          <div class="ui-droppable ui-sortable" style="height:900px;">
+          <div id="sortable" class="ui-droppable ui-sortable" style="height:900px;">
             <li class="placeholder">
             	<%=render :partial => '/content_libraries/existed_sources'%>
             </li>
@@ -163,5 +189,6 @@ $('#cart div.ui-droppable').html(data)
             window.location.href=$(this).attr('rel');
         })
       </script>
+	   
   </body>
 </html>

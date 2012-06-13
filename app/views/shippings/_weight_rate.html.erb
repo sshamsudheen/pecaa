@@ -1,0 +1,141 @@
+<div class="cartCollumsBottom" id="weight_rate_option" style="display:none">
+  <div class="usersLeftPane productsTitle">
+                  <div class="title">weight-based rate options</div>
+                </div>
+  <div class="rightButtonDiv">
+                  <input type="button" value="create new weight-based rate" class="addWeightBtn" id="addWeightBtn" name="input">
+                  <span class="searchIcon"><a href="#"></a></span></div>
+  <div class="rowDiv2 ">    <div class="content-section categoryMainWeight">
+      <% shipping_attr_values = @site_payment_gateway.custom_get_value_of("name", CustomShippingMethod.where(:name => 'weight_rate').last.id) %>
+      <% shipping_attr_values = shipping_attr_values.length % 2 == 0  ? shipping_attr_values : shipping_attr_values+[ShippingGatewayAttributeValue.new]%>
+      <% shipping_attr_values.each_with_index do |shipping_gateway_attr_value, i| %>
+      <div class="pages-main noHeight">
+        <div class="pages-wrapper">
+          <div class="site-users left nobMargin">
+            <div class="rowDiv2">
+              <div class="pages-wrapper">
+
+
+                <!-- grid-->
+
+                <%= form_for(@payment_gateway.shipping_gateway_attributes, :url => site_shipping_path(@site.id, params[:id], :method_id => CustomShippingMethod.where(:name => 'weight_rate').last.id), :method => :put) do |shipping_gateway_attribute| %>
+                    <div class="site-users nobMargin ">
+                      <div class="page-data clear">
+                        <% get_attribute_values = shipping_attribute_values(shipping_gateway_attr_value, i) %>
+                        <% @previous_get_attribute_values = get_attribute_values["name"] if i == 0 %>
+                        <% get_attribute_values["name"] =  (@previous_get_attribute_values == 'Ground') ? 'Airmail' : 'Ground' if i > 0%>
+                        <div class="manageDateLeftBox"> <span>
+                            <span class="status">
+                          <% site_payment_gateway_test_mode_arr = shipping_gateway_is_enable(get_attribute_values["is_enable"]) %>
+                              <img class="<%= site_payment_gateway_test_mode_arr[0] %>" width="48" height="21" id="<%= site_payment_gateway_test_mode_arr[1] %>">
+                              <%= hidden_field(:shipping_gateway_attribute, :is_enable, :value => get_attribute_values["is_enable"]) %>
+                        </span>
+                          </span>
+                          <div class="colum-section">
+                            <div class="group"><span class="key">name</span> <span class="val">
+
+
+                                <%= shipping_gateway_attribute.text_field(:name, {:readonly => true, :size => 20, :value => get_attribute_values["name"]}) %>
+                                </span></div>
+                            <div class="group"><span class="key">display name:</span> <span class="val">
+                                <%= shipping_gateway_attribute.text_field(:display_name, :class => {:size => 20}, :value => get_attribute_values["display_name"]) %>
+                                </span></div>
+                            <div class="group next"><span class="key">price modifier:</span> <span class="val">
+                              <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'name', 'name', get_attribute_values["modifier_type"]), :class => "noEditone selectW") %>
+                                </span>
+                            </div>
+                            <div class="group"><span class="key"></span> <span class="val">
+                              <%= link_to destroy_shipping_site_shipping_path(@site.id, :attr_id => shipping_gateway_attr_value.id) do %>
+                                        <img src="/assets/btn_delete.png">
+                                         <% end %>
+
+
+
+                                                             <%= submit_tag "save", :class =>"greenBtn" %>
+                                                         </span>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="userGrid cartGrid">
+                          <div class="userGridHeader noRadius">
+                            <ul class="ConLibraHeads">
+                              <li><span class="cName">Order Total Start</span>
+                                <span class="cName">Order Total End</span> <span class="cName">Shipping Amount</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="userGridBody">
+                            <div id="scrollbar1">
+                              <div class="scrollbar disable" style="height: 77px; ">
+                                <div class="track" style="height: 77px; ">
+                                  <div class="thumb" style="top: 0px; height: 77px; ">
+                                    <div class="end"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="viewport vewportHeigth">
+                                <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span>
+                                </div>
+                                <div class="overview featureProduct" style="top: 0px; ">
+                                  <ul class="ConLibra ">
+                                    <% if shipping_gateway_attr_value.order_ranges.blank? %>
+                                      <li class="selected alt">
+
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "", :class => "inputWidth") %></span>
+                                      <span class="close1"><img border="0" src="/images/btnDelete.png"></span>
+                                    </li>
+                                        <li class="selected alt">
+
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", "", :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", "", :class => "inputWidth") %></span>
+                                      <span class="close1"><img border="0" src="/images/btnDelete.png"></span>
+                                    </li>
+                                    <% else %>
+                                    <% shipping_gateway_attr_value.order_ranges.each do |order_range| %>
+                                    <li class="selected alt">
+
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][start_range]", order_range.start_range, :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][end_range]", order_range.end_range, :class => "inputWidth") %></span>
+                                      <span class="cName arrow2">$<%= text_field_tag("order_range[ground][][shipping_amount]", order_range.shipping_amount, :class => "inputWidth") %></span>
+                                      <span class="close1">
+                                        <%= link_to destroy_shipping_site_shipping_path(@site.id, shipping_gateway_attr_value.id) do %>
+                                        <img border="0" src="/images/btnDelete.png">
+                                         <% end %>
+                                        </span>
+                                    </li>
+                                      <% end %>
+                                    <% end %>
+
+
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="userGridFooter"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <% end %>
+      <!--2nd grid-->
+
+
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  category_main_weight = $(".categoryMainWeight").clone();
+</script>

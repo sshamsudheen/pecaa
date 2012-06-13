@@ -27,6 +27,8 @@ Mystore3::Application.routes.draw do
     get 'download_theme', :on => :member
     get 'copy_theme', :on => :member
   end
+  
+  resources :order_ranges
 
   resources :base_colors
 
@@ -210,6 +212,7 @@ Mystore3::Application.routes.draw do
 
     resources :shippings do
       get 'enable', :on => :member
+      get 'destroy_shipping', :on => :member
     end
     
   end

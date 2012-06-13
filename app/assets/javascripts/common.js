@@ -1,8 +1,8 @@
 //= require tinymce-jquery
 $(document).ready(function() {
   $('a[rel*=facebox]').facebox({
-  loadingImage : '/assets/loading.gif'
-  //closeImage   : '/assets/closelabel.png'
+  loadingImage : '/assets/loading.gif',
+  closeImage   : '/assets/btn_deleteUser_active.png'
   })
 
   $(".btnCancel").live('click', function(){
@@ -25,6 +25,27 @@ $(document).ready(function() {
     $(this).attr("class", "on");
     $("#site_payment_gateway_is_test_mode").attr("value", 1);
     $(this).attr("id", "enable_is_test_mode");
+  });
+
+  $("#enable_is_enable").live('click', function(){
+    $(this).attr("class", "off");
+    $(this).attr("id", "disable_is_enable");
+    $("#shipping_gateway_attribute_is_enable").attr("value", 0);
+  });
+
+  $("#addFlatBtn").live('click', function(){    
+    $(category_main[0]).insertAfter(".categoryMain");
+  });
+
+  $("#addWeightBtn").live('click', function(){
+    $(category_main_weight[0]).insertAfter(".categoryMainWeight");
+  });
+
+
+  $("#disable_is_enable").live('click',function(){
+    $(this).attr("class", "on");
+    $("#shipping_gateway_attribute_is_enable").attr("value", 1);
+    $(this).attr("id", "enable_is_enable");
   });
 
   $("#enable_authorize_funds_only").live('click', function(){
@@ -51,6 +72,15 @@ $(document).ready(function() {
     $(this).attr("id", "enable_is_cvv");
   });
 
+  $("#flat_shipping_rate_flat_rate").live('click',function(){
+    $("#flat_rate_option").show();
+    $("#weight_rate_option").hide();
+  });
+
+  $("#flat_shipping_rate_weight_rate").live('click',function(){
+    $("#flat_rate_option").hide();
+    $("#weight_rate_option").show();
+  });
 
 
 

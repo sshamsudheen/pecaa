@@ -47,12 +47,13 @@
 	background:url(img/btn_addNewUser.png)no-repeat;
 	font-size: 14px;
     height: 30px;
+    padding-left: 10px;
     padding-right: 38px;
-    padding-top: 5px;
-    padding-left: 5px;
+    padding-top: 0;
     border:0;
     float:right;
     margin:0;
+    color:#fff;
 }
 .site-users{
 	width:768px;
@@ -278,7 +279,7 @@
  .searchUser .addSearch{
 	display:inline-block;
 }
-.usersLeftPane .userPanelDevider{
+.userPanelDevider{
 	background:url(img/userPanelDevider.png) no-repeat center 0 transparent;
 	height:12px;
 	margin-bottom:10px;
@@ -338,6 +339,7 @@
 	background:#000000;
 	border-top-left-radius:6px;
 	border-bottom-left-radius:6px;
+	border-bottom-right-radius: 6px;
 	height: 435px;
     margin-right: -30px;
     padding:8px 16px 8px 8px;
@@ -843,5 +845,3 @@
 #users1 .userGridHeader{
 	margin-left:10px;
 }
-#users1 .viewport { height: 400px;}
-#users1 .overview { left: 10px; }

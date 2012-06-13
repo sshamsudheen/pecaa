@@ -1,8 +1,7 @@
+  <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
  <script type="text/javascript">
-        	
         	$(document).ready(function(){
         		$('#users1').tinyscrollbar();
-
         		$(".ConLibra li:even").addClass("alt");
         		$("ul.ConLibra li").each(function(){
         			var $this = $(this);
@@ -10,7 +9,7 @@
         				$this.find('.pointer').show();
         			}
         		})
-        		$("ul.ConLibra li").click(function(){
+        		$("ul.ConLibra li").live('click',function(){
         			var $this = $(this);
         			
         			if(!$this.hasClass("selected")){
@@ -91,6 +90,7 @@
     										<div id="users1">
     											<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
     											<div class="viewport">
+    												<!-- <div class="shadows" id="shadow"><span class="topShadow"></span><span class="bottomShadow"></span></div> -->
 				 									<div class="overview">
 				    									<ul class="ConLibra">
 				    										<%@site_users.each_with_index do |s_u|%>

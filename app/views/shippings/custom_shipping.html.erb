@@ -1,0 +1,40 @@
+<div class="content-section CartOptions">
+    <div class="siteInfo-main cartBg">
+      <div class="cartColumsMain2">
+        <div class="rowDiv">
+          <h2>custom rate shipping setup : <span><a href="$"><img src="/assets/helpIcon2.png"></a></span> </h2>
+          <dl>
+            <dt>enable custom rate shipping:</dt>
+            <dd><span class="status">
+              <%= link_to(enable_site_shipping_path(@site.id, params[:id])) do %>
+                <img class="<%= @site_payment_gateway.is_enable ? "on" : "off" %>" width="48" height="21" id="<%= @site_payment_gateway.is_enable ? "enable_authorize_net" : "disable_authorize_net" %>">
+              <% end %>
+            </span></dd>
+            <dt>custom shipping method:</dt>
+            <dd><span class="status">
+              <%= radio_button_tag('flat_shipping_rate', 'flat_rate', true, :class => 'styled') %>
+              <label for="shareThis">flat rate</label>
+            </span></dd>
+            <dt></dt>
+            <dd><span class="status">
+              <%= radio_button_tag('flat_shipping_rate', 'weight_rate', false, :class => 'styled') %>
+              <label for="shareThis">weight-based rate</label>
+            </span></dd>
+          </dl>
+        </div>
+      </div>
+      <% if @site_payment_gateway.custom_get_value_of("name", CustomShippingMethod.where(:name => 'flat_rate').last.id).blank? %>
+        <%= render 'initial_flat_rate' %>
+      <% else %>
+        <%= render 'flat_rate' %>
+      <% end %>
+      <% if @site_payment_gateway.custom_get_value_of("name", CustomShippingMethod.where(:name => 'weight_rate').last.id).blank? %>
+          <%= render 'initial_weight_rate' %>
+      <% else %>
+        <%= render 'weight_rate' %>
+      <% end %>
+
+      </div>
+    </div>
+
+<%= render "payments/payment_javascript", :locals => {:site_gateway => @site_payment_gateway} %>

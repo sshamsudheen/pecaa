@@ -2,7 +2,7 @@
     <div class="siteInfo-main cartBg">
       <div class="cartColumsMain2">
         <div class="rowDiv">
-          <h2>ups shipping setup <span><a href="$"><img src="css/img/helpIcon2.png"></a></span> </h2>
+          <h2>ups shipping setup <span><a href="$"><img src="/images/helpIcon2.png"></a></span> </h2>
           <dl>
             <dt>enable ups shipping:</dt>
             <dd><span class="status">
@@ -50,11 +50,11 @@
 
 
 
-                          <div class="form-row"><span class="key">modify rate  :</span><span class="valS"><select class="noEdit selectW" name="">
+                          <div class="form-row"><span class="key">modify rate  :</span><span class="valS"><select class="noEdit1 selectW" name="">
                           <option>+</option></select></span><span>
                             <%= shipping_gateway_attribute.text_field(:modify_rate, :class => 'inputBox2', :value => @site_payment_gateway.get_value_of("modify_rate"))%>
                             </span><span>
-                            <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'id', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEdit selectW") %>
+                            <%= select_tag('shipping_gateway_attribute[modifier_type]', options_from_collection_for_select(ModifierType.all, 'id', 'name', @site_payment_gateway.get_value_of("modifier_type")), :class => "noEdit1 selectW") %>
                             </span></div>
 
 
@@ -68,13 +68,12 @@
                               </span>
                            <% end %>
 
-                        </div>
-
-                        </div>
-                        <div class="form-row"><span class="key">&nbsp;</span><span class="val">
-
                        <input name="" type="submit" value="save changes" class="greenBtn" style="float:left; width:250px">
-                        </span></div>
+
+                        </div>
+
+                        </div>
+
                     </div>
 
                   </div>

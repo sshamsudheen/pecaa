@@ -1,9 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 /* Cksdkjdskjd */
-
+@font-face {
+	font-family: 'helveticaPecaa';
+	src: url('font/helveticaneue-medium-webfont.ttf');
+	src: local('helveticaPecaa'), local('helvetica'), url('font/helveticaneue-medium-webfont.ttf') format('truetype');
+}
 body {
-	margin:0px; padding:0px; background:url(../assets/bg.gif); font:normal 12px Arial, Helvetica, sans-serif;
+	margin:0px; padding:0px; background:url(../assets/bg.gif); font-family: 'helveticaPecaa', Arial, sans-serif; font-size:12px;
 }
 
 .mainContainer {
@@ -31,7 +35,7 @@ body {
 }
 
 .lblTxt {
-	float:left; font:bold 14px Arial, Helvetica, sans-serif; color:#999999; margin-bottom:5px;
+	float:left; font-size:14px; font-weight:bold; color:#999999; margin-bottom:5px;
 }
 
 .clear {
@@ -51,18 +55,17 @@ body {
 }
 
 .btnLogin {
-	background:url(../assets/btn-login.png) no-repeat left top; width:175px; height:35px; color:#ffffff; font:bold 14px Arial, Helvetica, sans-serif; border:none; margin:16px auto auto 38px;
+	background:url(../assets/btn-login.png) no-repeat left top; width:175px; height:35px; color:#ffffff; font-size:14px; font-weight:bold; border:none; margin:16px auto auto 38px;
 }
 
 .btnGetUsername {
-	margin-top:20px; float:left; margin-left:60px; width:174px; height:35px; background:url(../assets/btn-get-user-name.png) no-repeat left top; color:#ffffff; font:bold 14px Arial, Helvetica, sans-serif; border:none;
+	margin-top:20px; float:left; margin-left:60px; width:174px; height:35px; background:url(../assets/btn-get-user-name.png) no-repeat left top; color:#ffffff; font-size:14px; font-weight:bold; border:none;
 }
 
 .btnForgot {
     background: url("../images/btn-forgot.png") no-repeat scroll left top transparent;
     border: medium none;
     color: #7199AD;
-    font: bold 12px Arial,Helvetica,sans-serif;
     height: 34px;
     margin: 35px auto auto 33px;
     padding-top: 8px;
@@ -104,7 +107,7 @@ body {
 }
 
 .ueNav {
-	font:normal 18px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px;
+	font-size:18px; margin:0px 0px 0px 0px; padding:0px;
 }
 
 .ueNav li {
@@ -120,7 +123,7 @@ body {
 }
 
 .ueNav li a:hover, .ueNav li.select a {
-	float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666666; background:url(../assets/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 20px 0px 0px; text-decoration:none;
+	float:left; font-size:18px; color:#666666; background:url(../assets/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 20px 0px 0px; text-decoration:none;
 }
 
 .ueNav li:hover span, .ueNav li.select span {
@@ -144,7 +147,7 @@ body {
 }
 
 .ueNameDisplay {
-	float:left; font:normal 16px Arial, Helvetica, sans-serif; color:#ffffff;
+	float:left; font-size:16px; font-weight:normal; color:#ffffff;
 }
 
 .lastActivity {
@@ -261,7 +264,7 @@ float:left; padding:1px 0px 0px 10px;
 }
 
 .btnAshGrey {
-	background:url(/assets/btn-ash-grey.png) no-repeat right bottom; border:0px; padding-right:10px; height:35px; color:#ffffff; font:normal 16px Arial, Helvetica, sans-serif;
+	background:url(/assets/btn-ash-grey.png) no-repeat right bottom; border:0px; padding-right:10px; height:35px; color:#ffffff; font-size:16px; font-weight:normal;
 }
 
 .btnAshGreyLeft {
@@ -272,7 +275,7 @@ float:left; padding:1px 0px 0px 10px;
 }
 
 .btnGreen {
-	background:url(/assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font:normal 16px Arial, Helvetica, sans-serif;
+	background:url(/assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font-size:16px;
 }
 
 .btnGreenLeft {
@@ -287,7 +290,7 @@ float:left; padding:1px 0px 0px 10px;
 }
 
 .ueNavBottom {
-	font:normal 15px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px; float:right; width:500px;
+	font-size:15px; font-weight:normal; margin:0px 0px 0px 0px; padding:0px; float:right; width:500px;
 }
 
 .ueNavBottom li {
@@ -357,9 +360,9 @@ float:left; padding:1px 0px 0px 10px;
 	float:left; color:#999999; margin-bottom:5px;
 }
 
-.searchOptions span {
+/*.searchOptions span {
 float:left; padding:1px 0px 0px 10px;
-}
+}*/
 
 .searchOptions img {
 	float:left;
@@ -435,7 +438,7 @@ ul.userListHeads {
 }
 
 ul.userListHeads li {
-	list-style-type:none; font:normal 15px Arial, Helvetica, sans-serif; color:#ffffff;
+	list-style-type:none; font-size:15px; font-weight:normal; color:#ffffff;
 }
 
 ul.userListHeads .userName {
@@ -584,7 +587,7 @@ ul.ConLibraHeads {
 }
 
 ul.ConLibraHeads li {
-	list-style-type:none; font:normal 15px Arial, Helvetica, sans-serif; color:#ffffff;
+	list-style-type:none; font-size:15px; font-weight:normal; color:#ffffff;
 }
 
 ul.ConLibraHeads .name {
@@ -624,7 +627,7 @@ ul.ConLibraHeads .edit {
 }
 
 .addFileTop {
-	float:left; width:433px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font:bold 25px Arial, Helvetica, sans-serif; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
+	float:left; width:433px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font-size:25px; font-weight:bold; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
 }
 
 .addFileBody {
@@ -632,7 +635,7 @@ ul.ConLibraHeads .edit {
 }
 
 .addFileBody p {
-	color:#666666; margin:0px; padding:0px; font:normal 11px Arial, Helvetica, sans-serif;
+	color:#666666; margin:0px; padding:0px; font-size:11px; font-weight:normal;
 }
 
 .addFileBottom {
@@ -640,7 +643,7 @@ ul.ConLibraHeads .edit {
 }
 
 .btnUploadFile {
-	background:url(../assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font:normal 16px Arial, Helvetica, sans-serif; margin-left:10px;
+	background:url(../assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font-size:16px; font-weight:normal; margin-left:10px;
 }
 
 .btnUploadFileLeft {
@@ -648,7 +651,7 @@ ul.ConLibraHeads .edit {
 }
 
 .btnCancel {
-	background:url(../assets/btn-red.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font:normal 16px Arial, Helvetica, sans-serif; margin-left:10px;
+	background:url(../assets/btn-red.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font-size:16px; font-weight:normal; margin-left:10px;
 }
 
 .btnCancelLeft {
@@ -660,7 +663,7 @@ ul.ConLibraHeads .edit {
 }
 
 .helpPopUp p {
-	font:bold 13px Arial, Helvetica, sans-serif; margin-left:20px; color:#000;
+	font-size:13px; font-weight:bold; margin-left:20px; color:#000;
 }
 
 .helpGreyTxt {
@@ -676,10 +679,10 @@ ul.ConLibraHeads .edit {
 .ueBdrBottom {
 	background:url(/assets/border-bottom.gif) repeat-x left bottom; height:10px; margin-bottom:20px;
 }
-a.links{font: 15px "calibri",Arial,Helvetica,sans-serif;color:#6c95a9; margin:0px 10px 0px 0px; text-decoration:none; padding:0px 0px 0px 0px; height:34px;}
+a.links{font-size:15px; font-weight:normal;color:#6c95a9; margin:0px 10px 0px 0px; text-decoration:none; padding:0px 0px 0px 0px; height:34px;}
 
 .ueNavlink {
-	font:normal 15px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px; float:right; width:500px;
+	font-size:15px; font-weight:normal; margin:0px 0px 0px 0px; padding:0px; float:right; width:500px;
 }
 
 .ueNavlink li {
@@ -698,7 +701,7 @@ a.links{font: 15px "calibri",Arial,Helvetica,sans-serif;color:#6c95a9; margin:0p
 }
 
 .viewVideoTop {
-	float:left; width:643px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font:bold 25px Arial, Helvetica, sans-serif; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
+	float:left; width:643px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font-size:25px; font-weight:bold; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
 }
 
 .viewVideoBody {
@@ -724,7 +727,7 @@ a.links{font: 15px "calibri",Arial,Helvetica,sans-serif;color:#6c95a9; margin:0p
 }
 
 .viewImgTop {
-	float:left; width:643px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font:bold 25px Arial, Helvetica, sans-serif; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
+	float:left; width:643px; border:1px solid #797979; border-radius:5px 5px 0px 0px; background:url(../assets/add-file-bg.jpg) repeat left top; font-size:25px; font-weight:bold; color:#d9e5eb; line-height:38px; text-align:left; padding-left:15px; position:relative;
 }
 
 .viewImgBody {
@@ -744,7 +747,7 @@ a.links{font: 15px "calibri",Arial,Helvetica,sans-serif;color:#6c95a9; margin:0p
 }
 
 .btnOK {
-	background:url(../assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font:normal 16px Arial, Helvetica, sans-serif; margin-left:10px;
+	background:url(../assets/btn-green.png) no-repeat right bottom; border:0px; padding-right:15px; height:34px; color:#ffffff; font-size:16px; font-weight:normal; margin-left:10px;
 }
 
 .btnOKLeft {
@@ -777,7 +780,6 @@ button{
 			}
 			.main-container{
 				width: 780px;
-				font-family: Arial;
 				font-size:13px;
 				color:#333;
 			}
@@ -793,7 +795,7 @@ button{
 				border-bottom: 1px solid #333;
 				margin-left:1px;
 				margin-right:1px;
-				font-family: "Arial Black";
+				font-weight: bold;
 			}
 			.main-content {
 				overflow: hidden;

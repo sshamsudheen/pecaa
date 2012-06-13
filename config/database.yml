@@ -14,5 +14,5 @@ development:
   database: PECAA_development
   pool: 5
   username: root
-  password: 
+  password:
 

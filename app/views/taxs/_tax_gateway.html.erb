@@ -15,17 +15,17 @@
                 <dl>
                   <dt>tax integration :</dt>
                   <dd>
-                    <%= select_tag "tax_gateway_id", options_from_collection_for_select(TaxGateway.where("name != '#{TaxGateway::Gateway::CUSTOM}'"), 'id', 'name'), :class => "noEdit" %>                    
+                    <%= select_tag "tax_gateway_id", options_from_collection_for_select(TaxGateway.where("name != '#{TaxGateway::Gateway::CUSTOM}'"), 'id', 'name'), :class => "noEditone" %>
                   </dd>
                   <dt>user name :</dt>
                   <dd>
-                    <% tax_gateway_attribute_username_value = TaxGatewayAttributeValue.where(:tax_gateway_attribute_id => TaxGatewayAttribute.where(:name => 'username').last.id, :site_id => @site.id).last%>
-                    <%= text_field_tag('tax_gateway_attribute[username]', tax_gateway_attribute_username_value.blank? ? "" : tax_gateway_attribute_username_value.value,:class => 'inputReadOnly') %>
+                    <% tax_gateway_attribute_username_value = TaxGatewayAttributeValue.where(:tax_gateway_attribute_id => TaxGatewayAttribute.where(:name => 'username').last.id, :site_id => @site.id).last %>
+                    <%= text_field_tag('tax_gateway_attribute[username]', tax_gateway_attribute_username_value.blank? ? "" : tax_gateway_attribute_username_value.value ,:class => 'inputReadOnly') %>
 
                   </dd>
                   <dt>password :</dt>
                   <% tax_gateway_attribute_password_value = TaxGatewayAttributeValue.where(:tax_gateway_attribute_id => TaxGatewayAttribute.where(:name => 'password').last.id, :site_id => @site.id).last %>
-                  <dd><%= text_field_tag('tax_gateway_attribute[password]', tax_gateway_attribute_password_value.blank? ? "" : tax_gateway_attribute_password_value.value ,:class => 'inputBox') %></dd>
+                  <dd><%= text_field_tag('tax_gateway_attribute[password]', tax_gateway_attribute_password_value.blank? ? "" : tax_gateway_attribute_password_value.value,:class => 'inputBox') %></dd>
 
                   <dt>&nbsp;</dt>
                   <dd><%= submit_tag('Save Changes',:class => 'greenBtn') %></dd>

@@ -4,10 +4,11 @@ class ShippingsController < ApplicationController
   layout 'payments'
 
   def index
+
     render :template => template_name
   end
 
-  def show
+  def show    
     render :template => template_name
   end
 
@@ -19,6 +20,16 @@ class ShippingsController < ApplicationController
   def update
     site_payment_gateway = SitesShippingGateway.find_by_site_id_and_shipping_gateway_id(@site.id, @payment_gateway.id)
     flash[:notice] = ShippingGatewayAttributeValue.create_or_update_site_payment_gateway_details(site_payment_gateway, params)
+    redirect_to site_shipping_path(@site.id, @payment_gateway.id)
+  end
+
+  def destroy_shipping
+    site_payment_gateway = SitesShippingGateway.find_by_site_id_and_shipping_gateway_id(@site.id, @payment_gateway.id)
+    if params[:range]
+      OrderRange.destroy(params[:range])
+    else
+      flash[:notice] = ShippingGatewayAttributeValue.delete_attribute_values(site_payment_gateway, params)
+    end
     redirect_to site_shipping_path(@site.id, @payment_gateway.id)
   end
 

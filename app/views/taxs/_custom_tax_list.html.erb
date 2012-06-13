@@ -35,8 +35,8 @@
                       <% parent_custom_tax_rates = TaxGatewayAttributeValue.joins(:tax_gateway_attribute => :tax_gateway).where("parent_id is NULL and site_id = #{@site.id} and tax_gateway_id=#{custom_tax_gateway_id}")%>
                       <div class="overview" style="top: 0px; ">
                         <ul class="ConLibra">
-                          <% parent_custom_tax_rates.each do |parent_custom_tax| %>
-                          <li class="alt">
+                          <% parent_custom_tax_rates.each_with_index do |parent_custom_tax,i| %>
+                          <li class=<%= i%2==0 ? "alt" : "" %>>
                             <span class="location">
                               <span class="pointer"></span>
                               <%= parent_custom_tax.value %>
