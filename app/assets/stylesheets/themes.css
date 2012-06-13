@@ -537,7 +537,7 @@
 }
 .subTab-Content .resetAll{
 	position: absolute;
-	right:11px;
+	right:1px;
 	top:30%;
 	background:url(img/btnResetAll.png) no-repeat;
 	width:22px;
@@ -920,3 +920,15 @@
 		-moz-box-shadow: 0px 0px 3px #999;
 		-webkit-box-shadow: 0px 0px 3px #999;
 	}
+.themes-board .text-box-style{
+	width:300px;
+	background: -webkit-gradient(linear, top center, bottom center, from(#FFFFFF), to(#CCC)); 
+	background: -moz-linear-gradient(top,  #FFFFFF,  #CCCCCC);
+	padding:10px;
+	border:5px solid #ccc;
+	border-radius:6px;
+	margin:20px;
+}
+.text-red{
+	color:#f00;
+}
