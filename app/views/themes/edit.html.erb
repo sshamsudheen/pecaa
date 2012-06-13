@@ -37,6 +37,7 @@
 		    				<div class="goToFolder">
 		    					<select>
 		    						<option>go to folder</option>
+		    						<option value="<%=edit_theme_path(@theme, :file_type => 'templates')%>">templates</option>
 		    					</select>
 		    				</div>
 		    				<div class="userGrid">
@@ -90,5 +91,13 @@
 		    	</div>
 	    	</div>
         </div>
+        <script>
+          $("select").change(function(){
+            var link = $(this).attr('value');
+            if (link != ""){
+              window.location = $(this).attr('value');
+            }
+          });
+        </script>
     </body>
 </html>

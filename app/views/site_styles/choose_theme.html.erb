@@ -113,6 +113,11 @@
       window.location.href = "/sites/<%=params[:site_id]%>/site_styles/choose_theme?theme_id="+ $(this).attr('rel');
     });
     
+    $('.btnEdit').click(function(){
+      window.location.href = "/themes/"+$(this).attr('rel')+"/edit" ;
+    });
+    
+    
   	$('#preview_button').click(function(){
   	  window.location.href = "/sites/<%=params[:site_id]%>/preview";
     });
