@@ -111,6 +111,11 @@ class SitesController < ApplicationController
     record = params[:file_name].split('.').first
     @site.site_style.theme.get_files('templates')
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
+    #     @site.site_style.theme.get_files('themes')
+    #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'themes')
+    #     @site.site_style.theme.get_files('')
+    #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
+    
     lcontent = Liquid::Template.parse(@content).render("#{record.downcase}" => eval("#{record.classify}.all"))
     # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
     render :text => lcontent

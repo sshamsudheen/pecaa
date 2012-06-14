@@ -12,7 +12,24 @@ class Product < ActiveRecord::Base
 
 
   
-  liquid_methods :created_at, :name
+  liquid_methods :id, :name,
+  :sku,
+  :vendor,
+  :sold,
+  :viewed,
+  :rating,
+  :is_active,
+  :created_at,
+  :updated_at,
+  :base_price,
+  :retail_price,
+  :cost,
+  :weight,
+  :shipping_modifier,
+  :case_price,
+  :featured_at,
+  :featured_text,
+  :description
  
   has_many :order_products
   has_many :orders, :through => :order_products
