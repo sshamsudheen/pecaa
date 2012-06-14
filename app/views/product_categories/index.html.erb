@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'jquery.jeditable'%>
+
   <div class="content-section categoryMain">
     <div class="pages-main">
       <div class="pages-wrapper">
@@ -5,7 +7,7 @@
           <div class="title">Categories<span class="help"><a href="#"></a></span></div>
         </div>
         <div class="searchContent right">
-          <%=form_tag search_site_product_categories_path(@site) do %>
+          <%= form_tag search_site_product_categories_path(@site) do %>
             <input type="text" id="query" name="query" placeholder="search"><span class="searchIcon"><a href="#"></a></span>
 	    	 <% end %>
 	    </div>
@@ -32,27 +34,24 @@
                       <ul class="ConLibra">
                         <% @product_categories.each do |pc| %>
                           <li class="selected"> 
-                            <span class="userName">
-                              <span class="pointer"></span>
+                            <span class="userName PcName" id="<%=pc.id%>">
                               <%=pc.name%>
-                              <span class="status"></span>
                             </span>
                             <span class="group">
                               <span>
                                 <a href="#"><img src="/assets/btn_deleteActive.png" width="40" height="20"></a>
                               </span>
                               <span>
-                                <input name="" type="text" class="modifierTextBg" value=<%=pc.price_modifier%> size="4" maxlength="6">
+                                <input name="" type="text" class="modifierTextBg" value="<%=pc.price_modifier_value%> <%=pc.price_modifier %>" size="4" maxlength="6">
                               </span>
                             </span> 
-                            <span class="active">
-                              <a href="<%=update_pc_site_product_category_path(@site, pc, :product_category=>{:is_active => !(pc.is_active)})%>" >
-                                <img src="/assets/<%= pc.is_active? ? 'bg_On' : 'bg_Off'%>.png" border="0" />
+                            <span class="status">
+                              <a rel="<%=pc.is_active%>"  href="<%=update_pc_site_product_category_path(@site, pc, :product_category=>{:is_active => !(pc.is_active)})%>" class= <%=pc.is_active ? 'on' : 'off' %>>
                               </a>
                             </span>
                             <span class="removeBtn">
-                              <%= render :partial=>'shared/alert_box', :locals=>{:obj => pc,
-                                 :path => delete_site_product_category_path(@site, pc)),
+                              <%= render :partial => 'shared/alert_box', :locals => {:obj => pc,
+                                 :path => delete_site_product_category_path(@site, pc),
                                  :img_path => "/assets/btnDelete.png"}%> 
                             </span>
                           </li>
@@ -93,6 +92,25 @@
     //       return false;
     //  
     // })
+    
+    var edittext_url = "<%=update_name_site_product_categories_path(@site)%>";
+    get_Inline_editors_ready('PcName', edittext_url)    
+    
 	})
 </script>
 <script type="text/javascript" src="/assets/alert_box.js"></script>
+<script>
+$("span.status a").live("click", function(){
+  var link = $(this);
+  $.ajax({
+    type: "GET",
+    url: link.attr('href'),
+    success: function(result){        
+      var new_rel = link.attr('rel') == 'true' ? 'false' : 'true';
+      var new_link = (link.attr('rel') == 'true' ? link.attr('href').replace('false', 'true') : link.attr('href').replace('true', 'false'));
+      var new_class =  link.attr('class') == 'on' ? 'off' : 'on';
+      link.parent().html("<a rel="+ new_rel  + " href="+ new_link +" class="+ new_class +"></a>")
+  }});
+ return false;
+});
+</script>

@@ -579,7 +579,7 @@ width:100%;
 	width: 100%;
 }
 .ProductOptions .productGrid {
-	width:602px;
+	width:560px;
 	float:right;
 }
 .ProductOptions .userGridHeader {
@@ -600,7 +600,7 @@ width:100%;
 }
 .ProductOptions ul.ConLibraHeads li span.userName {
 	display: inline-block;
-	width: 315px;
+	width: 230px;
 	text-align:left;
 	padding-left:5px;
 }
@@ -634,7 +634,7 @@ width:100%;
 	padding-top: 5px;
 	position: relative;
 	vertical-align: top;
-	width: 303px;
+	width: 230px;
 	background: url("img/icon_movable.png") no-repeat scroll 98% center transparent;
 	display: inline-block;
 	text-align:left;
@@ -1002,11 +1002,11 @@ span img {
 	padding: 10px;
 	width:98%;
 	background-color:#fff;
-	min-height:550px;
+	min-height:560px;
 	border-radius:4px;
 }
 .tab_content {
-	display: none;
+/*  display: none;*/
 }
 /* end tabd*/
 

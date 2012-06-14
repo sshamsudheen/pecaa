@@ -36,7 +36,7 @@ class CatalogsController < ApplicationController
   end
   
   def search
-    @product_categories = Catalog.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
+    @catalogs = Catalog.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
     render :action => "index"
   end
 

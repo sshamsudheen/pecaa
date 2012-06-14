@@ -23,10 +23,25 @@ class ProductOptionsController < ApplicationController
   def update
     @product_option = ProductOption.find(params[:id])
     if @product_option.update_attributes(params[:product_option])
-      redirect_to site_product_options_path(@site)
+      if request.xhr?
+        render :nothing=> true
+      else
+        redirect_to site_product_options_path(@site)
+      end
     else
     end
   end
+  
+  def update_name
+    @product_option = ProductOption.find(params[:id])
+    if request.xhr?
+      para_hash = (params[:name] == 'true' ? {:name => params[:value]} : {:display_name=> params[:value]})
+      if @product_option.update_attributes(para_hash)
+        render :text => @product_option.name || ''
+      end
+    end
+  end
+  
 
   def destroy
     @product_option = ProductOption.find(params[:id])

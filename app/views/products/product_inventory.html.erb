@@ -13,7 +13,12 @@
               <span><img src="/assets/stars.jpg" width="73" height="13"></span>
             <% end %>
           </div>
-          <div class="eiditTextDiv"><span class="onBtn" id="disableInvBtn">&nbsp; </span><span>enable inventory</span> </div>
+          <div class="eiditTextDiv">
+            <span class="status">
+						  <a rel href="<%= update_product_site_product_path(@site, @product, :product=>{:enable_inventory => !(@product.enable_inventory)})%>" class= <%=@product.enable_inventory ? 'on' : 'off' %>>
+						  </a><span>enable inventory</span>
+            </span>
+          </div>
         </div>
         <div class="pages-main inventoryDiv" id="manageInvDiv">
           <div class="pages-wrapper">
@@ -21,7 +26,7 @@
               <div class="title">Manage Inventory<span class="help"><a href="#"></a></span></div>
               <div class="buttonSection"> </div>
             </div>
-            <div class="site-users ">
+            <div class="site-users <%=@product.enable_inventory ? '' : 'DivHide' %>">
               <div class="page-data clear ">
                 <div class="userGrid imageTab">
                   <div class="userGridHeader">

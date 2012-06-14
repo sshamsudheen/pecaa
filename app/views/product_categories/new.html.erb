@@ -11,9 +11,15 @@
     			  <span class="val"><%= f.text_field :name, :placeholder=>"Create Category" %></span>
   				</div>
   				<div class="form-row">
-  				  <span class="key">Price:</span>
-    			  <span class="val"><%= f.text_field :price_modifier, :placeholder=>"Price Modifier" %></span>
-          </div>	  
+  				  <span class="key">Price Modifier:</span>
+    			  <span class="val"><%= f.select(:price_modifier, '<option value="$">$</option><option value="%">%</option>') %>
+  			    </span>
+          </div>
+          <div class="form-row">
+  				  <span class="key">Price Modifier value:</span>
+    			  <span class="val"><%= f.text_field :price_modifier_value, :placeholder=>"0.0", :size=>10 %>
+  			    </span>
+          </div>
   			</div>
   		</div>
   	</div>

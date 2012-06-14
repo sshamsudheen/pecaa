@@ -91,7 +91,7 @@
 		        //  Now add class "active" to the selected/clicked tab
 		        $(this).addClass("active");
 		        //  Hide all tab content
-		        $(".tab_content").hide();
+            // $(".tab_content").hide();
 		        
 		        //  Show the selected tab content
 		        $(selected_tab).fadeIn();
@@ -103,7 +103,7 @@
 
 </script>
           
-<div class="modelWindow">
+<div class="modelWindow" >
 	<input type="hidden" id="product_id" name="product_id" value="<%= @product.id%>">
  <%= semantic_form_for [@site, @product] do |form| %>	
  

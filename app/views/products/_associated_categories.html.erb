@@ -1,0 +1,7 @@
+<%@product.categories.each do |c| %>
+  <span class="lightBlueBtn">
+    <a class="category_associate" href="<%=remove_category_site_product_path(@site, @product.id, :product_category_id => c.product_category.id)%>">
+    <%=c.product_category.name%>
+    </a>
+  </span>
+<%end%>

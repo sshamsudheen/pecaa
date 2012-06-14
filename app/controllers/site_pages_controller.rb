@@ -93,7 +93,7 @@ class SitePagesController < ApplicationController
     if params[:is_preview] == "true"
       redirect_to preview_site_path(@site)
     else
-      redirect_to site_site_styles_path(@site)
+      redirect_to choose_theme_site_site_styles_path(@site)
     end
   end
   

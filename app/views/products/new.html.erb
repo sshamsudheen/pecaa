@@ -1,3 +1,4 @@
+ <!-- :html=>{:onsubmit=>"return check_enter()" } -->
 <div class="modelWindow">
   <%= form_for [@site, @product] do |f| %>	
     <div class="headSection">
@@ -7,9 +8,9 @@
     <div class="midSection">
         <%= render :partial => "shared/products_tab"%>
         <div id="tabs_content_container">
-        <div class="tab_content">
+        <div class="tab_content" style="display:block">
           <div class="tab2topDiv">
-            <div class="editImgDiv"><img src="img/productimg.jpg" width="136" height="100"></div>
+            <div class="editImgDiv"><img src="/assets/productimg.jpg" width="136" height="100"></div>
             <div class="eiditTextDiv">
               <%unless @product.new_record? %>
                 <h2><%= @product.name%></h2>
@@ -57,10 +58,12 @@
                 <div class="title2">Product Categories<span class="help"><a href="#"></a></span></div>
                 <div class="group">
                   <div class="searchAC">
-                    <input type="text" class="search" placeholder="search categories">
+                    <input type="text" class="search" placeholder="search categories" id="query">
+                    <div id="relSearchResults" class="relProductOptBox" style="display:none;"></div>
                     <span><input name="" type="button" value="view all" class="blueBtn"></span>
-                    <span class="lightBlueBtn">sunglasses</span><a href="#">
-                    <span class="lightBlueBtn">frames</span></a> 
+                    <div id='associated_categories'>
+                      <%=render :partial=>"products/associated_categories"%>
+                    </div>
                   </div>
                 </div>
                 <div class="group"></div>
@@ -72,10 +75,12 @@
                 <div class="title2">Product Vendors <span class="help"><a href="#"></a></span></div>
                 <div class="group">
                   <div class="searchAC">
-                    <input type="text" class="search" placeholder="search vendors">
+                    <input type="text" class="search" placeholder="search vendors" id="vendor_query">
+                    <div id="vendorSearchResults" class="relProductOptBox" style="display:none;"></div>
                     <span><input name="" type="button" value="view all" class="blueBtn"></span>
-                    <span class="lightBlueBtn">Sunglasses</span><a href="#">
-                    <span class="lightBlueBtn">frames</span></a>    
+                    <div id='associated_vendors'>
+                      <%= render :partial=>"products/associated_vendors" %>
+                    </div>
                   </div>
                 </div>
                 <div class="group"></div>
@@ -84,8 +89,9 @@
 
             <div class="bottomDivRepeat ">
               <div class="colum-section last">
-                <div class="title2">Product Description <span class="help"><a href="#"></a></span></div>
-                <div class="group"><img src="/assets/richtexteditor.jpg" width="383" height="138"></div>
+                <div class="title2">Product Description <span class="help"><a href="#"></a></span>
+                	<%= f.text_area :description %>
+                </div>
                 <div class="group"></div>
               </div>
             </div>
@@ -99,3 +105,107 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    $('textarea').tinymce({
+	  mode : "exact",
+      width: "98%",
+      height: "20px",
+      theme: 'advanced',
+      theme_advanced_toolbar_location : "top",
+      
+    });
+  });
+  
+  $('.category_associate').live('click', function(){
+    $.ajax({
+      type: "get",
+      url: $(this).attr('href'),
+      success: function(result){
+        $('#associated_categories').html(result);
+    }});
+    return false;
+  });
+  
+  $('.vendor_associate').live('click', function(){
+    $.ajax({
+      type: "get",
+      url: $(this).attr('href'),
+      success: function(result){
+        $('#associated_vendors').html(result);
+    }});
+    return false;
+  });
+  
+  
+  $("form").bind("keypress", function(e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
+  
+  $("form").bind("click", function(e) {
+    $('#relSearchResults').hide();
+    $('#vendorSearchResults').hide();
+  });
+  
+  
+  $("#query").keyup(function(e){
+    if (e.keyCode == 13) {
+      $.ajax({
+        type: "POST",
+        url: "<%=search_category_site_product_path(@site, @product)%>",
+        data:"query="+$(this).attr('value'),
+        success: function(result){
+          $('#relSearchResults').html(result).show();
+      }});
+    }
+    return false;
+  });
+  
+  $("#vendor_query").keyup(function(e){
+    if (e.keyCode == 13) {
+      $.ajax({
+        type: "POST",
+        url: "<%=search_vendors_site_product_path(@site, @product)%>",
+        data:"query="+$(this).attr('value'),
+        success: function(result){
+          $('#vendorSearchResults').html(result).show();
+      }});
+    }
+    return false;
+  });
+  
+  	
+</script>
+
+<style>
+.searchResultBox {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 3px #999999 inset;
+    height: 300px;
+    left: 433px;
+    position: absolute;
+    top: 276px;
+    width: 243px;
+    z-index: 1000;
+}
+
+.vendorSearchResultBox{
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #666666;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 0 3px #999999 inset;
+  height: 300px;
+  left: 433px;
+  position: absolute;
+  top: 400px;
+  width: 243px;
+  z-index: 1000;
+}
+    
+</style>
+
