@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
   
   def new
-    @product = Product.new
+    @product = @site.products.create(:name =>"new product")
   end
   
   def edit

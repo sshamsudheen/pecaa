@@ -27,8 +27,6 @@ class Product < ActiveRecord::Base
   :weight,
   :shipping_modifier,
   :case_price,
-  :featured_at,
-  :featured_text,
   :description
  
   has_many :order_products

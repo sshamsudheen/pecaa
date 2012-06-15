@@ -58,13 +58,17 @@
 										<span class="pointer"></span>
 										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
 										<div class="viewport">
-											<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
+											<div class="shadows">
+											  <span class="topShadow"></span><span class="bottomShadow"></span>
+											</div>
 		 									<div class="overview" id='products1'>
 		    									<ul class="ConLibra">
 		    									  <% @files.each do |file|%>
-  		    										<li <%= (@selected_file == file ? "class='selected'" : '')%>
-  		    											<span class="fileName"><a href="?file_name=<%=file%>&file_type=<%=params[:file_type]%>"><%=file%></a></span>
-  		    											</li>
+  		    										<li <%= (@selected_file == file ? "class='selected'" : '')%>>
+  		    											<span class="fileName">
+  		    											  <a   href="?file_name=<%=file%>&file_type=<%=params[:file_type]%>"><%=file%></a>
+  		    											</span>
+  		    										</li>
 		    										<% end %>
 		    									</ul>
 		    								</div>
@@ -83,12 +87,12 @@
                   <%= form_for(@theme) do |f| %>
                     <%=hidden_field_tag :file_name, @selected_file%>
                     <%=hidden_field_tag :file_type, params[:file_type]%>
-                    <textarea cols='500' rows='60' name='file_content'>
+                    <textarea name='file_content'>
                       <%=raw @file_content%>
                     </textarea>
 		    				</div>
 		    				  <div class="rightBtns">
-		    				    <button class="theme_btn_Save" id="form_submit" >Save</button>
+                    <div class="ctrl right"><button class="primary" id="form_submit">Save</button></div>
 		    				</div>
                 <% end %>
 		    			</div>
