@@ -52,6 +52,7 @@
     height: 460px;
     overflow: hidden;
 }
+.editFileView textarea {background:none; border:none; width:100%; height:100%;}
 .fileList ul{
 	margin:0;
 	padding:0;
