@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
         if request.xhr?
           render :nothing=> true
         else
-          redirect_to site_products_path(@site)
+          redirect_to request.referrer
         end
       end
     end
@@ -55,6 +55,44 @@ class ProductsController < ApplicationController
   
   def images_list
     @product_images = @product.product_images
+  end
+  
+  def search_category
+    @product_categories = ProductCategory.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
+    render :partial => "search_categories"
+  end
+  
+  def add_category
+    unless category = @product.categories.find_by_product_id_and_product_category_id(@product.id, params[:product_category_id])
+      Category.create(:product_category_id => params[:product_category_id], :product_id => @product.id)
+    end
+    render :partial => "associated_categories"
+  end
+  
+  def remove_category
+    if category = @product.categories.find_by_product_id_and_product_category_id(@product.id, params[:product_category_id])
+      category.destroy
+    end
+    render :partial => "associated_categories"
+  end
+  
+  def search_vendors
+    @product_vendors = ProductVendor.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
+    render :partial => "search_vendors"
+  end
+  
+  def add_vendor
+    unless vendor = @product.vendors.find_by_product_id_and_product_vendor_id(@product.id, params[:product_vendor_id])
+      Vendor.create(:product_vendor_id => params[:product_vendor_id], :product_id => @product.id)
+    end
+    render :partial => "associated_vendors"
+  end
+  
+  def remove_vendor
+    if vendor = @product.vendors.find_by_product_id_and_product_vendor_id(@product.id, params[:product_vendor_id])
+      vendor.destroy
+    end
+    render :partial => "associated_vendors"
   end
   
   def videos_list

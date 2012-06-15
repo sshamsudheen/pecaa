@@ -39,12 +39,12 @@ class Theme < ActiveRecord::Base
   end
   
   def get_files(file_type = 'themes')
-    self.create_template_directory unless File.directory?("#{self.get_file_path}/themes/templates") 
+    self.create_template_directory unless File.directory?("#{self.get_file_path}/templates/") 
     Dir.new("#{self.get_file_path}/#{file_type}").entries.map{|n| n unless File.directory?(n)}.compact
   end
   
   def get_template_files
-    self.create_template_directory unless File.directory?("#{self.get_file_path}/themes/templates") 
+    self.create_template_directory unless File.directory?("#{self.get_file_path}/templates/") 
     Dir.new("#{self.get_file_path}/templates").entries.map{|n| n unless File.directory?(n)}.compact
   end
   
@@ -96,9 +96,12 @@ class Theme < ActiveRecord::Base
   end
   
   def update_theme(params)
+    params[:file_type] ||= 'themes'
     Theme.transaction do
       if self.update_attributes(params[:theme])
-        File.open("#{self.get_file_path}/themes/#{params[:file_name]}", 'w') {|f| f.write(params[:file_content])}
+        # raise params[:file_type].inspect
+
+        File.open("#{self.get_file_path}/#{params[:file_type]}/#{params[:file_name]}", 'w') {|f| f.write(params[:file_content])}
         @ret_val = true
       end
     end

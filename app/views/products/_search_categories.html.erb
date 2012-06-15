@@ -1,0 +1,16 @@
+<% unless @product_categories.empty? %>
+  <div class="searchResultBox">
+    <ul>
+      <% @product_categories.each do |pc|%>
+        <li class="active">
+          <%=pc.name%>
+            <span>
+            <a href="<%=add_category_site_product_path(@site, @product.id, :product_category_id => pc.id) %>" class="category_associate">
+              <img src="/assets/searchAddBtn.png" width="20" height="22">
+            </a>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

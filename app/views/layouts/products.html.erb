@@ -66,7 +66,9 @@
           <li <%=check_active('products', 'featured_products')%>>
             <a href=<%=featured_products_site_products_path(@site)%>>featured products</a>
           </li>
-          <li>product options</li>
+          <li <%=check_active('product_categories', 'product_options')%>>
+            <a href=<%=site_product_options_path(@site)%>>products options</a>
+          </li>
           <li <%=check_active('product_categories', 'featured_products')%>>
             <a href=<%=site_catalogs_path(@site)%>>catalogs</a>
           </li>

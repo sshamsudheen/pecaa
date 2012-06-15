@@ -21,7 +21,11 @@
 	    	<div class="userEditHolder">	
 		    	<div class="header-section">
 		    		<div class="topHeader">
-		    			<div class="logoHolder"><%if SystemConfig.first%><img src="<%=SystemConfig.first.controller_logo%>" width="170" height="36"/><%end%></div>
+		    			<div class="logoHolder">
+  		    			<%if SystemConfig.first%>
+  		    			  <img src="<%= SystemConfig.first.controller_logo %>" width="170" height="36"/>
+  		    			<%end%>
+		    			</div>
 		    			<div class="rightPanel">
 		    				<ul>
 		    					<li class="help"></li>
@@ -37,6 +41,8 @@
 		    				<div class="goToFolder">
 		    					<select>
 		    						<option>go to folder</option>
+		    						<option value="<%=edit_theme_path(@theme, :file_type => 'templates')%>">templates</option>
+		    						<option value="<%=edit_theme_path(@theme, :file_type => 'themes')%>">themes</option>
 		    					</select>
 		    				</div>
 		    				<div class="userGrid">
@@ -90,5 +96,13 @@
 		    	</div>
 	    	</div>
         </div>
+        <script>
+          $("select").change(function(){
+            var link = $(this).attr('value');
+            if (link != ""){
+              window.location = $(this).attr('value');
+            }
+          });
+        </script>
     </body>
 </html>
