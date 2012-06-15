@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   before_filter :ensure_site_id
-  before_filter :ensure_product_id, :except => [:index, :new, :search, :create, :featured_products]
+  before_filter :ensure_product_id, :except => [:index, :new, :search, :create, :featured_products, :try_it_on]
   # edit, :update,:add_image,:images_list, :videos_list, :related_products
   
   def index
@@ -148,7 +148,12 @@ class ProductsController < ApplicationController
   
   def add_image
     @product_image = ProductImage.new(:product_id => @product.id)
-  end  
+  end
+  
+  def try_it_on
+    @product = Product.new
+    render :template => "/products/try_it_on_image"
+  end
     
   private
   
