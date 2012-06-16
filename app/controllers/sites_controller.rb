@@ -116,7 +116,7 @@ class SitesController < ApplicationController
     #     @site.site_style.theme.get_files('')
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
     
-    lcontent = Liquid::Template.parse(@content).render("#{record.downcase}" => eval("#{record.classify}.all"))
+    lcontent = Liquid::Template.parse(@content).render("#{record.downcase}" => eval("#{record.classify}.all"), "featured_products" => Product.featured_products)
     # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
     render :text => lcontent
   end
@@ -135,7 +135,7 @@ class SitesController < ApplicationController
   end
   
   def optional
-     @site = Site.find(params[:id])
+    @site = Site.find(params[:id])
     @optional = @site.site_optional_detail || SiteOptionalDetail.new
     render :layout => "site"
   end
