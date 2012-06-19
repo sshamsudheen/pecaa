@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+	  <title>Layout</title>
+    <!--link href="/assets/layout.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/content.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/preview.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/assets/jquery-1.7.1.min.js"></script -->
+	</head>
+	<body>
+		<div class="mainContainer">
+			<div class="userEditHolder">
+				<div class="header-section">
+		    		<div class="topHeader">
+		    			<div class="logoHolder"></div>
+              This is Header
+		    		</div>
+		    	</div>
+  		    <div class="content-tabs">
+  		    {{ content_for_layout }}
+  				</div>
+  				<div class="footer-section">
+  				This is footer
+          </div>
+			</div>
+		</div>
+	</body>
+</html>
