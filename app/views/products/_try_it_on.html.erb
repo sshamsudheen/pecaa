@@ -2,13 +2,14 @@
 <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 	  
+	  <%@product = Product.find(params[:id])%>
 <div id="tab6" class="tab_content" >
         <div class="tab2topDiv">
           <div class="editImgDiv"><img width="136" height="100" src="/assets/productimg.jpg"></div>
           <div class="eiditTextDiv">
-            <h2>Red Sunglasses</h2>
-            <h3>created : 02/12/10</h3>
-            <h3>last modified : 02/12/10</h3>
+            <h2><%=@product.name%></h2>
+            <h3>created : <%=@product.created_at.strftime("%D")%></h3>
+            <h3>last modified : <%=@product.updated_at.strftime("%D")%></h3>
             <span><img width="73" height="13" src="/assets/stars.jpg"></span> </div>
           <div class="eiditTextDiv">
            <span><img width="48" height="21" src="/assets/bg_On.png"></span><span>enable "try it on"</span><span/><span class="help"><a href="#"></a></span><br/>
@@ -108,7 +109,7 @@
             <span id="try_it_img">
             	<img src="<%=TryItImage.first.upload rescue '/assets/preivewimg.png'%>" width="189" height="164">
 			</span>-->
-			<div id="hotspotLeft-img" class="draggable" style="<%=TryItImage.last.left_eye_position%>">
+			<div id="hotspotLeft-img" class="draggable" style="<%=TryItImage.last.left_eye_position.gsub(/top: (.*)px/,"top: #{$1.to_i - 125}px")%>">
         <img width="53" height="52" src="/assets/hotspotproduct1.png">
     </div>
     
