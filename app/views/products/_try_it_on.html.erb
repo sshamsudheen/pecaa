@@ -1,3 +1,4 @@
+
 <%= javascript_include_tag 'jquery.watermark', 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.ui.accordion.js', 'jquery.jeditable'%>
 	  
@@ -66,31 +67,18 @@
                          <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="css/img/btnMarkNo.png" border="0" /></span></span> <span class="sku">Group X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
                           
                           
-                          <li class="selected"> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li > <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li > <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li><span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                          <li> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>
-                         
+                          <!--<li class="selected"> <span class="hotspotImages"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span> <span class="hotspotImages noleftBorder"><img src="/assets/hotspotproduct1.png" width="100" height="59"></span></li>-->
+						  <%ProductImage.where(:is_thumbnail => true).each do |product_image|%>
+                            <li > 
+							  <span class="hotspotImages"><img src="<%=product_image.image_path%>" width="100" height="59"></span>
+							 </li>
+                          <%end%>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="userGridFooter"></div>
+                <div class="userGridFooter" style="margin-top:30px;"></div>
               </div>
             </div>
           </div>
@@ -114,14 +102,27 @@
             
             
             <h4>preview</h4>
-            <span><img src="<%=TryItImage.first.upload rescue '/assets/preivewimg.png'%>" width="189" height="164"></span>
-            <span>
-            	<select name="select_preview">
-              <option>Preview Images</option>
-			  <%=TryItImage.all.each do |try|%>
-				  <option value='<%=try.upload.to_s%>'><%=try.upload.to_s.split('/').last%></option>
-			  <%end%>
-            </select></span>
+			<!--<span style="<%=TryItImage.first.left_eye_position%>">
+				<img src="/assets/hotspotproduct1.png" width="53" height="58">
+			</span>
+            <span id="try_it_img">
+            	<img src="<%=TryItImage.first.upload rescue '/assets/preivewimg.png'%>" width="189" height="164">
+			</span>-->
+			<div id="hotspotLeft-img" class="draggable" style="<%=TryItImage.last.left_eye_position%>">
+        <img width="53" height="52" src="/assets/hotspotproduct1.png">
+    </div>
+    
+        <div id="droppable">
+            <img width="189" height="164" src="<%=TryItImage.last.upload rescue '/assets/preivewimg.png'%>">
+        </div>
+        <div class="resetBtn">
+        </div>
+    
+			            <div>
+
+<%=select "select", "preview",TryItImage.all.collect{|try| [try.upload.to_s.split('/').last, try.upload.to_s]},{:prompt => 'Preview Images'}%>   
+              
+			</div>
             </div>
         
         </div>
@@ -132,6 +133,7 @@
   <script type="text/javascript">
 	$('.hotspotImages img').click(function(){
 		$('.hotspotImg img').attr('src',$(this).attr('src'));
+		$('#hotspotLeft-img img').attr('src',$(this).attr('src'));
 	})  	  
   </script>
 
