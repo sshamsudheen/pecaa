@@ -1,7 +1,10 @@
-<ul id="products">
+<div id="products">
   {% for product in products %}
-    <li>
-      <h2>{{ product.name }}</h2>
-    </li>
+    <div class="block">
+      <h2>{{ product.name}}</h2>
+      <div class="content">
+        {{ product.image_path}}
+      </div>
+    </div>
   {% endfor %}
-</ul>
+</div>

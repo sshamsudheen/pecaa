@@ -117,9 +117,9 @@ class SitesController < ApplicationController
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'themes')
     #     @site.site_style.theme.get_files('')
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
-    
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
     icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => eval("#{record.classify}.all"), "featured_products" => Product.featured_products)
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent)
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
     
     # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
     render :text => lcontent

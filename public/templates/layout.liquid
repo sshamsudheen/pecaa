@@ -3,11 +3,8 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
-	  <title>Layout</title>
-    <!--link href="/assets/layout.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/assets/content.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="/assets/preview.css" media="screen" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/assets/jquery-1.7.1.min.js"></script -->
+	  <title>{{site.name}}</title>
+    {{ site_theme }}
 	</head>
 	<body>
 		<div class="mainContainer">
@@ -17,13 +14,28 @@
 		    			<div class="logoHolder"></div>
               This is Header
 		    		</div>
-		    	</div>
-  		    <div class="content-tabs">
+		    </div>
+		    <div class="content-tabs">
+          <ul>
+            {% for site_page in site.site_pages %}
+              <li  class="active">
+                <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
+                  <span>
+                    {{ site_page.name}}
+                  </span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+  		  <div id="box">
   		    {{ content_for_layout }}
-  				</div>
-  				<div class="footer-section">
+  			</div>
+  			
+  			<div class="footer-section">
   				This is footer
-          </div>
+        </div>
 			</div>
 		</div>
 	</body>
