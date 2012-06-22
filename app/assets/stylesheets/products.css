@@ -278,14 +278,10 @@ float:left;
 padding-left:40px;	
 background-position:20px 5px
 }
-.pages-wrapper {
+/*.pages-wrapper {
     width: 980px;
-}
-
+}*/
 /* categroy section*/
-
-.categoryMain {
-}
 .categoryMain .searchContent {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #666666;

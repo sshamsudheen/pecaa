@@ -1,142 +1,140 @@
-<div class="content-section">
-    <div class="pages-main">
-        <div class="pages-wrapper">
-            <div class="usersLeftPane left" id="show_order_list">
-                <div class="title">
-                    manage orders <span class="help"><a href="#"></a></span>
+<div class="pages-main">
+    <div class="pages-wrapper">
+        <div class="usersLeftPane left" id="show_order_list">
+            <div class="title">
+                manage orders <span class="help"><a href="#"></a></span>
+            </div>
+            <div class="userPanel">
+                <div class="searchUser">
+                    <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="/assets/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="/assets/btnDropDownSelectColum.png"></span></span>
+                </div><span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png"></span><span class="user-label">name</span></span>
+                <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">role</span></span>
+            </div>
+            <div class="userPanelDevider">
+            </div>
+            <div class="userPanel productp">
+                <div class="date-created">
+                    <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                    
+                    <label for="shareThis">
+                        total
+                    </label>
                 </div>
-                <div class="userPanel">
-                    <div class="searchUser">
-                        <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="/assets/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="/assets/btnDropDownSelectColum.png"></span></span>
-                    </div><span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png"></span><span class="user-label">name</span></span>
-                    <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">role</span></span>
+                <div class="rangeSlider">
+                    <img width="212" height="22" src="/assets/sideBar.png">
                 </div>
-                <div class="userPanelDevider">
+                <div class="last-activity">
+                    <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
+                    
+                    <label for="lastActivityVal">
+                        date placed
+                    </label>
                 </div>
-                <div class="userPanel productp">
-                    <div class="date-created">
-                        <span id="" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        
-                        <label for="shareThis">
-                            total
-                        </label>
-                    </div>
-                    <div class="rangeSlider">
-                        <img width="212" height="22" src="/assets/sideBar.png">
-                    </div>
-                    <div class="last-activity">
-                        <span id="lastActivityVal" class="checkbox" style="background-position: 0pt 0pt;"></span>
-                        
-                        <label for="lastActivityVal">
-                            date placed
-                        </label>
-                    </div>
-                    <div class="rangeSlider">
-                        <img width="212" height="22" src="/assets/sideBar.png">
-                    </div>
-                </div>
-                <div class="userPanelDevider">
-                </div>
-                <div class="userPanel">
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                paid
-                            </label>
-                        </span>
-                    </div>
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                complete
-                            </label>
-                        </span>
-                    </div>
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                in progress
-                            </label>
-                        </span>
-                    </div>
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                on hold
-                            </label>
-                        </span>
-                    </div>
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                shipped
-                            </label>
-                        </span>
-                    </div>
-                    <div class="showRoles">
-                        <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
-                            <label>
-                                cancelled
-                            </label>
-                        </span>
-                    </div>
+                <div class="rangeSlider">
+                    <img width="212" height="22" src="/assets/sideBar.png">
                 </div>
             </div>
-            <div class="site-users left">
-                <div class="addNewUserBtn">
+            <div class="userPanelDevider">
+            </div>
+            <div class="userPanel">
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            paid
+                        </label>
+                    </span>
                 </div>
-                <div class="page-data clear">
-                    <div class="userGrid productGrid">
-                        <div class="userGridHeader leftMargin">
-                            <ul class="ConLibraHeads">
-                                <li>
-                                    <span class="dateCol">Order</span>
-                                    <span class="dateCol">Placed</span>
-                                    <span class="dateCol">Status</span>
-                                    <span class="dateCol">Pay Status</span>
-                                    <span class="dateCol">Ship Status</span>
-                                    <span class="customCol">Customer</span>
-                                    <span class="dateCol">Total</span>
-									<span class="dateCol"></span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="userGridBody">
-                            <div id="orders1">
-                                <div class="scrollbar" style="height: 465px;">
-                                    <div class="track" style="height: 465px;">
-                                        <div class="thumb" style="top: 0px; height: 432.45px;">
-                                            <div class="end">
-                                            </div>
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            complete
+                        </label>
+                    </span>
+                </div>
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            in progress
+                        </label>
+                    </span>
+                </div>
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            on hold
+                        </label>
+                    </span>
+                </div>
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            shipped
+                        </label>
+                    </span>
+                </div>
+                <div class="showRoles">
+                    <span class="val"><span id="" class="radio" style="background-position: 0pt 0pt;"></span></span><span class="key">
+                        <label>
+                            cancelled
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="site-users left">
+            <div class="addNewUserBtn">
+            </div>
+            <div class="page-data clear">
+                <div class="userGrid productGrid">
+                    <div class="userGridHeader leftMargin">
+                        <ul class="ConLibraHeads">
+                            <li>
+                                <span class="dateCol">Order</span>
+                                <span class="dateCol">Placed</span>
+                                <span class="dateCol">Status</span>
+                                <span class="dateCol">Pay Status</span>
+                                <span class="dateCol">Ship Status</span>
+                                <span class="customCol">Customer</span>
+                                <span class="dateCol">Total</span>
+								<span class="dateCol"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="userGridBody">
+                        <div id="orders1">
+                            <div class="scrollbar" style="height: 465px;">
+                                <div class="track" style="height: 465px;">
+                                    <div class="thumb" style="top: 0px; height: 432.45px;">
+                                        <div class="end">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="viewport noBg">
-                                    <div class="shadows leftMargin">
-                                        <span class="topShadow"></span>
-                                        <span class="bottomShadow"></span>
-                                    </div>
-                                    <div class="overview leftMargin" style="top: 0px;">
-                                        <ul class="ConLibra">
-                                            <%Order.all.each do |order| %>
-                                            <li class="alt" onclick="show_order('<%=order.id%>')">
-                                                <span class="dateCol"><span class="pointer" style="display: none;"></span><%=order.order_id%></span>
-                                                <span class="dateCol"><%=order.created_at.strftime("%y/%m/%d")%></span>
-                                                <span class="dateCol"><%=order.status%></span>
-                                                <span class="dateCol"><%=order.pay_status%></span>
-                                                <span class="dateCol"><%=order.ship_status%></span>
-                                                <span class="customCol"><%=order.customer_email%></span>
-                                                <span class="dateCol">250</span>
-												<span class="dateCol"><%=link_to "Edit","/sites/#{params[:site_id]}/orders/#{order.id}/edit",:onclick => "window.location.href='/sites/#{params[:site_id]}/orders/#{order.id}/edit'"%></span>
-                                            </li>
-                                            <%end %>
-                                        </ul>
-                                    </div>
+                            </div>
+                            <div class="viewport noBg">
+                                <div class="shadows leftMargin">
+                                    <span class="topShadow"></span>
+                                    <span class="bottomShadow"></span>
+                                </div>
+                                <div class="overview leftMargin" style="top: 0px;">
+                                    <ul class="ConLibra">
+                                        <%Order.all.each do |order| %>
+                                        <li class="alt" onclick="show_order('<%=order.id%>')">
+                                            <span class="dateCol"><span class="pointer" style="display: none;"></span><%=order.order_id%></span>
+                                            <span class="dateCol"><%=order.created_at.strftime("%y/%m/%d")%></span>
+                                            <span class="dateCol"><%=order.status%></span>
+                                            <span class="dateCol"><%=order.pay_status%></span>
+                                            <span class="dateCol"><%=order.ship_status%></span>
+                                            <span class="customCol"><%=order.customer_email%></span>
+                                            <span class="dateCol">250</span>
+											<span class="dateCol"><%=link_to "Edit","/sites/#{params[:site_id]}/orders/#{order.id}/edit",:onclick => "window.location.href='/sites/#{params[:site_id]}/orders/#{order.id}/edit'"%></span>
+                                        </li>
+                                        <%end %>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="userGridFooter leftMargin">
-                        </div>
+                    </div>
+                    <div class="userGridFooter leftMargin">
                     </div>
                 </div>
             </div>
@@ -144,14 +142,16 @@
     </div>
 </div>
 <script type="text/javascript">
-	
-function show_order(id){
-		$.ajax({
-			type: "get",
-			url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
-			success: function(data){
-				$('#show_order_list').html(data);
-			},
-	});
-}
+	$(document).ready(function(){
+		$('#orders1').tinyscrollbar();
+	})
+	function show_order(id){
+			$.ajax({
+				type: "get",
+				url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
+				success: function(data){
+					$('#show_order_list').html(data);
+				},
+		});
+	}
 </script>
