@@ -1,5 +1,9 @@
+<%= stylesheet_link_tag "jquery.loadmask"%>
 <%= javascript_include_tag  'facebox'%>
 <%= javascript_include_tag 'jquery.jeditable'%>
+<%= javascript_include_tag 'js/interface-1.2'%>
+<%= javascript_include_tag 'js/inestedsortable'%>
+<%= javascript_include_tag 'js/loadmask'%>
 
 <% if @site_page && @site_page.errors.any? %>
   <div id="error_explanation">
@@ -184,6 +188,42 @@
 </script>
 
 <script type="text/javascript">
+
+jQuery( function($) {
+   $('#list-container').NestedSortable(
+      {
+        accept: 'sortable-element-class',
+        opacity: 0.8,
+        helperclass: 'helper',
+        nestingPxSpace: 20,
+        currentNestingClass: 'current-nesting',
+        fx:400,
+        revert: true,
+        autoScroll: false,
+		onChange: function(serialized) {
+            $('#list-container').mask("Saving...");
+            var order='';
+            $.map(serialized[0].o['list-container'], function(val, i) {
+                order += ','+val.id.substring(5);
+                if((i+1)%2)
+                    $('#'+val.id).addClass('alt');
+                else
+                    $('#'+val.id).removeClass('alt');
+            });
+            // save the re-ordered page listing
+            $.ajax({
+                type: "GET",
+                url: '/sites/1/site_pages/reorder?porder='+escape(order.substring(1)),
+                success: function(result){
+                    $('#list-container').unmask();
+            }});
+        }
+      }
+    );
+});
+
+
+/*
 function get_sortables_ready(){  
   jQuery( function($) {
     $('#list-container').NestedSortable(
@@ -201,7 +241,7 @@ function get_sortables_ready(){
     );
   });
 }
-
+*/
 
 </script>
 <script type="text/javascript" src="/assets/alert_box.js"></script>
