@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   has_one  :rel_product, :class_name => 'RelatedProduct'
   
   belongs_to :site
+  belongs_to :product_categories
   
   has_many :order_products
   has_many :orders, :through => :order_products
