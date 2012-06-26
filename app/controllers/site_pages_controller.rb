@@ -3,7 +3,7 @@ class SitePagesController < ApplicationController
   layout 'site'  
   
   def index
-    @site_pages = @site.site_pages
+    @site_pages = @site.site_pages.order('list_order')
   end
   
   def new
@@ -95,6 +95,19 @@ class SitePagesController < ApplicationController
     else
       redirect_to choose_theme_site_site_styles_path(@site)
     end
+  end
+
+  def reorder
+    if params[:porder]
+      phash = {}
+      params[:porder].split(',').each_with_index { |i,x|
+        phash.merge!("#{i}"=> {'list_order'=>x+1})
+      }
+      # update current site pages with their orders
+      SitePage.update(phash.keys, phash.values)
+    end
+
+    render :nothing=> true
   end
   
     
