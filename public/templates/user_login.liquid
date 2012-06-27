@@ -1,14 +1,61 @@
-{% form 'customer' %}
-  <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+d="search-form" name="search" method="post" action="/sites/{{site.id}}/customer_login">
   <table>
+    <tr>Log In</tr>
     <tr>
-      <td>Enter in your email to join our mailing list:</td>
+      <td>email address:</td>
       <td>
-        <input type="text" id="contact_email" name="contact[email]"/>
+        <input type="text" id="contact_email" name="email"/>
       </td>
     </tr>
+
     <tr>
-      <td colspan="2"><input type='submit' class="submit" /></td>
+      <td>password:</td>
+      <td>
+        <input type="password" id="contact_password" name="password"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2"><input type='submit' class="submit" value="sign in"/></td>
+    </tr>
+
+    <tr>
+      <td colspan="2"><a href="/customer_forget_password">forget name / password</a></td>
     </tr>
   </table>
-{% endform %}
+</form>
+
+<form id="search-form" name="search" method="post" action="/sites/{{site.id}}/create_customer">
+  <table>
+    <tr>Create New Account</tr>
+    <tr>
+      <td>email address:</td>
+      <td>
+        <input type="text" id="contact_email" name="customer[email]"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>choose password:</td>
+      <td>
+        <input type="password" id="contact_password" name="customer[password]"/>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>reenter password:</td>
+      <td>
+        <input type="password" id="contact_password" name="customer[password_confirmation]"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2"><input type='submit' class="submit" value="create account"/></td>
+    </tr>
+  </table>
+</form>
+
+                    
+                    
+                    
