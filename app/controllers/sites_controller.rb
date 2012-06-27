@@ -123,6 +123,20 @@ class SitesController < ApplicationController
     # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
     render :text => lcontent
   end
+
+  def user_actions
+    @site = Site.find(params[:id])
+    record = params[:file_name].split('.').first
+    @site.site_style.theme.get_files('templates')
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
+    @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
+
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
+    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site)
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
+    render :text => lcontent
+  end
+
   
   def rendering_partial
     render :partial => "contact_form"
@@ -156,6 +170,22 @@ class SitesController < ApplicationController
   def done
     @site = Site.find(params[:id])
     render :layout => "site"
+  end
+
+  def create_customer
+    Customer.create(params[:customer])    
+    render :text => "Your account is created Now."
+  end
+
+  def customer_login
+    email = params[:email]
+    password = params[:password]
+    @customer = Customer.find_by_email_and_password(params[:email],params[:password])
+    if @customer
+     render :text => "You Successfully Logged in"
+    else
+      redirect_to "/sites/#{params[:id]}/user_actions?file_name=user_login"
+    end
   end
   
   def show_products
@@ -207,5 +237,5 @@ class SitesController < ApplicationController
     end
     files.blank? ? nil : files.html_safe
   end
-  
+
 end

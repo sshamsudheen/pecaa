@@ -1,0 +1,14 @@
+{% form 'customer' %}
+  <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+  <table>
+    <tr>
+      <td>Enter in your email to join our mailing list:</td>
+      <td>
+        <input type="text" id="contact_email" name="contact[email]"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type='submit' class="submit" /></td>
+    </tr>
+  </table>
+{% endform %}
