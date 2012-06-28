@@ -109,6 +109,18 @@
 	margin:0;
 	list-style: none;
 }
+.site-pages ul.ConLibra{
+    border-left:1px solid #333333;
+    border-right:1px solid #333333;
+    padding:0;
+    margin:0;
+    list-style: none;
+}
+.site-pages ul.ConLibra ul.ConLibra{
+    list-style: none;
+    padding-left:0 !important;
+}
+
 .site-pages ul.ConLibra li{
 	background:url(img/bg_TableTopBorder.png) repeat-x 0 top #f0f0f0;
 	/*border-bottom: 1px solid #CCCCCC;*/
@@ -148,18 +160,21 @@
 	border-bottom:1px solid #333333;*/
 }
 
-.site-pages .ConLibra .pageName{
-	width:165px;
-	background:url(img/icon_movable.png) no-repeat 98% center transparent;
-	text-align: left;
-	padding-left:20px;	
-	display:inline-block;
-	height:22px;
-	vertical-align: middle;
-	padding-top:2px;
+span.dndhandle{
+    background:url(img/icon_movable.png) no-repeat 98% center transparent;
+    cursor:move;
+    padding:5px;
 }
-.site-pages .ConLibra .status,
-.site-pages .ConLibra .home{
+
+span.pageName{
+    width:165px;
+    padding-left:5px;
+    display:inline-block;
+    height:22px;
+    padding-top:2px;
+}
+
+span.status,span.home{
 	width:43px;	
 	padding-top:2px;
 	text-align: center;
@@ -170,7 +185,7 @@
 	padding-left: 2px;
     padding-right: 3px;
 }
-.site-pages .ConLibra .home{
+span.home{
 	padding-left:15px;
 	width:25px;
 }
@@ -186,7 +201,7 @@
 		background: url(img/bg_Off.png) no-repeat;
 		display:block;
 	}
-.site-pages .ConLibra .other{
+span.other{
 	width:210px;
 	text-align: center;	
 	display:inline-block;
@@ -195,7 +210,7 @@
 	border-left:1px solid #999999;
 	padding-top:2px;
 }
-.site-pages .ConLibra .misc{
+span.misc{
 	text-align: center;
     width: 40px;
     display:inline-block;
