@@ -213,7 +213,7 @@ jQuery( function($) {
             // save the re-ordered page listing
             $.ajax({
                 type: "GET",
-                url: '/sites/1/site_pages/reorder?porder='+escape(order.substring(1)),
+                url: '/sites/<%=@site.id%>/site_pages/reorder?porder='+escape(order.substring(1)),
                 success: function(result){
                     $('#list-container').unmask();
             }});
