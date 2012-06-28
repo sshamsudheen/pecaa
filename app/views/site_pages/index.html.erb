@@ -204,7 +204,7 @@ jQuery( function($) {
         handle: 'span.dndhandle',
         axis: 'y',
           onChange: function(serialized) {
-            //$('#list-container').mask("Saving...");
+            $('#list-container').mask("Saving...");
             var order='';
             $.map(serialized[0].o['list-container'], function(val, i) {
                 order += ','+val.id.substring(5);
@@ -214,12 +214,12 @@ jQuery( function($) {
                     $('#'+val.id).removeClass('alt');
             });
             // save the re-ordered page listing
-            /*$.ajax({
+            $.ajax({
                 type: "GET",
                 url: '/sites/<%=@site.id%>/site_pages/reorder?porder='+escape(order.substring(1)),
                 success: function(result){
                     $('#list-container').unmask();
-            }}); */
+            }});
         }
       }
     );
