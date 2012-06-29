@@ -41,7 +41,8 @@
   						<ul class="ConLibra" id="list-container">
   						  <%@site_pages.each do |sp|%>
     							<li id="page_<%=sp.id%>" class='sortable-element-class'>
-    								<span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
+                                    <span class="dndhandle">&nbsp;</span>
+                                    <span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
 										<span class="status">
     								  <a rel ="<%=sp.is_active%>" href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_active => !(sp.is_active)})%>" class=<%=sp.is_active ? 'on' : 'off' %>></a>
     								</span>
@@ -200,7 +201,9 @@ jQuery( function($) {
         fx:400,
         revert: true,
         autoScroll: false,
-		onChange: function(serialized) {
+        handle: 'span.dndhandle',
+        axis: 'y',
+          onChange: function(serialized) {
             $('#list-container').mask("Saving...");
             var order='';
             $.map(serialized[0].o['list-container'], function(val, i) {
