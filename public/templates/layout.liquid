@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE HTML>
+<html>
 	<head>
-	  <title>{{site.name}}</title>
+    <title>{{site.name}}</title>
     {{ site_theme }}
+    <link href="/css/pecaaCF.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-		<div class="mainContainer">
-			<div class="userEditHolder">
-				<div class="header-section">
-		    		<div class="topHeader">
-		    			<div class="logoHolder"></div>
-              This is Header
-		    		</div>
-		    </div>
-		    <div class="content-tabs">
+		<div class="content-section">
+			<div class="header clearfix">
+				<div class="hItem"><img src="/css/img/logo.png" border="0" /></div>
+				<div class="hItem">
+					<div class="hSubItem"><img src="/css/img/iconHeaderPromo.png" border="0" /></div>
+					<div class="hSubItem"><div class="headerSearch clearfix"><span class="searchBox"><input type="text" /></span><span class="searchBtn"><img src="/css/img/btnHeaderSearch.png" border="0" /></span></div></div>
+				</div>
+				<div class="hItem hCart"><img src="/css/img/iconHeaderCart.png" border="0" /></div>
+			</div>
+			<div class="main-content">
+				<div class="wrapper">
+				<div class="content-tabs">
           <ul>
             {% for site_page in site.site_pages %}
               <li  class="active">
@@ -28,14 +30,29 @@
             {% endfor %}
           </ul>
         </div>
-        
   		  <div id="box">
   		    {{ content_for_layout }}
   			</div>
-  			
-  			<div class="footer-section">
-  				This is footer
-        </div>
+				</div>
+			</div>
+			<div class="footer clearfix">
+				<div class="fCol">
+					<h3>Pecaa Eyeglasses Inc.</h3>
+					<h4>Pecaa Eyeglasses Inc.</h4>
+					<h4>Pecaa Eyeglasses Inc.</h4>
+				</div>
+				<div class="fCol">
+					<h2>email : <span class="val email">info@pecaa.com</span></h2>
+					<h2>phone : <span class="val">222.187..1588</span></h2>
+				</div>
+				<div class="fCol last">
+					<ul class="sMedia clearfix">
+						<li class="fb"></li>
+						<li class="tw"></li>
+						<li class="gp"></li>
+						<li class="li"></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</body>

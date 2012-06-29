@@ -178,6 +178,8 @@ class SitesController < ApplicationController
     case template
       when 'products'
         {"products" => Product.all, "featured_products" => Product.featured_products}
+      when 'featured_products'
+        {"featured_products" => Product.featured_products}
       when 'product_categories'
         unless pc = ProductCategory.find_by_id(params[:category])
           pc = ProductCategory.first
@@ -186,6 +188,10 @@ class SitesController < ApplicationController
         content = @site.site_style.theme.read_file("products.liquid", 'templates')
         icontent = Liquid::Template.parse(content).render("products" => products)
         {"site"=>@site, "content_for_products" => icontent, "product_categories" => ProductCategory.all, "current_category" => params[:category] || pc.id}
+      when 'products_product_categories'
+        content = @site.site_style.theme.read_file("products.liquid", 'templates')
+        icontent = Liquid::Template.parse(content).render("products" => Product.all)
+        {"site"=> @site, "content_for_products" => icontent, "product_categories" => ProductCategory.all}
     end
   end
 

@@ -1,0 +1,11 @@
+<h2>Featured Products</h2>
+<div id="featured_products">
+  {% for product in featured_products %}
+    <div class="block">
+      <h2>{{ product.name}}</h2>
+      <div class="content">
+        {{ product.image_path}}
+      </div>
+    </div>
+  {% endfor %}
+</div>
