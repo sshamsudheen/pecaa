@@ -1,9 +1,12 @@
+require 'json'
+
 class SitePagesController < ApplicationController
   before_filter :setup
   layout 'site'  
   
   def index
-    @site_pages = @site.site_pages.order('list_order')
+    @site_pages = @site.site_pages.where('parent_id=0').order('list_order')
+    #logger.info "site_pages #{@site_pages.inspect}"
   end
   
   def new
@@ -98,6 +101,36 @@ class SitePagesController < ApplicationController
   end
 
   def reorder
+    # sql hash object
+    sqlhash = {}
+    # lambda that digs the child nodes and builds the sql
+    _dig = lambda{|p,c|
+      c.each_with_index { |i,x|
+        cid = i['title'][/\d/]
+        sqlhash.merge!("#{cid}"=> {'list_order'=>x+1, 'parent_id'=>p})
+        if i['children'].length > 0
+          _dig.call(cid, i['children'])
+        end
+      }
+    }
+    logger.info "params-data>> #{params[:data]}"
+    # building the sql from the JSON posted
+    JSON.load(params[:data]).each_with_index { |i,x|
+      iid = i[0]['title'][/\d/]
+      sqlhash.merge!("#{iid}"=> {'list_order'=>x+1})
+      if i[0]['children'].length > 0
+       _dig.call(iid, i[0]['children'])
+      end
+    }
+    # update current site pages with their orders
+    if !sqlhash.empty?
+      logger.info "re-ordering the site-pages sqlhash>> #{sqlhash.inspect}"
+      SitePage.update(sqlhash.keys, sqlhash.values)
+    end
+    render :nothing=> true
+  end
+
+  def reorder_old
     if params[:porder]
       phash = {}
       params[:porder].split(',').each_with_index { |i,x|
