@@ -106,7 +106,7 @@ class SitePagesController < ApplicationController
     # lambda that digs the child nodes and builds the sql
     _dig = lambda{|p,c|
       c.each_with_index { |i,x|
-        cid = i['title'][/\d/]
+        cid = i['title'][/\d+/]
         sqlhash.merge!("#{cid}"=> {'list_order'=>x+1, 'parent_id'=>p})
         if i['children'].length > 0
           _dig.call(cid, i['children'])
@@ -116,7 +116,7 @@ class SitePagesController < ApplicationController
     logger.info "params-data>> #{params[:data]}"
     # building the sql from the JSON posted
     JSON.load(params[:data]).each_with_index { |i,x|
-      iid = i[0]['title'][/\d/]
+      iid = i[0]['title'][/\d+/]
       sqlhash.merge!("#{iid}"=> {'list_order'=>x+1})
       if i[0]['children'].length > 0
        _dig.call(iid, i[0]['children'])
