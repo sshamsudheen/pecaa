@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "jquery.loadmask"%>
 <%= javascript_include_tag  'facebox'%>
 <%= javascript_include_tag 'jquery.jeditable'%>
-<%= javascript_include_tag 'js/interface-1.2'%>
-<%= javascript_include_tag 'js/inestedsortable'%>
-<%= javascript_include_tag 'js/loadmask'%>
+<%= javascript_include_tag 'js/nestysorty'%>
+<%= javascript_include_tag 'js/jquery.json'%>
+<%= javascript_include_tag 'js/jquery.loadmask'%>
 
 <% if @site_page && @site_page.errors.any? %>
   <div id="error_explanation">
@@ -39,40 +39,19 @@
   					</div>
   					<div class="userGridBody">
   						<ul class="ConLibra" id="list-container">
-  						  <%@site_pages.each do |sp|%>
-    							<li id="page_<%=sp.id%>" class='sortable-element-class'>
-                                    <span class="dndhandle">&nbsp;</span>
-                                    <span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
-										<span class="status">
-    								  <a rel ="<%=sp.is_active%>" href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_active => !(sp.is_active)})%>" class=<%=sp.is_active ? 'on' : 'off' %>></a>
-    								</span>
-    								<span class="home">
-                      <a href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_home_page => true})%>">
-                        <input type="radio" <%=sp.is_home_page ? 'checked' : '' %> class="styled" name="is_home_page"/>
-      							  </a>
-      							</span>
-    								<span class="other">Other Info?</span>
-    								<span class="misc">
-    								  <a href="<%=copy_page_site_site_page_path(@site, sp)%>">
-      							    <img src="/assets/btnCopy.png" border="0">
-      							  </a>
-    								</span>
-    								<span class="misc">
-    								  <a href="<%=seo_page_site_site_page_path(@site, sp)%>" rel='facebox'>
-      							    <img src="/assets/btnSEO.png" border="0">
-      							  </a>
-    								</span>
-    								<span class="misc">
-    								  <a href="/sites/<%=@site.id%>/site_pages/<%=sp.id%>/content_libraries/search">
-      							    <img src="/assets/btnEdit.png" border="0"></td>
-      							  </a>
-    								</span>
-    								<span class="misc">
-                      <%= render :partial=>'shared/alert_box', :locals=>{:obj => sp,
-                         :path => destroy_page_site_site_page_path(@site, sp),
-                         :img_path => "/assets/btnDelete.png"}%> 
-    								</span>
-    							</li>
+  						  <%@site_pages.each do |parentsp|%>
+                                <li id="page_<%=parentsp.id%>" class='sortable-element-class'>
+                                    <%= render :partial=>'site_pages/a_site_page', :locals=>{:sp => parentsp}%>
+                                    <%if parentsp.children.length > 0%>
+                                        <ul class="ConLibra">
+                                            <%parentsp.children.each do |subsp|%>
+                                              <li id="page_<%=subsp.id%>" class='sortable-element-class'>
+                                                <%= render :partial=>'site_pages/a_site_page', :locals=>{:sp => subsp}%>
+                                              </li>
+                                            <%end%>
+                                        </ul>
+                                    <%end%>
+                                </li>
     						<%end%>
   						</ul>
   					</div>
@@ -107,6 +86,7 @@
     </div> -->
   <% end %>
 </div>
+
 
 
 <script type="text/javascript">
@@ -190,62 +170,32 @@
 
 <script type="text/javascript">
 
-jQuery( function($) {
-   $('#list-container').NestedSortable(
-      {
-        accept: 'sortable-element-class',
-        opacity: 0.8,
-        helperclass: 'helper',
-        nestingPxSpace: 20,
-        currentNestingClass: 'current-nesting',
-        fx:400,
-        revert: true,
-        autoScroll: false,
-        handle: 'span.dndhandle',
-        axis: 'y',
-          onChange: function(serialized) {
+    $('ul#list-container').nestysorty({
+        'callback':function(sortedata) {
             $('#list-container').mask("Saving...");
-            var order='';
-            $.map(serialized[0].o['list-container'], function(val, i) {
-                order += ','+val.id.substring(5);
-                if((i+1)%2)
-                    $('#'+val.id).addClass('alt');
-                else
-                    $('#'+val.id).removeClass('alt');
+            var c=1;
+            $(sortedata).each(function() {
+                // local vars
+                var li = this[0];
+                // introduce the alt class
+                if(li.title){
+                    if(c%2)
+                        $('#'+li.title).addClass('alt');
+                    else
+                        $('#'+li.title).removeClass('alt');
+                }
+                // increment the counter
+                ++c;
             });
-            // save the re-ordered page listing
-            $.ajax({
-                type: "GET",
-                url: '/sites/<%=@site.id%>/site_pages/reorder?porder='+escape(order.substring(1)),
-                success: function(result){
+            // convert the data to a json string and post it to the server
+            $.post( '/sites/<%=@site.id%>/site_pages/reorder', { data: $.toJSON(sortedata) },
+                function( data ) {
                     $('#list-container').unmask();
-            }});
+                }
+            );
         }
-      }
-    );
-});
-
-
-/*
-function get_sortables_ready(){  
-  jQuery( function($) {
-    $('#list-container').NestedSortable(
-      {
-        accept: 'sortable-element-class',
-        opacity: 0.8,
-        helperclass: 'helper',
-        nestingPxSpace: 20,
-        currentNestingClass: 'current-nesting',
-        fx:400,
-        revert: true,
-        autoScroll: false
-
-      }
-    );
-  });
-}
-*/
+    });
 
 </script>
-<script type="text/javascript" src="/assets/alert_box.js"></script>
 
+<script type="text/javascript" src="/assets/alert_box.js"></script>

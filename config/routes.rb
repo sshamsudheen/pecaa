@@ -115,7 +115,7 @@ Mystore3::Application.routes.draw do
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
       post 'content_save', :on => :member
-      get 'reorder', :on => :collection
+      post 'reorder', :on => :collection
       resources :content_libraries do 
         get 'search', :on => :collection
       end

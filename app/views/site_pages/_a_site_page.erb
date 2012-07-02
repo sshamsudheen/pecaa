@@ -1,0 +1,29 @@
+                                    <span class="dndhandle">&nbsp;</span>
+                                    <span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
+										<span class="status">
+    								  <a rel ="<%=sp.is_active%>" href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_active => !(sp.is_active)})%>" class=<%=sp.is_active ? 'on' : 'off' %>></a>
+    								</span>
+    								<span class="home">
+                                        <a href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_home_page => true})%>">
+                                            <input type="radio" <%=sp.is_home_page ? 'checked' : '' %> class="styled" name="is_home_page"/>
+      							        </a>
+      							    </span>
+    								<span class="other">Other Info?</span>
+    								<span class="misc">
+    								    <a href="<%=copy_page_site_site_page_path(@site, sp)%>">
+      							            <img src="/assets/btnCopy.png" border="0">
+      							        </a>
+    								</span>
+    								<span class="misc">
+    								    <a href="<%=seo_page_site_site_page_path(@site, sp)%>" rel='facebox'>
+      							            <img src="/assets/btnSEO.png" border="0">
+      							        </a>
+    								</span>
+    								<span class="misc">
+    								    <a href="/sites/<%=@site.id%>/site_pages/<%=sp.id%>/content_libraries/search">
+      							            <img src="/assets/btnEdit.png" border="0"></td>
+      							        </a>
+    								</span>
+    								<span class="misc">
+                                        <%= render :partial=>'shared/alert_box', :locals=>{:obj => sp, :path => destroy_page_site_site_page_path(@site, sp), :img_path => "/assets/btnDelete.png"}%>
+    								</span>
