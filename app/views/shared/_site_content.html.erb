@@ -1,0 +1,28 @@
+
+  <% site_page.content_libraries.each do |x| %>
+    <%if c = x.content_library %>
+      <%if c.source_type == "Video" && v = Video.find_by_id(c[:source_id])%>
+      <div class="block">
+        <h2><%= v.source_file_name %></h2>
+        <div class="content">
+          <embed src ="/flash/mediaplayer.swf?file=<%= v.source.url %>" width="480" height="320" allowfullscreen="true" />
+        </div>
+      </div>
+      <%elsif c.source_type == "Image" && img = Image.find_by_id(c[:source_id])%>
+        <div class="block">
+          <h2><%= img.upload_file_name %></h2>
+          <div class="content">
+            <% image = img.upload.url(:medium).split('?')[0] %>
+            <img src="<%= image %>" />
+          </div>
+        </div>
+      <%elsif c.source_type == "Text" && t = ActiveRecord::Base::Text.find_by_id(c[:source_id])%>
+        <div class="block">
+          <h2><%= t.text_block_name %></h2>
+          <div class="content">
+            <%= raw  t.description %>
+          </div>
+        </div>
+      <%end%>
+    <%end%>
+  <% end %>

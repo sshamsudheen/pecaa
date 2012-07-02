@@ -209,7 +209,8 @@ class SitesController < ApplicationController
       when 'products'
         {"products" => Product.all, "featured_products" => Product.featured_products}
       when 'featured_products'
-        {"featured_products" => Product.featured_products}
+        content = render_to_string :partial => "/shared/site_content", :locals => {:site_page => @site.site_pages.first}
+        {"featured_products" => Product.featured_products, "content_site_builder" => content }
       when 'product_categories'
         unless pc = ProductCategory.find_by_id(params[:category])
           pc = ProductCategory.first
