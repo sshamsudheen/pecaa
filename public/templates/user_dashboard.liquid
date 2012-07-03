@@ -1,0 +1,14 @@
+Account Information:
+
+Recent Orders:
+                 <div id="orders">
+  {% for order in orders %}
+    <div class="block">
+      <h2>{{ order.name}}</h2>
+      <div class="content">
+        {{ .image_path}}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+                    

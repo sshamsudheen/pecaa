@@ -182,11 +182,29 @@ class SitesController < ApplicationController
     password = params[:password]
     @customer = Customer.find_by_email_and_password(params[:email],params[:password])
     if @customer
-     render :text => "You Successfully Logged in"
+      session[:customer_id] = @customer.id
+     redirect_to "/sites/#{params[:id]}/user_dashboard?file_name=user_dashboard"
     else
       redirect_to "/sites/#{params[:id]}/user_actions?file_name=user_login"
     end
   end
+  
+  def user_dashboard
+    @site = Site.find(params[:id])
+    record = params[:file_name].split('.').first
+    @site.site_style.theme.get_files('templates')
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
+    @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
+    @content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
+  
+    @content_layout = @content_layout + @site.site_style.theme.read_file("user_navigation.liquid", 'templates')
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
+    customer = Customer.find(session[:customer_id]) 
+    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site, "orders" => Order.limit(10).to_a, "customer" => customer)
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
+    render :text => lcontent
+  end
+
   
   def show_products
     @site = Site.find(params[:id])
