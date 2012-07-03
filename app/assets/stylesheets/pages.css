@@ -163,6 +163,10 @@
     background:url(img/leftArrow.png) no-repeat 98% center transparent;
     padding-left: 12px;
 }
+.site-pages ul.ConLibra ul.ConLibra ul span.dndhandle {
+    background:url(img/subleftArrow.png) no-repeat 98% center transparent;
+    padding-left: 12px;
+}
 .site-pages ul.ConLibra ul span.pageName {
     width: 157px;
 }

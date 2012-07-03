@@ -16,6 +16,7 @@ Licence: BSD Open Source Licence
     $.fn.nestysorty = function(options) {
         settings = jQuery.extend({
             callback: undefined,
+            nestydepth: 2,
             global: true
         }, options);
 
@@ -30,16 +31,14 @@ Licence: BSD Open Source Licence
                 forcePlaceholderSize: true,
                 forceHelperSize: true,
                 sort: function(event, ui) {
-                    if (ui.position.left - 10 > ui.originalPosition.left){	// make child pointer
+                    if (ui.position.left - 10 > ui.originalPosition.left && _isNestingAllowed(ui.item)){	// make child pointer
                         $(ui.placeholder).empty();
                         $(ui.placeholder).append("<ul class='ConLibra'>" + $(ui.item).html() + "</ul>");
                     }
-
                 },
                 stop: function(event, ui) {
-                    if (ui.position.left - 10 > ui.originalPosition.left) {	// make child - could/should add some more check in here.
-                        var _depthlevel = _depth(ui.item);
-                        if ($(ui.item).prev().is('li') && _depthlevel <=1) {
+                    if (ui.position.left - 10 > ui.originalPosition.left && _isNestingAllowed(ui.item)) {	// make child - could/should add some more check in here.
+                        if ($(ui.item).prev().is('li')) {
                             if(!$(ui.item).prev().children('ul').length) {  // if already the li has a child ul append the item to it else create new ul
                                 $(ui.item).prev().append(ui.item);
                                 $(ui.item).wrap("<ul class='ConLibra'></ul>");
@@ -65,15 +64,25 @@ Licence: BSD Open Source Licence
                 }
             });
         });
-
-        var _depth = function(context) {
+        // tells whether the item(s) can be inserted/appended in the selected place?
+        var _isNestingAllowed = function(context) {
+            // calculate the depth level relative to root(parent)
             var level = 1, list = context.closest('ul');
             while (list && list.length > 0 && !list.is('.ui-sortable')) {
                 level++;
                 list = list.parent().closest('ul');
             }
+            // find depth level calculating nof child
+            var nofchild = function(parent, depth) {
+                var result = 0, depth = depth || 0;
+                $(parent).children('ul').children('li').each(function (index, child) {
+                    result = Math.max(nofchild(child, depth + 1), result);
+                });
 
-            return level;
+                return depth ? result + 1 : result;
+            }
+            // now return whether the total depth is within the allowed range
+            return ((level + nofchild(context)) <= settings.nestydepth);
         };
 
         return this;
