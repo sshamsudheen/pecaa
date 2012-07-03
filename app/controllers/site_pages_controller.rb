@@ -1,5 +1,3 @@
-require 'json'
-
 class SitePagesController < ApplicationController
   before_filter :setup
   layout 'site'  
@@ -117,7 +115,7 @@ class SitePagesController < ApplicationController
     # building the sql from the JSON posted
     JSON.load(params[:data]).each_with_index { |i,x|
       iid = i[0]['title'][/\d+/]
-      sqlhash.merge!("#{iid}"=> {'list_order'=>x+1})
+      sqlhash.merge!("#{iid}"=> {'list_order'=>x+1, 'parent_id'=>0})
       if i[0]['children'].length > 0
        _dig.call(iid, i[0]['children'])
       end
