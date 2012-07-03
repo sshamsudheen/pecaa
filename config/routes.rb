@@ -59,6 +59,10 @@ Mystore3::Application.routes.draw do
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
     get 'site_preview', :on => :member
+    get 'show_products/:view_name(/:category)', :on => :member, :to => 'sites#show_products'
+    get 'user_actions', :on => :member
+    post 'create_customer', :on => :member
+    post 'customer_login', :on => :member
     
     resources :inventory_options
     resources :gift_certificates do 

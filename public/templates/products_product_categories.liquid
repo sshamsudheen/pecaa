@@ -1,0 +1,23 @@
+<div id="product_product_categories">
+  <h2>List of Products categories<h2>
+  {% for category in product_categories %}
+    <div>
+      <h2>
+        <a href="/sites/{{ site.id }}/show_products/product_categories/{{ category.id }}">
+          {{ category.name }}
+        </a>
+      </h2>
+      {%if category.product %}
+        <div class="block">
+          <h2>{{ category.product.name}}</h2>
+          <div class="content">
+            {{ category.product.image_path}}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<h2>List of Products<h2>
+{{ content_for_products }}

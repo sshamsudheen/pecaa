@@ -86,3 +86,11 @@
   <div class="clear"></div>
 </div><!-- end of col 2 -->
 <%= javascript_include_tag '/assets/users/scripts/data_picker_setting.js'%>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#scrollbar1 span.name a.links').each(function(i,n){
+			var nT = $.trim($(this).text()).substring(0, 17);
+			if($.trim($(this).text()).length > 20) $(this).html(nT+'...');
+		})
+	})
+</script>
