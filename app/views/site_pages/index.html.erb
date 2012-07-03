@@ -104,7 +104,14 @@
     get_editors_ready();
     // get_sortables_ready();
   	//$('#scrollbar1').tinyscrollbar();
-  	$(".ConLibra li:even").addClass("alt");
+  	$(".ConLibra li").each(function(index, item) {
+          if(!(index%2)) {
+              $(item).addClass('alt');
+              $(item).children('ul').children('li').each(function (ix, child) {
+                  if((ix%2)) $(child).addClass('alt');
+              });
+          }
+      });
 
   	$("ul.ConLibra li").click(function(){
   	  get_editors_ready();
@@ -181,20 +188,23 @@
 
     $('ul#list-container').nestysorty({
         'callback':function(sortedata) {
-            //$('#list-container').mask("Saving...");
-            var c=1;
-            $(sortedata).each(function() {
-                // local vars
-                var li = this[0];
-                // introduce the alt class
-                if(li.title){
-                    if(c%2)
+            $('#list-container').mask("Saving...");
+            $(sortedata).each(function(index, item) {
+                var li = item[0];
+                if(li.title) {
+                    if(!(++index%2)) {
                         $('#'+li.title).addClass('alt');
-                    else
-                        $('#'+li.title).removeClass('alt');
+                        $(li.children).each(function (ix, child) {
+                            if(child.title) {
+                                if((++ix%2))
+                                    $('#'+child.title).addClass('alt');
+                                else
+                                    $('#'+child.title).removeClass('alt');
+                            }
+                        });
+                    }
+                    else $('#'+li.title).removeClass('alt');
                 }
-                // increment the counter
-                ++c;
             });
             // convert the data to a json string and post it to the server
             $.post( '/sites/<%=@site.id%>/site_pages/reorder', { data: $.toJSON(sortedata) },

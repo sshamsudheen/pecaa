@@ -16,7 +16,7 @@ Licence: BSD Open Source Licence
     $.fn.nestysorty = function(options) {
         settings = jQuery.extend({
             callback: undefined,
-            nestydepth: 2,
+            nestydepth: 1,
             global: true
         }, options);
 
