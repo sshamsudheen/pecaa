@@ -1,13 +1,17 @@
-<h2>Featured Products</h2>
-<div id="featured_products">
-  {% for product in featured_products %}
-    <div class="block">
-      <h2>{{ product.name}}</h2>
-      <div class="content">
-        {{ product.image_path}}
-      </div>
-    </div>
-  {% endfor %}
+<div class="products">
+	<ul>
+  	{% for product in featured_products %}
+      <li class="prod">
+        <div class="prodSnap">{{ product.image_path}}</div>
+    		<div class="prodLabel">
+    		  <span class="prodTitle left">{{ product.name}}</span>
+    		  <span class="right prodPrice">$250.00</span>
+    		</div>
+    		<div class="viewBtn clear">view this product</div>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
+
 <h2>Site Builder Content</h2>
 {{ content_site_builder }}

@@ -2,40 +2,98 @@
 <html>
 	<head>
     <title>{{site.name}}</title>
-    {{ site_theme }}
-    <link href="/css/pecaaCF.css" rel="stylesheet" type="text/css" />
+		<link href="/css/pecaaCF.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
+		
 		<div class="content-section">
-			<div class="header clearfix">
-				<div class="hItem"><img src="/css/img/logo.png" border="0" /></div>
-				<div class="hItem">
-					<div class="hSubItem"><img src="/css/img/iconHeaderPromo.png" border="0" /></div>
-					<div class="hSubItem"><div class="headerSearch clearfix"><span class="searchBox"><input type="text" /></span><span class="searchBtn"><img src="/css/img/btnHeaderSearch.png" border="0" /></span></div></div>
+			<header class="clearfix">
+				<div class="banner clearfix">
+					<div class="hItem"><img src="/css/img/logo.png" border="0" /></div>
+					<div class="hItem">
+						<div class="hSubItem"><img src="/css/img/iconHeaderPromo.png" border="0" /></div>
+						<div class="hSubItem"><div class="headerSearch clearfix"><span class="searchBox"><input type="text" /></span><span class="searchBtn"><img src="/css/img/btnHeaderSearch.png" border="0" /></span></div></div>
+					</div>
+					<div class="hItem hCart"><img src="/css/img/iconHeaderCart.png" border="0" /></div>
 				</div>
-				<div class="hItem hCart"><img src="/css/img/iconHeaderCart.png" border="0" /></div>
-			</div>
-			<div class="main-content">
-				<div class="wrapper">
-				<div class="content-tabs">
-          <ul>
-            {% for site_page in site.site_pages %}
-              <li  class="active">
-                <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
-                  <span>
-                    {{ site_page.name}}
-                  </span>
+				<nav class="clear">
+					<ul class="clearfix">
+					  {% for site_page in site.site_pages %}
+  						<li class="active">
+  						  <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
+                <span>{{site_page.name}}</span>
                 </a>
               </li>
-            {% endfor %}
-          </ul>
-        </div>
-  		  <div id="box">
-  		    {{ content_for_layout }}
-  			</div>
+						{% endfor %}
+            
+					</ul>
+				</nav>
+			</header>
+			<div class="welcome clearfix">
+				<div class="col left"><img src="/css/img/icon90daysGuarantee.png" border="0" /></div>
+				<div class="col msg left"><span class="line"></span><span class="welcomeMsg">Welcome to PECAA</span><span class="line"></span>
+					<div class="inst clear">Check out these top-selling products.</div>
+				</div>
+				<div class="col right"><img src="/css/img/iconFreeShipping.png" border="0" /></div>
+			</div>
+			<div class="main-content clearfix clear">
+				<aside>
+					<div class="sideGroup clearfix">
+						<h2>Sidebar title</h2>
+						<ul class="clearfix">
+							<li><span>option one</span></li>
+							<li class="active"><span>option two</span></li>
+							<li class="active"><span>option three</span></li>
+							<li class="active"><span>option four</span></li>
+						</ul>
+					</div>
+					<div class="sideGroup even clearfix">
+						<h2>Sidebar title</h2>
+						<ul class="clearfix">
+							<li><span>option one</span></li>
+							<li class="active"><span>option two</span></li>
+							<li><span>option three</span></li>
+							<li><span>option four</span></li>
+						</ul>
+					</div>
+					<div class="sideGroup clearfix">
+						<h2>Sidebar title</h2>
+						<ul class="clearfix">
+							<li><span>option one</span></li>
+							<li class="active"><span>option two</span></li>
+							<li class="active"><span>option three</span></li>
+							<li><span>option four</span></li>
+						</ul>
+					</div>
+					<div class="sideGroup even clearfix">
+						<h2>Sidebar title</h2>
+						<ul class="clearfix">
+							<li><span>option one</span></li>
+							<li><span>option two</span></li>
+							<li><span>option three</span></li>
+							<li><span>option four</span></li>
+						</ul>
+					</div>
+				</aside>
+				<div class="main clearfix">
+					<div class="intro clearfix">
+						<div class="sevenFivePer left">
+							<h1>Title Number One</h1>
+							<p>First, I believe that this nation should commit itself to achieving the goal, before this decade is out, of landing a man on the moon and returning him safely to the earth. No single space project in this period will be more impressive to mankind, or more important for the long-range exploration of space; and none will be so difficult or expensive to accomplish.Look again at that dot. That’s here. That’s home. That’s us. </p>
+						</div>
+						<img src="/css/img/imgIntro.png" border="0" />
+					</div>
+					{{content_for_layout}}
 				</div>
 			</div>
-			<div class="footer clearfix">
+			<div class="newsLetter clearfix">
+				<span class="getEmail">Get our email newsletter - </span>
+				<span class="promiss">we won’t share your number with anyone else, we promise!</span>
+				<span class="signup clearfix"><span><input type="text" placeholder="your email address" /></span>
+					<img src="/css/img/btnSignupNews.png" border="0" />
+				</span>
+			</div>
+			<footer class="clearfix">
 				<div class="fCol">
 					<h3>Pecaa Eyeglasses Inc.</h3>
 					<h4>Pecaa Eyeglasses Inc.</h4>
@@ -53,7 +111,7 @@
 						<li class="li"></li>
 					</ul>
 				</div>
-			</div>
+			</footer>
 		</div>
 	</body>
 </html>
