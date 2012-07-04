@@ -192,11 +192,11 @@
             $(sortedata).each(function(index, item) {
                 var li = item[0];
                 if(li.title) {
-                    if(!(++index%2)) {
+                    if(!(index%2)) {
                         $('#'+li.title).addClass('alt');
                         $(li.children).each(function (ix, child) {
                             if(child.title) {
-                                if((++ix%2))
+                                if((ix%2))
                                     $('#'+child.title).addClass('alt');
                                 else
                                     $('#'+child.title).removeClass('alt');
