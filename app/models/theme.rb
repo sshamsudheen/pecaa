@@ -40,7 +40,7 @@ class Theme < ActiveRecord::Base
   
   def get_files(file_type = 'themes')
     self.create_template_directory unless File.directory?("#{self.get_file_path}/templates/") 
-    Dir.new("#{self.get_file_path}/").entries.map{|n| n unless File.directory?(n)}.compact
+    Dir.new("#{self.get_file_path}/#{file_type}").entries.map{|n| n unless File.directory?(n)}.compact
   end
   
   def get_template_files
@@ -81,7 +81,7 @@ class Theme < ActiveRecord::Base
   def get_load_path
     "/themes/#{self.secret_code}/themes"
   end
-  
+
   def zip_file_path
     "#{self.get_file_path}/#{self.filename}"
   end
