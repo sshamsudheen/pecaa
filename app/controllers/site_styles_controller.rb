@@ -50,6 +50,24 @@ class SiteStylesController < ApplicationController
       end
     end
   end
+
+  def bgimage_create
+    @image = Image.new(params[:image])
+    @image.user_id = current_user
+    #@site  = Site.find(params[:site_id])
+    #@site_page = SitePage.find(session[:site_page_id]) rescue nil
+    #@site = @site_page.site rescue nil
+    Image.transaction do
+      if @image.save
+        content_lib = ContentLibrary.create({:name => @image.upload_file_name,
+                                             :source_id => @image.id, :source_type => 'Image',
+                                             :last_used => nil, :times_used => nil, :added_by => current_user.username})
+        ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => content_lib.id )
+      end
+    end
+    #logger.info "bg-image created #{@image.inspect}"
+    render :image_form, :layout => false
+  end
   
   protected
 

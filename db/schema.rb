@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523151814) do
+ActiveRecord::Schema.define(:version => 20120706202518) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "product_category_id"
   end
 
   create_table "content_libraries", :force => true do |t|
@@ -178,6 +180,17 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.datetime "updated_at"
   end
 
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.string   "password"
+    t.string   "email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "site_id"
+  end
+
   create_table "external_links", :force => true do |t|
     t.string   "name"
     t.string   "link_url"
@@ -227,6 +240,8 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.boolean  "is_deleted",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "categories"
   end
 
   create_table "inventories", :force => true do |t|
@@ -329,6 +344,13 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.string   "grand_total"
   end
 
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "layout"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "password_histories", :force => true do |t|
     t.string   "password"
     t.integer  "created_by"
@@ -361,14 +383,15 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
 
   create_table "product_categories", :force => true do |t|
     t.string   "name"
-    t.decimal  "price_modifier", :precision => 10, :scale => 0
-    t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "enabled"
     t.integer  "parent_id"
     t.integer  "list_order"
     t.integer  "site_id"
-    t.boolean  "is_active",                                     :default => true
+    t.boolean  "is_active",                                           :default => true
+    t.string   "price_modifier"
+    t.decimal  "price_modifier_value", :precision => 10, :scale => 0
   end
 
   create_table "product_filters", :force => true do |t|
@@ -398,12 +421,12 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
   create_table "product_options", :force => true do |t|
     t.string   "name"
     t.string   "display_name"
-    t.decimal  "price_modifier", :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_active",                                     :default => true
+    t.boolean  "is_active",      :default => true
     t.integer  "site_id"
     t.integer  "product_id"
+    t.string   "price_modifier"
   end
 
   create_table "product_vendors", :force => true do |t|
@@ -435,17 +458,24 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "base_price",          :precision => 10, :scale => 0
-    t.decimal  "retail_price",        :precision => 10, :scale => 0
-    t.decimal  "cost",                :precision => 10, :scale => 0
-    t.decimal  "weight",              :precision => 10, :scale => 0
-    t.decimal  "shipping_modifier",   :precision => 10, :scale => 0
-    t.decimal  "case_price",          :precision => 10, :scale => 0
+    t.decimal  "base_price",              :precision => 10, :scale => 0
+    t.decimal  "retail_price",            :precision => 10, :scale => 0
+    t.decimal  "cost",                    :precision => 10, :scale => 0
+    t.decimal  "weight",                  :precision => 10, :scale => 0
+    t.decimal  "shipping_modifier",       :precision => 10, :scale => 0
+    t.decimal  "case_price",              :precision => 10, :scale => 0
     t.integer  "product_category_id"
     t.integer  "site_id"
-    t.boolean  "is_featured",                                        :default => false
+    t.boolean  "is_featured",                                            :default => false
     t.datetime "featured_at"
     t.string   "featured_text"
+    t.text     "description"
+    t.boolean  "enable_inventory",                                       :default => true
+    t.boolean  "enable_product_options",                                 :default => true
+    t.boolean  "enable_related_products",                                :default => true
+    t.boolean  "enable_try_it_on",                                       :default => true
+    t.boolean  "auto_relate_products",                                   :default => true
+    t.boolean  "custom_relate_products",                                 :default => true
   end
 
   create_table "questions", :force => true do |t|
@@ -650,12 +680,12 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.integer  "site_id"
     t.string   "name"
     t.string   "title"
-    t.boolean  "is_active",    :default => true
-    t.boolean  "is_home_page", :default => false
+    t.boolean  "is_active",          :default => true
+    t.boolean  "is_home_page",       :default => false
     t.text     "more_info"
     t.integer  "created_by"
-    t.integer  "parent_id"
-    t.integer  "list_order"
+    t.integer  "parent_id",          :default => 0,     :null => false
+    t.integer  "list_order",         :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "target"
@@ -666,6 +696,7 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.string   "description"
     t.string   "keywords"
     t.string   "custom_url"
+    t.text     "conent_positioning"
   end
 
   create_table "site_payment_gateway_attribute_values", :force => true do |t|
@@ -756,7 +787,7 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.integer  "shipping_gateway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_enable"
+    t.boolean  "is_enable",           :default => false
     t.boolean  "is_test_mode"
   end
 
@@ -910,6 +941,8 @@ ActiveRecord::Schema.define(:version => 20120523151814) do
     t.boolean  "is_active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "product_id"
+    t.integer  "product_vendor_id"
   end
 
   create_table "videos", :force => true do |t|
