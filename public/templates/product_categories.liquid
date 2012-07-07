@@ -1,13 +1,12 @@
-<div id="product_categories">
-<ul>
-  {% for category in product_categories %}
-    <li>
-      <a href="/sites/{{ site.id }}/show_products/product_categories/{{ category.id }}">
-        {{ category.name }}
-      </a>
-    </li>
-  {% endfor %}
+<div class="products">
+	<ul>
+  	{% for pc in product_categories %}
+      <li class="prod">
+        <div class="prodLabel">
+    		  <span class="prodTitle left">{{ pc.name}}</span>
+    		</div>
+        <div class="prodSnap">{{ pc.products.first.image_path}}</div>
+      </li>
+    {% endfor %}
   </ul>
 </div>
-
-{{ content_for_products }}

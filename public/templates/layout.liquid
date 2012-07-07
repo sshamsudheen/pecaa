@@ -3,6 +3,16 @@
 	<head>
     <title>{{site.name}}</title>
 		<link href="/css/pecaaCF.css" rel="stylesheet" type="text/css" />
+		<script src="/assets/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$('document').ready(function(){
+				$('.menu li ul').hide();
+			    $('#mainNav a.dropdown').parent().hover(function(e) {
+			        $(this).find('.subMenuBox').stop().slideToggle("medium");
+			    });
+
+			});
+		</script>
 	</head>
 	<body>
 		
@@ -16,19 +26,35 @@
 					</div>
 					<div class="hItem hCart"><img src="/css/img/iconHeaderCart.png" border="0" /></div>
 				</div>
-				<nav class="clear">
-					<ul class="clearfix">
-					  {% for site_page in site.site_pages %}
-  						<li class="active">
-  						  <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
-                <span>{{site_page.name}}</span>
-                </a>
-              </li>
-						{% endfor %}
-            
-					</ul>
-				</nav>
 			</header>
+			<nav class="clear" id="mainNav">
+				<ul>
+				  {% for site_page in site.parent_pages %}
+						<li class="active">
+						  {% if site_page.children.first == null %}
+						    <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
+						  {% else %}
+						    <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}"  class="dropdown">
+					    {% endif %}
+						    <span>{{site_page.name}}</span>
+              </a>
+              {% if site_page.children != [] %}
+  					    <div class="subMenuBox" style="display: none;">
+    							<ul class="subMenu clearfix">
+    							  {% for child_page in site_page.children %}
+      								<li>
+      								  <a href="/sites/{{ site.id }}/preview?page_id={{ child_page.id }}" title="{{child_page.name}}">
+        						    <span>{{child_page.name}}</span>
+                        </a>
+        						  </li>
+      						  {% endfor %}
+    							</ul>
+    						</div>
+  			      {% endif %}
+            </li>
+					{% endfor %}
+				</ul>
+			</nav>
 			<div class="welcome clearfix">
 				<div class="col left"><img src="/css/img/icon90daysGuarantee.png" border="0" /></div>
 				<div class="col msg left"><span class="line"></span><span class="welcomeMsg">Welcome to PECAA</span><span class="line"></span>
@@ -38,42 +64,7 @@
 			</div>
 			<div class="main-content clearfix clear">
 				<aside>
-					<div class="sideGroup clearfix">
-						<h2>Sidebar title</h2>
-						<ul class="clearfix">
-							<li><span>option one</span></li>
-							<li class="active"><span>option two</span></li>
-							<li class="active"><span>option three</span></li>
-							<li class="active"><span>option four</span></li>
-						</ul>
-					</div>
-					<div class="sideGroup even clearfix">
-						<h2>Sidebar title</h2>
-						<ul class="clearfix">
-							<li><span>option one</span></li>
-							<li class="active"><span>option two</span></li>
-							<li><span>option three</span></li>
-							<li><span>option four</span></li>
-						</ul>
-					</div>
-					<div class="sideGroup clearfix">
-						<h2>Sidebar title</h2>
-						<ul class="clearfix">
-							<li><span>option one</span></li>
-							<li class="active"><span>option two</span></li>
-							<li class="active"><span>option three</span></li>
-							<li><span>option four</span></li>
-						</ul>
-					</div>
-					<div class="sideGroup even clearfix">
-						<h2>Sidebar title</h2>
-						<ul class="clearfix">
-							<li><span>option one</span></li>
-							<li><span>option two</span></li>
-							<li><span>option three</span></li>
-							<li><span>option four</span></li>
-						</ul>
-					</div>
+				  {{content_for_filter}}
 				</aside>
 				<div class="main clearfix">
 					<div class="intro clearfix">

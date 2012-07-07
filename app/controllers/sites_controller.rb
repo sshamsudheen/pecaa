@@ -213,15 +213,15 @@ class SitesController < ApplicationController
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
     @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    icontent = Liquid::Template.parse(@content).render(liquid_variables(params))
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
+    icontent = Liquid::Template.parse(@content).render(liquid_variables)
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
     render :text => lcontent
   end
   
   
   protected
   
-  def liquid_variables(params)
+  def liquid_variables
     template = params[:view_name]
     case template
       when 'products'
@@ -233,14 +233,17 @@ class SitesController < ApplicationController
         unless pc = ProductCategory.find_by_id(params[:category])
           pc = ProductCategory.first
         end
-        products = pc.products
-        content = @site.site_style.theme.read_file("products.liquid", 'templates')
-        icontent = Liquid::Template.parse(content).render("products" => products)
-        {"site"=>@site, "content_for_products" => icontent, "product_categories" => ProductCategory.all, "current_category" => params[:category] || pc.id}
+        {"site"=>@site, "product_categories" => ProductCategory.all, "current_category" => params[:category] || pc.id}
       when 'products_product_categories'
-        content = @site.site_style.theme.read_file("products.liquid", 'templates')
-        icontent = Liquid::Template.parse(content).render("products" => Product.all)
-        {"site"=> @site, "content_for_products" => icontent, "product_categories" => ProductCategory.all}
+        {"site"=> @site, "products" => Product.all, "product_categories" => ProductCategory.all}
+    end
+  end
+  
+  def filters_liquid_variables
+    if params[:view_name] == "product_categories"
+      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all})
+    else
+      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
     end
   end
 

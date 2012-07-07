@@ -1,23 +1,27 @@
-<div id="product_product_categories">
-  <h2>List of Products categories<h2>
-  {% for category in product_categories %}
-    <div>
-      <h2>
-        <a href="/sites/{{ site.id }}/show_products/product_categories/{{ category.id }}">
-          {{ category.name }}
-        </a>
-      </h2>
-      {%if category.product %}
-        <div class="block">
-          <h2>{{ category.product.name}}</h2>
-          <div class="content">
-            {{ category.product.image_path}}
-          </div>
-        </div>
-      {% endif %}
-    </div>
-  {% endfor %}
+<div class="products">
+	<ul>
+  	{% for pc in product_categories %}
+      <li class="prod">
+        <div class="prodLabel">
+    		  <span class="prodTitle left">{{ pc.name}}</span>
+    		</div>
+        <div class="prodSnap">{{ pc.products.first.image_path}}</div>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
 
-<h2>List of Products<h2>
-{{ content_for_products }}
+<div class="products">
+	<ul>
+  	{% for product in products %}
+      <li class="prod">
+        <div class="prodSnap">{{ product.image_path}}</div>
+    		<div class="prodLabel">
+    		  <span class="prodTitle left">{{ product.name}}</span>
+    		  <span class="right prodPrice">{{ product.base_price}}</span>
+    		</div>
+    		<div class="viewBtn clear">view this product</div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

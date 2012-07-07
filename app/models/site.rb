@@ -28,6 +28,10 @@ class Site < ActiveRecord::Base
   validates_length_of :name, :maximum => 255 
   validates_length_of :description, :maximum => 1000
   
-  liquid_methods :id, :name, :site_pages
+  liquid_methods :id, :name, :site_pages, :parent_pages
+  
+  def parent_pages
+    site_pages.find(:all, :conditions=>["parent_id = ?", 0])
+  end
   
 end

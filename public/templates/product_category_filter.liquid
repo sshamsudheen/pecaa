@@ -1,0 +1,12 @@
+<div class="sideGroup clearfix">
+	<h2>Product Categories</h2>
+	<ul class="clearfix">
+  	{% for category in product_categories %}
+  		<li>
+    		<a href="sites/{{ site.id }}/show_products/product_categories/{{ category.id }}">
+          <span>{{ category.name }}</span>
+        </a>
+      </li>
+  	{% endfor %}
+	</ul>
+</div>
