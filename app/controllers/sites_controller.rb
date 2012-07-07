@@ -241,7 +241,7 @@ class SitesController < ApplicationController
   
   def filters_liquid_variables
     if params[:view_name] == "product_categories"
-      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all})
+      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
     else
       filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
     end
