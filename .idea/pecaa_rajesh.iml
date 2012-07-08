@@ -273,6 +273,34 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/i18n-0.5.0)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rdoc (v3.9.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/rdoc-3.9.4)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] actionmailer (v3.0.10, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/actionmailer-3.0.10)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] paperclip (v2.4.1, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/paperclip-2.4.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] state_select (v0.1.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/state_select-0.1.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] kaminari (v0.13.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/kaminari-0.13.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] acts_as_state_machine (v2.2.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/acts_as_state_machine-2.2.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] acts_as_tree (v1.1.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/acts_as_tree-1.1.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] paperclip-ffmpeg (v0.7.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/paperclip-ffmpeg-0.7.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] tzinfo (v0.3.33, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/tzinfo-0.3.33)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] zip (v2.0.2, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/zip-2.0.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] cancan (v1.6.5, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/cancan-1.6.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] tinymce-rails (v3.4.7.0.2, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/tinymce-rails-3.4.7.0.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] RedCloth (v4.2.9, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/RedCloth-4.2.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] therubyracer (v0.10.1, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/therubyracer-0.10.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] liquid (v2.3.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/liquid-2.3.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] ffmpeg (v0.2.5, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/ffmpeg-0.2.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] json (v1.7.3, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/json-1.7.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] country-select (v1.1.1, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/country-select-1.1.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] formtastic (v2.2.0, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/formtastic-2.2.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] railties (v3.1.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/railties-3.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] cocaine (v0.2.1, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/cocaine-0.2.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] actionpack (v3.1.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] paperclip (v2.4.1, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/paperclip-2.4.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] libv8 (v3.3.10.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/libv8-3.3.10.4-x86_64-darwin-10)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] multi_json (v1.3.5, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/multi_json-1.3.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] tzinfo (v0.3.33, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/tzinfo-0.3.33)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] activesupport (v3.1.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/activesupport-3.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] sprockets (v2.0.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/sprockets-2.0.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] activemodel (v3.1.4, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/activemodel-3.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] sprockets (v2.1.3, /Users/miteshjain/.rvm/gems/ruby-1.9.2-p290/gems/sprockets-2.1.3)" level="application" />
   </component>
 </module>
 

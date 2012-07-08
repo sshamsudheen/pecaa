@@ -1,0 +1,44 @@
+<% product = Product.find(id) %>
+<div class="itemDetail clearfix clear">
+  <div class="col oneEightZero left"><%= product.image_path.html_safe %></div>
+  <div class="col sixTwoZero left">
+    <table width="100%">
+      <tr>
+        <td class="textLeft boldText"><%= product.name%></td>
+        <% base_price_with_quantity = product.price_with_quantity(quantity) %>
+        <td class="textRight boldText">$<%= base_price_with_quantity %></td>
+      </tr>
+      <tr>
+        <td class="textLeft">by <%= product.last_vendor_name%></td>
+        <td class="textRight"><span class="lbl">tax</span><span class="val">$2.00</span></td>
+      </tr>
+      <tr>
+        <td class="textLeft"><%= product.inventories.sum(:size) %> in stock</td>
+        <td class="textRight"><span class="lbl">shipping</span><span class="val">$2.00</span></td>
+      </tr>
+      <tr>
+        <td class="textLeft show-hide-options" style="color: green; cursor: pointer;">show item options</td>
+        <td class="textRight"><span class="lbl">item total</span><span class="val">$<%= base_price_with_quantity %></span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col qty left oneFourZero cleafix noMargin">
+    <span class="row"><input type="text" class="qtyInput" value="<%= quantity %>" /></span>
+    <span class="row"><button class="btn blue" rel="<%= site_cart_path(@site,product)%>">update</button></span>
+    <span class="row"><button class="btn pink" rel="<%= site_cart_path(@site,product)%>">remove</button></span>
+  </div>
+</div>
+
+<div class="itemDetail clearfix clear item-options" style="display: none;">
+  <table width="100%" class="tbl_prodSpecs">
+    <tbody>
+    <%product.product_options.only_active.each do |product_option|%>
+      <% product_option.sub_product_options.only_active.each do |sub_product_option|%>
+        <tr>
+          <td><span class="textRight lbl"><%= product_option.name %></span><span class="textLeft val boldText"><%= sub_product_option.name %></span></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

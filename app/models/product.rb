@@ -27,9 +27,17 @@ class Product < ActiveRecord::Base
     image_path = image ? image.image_path : '/assets/productimg.jpg'
     "<img src='#{image_path}' alt='image'>"
   end
+
+  def last_vendor_name
+    vendors.last.try(:name)
+  end
   
   def self.featured_products
     Product.where(:is_featured => true)
+  end
+
+  def price_with_quantity(quantity)
+    (base_price * quantity.to_i).to_f
   end
   
 end

@@ -1,0 +1,91 @@
+<div class="content-section">
+  <div class="main-content clearfix clear">
+    <div class="shoppingCart clearfix">
+      <h1 class="left noMargin">Shopping Cart</h1>
+      <button class="right">Continue Shopping</button>
+      <div class="headers boldText clear clearfix"><span class="left">Item Details</span><div class="right"><span class="left price boldText">Price</span><span class="left qty textCenter boldText">Quantity</span></div></div>
+      {% for cart_item in session_cart %}
+      {% for cart_item_value in cart_item %}
+
+      <div class="itemDetail clearfix clear">
+  <div class="col oneEightZero left">{{ cart_item_value[0].image_path }}</div>
+  <div class="col sixTwoZero left">
+    <table width="100%">
+      <tr>
+        <td class="textLeft boldText"> {{ cart_item_value[0].name }}</td>
+        <td class="textRight boldText">$ {{ (cart_item_value[0].base_price * cart_item_value[1].to_i).to_f }}</td>
+      </tr>
+      <tr>
+        <td class="textLeft">by {{ cart_item_value[0].last_vendor_name }}</td>
+        <td class="textRight"><span class="lbl">tax</span><span class="val">$2.00</span></td>
+      </tr>
+      <tr>
+        <td class="textLeft">{{ product.inventories.sum(:size) }} in stock</td>
+        <td class="textRight"><span class="lbl">shipping</span><span class="val">$2.00</span></td>
+      </tr>
+      <tr>
+        <td class="textLeft show-hide-options" style="color: green; cursor: pointer;">show item options</td>
+        <td class="textRight"><span class="lbl">item total</span><span class="val">$ {{ (cart_item_value[0].base_price * cart_item_value[1].to_i).to_f }}</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col qty left oneFourZero cleafix noMargin">
+    <span class="row"><input type="text" class="qtyInput" value="{{ cart_item_value[1] }}" /></span>
+    <span class="row"><button class="btn blue" rel="/sites/{{site.id}}/carts/{{cart_item_value[0].id}}">update</button></span>
+    <span class="row"><button class="btn pink" rel="/sites/{{site.id}}/carts/{{cart_item_value[0].id}}">remove</button></span>
+  </div>
+</div>
+
+<div class="itemDetail clearfix clear item-options" style="display: none;">
+  <table width="100%" class="tbl_prodSpecs">
+    <tbody>
+    {% for product_option in cart_item_value[0].product_options.only_active %}
+      {% for sub_product_option in product_option.sub_product_options.only_active %}
+        <tr>
+          <td><span class="textRight lbl">{{ product_option.name }}</span><span class="textLeft val boldText">{{ sub_product_option.name }}</span></td>
+        </tr>
+    {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+<form accept-charset="UTF-8" action="" id="cart-frm" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="oKIKsJWYWp5iC+I2FIil+/qNqDzYPYSqpqYYy51W7j0="></div>
+  <input id="quantity" name="quantity" type="hidden">
+</form>
+<script type="text/javascript">
+  jQuery(".itemDetail button.blue").click(function(){
+      jQuery("#cart-frm").attr('action', jQuery(this).attr('rel'));
+      jQuery("#cart-frm input[name=_method]").val('put');
+      quantity = jQuery(this).parent().prev().children('input').val()
+      jQuery("#cart-frm input[name=quantity]").val(quantity);
+      alert(quantity);
+      alert(this);
+      jQuery("#cart-frm").submit();
+  })
+  jQuery(".itemDetail button.pink").click(function(){
+    jQuery("#cart-frm").attr('action', jQuery(this).attr('rel'));
+    jQuery("#cart-frm input[name=_method]").val('delete');
+    jQuery("#cart-frm").submit();
+  })
+  jQuery('.show-hide-options').click(function(){
+      if(jQuery(this).text()=="show item options"){
+          jQuery(this).parents(".itemDetail").next('.item-options').show('slide');
+          jQuery(this).text("hide item options");
+          jQuery(this).css('color','red');
+      }else{
+          jQuery(this).parents(".itemDetail").next('.item-options').hide('slide');
+          jQuery(this).text("show item options");
+          jQuery(this).css('color','green');
+      }
+  })
+</script>

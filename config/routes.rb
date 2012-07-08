@@ -143,7 +143,9 @@ Mystore3::Application.routes.draw do
     resources :site_ecomm do
       get 'dashboard', :on => :collection 
     end
-    
+
+    resources :carts
+
     resources :products do
       get 'index', :on => :collection
       get 'featured_products', :on => :collection

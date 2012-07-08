@@ -12,4 +12,4 @@ nbproject/**/*
 public/system/uploads/*
 public/themes/*
 .DS_Store/
-.idea/
+.idea/*

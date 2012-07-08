@@ -1,0 +1,86 @@
+<div class="content-section">
+  <header class="clearfix">
+    <div class="banner clearfix">
+      <div class="hItem"><img src="css/img/logo.png" border="0" /></div>
+      <div class="hItem">
+        <div class="hSubItem"><img src="css/img/iconHeaderPromo.png" border="0" /></div>
+        <div class="hSubItem"><div class="headerSearch clearfix"><span class="searchBox"><input type="text" /></span><span class="searchBtn"><img src="css/img/btnHeaderSearch.png" border="0" /></span></div></div>
+      </div>
+      <div class="hItem hCart"><img src="css/img/iconHeaderCart.png" border="0" /></div>
+    </div>
+    <nav class="clear">
+      <ul class="clearfix">
+        <li class="active"><span>option one</span></li>
+        <li><span>option two</span></li>
+        <li><span>option three</span></li>
+        <li><span>option four</span></li>
+        <li><span>option five</span></li>
+        <li><span>option six</span></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="main-content clearfix clear">
+    <div class="shoppingCart clearfix">
+      <h1 class="left noMargin">Shopping Cart</h1>
+      <button class="right">Continue Shopping</button>
+      <div class="headers boldText clear clearfix"><span class="left">Item Details</span><div class="right"><span class="left price boldText">Price</span><span class="left qty textCenter boldText">Quantity</span></div></div>
+      <% session[:cart].each  do |id,quantity|%>
+        <%= render :partial => "item", :locals => { :id => id, :quantity => quantity } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="newsLetter clearfix">
+    <span class="getEmail">Get our email newsletter - </span>
+    <span class="promiss">we won’t share your number with anyone else, we promise!</span>
+				<span class="signup clearfix"><span><input type="text" placeholder="your email address" /></span>
+					<img src="css/img/btnSignupNews.png" border="0" />
+				</span>
+  </div>
+  <footer class="clearfix">
+    <div class="fCol">
+      <h3>Pecaa Eyeglasses Inc.</h3>
+      <h4>Pecaa Eyeglasses Inc.</h4>
+      <h4>Pecaa Eyeglasses Inc.</h4>
+    </div>
+    <div class="fCol">
+      <h2>email : <span class="val email">info@pecaa.com</span></h2>
+      <h2>phone : <span class="val">222.187..1588</span></h2>
+    </div>
+    <div class="fCol last">
+      <ul class="sMedia clearfix">
+        <li class="fb"></li>
+        <li class="tw"></li>
+        <li class="gp"></li>
+        <li class="li"></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+<%= form_tag "", :id => "cart-frm", :method => :put  do %>
+  <%= hidden_field_tag :quantity %>
+<%end%>
+<script type="text/javascript">
+  jQuery(".itemDetail button.blue").click(function(){
+      jQuery("#cart-frm").attr('action', jQuery(this).attr('rel'));
+      jQuery("#cart-frm input[name=_method]").val('put');
+      quantity = jQuery(this).parent().prev().children('input').val()
+      jQuery("#cart-frm input[name=quantity]").val(quantity);
+      jQuery("#cart-frm").submit();
+  })
+  jQuery(".itemDetail button.pink").click(function(){
+    jQuery("#cart-frm").attr('action', jQuery(this).attr('rel'));
+    jQuery("#cart-frm input[name=_method]").val('delete');
+    jQuery("#cart-frm").submit();
+  })
+  jQuery('.show-hide-options').click(function(){
+      if(jQuery(this).text()=="show item options"){
+          jQuery(this).parents(".itemDetail").next('.item-options').show('slide');
+          jQuery(this).text("hide item options");
+          jQuery(this).css('color','red');
+      }else{
+          jQuery(this).parents(".itemDetail").next('.item-options').hide('slide');
+          jQuery(this).text("show item options");
+          jQuery(this).css('color','green');
+      }
+  })
+</script>
