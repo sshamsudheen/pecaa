@@ -21,7 +21,7 @@ class CartsController < ApplicationController
 
   def update
     @site = Site.find(params[:site_id])
-    order_product = session[:cart].merge!(params[:id] => params[:quantity])
+    order_product = session[:cart].merge!(params[:id] => params[:quantity].to_i)
     flash[:notice] = 'Order was successfully updated.'
     redirect_to site_carts_path(@site)
   end
@@ -57,7 +57,9 @@ class CartsController < ApplicationController
 
   def build_session(session_cart)
     session_cart.collect do |id, quantity|
-      {Product.find(id) => quantity}
+      product = Product.find(id)
+      product.price = product.price_with_quantity(quantity)
+      {product => quantity}
     end.compact
   end
 

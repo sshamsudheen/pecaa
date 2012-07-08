@@ -15,10 +15,10 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :order_products
   
 
-
+  attr_accessor :price
   
   liquid_methods :id, :name, :sku, :vendor, :sold, :viewed, :rating, :is_active, :created_at, :updated_at, :base_price,
-  :retail_price, :cost, :weight, :shipping_modifier, :case_price, :description, :image_path
+  :retail_price, :cost, :weight, :shipping_modifier, :case_price, :description, :image_path, :last_vendor_name, :price, :active_product_options
  
   
   def image_path
@@ -38,6 +38,10 @@ class Product < ActiveRecord::Base
 
   def price_with_quantity(quantity)
     (base_price * quantity.to_i).to_f
+  end
+
+  def active_product_options
+    product_options.only_active
   end
   
 end
