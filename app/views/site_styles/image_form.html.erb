@@ -17,9 +17,10 @@
         			}
         		})
         		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);
+                    // mask face-box so that info is fetched n loaded
+                    $('#facebox').mask('Loading...');
+                    var $this = $(this);
         			//$this.parent().find('.misc img').hide();
-        			
         			if(!$this.hasClass("selected")){
         				$("ul.ConLibra li").removeClass("selected");
         				//$("ul.ConLibra li").find('.pointer').hide();
@@ -27,7 +28,39 @@
         				//$this.find('.pointer').show();
         				//$this.find('.misc img').show();
         			}
-        			return false;
+                    // manipulate the selected bg-image
+                    var sli = this, img_id = this.id.match(/\d+/g);
+                    if(!$(sli).hasClass('thumbList')){
+                        // this is to retrieve the url
+                        sli = $('#thumb-image-'+img_id);
+                    }
+                    // map the bg-image to the style editor
+                    var bg_img_holder = $('#background_form .noImage');
+                    $(bg_img_holder).css('display', 'inline-block');
+                    $('#background_form .noImage').empty();
+                    $('#background_form .noImage').append('<img src="'+sli.children('img').attr('src')+'" width="140" height="36" />');
+                    // saving the image-id
+                    $('#bg_image').attr('value', img_id);
+                    $.get( '/sites/<%=@site.id%>/site_styles/'+img_id+'/bg_image',
+                            function( data ) {
+                                // load-in the image preview
+                                $('.showImgDetail .imgPreview').empty();
+                                $('.showImgDetail .imgPreview').append('<img src="'+sli.children('img').attr('src')+'" />');
+                                $('.showImgDetail .imgPreview').css('text-align', 'center');
+                                // load the image info
+                                var val_spans = $('.selectedImgDetail').children('span.val');
+                                $(val_spans[0]).text(data.image.name);
+                                $(val_spans[0]).css('color', 'white');
+                                $(val_spans[1]).text(data.image.upload_file_name);
+                                $(val_spans[1]).css('color', 'white');
+                                $(val_spans[2]).text(data.image.categories);
+                                $(val_spans[2]).css('color', 'white');
+                                //; now unmask
+                                $('#facebox').unmask();
+                            }
+                    );
+
+                    return false;
         			
         		})
         		$("ul.galleryViews li").click(function(){
@@ -81,10 +114,10 @@
 		    									<ul class="ConLibra">
 		    								      <%@image_pickers = Image.all%>
 											      <% @image_pickers.each do |image_picker| %>
-		    										<li>
-												       <span class="imgName"><%= image_picker.upload_file_name  %></span>
-		    											<span class="category"><%= image_picker.upload_content_type  %></span>
-												       <span class="deleteBtn"><a href="#"><img src="/assets/img/btnDelete.png" border="0" /></a></span>
+		    										<li id="tr-image-<%= image_picker.id %>">
+												        <span class="imgName"><%= image_picker.upload_file_name  %></span>
+		    										    <span class="category"><%= image_picker.upload_content_type  %></span>
+												        <span class="deleteBtn"><a href="#"><img src="/assets/img/btnDelete.png" border="0" /></a></span>
 												    </li>
 											      <% end %>
 		    									</ul>
@@ -114,7 +147,7 @@
                                           <div class="overview">
                                             <ul class="ConLibra thumbs">
                                               <% @image_pickers.each do |image_picker| %>
-                                              <li class="thumbList">
+                                              <li class="thumbList" id="thumb-image-<%= image_picker.id %>">
                                                 <% image = image_picker.upload.url(:thumb).split('?')[0] %>
                                                 <img src="<%= image %>"  border="0"  width="100px" height="80px"/>
                                                 <span class="imgDelete"><a href="#"><img src="/assets/img/btn_ImgDelete.png" border="0" /></a></span>
@@ -198,8 +231,8 @@
 
         $('#saveBtn').click(function(){
             // TODO: find the selected bg-image ? then send to parent for mapping ?? close the facebox!
-            //selectbgimage();
-            //$(document).trigger('close.facebox');
+            //  ---> as of now it's handled in <li>.onclick above
+            $(document).trigger('close.facebox');
         });
     });
 </script>

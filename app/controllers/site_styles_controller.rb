@@ -68,7 +68,12 @@ class SiteStylesController < ApplicationController
     #logger.info "bg-image created #{@image.inspect}"
     render :image_form, :layout => false
   end
-  
+
+  def bg_image
+    @image = Image.find(params[:id]) rescue nil
+    render json: @image
+  end
+
   protected
 
   def setup

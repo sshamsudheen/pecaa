@@ -127,6 +127,7 @@ Mystore3::Application.routes.draw do
       get 'choose_theme', :on => :collection
       get 'choose_basecolor', :on => :collection
       post 'bgimage_create', :on => :collection
+      get 'bg_image', :on => :member
     end
 
     resources :site_links do
