@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'facebox'%>
+<%#= javascript_include_tag 'facebox'%>
 <div class="subTab-Content left subTab-Content-tab" id='background_form'>
 	<div class="resetAll"><a href="#"></a></div>
 	<div class="colum-wrapper left">
@@ -67,8 +67,25 @@
 </div>
 
 <script type="text/javascript">
-	$('.chooseImg').click(function(){
-	  $('a.image_link').trigger('click')
-	})
+	// trigger facebox when the bg-image button is clicked
+    $('.chooseImg').click(function(){
+        $('a.image_link').trigger('click')
+    });
+    // do a ajax submit to upload the bg-image
+    function bgimageupload(button){
+        // do a ajax form-submit
+        $(button.form).ajaxForm({
+            target: '#facebox .content',
+            beforeSubmit: function() {
+                $('#facebox').mask('Uploading...');
+            },
+            success:  function(data){
+                $('#facebox').unmask();
+            }/*,
+            error: function(){
+                console.debug('err: ',arguments);
+            } */
+        }).submit();
+    }
 </script>
 

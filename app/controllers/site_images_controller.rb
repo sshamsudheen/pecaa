@@ -39,7 +39,8 @@ class SiteImagesController < ApplicationController
 
   # POST /site_images
   # POST /site_images.json
-  def create
+  def create_old
+    logger.info "site_images_create #{params.inspect}"
     site_id = params[:site_image]
     site_page_id = params[:site_page_id]
     @site_image = SiteImage.new(params[:site_image])
@@ -54,6 +55,30 @@ class SiteImagesController < ApplicationController
         format.json { render json: @site_image.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create
+    @site  = Site.find(params[:site_id])
+    # instead of the above statement, the following two must be followed
+    #@site_page = SitePage.find(session[:site_page_id]) rescue nil
+    #@site = @site_page.site rescue nil
+    @site_image = SiteImage.new(params[:site_image])
+    @site_image.site_id = @site.id
+    @site_image.user_id = current_user
+    @site_image.site_page_id = 1
+
+    SiteImage.transaction do
+      respond_to do |format|
+        if @site_image.save
+          format.html { redirect_to @site_image, notice: 'Site image was successfully created.' }
+          format.json { render json: @site_image, status: :created, location: @site_image }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @site_image.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+    logger.info "site_images_created #{@site_image.inspect}"
   end
 
   # PUT /site_images/1

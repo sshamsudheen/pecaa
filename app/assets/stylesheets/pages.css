@@ -114,7 +114,7 @@
 	/*border-bottom: 1px solid #CCCCCC;*/
 	/* height:24px; */
 }
-.site-pages ul.ConLibra li:first-child{
+/*.site-pages ul.ConLibra li:first-child{
 	background:url(/assets/bg_TableTopShadow.png) repeat-x 0 0 #CCCCCC;
 }
 .site-pages ul.ConLibra li.selected:first-child{
@@ -126,7 +126,7 @@
 }
 .site-pages ul.ConLibra li.selected:last-child{
 	background:url(/assets/bg_TableBottomShadow.png) repeat-x 0 bottom #787878;
-}
+}*/
 .site-pages .userGridFooter {
 	background: url(/assets/bg_grayGrain.gif) repeat;
 	height:15px;
@@ -148,7 +148,7 @@
 	border-bottom:1px solid #333333;*/
 }
 
-/***********************************************************************/
+/** site pages drag-n-drop styles **/
 .site-pages ul.ConLibra ul{
     list-style: none;
     padding-left:0 !important;
@@ -156,13 +156,30 @@
 }
 
 .site-pages ul.ConLibra ul li{
-    background: none;
+    background-image: none;
+    background-color: #f0f0f0;
 }
 
 .site-pages ul.ConLibra ul span.dndhandle {
     background:url(img/leftArrow.png) no-repeat 98% center transparent;
     padding-left: 12px;
 }
+/*.site-pages ul.ConLibra ul.ConLibra ul span.dndhandle {
+    background:url(img/subleftArrow.png) no-repeat 98% center transparent;
+    padding-left: 12px;
+}*/
+.site-pages ul.ConLibra ul.ConLibra li:last-child span.dndhandle{
+    background:url(img/subleftArrow.png) no-repeat 98% center transparent;
+    padding-left: 12px;
+}
+/*.site-pages ul.ConLibra ul.ConLibra li:first-child, .site-pages ul.ConLibra ul.ConLibra li:last-child {
+    background-image: none;
+    background-color: #CCCCCC;
+}
+.site-pages ul.ConLibra ul.ConLibra .alt {
+    background-color: #dedede !important;
+    border-bottom:1px solid #cbcbca;
+}   */
 .site-pages ul.ConLibra ul span.pageName {
     width: 157px;
 }
@@ -170,11 +187,10 @@ li.helper {
     border:1px solid #333;
     opacity:0.7;
 }
-
 .helper  li {
     border: 1px dashed #333;
 }
-/***********************************************************************/
+
 span.dndhandle{
     background:url(img/icon_movable.png) no-repeat 98% center transparent;
     cursor:move;

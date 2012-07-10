@@ -1,6 +1,6 @@
                                     <span class="dndhandle">&nbsp;</span>
-                                    <span class="pageName" id="<%=sp.id%>"><%=sp.name%></span>
-										<span class="status">
+                                    <span class="pageName" id="<%=sp.id%>"><%=sp.name+(sp.children.length>0?" (#{sp.children.length})":'')%></span>
+									<span class="status">
     								  <a rel ="<%=sp.is_active%>" href="<%=update_page_site_site_page_path(@site, sp, :site_page=>{:is_active => !(sp.is_active)})%>" class=<%=sp.is_active ? 'on' : 'off' %>></a>
     								</span>
     								<span class="home">

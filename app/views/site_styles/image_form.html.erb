@@ -1,6 +1,7 @@
   <%= stylesheet_link_tag "layout", "siteinfo", "pages", "content", "themes", "optional","users","modal_layout" ,"imagePicker"%>
-		<%= javascript_include_tag 'jquery-1.7.1.min.js'%>
-    <%= javascript_include_tag 'jquery.tinyscrollbar.min.js'%>
+  <%= javascript_include_tag 'jquery.form.js'%>
+  <%= javascript_include_tag 'jquery.tinyscrollbar.min.js'%>
+  <%= javascript_include_tag 'js/jquery.loadmask'%>
         <script type="text/javascript">
         	$(document).ready(function(){
         		$('#galleryListView').tinyscrollbar();
@@ -16,9 +17,10 @@
         			}
         		})
         		$("ul.ConLibra li").click(function(){
-        			var $this = $(this);
+                    // mask face-box so that info is fetched n loaded
+                    $('#facebox').mask('Loading...');
+                    var $this = $(this);
         			//$this.parent().find('.misc img').hide();
-        			
         			if(!$this.hasClass("selected")){
         				$("ul.ConLibra li").removeClass("selected");
         				//$("ul.ConLibra li").find('.pointer').hide();
@@ -26,7 +28,39 @@
         				//$this.find('.pointer').show();
         				//$this.find('.misc img').show();
         			}
-        			return false;
+                    // manipulate the selected bg-image
+                    var sli = this, img_id = this.id.match(/\d+/g);
+                    if(!$(sli).hasClass('thumbList')){
+                        // this is to retrieve the url
+                        sli = $('#thumb-image-'+img_id);
+                    }
+                    // map the bg-image to the style editor
+                    var bg_img_holder = $('#background_form .noImage');
+                    $(bg_img_holder).css('display', 'inline-block');
+                    $('#background_form .noImage').empty();
+                    $('#background_form .noImage').append('<img src="'+sli.children('img').attr('src')+'" width="140" height="36" />');
+                    // saving the image-id
+                    $('#bg_image').attr('value', img_id);
+                    $.get( '/sites/<%=@site.id%>/site_styles/'+img_id+'/bg_image',
+                            function( data ) {
+                                // load-in the image preview
+                                $('.showImgDetail .imgPreview').empty();
+                                $('.showImgDetail .imgPreview').append('<img src="'+sli.children('img').attr('src')+'" />');
+                                $('.showImgDetail .imgPreview').css('text-align', 'center');
+                                // load the image info
+                                var val_spans = $('.selectedImgDetail').children('span.val');
+                                $(val_spans[0]).text(data.image.name);
+                                $(val_spans[0]).css('color', 'white');
+                                $(val_spans[1]).text(data.image.upload_file_name);
+                                $(val_spans[1]).css('color', 'white');
+                                $(val_spans[2]).text(data.image.categories);
+                                $(val_spans[2]).css('color', 'white');
+                                //; now unmask
+                                $('#facebox').unmask();
+                            }
+                    );
+
+                    return false;
         			
         		})
         		$("ul.galleryViews li").click(function(){
@@ -78,14 +112,14 @@
 										<div class="viewport">
 		 									<div class="overview">
 		    									<ul class="ConLibra">
-		    								<%@image_pickers=Image.all%>		
-											<% @image_pickers.each do |image_picker| %>
-		    										<li>
-												       <span class="imgName"><%= image_picker.upload_file_name  %></span>
-		    											<span class="category"><%= image_picker.upload_content_type  %></span>
-												       <span class="deleteBtn"><a href="#"><img src="/assets/img/btnDelete.png" border="0" /></a></span>
-												</li>
-											 <% end %>
+		    								      <%@image_pickers = Image.all%>
+											      <% @image_pickers.each do |image_picker| %>
+		    										<li id="tr-image-<%= image_picker.id %>">
+												        <span class="imgName"><%= image_picker.upload_file_name  %></span>
+		    										    <span class="category"><%= image_picker.upload_content_type  %></span>
+												        <span class="deleteBtn"><a href="#"><img src="/assets/img/btnDelete.png" border="0" /></a></span>
+												    </li>
+											      <% end %>
 		    									</ul>
 		    								</div>
 		    							</div>
@@ -108,19 +142,20 @@
 								<div class="userGridBody">
 									<div id="galleryBoxView">
 										<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
-										<div class="viewport">
-		 									<div class="overview">
-		    									<ul class="ConLibra thumbs">
-											<% @image_pickers.each do |image_picker| %>
-		    										<li class="thumbList">
-												        <% image = image_picker.upload.url(:thumb).split('?')[0] %>
-												         <img src="<%= image %>"  border="0"  width="100px" height="80px"/>
-		    											<span class="imgDelete"><a href="#"><img src="/assets/img/btn_ImgDelete.png" border="0" /></a></span>
-												</li>
-												<% end %>
-											</ul>
-		    								</div>
-		    							</div>
+										<div class="viewport" id="bgimageslist">
+                                          <%#=render :partial=>'image_list', :locals => { :success => true } %>
+                                          <div class="overview">
+                                            <ul class="ConLibra thumbs">
+                                              <% @image_pickers.each do |image_picker| %>
+                                              <li class="thumbList" id="thumb-image-<%= image_picker.id %>">
+                                                <% image = image_picker.upload.url(:thumb).split('?')[0] %>
+                                                <img src="<%= image %>"  border="0"  width="100px" height="80px"/>
+                                                <span class="imgDelete"><a href="#"><img src="/assets/img/btn_ImgDelete.png" border="0" /></a></span>
+                                              </li>
+                                              <% end %>
+                                            </ul>
+                                          </div>
+                                        </div>
 		    						</div>
 		    					</div>
 		    					<div class="userGridFooter"></div>
@@ -128,7 +163,7 @@
 						</div>
 						<!-- end of box view-->
 					</div>
-						<%= form_for :site_image, :url => "sites/#{@site.id}/site_image/create", :html => {:multipart => true } do |f| %>
+						<%= form_for :image, :url => "/sites/#{@site.id}/site_styles/bgimage_create", :html => {:multipart => true } do |f| %>
 					<div class="imgDetailColumn left">
 						<div class="addImageToLib">
 							<h3>Add Image to Library</h3>
@@ -137,10 +172,19 @@
 							</div>
 							<div class="imgTypeThumb left"></div>
 							<div class="setDetail left">
-								<span class="chooseImgName"><input type="text" placeholder="choose image name" /></span>
-								<span class="chooseCategory"><input type="text" placeholder="add category" /><span class="addCat right"><img src="/assets/img/btnAddNote.png" border="0" /></span></span>
+								<span class="chooseImgName">
+                                  <%= f.text_field :name, :placeholder => 'choose image name' %>
+                                </span>
+								<span class="chooseCategory">
+                                  <%= f.text_field :categories, :placeholder => 'add category' %>
+                                  <span class="addCat right">
+                                    <img src="/assets/img/btnAddNote.png" border="0" />
+                                  </span>
+                                </span>
 								<span class="addedCategory">category 1, category 2</span>
-								<span class="addImgeBtn clear right"><button class="blueBtn"  type="button">add image to library</button></span>
+								<span class="addImgeBtn clear right">
+                                  <button class="blueBtn" id="addImageBtn" type="button">add image to library</button>
+                                </span>
 							</div>
 						</div>
 						<% end %>
@@ -168,13 +212,27 @@
 
 
 <script>
-$('#cancelBtn').click(function(){
-    $(document).trigger('close.facebox');
-    return false;
-});
-$('.pageLayout').click(function(){
-  $('#site_page_page_layout').attr('value', $(this).attr('id'));
-  $(this).attr('style', 'border:1px;');
-  return false;
-});
+    // wait for the DOM to be loaded
+    $(document).ready(function() {
+        $('#addImageBtn').click(function(){
+            // nwo upload the bg-image selected
+            bgimageupload(this);
+        });
+
+        $('#cancelBtn').click(function(){
+            $(document).trigger('close.facebox');
+        });
+
+        $('.pageLayout').click(function(){
+            $('#site_page_page_layout').attr('value', $(this).attr('id'));
+            $(this).attr('style', 'border:1px;');
+            return false;
+        });
+
+        $('#saveBtn').click(function(){
+            // TODO: find the selected bg-image ? then send to parent for mapping ?? close the facebox!
+            //  ---> as of now it's handled in <li>.onclick above
+            $(document).trigger('close.facebox');
+        });
+    });
 </script>
