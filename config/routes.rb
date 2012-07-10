@@ -60,6 +60,10 @@ Mystore3::Application.routes.draw do
     get 'pages_list', :on => :collection
     get 'site_preview', :on => :member
     get 'show_products/:view_name(/:category)', :on => :member, :to => 'sites#show_products'
+    get 'accounts/:view_name', :on => :member, :to => 'sites#accounts'
+    get 'add_address', :on => :member
+    post 'add_address', :on => :member
+    
     get 'user_actions', :on => :member
     post 'create_customer', :on => :member
     post 'customer_login', :on => :member

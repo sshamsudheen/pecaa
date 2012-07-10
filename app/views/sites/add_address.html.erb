@@ -1,0 +1,48 @@
+<%= stylesheet_link_tag  "layout", "content", "site_pages","facebox", "modal_layout", 'themes' %>
+
+<%= form_for @address, :url =>{:action => "add_address"} do |f| %>
+  <div class="main-container midium">
+  	<div class="header">Add Address<span class="helpIcon"></span></div>
+  	<div class="main-content">
+  		<div class="newExt-Link">
+  			<div class="extForm">
+  				<div class="form-row">
+  				  <span class="key">Nickname :</span>
+  				  <span class="val"><%= f.text_field :nickname %></span>
+  				</div>
+  				<div class="form-row">
+  				  <span class="key">Address line1 :</span>
+  				  <span class="val"><%= f.text_field :address_one %></span>
+  				</div>
+  				<div class="form-row">
+  				  <span class="key">Address line2 :</span>
+  				  <span class="val"><%= f.text_field :address_two %></span>
+  				</div>
+          <div class="form-row">
+            <span class="key">City :</span>
+            <span class="val"><%= f.text_field :city %></span>
+          </div>
+          <div class="form-row">
+            <span class="key">State :</span>
+            <span class="val"><%= f.text_field :state %></span>
+          </div>
+          <div class="form-row">
+            <span class="key">Zip :</span>
+            <span class="val"><%= f.text_field :zipcode %></span>
+          </div>
+  			</div>
+  		</div>
+  	</div>
+  	<div class="footer-section">
+  		<div class="leftBtns"><button class="secondary" id="cancelBtn">Cancel</button> </div>
+  		<div class="rightBtns"><button class="primary" id="saveBtn">Save Address</button> </div>
+  	</div>
+  </div>
+<% end %>
+
+<script>
+$('#cancelBtn').click(function(){
+    $(document).trigger('close.facebox');
+    return false;
+});
+</script>

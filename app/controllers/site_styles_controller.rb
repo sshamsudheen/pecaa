@@ -71,7 +71,7 @@ class SiteStylesController < ApplicationController
 
   def bg_image
     @image = Image.find(params[:id]) rescue nil
-    render json: @image
+    render :json => @image
   end
 
   protected

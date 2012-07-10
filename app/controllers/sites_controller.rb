@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  layout 'pecaa_application'
+  layout 'pecaa_application', :except => :add_address
   before_filter :setup
   
   def index
@@ -117,6 +117,7 @@ class SitesController < ApplicationController
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'themes')
     #     @site.site_style.theme.get_files('')
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
+    
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
     icontent = Liquid::Template.parse(@content).render({"#{record.downcase}" => eval("#{record.classify}.all"), "featured_products" => Product.featured_products})
     lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, "xyz"=>"Hello Mani")
@@ -218,6 +219,24 @@ class SitesController < ApplicationController
     render :text => lcontent
   end
   
+  def accounts
+    @site = Site.find(params[:id])
+    record = params[:view_name]
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates/user')
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
+    lcontent = Liquid::Template.parse(@content).render("site" => @site, "user"=> current_user)
+    render :text => lcontent
+  end
+  
+  def add_address
+    if request.post?
+      address = current_user.addresses.new params[:address]
+      address.save!
+      redirect_to :action => :accounts, :view_name => 'user_address_book', :id => params[:id]
+    else
+      @address = current_user.addresses.new
+    end
+  end
   
   protected
   
@@ -241,9 +260,11 @@ class SitesController < ApplicationController
   
   def filters_liquid_variables
     if params[:view_name] == "product_categories"
-      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
+      Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
+    elsif params[:view_name] == "user_account_settings"
+      Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
     else
-      filter_content = Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
+      Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
     end
   end
 

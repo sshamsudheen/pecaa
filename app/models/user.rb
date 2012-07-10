@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  liquid_methods :name, :username, :email, :phone_number, :firstname, :lastname, :addresses
 
   # Setup accessible (or protected) attributes for your model
 #  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
@@ -27,9 +29,18 @@ class User < ActiveRecord::Base
   end
   
   def addresses=address
-    self.addresses.destroy_all
+    # self.addresses.destroy_all
     self.addresses.new(address)
   end
+  
+  def firstname
+    username.split(" ").first
+  end
+  
+  def lastname
+    username.split(" ").last
+  end
+  
   
   before_save do |user|
 #    if user.password_changed?

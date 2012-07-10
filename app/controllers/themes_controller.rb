@@ -18,12 +18,15 @@ class ThemesController < ApplicationController
   end
 
   def edit
+    # Temp fixes need Cleanup
     @theme = Theme.find(params[:id])
     @file_type = params[:file_type].blank? ? 'themes' : params[:file_type]
     @files = @theme.get_files(@file_type)
+    @files = @files + @theme.get_files(@file_type + "/user") if params[:file_type] == 'templates'
     @directories = @theme.get_directories
     @selected_file = params[:file_name] || @theme.get_first_file(@file_type)
     @file_content = @theme.read_file(@selected_file, @file_type)
+    @file_content = @theme.read_file(@selected_file, @file_type + "/user") if @file_content.blank?
     render :layout=>false
   end
 
