@@ -1,6 +1,8 @@
-<%= javascript_include_tag 'jquery.jeditable'%>
+<%= stylesheet_link_tag "jquery.loadmask"%>
+<%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.jeditable'%>
+<%= javascript_include_tag 'js/nestysorty','js/jquery.json','js/jquery.loadmask'%>
 
-  <div class="content-section categoryMain">
+<div class="content-section categoryMain">
     <div class="pages-main">
       <div class="pages-wrapper">
         <div class="usersLeftPane left">
@@ -31,29 +33,28 @@
                   <div class="viewport">
                     <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                     <div class="overview">
-                      <ul class="ConLibra">
-                        <% @product_categories.each do |pc| %>
-                          <li class="selected"> 
-                            <span class="userName PcName" id="<%=pc.id%>">
-                              <%=pc.name%>
-                            </span>
-                            <span class="group">
-                              <span>
-                                <a href="#"><img src="/assets/btn_deleteActive.png" width="40" height="20"></a>
-                              </span>
-                              <span>
-                                <input name="" type="text" class="modifierTextBg" value="<%=pc.price_modifier_value%> <%=pc.price_modifier %>" size="4" maxlength="6">
-                              </span>
-                            </span> 
-                            <span class="status">
-                              <a rel="<%=pc.is_active%>"  href="<%=update_pc_site_product_category_path(@site, pc, :product_category=>{:is_active => !(pc.is_active)})%>" class= <%=pc.is_active ? 'on' : 'off' %>>
-                              </a>
-                            </span>
-                            <span class="removeBtn">
-                              <%= render :partial => 'shared/alert_box', :locals => {:obj => pc,
-                                 :path => delete_site_product_category_path(@site, pc),
-                                 :img_path => "/assets/btnDelete.png"}%> 
-                            </span>
+                      <ul class="ConLibra" id="list-container">
+                        <% @product_categories.each do |parentpc| %>
+                          <li class="sortable-element-class" id="page_<%=parentpc.id%>">
+                            <%= render :partial=>'product_categories/a_product_category', :locals=>{:pc => parentpc}%>
+                            <%if parentpc.children.length > 0%>
+                                <ul class="ConLibra">
+                                  <%parentpc.children.each do |subpc|%>
+                                      <li id="page_<%=subpc.id%>" class='sortable-element-class'>
+                                        <%= render :partial=>'product_categories/a_product_category', :locals=>{:pc => subpc}%>
+                                        <%if subpc.children.length > 0%>
+                                            <ul class="ConLibra">
+                                              <%subpc.children.each do |ipc|%>
+                                                  <li id="page_<%=ipc.id%>" class='sortable-element-class'>
+                                                    <%= render :partial=>'product_categories/a_product_category', :locals=>{:pc => ipc}%>
+                                                  </li>
+                                              <%end%>
+                                            </ul>
+                                        <%end%>
+                                      </li>
+                                  <%end%>
+                                </ul>
+                            <%end%>
                           </li>
                         <% end %>
                       </ul>
@@ -113,4 +114,37 @@ $("span.status a").live("click", function(){
   }});
  return false;
 });
+</script>
+<script type="text/javascript">
+
+    $('ul#list-container').nestysorty({
+        'callback':function(sortedata) {
+            $('#list-container').mask("Saving...");
+            $(sortedata).each(function(index, item) {
+                var li = item[0];
+                if(li.title) {
+                    if(!(index%2)) {
+                        $('#'+li.title).addClass('alt');
+                        $(li.children).each(function (ix, child) {
+                            if(child.title) {
+                                if((ix%2))
+                                    $('#'+child.title).addClass('alt');
+                                else
+                                    $('#'+child.title).removeClass('alt');
+                            }
+                        });
+                    }
+                    else $('#'+li.title).removeClass('alt');
+                }
+            });
+            //console.debug('d: ',$.toJSON(sortedata)); $('#list-container').unmask(); return;
+            // convert the data to a json string and post it to the server
+            $.post( '/sites/<%=@site.id%>/product_categories/reorder', { data: $.toJSON(sortedata) },
+                    function( data ) {
+                        $('#list-container').unmask();
+                    }
+            );
+        }
+    });
+
 </script>

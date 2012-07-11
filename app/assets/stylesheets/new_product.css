@@ -358,7 +358,7 @@ background-position:20px 5px
 	background-image:none;
 }
 .categoryMain .ConLibra .userName {
-	background: url("img/icon_movable.png") no-repeat scroll 98% center transparent;
+	/*background: url("img/icon_movable.png") no-repeat scroll 98% center transparent;*/
 	display: inline-block;
 	height: 22px;
 	padding-left: 20px;
@@ -1782,3 +1782,19 @@ z-index:300;
 color:#3d9642;	
 }
 
+#products1 #list-container li span.dndhandle {
+    background:url(img/icon_movable.png) no-repeat 98% center transparent;
+    cursor:move;
+    padding:5px;
+}
+#products1 #list-container li ul span.dndhandle {
+    background:url(img/leftArrow.png) no-repeat 98% center transparent;
+    padding-left: 12px;
+}
+#products1 #list-container li ul.ConLibra ul.ConLibra li:last-child span.dndhandle{
+    background:url(img/subleftArrow.png) no-repeat 98% center transparent;
+    padding-left: 12px;
+}
+.categoryMain ul.ConLibra li ul.ConLibra li span.userName {
+    width: 443px;
+}

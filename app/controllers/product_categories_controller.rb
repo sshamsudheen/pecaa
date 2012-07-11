@@ -5,7 +5,7 @@ class ProductCategoriesController < ApplicationController
   layout "products"
   
   def index
-    @product_categories = ProductCategory.all
+    @product_categories = ProductCategory.where('parent_id=0').order('list_order')
   end
 
   def new
@@ -52,6 +52,35 @@ class ProductCategoriesController < ApplicationController
     @product_categories = ProductCategory.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
     render :action => "index"
   end
-  
-  
+
+  def reorder
+    # sql hash object
+    sqlhash = {}
+    # lambda that digs the child nodes and builds the sql
+    _dig = lambda{|p,c|
+      c.each_with_index { |i,x|
+        cid = i['title'][/\d+/]
+        sqlhash.merge!("#{cid}"=> {'list_order'=>x+1, 'parent_id'=>p})
+        if i['children'].length > 0
+          _dig.call(cid, i['children'])
+        end
+      }
+    }
+    logger.info "params-data>> #{params[:data]}"
+    # building the sql from the JSON posted
+    JSON.load(params[:data]).each_with_index { |i,x|
+      iid = i[0]['title'][/\d+/]
+      sqlhash.merge!("#{iid}"=> {'list_order'=>x+1, 'parent_id'=>0})
+      if i[0]['children'].length > 0
+        _dig.call(iid, i[0]['children'])
+      end
+    }
+    # update current site pages with their orders
+    if !sqlhash.empty?
+      logger.info "re-ordering the product-categories sqlhash>> #{sqlhash.inspect}"
+      ProductCategory.update(sqlhash.keys, sqlhash.values)
+    end
+    render :nothing=> true
+  end
+
 end

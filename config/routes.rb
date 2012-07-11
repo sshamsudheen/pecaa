@@ -208,6 +208,7 @@ Mystore3::Application.routes.draw do
       get 'delete', :on => :member, :to => 'product_categories#destroy'
       get 'update_pc', :on => :member, :to => 'product_categories#update'
       post 'update_name', :on => :collection
+      post 'reorder', :on => :collection
     end
     
     resources :catalogs do 
