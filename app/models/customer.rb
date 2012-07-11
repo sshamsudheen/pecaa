@@ -6,4 +6,14 @@ class Customer < ActiveRecord::Base
                     :length => { :minimum => 5, :maximum => 40 },
                     :confirmation =>true
   validates_confirmation_of :password
+  liquid_methods :name, :account_id, :shipping_address, :billing_address
+  
+  def shipping_address
+  end
+  
+  def billing_address
+  end
+
+  def account_id
+  end
 end
