@@ -196,13 +196,13 @@ class SitesController < ApplicationController
     @site.site_style.theme.get_files('templates')
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
     @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
-    @content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
+    #@content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
   
-    @content_layout = @content_layout + @site.site_style.theme.read_file("user_navigation.liquid", 'templates')
+    @theme_heading = @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    customer = Customer.find(session[:customer_id]) 
-    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site, "orders" => Order.limit(10).to_a, "customer" => customer)
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
+    customer = Customer.find(session[:customer_id]) if session[:customer_id]
+    icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10), "customer" => customer})
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
     render :text => lcontent
   end
 
@@ -277,7 +277,9 @@ class SitesController < ApplicationController
     when "product_categories"
       Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
     when 'products'|| 'featured_products'
-      Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
+      Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
+   when "user_dashboard" or "user_account_settings"
+       Liquid::Template.parse(@site.site_style.theme.read_file("user_navigation.liquid", 'templates')).render({'theme_heading' => @theme_heading, 'site'=>@site})
     end
   end
   

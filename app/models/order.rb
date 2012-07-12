@@ -9,6 +9,8 @@ class Order < ActiveRecord::Base
   
   has_many :order_products
   has_many :products, :through => :order_products
+
+  liquid_methods :id, :order_id, :created_at, :status, :total_amt
     
   after_save do |order|
     [ "order_id", "status", "customer_email", "pay_status", "ship_status"].each do |clm|
