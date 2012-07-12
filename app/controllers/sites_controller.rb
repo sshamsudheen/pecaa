@@ -276,9 +276,9 @@ class SitesController < ApplicationController
     case params[:view_name]
     when "product_categories"
       Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
-    when 'products'|| 'featured_products'
+    when 'products', 'featured_products'
       Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
-   when "user_dashboard" or "user_account_settings"
+   when "user_dashboard" , "user_account_settings"
        Liquid::Template.parse(@site.site_style.theme.read_file("user_navigation.liquid", 'templates')).render({'theme_heading' => @theme_heading, 'site'=>@site})
     end
   end
