@@ -263,7 +263,7 @@ class SitesController < ApplicationController
       Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
     elsif params[:view_name] == "user_account_settings"
       Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
-   elsif params[:file_name] == "user_dashboard"
+   elsif params[:file_name] == "user_dashboard" or params[:file_name] == "user_account_settings"
        Liquid::Template.parse(@site.site_style.theme.read_file("user_navigation.liquid", 'templates')).render({'theme_heading' => @theme_heading, 'site'=>@site})
     else
       Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
