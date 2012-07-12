@@ -3,24 +3,24 @@
   	{% for pc in product_categories %}
       <li class="prod">
         <div class="prodLabel">
-    		  <span class="prodTitle left">{{ pc.name}}</span>
+    		  <span class="prodTitle left">{{ pc.name }}</span>
     		</div>
-        <div class="prodSnap">{{ pc.products.first.image_path}}</div>
+        <div class="prodSnap">{{ pc.products.first.image_path }}</div>
       </li>
     {% endfor %}
   </ul>
 </div>
 
 <div class="products">
-	<ul>
-  	{% for product in products %}
+  <ul>
+    {% for product in products %}
       <li class="prod">
         <div class="prodSnap">{{ product.image_path}}</div>
-    		<div class="prodLabel">
-    		  <span class="prodTitle left">{{ product.name}}</span>
-    		  <span class="right prodPrice">{{ product.base_price}}</span>
-    		</div>
-    		<div class="viewBtn clear">view this product</div>
+        <div class="prodLabel">
+          <span class="prodTitle left">{{ product.name}}</span>
+          <span class="right prodPrice">{{ product.base_price}}</span>
+          </div>
+        <div class="viewBtn clear">view this product</div>
       </li>
     {% endfor %}
   </ul>
