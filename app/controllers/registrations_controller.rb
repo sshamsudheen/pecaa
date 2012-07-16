@@ -38,7 +38,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   protected
-  def after_sign_in_path_for(scope, resource)
+  def after_sign_in_path_for(resource)
     new_site_registration_path(@site)
   end
 
