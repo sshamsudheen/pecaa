@@ -1,0 +1,72 @@
+<div class="main-content clearfix">
+  <div class="main-content clearfix">
+  <div class="wrapper nineZeroPer">
+      {{ flash }}
+      {% if !errors.blank? %}
+        <div id="error_explanation">
+          <h2>1 error prohibited this user from being saved:</h2>
+          <ul>
+            {% for error in errors %}
+             <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+         </div>
+      {% endif %}
+
+
+    <form method="post" id="user_new" class="user_new" action="/sites/{{site.id}}/sessions" accept-charset="UTF-8">
+      <div style="margin:0;padding:0;display:inline">
+        <input type="hidden" value="✓" name="utf8">
+        <input type="hidden" value="SSp5vWlSRlYo5MIdfsh0RBI/717tmGxounq6as07G9c=" name="authenticity_token">
+       </div>
+      <div class="contentBox">
+        <h2 class="darkCyan">Log In</h2>
+        <label class="labelCls">email address:</label>
+         <input type="email" value="{{user.email}}" size="30" rel="email address" name="user[email]" id="contact_email" class="inputCls inputBlr">
+        <label class="labelCls">password:</label>
+        <input type="password" size="30" rel="password" name="user[password]" id="contact_password" class="inputCls">
+        <input type="submit" value="sign in" name="commit" class="submitCls darkCyan">
+        <a class="aCls" href="/sites/{{site.id}}/passwords/new">forget name / password</a>
+      </div>
+    </form>
+    <form method="post" id="user_new" class="user_new" action="/sites/{{site.id}}/registrations" accept-charset="UTF-8">
+      <div style="margin:0;padding:0;display:inline">
+        <input type="hidden" value="✓" name="utf8">
+        <input type="hidden" value="SSp5vWlSRlYo5MIdfsh0RBI/717tmGxounq6as07G9c=" name="authenticity_token">
+      </div>
+      <div class="contentBox">
+        <h2 class="lightGreen">Create New Account</h2>
+        <label class="labelCls">email address:</label>
+        <input type="email" value="{{user.email}}" size="30" rel="email address" name="user[email]" id="contact_email" class="inputCls inputBlr">
+        <label class="labelCls">choose password:</label>
+        <input type="password" size="30" rel="choose password" name="user[password]" id="contact_password" class="inputCls">
+        <label class="labelCls">reenter password:</label>
+        <input type="password" size="30" rel="re enter password" name="user[password_confirmation]" id="contact_password" class="inputCls">
+        <input type="submit" value="create account" name="commit" class="submitCls lightGreen">
+      </div>
+    </form>
+    <div class="contentBox noMargin">
+      <h2 class="lightBrown">Continue as Guest</h2>
+      <p class="pCls">Some brief instructions outling the guest checkout procedures / policies.</p>
+      <input type="submit" value="continue as guest" class="submitCls lightBrown">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(".inputBlr").each(function(){
+       jQuery(this).val(jQuery(this).attr('rel'));
+    })
+    jQuery(".inputBlr").focus(function(){
+      if(jQuery(this).val() == jQuery(this).attr('rel')){
+          jQuery(this).val('');
+      }
+    })
+
+    jQuery(".inputBlr").blur(function(){
+      if(jQuery(this).val() == ''){
+            jQuery(this).val(jQuery(this).attr('rel'));
+      }
+    })
+</script>
+  </div>

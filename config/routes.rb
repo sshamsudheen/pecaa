@@ -49,6 +49,12 @@ Mystore3::Application.routes.draw do
   resources :external_links 
   
   resources :sites do
+    devise_scope :user do
+      resources :registrations
+      resources :sessions
+      resources :passwords
+    end
+
     get 'optional', :on => :member
     get 'done', :on => :member
     post 'optional_create', :on => :member

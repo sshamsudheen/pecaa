@@ -1,0 +1,17 @@
+<div class="wrapper nineZeroPer lineBg">
+  <%= devise_error_messages! %>
+  <%= form_for(resource, :as => resource_name, :url => site_password_path(@site), :html => { :method => :put }) do |f| %>
+      <div class="midcontentBox sixZeroPer">
+        <h2 class="lightGreen">Reset Name / Password</h2>
+        <div class="midInnerDiv">
+          <%= f.hidden_field :reset_password_token %>
+          <label class="labelCls">New password:</label>
+          <%= f.password_field :password, :class => "inputCls", :id => "contact_email" %>
+          <label class="labelCls">Confirm new password:</label>
+          <%= f.password_field :password_confirmation, :class => "inputCls"%>
+          <%= f.submit "Change My Password", :class => "submitCls lightGreen hundredPix" %>
+          <%= link_to "cancel", new_site_registration_path(@site) %>
+        </div>
+      </div>
+  <% end %>
+</div>
