@@ -12,11 +12,29 @@ class RegistrationsController < Devise::RegistrationsController
     @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
 
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    flash = ''
-    flash = [flash[:notice],flash[:alert]].compact.join(" <br/> ") if !flash.blank?
-    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site, "user" => resource, "errors" => resource.errors, "flash" => flash )
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, "user" => resource, "errors" => resource.errors, "flash" => flash )
+    flash_message = [flash[:notice],flash[:alert]].compact.join(" <br/> ") if !flash.blank?
+    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site, "user" => resource,"flash_message" => flash_message )
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, "user" => resource, "errors" => resource.errors, "flash_message" => flash_message )
     render :text => lcontent
+  end
+
+  def create
+    build_resource
+
+    if resource.save
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_navigational_format?
+        redirect_to :new
+      else
+        set_flash_message :notice, :inactive_signed_up, :reason => inactive_reason(resource) if is_navigational_format?
+        expire_session_data_after_sign_in!
+        redirect_to :new
+      end
+    else
+      clean_up_passwords(resource)
+      flash[:notice] = resource.errors.full_messages.join(",")
+      redirect_to new_site_registration_path(@site)
+    end
   end
 
   protected

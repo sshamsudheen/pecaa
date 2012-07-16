@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_one :site_user
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, #:registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
   liquid_methods :name, :username, :email, :phone_number, :firstname, :lastname, :addresses
