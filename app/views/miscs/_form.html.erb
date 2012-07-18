@@ -1,7 +1,7 @@
     <%=hidden_field_tag :from_content, @from_content%>
 	    <%=hidden_field_tag :content_type, "Misc"%>
 								<div class="contentObject" id="mapObj">
-									<div class="resizable_content">
+									<div class="resizable_content" style="<%=@bloc_style%>">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
 										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>

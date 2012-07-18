@@ -51,14 +51,27 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script -->
 <script type="text/javascript">
 	$(function() {
-	$('#sortable').sortable();	
-	$('#sortable').disableSelection();
+      <%if params[:controller] == 'content_libraries' and params[:action] == 'search' %>
+        $('ul#sortable').sortable({
+             items: 'li',
+             helper: 'helper',
+             connectWith: 'ul#sortable',
+             handle: 'span.drag',
+             forcePlaceholderSize: true,
+             forceHelperSize: true,
+             placeholder: 'placeholder'
+         });
+      <%else%>
+        $('#sortable').sortable();
+      <% end %>
+        $('#sortable').disableSelection();
 	});
-    function update_crop(coords) {  
-      $('#crop_x').val(coords.x);  
-      $('#crop_y').val(coords.y);  
-      $('#crop_w').val(coords.w);  
-      $('#crop_h').val(coords.h);    
+
+    function update_crop(coords,clid,lid) {
+      $('#'+lid+' #crop_'+clid+'_crop_x').val(coords.x);
+      $('#'+lid+' #crop_'+clid+'_crop_y').val(coords.y);
+      $('#'+lid+' #crop_'+clid+'_crop_w').val(coords.w);
+      $('#'+lid+' #crop_'+clid+'_crop_h').val(coords.h);
     }  
 		
     $(function() {
@@ -67,35 +80,60 @@
 			appendTo: "body",
 			helper: "clone"
 		});
-		$( "#cart div" ).droppable({
+
+        $( "#cart div" ).droppable({
 			activeClass: "ui-state-default",
 			hoverClass: "ui-state-hover",
 			accept: ":not(.ui-sortable-helper)",
 			drop: function( event, ui ) {
-				$( this ).find( ".placeholder" ).remove();
-				$( this ).find('li').remove();
-				$( this ).html('');
+                /*if(__repositioning_blocks.is_going_on()) {
+                    console.debug('repositioning had called this...');
+                    return;
+                } */
+				//$( this ).find( ".placeholder" ).remove();
+				//$( this ).find('li').remove();
+				//$( this ).html('');
 				if (ui.draggable.attr('class') == "item active newItem misc_form ui-draggable") {
 					 $.ajax({
 				            type: "get",
-				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
+				            url: '<%#="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
 								$('#cart div.ui-droppable').html(data)					
 				            },
 				        });
 				}
-
-					$("<div></div>").html(ui.draggable.clone()).appendTo(this);
-					$('.ui-droppable div#doc_form').show();
-					$('.ui-droppable img.cropbox').Jcrop({
-					    onChange: update_crop,
-					    onSelect: update_crop,
+				//$("<div></div>").html(ui.draggable.clone()).appendTo(this);  this.id.match(/\d+/)[0];
+                $( this ).find('li').parent('ul').append(ui.draggable.clone());
+                var new_bloc = $('ul#sortable li').last();
+                var nb_cid = $(new_bloc).attr('id').match(/\d+/)[0],
+                    new_bloc_id = 'resize_'+nb_cid;
+                $(new_bloc).attr('id', new_bloc_id);
+                $(new_bloc).find('span.title').first().remove();
+                $(new_bloc).find('span.dragable').first().remove();
+                $(new_bloc).find('div.hotspot').first().remove();
+                // attach the resizing handler
+                /*$(new_bloc).resizable({
+                    maxHeight: 250,
+                    maxWidth: 350,
+                    minHeight: 150,
+                    minWidth: 200,
+                }); */
+                // as resizing is disabled, better to remove the resizing handles
+                $(new_bloc).find('div.ui-resizable-handle').remove();
+                // manipulating the image if present
+				$('#'+new_bloc_id+' div#doc_form').show();
+				$('#'+new_bloc_id+' img.cropbox').Jcrop({
+					    onChange: function(obj){update_crop(obj,nb_cid,new_bloc_id)},
+					    onSelect: function(obj){update_crop(obj,nb_cid,new_bloc_id)},
 					    aspectRatio: 1
-					  });
-					$('#cart input#dropped').attr('value','true')
-					$('#cart div.resizable_content').resizable();
-			}
+				});
+				$('#cart input#dropped').attr('value','true');
+
+                var style = 'top:0;left:0;width:'+$('#'+new_bloc_id+' .resizable_content').width()+'px;height:'+$('#'+new_bloc_id+' .resizable_content').height()+'px;';
+                $('#'+new_bloc_id+' .ui-resizable').attr('style',style);
+                $('#'+new_bloc_id).attr('style',style);
+            }
 		})
 	});
 	
@@ -153,9 +191,9 @@
       	</div>
 <%if params[:controller] == "content_libraries"%>
   <%=form_tag "/sites/#{@site.id}/site_pages/#{params[:site_page_id]}/content_save" , :id => 'content_page_save' do |s| %>
-   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>  
-    <%= hidden_field :crop, attribute, :id => attribute %>  
-  <% end %>  
+   <%# for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+    <%#= hidden_field :crop, attribute, :id => attribute %>
+  <%# end %>
   <%=hidden_field_tag :is_preview, false%>
   <%=hidden_field_tag :sorting_position,''%>
   
@@ -163,10 +201,10 @@
       <div class="grid-board">
         <div id="cart" >
         	<%=hidden_field_tag "dropped",''%>
-          <div id="sortable" class="ui-droppable ui-sortable" style="height:900px;">
-            <li class="placeholder">
+          <div class="ui-droppable ui-sortable" style="height:900px;">
+            <ul id="sortable">
             	<%=render :partial => '/content_libraries/existed_sources'%>
-            </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -187,6 +225,30 @@
         $('.navBtns ul li').click(function(){
             window.location.href=$(this).attr('rel');
         })
+
+        //window.repositioning_blocks = false; console.debug('repositioning_blocks: ',window.repositioning_blocks);
+        /*var __repositioning_blocks = {
+            status: false,
+            set:function(flag){__repositioning_blocks.status = flag;},
+            is_going_on:function(flag){return __repositioning_blocks.status;}
+        };
+
+        $('ul#sortable li').each(function (index, child) {
+            $(child).draggable({
+                handle: 'span.drag',
+                containment: 'div#cart',
+                start: function(){
+                    __repositioning_blocks.set(true);
+                },
+                stop: function(){
+                    __repositioning_blocks.set(false);
+                }
+            });
+        });   */
+        /*$('ul#sortable').draggable({
+            handle: 'span.drag',
+            containment: 'div#cart'
+        }); */
       </script>
 
   </body>

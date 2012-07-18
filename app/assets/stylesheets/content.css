@@ -195,7 +195,8 @@
 .themes-board .ui-droppable li.item{list-style: none;}
 
 .contentObject{
-	position: absolute;
+	/*position: absolute;*/
+    position: relative;
 	z-index: 99999;
 	left: 10%;
 	top:10%;
@@ -273,12 +274,12 @@
 	z-index: 0;
 }
 .contentObject .expandable .objectContent{
-	min-width:200px;
+	/*min-width:200px;
 	min-height: 300px;
+	padding:40px;*/
 	border-radius: 6px;
-	
-	padding:40px;
 	overflow: hidden;
+    padding:10px;
 }
 .objectContent .title{
 	vertical-align: middle;
@@ -308,6 +309,7 @@
 	width:36px;
 	height:35px;
 	background: url(img/btn_ContentDrag.png) no-repeat;
+    cursor: move;
 }
 .expandable .scale{
 	right:-2px;
@@ -545,4 +547,24 @@
  */
 .resizable_content{
 	border: 2px solid #579DC4;
+}
+.resizable_content span.title {
+    padding-left: 40px;
+}
+.contentObject .ui-icon-gripsmall-diagonal-se {
+    background:url(img/btn_ContentScale.png) no-repeat center center;
+    padding: 5px;
+    bottom: 0px;
+    right: 0px;
+}
+.userEditHolder .themes-board {
+    height: auto !important;
+    min-height: 60%;
+}
+.userEditHolder #sortable .item {
+    float: left;
+    position: relative;
+    width: 400px;
+    height: 500px;
+    margin: 20px;
 }

@@ -1,4 +1,8 @@
-<div class="content-main">
+<%= stylesheet_link_tag "jquery.Jcrop" %>
+<%= javascript_include_tag "jquery.Jcrop" %>
+<%= javascript_include_tag "jquery.Jcrop.min" %>
+
+                    <div class="content-main">
 						<div class="content-wrapper" >
 							<%=render :partial=>"content_header"%>	
 		    				<div id="content_1" class="tabContent">
@@ -8,7 +12,7 @@
 									<div class="item-wrapper" id="catalog">
 										<span class="leftShadow"></span>
 										<span class="rightShadow"></span>
-										<ul class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons">
+										<ul class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" id="bloc-list">
 											<%if params[:page].blank? or params[:page] == 0 or params[:page] == 1%>
 												<%if params[:search].blank? or params[:search][:source_type_equals]=="Text"%>
 												<li class="item newItem"><span class="title"><%= link_to 'New Text Block', (new_text_path + "?from_content=true&site_id=#{params[:site_id]}&site_page_id=#{params[:site_page_id]}"  ),:class=>'facebox_click'%></span>
@@ -78,12 +82,17 @@
 												<%end%>
 											<%end%>
 											<%@content_libraries.each do |content|%>
-											<li class="item ui-draggable active <%=content.id%>">
+											<li class="item ui-draggable active <%=content.id%> ibloc" id = "bloc_<%=content.id%>">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
 												<%= hidden_field_tag "content_id", ''%>
-												<%= hidden_field_tag "style_position","width:100%;height:100%"%>
-												<%if content.source_type == "Image"%>
-												<div class="hotspot" style="display: none;">
+												<%#= hidden_field_tag "style_position","width:100%;height:100%"%>
+                                                <%= hidden_field_tag "style_position[#{content.id}]",''%>
+                                                <%= hidden_field_tag "src_type[#{content.id}]", content.source_type%>
+                                              <%if content.source_type == "Image"%>
+                                                  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+                                                      <%= hidden_field "crop[#{content.id}]", attribute, :id => "crop_#{content.id}_#{attribute}" %>
+                                                  <% end %>
+                                                  <div class="hotspot" style="display: none;">
 													<span class="pointer"></span>
 													
 													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
@@ -131,9 +140,7 @@
 									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
 								</div>
 		    				</div>
-
 		    			</div>
-		    			
 		    		</div>
 		    	
 					
@@ -144,6 +151,16 @@
 		
 		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
 		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
+
+        $('#bloc-list li.ibloc').each(function(){
+            var did = this.id.match(/\d+/)[0];
+            var style = $('#resize_'+did+' .ui-resizable').attr('style');
+            if(style !== undefined) {
+                $('input#style_position_'+did).attr('value',style);
+                //console.debug(this, did,') style: ',style);
+            }
+        });
+
 		a=""
 		$('#sortable').find('li').each(function(){
 		   a = a + ',' + $(this).attr('id');
