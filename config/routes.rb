@@ -49,6 +49,12 @@ Mystore3::Application.routes.draw do
   resources :external_links 
   
   resources :sites do
+    devise_scope :user do
+      resources :registrations
+      resources :sessions
+      resources :passwords
+    end
+
     get 'optional', :on => :member
     get 'done', :on => :member
     post 'optional_create', :on => :member
@@ -59,7 +65,7 @@ Mystore3::Application.routes.draw do
     post 'update_site', :on => :member, :to => 'sites#update'
     get 'pages_list', :on => :collection
     get 'site_preview', :on => :member
-    get 'show_products/:view_name(/:category)', :on => :member, :to => 'sites#show_products'
+    get 'show_products/:view_name(/:qid)', :on => :member, :to => 'sites#show_products'
     get 'accounts/:view_name', :on => :member, :to => 'sites#accounts'
     get 'add_address', :on => :member
     post 'add_address', :on => :member

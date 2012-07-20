@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start_range: MyString
+  end_range: MyString
+  shipping_amount: MyString
+  shipping_gateway_attribute_value_id: 1
+
+two:
+  start_range: MyString
+  end_range: MyString
+  shipping_amount: MyString
+  shipping_gateway_attribute_value_id: 1

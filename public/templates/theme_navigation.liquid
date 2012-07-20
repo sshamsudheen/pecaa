@@ -1,0 +1,28 @@
+<nav class="clear" id="mainNav">
+	<ul>
+	  {% for site_page in site.parent_pages %}
+			<li class="active">
+			  {% if site_page.children.first == null %}
+			    <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}">
+			  {% else %}
+			    <a href="/sites/{{ site.id }}/preview?page_id={{ site_page.id }}" title="{{site_page.name}}"  class="dropdown">
+		    {% endif %}
+			    <span>{{site_page.name}}</span>
+        </a>
+        {% if site_page.children != [] %}
+			    <div class="subMenuBox" style="display: none;">
+						<ul class="subMenu clearfix">
+						  {% for child_page in site_page.children %}
+								<li>
+								  <a href="/sites/{{ site.id }}/preview?page_id={{ child_page.id }}" title="{{child_page.name}}">
+  						    <span>{{child_page.name}}</span>
+                  </a>
+  						  </li>
+						  {% endfor %}
+						</ul>
+					</div>
+	      {% endif %}
+      </li>
+		{% endfor %}
+	</ul>
+</nav>

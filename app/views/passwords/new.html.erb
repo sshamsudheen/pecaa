@@ -1,0 +1,33 @@
+<div class="wrapper nineZeroPer lineBg">
+  <%= devise_error_messages! %>
+  <%= form_for resource, :as => :user, :url => site_passwords_path(@site) do |f| %>
+    <div class="midcontentBox sixZeroPer">
+      <h2 class="lightGreen">Forgot Name / Password</h2>
+      <p>Everyone forgets. Just enter the email address you used to create your account and we'll reset your password and send a link to your email address.
+        So you can create a new password. Simple! Please <a href="#">contact us</a> with any other account issues.</p>
+      <div class="midInnerDiv">
+        <label class="labelCls">email address:</label>
+        <%= f.email_field :email, :class => "inputCls", :id => "contact_email", :rel => "email" %>
+        <%= f.submit "reset password", :class => "submitCls lightGreen hundredPix" %>
+        <%= link_to "cancel", new_site_registration_path(@site) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+    jQuery(".inputBlr").each(function(){
+        jQuery(this).val(jQuery(this).attr('rel'));
+    })
+    jQuery(".inputBlr").focus(function(){
+        if(jQuery(this).val() == jQuery(this).attr('rel')){
+            jQuery(this).val('');
+        }
+    })
+
+    jQuery(".inputBlr").blur(function(){
+        if(jQuery(this).val() == ''){
+            jQuery(this).val(jQuery(this).attr('rel'));
+        }
+    })
+</script>

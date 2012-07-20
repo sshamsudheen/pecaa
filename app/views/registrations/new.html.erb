@@ -1,0 +1,52 @@
+<div class="main-content clearfix">
+  <div class="wrapper nineZeroPer">
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+    <%= devise_error_messages! %>
+    <%= form_for resource, :as => resource_name, :url => site_sessions_path(@site) do |f| %>
+      <div class="contentBox">
+        <h2 class="darkCyan">Log In</h2>
+        <label class="labelCls">email address:</label>
+         <%= f.email_field :email, :class => "inputCls inputBlr",  :id => "contact_email", :rel => "email address" %>
+        <label class="labelCls">password:</label>
+        <%= f.password_field :password, :class => "inputCls",  :id => "contact_password", :rel => "password" %>
+        <%= f.submit "sign in", :class => "submitCls darkCyan"  %>
+        <%=link_to "forget name / password",new_site_password_path(@site), :class => "aCls"%>
+      </div>
+    <% end %>
+    <%= form_for(resource, :as => resource_name, :url => site_registrations_path(@site)) do |f| %>
+      <div class="contentBox">
+        <h2 class="lightGreen">Create New Account</h2>
+        <label class="labelCls">email address:</label>
+        <%= f.email_field :email, :class => "inputCls inputBlr", :id => "contact_email", :rel => "email address" %>
+        <label class="labelCls">choose password:</label>
+        <%= f.password_field :password, :class => "inputCls", :id => "contact_password", :rel => "choose password" %>
+        <label class="labelCls">reenter password:</label>
+        <%= f.password_field :password_confirmation, :class => "inputCls", :id => "contact_password", :rel => "re enter password" %>
+        <%= f.submit "create account", :class => "submitCls lightGreen"%>
+      </div>
+    <% end %>
+    <div class="contentBox noMargin">
+      <h2 class="lightBrown">Continue as Guest</h2>
+      <p class="pCls">Some brief instructions outling the guest checkout procedures / policies.</p>
+      <input type='submit' class="submitCls lightBrown" value="continue as guest"/>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(".inputBlr").each(function(){
+       jQuery(this).val(jQuery(this).attr('rel'));
+    })
+    jQuery(".inputBlr").focus(function(){
+      if(jQuery(this).val() == jQuery(this).attr('rel')){
+          jQuery(this).val('');
+      }
+    })
+
+    jQuery(".inputBlr").blur(function(){
+      if(jQuery(this).val() == ''){
+            jQuery(this).val(jQuery(this).attr('rel'));
+      }
+    })
+</script>

@@ -196,13 +196,13 @@ class SitesController < ApplicationController
     @site.site_style.theme.get_files('templates')
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
     @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
-    @content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
+    #@content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
   
-    @content_layout = @content_layout + @site.site_style.theme.read_file("user_navigation.liquid", 'templates')
+    @theme_heading = @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    customer = Customer.find(session[:customer_id]) 
-    icontent = Liquid::Template.parse(@content).render("#{record.downcase}" => "","site" => @site, "orders" => Order.limit(10).to_a, "customer" => customer)
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
+    customer = Customer.find(session[:customer_id]) if session[:customer_id]
+    icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10), "customer" => customer})
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
     render :text => lcontent
   end
 
@@ -212,10 +212,11 @@ class SitesController < ApplicationController
     record = params[:view_name]
     @site.site_style.theme.get_files('templates')
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
-    @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
+    @content_layout = @site.site_style.theme.read_file("theme.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    icontent = Liquid::Template.parse(@content).render(liquid_variables)
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
+    icontent = Liquid::Template.parse(@content).render((liquid_variables))
+    lcontent = Liquid::Template.parse(@content_layout).render({"content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, 
+                "content_for_filter" => filters_liquid_variables}.merge!(default_liquid_variables))
     render :text => lcontent
   end
   
@@ -240,34 +241,48 @@ class SitesController < ApplicationController
   
   protected
   
+  def default_liquid_variables
+    {
+      "content_for_footer" => Liquid::Template.parse(@site.site_style.theme.read_file("theme_footer.liquid", 'templates')).render(),
+      "content_for_navigation" => Liquid::Template.parse(@site.site_style.theme.read_file("theme_navigation.liquid", 'templates')).render("site"=>@site),
+      "content_for_header" => Liquid::Template.parse(@site.site_style.theme.read_file("theme_header.liquid", 'templates')).render(),
+      "content_for_page_heading" => Liquid::Template.parse(@site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')).render()
+      }    
+  end
+  
   def liquid_variables
-    template = params[:view_name]
-    case template
+    case params[:view_name]
       when 'products'
         {"products" => Product.all, "featured_products" => Product.featured_products}
       when 'featured_products'
         content = render_to_string :partial => "/shared/site_content", :locals => {:site_page => @site.site_pages.first}
-        {"featured_products" => Product.featured_products, "content_site_builder" => content }
+          {"featured_products" => Product.featured_products, "content_site_builder" => content}
       when 'product_categories'
-        unless pc = ProductCategory.find_by_id(params[:category])
+        unless pc = ProductCategory.find_by_id(params[:qid])
           pc = ProductCategory.first
         end
-        {"site"=>@site, "product_categories" => ProductCategory.all, "current_category" => params[:category] || pc.id}
+        {"site"=>@site, "product_categories" => ProductCategory.all, "current_category" => params[:category] || pc.id, "content_for_filter" => filters_liquid_variables}
       when 'products_product_categories'
         {"site"=> @site, "products" => Product.all, "product_categories" => ProductCategory.all}
+      when 'products-single'
+        unless p = Product.find_by_id(params[:qid])
+          p = Product.first
+        end
+        {"product" => p}
     end
   end
   
   def filters_liquid_variables
-    if params[:view_name] == "product_categories"
+    case params[:view_name]
+    when "product_categories"
       Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
-    elsif params[:view_name] == "user_account_settings"
-      Liquid::Template.parse(@site.site_style.theme.read_file("product_category_filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
-    else
-      Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render()
+    when 'products', 'featured_products'
+      Liquid::Template.parse(@site.site_style.theme.read_file("filter.liquid", 'templates')).render({'product_categories' => ProductCategory.all, 'site'=>@site})
+   when "user_dashboard" , "user_account_settings"
+       Liquid::Template.parse(@site.site_style.theme.read_file("user_navigation.liquid", 'templates')).render({'theme_heading' => @theme_heading, 'site'=>@site})
     end
   end
-
+  
   def setup
     @symbol="Website_List"
   end
