@@ -198,7 +198,7 @@
 	/*position: absolute;*/
     position: relative;
 	z-index: 99999;
-	left: 10%;
+	/*left: 10%;*/
 	top:10%;
 }
 
@@ -567,4 +567,9 @@
     width: 400px;
     height: 500px;
     margin: 20px;
+}
+.resizable_content span.imageb {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
 }

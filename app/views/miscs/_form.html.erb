@@ -43,7 +43,8 @@
 	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + encodeURIComponent(uri); 
 	     	$("#map-canvas-image").attr('src', mapURL);*/
 	     	initMisc();
-      		$('.resizable_content').resizable();
+            // make resizable only in the current block
+      		$('#resize_<%#=content.id%> #mapObj .resizable_content').resizable();
 	  });
 	  
     </script>	

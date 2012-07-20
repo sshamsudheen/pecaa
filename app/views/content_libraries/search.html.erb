@@ -157,15 +157,16 @@
             var style = $('#resize_'+did+' .ui-resizable').attr('style');
             if(style !== undefined) {
                 $('input#style_position_'+did).attr('value',style);
-                //console.debug(this, did,') style: ',style);
             }
         });
 
-		a=""
-		$('#sortable').find('li').each(function(){
-		   a = a + ',' + $(this).attr('id');
+		var sorted_positions='';
+		$('#sortable').find('li').each(function(ix){
+            var did = this.id.match(/\d+/)[0];
+            sorted_positions = sorted_positions + ',' + $(this).attr('id');
+            $('input#list_order_'+did).attr('value',ix+1);
 		});
-		$('input#sorting_position').attr('value',a);
+		$('input#sorting_position').attr('value',sorted_positions);
 		
 			
 		if ($('#cart input#content_type').attr('value') != "Misc") {

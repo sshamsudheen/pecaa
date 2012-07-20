@@ -79,14 +79,16 @@ class SitePagesController < ApplicationController
   
   def content_save
     @site_page = SitePage.find(params[:id])
+    # now save each block with the resized/repositioned attribs if any
     params[:style_position].each_with_index { |i,x|
       # create/update the content-library-site-page
       _a_cl = @site_page.content_libraries_site_pages.find_or_create_by_content_library_id(i[0])
       _a_cl.position = i[1]
       _a_cl.site_id = @site.id
       _a_cl.content_type = params[:src_type][i[0]]
+      _a_cl.list_order = params[:list_order][i[0]]
       _a_cl.save!
-      #logger.info "crop-i>> #{params[:crop][i[0]].inspect}"
+      #logger.info "#{_a_cl.content_library_id}) list-order>> #{params[:list_order][i[0]]}"
       if (params[:crop][i[0]] and ((content = ContentLibrary.find(x)) and content.source_type == "Image") rescue nil)
         content.source.update_attributes(params[:crop][i[0]].merge(:updated_at => Time.now))
       end
@@ -94,20 +96,21 @@ class SitePagesController < ApplicationController
     # saving the sorted order of the blocks
     sorting = params[:sorting_position].split(',').collect{|el| el.split('_').last}.join(';')
     @site_page.update_attributes(:conent_positioning => sorting)
-
+    # TODO: redirect to appropriate page
     redirect_to :back
+=begin
+    if params[:content_type] == "Misc"
+      @site_page.content_libraries_site_pages.create(:content_type=>"Misc",:position=>params[:style_position],:site_id=>@site.id)
+    else
+      @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
+    end
 
-#    if params[:content_type] == "Misc"
-#      @site_page.content_libraries_site_pages.create(:content_type=>"Misc",:position=>params[:style_position],:site_id=>@site.id)
-#    else
-#      @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
-#    end
-
-#    if params[:is_preview] == "true"
-#      redirect_to preview_site_path(@site)
-#    else
-#      redirect_to choose_theme_site_site_styles_path(@site)
-#    end
+    if params[:is_preview] == "true"
+      redirect_to preview_site_path(@site)
+    else
+      redirect_to choose_theme_site_site_styles_path(@site)
+    end
+=end
   end
 
   def reorder

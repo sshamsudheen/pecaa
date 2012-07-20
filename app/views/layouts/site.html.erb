@@ -86,10 +86,6 @@
 			hoverClass: "ui-state-hover",
 			accept: ":not(.ui-sortable-helper)",
 			drop: function( event, ui ) {
-                /*if(__repositioning_blocks.is_going_on()) {
-                    console.debug('repositioning had called this...');
-                    return;
-                } */
 				//$( this ).find( ".placeholder" ).remove();
 				//$( this ).find('li').remove();
 				//$( this ).html('');
@@ -112,14 +108,15 @@
                 $(new_bloc).find('span.title').first().remove();
                 $(new_bloc).find('span.dragable').first().remove();
                 $(new_bloc).find('div.hotspot').first().remove();
-                // attach the resizing handler
+                // TODO: attaching the resizable module to the new block mess ups the new item in the grid..
+                //          find a better way to accomplish it..
                 /*$(new_bloc).resizable({
                     maxHeight: 250,
                     maxWidth: 350,
                     minHeight: 150,
                     minWidth: 200,
                 }); */
-                // as resizing is disabled, better to remove the resizing handles
+                // as resizing is disabled, better to remove the resizing handles if any..
                 $(new_bloc).find('div.ui-resizable-handle').remove();
                 // manipulating the image if present
 				$('#'+new_bloc_id+' div#doc_form').show();
@@ -225,30 +222,6 @@
         $('.navBtns ul li').click(function(){
             window.location.href=$(this).attr('rel');
         })
-
-        //window.repositioning_blocks = false; console.debug('repositioning_blocks: ',window.repositioning_blocks);
-        /*var __repositioning_blocks = {
-            status: false,
-            set:function(flag){__repositioning_blocks.status = flag;},
-            is_going_on:function(flag){return __repositioning_blocks.status;}
-        };
-
-        $('ul#sortable li').each(function (index, child) {
-            $(child).draggable({
-                handle: 'span.drag',
-                containment: 'div#cart',
-                start: function(){
-                    __repositioning_blocks.set(true);
-                },
-                stop: function(){
-                    __repositioning_blocks.set(false);
-                }
-            });
-        });   */
-        /*$('ul#sortable').draggable({
-            handle: 'span.drag',
-            containment: 'div#cart'
-        }); */
       </script>
 
   </body>
