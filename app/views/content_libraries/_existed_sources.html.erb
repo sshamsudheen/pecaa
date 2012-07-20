@@ -46,10 +46,11 @@
                     minWidth: 200,
                     handles: 'se',
                     resize: function(event, ui){
-                        // find the increased width & height
+                        // init default margin and find the increased width & height
                         // TODO: find a way to determine the original right/bottom margins of the original parent-li element?
-                        var _newmr = (ui.size.width - ui.originalSize.width) + 20,
-                            _newmb = (ui.size.height - ui.originalSize.height) + 20;
+                        var _dm = 20,
+                            _newmr = (ui.size.width > ui.originalSize.width) ? (ui.size.width - ui.originalSize.width) + _dm : _dm,
+                            _newmb = (ui.size.height > ui.originalSize.height) ? (ui.size.height - ui.originalSize.height) + _dm : _dm;
                         // now add the default margin with the above diff to right/bottom margins
                         $(ui.originalElement).parent().parent().parent().css({marginRight: _newmr, marginBottom: _newmb, width: ui.size.width, height: ui.size.height});
                     }
