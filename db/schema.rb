@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706202518) do
+ActiveRecord::Schema.define(:version => 20120720185157) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -120,15 +120,15 @@ ActiveRecord::Schema.define(:version => 20120706202518) do
     t.datetime "updated_at"
   end
 
-  create_table "content_libraries_site_pages", :id => false, :force => true do |t|
+  create_table "content_libraries_site_pages", :force => true do |t|
     t.integer "content_library_id"
     t.integer "site_page_id"
     t.string  "width"
     t.string  "height"
     t.string  "position"
     t.integer "site_id"
-    t.integer "id"
     t.string  "content_type"
+    t.integer "list_order",         :default => 0, :null => false
   end
 
   create_table "content_libraries_sites", :id => false, :force => true do |t|
@@ -344,13 +344,6 @@ ActiveRecord::Schema.define(:version => 20120706202518) do
     t.string   "grand_total"
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.string   "layout"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "password_histories", :force => true do |t|
     t.string   "password"
     t.integer  "created_by"
@@ -383,11 +376,11 @@ ActiveRecord::Schema.define(:version => 20120706202518) do
 
   create_table "product_categories", :force => true do |t|
     t.string   "name"
+    t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "enabled"
-    t.integer  "parent_id"
-    t.integer  "list_order"
+    t.integer  "parent_id",                                           :default => 0,    :null => false
+    t.integer  "list_order",                                          :default => 0,    :null => false
     t.integer  "site_id"
     t.boolean  "is_active",                                           :default => true
     t.string   "price_modifier"
@@ -787,7 +780,7 @@ ActiveRecord::Schema.define(:version => 20120706202518) do
     t.integer  "shipping_gateway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_enable",           :default => false
+    t.boolean  "is_enable"
     t.boolean  "is_test_mode"
   end
 
