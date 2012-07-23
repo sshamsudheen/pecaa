@@ -145,13 +145,25 @@
 	$(document).ready(function(){
 		$('#orders1').tinyscrollbar();
 	})
+
 	function show_order(id){
-			$.ajax({
-				type: "get",
-				url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
-				success: function(data){
-					$('#show_order_list').html(data);
-				},
-		});
+        // highlight the row that is clicked
+        var $this = $(this);
+        if(!$this.hasClass('selected')){
+            $('ul.ConLibra li').removeClass('selected');
+            $('ul.ConLibra li').find('.pointer').hide();
+            $this.addClass('selected');
+            $this.find('.pointer').show();
+            // triggering an ajax call to fetch the details
+            $.ajax({
+                type: 'get',
+                url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
+                success: function(data){
+                    $('#show_order_list').html(data);
+                }
+            });
+        }
+        // now this is important, so that the page won't jump
+        return false;
 	}
 </script>

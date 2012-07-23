@@ -141,7 +141,6 @@ data: <%= (3.weeks.ago.to_date..Date.today).map {|date| Order.total_on(date).to_
 						<span class="amtCol">$0.00</span>
 						<span class="amtCol">$0.00</span>
 						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
-						<span class="amtCol">$<%=Order.all.sum(&:total_amt)%></span>
 					</li>
                   </ul>
                 </div>

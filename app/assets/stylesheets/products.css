@@ -231,7 +231,7 @@
 .productGrid .userName .pointer {
 	background-image:none;
 }
-#orders1 .userName .pointer {
+#orders1 .pointer {
 	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
 }
 /*product setup*/
