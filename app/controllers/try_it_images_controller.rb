@@ -7,7 +7,7 @@ class TryItImagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @try_it_images }
+      format.json { render :json => @try_it_images }
     end
   end
 
@@ -18,7 +18,7 @@ class TryItImagesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @try_it_image }
+      format.json { render :json =>  @try_it_image }
     end
   end
 
@@ -42,11 +42,11 @@ class TryItImagesController < ApplicationController
 
     respond_to do |format|
       if @try_it_image.save
-        format.html { redirect_to "/sites/#{params[:site_id]}/try_it_images", notice: 'Try it image was successfully created.' }
-        format.json { render json: @try_it_image, status: :created, location: @try_it_image }
+        format.html { redirect_to "/sites/#{params[:site_id]}/try_it_images", :notice => 'Try it image was successfully created.' }
+        format.json { render :json =>  @try_it_image, :status =>  :created, :location =>  @try_it_image }
       else
-        format.html { render action: "new" }
-        format.json { render json: @try_it_image.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json =>  @try_it_image.errors, :status =>  :unprocessable_entity }
       end
     end
   end
@@ -58,11 +58,11 @@ class TryItImagesController < ApplicationController
 
     respond_to do |format|
       if @try_it_image.update_attributes(params[:try_it_image])
-        format.html { redirect_to "/sites/#{params[:site_id]}/try_it_images", notice: 'Try it image was successfully updated.' }
+        format.html { redirect_to "/sites/#{params[:site_id]}/try_it_images", :notice => 'Try it image was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @try_it_image.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json =>  @try_it_image.errors, :status =>  :unprocessable_entity }
       end
     end
   end

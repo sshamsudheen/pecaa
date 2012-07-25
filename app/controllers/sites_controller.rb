@@ -214,7 +214,7 @@ class SitesController < ApplicationController
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
     @content_layout = @site.site_style.theme.read_file("theme.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    icontent = Liquid::Template.parse(@content).render((liquid_variables))
+    icontent = Liquid::Template.parse(@content).render((liquid_variables).merge!({'site' => @site}))
     lcontent = Liquid::Template.parse(@content_layout).render({"content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, 
                 "content_for_filter" => filters_liquid_variables}.merge!(default_liquid_variables))
     render :text => lcontent

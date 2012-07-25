@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
 
   attr_accessor :price
   
-  liquid_methods :id, :name, :sku, :vendor, :sold, :viewed, :rating, :is_active, :created_at, :updated_at, :base_price,
+  liquid_methods :id, :name, :sku, :vendor, :sold, :viewed, :rating, :is_active, :created_at, :updated_at, :base_price, :actual_img_path,
   :retail_price, :cost, :weight, :shipping_modifier, :case_price, :description, :image_path, :last_vendor_name, :price, :active_product_options
  
   
@@ -27,6 +27,16 @@ class Product < ActiveRecord::Base
     image_path = image ? image.image_path : '/assets/productimg.jpg'
     "<img src='#{image_path}' alt='image'>"
   end
+  
+  
+  def actual_img_path
+    image = self.product_images.where(:is_thumbnail => true)
+    image = self.product_images.first if image.empty?
+    raise image.url(:medium).inspect
+    image_path = image ? image.url(:medium) : '/assets/productimg.jpg'
+    "<img src='#{image_path}' alt='image'>"
+  end
+  
 
   def last_vendor_name
     vendors.last.try(:name)

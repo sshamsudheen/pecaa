@@ -7,7 +7,7 @@ class ProductFiltersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @product_filters }
+      format.json { render :json=> @product_filters }
     end
   end
 
@@ -18,7 +18,7 @@ class ProductFiltersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @product_filter }
+      format.json { render :json =>  @product_filter }
     end
   end
 
@@ -42,10 +42,10 @@ class ProductFiltersController < ApplicationController
     respond_to do |format|
       if @product_filter.save
         format.html { redirect_to "/sites/#{params[:site_id]}/product_filters" }
-        format.json { render json: @product_filter, status: :created, location: @product_filter }
+        format.json { render :json =>  @product_filter, :status =>:created, :location=> @product_filter }
       else
-        format.html { render action: "new" }
-        format.json { render json: @product_filter.errors, status: :unprocessable_entity }
+        format.html { render :action=> "new" }
+        format.json { render :json =>  @product_filter.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -57,11 +57,11 @@ class ProductFiltersController < ApplicationController
 
     respond_to do |format|
       if @product_filter.update_attributes(params[:product_filter])
-        format.html { redirect_to @product_filter, notice: 'Product filter was successfully updated.' }
+        format.html { redirect_to @product_filter, :notice => 'Product filter was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @product_filter.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json =>  @product_filter.errors, :status => unprocessable_entity }
       end
     end
   end
