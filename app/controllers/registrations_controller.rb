@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  skip_before_filter :authorize_user, :require_no_authentication
+  skip_before_filter :authorize_user
+  before_filter :check_authenticated
   before_filter :get_site
   layout "sessions"
 
@@ -39,7 +40,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
   def after_sign_in_path_for(resource)
-    new_site_registration_path(@site)
+    site_customer_shippings_path(@site)
   end
 
   def get_site

@@ -1,0 +1,105 @@
+<div class="main-content clearfix">
+  <div class="wrapper marginTen">
+    <h1 class="green">Checkout</h1>
+
+    <div class="bodyContainer tBorder bBorder">
+      <div class="leftContainer ">
+        <div class="contentSection">
+          <form id="search-form" name="search" method="post" action="/sites/{{site.id}}/customer_shippings">
+            <h3 class="eightZeroPer">Shipping</h3>
+
+            <div class="contentBox twoZeroPer">
+              <h4>shipping contact</h4>
+              <label class="labelCls">first name:</label>
+              <input name="address[firstname]" type="text" class="inputCls" value="{{ address.firstname }}" id="address_firstname" />
+              <label class="labelCls">last name:</label>
+              <input name="address[lastname]" type="text" class="inputCls" id="address_lastname" value="{{address.lastname}}"/>
+              <label class="labelCls">email address:</label>
+              <input name="address[email]" type="text" class="inputCls" id="address_email" value="{{ address.email }}"/>
+              <label class="labelCls">phone:</label>
+              <input name="address[phone]" type="text" class="inputCls" id="address_phone" value="{{ @address.phone }}"/>
+            </div>
+
+
+            <div class="contentBox twoZeroPer">
+              <h4>shipping address</h4>
+              <label class="labelCls">address:</label>
+              <input name="address[address_one]" type="text" class="inputCls" id="address_address_one" value="{{address.address_one }}"/>
+              <input name="address[address_two]" type="text" class="inputCls" id="address_address_two" value="{{ address.address_two }}"/>
+              <label class="labelCls">city</label>
+              <input name="address[city]" type="text" class="inputCls" id="address_city" value="{{ address.city }}"/>
+              <label class="labelCls">state</label>
+              <input name="address[state]" type="text" class="inputCls" id="address_state" value="{{ @address.state }}"/>
+              <label class="labelCls">zip code</label>
+              <input name="address[zipcode]" type="text" class="inputCls" id="address_zipcode" value="{{ address.zipcode }}"/>
+            </div>
+          <div class="contentBox noMargin">
+            <h4>shipping method</h4>
+            <ul>
+            {% for site_shipping_gateway in site_shipping_gateways %}
+
+              {% for display_name in site_shipping_gateway.get_display_name_id %}
+
+              <li>
+                {% if selected_shipping == display_name.id %}
+                <input type="radio" name="shipping_gateway[id]" id="shipping_gateway_id" value="{{display_name.id}}" checked="true"/>
+                {% else %}
+                <input type="radio" name="shipping_gateway[id]" id="shipping_gateway_id" value="{{display_name.id}}"/>
+                {% endif %}
+                {{ display_name.value }}<a href="#"><span class="helpBtn fivePxTop"></span></a>
+                </li>
+                   {% endfor %}
+              {% endfor %}
+
+            </ul>
+            <input type='submit' class="greenBtn" value="continue"/>
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <div class="rightSideBar">
+        <div class="summarySection">
+          <h3>Order Summary</h3>
+          <dl class="fourZeroH dotBBorder">
+            <dt>item subtotal</dt>
+            <dd>$248.00</dd>
+            <dt>shipping & handling</dt>
+            <dd>$4.12</dd>
+          </dl>
+          <dl class="fourZeroH dotBBorder">
+            <dt>total before tax</dt>
+            <dd>$252.12</dd>
+            <dt>sales tax</dt>
+            <dd>$0.00</dd>
+          </dl>
+          <dl class="fiveZeroH ">
+            <dt class="greybold">grand total</dt>
+            <dd class="greybold">$252.12</dd>
+          </dl>
+        </div>
+        <div class="summarySection tBorder">
+          <h3>Item Summary</h3>
+          <dl class="sixZeroH dotBBorder">
+            <dt>oakley frames</dt>
+            <dd>$125.00</dd>
+            <dt>oakley frames</dt>
+            <dd>$125.00</dd>
+            <dt>oakley frames</dt>
+            <dd>$125.00</dd>
+          </dl>
+          <dl class="fourZeroH ">
+            <dt class="greybold">subtotal</dt>
+            <dd class="greybold">$375.00</dd>
+          </dl>
+          <dl class="fourZeroH imageCls">
+            <a href="#"><img src="css/img/editCartImg.png" width="140" height="53"></a>
+          </dl>
+        </div>
+        <div class="summarySection tBorder">
+          <p>please complete the shipping and payment sections to finish your order</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
