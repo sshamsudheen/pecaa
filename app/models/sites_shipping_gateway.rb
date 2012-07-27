@@ -28,7 +28,9 @@ class SitesShippingGateway < ActiveRecord::Base
   end
 
   def shipping_gateway_att_display_name
-    display_attributes = ShippingGatewayAttribute.where("shipping_gateway_attributes.name = 'service_type'").last.children.map(&:id)
+    display_attributes = ShippingGatewayAttribute.where("shipping_gateway_attributes.name = 'service_type'").group_by(&:shipping_gateway_id).collect do |shipping_gateway_id, shipping_gateway_attr|
+      shipping_gateway_attr.last.children.map(&:id)
+    end.flatten
 
     ShippingGatewayAttributeValue.where(:shipping_gateway_attribute_id => display_attributes, :sites_shipping_gateway_id => self.id).collect do |shipping_gateway_attribute_value|
       GetDisplayName.new(:id => shipping_gateway_attribute_value.shipping_gateway_attribute_id.to_s, :value => shipping_gateway_attribute_value.shipping_gateway_attribute.name)
