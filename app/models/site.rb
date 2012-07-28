@@ -8,6 +8,7 @@ class Site < ActiveRecord::Base
   has_many :site_link_accounts
   has_one  :address
   has_many :products
+  has_many :orders
   
   has_and_belongs_to_many :content_libraries
   has_many :site_groups

@@ -55,6 +55,10 @@ Mystore3::Application.routes.draw do
       resources :passwords
     end
 
+    resources :customer_shippings do
+      post :checkout, :on => :collection
+    end
+
     get 'optional', :on => :member
     get 'done', :on => :member
     post 'optional_create', :on => :member
