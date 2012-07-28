@@ -111,7 +111,6 @@
             </div>
             <div class="hotspotPreview">
               <h4>preview</h4>
-              <% @tryitimage = TryItImage.first %>
               <div id="droppable">
                 <div id="hotspotLeft-img" class="draggable" style="<%=positioning_points(@tryitimage)[0]%>">
                   <img width="<%=positioning_points(@tryitimage)[1]%>" height="34" src="/images/black_frames.png">
@@ -119,7 +118,7 @@
               </div>
               <div class="resetBtn"></div>
               <div>
-                <%=select "select", "preview",TryItImage.all.collect{|try| [try.upload_file_name, try.upload]},{:prompt => 'Preview Images'}%>
+                <%=select "select", "preview", @tryitimages.collect{|try| [try.file_name, try_it_on_site_product_path(@site, @product, :try_image_id => try.id)]},{:prompt => 'Preview Images'}%>
               </div>
             </div>
           </div>
@@ -158,4 +157,11 @@
     }
   });
   });
+  $("select").change(function(){
+	  var link = $(this).attr('value');
+	  if (link != "Preview Images"){
+	    window.location = $(this).attr('value');
+	  }
+	})
+	
 </script>

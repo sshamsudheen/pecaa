@@ -852,7 +852,6 @@ width:160px;
 	margin-right:10px;
 }
 .tryItonDiv .rowRightDiv {
-
 	width:330px;	
 	float:left
 }
@@ -867,22 +866,24 @@ width:160px;
     padding: 10px;
     width: 330px;
 	text-align:center;
+	position: relative;
 }
 .tryItonDiv .rowRightDiv #hotspotLeft {
-    float: left;
     height: 50px;
-    margin: 10px 50px;
+    left: 50px;
+    position: absolute;
+    top: -100px;
     width: 50px;
 }
 .tryItonDiv .rowRightDiv #hotspotRight {
-    float: left;
-    height: 50px;
-    margin: 10px 50px;
+   height: 50px;
+    left: 205px;
+    position: absolute;
+    top: -100px;
     width: 50px;
 }
 
 .tryItonDiv  .rowRightDiv .hotspotWindow {
-  
     border: 1px solid #C0C0C0;
     float: left;
     height: 176px;
@@ -894,7 +895,7 @@ width:160px;
 	border-radius: 8px 8px 8px 8px;
 }
 .tryItonDiv .rowRightDiv .hotspotArrows {
-    float: left;
+    margin: 60px auto 0;
     padding: 5px 10px;
     text-align: center;
     width: 285px;

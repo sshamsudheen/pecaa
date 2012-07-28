@@ -6,17 +6,17 @@
     <p>
         Drag left or right eye hotspot to position on frame, opposite eye hotspot will be automatically adjusted.
     </p>
-    <div id="hotspotLeft" class="draggable" style="<%=@try_it_image.left_eye_position%>">
-        <img width="53" height="52" src="/assets/dragleftIcon.png">
-    </div>
-    <div id="hotspotRight" class="draggable" style="<%=@try_it_image.right_eye_position%>">
-        <img width="53" height="52" src="/assets/dragrightIcon.png">
-    </div>
     <div class="hotspotArrows">
         <img width="196" height="29" src="/assets/dragSpot.png">
     </div>
     <div class="hotspotWindow">
         <div class="hotspotImg" id="droppable">
+          <div id="hotspotLeft" class="draggable" style="<%=@try_it_image.left_eye_position%>">
+              <img width="53" height="52" src="/assets/dragleftIcon.png">
+          </div>
+          <div id="hotspotRight" class="draggable" style="<%=@try_it_image.right_eye_position%>">
+              <img width="53" height="52" src="/assets/dragrightIcon.png">
+          </div>
             <img width="189" height="164" src="<%=@try_it_image.upload%>">
         </div>
         <div class="resetBtn">
