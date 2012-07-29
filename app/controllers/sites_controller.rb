@@ -206,6 +206,22 @@ class SitesController < ApplicationController
     render :text => lcontent
   end
 
+  def order_history
+    @site = Site.find(params[:id])
+    record = params[:file_name].split('.').first
+    @site.site_style.theme.get_files('templates')
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
+    @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
+    #@content_layout = @content_layout + @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
+  
+    @theme_heading = @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
+    @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
+    customer = Customer.find(session[:customer_id]) if session[:customer_id]
+    icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10), "customer" => customer})
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
+    render :text => lcontent
+  end
+	
   
   def show_products
     @site = Site.find(params[:id])
