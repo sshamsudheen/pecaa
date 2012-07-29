@@ -1,0 +1,43 @@
+                      <div class="welcome clearfix">
+Order History
+</div>
+<div >
+<table width="100%" style="border:1px solid #99A5C5">
+<tr style="border:1px solid blue" bgcolor="#99A5C5">
+	<td width="20%" style="border:1px solid #99A5C5"> Date</td>
+	<td width="20%" style="border:1px solid #99A5C5"> Order No</td>
+	<td width="20%" style="border:1px solid #99A5C5"> Order Status</td>
+	<td width="20%" style="border:1px solid #99A5C5"> Order Details</td>
+	<td width="20%" style="border:1px solid #99A5C5"> Pricess</td>
+</tr>
+ {% for order in orders %}
+    <tr bgcolor="#ccccff">
+      <td>{{ order.created_at}}</td>
+      <td>{{ order.order_id}}</td>
+      <td>{{ order.status}}</td>
+      <td><a href="javascript:void(0);" onclick="call({{ order.id}})">View Order Details</a></td>
+      <td>{{ order.grand_total}}</td>
+      </tr>
+      <tr id='{{ order.id}}' style="display:none">
+      <td colspan=5><div>here comes order details {{ shipping_details.shipping_id}}
+      </div>
+      </td>
+      </tr>
+  {% endfor %}
+</table>
+
+</div>
+<script>
+
+function call(id)
+{	
+	document.getElementById(id).style.display='';
+}
+</script>
+
+
+
+
+
+                    
+                    
