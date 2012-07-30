@@ -868,7 +868,7 @@ width:160px;
 	text-align:center;
 	position: relative;
 }
-.tryItonDiv .rowRightDiv #hotspotLeft {
+/*.tryItonDiv .rowRightDiv #hotspotLeft {
     height: 50px;
     left: 50px;
     position: absolute;
@@ -882,7 +882,7 @@ width:160px;
     top: -100px;
     width: 50px;
 }
-
+*/
 .tryItonDiv  .rowRightDiv .hotspotWindow {
     border: 1px solid #C0C0C0;
     float: left;
