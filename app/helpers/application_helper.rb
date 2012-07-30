@@ -53,10 +53,14 @@ module ApplicationHelper
   end
   
   def positioning_points(rec)
-    width = numbers_extract(rec.left_eye_position)[0] - numbers_extract(rec.right_eye_position)[0]
-    top = (numbers_extract(rec.right_eye_position)[1] - 150)
-    left = (numbers_extract(rec.right_eye_position)[0] - 75)
-    ["left:#{left}px; top:#{top}px;", "#{width + 45}px"]
+    if rec.left_eye_position && rec.right_eye_position
+      width = numbers_extract(rec.left_eye_position)[0] - numbers_extract(rec.right_eye_position)[0]
+      top = (numbers_extract(rec.right_eye_position)[1] - 150)
+      left = (numbers_extract(rec.right_eye_position)[0] - 75)
+      ["left:#{left}px; top:#{top}px;", "#{width + 45}px"]
+    else
+      ["left: 90px; top: 151px;left:#100px;", "75px"]
+    end
   end
   
   def hotspot_images
