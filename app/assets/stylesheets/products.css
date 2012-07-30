@@ -1017,6 +1017,9 @@ span img {
 	min-height:550px;
 	border-radius:4px;
 }
+.tab_content {
+	display: none;
+}
 /* end tabd*/
 
 /* images styles*/
@@ -1625,6 +1628,8 @@ margin-right:10px;
 .tryItonDiv .hotspotPreview {
 	width: 250px;
 	float: left;
+	height:250px; 
+	overflow:hidden;
 }
 .hotspotPreview h4 {
 	text-align: center;
@@ -1683,17 +1688,17 @@ width:220px
 
 .tryItonDiv #hotspotRight {
 	height: 50px;
-    left: 225px;
+   left: 145px;
     position: absolute;
-     top: 65px;
+    top: -100px;
     width: 50px;
 }
 
 .tryItonDiv #hotspotLeft {
 	height: 50px;
-    left: 70px;
+   left: -10px;
     position: absolute;
-    top: 65px;
+    top: -100px;
     width: 50px;
 }
 
@@ -1714,18 +1719,16 @@ width:220px
 	background-image:url(img/hotspotbg.jpg);
 }
 .tryItonDiv div.checkBox{
-background-image:url(img/imgcheck.jpg);
-width:21px;
-height:21px;
-margin:0;
+	background-image:url(img/imgcheck.jpg);
+	width:21px;
+	height:21px;
+	margin:0;
 	z-index:200;
 	position:relative;
 	margin-top:-20px;
-
 	float:right;
 	display:block;
 	cursor:pointer;
-	
 }
 
 .tryItonDiv .imgOverImg{
@@ -1740,8 +1743,10 @@ z-index:300;
 	 text-align:center;
 }
 .tryItonDiv .hotspotImg{
-	/*margin:50px auto;
-	 width:73%;*/
+	margin:0 auto;
+	position: relative;
+	width:189px;
+	height:164px;
 }
 
 .eiditTextDiv span.onBtn {

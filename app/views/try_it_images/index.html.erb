@@ -24,7 +24,7 @@
                                         <div class="userGridHeader noRadius">
                                             <ul class="ConLibraHeads">
                                                 <li>
-                                                    <span class="cName">Image</span>
+                                                    <span class="ImgName">Image</span>
                                                     <span class="cName">Name</span>
                                                     <span class="cName">type</span>
                                                 </li>
@@ -49,7 +49,7 @@
                                                         <ul class="ConLibra ">
                                                             <%TryItImage.all.each do |tim| %>
                                                             <li class="alt" onclick="show_image('<%=tim.id%>');">
-                                                                <span class="cName arrow2"><img width="46" height="38" src="<%=tim.upload%>"></span><span class="cName"><%=tim.name %></span>
+                                                                <span class="ImgName"><img width="46" height="38" src="<%=tim.upload%>"></span><span class="cName"><%=tim.name %></span>
                                                                 <span class="cName arrow2"><%=tim.hotspot_type %></span>
                                                                 <span class="close1"><img border="0" src="/assets/btnDelete.png"></span>
                                                             </li><%end %>

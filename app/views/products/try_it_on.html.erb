@@ -2,7 +2,7 @@
   <div class="midSection">
     <%= render :partial => "shared/products_tab"%>
     <div id="tabs_content_container">
-      <div id="tab2" class="tab_content">
+      <div id="tab2">
         <div class="tab2topDiv">
           <div class="editImgDiv">
             <img src="/assets/productimg.jpg" width="136" height="100">
@@ -92,7 +92,7 @@
               <div class="hotspotArrows">
                 <img src="/assets/dragSpot.png" width="196" height="29">
               </div>
-              <div class="hotspotWindow">
+              <div class="hotspotWindow hotspotImg">
                 <div id="droppable">
                   <div class='draggable' id="hotspotLeft">
                     <img src="/assets/dragleftIcon.png" width="53" height="52">
@@ -100,7 +100,7 @@
                   <div class='draggable' id="hotspotRight">
                     <img src="/assets/dragrightIcon.png" width="53" height="52">
                   </div>
-                  <div class="hotspotImg">
+                  <div class="hotspotImg hotspotBigFrame">
                   <img src="/assets/hotspotimg.png" width="255" height="90">
                   </div>
                 </div>
@@ -111,15 +111,15 @@
             </div>
             <div class="hotspotPreview">
               <h4>preview</h4>
-              <div id="droppable">
+              <div id="droppable" class="hotspotImg">
                 <div id="hotspotLeft-img" class="draggable" style="<%=positioning_points(@tryitimage)[0]%>">
                   <img width="<%=positioning_points(@tryitimage)[1]%>" height="34" src="/images/black_frames.png">
                 </div><img width="189" height="164" src="<%= @tryitimage ? @tryitimage.upload : '/assets/preivewimg.png'%>">
               </div>
               <div class="resetBtn"></div>
-              <div>
-                <%=select "select", "preview", @tryitimages.collect{|try| [try.file_name, try_it_on_site_product_path(@site, @product, :try_image_id => try.id)]},{:prompt => 'Preview Images'}%>
-              </div>
+            </div>
+            <div style="float:right;">
+              <%=select "select", "preview", @tryitimages.collect{|try| [try.file_name, try_it_on_site_product_path(@site, @product, :try_image_id => try.id)]},{:prompt => 'Preview Images'}, :width=>'100px'%>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@
 
 <script type="text/javascript">
   $('.hotspotImages img').click(function(){
-    $('.hotspotImg img').attr('src',$(this).attr('src'));
+    $('.hotspotBigFrame img').attr('src',$(this).attr('src'));
     $('#hotspotLeft-img img').attr('src',$(this).attr('src'));
   })      
 </script>
