@@ -53,7 +53,7 @@ module ApplicationHelper
   end
   
   def positioning_points(rec)
-    if rec.left_eye_position && rec.right_eye_position
+    if rec && !rec.left_eye_position.blank? && !rec.right_eye_position.blank?
       width = numbers_extract(rec.left_eye_position)[0] - numbers_extract(rec.right_eye_position)[0]
       top = (numbers_extract(rec.right_eye_position)[1] - 150)
       left = (numbers_extract(rec.right_eye_position)[0] - 75)
