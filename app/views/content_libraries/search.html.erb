@@ -1,196 +1,149 @@
-<%= stylesheet_link_tag "jquery.Jcrop" %>
-<%= javascript_include_tag "jquery.Jcrop" %>
-<%= javascript_include_tag "jquery.Jcrop.min" %>
+<div class="ueBodyContent">
+  <!-- add buttons -->
+  <div class="addButtons">
+    <span class="addFile"><a href='<%= new_add_file_path %>' rel="facebox"></a></span>
+    <span class="addForm"><a href='<%= new_add_form_path %>' rel="facebox"></a></span>
+    <span class="addText"><a href='<%= new_text_path %>' rel="facebox"></a></span>
+    <span class="addVideo"><a href='<%= new_video_path %>' rel="facebox"></a></span>
+    <span class="addImage"><a href='<%= new_image_path %>' rel="facebox"></a></span>
+  </div>
+  <!-- end of add buttons -->
+  <div class="clear"></div>
+  <!-- col 1 -->
+  	<div class="userSearch">
+	<form name="search" id="search" action="/content_libraries/search" method="post">
+<!-- rc table -->
+        <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
+        <!-- search and select -->
+        	<input type="text" class="userSearchField" name="name" value="<%= @name %>" />
+            <img src="../images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" onclick="javascript: document.search.submit();"/>
+            <div class="selectDiv">
+            <select class="select" title="Select one" name="source_type">
+            	<option value="">All</option>
+                <option value="text" <% if @type == 'text'%> selected ="selected" <% end%>>Text</option>
+                <option value="file" <% if @type == 'file'%> selected ="selected" <% end%>>File</option>
+                <option value="image" <% if @type == 'image'%> selected ="selected" <% end%>>Image</option>
+                <option value="video" <% if @type == 'video'%> selected ="selected" <% end%>>Video</option>
+                <option value="form" <% if @type == 'form'%> selected ="selected" <% end%>>Form</option>
+            </select>
+            </div>
+            <!-- end of search and select -->
 
-                    <div class="content-main">
-						<div class="content-wrapper" >
-							<%=render :partial=>"content_header"%>	
-		    				<div id="content_1" class="tabContent">
-								<div class="tabContent-wrapper">
-									<%params[:page] ||=1%>
-									<div ><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i-1}",:class=>"navLeft")%></div>
-									<div class="item-wrapper" id="catalog">
-										<span class="leftShadow"></span>
-										<span class="rightShadow"></span>
-										<ul class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" id="bloc-list">
-											<%if params[:page].blank? or params[:page] == 0 or params[:page] == 1%>
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="Text"%>
-												<li class="item newItem"><span class="title"><%= link_to 'New Text Block', (new_text_path + "?from_content=true&site_id=#{params[:site_id]}&site_page_id=#{params[:site_page_id]}"  ),:class=>'facebox_click'%></span>
-												<%=hidden_field_tag 'source',"Text"%>
-															<div style="display:none;" id="doc_form">
-																<%#@text = Text.new()%>
-																<%@from_content=true%>
-																<%=render :partial=>"texts/form"%>
-															</div>
-												</li>
-												<%end%>
-												
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="Misc"%>
-												<li class="item active newItem misc_form"><span class="title">New Misc Block</span>
-												<%=hidden_field_tag 'source',"Misc"%>
-															<div style="display:none;" id="doc_form">
-																<%#@text = Text.new()%>
-																<%@from_content=true%>
-																
-																<%=render :partial=>"miscs/form"%>
-															</div>
-												</li>
-												<%end%>
-												
-												<%if false and (params[:search].blank? or params[:search][:source_type_equals]=="Form")%>
-												<li class="item newItem"><span class="title">New Form</span>
-												<%=hidden_field_tag 'source',"AddForm"%>
-															<div style="display:none;" id="doc_form">
-																<%#@image = Image.new%>
-																<%@from_content=true%>
-																<%=render :partial=>"add_forms/form"%>
-															</div>
-												</li>
-												<%end%>
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="Image"%>
-												<li class="item newItem">
-													<span class="title"><%= link_to 'New Image', (new_image_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
-													<%=hidden_field_tag 'source',"Image"%>
-															<div style="display:none;" id="doc_form">
-																<%@image = Image.new%>
-																<%@from_content=true%>
-																<%=render :partial=>"images/form"%>
-															</div>
-												</li>
-												<%end%>
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="Video"%>
-												<li class="item newItem"><span class="title"><%= link_to 'New Video', (new_video_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
-												<%=hidden_field_tag 'source',"Video"%>
-															<div style="display:none;" id="doc_form">
-																<%@video = Video.new%>
-																<%@from_content=true%>
-																<%=render :partial=>"videos/form"%>
-															</div>
-												</li>
-												<%end%>
-												<%if params[:search].blank? or params[:search][:source_type_equals]=="File"%>
-													<li class="item newItem">
-														<span class="title"><%= link_to 'New Doc', (new_add_file_path + '?from_content=true&url=' + request.fullpath),:class=>'facebox_click'%></span>
-															<%=hidden_field_tag 'source',"File"%>
-															<div style="display:none;" id="doc_form">
-																<%@add_file = AddFile.new%>
-																<%@from_content=true%>
-																<%=render :partial=>"add_files/form"%>
-															</div>
-														
-													</li>
-												<%end%>
-											<%end%>
-											<%@content_libraries.each do |content|%>
-											<li class="item ui-draggable active <%=content.id%> ibloc" id = "bloc_<%=content.id%>">
-												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
-												<%= hidden_field_tag "content_id", ''%>
-												<%#= hidden_field_tag "style_position","width:100%;height:100%"%>
-                                                <%= hidden_field_tag "style_position[#{content.id}]",''%>
-                                                <%= hidden_field_tag "src_type[#{content.id}]", content.source_type%>
-                                              <%if content.source_type == "Image"%>
-                                                  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-                                                      <%= hidden_field "crop[#{content.id}]", attribute, :id => "crop_#{content.id}_#{attribute}" %>
-                                                  <% end %>
-                                                  <div class="hotspot" style="display: none;">
-													<span class="pointer"></span>
-													
-													<div class="hotspotContent"><img border="0" src="<%=content.source.upload%>" width="120" height="90"></div>
-												</div>
-												<div style="display:none;" id="doc_form">
-															<%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
-												  </div>
-												<%elsif content.source_type == "Video"%>
-												<div class="hotspot" style="display: none;">
-													<span class="pointer"></span>
-													<div class="hotspotContent"><img border="0" src="<%=content.source.source%>" width="120" height="90"></div>
-												</div>
-												<div style="display:none;" id="doc_form">
-												            <%@video = content.source%>
-															<%=render :partial=>"videos/video_content",:locals=>{:content=>content}%>
-												  </div>
-												<%elsif content.source_type == "File"%>
-												  <div style="display:none;" id="doc_form">
-															<%@add_file = AddFile.find(content.source_id)%>
-															<%@from_content=true%>
-															<%=render :partial=>"add_files/edit_content_form",:locals=>{:content=>content}%>
-												  </div>
-												 <%elsif content.source_type == "Text"%>
-												  <div style="display:none;" id="doc_form">
-															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
-															<%@from_content=true%>
-															<%=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
-												  </div>
-												  <%elsif content.source_type == "Misc"%>
-												  <div style="display:none;" id="doc_form">
-															<%@text = ActiveRecord::Base::Text.find(content.source_id)%>
-															<%@from_content=true%>
-															<%#=render :partial=>"texts/edit_text_form",:locals=>{:content=>content}%>
-												  </div>
-												  <%elsif content.source_type == "AddForm"%>
-												  <div style="display:none;" id="doc_form">
-															<%@from_content=true%>
-															<%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
-												  </div>
-												<%end%>
-											</li>
-											<%end%>
-										</ul>
-									</div>
-									<div><%=link_to('',"/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_libraries/search?page=#{params[:page].to_i+1}",:class=>"navRight")%></div>
-								</div>
-		    				</div>
-		    			</div>
-		    		</div>
-		    	
-					
-				
-<script type="text/javascript">
-	
-	$('#form_submit').click(function(){
-		
-		$('#cart input#style_position').attr('value',$('#cart div.ui-resizable').attr('style'));
-		$('#cart div#content_position').attr('value',$('#contentObject #ui-draggable').attr('style'))
+<!-- names -->
+<div>
+<select name="added_by">
+<option value="">all</option>
+<% @users.each do |user| %>
+	<option value="<%= user.username %>" <% if user.username== @added_by %> selected="selected"<% end%>><%= user.username %></option>
+	<br>
+	<% end %>
+</select>
+</div>
+	<!-- <div class="rcBlue2">
+    	<div class="rcBlack2">
+        <span>Smith</span> <img src="images/icon-remove.png" />
+        </div>
+        <span>name</span>
+    </div>
 
-        $('#bloc-list li.ibloc').each(function(){
-            var did = this.id.match(/\d+/)[0];
-            var style = $('#resize_'+did+' .ui-resizable').attr('style');
-            if(style !== undefined) {
-                $('input#style_position_'+did).attr('value',style);
-            }
-        });
+    <div class="rcBlue2">
+    	<div class="rcBlack2">
+        <span>Admin</span> <img src="images/icon-remove-red.png" />
+        </div>
+        <span>role</span>
+    </div>-->
+<!-- end of names -->
+        </div>
+<div class="userPanelDevider"></div>
+<!-- end of rc table -->
 
-		var sorted_positions='';
-		$('#sortable').find('li').each(function(ix){
-            var did = this.id.match(/\d+/)[0];
-            sorted_positions = sorted_positions + ',' + $(this).attr('id');
-            $('input#list_order_'+did).attr('value',ix+1);
-		});
-		$('input#sorting_position').attr('value',sorted_positions);
-		
-			
-		if ($('#cart input#content_type').attr('value') != "Misc") {
-			var content_id = $('#cart li').attr('class').split(' ').pop()
-			$('#cart input#content_id').attr('value', content_id)
-		}
-		$('#content_page_save').submit();
-/*		if ($('#cart input#dropped').attr('value') == 'true') {
-			
-			$('#content_page_save').submit();
-		}
-		else{
-			window.location.href='/sites/<%=@site.id%>/site_styles/choose_theme'
-		}
-*/
-  });
-  
-  $('#preview_button').click(function(){
-    $('#is_preview').attr("value", true)
-    $('#content_page_save').submit();
-  });
+<!-- slider rc -->
+<div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+	<div class="searchOptions"><input class="styled" type="checkbox" id="dateAdded" name="created_at" /><span>date added</span></div>
+    <div class="clear"></div>
 
-jQuery(document).ready(function($) {
-  $('.facebox_click').facebox()
-}) 
-      
-</script>
+    <input type="text" class="datePicker" /><img src="images/icon-calender.png" class="calender" />
+
+    <input type="text" class="datePickerRight" /><img src="images/icon-calender.png" class="calender" />
+<div class="clearHeight10"></div>
+
+<div class="searchOptions"><input class="styled" type="checkbox" id="lastUsed" name="last_used"/><span>date last used</span></div>
+
+</div>
+<!-- end of rc slider -->
+
+<div class="userPanelDevider"></div>
+
+<!-- slider rc -->
+<div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+	<div class="searchOptions"><input class="styled" type="checkbox" id="timesUsed" /><span>times used</span></div>
+
+    <div id="slider" style="width:200px; margin-left:5px;"></div>
+
+    <div class="clearHeight30"></div>
+
+</div>
+<!-- end of rc slider -->
+<input type="submit" name="submit" value="Search">
+</form>
+    </div>
+
+  <!-- col 2 -->
+  <div class="userGrid">
+    <div class="userGridHeader">
+            <ul class="ConLibraHeads">
+            <li>
+                    <span class="name">Name<br /><br /><br /></span>
+                <span class="type">Type<br /><br /><br /></span>
+                <span class="lastUsed">Last Used<br /><br /><br /></span>
+                <span class="timesUsed">Times Used<br /><br /></span>
+                <span class="dateAdded">Date Added<br /><br /></span>
+                <span class="addedBy">Added By<br /><br /></span>
+            </li>
+        </ul>
+    </div>
+  <!-- grid body -->
+    <div class="userGridBody">
+            <div id="scrollbar1">
+            <div class="scrollbar">
+              <div class="track">
+                <div class="thumb">
+                  <div class="end">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="viewport">
+              <div class="overview">
+                <ul class="ConLibra">
+                  <% unless @content_libraries.blank? %>
+                    <% @content_libraries.each do |content| %>
+                      <li class="<%= cycle("dark", "light") %>">
+                        <%#*<span class="name" title="<%= content.name %->"><p><-%= truncate(content.name, :length => 25, :separator => '..') %-></p> <%= display_content(content) %-></span>%>
+                        <span class="name" title="<%= filename(content.name) %>"><p><%= truncate(filename(content.name), :length => 20, :separator => '..') %></p> <%= display_content(content) %></span>
+                        <span class="type"><%= content.source_type %></span>
+                        <span class="lastUsed">admin</span>
+                        <span class="timesUsed">99</span>
+                        <span class="dateAdded">02/08/11</span>
+                        <span class="addedBy" title="<%= content.added_by %>"><%= truncate(content.added_by, :length => 10, :separator => '..') %></span>
+                        <span class="edit"><%= edit_content(content) %></span>
+                      </li>
+                    <% end %>
+                  <% else %>
+                      <li class="dark" style="text-align: center"> No Records Found </li>
+                  <% end %>
+               </ul>
+         </div>
+         </div>
+         </div>
+         </div>
+  </div>
+  <!-- end of grid body -->
+  <div class="userGridFooter"></div>
+  <div class="clear"></div>
+  <!-- end of col 2 -->
+</div>
+<%#= javascript_include_tag "activatables.js" %>
+<%#*<script type="text/javascript">%>
+<%#*activatables('page', ['page-1', 'page-2']);%>
+<%#*</script>%>
