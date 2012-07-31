@@ -1,3 +1,4 @@
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <div class="ueBodyContent">
   <div class="btnGreyLeft">
     <%= button_to 'New Site', new_site_path, :class=>'btnGrey', :method=>"get" %>
@@ -11,31 +12,83 @@
         <input type="text" name='query' class="userSearchField"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
         <div class="selectDiv">
           <select name='search_on'class="select" title="Select one">
+            <option selected value='all'>all columns</option>
             <option selected value='name'>Name</option>
+            <option selected value='domain_name'>Domain Name</option>
+            <option selected value='company_name'>Company</option>
           </select>
         </div><!-- end of search and select -->
+      <!-- names -->
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>Smith</span>
+          <span class="deletetag_disaled">&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>Admin</span>
+          <span class="deletetag_disaled">&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>longtermsearch</span>
+          <span class="deletetag_active">&nbsp;</span>
+        </div>
+        <span>sitename</span>
+      </div>
+      <!-- end of names -->
     </div>
     <div class="userPanelDevider"></div>
     <!-- end of rc table -->
     <!-- slider rc -->
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
-        <input type=checkbox id="date_added" class="styled" name="date_added" ><span>date added</span>
+        <input type=checkbox class="styled" id="last_edited" name="last_edited" ><span>last edited</span>
+        <div class="edate-slider" id='dteRange'>
+          <%=hidden_field_tag :last_edited_from%>
+          <%=hidden_field_tag :last_edited_to%>
+          <div class="rangedisplay">
+            <span class="dte_from">7/7/2012</span>
+            <span class="dte_to">7/16/2012</span>
+          </div>
+        </div>
+        <input type=checkbox class="styled" id="date_created" name="date_created" ><span>date created</span>
+        <div class="cdate-slider" id='dtcRange'>
+          <%=hidden_field_tag :date_created_from%>
+          <%=hidden_field_tag :date_created_to%>
+          <div class="rangedisplay">
+            <span class="dtc_from">7/7/2012</span>
+            <span class="dtc_to">7/16/2012</span>
+          </div>
+        </div>
       </div>
       <div class="clear"></div>
-        <div id="date_range" style="display:none">
+      <div class="clearHeight10"></div>
+    </div><!-- end of rc slider -->
+    <div class="userPanelDevider"></div>
+    <!-- options -->
+    <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+      <div class="searchMiscOptions">
+        <span><input type="radio" name="misc" value="all" checked="checked" />show all sites</span>
+        <span><input type="radio" name="misc" value="live" >show live sites only</span>
+        <span><input type="radio" name="misc" value="inactive" >show inactive sites only</span>
+      </div>
+      <div class="clear"></div>
+      <!-- div id="date_range" style="display:none">
             Start Date:
             <%= text_field_tag "start_date", Date.today.strftime('%m-%d-%Y'), :class=>'datepicker', :id=>"datepicker1", :size=>10 %>
             <br/>
             End Date:
             <%= text_field_tag "end_date", Date.today.strftime('%m-%d-%Y'), :class=>'datepicker', :id=>"datepicker2", :size=>10 %>
-      </div>
+      </div -->
       <div class="clear"></div>
       <div class="clearHeight10"></div>
-        <input type="submit" value='Search' class="btnLogin">
+      <input type="submit" value='Search' class="btnLogin">
       </form>
-      <div class="searchOptions">
-      </div>
     </div><!-- end of rc slider -->
   </div><!-- end of col1 -->
   <!-- col 2 -->
@@ -44,9 +97,10 @@
       <ul class="ConLibraHeads">
         <li>
           <span class="name">Name<br><br><br></span>
-          <span class="type">Active?<br><br></span>
-          <span class="name">Date Added<br><br></span>
-          <span class="addedBy">Added By<br><br></span>
+          <span class="domain">Domain Name<br><br></span>
+          <span class="company">Company<br><br></span>
+          <span class="addedBy">Last Edited<br></span>
+          <span class="addedBy">Date Created<br></span>
         </li>
       </ul>
     </div><!-- grid body -->
@@ -61,16 +115,19 @@
         </div>
         <div class="viewport">
           <div class="overview">
-            <ul class="ConLibra">
+            <ul class="ConLibra" id="sites-list">
               <%@sites.each do |s|%>
                 <li class="dark">
 	                <span class="name">
-	                <%=link_to s.name, s, :class=>"links"%> 
+	                  <%=link_to s.name, s, :class=>"links"%>
 	                  <%=link_to(image_tag( "/images/icon-eye.png"),"/sites/#{s.id}/preview")%>
+                      <span class="status <%=(s.is_active ? 'yes' : 'no')%>">&nbsp;</span>
 	                </span>
-                  <span class="type"><%=s.is_active ? "Yes": "No"%></span> 
-                  <span class="name"><%=s.created_at.strftime("%m/%d/%Y %T")%></span>
-<span class="addedBy"><%if s.created_by%><%=truncate(s.created_by.username, :length => 10, :separator => '..')%> <%end%>&nbsp;</span> 
+                  <span class="domain"><%if !s.domain_name.nil?%><%=truncate(s.domain_name, :length => 20, :separator => '..')%><%end%>&nbsp;</span>
+                  <span class="company"><%if !s.company_name.nil?%><%=truncate(s.company_name, :length => 10, :separator => '..')%><%end%>&nbsp;</span>
+                  <span class="addedBy"><%=s.updated_at.strftime('%m/%d/%Y')%></span>
+                  <span class="addedBy"><%=s.created_at.strftime('%m/%d/%Y')%></span>
+                  <!-- span class="addedBy"><%#if s.created_by%><%#=truncate(s.created_by.username, :length => 10, :separator => '..')%> <%#end%>&nbsp;</span -->
                   <span class="edit">
                     <%= link_to(image_tag("/assets/users/images/btn-edit.png"), edit_site_path(s)) %>
                   </span>
@@ -91,6 +148,53 @@
 		$('#scrollbar1 span.name a.links').each(function(i,n){
 			var nT = $.trim($(this).text()).substring(0, 17);
 			if($.trim($(this).text()).length > 20) $(this).html(nT+'...');
-		})
-	})
+		});
+
+        /*$('#last_edited').checked(function(){
+            $('#dtcRange').hide();
+            $('#dteRange').show();
+        });
+
+        $('#date_created').checked(function(){
+            $('#dteRange').hide();
+            $('#dtcRange').show();
+        }); */
+
+        $( '#dteRange' ).slider({
+            range: true,
+            min: 1,
+            max: 31,
+            values: [ 7, 16 ],
+            slide: function( event, ui ) {
+                // calculate the date range
+                var _from = '7/'+ui.values[0]+'/2012',
+                     _to  = '7/'+ui.values[1]+'/2012';
+                // now to display it
+                $('.rangedisplay .dte_from').html(_from);
+                $('.rangedisplay .dte_to').html(_to);
+                // now save it for manipulation
+                $('#last_edited_from').attr('value',_from);
+                $('#last_edited_to').attr('value',_to);
+            }
+        });
+
+        $( '#dtcRange' ).slider({
+            range: true,
+            min: 1,
+            max: 31,
+            values: [ 7, 16 ],
+            slide: function( event, ui ) {
+                // calculate the date range
+                var _from = '7/'+ui.values[0]+'/2012',
+                        _to  = '7/'+ui.values[1]+'/2012';
+                // now to display it
+                $('.rangedisplay .dtc_from').html(_from);
+                $('.rangedisplay .dtc_to').html(_to);
+                // now save it for manipulation
+                $('#date_created_from').attr('value',_from);
+                $('#date_created_to').attr('value',_to);
+            }
+        });
+    })
 </script>
+
