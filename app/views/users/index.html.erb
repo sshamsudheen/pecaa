@@ -76,7 +76,7 @@
                   <li class="dark">
                     
                     <span class="name"><%=u.username%><span class="status"><img src="<%= u.active ? '/assets/btnMarkYes.png' : '/assets/btnMarkNo.png'%>" border="0"></span>&nbsp;</span>
-                    <span class="type"><%=truncate("#{u.firstname} #{u.lastname}", :length => 10, :separator => '..')%> &nbsp;</span>
+                    <span class="type"><%=truncate("#{u.firstname} #{u.lastname}", :length => 10, :separator => '..') if u.firstname or u.lastname%> &nbsp;</span>
 					<span class="type"><%=u.roles.first.name if u.roles.first%> &nbsp;</span>
                     <span class="type"><%=u.created_at.strftime("%D")%>&nbsp;</span>
                     <span class="addedBy"><%=u.last_login.strftime("%D") if u.last_login %>&nbsp;</span> 
