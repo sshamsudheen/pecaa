@@ -50,8 +50,11 @@ class TextsController < ApplicationController
     
     @text = Text.new(params[:text])
     @text.user_id = current_user
+	if params[:site_id]!=''
     @site  = Site.find(params[:site_id])
+	
     @site_page = SitePage.find(params[:site_page_id]) 
+	end
     Text.transaction do
       if @text.save
         content_lib = ContentLibrary.create({:name => @text.text_block_name,
