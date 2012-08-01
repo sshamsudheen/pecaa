@@ -11,15 +11,21 @@ class Devise::PasswordsController < ApplicationController
 
   # POST /resource/password
   def create
-    if params[:user_name]
+    if params[:user] and params[:user][:username]
+      set_flash_message(:alert, :send_instructions) if is_navigational_format?
       self.resource = resource_class.send_reset_password_instructions(params[resource_name])      
     else
+      set_flash_message(:alert, :email_instructions) if is_navigational_format?
       self.resource = resource_class.send_reset_password_instructions(params[resource_name],'username_req')
     end
-
     if successful_and_sane?(resource)
+<<<<<<< HEAD
 		set_flash_message(:notice, :send_instructions) if is_navigational_format?
 		respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+=======
+      #set_flash_message(:alert, :send_instructions) if is_navigational_format?
+      respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+>>>>>>> 227739309a225ab191b6154fc78e8adda44678d7
     else
 		@userexist=User.where(" username = ?" , params[resource_name][:username])		
 		if @userexist.size < 1		
