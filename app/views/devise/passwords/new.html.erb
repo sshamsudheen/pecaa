@@ -4,6 +4,7 @@
 <div id="logo">
     <img src="/assets/logo.png" height="35" width="210">
 </div>
+
 <%= form_for User.new, :as => :user, :url => user_password_path do |f| %>
 	<div id="forgotUsername">
 		<label for="gUsername">forgot username</label>
@@ -21,6 +22,9 @@
 	
 	<p><%= f.submit "Get Password",:class=>'blueButton'%></p>
 <%end%>
+
+<%if flash[:alert] %><div class="loginErrorMsg"><%= flash[:alert] %>  </div><%end%>
+
 
 <script type="text/javascript">
 	$(function () {
