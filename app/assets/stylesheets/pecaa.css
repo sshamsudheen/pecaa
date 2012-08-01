@@ -937,22 +937,15 @@ button{
     border: 1px solid #666666;
     border-radius: 4px 4px 4px 4px;
     height: 5px;
-    margin: 10px 10px 35px;
+    margin: 10px 10px 20px;
     position: relative;
     width: 180px;
 }
 
-.searchOptions .rangedisplay {
-    position: absolute;
-    top: 20px;
+.searchOptions .anoption {
+    margin-bottom: 25px;
 }
-
-.searchOptions .rangedisplay .dtfrom {
-    position: relative;
+.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to {
+    padding-left: 40px;
 }
-
-.searchOptions .rangedisplay .dtto {
-    position: relative;
-}
-
 .searchMiscOptions span{display: inline-block;}

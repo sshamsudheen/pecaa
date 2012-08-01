@@ -9,7 +9,7 @@
       <!-- search and select -->
       <form action=<%=url_for(:action=>:search)%> method="post" name="searchbox" id='searchbox'>
         <input id="tokentag" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-        <input type="text" name='query' class="userSearchField"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
+        <input type="text" name='query' class="userSearchField" value="<%=params[:query]%>"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
         <div class="selectDiv">
           <select name='search_on'class="select" title="Select one">
             <option selected value='all'>all columns</option>
@@ -45,25 +45,33 @@
     <div class="userPanelDevider"></div>
     <!-- end of rc table -->
     <!-- slider rc -->
+    <% # init current month n year
+       _c_m = DateTime.now.month.to_s
+       _c_y = DateTime.now.year.to_s
+    %>
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
-        <input type=checkbox class="styled" id="last_edited" name="last_edited" ><span>last edited</span>
-        <div class="edate-slider" id='dteRange'>
-          <%=hidden_field_tag :last_edited_from%>
-          <%=hidden_field_tag :last_edited_to%>
-          <div class="rangedisplay">
-            <span class="dte_from">7/7/2012</span>
-            <span class="dte_to">7/16/2012</span>
-          </div>
+        <div class="anoption">
+            <input type=checkbox id="last_edited" name="last_edited" ><span>last edited</span>  <!-- class="styled"  -->
+            <div class="edate-slider" id='dteRange'>
+              <%=hidden_field_tag :last_edited_from%>
+              <%=hidden_field_tag :last_edited_to%>
+            </div>
+            <div class="rangedisplay">
+              <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>
+              <span class="dte_to">To: <%=_c_m+'/16/'+_c_y%></span>
+            </div>
         </div>
-        <input type=checkbox class="styled" id="date_created" name="date_created" ><span>date created</span>
-        <div class="cdate-slider" id='dtcRange'>
-          <%=hidden_field_tag :date_created_from%>
-          <%=hidden_field_tag :date_created_to%>
-          <div class="rangedisplay">
-            <span class="dtc_from">7/7/2012</span>
-            <span class="dtc_to">7/16/2012</span>
-          </div>
+        <div class="anoption">
+            <input type=checkbox id="date_created" name="date_created" ><span>date created</span>
+            <div class="cdate-slider" id='dtcRange'>
+              <%=hidden_field_tag :date_created_from%>
+              <%=hidden_field_tag :date_created_to%>
+            </div>
+            <div class="rangedisplay">
+              <span class="dtc_from">From: <%=_c_m+'/7/'+_c_y%></span>
+              <span class="dtc_to">To: <%=_c_m+'/16/'+_c_y%></span>
+            </div>
         </div>
       </div>
       <div class="clear"></div>
@@ -115,23 +123,29 @@
         </div>
         <div class="viewport">
           <div class="overview">
-            <ul class="ConLibra" id="sites-list">
-              <%@sites.each do |s|%>
-                <li class="dark">
-	                <span class="name">
-	                  <%=link_to s.name, s, :class=>"links"%>
-	                  <%=link_to(image_tag( "/images/icon-eye.png"),"/sites/#{s.id}/preview")%>
-                      <span class="status <%=(s.is_active ? 'yes' : 'no')%>">&nbsp;</span>
-	                </span>
-                  <span class="domain"><%if !s.domain_name.nil?%><%=truncate(s.domain_name, :length => 20, :separator => '..')%><%end%>&nbsp;</span>
-                  <span class="company"><%if !s.company_name.nil?%><%=truncate(s.company_name, :length => 10, :separator => '..')%><%end%>&nbsp;</span>
-                  <span class="addedBy"><%=s.updated_at.strftime('%m/%d/%Y')%></span>
-                  <span class="addedBy"><%=s.created_at.strftime('%m/%d/%Y')%></span>
-                  <!-- span class="addedBy"><%#if s.created_by%><%#=truncate(s.created_by.username, :length => 10, :separator => '..')%> <%#end%>&nbsp;</span -->
-                  <span class="edit">
-                    <%= link_to(image_tag("/assets/users/images/btn-edit.png"), edit_site_path(s)) %>
-                  </span>
-                </li>
+            <%if @sites.length > 0%>
+                <ul class="ConLibra" id="sites-list">
+                  <%@sites.each do |s|%>
+                    <li class="dark">
+                        <span class="name">
+                          <%=link_to s.name, s, :class=>"links"%>
+                          <%=link_to(image_tag( "/images/icon-eye.png"),"/sites/#{s.id}/preview")%>
+                          <span class="status <%=(s.is_active ? 'yes' : 'no')%>">&nbsp;</span>
+                        </span>
+                      <span class="domain"><%if !s.domain_name.nil?%><%=truncate(s.domain_name, :length => 20, :separator => '..')%><%end%>&nbsp;</span>
+                      <span class="company"><%if !s.company_name.nil?%><%=truncate(s.company_name, :length => 10, :separator => '..')%><%end%>&nbsp;</span>
+                      <span class="addedBy"><%=s.updated_at.strftime('%m/%d/%Y')%></span>
+                      <span class="addedBy"><%=s.created_at.strftime('%m/%d/%Y')%></span>
+                      <!-- span class="addedBy"><%#if s.created_by%><%#=truncate(s.created_by.username, :length => 10, :separator => '..')%> <%#end%>&nbsp;</span -->
+                      <span class="edit">
+                        <%= link_to(image_tag("/assets/users/images/btn-edit.png"), edit_site_path(s)) %>
+                      </span>
+                    </li>
+                  <%end%>
+              <%else%>
+                  <li class="dark">
+                    <span>Your search doesn't yield any data.. try again!</span>
+                  </li>
               <%end%>
             </ul>
           </div>
@@ -150,16 +164,6 @@
 			if($.trim($(this).text()).length > 20) $(this).html(nT+'...');
 		});
 
-        /*$('#last_edited').checked(function(){
-            $('#dtcRange').hide();
-            $('#dteRange').show();
-        });
-
-        $('#date_created').checked(function(){
-            $('#dteRange').hide();
-            $('#dtcRange').show();
-        }); */
-
         $( '#dteRange' ).slider({
             range: true,
             min: 1,
@@ -167,14 +171,15 @@
             values: [ 7, 16 ],
             slide: function( event, ui ) {
                 // calculate the date range
-                var _from = '7/'+ui.values[0]+'/2012',
-                     _to  = '7/'+ui.values[1]+'/2012';
+                var dt = new Date(),
+                    _y = dt.getFullYear(),
+                    _m = dt.getMonth()+1;
                 // now to display it
-                $('.rangedisplay .dte_from').html(_from);
-                $('.rangedisplay .dte_to').html(_to);
+                $('.rangedisplay .dte_from').html('From: '+_m+'/'+ui.values[0]+'/'+_y);
+                $('.rangedisplay .dte_to').html('To: '+_m+'/'+ui.values[1]+'/'+_y);
                 // now save it for manipulation
-                $('#last_edited_from').attr('value',_from);
-                $('#last_edited_to').attr('value',_to);
+                $('#last_edited_from').attr('value',_y+'-'+_m+'-'+ui.values[0]);
+                $('#last_edited_to').attr('value',_y+'-'+_m+'-'+ui.values[1]);
             }
         });
 
@@ -185,14 +190,15 @@
             values: [ 7, 16 ],
             slide: function( event, ui ) {
                 // calculate the date range
-                var _from = '7/'+ui.values[0]+'/2012',
-                        _to  = '7/'+ui.values[1]+'/2012';
+                var dt = new Date(),
+                        _y = dt.getFullYear(),
+                        _m = dt.getMonth()+1;
                 // now to display it
-                $('.rangedisplay .dtc_from').html(_from);
-                $('.rangedisplay .dtc_to').html(_to);
+                $('.rangedisplay .dtc_from').html('From: '+_m+'/'+ui.values[0]+'/'+_y);
+                $('.rangedisplay .dtc_to').html('To: '+_m+'/'+ui.values[1]+'/'+_y);
                 // now save it for manipulation
-                $('#date_created_from').attr('value',_from);
-                $('#date_created_to').attr('value',_to);
+                $('#date_created_from').attr('value',_y+'-'+_m+'-'+ui.values[0]);
+                $('#date_created_to').attr('value',_y+'-'+_m+'-'+ui.values[1]);
             }
         });
     })
