@@ -1,0 +1,109 @@
+<%= stylesheet_link_tag "facebox" %><div class="main-content clearfix">
+  <div class="wrapper marginTen">
+    <%= flash[:alert] %>
+    <%= flash[:notice] %>
+    <%= @order.errors.full_messages.join(" ,")%>
+      <h1 class="green">Checkout</h1>
+      <%= form_for @order, :url => checkout_site_customer_shippings_path(@site), :method => :post do |f| %>
+      <div class="bodyContainer tBorder bBorder">
+       <div class="leftContainer">
+        <div class="contentSection">
+            <h3 class="eightZeroPer">Shipping</h3>
+            <span class="spanRight"><a href="#" class="openpop">edit shipping</a></span>
+            <div class="contentBox twoZeroPer">
+              <h4>shipping contact</h4>
+              <label class="labelCls"><%= @shipping_address.full_name %></label>
+              <label class="labelCls"><%= @shipping_address.phone %></label>
+              <label class="labelCls"><%= @shipping_address.email %></label>
+            </div>
+            <div class="contentBox twoZeroPer">
+              <h4>shipping address</h4>
+              <label class="labelCls"><%= @shipping_address.address_one %></label>
+              <label class="labelCls"><%= @shipping_address.address_two %></label>
+              <label class="labelCls"><%= @shipping_address.city_with_state %></label>
+              <label class="labelCls"><%= @shipping_address.country %></label>
+            </div>
+          <div class="contentBox noMargin">
+            <h4>shipping method</h4>
+            <ul>
+              <li><%= @order.shipping_gateway.try(:name) %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="contentSection tBorder">
+          <%= f.fields_for :billing_address, @order.billing_address do |fbill|%>
+            <h3>Payment</h3>
+            <div class="contentBox twoZeroPer">
+              <h4>billing contact</h4>
+              <ul>
+                <li>
+                <%= f.check_box :contact_same %>
+                  same as shipping contact</li>
+              </ul>
+              <label class="labelCls">first name:</label>
+              <%= fbill.text_field :firstname, :class => "inputCls" %>
+              <label class="labelCls">last name:</label>
+              <%= fbill.text_field :lastname, :class => "inputCls" %>
+              <label class="labelCls">email:</label>
+              <%= fbill.text_field :email, :class => "inputCls" %>
+              <label class="labelCls">phone:</label>
+              <%= fbill.text_field :phone, :class => "inputCls" %>
+            </div>
+            <div class="contentBox twoZeroPer">
+              <h4>billing address</h4>
+              <ul>
+                <li>
+                  <%= f.check_box :address_same%>
+                  same as shipping address</li>
+              </ul>
+              <label class="labelCls">address:</label>
+              <%= fbill.text_field :address_one, :class => "inputCls" %>
+              <%= fbill.text_field :address_two, :class => "inputCls" %>
+              <label class="labelCls">city</label>
+              <%= fbill.text_field :city, :class => "inputCls" %>
+              <label class="labelCls">state</label>
+              <%= fbill.text_field :state, :class => "inputCls" %>
+              <label class="labelCls">zip code</label>
+              <%= fbill.text_field :zipcode, :class => "inputCls" %>
+            </div>
+          <% end %>
+          <div class="contentBox ">
+            <h4>billing method</h4>
+            <%= f.fields_for :credit_card, @order.credit_card do |cfrm|%>
+             <ul>
+               <% @order.billing_methods.each do |method| %>
+                <li>
+                <input type="radio" name="order[billing_method]" id="shipping_gateway_id" <%  if method == @order.billing_method %>checked="checked" <% end %> value="<%= method %>" />
+                <%= method.humanize %><a href="#"><span class="helpBtn fivePxTop"></span></a></li>
+              <% end %>
+              <label class="labelCls">card number</label>
+              <%= cfrm.text_field :card_number, :class => " inputCls" %>
+              <label class="labelCls">card code</label>
+              <%= cfrm.text_field :card_code, :class => " inputCls fiveZeroPer" %>
+              <span><img width="36" height="23" class="spanImg" src="/css/img/visalogo.png"></span>
+              <label class="labelCls">expires</label>
+              <%= cfrm.select :expiry_month, (1..12).to_a, {}, { :class => "selectCls bottomMargin" } %>
+              <%= cfrm.select :expiry_year, (2012..2020).to_a.reverse, {}, { :class => "selectCls bottomMargin"} %>
+              <label class="labelCls">promotional code</label>
+              <%= cfrm.text_field :promotional_code, :class => " inputCls" %>
+              <li>
+                <input type="checkbox" checked="true" name="">
+                save my billing information</li>
+            </ul>
+            <% end %>
+            <input type="submit" value="continue" class="greenBtn">
+          </div>
+        </div>
+      </div>
+      <%= render :partial => 'cart' %>
+    </div>
+    <% end %>
+    </div>
+    </div>
+    <div class="newsLetter clearfix topMarginTen">
+    <span class="getEmail">Get our email newsletter - </span> <span class="promiss">we won't share your number with anyone else, we promise!</span> <span class="signup clearfix"><span>
+      <input type="text" placeholder="your email address">
+    </span>
+    <img border="0" src="css/img/btnSignupNews.png"> </span>
+    </div>
+<script type="text/javascript"> jQuery(".openpop").facebox("test");</script>

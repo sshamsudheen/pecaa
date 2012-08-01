@@ -31,6 +31,8 @@
         related options
       </a>
     </li>
-    <li <%= check_active('products', '#') %>><a href="#tab6">try it on</a></li>
+    <li <%= check_active('products', 'try_it_on') %>>
+      <a href= <%= (flag ? try_it_on_site_product_path(@site, @product)  : '#')%>>try it on</a>
+    </li>
   </ul>
 </div>

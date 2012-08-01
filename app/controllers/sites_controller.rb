@@ -217,9 +217,13 @@ class SitesController < ApplicationController
     @theme_heading = @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
     customer = Customer.find(session[:customer_id]) if session[:customer_id]
-    icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10), "customer" => customer})
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "content_for_filter" => filters_liquid_variables, "site" => @site, "site_theme"=> @site_theme)
-    render :text => lcontent
+	@shipping = ShippingDetial.limit(3)
+	#orderdetail = Order.find(:all, :joins[' shipping_detials on shipping_detials.order_id = orders.id'])
+	orderdetail = Order.find(:all, :include => :shipping_detial)
+    #icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10)},{ "shippingdetails" => ShippingDetial.limit(2)})
+	icontent = Liquid::Template.parse(@content).render({"orders" => orderdetail, "shipping"=>@shipping})
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site_theme"=> @site_theme, "site" => @site)
+    render :text => lcontent  
   end
 	
   

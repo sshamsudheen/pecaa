@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
     else
 #      redirect_to '/logout'
     end
+ end
+
+  def check_authenticated
+    authenticate_user!
   end
 
   

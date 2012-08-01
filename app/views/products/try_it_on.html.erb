@@ -1,0 +1,167 @@
+<div class="modelWindow">
+  <div class="midSection">
+    <%= render :partial => "shared/products_tab"%>
+    <div id="tabs_content_container">
+      <div id="tab2">
+        <div class="tab2topDiv">
+          <div class="editImgDiv">
+            <img src="/assets/productimg.jpg" width="136" height="100">
+          </div>
+          <div class="eiditTextDiv">
+            <%unless @product.new_record? %>
+            <h2>
+              <%= @product.name%>
+            </h2>
+            <h3>
+              created : <%= @product.created_at.strftime("%m/%d/%y")%>
+            </h3>
+            <h3>
+              last modified : <%= @product.updated_at.strftime("%m/%d/%y")%>
+            </h3><span><img src="/assets/stars.jpg" width="73" height="13"></span> <% end %>
+          </div>
+          <div class="eiditTextDiv"></div>
+        </div>
+        
+          <div class="pages-main tryItonDiv">
+            <div class="hotspotImgBlock">
+              <div class="pages-main">
+                <div class="pages-wrapper">
+                  <!--<div class="searchContent">
+              <input type="text" placeholder="search">
+              <span class="searchIcon"><a href="#"></a></span>
+              </div>
+                    <div class="searchResultBox">
+              <ul>
+                          <li class="active">pants<span><a href="#"><img src="assets/ecomm/images/searchCloseBtn.png" width="20" height="22"></a></span></li>
+                            <li>red pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>blue pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>jean pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>long pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>short pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>yellow pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>green pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li>clear pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+                            <li class="last">leather pants <span><a href="#"><img src="assets/ecomm/images/searchAddBtn.png" width="20" height="22"></a></span></li>
+
+                        </ul>
+                    </div>-->
+                  <div class="site-users left">
+                    <div class="page-data clear">
+                      <div class="userGrid productGrid">
+                        <div class="userGridHeader">
+                          <ul class="ConLibraHeads">
+                            <li>Hotspot Images
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="userGridBody">
+                          <div id="scrollbar1">
+                            <div class="scrollbar">
+                              <div class="track">
+                                <div class="thumb">
+                                  <div class="end"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="viewport">
+                              <div class="shadows"></div>
+                              <div class="overview featureProduct">
+                                <ul class="ConLibra">
+                                  <% hotspot_images.each do |hot_image|%>
+                                  <li>
+                                    <span class="hotspotImages">
+                                      <img src="<%='/frames/'+ hot_image %>" width="100" height="59"></span>
+                                  </li>
+                                  <%end%>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="userGridFooter" style="margin-top:30px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hotspotMid">
+              <p>
+                Drag left or right eye hotspot to position on frame, opposite eye hotspot will be automatically adjusted.
+              </p>
+              <div class="hotspotArrows">
+                <img src="/assets/dragSpot.png" width="196" height="29">
+              </div>
+              <div class="hotspotWindow hotspotImg">
+                <div id="droppable">
+                  <div class='draggable' id="hotspotLeft">
+                    <img src="/assets/dragleftIcon.png" width="53" height="52">
+                  </div>
+                  <div class='draggable' id="hotspotRight">
+                    <img src="/assets/dragrightIcon.png" width="53" height="52">
+                  </div>
+                  <div class="hotspotImg hotspotBigFrame">
+                  <img src="/assets/hotspotimg.png" width="255" height="90">
+                  </div>
+                </div>
+                <div class="resetBtn">
+                  <img src="/assets/resettryit.png" width="119" height="32">
+                </div>
+              </div>
+            </div>
+            <div class="hotspotPreview">
+              <h4>preview</h4>
+              <div id="droppable" class="hotspotImg">
+                <div id="hotspotLeft-img" class="draggable" style="<%=positioning_points(@tryitimage)[0]%>">
+                  <img width="<%=positioning_points(@tryitimage)[1]%>" height="34" src="">
+                </div><img width="189" height="164" src="<%= @tryitimage ? @tryitimage.upload : '/assets/preivewimg.png'%>">
+              </div>
+              <div class="resetBtn"></div>
+            </div>
+            <div style="float:right;">
+              <%=select "select", "preview", @tryitimages.collect{|try| [try.file_name, try_it_on_site_product_path(@site, @product, :try_image_id => try.id)]},{:prompt => 'Preview Images'}, :width=>'100px'%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $('#productsEdit').tinyscrollbar();
+    $(".ConLibra li:even").addClass("alt");
+  })
+</script>
+
+<script type="text/javascript">
+  $('.hotspotImages img').click(function(){
+    $('.hotspotBigFrame img').attr('src',$(this).attr('src'));
+    $('#hotspotLeft-img img').attr('src',$(this).attr('src'));
+  })      
+</script>
+<script type="text/javascript">
+  $(function() {
+  $( ".draggable" ).draggable({ revert: "invalid" });;
+  $( "#droppable" ).droppable({
+    drop: function( event, ui ) {
+      $( this )
+        .addClass( "ui-state-highlight" )
+        .find( "p" )
+        .html( "Dropped!" );
+      left_style_position = $('#hotspotLeft').attr('style');
+      right_style_position = $('#hotspotRight').attr('style');
+      $('#left_eye_position').attr('value',left_style_position);
+      $('#right_eye_position').attr('value',right_style_position);
+    }
+  });
+  });
+  $("select").change(function(){
+	  var link = $(this).attr('value');
+	  if (link != "Preview Images"){
+	    window.location = $(this).attr('value');
+	  }
+	})
+	
+</script>

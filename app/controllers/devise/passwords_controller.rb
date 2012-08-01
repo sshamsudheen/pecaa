@@ -18,19 +18,10 @@ class Devise::PasswordsController < ApplicationController
     end
 
     if successful_and_sane?(resource)
-		set_flash_message(:notice, :send_instructions) if is_navigational_format?
-		respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
+      set_flash_message(:notice, :send_instructions) if is_navigational_format?
+      respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
     else
-		@userexist=User.where(" username = ?" , params[resource_name][:username])		
-		if @userexist.size < 1		
-			set_flash_message(:notice, :username_not_found)
-		else
-			@emailexist=User.where(" email = ?" , params[resource_name][:email])
-			if @emailexist.size == 0
-				set_flash_message(:notice, :email_not_found)
-			end	
-		end		
-		respond_with_navigational(resource){ render_with_scope :new }
+      respond_with_navigational(resource){ render_with_scope :new }
     end
   end
 

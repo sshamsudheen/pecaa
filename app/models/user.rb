@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
   end
   
   def firstname
-    username.split(" ").first
+    username.split(" ").first if username
   end
   
   def lastname
-    username.split(" ").last
+    username.split(" ").last if username
   end
   
   

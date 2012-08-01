@@ -55,6 +55,10 @@ Mystore3::Application.routes.draw do
       resources :passwords
     end
 
+    resources :customer_shippings do
+      post :checkout, :on => :collection
+    end
+
     get 'optional', :on => :member
     get 'done', :on => :member
     post 'optional_create', :on => :member
@@ -249,7 +253,7 @@ Mystore3::Application.routes.draw do
   match 'content_libraries/search', :to=> 'content_libraries#search',:as=>:content_search
   
   resources :content_libraries do
-    
+    get 'delete', :on => :member, :to => 'content_libraries#destroy'
   end
   
 
