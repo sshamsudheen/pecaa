@@ -1,0 +1,41 @@
+      <div class="rightSideBar" style="width: 272px">
+        <div class="summarySection">
+          <h3>Order Summary</h3>
+          <dl class="fourZeroH dotBBorder">
+            <dt>item subtotal</dt>
+            <dd>$248.00</dd>
+            <dt>shipping & handling</dt>
+            <dd>$4.12</dd>
+          </dl>
+          <dl class="fourZeroH dotBBorder">
+            <dt>total before tax</dt>
+            <dd>$252.12</dd>
+            <dt>sales tax</dt>
+            <dd>$0.00</dd>
+          </dl>
+          <dl class="fiveZeroH ">
+            <dt class="greybold">grand total</dt>
+            <dd class="greybold">$252.12</dd>
+          </dl>
+        </div>
+        <div class="summarySection tBorder">
+          <h3>Item Summary</h3>
+          <dl class="sixZeroH dotBBorder">
+            <% session[:cart].each do |id, quantity|%>
+              <% product = Product.find id %>
+              <dt><%= product.name %> </dt>
+              <dd>$<%= product.price_with_quantity(quantity) %></dd>
+            <% end %>
+          </dl>
+          <dl class="fourZeroH ">
+            <dt class="greybold">subtotal</dt>
+            <dd class="greybold">$375.00</dd>
+          </dl>
+          <dl class="fourZeroH imageCls">
+            <a href="#"><img src="css/img/editCartImg.png" width="140" height="53"></a>
+          </dl>
+        </div>
+        <div class="summarySection tBorder">
+          <p>please complete the shipping and payment sections to finish your order</p>
+        </div>
+      </div>

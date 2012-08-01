@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720185157) do
+ActiveRecord::Schema.define(:version => 20120724161234) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20120720185157) do
     t.string   "type"
     t.integer  "site_id"
     t.integer  "created_by"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
   end
 
   add_index "addresses", ["created_by"], :name => "index_addresses_on_created_by"
@@ -153,6 +157,17 @@ ActiveRecord::Schema.define(:version => 20120720185157) do
 
   create_table "credit_card_types", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "card_number"
+    t.string   "card_code"
+    t.string   "expiry_month"
+    t.string   "expiry_year"
+    t.string   "promotional_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -342,6 +357,10 @@ ActiveRecord::Schema.define(:version => 20120720185157) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "grand_total"
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_gateway_id"
+    t.string   "billing_method"
   end
 
   create_table "password_histories", :force => true do |t|
@@ -379,8 +398,8 @@ ActiveRecord::Schema.define(:version => 20120720185157) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id",                                           :default => 0,    :null => false
-    t.integer  "list_order",                                          :default => 0,    :null => false
+    t.integer  "parent_id"
+    t.integer  "list_order"
     t.integer  "site_id"
     t.boolean  "is_active",                                           :default => true
     t.string   "price_modifier"
@@ -869,7 +888,6 @@ ActiveRecord::Schema.define(:version => 20120720185157) do
     t.text     "secret_code"
     t.text     "filename"
     t.text     "content_type"
-    t.boolean  "is_active",     :default => true
   end
 
   create_table "try_it_images", :force => true do |t|

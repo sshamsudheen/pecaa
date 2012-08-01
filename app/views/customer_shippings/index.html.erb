@@ -1,0 +1,90 @@
+<div class="main-content clearfix">
+  <div class="wrapper marginTen">
+    <h1 class="green">Checkout</h1>
+
+    <div class="bodyContainer tBorder bBorder">
+      <div class="leftContainer ">
+        <div class="contentSection">
+          <form id="search-form" name="search" method="post" action="/sites/<%= params[:site_id] %>/customer_shippings">
+            <h3 class="eightZeroPer">Shipping</h3>
+
+            <div class="contentBox twoZeroPer">
+              <h4>shipping contact</h4>
+              <label class="labelCls">first name:</label>
+              <input name="address[firstname]" type="text" class="inputCls" id="address_firstname" value="<%= @address.firstname %>"/>
+              <label class="labelCls">last name:</label>
+              <input name="address[lastname]" type="text" class="inputCls" id="address_lastname" value="<%= @address.lastname %>"/>
+              <label class="labelCls">email address:</label>
+              <input name="address[email]" type="text" class="inputCls" id="address_email" value="<%= @address.email %>"/>
+              <label class="labelCls">phone:</label>
+              <input name="address[phone]" type="text" class="inputCls" id="address_phone" value="<%= @address.phone %>"/>
+            </div>
+
+
+            <div class="contentBox twoZeroPer">
+              <h4>shipping address</h4>
+              <label class="labelCls">address:</label>
+              <input name="address[address_one]" type="text" class="inputCls" id="address_address_one" value="<%= @address.address_one %>"/>
+              <input name="address[address_two]" type="text" class="inputCls" id="address_address_two" value="<%= @address.address_two %>"/>
+              <label class="labelCls">city</label>
+              <input name="address[city]" type="text" class="inputCls" id="address_city" value="<%= @address.city %>"/>
+              <label class="labelCls">state</label>
+              <input name="address[state]" type="text" class="inputCls" id="address_state" value="<%= @address.state %>"/>
+              <label class="labelCls">zip code</label>
+              <input name="address[zipcode]" type="text" class="inputCls" id="address_zipcode" value="<%= @address.zipcode %>"/>
+            </div>
+          <div class="contentBox noMargin">
+            <h4>shipping method</h4>
+            <ul>
+              <% @site_shipping_gateways.each_with_index do |site_shipping_gateway, i| %>
+                <% site_shipping_gateway.display_names.each do |display_name| %>
+              <li>
+                <input type="radio" name="shipping_gateway[id]" id="shipping_gateway_id" checked="<%= true if i==0 %>"/>
+                <%= display_name.humanize %><a href="#"><span class="helpBtn fivePxTop"></span></a></li>
+                  <% end %>
+              <% end %>
+
+            </ul>
+            <input type='submit' class="greenBtn" value="continue"/>
+          </div>
+        </div>
+        </form>
+        <div class="contentSection tBorder">
+          <form id="search-form" name="search" method="post" action="/sites/{{site.id}}/customer_login">
+            <h3 class="eightZeroPer">Payment</h3>
+            <span class="spanRight"><a href="#">edit payment</a></span>
+
+            <div class="contentBox twoZeroPer">
+              <h4>billing contact</h4>
+              <label class="labelCls">James Smith</label>
+              <label class="labelCls">333-555-6666</label>
+              <label class="labelCls">jsmith@gmail.com</label>
+            </div>
+          </form>
+          <form id="search-form" name="search" method="post" action="/sites/{{site.id}}/create_customer">
+            <div class="contentBox twoZeroPer">
+              <h4>billing address</h4>
+              <label class="labelCls">1234 fake st.</label>
+              <label class="labelCls">Apt 2a</label>
+              <label class="labelCls">Allegheny, OH 53121</label>
+              <label class="labelCls">USA</label>
+            </div>
+          </form>
+          <div class="contentBox noMargin">
+            <h4>billing method</h4>
+            <ul>
+              <li><img src="css/img/visalogo.png" width="36" height="23">..8343</li>
+              <li>promo code : AXZ99</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <%= render :partial => 'cart' %>
+    </div>
+  </div>
+</div> <div class="newsLetter clearfix topMarginTen">
+    <span class="getEmail">Get our email newsletter - </span> <span class="promiss">we won't share your number with anyone else, we promise!</span> <span class="signup clearfix"><span>
+      <input type="text" placeholder="your email address">
+    </span>
+    <img border="0" src="css/img/btnSignupNews.png"> </span>
+  </div>

@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def redirect_location(resource_name, resource)
-    site_carts_path(@site)
+    site_customer_shippings_path(@site)
   end
 
 

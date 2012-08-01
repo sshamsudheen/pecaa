@@ -231,7 +231,7 @@
 .productGrid .userName .pointer {
 	background-image:none;
 }
-#orders1 .pointer {
+#orders1 .userName .pointer {
 	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
 }
 /*product setup*/
@@ -281,7 +281,11 @@ background-position:20px 5px
 /*.pages-wrapper {
     width: 980px;
 }*/
+
 /* categroy section*/
+
+.categoryMain {
+}
 .categoryMain .searchContent {
 	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #666666;
@@ -560,6 +564,18 @@ width:100%;
 	float:right;
 
 }
+
+.addNewUser {
+    background: url("img/btn_addNewUser.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    float: right;
+    font-size: 14px;
+    height: 30px;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 45px;
+    padding-top: 5px;
+}
 .ProductOptions .manageDateLeftBox {
 	float:left;
 	width:412px;
@@ -575,7 +591,7 @@ width:100%;
 	width: 100%;
 }
 .ProductOptions .productGrid {
-	width:560px;
+	width:602px;
 	float:right;
 }
 .ProductOptions .userGridHeader {
@@ -596,7 +612,7 @@ width:100%;
 }
 .ProductOptions ul.ConLibraHeads li span.userName {
 	display: inline-block;
-	width: 230px;
+	width: 315px;
 	text-align:left;
 	padding-left:5px;
 }
@@ -630,7 +646,7 @@ width:100%;
 	padding-top: 5px;
 	position: relative;
 	vertical-align: top;
-	width: 230px;
+	width: 303px;
 	background: url("img/icon_movable.png") no-repeat scroll 98% center transparent;
 	display: inline-block;
 	text-align:left;
@@ -998,11 +1014,11 @@ span img {
 	padding: 10px;
 	width:98%;
 	background-color:#fff;
-	min-height:560px;
+	min-height:550px;
 	border-radius:4px;
 }
 .tab_content {
-/*  display: none;*/
+	display: none;
 }
 /* end tabd*/
 
@@ -1598,39 +1614,41 @@ margin-right:10px;
 
 }
 .tryItonDiv .hotspotMid{
-width:330px;
-float:left;	
-margin-right:10px;
-background-color:#f9f9f9;
-border:solid #c0c0c0 1px;
-border-radius:8px;
-height:400px;
-padding:10px;
-}
-.tryItonDiv .hotspotPreview{
-width:250px;
-float:left;	
-
-}
-.hotspotPreview h4{
-text-align:center;
-color:#999999;	
+	width:330px;
+	float:left;	
+	margin-right:10px;
+	background-color:#f9f9f9;
+	border:solid #c0c0c0 1px;
+	border-radius:8px;
+	height:400px;
+	padding:10px;
+	position: relative;
 }
 
-.tryItonDiv .ConLibraHeads{
-text-align:center;	
+.tryItonDiv .hotspotPreview {
+	width: 250px;
+	float: left;
+	height:250px; 
+	overflow:hidden;
+}
+.hotspotPreview h4 {
+	text-align: center;
+	color: #999999;
+}
+.tryItonDiv .ConLibraHeads {
+	text-align: center;
+}
+.tryItonDiv .hotspotImages {
+	float: left;
+	border-top: solid 1px #333333;
+	border-left: solid 1px #333333;
+	height: 60px;
+	width: 100px;
+	background-color: #fff;
+	position: relative;
+	z-index: 100;
 }
 
-.tryItonDiv .hotspotImages{
- float:left;
- border-top:solid 1px #333333;
-  border-left:solid 1px #333333;
- height:60px;
- width:100px;	
- background-color:#fff;
- position:relative;
- z-index:100;
-}
 .tryItonDiv .hoverImg{
 /*background-image:url(img/imgOverImg.png);
 width:100px;
@@ -1668,54 +1686,49 @@ width:220px
     width: 100%;
 }
 
-
 .tryItonDiv #hotspotRight {
-	width: 50px;
 	height: 50px;
-	position: relative;
-	float: left;
-	margin: 10px 50px;
+   left: 145px;
+    position: absolute;
+    top: -100px;
+    width: 50px;
 }
 
-
-
 .tryItonDiv #hotspotLeft {
-	width: 50px;
-	position: relative;
 	height: 50px;
-	float: left;
-	margin: 10px 50px;
+   left: -10px;
+    position: absolute;
+    top: -100px;
+    width: 50px;
 }
 
 .tryItonDiv .hotspotArrows{
-	float:left;
-	padding:5px 10px;
-	   text-align: center;
+	margin: 60px auto 0;
+    padding: 5px 10px;
+    text-align: center;
     width: 285px;
-	
+    clear: both;
 }
 .tryItonDiv .hotspotWindow{
  border:solid 1px #c0c0c0;	
- background-image:url(img/hotspotbg.jpg);
  margin:10px;
- float:left;
  height:200px;
  width:310px;
-	
+}
+.tryItonDiv .hotspotWindow.grid{
+	background-image:url(img/hotspotbg.jpg);
 }
 .tryItonDiv div.checkBox{
-background-image:url(img/imgcheck.jpg);
-width:21px;
-height:21px;
-margin:0;
+	background-image:url(img/imgcheck.jpg);
+	width:21px;
+	height:21px;
+	margin:0;
 	z-index:200;
 	position:relative;
 	margin-top:-20px;
-
 	float:right;
 	display:block;
 	cursor:pointer;
-	
 }
 
 .tryItonDiv .imgOverImg{
@@ -1725,15 +1738,15 @@ height:53px;
 z-index:300;	
 }
 .tryItonDiv .resetBtn{
- margin:70px auto;
+	 margin:0 auto;
 	 width:73%;
 	 text-align:center;
 }
 .tryItonDiv .hotspotImg{
-	 margin:50px auto;
-	 width:73%;
-	 
-	
+	margin:0 auto;
+	position: relative;
+	width:189px;
+	height:164px;
 }
 
 .eiditTextDiv span.onBtn {
@@ -1816,8 +1829,7 @@ z-index:300;
 }
 /* for products page grid styles */
 /* Tiny Scrollbar */
-#products1 .viewport { overflow: hidden; position: relative; background:#CCC; border-left:1px solid #333333; }
-#products1 ul.ConLibra{border:0}
+#products1 .viewport { overflow: hidden; position: relative; background:#CCC; height:300px; }
 /* for products page grid styles */
 /* Tiny Scrollbar */
 #orders1 .viewport {height: 465px; }

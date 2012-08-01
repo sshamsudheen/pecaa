@@ -1,0 +1,168 @@
+                         <div class="main-content clearfix">
+                           <div class="wrapper marginTen">
+
+                               <h1 class="green">Checkout</h1>
+                               <form accept-charset="UTF-8" action="/sites/{{site.id}}/customer_shippings/checkout" class="new_order" id="new_order" method="post">
+                               <div style="margin:0;padding:0;display:inline">
+                               <input name="utf8" type="hidden" value="✓">
+                               <input name="authenticity_token" type="hidden" value="EgURyTSaxpBF6L5EvldeLznB4lJOloYmIBYFYp1Vjww=">
+                               </div>
+                               <div class="bodyContainer tBorder bBorder">
+                                <div class="leftContainer">
+                                 <div class="contentSection">
+                                     <h3 class="eightZeroPer">Shipping</h3>
+                                     <span class="spanRight"><a href="/sites/{{site.id}}/customer_shippings">edit shipping</a></span>
+                                     <div class="contentBox twoZeroPer">
+                                       <h4>shipping contact</h4>
+                                       <label class="labelCls">{{ shipping_address.full_name }}</label>
+                                       <label class="labelCls">{{ shipping_address.phone }}</label>
+                                       <label class="labelCls">{{ shipping_address.email }}</label>
+                                     </div>
+                                     <div class="contentBox twoZeroPer">
+                                       <h4>shipping address</h4>
+                                       <label class="labelCls">{{ shipping_address.address_one }}</label>
+                                       <label class="labelCls">{{ shipping_address.address_two }}</label>
+                                       <label class="labelCls">{{shipping_address.city_with_state }}</label>
+                                       <label class="labelCls">{{ shipping_address.country }}</label>
+                                     </div>
+                                   <div class="contentBox noMargin">
+                                     <h4>shipping method</h4>
+                                     <ul>
+                                       <li>{{ shipping_gateway_name }}</li>
+                                     </ul>
+                                   </div>
+                                 </div>
+                                 <div class="contentSection tBorder">
+                                     <h3>Payment</h3>
+                                     <div class="contentBox twoZeroPer">
+                                       <h4>billing contact</h4>
+                                       <ul>
+                                         <li>
+                                         <input name="order[contact_same]" type="hidden" value="0"><input checked="checked" id="order_contact_same" name="order[contact_same]" type="checkbox" value="1">
+                                           same as shipping contact</li>
+                                       </ul>
+                                       <label class="labelCls">first name:</label>
+                                       <input class="inputCls" id="order_billing_address_firstname" name="order[billing_address][firstname]" size="30" type="text" value="{{billing_address.firstname}}">
+                                       <label class="labelCls">last name:</label>
+                                       <input class="inputCls" id="order_billing_address_lastname" name="order[billing_address][lastname]" size="30" type="text" value="{{billing_address.lastname}}">
+                                       <label class="labelCls">email:</label>
+                                       <input class="inputCls" id="order_billing_address_email" name="order[billing_address][email]" size="30" type="text" value="{{billing_address.email}}">
+                                       <label class="labelCls">phone:</label>
+                                       <input class="inputCls" id="order_billing_address_phone" name="order[billing_address][phone]" size="30" type="text" value="{{billing_address.phone}}">
+                                     </div>
+                                     <div class="contentBox twoZeroPer">
+                                       <h4>billing address</h4>
+                                       <ul>
+                                         <li>
+                                           <input name="order[address_same]" type="hidden" value="0"><input checked="checked" id="order_address_same" name="order[address_same]" type="checkbox" value="1">
+                                           same as shipping address</li>
+                                       </ul>
+                                       <label class="labelCls">address:</label>
+                                       <input class="inputCls" id="order_billing_address_address_one" name="order[billing_address][address_one]" size="30" type="text" value="{{billing_address.address_one}}">
+                                       <input class="inputCls" id="order_billing_address_address_two" name="order[billing_address][address_two]" size="30" type="text" value="{{billing_address.address_two}}">
+                                       <label class="labelCls">city</label>
+                                       <input class="inputCls" id="order_billing_address_city" name="order[billing_address][city]" size="30" type="text" value="{{billing_address.city}}">
+                                       <label class="labelCls">state</label>
+                                       <input class="inputCls" id="order_billing_address_state" name="order[billing_address][state]" size="30" type="text" value="{{billing_address.state}}">
+                                       <label class="labelCls">zip code</label>
+                                       <input class="inputCls" id="order_billing_address_zipcode" name="order[billing_address][zipcode]" size="30" type="text" value="{{billing_address.zipcode}}">
+                                     </div>
+
+                                     <div class="contentBox ">
+                                     <h4>billing method</h4>
+
+                                      <ul>
+                                         {% for billing_method in order.billing_methods %}
+                                         <li>
+                                         {% if selected_billing == billing_method %}
+                                           <input type="radio" name="order[billing_method]" id="shipping_gateway_id" checked="checked" value="{{selected_billing}}">
+                                         {% else %}
+                                           <input type="radio" name="order[billing_method]" id="shipping_gateway_id" value="{{billing_method}}">
+                                         {% endif %}
+                                         {{ billing_method }}<a href="#"><span class="helpBtn fivePxTop"></span></a></li>
+                                         {% endfor %}
+
+
+
+                                       <label class="labelCls">card number</label>
+                                       <input class=" inputCls" id="order_credit_card_card_number" name="order[credit_card][card_number]" size="30" type="text">
+                                       <label class="labelCls">card code</label>
+                                       <input class=" inputCls fiveZeroPer" id="order_credit_card_card_code" name="order[credit_card][card_code]" size="30" type="text">
+                                       <span><img width="36" height="23" class="spanImg" src="/css/img/visalogo.png"></span>
+                                       <label class="labelCls">expires</label>
+                                       <select class="selectCls bottomMargin" id="order_credit_card_expiry_month" name="order[credit_card][expiry_month]"><option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                         <option value="5">5</option>
+                         <option value="6">6</option>
+                         <option value="7">7</option>
+                         <option value="8">8</option>
+                         <option value="9">9</option>
+                         <option value="10">10</option>
+                         <option value="11">11</option>
+                         <option value="12">12</option></select>
+                                       <select class="selectCls bottomMargin" id="order_credit_card_expiry_year" name="order[credit_card][expiry_year]"><option value="2020">2020</option>
+                         <option value="2019">2019</option>
+                         <option value="2018">2018</option>
+                         <option value="2017">2017</option>
+                         <option value="2016">2016</option>
+                         <option value="2015">2015</option>
+                         <option value="2014">2014</option>
+                         <option value="2013">2013</option>
+                         <option value="2012">2012</option></select>
+                                       <label class="labelCls">promotional code</label>
+                                       <input class=" inputCls" id="order_credit_card_promotional_code" name="order[credit_card][promotional_code]" size="30" type="text">
+                                       <li>
+                                         <input type="checkbox" checked="true" name="">
+                                         save my billing information</li>
+                                     </ul>
+                                     <input type="submit" value="continue" class="greenBtn">
+                                   </div>
+                                 </div>
+                               </div>
+                                     <div class="rightSideBar" style="width: 272px">
+                                 <div class="summarySection">
+                                   <h3>Order Summary</h3>
+                                   <dl class="fourZeroH dotBBorder">
+                                     <dt>item subtotal</dt>
+                                     <dd>$248.00</dd>
+                                     <dt>shipping & handling</dt>
+                                     <dd>$4.12</dd>
+                                   </dl>
+                                   <dl class="fourZeroH dotBBorder">
+                                     <dt>total before tax</dt>
+                                     <dd>$252.12</dd>
+                                     <dt>sales tax</dt>
+                                     <dd>$0.00</dd>
+                                   </dl>
+                                   <dl class="fiveZeroH ">
+                                     <dt class="greybold">grand total</dt>
+                                     <dd class="greybold">$252.12</dd>
+                                   </dl>
+                                 </div>
+                                 <div class="summarySection tBorder">
+                                   <h3>Item Summary</h3>
+                                   <dl class="sixZeroH dotBBorder">
+                                   {% for cart_product in cart_products %}
+
+                                       <dt>{{ cart_product.name }} </dt>
+                                       <dd>${{ cart_product.price }} </dd>
+                                     {% endfor %}
+                                   </dl>
+                                   <dl class="fourZeroH ">
+                                     <dt class="greybold">subtotal</dt>
+                                     <dd class="greybold">$375.00</dd>
+                                   </dl>
+                                   <dl class="fourZeroH imageCls">
+                                     <a href="#"><img src="css/img/editCartImg.png" width="140" height="53"></a>
+                                   </dl>
+                                 </div>
+                                 <div class="summarySection tBorder">
+                                   <p>please complete the shipping and payment sections to finish your order</p>
+                                 </div>
+                               </div>
+                             </div>
+                             </div>
+                             </div>
+
