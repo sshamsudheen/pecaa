@@ -11,37 +11,49 @@
   <div class="clear"></div>
   <!-- col 1 -->
   	<div class="userSearch">
+	<form name="search" id="search" action="/content_libraries/search" method="post">
 <!-- rc table -->
         <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
         <!-- search and select -->
-        	<input type="text" class="userSearchField" />
-            <img src="images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" />
+        	<input type="text" class="userSearchField" name="name" />
+            <img src="images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" onclick="javascript: document.search.submit();"/>
             <div class="selectDiv">
-            <select class="select" title="Select one">
-            	<option>All columns</option>
-                <option>Blue</option>
-                <option selected="selected">Red</option>
-                <option>Green</option>
-                <option>Yellow</option>
-                <option>Brown</option>
+            <select class="select" title="Select one" name="source_type">
+            	<option value="">All</option>
+                <option value="text">Text</option>
+                <option value="file">File</option>
+                <option value="image">Image</option>
+                <option value="video">Video</option>
+                <option value="form">Form</option>
             </select>
             </div>
             <!-- end of search and select -->
 
 <!-- names -->
-	<div class="rcBlue2">
+<div>
+<select name="added_by">
+<option value="">all</option>
+<% @users.each do |user| %>
+	<option value="<%= user.username %>"> <%= user.username %></option>
+	<br>
+	<% end %>
+</select>
+</div>
+
+	<!-- <div class="rcBlue2">
+	
     	<div class="rcBlack2">
         <span>Smith</span> <img src="images/icon-remove.png" />
         </div>
         <span>name</span>
-    </div>
+    </div> 
 
     <div class="rcBlue2">
     	<div class="rcBlack2">
         <span>Admin</span> <img src="images/icon-remove-red.png" />
         </div>
         <span>role</span>
-    </div>
+    </div>-->
 <!-- end of names -->
         </div>
 <div class="userPanelDevider"></div>
@@ -49,7 +61,7 @@
 
 <!-- slider rc -->
 <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
-	<div class="searchOptions"><input class="styled" type="checkbox" id="dateAdded" /><span>date added</span></div>
+	<div class="searchOptions"><input class="styled" type="checkbox" id="dateAdded" name="created_at" /><span>date added</span></div>
     <div class="clear"></div>
 
     <input type="text" class="datePicker" /><img src="images/icon-calender.png" class="calender" />
@@ -57,7 +69,7 @@
     <input type="text" class="datePickerRight" /><img src="images/icon-calender.png" class="calender" />
 <div class="clearHeight10"></div>
 
-<div class="searchOptions"><input class="styled" type="checkbox" id="lastUsed" /><span>date last used</span></div>
+<div class="searchOptions"><input class="styled" type="checkbox" id="lastUsed" name="last_used"/><span>date last used</span></div>
 
 </div>
 <!-- end of rc slider -->
@@ -74,7 +86,8 @@
 
 </div>
 <!-- end of rc slider -->
-
+<input type="submit" name="submit" value="Search">
+</form>
     </div>
 
   <!-- col 2 -->

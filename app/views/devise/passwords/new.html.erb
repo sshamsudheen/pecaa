@@ -20,6 +20,7 @@
 	</div>
 	
 	<p><%= f.submit "Get Password",:class=>'blueButton'%></p>
+	<%if flash[:notice] %><div class="loginErrorMsg"><%= flash[:notice] %>  </div><%end%>
 <%end%>
 
 <script type="text/javascript">
