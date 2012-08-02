@@ -145,6 +145,9 @@ class SitesController < ApplicationController
     # now time to render the view
     render :action => 'index'
   end
+
+  def system_stats
+  end
   
   def preview
     @site = Site.find(params[:id])

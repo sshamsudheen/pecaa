@@ -59,6 +59,12 @@
 	width:768px;
 	margin-bottom:30px;
 }
+.usersLeftPane.ctrlUserLeft{
+    width:234px;
+}
+.site-users.ctrlSiteUsers{
+    width:685px;
+}
 .usersLeftPane{
 	width:233px;
 	padding-right: 10px;

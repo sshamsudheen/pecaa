@@ -80,7 +80,8 @@ Mystore3::Application.routes.draw do
     post 'create_customer', :on => :member
     post 'customer_login', :on => :member
     get 'user_dashboard', :on => :member
-	get 'order_history', :on => :member
+	  get 'order_history', :on => :member
+    get 'system_stats', :on => :collection
 
     
     resources :inventory_options
