@@ -46,7 +46,9 @@ Mystore3::Application.routes.draw do
   resources :add_forms do
     get 'question_detail', :on => :collection
   end
-  resources :external_links 
+  resources :external_links
+
+  get 'orders_report', :to => 'reports#orders_report'
   
   resources :sites do
     devise_scope :user do

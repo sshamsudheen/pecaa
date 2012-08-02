@@ -360,7 +360,7 @@ float:left; padding:1px 0px 0px 10px;
     background:url(img/btn_deleteUser_active.png) no-repeat left center;
 }
 
-.deletetag_disaled {
+.deletetag_disabled {
     background:url(img/btn_deleteUser_disabled.png) no-repeat left center;
 }
 
@@ -945,7 +945,24 @@ button{
 .searchOptions .anoption {
     margin-bottom: 25px;
 }
-.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to {
+.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to {
     padding-left: 40px;
 }
 .searchMiscOptions span{display: inline-block;}
+
+ul.ConLibra .website, ul.ConLibraHeads .website {
+     border-right:1px solid #999999; float:left; padding:0px 5px; text-align:left; width:170px;
+}
+
+ul.ConLibra .ostatus, ul.ConLibraHeads .ostatus {
+    border-right: 1px solid #999999; float: left; padding: 0 5px; text-align: left; width: 60px;
+}
+
+ul.ConLibra .orderedby, ul.ConLibraHeads .orderedby {
+    border-right: 1px solid #999999; float: left; padding: 0 5px; text-align: left; width: 130px;
+}
+
+ul.ConLibra .total, ul.ConLibraHeads .total {
+    float: left; padding: 0 5px; text-align: left; width: 70px;
+}
+
