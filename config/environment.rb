@@ -12,6 +12,6 @@ ActionMailer::Base.smtp_settings = {
     :port => "587",
     :domain => "GMAIL",
     :authentication => :plain,
-    :user_name => "pecaa.spree",
+    :user_name => "pecaa.dev",
     :password => "pecaa123"
   }
