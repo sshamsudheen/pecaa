@@ -1,0 +1,179 @@
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<div class="ueBodyContent">
+  <div class="btnGreyLeft">
+    <%= button_to 'New Site', new_site_path, :class=>'btnGrey', :method=>"get" %>
+  </div>
+  <div class="userSearch">
+    <!-- rc table -->
+    <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
+      <!-- search and select -->
+      <form action=<%=url_for(:action=>:search)%> method="post" name="searchbox" id='searchbox'>
+        <input id="tokentag" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+        <input type="text" name='query' class="userSearchField" value="<%=params[:query]%>"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
+        <div class="selectDiv">
+          <select name='search_on'class="select" title="Select one">
+            <option selected value='website'>website</option>
+            <option selected value='status'>status</option>
+            <option selected value='ordered-by'>ordered by</option>
+          </select>
+        </div><!-- end of search and select -->
+      <!-- names -->
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>Smith</span>
+          <span class="deletetag_active">&nbsp;</span>
+        </div>
+        <span>orderedby</span>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>onhold</span>
+          <span class="deletetag_disabled">&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>shipped</span>
+          <span class="deletetag_disabled">&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>this.com</span>
+          <span class="deletetag_disabled">&nbsp;</span>
+        </div>
+        <span>website</span>
+      </div>
+      <!-- end of names -->
+    </div>
+    <div class="userPanelDevider"></div>
+    <!-- end of rc table -->
+    <!-- slider rc -->
+    <% # init current month n year
+       _c_m = DateTime.now.month.to_s
+       _c_y = DateTime.now.year.to_s
+    %>
+    <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+      <div class="searchOptions">
+        <div class="anoption">
+            <input type=checkbox id="date_placed" name="date_placed" ><span>date placed</span>  <!-- class="styled"  -->
+            <div class="edate-slider" id='dtpRange'>
+              <%=hidden_field_tag :date_placed_from%>
+              <%=hidden_field_tag :date_placed_to%>
+            </div>
+            <div class="rangedisplay">
+              <span class="dtp_from">From: <%=_c_m+'/7/'+_c_y%></span>
+              <span class="dtp_to">To: <%=_c_m+'/16/'+_c_y%></span>
+            </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="clearHeight10"></div>
+    </div><!-- end of rc slider -->
+    <div class="userPanelDevider"></div>
+    <!-- options -->
+    <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+      <div class="searchMiscOptions">
+        <span><input type="radio" name="misc" value="all" checked="checked" />show all sites</span>
+        <span><input type="radio" name="misc" value="live" >show live sites only</span>
+        <span><input type="radio" name="misc" value="inactive" >show inactive sites only</span>
+      </div>
+      <div class="clear"></div>
+      <div class="clear"></div>
+      <div class="clearHeight10"></div>
+      <input type="submit" value='Search' class="btnLogin">
+      </form>
+    </div><!-- end of rc slider -->
+  </div><!-- end of col1 -->
+  <!-- col 2 -->
+  <div class="userGrid">
+    <div class="userGridHeader">
+      <ul class="ConLibraHeads">
+        <li>
+          <span class="website">Website<br><br><br></span>
+          <span class="domain">Order #<br><br></span>
+          <span class="ostatus">Status<br><br></span>
+          <span class="addedBy">Date Placed<br></span>
+          <span class="orderedby">Ordered By<br><br></span>
+          <span class="total">Total<br><br></span>
+        </li>
+      </ul>
+    </div><!-- grid body -->
+    <div class="userGridBody">
+      <div id="scrollbar1">
+        <div class="scrollbar">
+          <div class="track">
+            <div class="thumb">
+              <div class="end"></div>
+            </div>
+          </div>
+        </div>
+        <div class="viewport">
+          <div class="overview">
+            <%if @orders.length > 0%>
+                <ul class="ConLibra" id="reports">
+                  <%@orders.each do |order|%>
+                    <li class="dark">
+                      <% # build the website name with the preview link
+                         site_name = order.site.domain_name.nil? ? order.site.name : order.site.domain_name
+                         website =  truncate(site_name, :length => 20, :separator => '..')
+                         # get the ordered user
+                         ordered_by = order.customer_email
+                         if !order.site_user_id.nil?
+                           if !order.site.created_by.nil?
+                             if order.site.created_by.firstname.nil? and order.site.created_by.lastname.nil?
+                               ordered_by = order.site.created_by.username
+                             else
+                               ordered_by = order.site.created_by.firstname + ' ' + order.site.created_by.lastname
+                             end
+                           end
+                         end
+                      %>
+                      <span class="website"><%=link_to website, order.site, :class=>"links"%></span>
+                      <span class="domain"><%=order.order_id%></span>
+                      <span class="ostatus"><%=order.ship_status%></span>
+                      <span class="addedBy"><%=order.created_at.strftime('%m/%d/%Y')%></span>
+                      <span class="orderedby"><%=truncate(ordered_by, :length => 20, :separator => '..')%></span>
+                      <span class="total">$<%=order.total_amt%></span>
+                    </li>
+                  <%end%>
+              <%else%>
+                  <li class="dark">
+                    <span>Your search doesn't yield any data.. try again!</span>
+                  </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end of grid body -->
+  <div class="userGridFooter"></div>
+  <div class="clear"></div>
+</div><!-- end of col 2 -->
+<%= javascript_include_tag '/assets/users/scripts/data_picker_setting.js'%>
+<script type="text/javascript">
+	$(document).ready(function(){
+        $( '#dtpRange' ).slider({
+            range: true,
+            min: 1,
+            max: 31,
+            values: [ 7, 16 ],
+            slide: function( event, ui ) {
+                // calculate the date range
+                var dt = new Date(),
+                    _y = dt.getFullYear(),
+                    _m = dt.getMonth()+1;
+                // now to display it
+                $('.rangedisplay .dtp_from').html('From: '+_m+'/'+ui.values[0]+'/'+_y);
+                $('.rangedisplay .dtp_to').html('To: '+_m+'/'+ui.values[1]+'/'+_y);
+                // now save it for manipulation
+                $('#date_placed_from').attr('value',_y+'-'+_m+'-'+ui.values[0]);
+                $('#date_placed_to').attr('value',_y+'-'+_m+'-'+ui.values[1]);
+            }
+        });
+    })
+</script>

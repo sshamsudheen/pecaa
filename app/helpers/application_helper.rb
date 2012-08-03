@@ -1,7 +1,13 @@
 module ApplicationHelper
 
   def check_selected(sym)
-     params[:controller] == sym ? 'class=select' : ''
+     #params[:controller] == sym ? 'class=select' : ''
+
+     if params[:controller] == sym and params[:action] == 'index'
+       'class=select'
+     elsif "#{params[:controller]}/#{params[:action]}" == sym
+       'class=select'
+     end
   end
   
   def check_active(cltr, atn, css_klass = 'active')

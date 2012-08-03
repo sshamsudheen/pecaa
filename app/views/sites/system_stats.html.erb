@@ -1,0 +1,180 @@
+<%= stylesheet_link_tag 'users' %>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<div class="ueBodyContent">
+  <div class="_btnGreyLeft">
+    <%#= button_to 'New Site', new_site_path, :class=>'btnGrey', :method=>"get" %>
+  </div>
+  <div class="userSearch">
+    <!-- rc table -->
+    <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
+      <!-- search and select -->
+      <form action=<%=url_for(:action=>:search)%> method="post" name="searchbox" id='searchbox'>
+      <input id="tokentag" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <input type="text" name='query' class="userSearchField" value="<%=params[:query]%>"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
+      <div class="selectDiv">
+        <select name='search_on'class="select" title="Select one">
+          <option selected value='all'>all columns</option>
+          <option selected value='name'>Name</option>
+          <option selected value='domain_name'>Domain Name</option>
+          <option selected value='company_name'>Company</option>
+        </select>
+      </div><!-- end of search and select -->
+      <!-- names -->
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>www.eyes.com</span>
+          <span class="deletetag_disabled">&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="rcBlue2">
+        <div class="rcBlack2">
+          <span>www.eyes.com</span>
+          <span class="deletetag_disabled">&nbsp;</span>
+        </div>
+      </div>
+      <!-- end of names -->
+    </div>
+    <div class="userPanelDevider"></div>
+    <!-- end of rc table -->
+    <!-- slider rc -->
+    <% # init current month n year
+       _c_m = DateTime.now.month.to_s
+       _c_y = DateTime.now.year.to_s
+    %>
+    <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+      <div class="searchOptions">
+        <div class="anoption">
+          <input type=checkbox id="last_edited" name="last_edited" ><span>custom date range</span>  <!-- class="styled"  -->
+          <div class="edate-slider" id='dteRange'>
+            <%=hidden_field_tag :last_edited_from%>
+            <%=hidden_field_tag :last_edited_to%>
+          </div>
+          <div class="rangedisplay">
+            <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>
+            <span class="dte_to">To: <%=_c_m+'/16/'+_c_y%></span>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="clearHeight10"></div>
+    </div><!-- end of rc slider -->
+    <div class="userPanelDevider"></div>
+    <!-- options -->
+    <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+      <div class="searchMiscOptions">
+        <span><input type="checkbox" name="misc1" value="all" checked="checked" />show all roles</span>
+        <span><input type="checkbox" name="misc2" value="X" >show role X</span>
+        <span><input type="checkbox" name="misc3" value="Y" >show role Y</span>
+        <span><input type="checkbox" name="misc4" value="Z" >show role Z</span>
+        <span><input type="checkbox" name="misc5" value="1" >show role 1</span>
+      </div>
+      <div class="clear"></div>
+      <div class="clear"></div>
+      <div class="clearHeight10"></div>
+      <input type="submit" value='Search' class="btnLogin">
+      </form>
+    </div><!-- end of rc slider -->
+  </div><!-- end of col1 -->
+  <!-- col 2 -->
+
+  <div class="site-users ctrlSiteUsers left" style="margin-top: 20px;margin-left: 20px;">
+    <div class="page-data clear">
+      <div class="stat_tbl">
+        <table width="683px" cellpadding="0" cellspacing="0" class="noMargin">
+          <thead>
+          <th width="20%"></th>
+          <th width="20%">Last Quarter</th>
+          <th width="20%">Last Year</th>
+          <th width="20%">To Date</th>
+          <th width="20%">Sep '10 - Feb '12</th>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Total Sites</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr class="even">
+            <td>Total Live</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Total in Build</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr class="even">
+            <td>Ecommerce Enabled</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Ecommerce Disabled</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr class="even">
+            <td>Total Trafic</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Total Orders</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr class="even">
+            <td>Outstanding Orders</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Fullfilled Orders</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          <tr class="even">
+            <td>Total Revenue</td>
+            <td>256</td>
+            <td>354</td>
+            <td>1231</td>
+            <td>100</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td></td>
+            <td colspan="4"></td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="graphContainer clearfix" style="margin-top: 20px;">
+        <img src="/css/img/graphSample.png" border="0" width="686" />
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div><!-- end of col 2 -->
+
+

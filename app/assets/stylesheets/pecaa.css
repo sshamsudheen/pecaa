@@ -334,7 +334,7 @@ float:left; padding:1px 0px 0px 10px;
 }
 
 .rcBlue2 {
-	float:left; height:25px; background-color:#bbcfe2; padding:0px 0px 0px 0px; border-radius:5px; -moz-border-radius:5px; color:#ffffff; margin-bottom:5px;
+	float:left; height:25px; background-color:#bbcfe2; padding:0px 0px 0px 0px; border-radius:5px; -moz-border-radius:5px; color:#ffffff; margin:0 2px 5px 2px;
 }
 
 .rcBlue2 span {
@@ -342,7 +342,7 @@ float:left; padding:1px 0px 0px 10px;
 }
 
 .rcBlack2 {
-	float:left; width:auto; background-color:#666666; padding:0px 10px 0px 5px; height:25px; border-radius:5px; -moz-border-radius:5px; line-height:25px;
+	float:left; width:auto; background-color:#666666; padding:0px 10px 0px 5px; height:25px; border-radius:5px; -moz-border-radius:5px; line-height:25px; margin: 0 2px;
 }
 
 .rcBlack2 span {
@@ -351,6 +351,14 @@ float:left; padding:1px 0px 0px 10px;
 
 .rcBlack2 img {
 	float:left; margin:5px 0px 0px 0px;
+}
+
+.deletetag_active {
+    background:url(img/btn_deleteUser_active.png) no-repeat left center;
+}
+
+.deletetag_disabled {
+    background:url(img/btn_deleteUser_disabled.png) no-repeat left center;
 }
 
 .searchOptions {
@@ -537,6 +545,7 @@ ul.ConLibra li.light {
 
 ul.ConLibra li.dark {
 	background:url(../assets/grid-bg-dark.gif) repeat-x left top;
+    clear: both;
 }
 
 ul.ConLibra li.hover {
@@ -553,6 +562,18 @@ ul.ConLibra .name p {
 
 ul.ConLibra .name img {
 	float:left; margin:2px 0px 0px 0px;
+}
+
+ul.ConLibra .domain, ul.ConLibra .company {
+    float:left; width:125px; padding:0px 5px; text-align:left; border-right:1px solid #999999;
+}
+
+ul.ConLibra .yes {
+    background:url(img/btnMarkYes.png) no-repeat left top; width: 19px;
+}
+
+ul.ConLibra .no {
+    background:url(img/btnMarkNo.png) no-repeat left top; width: 19px;
 }
 
 ul.ConLibra .type {
@@ -593,6 +614,10 @@ ul.ConLibraHeads .name {
 
 ul.ConLibraHeads .type {
 	float:left; width:100px; padding:0px 5px; text-align:left; border-right:1px solid #999999;
+}
+
+ul.ConLibraHeads .domain, ul.ConLibraHeads .company {
+    float:left; width:125px; padding:0px 5px; text-align:left; border-right:1px solid #999999;
 }
 
 ul.ConLibraHeads .lastUsed {
@@ -905,3 +930,36 @@ button{
 }
 /* End add Text */
 
+.searchOptions .edate-slider, .searchOptions .cdate-slider {
+    background: -moz-linear-gradient(left center , #000000, #CCCCCC) repeat scroll 0 0 transparent;
+    border: 1px solid #666666;
+    border-radius: 4px 4px 4px 4px;
+    height: 5px;
+    margin: 10px 10px 20px;
+    position: relative;
+    width: 180px;
+}
+
+.searchOptions .anoption {
+    margin-bottom: 25px;
+}
+.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to {
+    padding-left: 40px;
+}
+.searchMiscOptions span{display: inline-block;}
+
+ul.ConLibra .website, ul.ConLibraHeads .website {
+     border-right:1px solid #999999; float:left; padding:0px 5px; text-align:left; width:170px;
+}
+
+ul.ConLibra .ostatus, ul.ConLibraHeads .ostatus {
+    border-right: 1px solid #999999; float: left; padding: 0 5px; text-align: left; width: 60px;
+}
+
+ul.ConLibra .orderedby, ul.ConLibraHeads .orderedby {
+    border-right: 1px solid #999999; float: left; padding: 0 5px; text-align: left; width: 130px;
+}
+
+ul.ConLibra .total, ul.ConLibraHeads .total {
+    float: left; padding: 0 5px; text-align: left; width: 70px;
+}

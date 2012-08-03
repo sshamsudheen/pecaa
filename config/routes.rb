@@ -46,7 +46,9 @@ Mystore3::Application.routes.draw do
   resources :add_forms do
     get 'question_detail', :on => :collection
   end
-  resources :external_links 
+  resources :external_links
+
+  get 'orders_report', :to => 'reports#orders_report'
   
   resources :sites do
     devise_scope :user do
@@ -78,7 +80,8 @@ Mystore3::Application.routes.draw do
     post 'create_customer', :on => :member
     post 'customer_login', :on => :member
     get 'user_dashboard', :on => :member
-	get 'order_history', :on => :member
+	  get 'order_history', :on => :member
+    get 'system_stats', :on => :collection
 
     
     resources :inventory_options

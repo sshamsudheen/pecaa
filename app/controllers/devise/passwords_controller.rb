@@ -13,7 +13,8 @@ class Devise::PasswordsController < ApplicationController
   def create
     if params[:user] and params[:user][:username]
    #   set_flash_message(:alert, :send_instructions) if is_navigational_format?
-      self.resource = resource_class.send_reset_password_instructions(params[resource_name])      
+      set_flash_message(:alert, :send_instructions) if is_navigational_format?
+      self.resource = resource_class.send_reset_password_instructions(params[resource_name])
     else
   #    set_flash_message(:alert, :email_instructions) if is_navigational_format?
       self.resource = resource_class.send_reset_password_instructions(params[resource_name],'username_req')
@@ -58,10 +59,10 @@ class Devise::PasswordsController < ApplicationController
 
   protected
 
-    # The path used after sending reset password instructions
-    def after_sending_reset_password_instructions_path_for(resource_name)
-       "/user/sign_in"
+  # The path used after sending reset password instructions
+  def after_sending_reset_password_instructions_path_for(resource_name)
+    "/user/sign_in"
 #      new_session_path(resource_name)
-    end
+  end
 
 end

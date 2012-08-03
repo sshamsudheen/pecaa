@@ -89,14 +89,64 @@ class SitesController < ApplicationController
   end
   
   def search
+=begin
     if params[:query].blank? && params[:date_added].blank?
       @sites = Site.all
     elsif !params[:query].blank? && params[:date_added].blank?
-      @sites = Site.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
+      search_on = params[:search_on] == 'all' ? 'name like ? AND domain_name like ? AND company_name ?' : params[:search_on]
+      @sites = Site.where("#{search_on}", "%#{params[:query]}%")
     elsif params[:query].blank? && !params[:date_added].blank?
-      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y").Date.strptime(params[:end_date],"%m-%d-%Y")))
+      @sites = Site.where(:created_at => (Date.strptime(params[:start_date],'%m-%d-%Y').Date.strptime(params[:end_date],'%m-%d-%Y')))
     end
+=end
+    # building query
+    search_on = ''
+    q = {}
+    and_flag = false
+    if !params[:query].blank?
+      if params[:search_on] == 'all'
+        search_on += 'name LIKE :q AND domain_name LIKE :q AND company_name LIKE :q'
+        q.merge!({:q=>"%#{params[:query]}%"});
+      else
+        search_on += params[:search_on]+' LIKE :q'
+        q.merge!({:q=>"%#{params[:query]}%"});
+      end
+      and_flag = true
+    end
+    # checking last-edit range
+    if params[:last_edited] == 'on'
+      search_on += (and_flag ? ' AND ': '') + 'updated_at >= :last_edited_from AND updated_at <= :last_edited_to'
+      q.merge!({:last_edited_from=>Date.strptime(params[:last_edited_from],'%Y-%m-%d')})
+      q.merge!({:last_edited_to=>Date.strptime(params[:last_edited_to],'%Y-%m-%d')})
+      and_flag = true
+    end
+    # checking date-created range
+    if params[:date_created] == 'on'
+      search_on += (and_flag ? ' AND ': '') + 'created_at >= :date_created_from AND created_at <= :date_created_to'
+      q.merge!({:date_created_from=>Date.strptime(params[:date_created_from],'%Y-%m-%d')})
+      q.merge!({:date_created_to=>Date.strptime(params[:date_created_to],'%Y-%m-%d')})
+      and_flag = true
+    end
+    # want all?
+    if params[:misc] != 'all'
+      search_on += (and_flag ? ' AND ': '') + 'is_active = ' + (params[:misc] == 'live' ? '1' : '0')
+    end
+    #logger.info "search_on #{search_on}"
+    #logger.info "search_on - q #{q.inspect}"
+    # time to connect to DB
+    if search_on.blank?
+      # by default get all the sites
+      @sites = Site.all
+    else
+      # now query it
+      @sites = Site.where("#{search_on}", q)
+    end
+
+    # now time to render the view
     render :action => 'index'
+  end
+
+  def system_stats
   end
   
   def preview
