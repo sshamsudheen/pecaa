@@ -33,7 +33,7 @@ module SitesHelper
   def get_the_styles(site)
     ret = "<style>\n"
     if st = site.site_style
-      ret +=  "body{color:##{st.text_style[:text_color]}}\n"
+      ret +=  "body{color:##{st.text_style[:text_color]}; background-image:url(#{get_the_bgimage_url st.background_style[:bg_image]})}\n"
       ret +=  "div.box{width:70%; text-align:center; border-width: #{st.block_style[:border_width]}; border-radius: #{st.block_style[:border_radius]}; border-color: #{st.block_style[:block_color]};}"
       ret +=  "div.box{opacity: #{opacity_val(st.block_style[:block_opacity])};}"
       ret +=  "div.box{-moz-box-shadow: #{st.block_style[:box_shadow]}; -webkit-box-shadow: #{st.block_style[:box_shadow]}; box-shadow: #{st.block_style[:box_shadow]};}\n"
@@ -41,6 +41,10 @@ module SitesHelper
     end
     ret += "</style>"
     ret.html_safe
+  end
+  
+  def get_the_bgimage_url(id)
+    Image.find(id).upload rescue ""
   end
   
   def shadow_direction

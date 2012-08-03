@@ -27,7 +27,10 @@ class Theme < ActiveRecord::Base
       self.make_directory(file_options.path, self.zip_file_path)
       Zip::ZipFile.open("#{get_file_path}/#{self.filename}") { |zip_file|
           zip_file.each { |f|
-          f_path=File.join(get_file_path, f.name)
+          f_path=File.join("#{get_file_path}/", f.name)
+          FileUtils.makedirs(File.dirname(f_path))
+          zip_file.extract(f, f_path)
+          f_path=File.join("#{get_file_path}/themes", f.name)
           FileUtils.makedirs(File.dirname(f_path))
           zip_file.extract(f, f_path)
         }
@@ -40,7 +43,7 @@ class Theme < ActiveRecord::Base
   
   def get_files(file_type = 'themes')
     self.create_template_directory unless File.directory?("#{self.get_file_path}/templates/") 
-    Dir.new("#{self.get_file_path}/#{file_type}/").entries.map{|n| n unless File.directory?(n)}.compact
+    (Dir.new("#{self.get_file_path}/#{file_type}/").entries.map{|n| n unless File.directory?(n)}).compact
   end
   
   def get_template_files
