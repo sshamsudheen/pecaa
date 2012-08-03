@@ -1,8 +1,15 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <div class="ueBodyContent">
-  <div class="btnGreyLeft">
-    <%= button_to 'New Site', new_site_path, :class=>'btnGrey', :method=>"get" %>
+  <div class="headerinfo">
+    <div class="left">
+      <span>Here is where some brief instructional text could be placed for each page</span>
+    </div>
+    <div class="right">
+      <select class="graySelect selectExp"><option value="">export report as..</option></select>
+      <button class="blueBtn">export</button>
+    </div>
   </div>
+  <div class="clear"></div>
   <div class="userSearch">
     <!-- rc table -->
     <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
@@ -59,7 +66,7 @@
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
         <div class="anoption">
-            <input type=checkbox id="date_placed" name="date_placed" ><span>date placed</span>  <!-- class="styled"  -->
+            <input type=checkbox id="date_placed" name="date_placed" ><span class="label">date placed</span>  <!-- class="styled"  -->
             <div class="edate-slider" id='dtpRange'>
               <%=hidden_field_tag :date_placed_from%>
               <%=hidden_field_tag :date_placed_to%>
@@ -117,12 +124,13 @@
                 <ul class="ConLibra" id="reports">
                   <%@orders.each do |order|%>
                     <li class="dark">
-                      <% # build the website name with the preview link
-                         site_name = order.site.domain_name.nil? ? order.site.name : order.site.domain_name
-                         website =  truncate(site_name, :length => 20, :separator => '..')
+                      <% # by default the website-name would be the order-id; as in case site-id is null..
+                         website =  order.order_id
                          # get the ordered user
                          ordered_by = order.customer_email
                          if !order.site_user_id.nil?
+                           site_name = order.site.domain_name.nil? ? order.site.name : order.site.domain_name
+                           website =  truncate(site_name, :length => 20, :separator => '..')
                            if !order.site.created_by.nil?
                              if order.site.created_by.firstname.nil? and order.site.created_by.lastname.nil?
                                ordered_by = order.site.created_by.username
