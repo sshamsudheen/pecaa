@@ -995,3 +995,8 @@ div.headerinfo span {
     display: inline-block;
     text-align: center;
 }
+.workprogress{
+    color: #6F8895;
+    font-size: 32px;
+    text-align: center;
+}
