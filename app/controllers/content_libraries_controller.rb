@@ -110,6 +110,27 @@ class ContentLibrariesController < ApplicationController
     @text = Text.new()
     @misc = Misc.new()
     @site = Site.find(params[:site_id]) rescue nil
+    @site_page = SitePage.find(params[:site_page_id])
+    session[:site_page_id] = @site_page.id
+    @address = Address.find_by_site_id(params[:site_id])
+    @content_libraries = ContentLibrary.search(params[:search]).page(params[:page]).per(12)
+	@content_libraries = ContentLibrary.search(params[:search])
+    respond_to do |format|
+      format.html { render :action => "search",:layout=>"site" }
+      format.json { head :ok }
+    end
+	
+    #respond_to do |format|
+     # format.html # index.html.erb	 
+      #format.json { render :json => @content_libraries }
+    #end
+  end
+
+
+  def list_search
+    @text = Text.new()
+    @misc = Misc.new()
+    @site = Site.find(params[:site_id]) rescue nil
     #@site_page = SitePage.find(params[:site_page_id])
     #session[:site_page_id] = @site_page.id
     #@address = Address.find_by_site_id(params[:site_id])
@@ -119,6 +140,7 @@ class ContentLibrariesController < ApplicationController
      # format.html { render :action => "search",:layout=>"site" }
       #format.json { head :ok }
     #end
+
 	@users = User.all()
 	session[:site_page_id] =nil
     #@content_libraries = ContentLibrary.search(params[:search])

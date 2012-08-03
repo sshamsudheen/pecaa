@@ -15,16 +15,16 @@
 <!-- rc table -->
         <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
         <!-- search and select -->
-        	<input type="text" class="userSearchField" name="name" />
-            <img src="images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" onclick="javascript: document.search.submit();"/>
+        	<input type="text" class="userSearchField" name="name" value="<%= @name %>" />
+            <img src="../images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" onclick="javascript: document.search.submit();"/>
             <div class="selectDiv">
             <select class="select" title="Select one" name="source_type">
             	<option value="">All</option>
-                <option value="text">Text</option>
-                <option value="file">File</option>
-                <option value="image">Image</option>
-                <option value="video">Video</option>
-                <option value="addform">Form</option>
+                <option value="text" <% if @type == 'text'%> selected ="selected" <% end%>>Text</option>
+                <option value="file" <% if @type == 'file'%> selected ="selected" <% end%>>File</option>
+                <option value="image" <% if @type == 'image'%> selected ="selected" <% end%>>Image</option>
+                <option value="video" <% if @type == 'video'%> selected ="selected" <% end%>>Video</option>
+                <option value="addform" <% if @type == 'addform'%> selected ="selected" <% end%>>Form</option>
             </select>
             </div>
             <!-- end of search and select -->
@@ -34,19 +34,17 @@
 <select name="added_by">
 <option value="">all</option>
 <% @users.each do |user| %>
-	<option value="<%= user.username %>"> <%= user.username %></option>
+	<option value="<%= user.username %>" <% if user.username== @added_by %> selected="selected"<% end%>><%= user.username %></option>
 	<br>
 	<% end %>
 </select>
 </div>
-
 	<!-- <div class="rcBlue2">
-	
     	<div class="rcBlack2">
         <span>Smith</span> <img src="images/icon-remove.png" />
         </div>
         <span>name</span>
-    </div> 
+    </div>
 
     <div class="rcBlue2">
     	<div class="rcBlack2">
@@ -128,11 +126,9 @@
                         <span class="timesUsed">99</span>
                         <span class="dateAdded">02/08/11</span>
                         <span class="addedBy" title="<%= content.added_by %>"><%= truncate(content.added_by, :length => 10, :separator => '..') %></span>
-                        <span class="edit"><%= edit_content(content) %><div>
-						<!--<a href="content_libraries/<%= content.id %>/delete">[X]</a>-->
+                        <span class="edit"><%= edit_content(content) %>
 						<input type="button" name="delete" onclick="deleteItem('<%= content.id %>')" value="[X]">
-						</div></span>
-		
+						</span>
                       </li>
                     <% end %>
                   <% else %>
@@ -153,7 +149,6 @@
 <%#*<script type="text/javascript">%>
 <%#*activatables('page', ['page-1', 'page-2']);%>
 <%#*</script>%>
-
 <script>
 function deleteItem(id)
 {
@@ -161,7 +156,7 @@ function deleteItem(id)
 var r=confirm("Are you sure you want to delete !!")
 if (r==true)
   {
-	window.location.href="content_libraries/"+id+"/delete";  
+	window.location.href="/content_libraries/"+id+"/delete";  
   }
 
 }
