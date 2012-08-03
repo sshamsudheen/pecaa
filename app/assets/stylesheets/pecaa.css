@@ -942,6 +942,7 @@ button{
 
 .searchOptions .anoption {
     margin-bottom: 25px;
+    overflow: auto;
 }
 .searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to, .searchOptions .anoption span.dt_to {
     padding-left: 40px;
