@@ -45,14 +45,14 @@
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
         <div class="anoption">
-          <input type=checkbox id="last_edited" name="last_edited" ><span>custom date range</span>  <!-- class="styled"  -->
-          <div class="edate-slider" id='dteRange'>
-            <%=hidden_field_tag :last_edited_from%>
-            <%=hidden_field_tag :last_edited_to%>
+          <input type=checkbox id="last_edited" name="last_edited" ><span class="label">custom date range</span>  <!-- class="styled"  -->
+          <div class="edate-slider" id='dtRange'>
+            <%=hidden_field_tag :dated_from%>
+            <%=hidden_field_tag :dated_to%>
           </div>
           <div class="rangedisplay">
-            <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>
-            <span class="dte_to">To: <%=_c_m+'/16/'+_c_y%></span>
+            <span class="dt_from">From: <%=_c_m+'/7/'+_c_y%></span>
+            <span class="dt_to">To: <%=_c_m+'/16/'+_c_y%></span>
           </div>
         </div>
       </div>
@@ -176,5 +176,25 @@
   </div>
   <div class="clear"></div>
 </div><!-- end of col 2 -->
-
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( '#dtRange' ).slider({
+            range: true,
+            min: 1,
+            max: 31,
+            values: [ 7, 16 ],
+            slide: function( event, ui ) {
+                // calculate the date range
+                var dt = new Date(),
+                        _y = dt.getFullYear(),
+                        _m = dt.getMonth()+1;
+                // now to display it
+                $('.rangedisplay .dt_from').html('From: '+_m+'/'+ui.values[0]+'/'+_y);
+                $('.rangedisplay .dt_to').html('To: '+_m+'/'+ui.values[1]+'/'+_y);
+                // now save it for manipulation
+                $('#dated_from').attr('value',_y+'-'+_m+'-'+ui.values[0]);
+                $('#dated_to').attr('value',_y+'-'+_m+'-'+ui.values[1]);
+            }
+        });
+    })
+</script>

@@ -128,7 +128,7 @@ body {
 }
 
 .ueBodyContent {
-	float:left; width:948px; background:url(img/user-edit-table-shade.jpg) repeat-y left top; padding:10px; color:#999999;
+	float:left; width:948px; background: url('../assets/user-edit-table-shade.jpg') repeat-y scroll left top transparent; padding:10px; color:#999999;
 }
 
 .btnGrey {
@@ -943,13 +943,18 @@ button{
 .searchOptions .anoption {
     margin-bottom: 25px;
 }
-.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to {
+.searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to, .searchOptions .anoption span.dt_to {
     padding-left: 40px;
 }
-.searchMiscOptions span{display: inline-block;}
+.searchOptions span, .searchMiscOptions span {
+    display: inline-block;
+}
+.searchOptions span.label, .searchMiscOptions span.label {
+    float: none;
+}
 
 ul.ConLibra .website, ul.ConLibraHeads .website {
-     border-right:1px solid #999999; float:left; padding:0px 5px; text-align:left; width:170px;
+     border-right:1px solid #999999; float:left; padding:0px 5px; text-align:left; width:170px; height: 25px;
 }
 
 ul.ConLibra .ostatus, ul.ConLibraHeads .ostatus {
@@ -962,4 +967,30 @@ ul.ConLibra .orderedby, ul.ConLibraHeads .orderedby {
 
 ul.ConLibra .total, ul.ConLibraHeads .total {
     float: left; padding: 0 5px; text-align: left; width: 70px;
+}
+div.clear {
+    clear: both;
+}
+.blueBtn {
+    background-image: url("img/btn_dashBoardBg1.jpg");
+    border: 1px solid #447289;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 30px;
+    padding-bottom: 8px;
+}
+button {
+    border-radius: 6px 6px 6px 6px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'helveticaPecaa',Arial,sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    margin-right: 10px;
+    padding: 5px 10px 8px;
+}
+div.headerinfo span {
+    display: inline-block;
+    text-align: center;
 }

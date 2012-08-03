@@ -78,6 +78,26 @@ class ContentLibrariesController < ApplicationController
   # DELETE /content_libraries/1.json
   def destroy
     @content_library = ContentLibrary.find(params[:id])
+	Rails.logger.debug(@content_library.source_type)
+	@type = @content_library.source_type
+	@id = @content_library.source_id
+	if @type =='Text'
+		@text = Text.find(@id)
+		@text.destroy
+	elsif @type=="Image"
+		@image = Image.find(@id)
+		@image.destroy
+	elsif @type=="File"
+		@file = AddFile.find(@id)
+		@file.destroy
+	elsif @type=="Video"
+		@video = Video.find(@id)
+		@video.destroy
+	elsif @type=="Form"
+	
+		@form = AddForm.find(@id)
+		@form.destroy
+	end
     @content_library.destroy
 
     respond_to do |format|
