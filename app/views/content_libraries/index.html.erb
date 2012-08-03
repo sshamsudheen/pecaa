@@ -24,7 +24,7 @@
                 <option value="file">File</option>
                 <option value="image">Image</option>
                 <option value="video">Video</option>
-                <option value="form">Form</option>
+                <option value="addform">Form</option>
             </select>
             </div>
             <!-- end of search and select -->
@@ -128,7 +128,11 @@
                         <span class="timesUsed">99</span>
                         <span class="dateAdded">02/08/11</span>
                         <span class="addedBy" title="<%= content.added_by %>"><%= truncate(content.added_by, :length => 10, :separator => '..') %></span>
-                        <span class="edit"><%= edit_content(content) %></span>
+                        <span class="edit"><%= edit_content(content) %><div>
+						<!--<a href="content_libraries/<%= content.id %>/delete">[X]</a>-->
+						<input type="button" name="delete" onclick="deleteItem('<%= content.id %>')" value="[X]">
+						</div></span>
+		
                       </li>
                     <% end %>
                   <% else %>
@@ -149,3 +153,16 @@
 <%#*<script type="text/javascript">%>
 <%#*activatables('page', ['page-1', 'page-2']);%>
 <%#*</script>%>
+
+<script>
+function deleteItem(id)
+{
+
+var r=confirm("Are you sure you want to delete !!")
+if (r==true)
+  {
+	window.location.href="content_libraries/"+id+"/delete";  
+  }
+
+}
+</script>

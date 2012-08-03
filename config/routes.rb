@@ -256,7 +256,7 @@ Mystore3::Application.routes.draw do
   match 'content_libraries/search', :to=> 'content_libraries#search',:as=>:content_search
   
   resources :content_libraries do
-    
+    get 'delete', :on => :member, :to => 'content_libraries#destroy'
   end
   
 
