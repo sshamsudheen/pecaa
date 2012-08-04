@@ -28,7 +28,7 @@ class SiteStylesController < ApplicationController
   
   def choose_theme
     unless params[:theme_id]
-      @themes = Theme.limit(7)
+      @themes = Theme.limit(7).order("created_at desc")
     else
       if theme = Theme.find_by_id(params[:theme_id])
         (@site.site_style ||= SiteStyle.new).theme_id = theme.id
