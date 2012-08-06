@@ -9,6 +9,7 @@
 		    				
 		    				<div class="usersLeftPane left">
 								<div class="title">Manage Users <span class="help"><a href="#"></a></span></div>
+								<div id="group_details">
 								
 								<div class="userPanel">
 									<div class="searchUser">
@@ -37,11 +38,12 @@
 									  <div class="showRoles"><span class="val"><input type="checkbox" class="styled"></span><span class="key"><label>show <%=role.name%></label></span></div>
 									<%end%>
 								</div>
+</div>								
 		    				</div>
 		    				
 		    				
 		    				<div class="site-users left">
-								<div class="addNewUserBtn"><button class="addNewUser">create new group</button></div>
+								<div class="addNewUserBtn"><button class="addNewUser"><a href ="/sites/<%=params[:site_id]%>/site_users/new_group">create new group</button></a></div>
     							<div class="page-data clear">
     								<div class="userGrid">
     									<div class="userGridHeader">
@@ -61,114 +63,14 @@
     												<!-- <div class="shadows" id="shadow"><span class="topShadow"></span><span class="bottomShadow"></span></div> -->
 				 									<div class="overview">
 				    									<ul class="ConLibra">
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">34</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
+													<%Site.find(params[:site_id]).site_groups.each do |group|%>
+				    										<li class="alt" id="<%=group.id%>_detail" onclick="show_group('<%=group.id%>')">
+				    											<span class="userName"><span class="pointer"></span><%=group.name%><span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
+				    											<span class="group"><%=group.site_users.count%></span>
+				    											<span class="created"><%=group.created_at.strftime('%D')%></span>
+				    											<span class="lastActivity"><%=group.created_at.strftime("%D")%></span>
 				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">3456</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">1234</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">123</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">53</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">3455</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">123</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">22</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">76</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">35</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">12</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">97</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">345</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">785</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">234</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">57</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li class="alt">
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkYes.png" border="0"></span></span>
-				    											<span class="group">321</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
-				    										<li>
-				    											<span class="userName"><span class="pointer"></span>Group X<span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">34</span>
-				    											<span class="created">08/12/11</span>
-				    											<span class="lastActivity">08/12/11</span>
-				    										</li>
+<%end%>														
 				    									</ul>
 				    								</div>
 		    									</div>
@@ -193,5 +95,14 @@
 		$('#preview_button').click(function(){
 			window.location.href="<%= preview_site_path(@site)%>";
 		});
+		});
+  function show_group(id){
+    $.ajax({
+      type: "get",
+      url: '/sites/1/site_users/group/' + id,
+      success: function(data){
+        $('#group_details').html(data);
+	},
 	})
+    }
 </script>
