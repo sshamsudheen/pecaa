@@ -9,6 +9,21 @@ class SiteUsersController < ApplicationController
   
   def list_users
     @site_users = @site.site_users
+	if !params[:query].blank?
+	@searchName	=	params[:query]
+	@searchOn	=	params[:search_on]
+      if params[:search_on] == "role"
+		Rails.logger.debug('else comes here')
+        role_ids = Role.where("name like ?", "%#{params[:query]}%").collect(&:id)
+        @site_users= @site.site_users.where("id in(select user_id from roles_users where role_id in(?))", role_ids)
+      else
+		Rails.logger.debug('comes here')
+        @site_users= @site.site_users.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
+      end
+    end
+    if !params[:date_added].blank?
+      @site_users = @site.site_users.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+    end
   end
   
   def list_groups
