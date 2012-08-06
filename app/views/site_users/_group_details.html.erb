@@ -1,0 +1,27 @@
+<div class="userDetailPanel">
+<h2><%=@group_obj.name%></h2>
+<div class="userDetailSet">
+<span class="key">created :</span>
+<span class="val"><%=@group_obj.created_at.strftime("%D")%></span>
+</div>
+<div class="userDetailSet bottomBorder">
+<span class="key">last activity :</span>
+<span class="val"><%=@group_obj.updated_at.strftime("%D")%></span>
+</div>
+<div class="showGroupDetail">
+<span class="val"><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled"></span>
+<span class="key">active</span>
+<div class="groupNameLabel">group name :</div>
+<div class="groupNameField"><%=@group_obj.name%></div>
+</div>
+<div class="showRolesDetail">
+<ul>
+<%Role.all.each do |role|%>
+<li><span class="val"><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled"></span>
+<span class="key"><%= role.name %></span></li>
+<%end%>
+</ul>
+</div>
+<div class="groupEditBtnPanel"><div class="left"><button class="redBtn">delete</button></div><div class="right"><button class="primary">save changes</button></div></div>
+</div>
+

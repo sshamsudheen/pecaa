@@ -12,16 +12,22 @@ class SiteUsersController < ApplicationController
   end
   
   def list_groups
-    @site_groups = @site.site_groups
+    @site_groups = @site.site_groups.order("created_at desc")
   end
   
   def new_group
-    @group = @site.site_groups.new
+    @group = @site.site_groups.create(:name => "Group X")
+    redirect_to "/sites/#{params[:site_id]}/site_users/list_groups"
   end
   
   def user_details
     @user_obj = User.find(params[:user_id])
     render :partial => 'user_details'
+  end
+
+  def group_details
+    @group_obj = SiteGroup.find(params[:group_id])
+    render :partial => 'group_details'
   end
 
   def new
