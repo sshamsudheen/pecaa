@@ -35,7 +35,7 @@ class Video < ActiveRecord::Base
   # This method is called from the controller and takes care of the converting
   
   def source_url
-    self.url
+    self.source.url
   end
   
   def convert
