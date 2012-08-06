@@ -29,8 +29,15 @@ class Video < ActiveRecord::Base
   event :failed do
     transitions :from => :converting, :to => :error
   end
+  
+  liquid_methods :id, :upload_file_name, :source_url
 
   # This method is called from the controller and takes care of the converting
+  
+  def source_url
+    self.url
+  end
+  
   def convert
     self.convert!
     success = system(convert_command)

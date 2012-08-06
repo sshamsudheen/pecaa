@@ -34,7 +34,8 @@
   					<ul>
   					  <%@site.site_pages.each_with_index do |sl,i|%>
                 <li <%=((!params[:page_id] && i == 0) || (sl.id.to_s == params[:page_id]))? "class='active'" : "" %>>
-                  <a href="<%=preview_site_path(@site, :page_id=>sl.id)%>" title="<%=sl.name%>"><span><%=(sl.name.length > 7 ? sl.name[0..7] : sl.name)%></span></a>
+                  <a href="<%=preview_site_path(@site, :page_id=>sl.id)%>" title="<%=sl.name%>">
+                    <span><%=(sl.name.length > 7 ? sl.name[0..7] : sl.name)%></span></a>
                 </li>
               <% end %>
   					</ul>
@@ -73,5 +74,4 @@
 			</div>
 		</div>
 	</body>
-
 </html>

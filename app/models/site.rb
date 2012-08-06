@@ -29,10 +29,24 @@ class Site < ActiveRecord::Base
   validates_length_of :name, :maximum => 255 
   validates_length_of :description, :maximum => 1000
   
-  liquid_methods :id, :name, :site_pages, :parent_pages
+  liquid_methods :id, :name, :site_pages, :parent_pages, :get_the_styles
   
   def parent_pages
     site_pages.find(:all, :conditions=>["parent_id = ?", 0])
+  end
+  
+  def get_the_styles
+    ret = "<style>\n"
+    if st = self.site_style
+      k = (st.block_style[:block_opacity])
+      ret +=  "body{color:##{st.text_style[:text_color]}; background-image:url(#{(Image.find_by_id(st.background_style[:bg_image]).upload rescue "")})}\n"
+      ret +=  "div.box{width:70%; text-align:center; border-width: #{st.block_style[:border_width]}; border-radius: #{st.block_style[:border_radius]}; border-color: #{st.block_style[:block_color]};}"
+      ret +=  "div.box{opacity: #{(k.to_i > 0) ? k.to_f/100 : 1};}"
+      ret +=  "div.box{-moz-box-shadow: #{st.block_style[:box_shadow]}; -webkit-box-shadow: #{st.block_style[:box_shadow]}; box-shadow: #{st.block_style[:box_shadow]};}\n"
+      ret +=  "H1 {font:normal 16px Arial, Helvetica, sans-serif; text-shadow: #{st.text_style[:text_shadow]} #ff0000;}\n"
+    end
+    ret += "</style>"
+    ret.html_safe
   end
   
 end

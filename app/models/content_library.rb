@@ -11,6 +11,16 @@ class ContentLibrary < ActiveRecord::Base
     where("name like ?" , "%#{arg}%")
   }
   
+  liquid_methods :source_type, :get_content
+  
+  def get_content
+    if self.source_type == "Video" && get_content = Video.find_by_id(self.source_id)
+    elsif self.source_type == "Image" && get_content = Image.find_by_id(self.source_id)
+    elsif self.source_type == "Text" && get_content = ActiveRecord::Base::Text.find_by_id(self.source_id)
+    end
+    get_content
+  end
+  
 #  def self.search(params)
 #    method_mappings = { :source_type => :by_source_type, :name => :by_name}        
 #    results = ContentLibrary.search()

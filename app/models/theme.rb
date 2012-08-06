@@ -103,7 +103,7 @@ class Theme < ActiveRecord::Base
     Theme.transaction do
       if self.update_attributes(params[:theme])
         # raise params[:file_type].inspect
-
+        
         File.open("#{self.get_file_path}/#{params[:file_type]}/#{params[:file_name]}", 'w') {|f| f.write(params[:file_content])}
         @ret_val = true
       end

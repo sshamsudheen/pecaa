@@ -14,6 +14,12 @@ class Image < ActiveRecord::Base
   validates_attachment_size :upload, :less_than=>10.megabyte
   #validates_attachment_content_type :upload, :content_type=>['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/doc', 'application/docx']
   validates_attachment_content_type :upload, :content_type=>['image/jpeg', 'image/png', 'image/gif']
+  
+  liquid_methods :id, :upload_file_name, :get_medium_url
+  
+  def get_medium_url
+    self.upload.url(:medium).split('?')[0]
+  end
 
   def cropping?  
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?  

@@ -150,10 +150,26 @@ class SitesController < ApplicationController
   end
   
   def preview
+    # @site = Site.find(params[:id])
+    # @site_page = params[:page_id] ? @site.site_pages.find(params[:page_id]) : @site.site_pages.first
+    # @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
+    # render :layout => false
+    
     @site = Site.find(params[:id])
     @site_page = params[:page_id] ? @site.site_pages.find(params[:page_id]) : @site.site_pages.first
+    @content = @site.site_style.theme.read_file("content_page.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    render :layout => false
+    
+    #     @site.site_style.theme.get_files('themes')
+    #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'themes')
+    #     @site.site_style.theme.get_files('')
+    #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
+    
+    ncontent = Liquid::Template.parse(@site.site_style.theme.read_file("theme_navigation.liquid", 'templates')).render("site" => @site)
+    lcontent = Liquid::Template.parse(@content).render("site" => @site, "site_theme"=> @site_theme, "site_page" => @site_page, "content_for_navigation" => ncontent)
+    
+    render :text => lcontent
+    
   end
   
   def site_preview
@@ -162,15 +178,15 @@ class SitesController < ApplicationController
     @site.site_style.theme.get_files('templates')
     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')
     @content_layout = @site.site_style.theme.read_file("layout.liquid", 'templates')
-    
+
     #     @site.site_style.theme.get_files('themes')
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'themes')
     #     @site.site_style.theme.get_files('')
     #     @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", '')
-    
+
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
     icontent = Liquid::Template.parse(@content).render({"#{record.downcase}" => eval("#{record.classify}.all"), "featured_products" => Product.featured_products})
-    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme, "xyz"=>"Hello Mani")
+    lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site" => @site, "site_theme"=> @site_theme)
     # render :template => "/#{@site.site_style.theme.get_file_path}/templates/#{params[:file_name].downcase.singularize}.liquid", :layout => false
     render :text => lcontent
   end
