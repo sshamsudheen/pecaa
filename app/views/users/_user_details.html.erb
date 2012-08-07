@@ -1,5 +1,5 @@
 <div class="userDetailPanel" style="background: none repeat scroll 0 0 #000000">
-									<h2>James Smith</h2>
+									<h2><%=@user_obj.username%></h2>
 									<div class="userDetailSet">
 										<span class="key">user name :</span>
 										<span class="val"><%=@user_obj.username%></span>
@@ -42,5 +42,9 @@
 										<span class="key">last activity :</span>
 										<span class="val"><%=@user_obj.created_at.strftime('%d/%m/%y')%></span>
 									</div>
-									<div class="buttonPanel right"><button class="secondary">edit</button></div>
+                                    <hr/>
+									<div class="userDetailSet">
+										<span class="key">Websites :</span>
+										<span class="val"><%=@user_obj.created_at.strftime('%d/%m/%y')%></span>
+									</div>
 								</div>
