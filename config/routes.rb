@@ -295,6 +295,7 @@ Mystore3::Application.routes.draw do
  resources :users do 
    post 'search', :on => :collection
    get 'update_account', :on => :collection
+   get '/user_details/:user_id', :on => :collection, :to => 'users#user_details'
  end
 
  devise_for :user

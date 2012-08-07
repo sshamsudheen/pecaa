@@ -1,0 +1,44 @@
+<div class="userDetailPanel" style="background: none repeat scroll 0 0 #000000">
+									<h2>James Smith</h2>
+									<div class="userDetailSet">
+										<span class="key">user name :</span>
+										<span class="val"><%=@user_obj.username%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">password :</span>
+										<span class="val">********</span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">email :</span>
+										<span class="val"><%=@user_obj.email%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">phone :</span>
+										<span class="val"><%=@user_obj.phone_number%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">company :</span>
+										<span class="val"><%=@user_obj.company%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">title :</span>
+										<span class="val"><%=@user_obj.title%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">group :</span>
+										<span class="val">group 1<br>group 2<br>group X</span>
+									</div>
+									<div class="userDetailSet bottomBorder">
+										<span class="key">user # :</span>
+										<span class="val"><%=@user_obj.user_identity%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">created :</span>
+										<span class="val"><%=@user_obj.created_at.strftime('%d/%m/%y')%></span>
+									</div>
+									<div class="userDetailSet">
+										<span class="key">last activity :</span>
+										<span class="val"><%=@user_obj.created_at.strftime('%d/%m/%y')%></span>
+									</div>
+									<div class="buttonPanel right"><button class="secondary">edit</button></div>
+								</div>

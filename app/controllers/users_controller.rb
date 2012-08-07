@@ -159,6 +159,11 @@ class UsersController < ApplicationController
   def update_account
     render :layout => false
   end
+
+  def user_details
+    @user_obj = User.find(params[:user_id])
+    render :partial => 'user_details'
+  end
   
   protected  
   
