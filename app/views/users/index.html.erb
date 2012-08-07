@@ -103,10 +103,9 @@
 <script >
 function show_user(id)
 {
-alert(id);
 $.ajax({
 			type: "get",
-			url: '<%="/users/user_details/"%>' + id,
+			url: '/users/user_details/' + id,
 			success: function(data){
 				$('#user_details').html(data);
 			},

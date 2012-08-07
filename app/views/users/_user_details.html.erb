@@ -25,8 +25,10 @@
 										<span class="val"><%=@user_obj.title%></span>
 									</div>
 									<div class="userDetailSet">
-										<span class="key">group :</span>
-										<span class="val">group 1<br>group 2<br>group X</span>
+										<span class="key">role :</span>
+										<%@user_obj.roles.collect(&:name).each do |role|%>
+										<span class="val"><%=role%></span>
+										<%end%>
 									</div>
 									<div class="userDetailSet bottomBorder">
 										<span class="key">user # :</span>
