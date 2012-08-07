@@ -19,10 +19,12 @@ class UsersController < ApplicationController
   def index
     @users= User.where('')
     if !params[:query].blank?
-      if params[:search_on] == "role"
+	@searchName	=	params[:query]
+	@searchOn	=	params[:search_on]
+      if params[:search_on] == "role"		
         role_ids = Role.where("name like ?", "%#{params[:query]}%").collect(&:id)
         @users= @users.where("id in(select user_id from roles_users where role_id in(?))", role_ids)
-      else
+      else		
         @users= @users.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
       end
     end
@@ -141,11 +143,12 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    if current_user.launch_link
-      redirect_to(current_user.launch_link) 
-    else
-	    render :layout=>false
-    end
+    #if current_user.launch_link
+     # redirect_to(current_user.launch_link) 
+    #else
+	 #   render :layout=>false
+    #end
+	render :layout=>false
   end
   
   def search
