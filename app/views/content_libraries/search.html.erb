@@ -1,39 +1,6 @@
-<!-- <<<<<<< HEAD -->
-<div class="ueBodyContent">
-  <!-- add buttons -->
-  <div class="addButtons">
-    <span class="addFile"><a href='<%= new_add_file_path %>' rel="facebox"></a></span>
-    <span class="addForm"><a href='<%= new_add_form_path %>' rel="facebox"></a></span>
-    <span class="addText"><a href='<%= new_text_path %>' rel="facebox"></a></span>
-    <span class="addVideo"><a href='<%= new_video_path %>' rel="facebox"></a></span>
-    <span class="addImage"><a href='<%= new_image_path %>' rel="facebox"></a></span>
-  </div>
-  <!-- end of add buttons -->
-  <div class="clear"></div>
-  <!-- col 1 -->
-  	<div class="userSearch">
-	<form name="search" id="search" action="/content_libraries/search" method="post">
-<!-- rc table -->
-        <div class="rcPaleBlue" style="padding:50px 5px 10px 5px; position:relative;">
-        <!-- search and select -->
-        	<input type="text" class="userSearchField" name="name" value="<%= @name %>" />
-            <img src="../images/icon-user-search-field.png" style="position:absolute; right:0; top:0;" onclick="javascript: document.search.submit();"/>
-            <div class="selectDiv">
-            <select class="select" title="Select one" name="source_type">
-            	<option value="">All</option>
-                <option value="text" <% if @type == 'text'%> selected ="selected" <% end%>>Text</option>
-                <option value="file" <% if @type == 'file'%> selected ="selected" <% end%>>File</option>
-                <option value="image" <% if @type == 'image'%> selected ="selected" <% end%>>Image</option>
-                <option value="video" <% if @type == 'video'%> selected ="selected" <% end%>>Video</option>
-                <option value="addform" <% if @type == 'addform'%> selected ="selected" <% end%>>Form</option>
-            </select>
-            </div>
-            <!-- end of search and select -->
-<!-- ======= -->
 <%= stylesheet_link_tag "jquery.Jcrop" %>
 <%= javascript_include_tag "jquery.Jcrop" %>
 <%= javascript_include_tag "jquery.Jcrop.min" %>
-<!-- >>>>>>> 12f90c1937b6771476644731f752e2ad9358416f -->
 
                     <div class="content-main">
 						<div class="content-wrapper" >
@@ -222,110 +189,8 @@
     $('#content_page_save').submit();
   });
 
-// <<<<<<< HEAD
-    <input type="text" class="datePicker" /><img src="images/icon-calender.png" class="calender" />
-
-    <input type="text" class="datePickerRight" /><img src="images/icon-calender.png" class="calender" />
-<div class="clearHeight10"></div>
-
-<div class="searchOptions"><input class="styled" type="checkbox" id="lastUsed" name="last_used"/><span>date last used</span></div>
-
-</div>
-<!-- end of rc slider -->
-
-<div class="userPanelDevider"></div>
-
-<!-- slider rc -->
-<div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
-	<div class="searchOptions"><input class="styled" type="checkbox" id="timesUsed" /><span>times used</span></div>
-
-    <div id="slider" style="width:200px; margin-left:5px;"></div>
-
-    <div class="clearHeight30"></div>
-
-</div>
-<!-- end of rc slider -->
-<input type="submit" name="submit" value="Search">
-</form>
-    </div>
-
-  <!-- col 2 -->
-  <div class="userGrid">
-    <div class="userGridHeader">
-            <ul class="ConLibraHeads">
-            <li>
-                    <span class="name">Name<br /><br /><br /></span>
-                <span class="type">Type<br /><br /><br /></span>
-                <span class="lastUsed">Last Used<br /><br /><br /></span>
-                <span class="timesUsed">Times Used<br /><br /></span>
-                <span class="dateAdded">Date Added<br /><br /></span>
-                <span class="addedBy">Added By<br /><br /></span>
-            </li>
-        </ul>
-    </div>
-  <!-- grid body -->
-    <div class="userGridBody">
-            <div id="scrollbar1">
-            <div class="scrollbar">
-              <div class="track">
-                <div class="thumb">
-                  <div class="end">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="viewport">
-              <div class="overview">
-                <ul class="ConLibra">
-                  <% unless @content_libraries.blank? %>
-                    <% @content_libraries.each do |content| %>
-                      <li class="<%= cycle("dark", "light") %>">
-                        <%#*<span class="name" title="<%= content.name %->"><p><-%= truncate(content.name, :length => 25, :separator => '..') %-></p> <%= display_content(content) %-></span>%>
-                        <span class="name" title="<%= filename(content.name) %>"><p><%= truncate(filename(content.name), :length => 20, :separator => '..') %></p> <%= display_content(content) %></span>
-                        <span class="type"><%= content.source_type %></span>
-                        <span class="lastUsed">admin</span>
-                        <span class="timesUsed">99</span>
-                        <span class="dateAdded">02/08/11</span>
-                        <span class="addedBy" title="<%= content.added_by %>"><%= truncate(content.added_by, :length => 10, :separator => '..') %></span>
-                        <span class="edit"><%= edit_content(content) %>
-						<input type="button" name="delete" onclick="deleteItem('<%= content.id %>')" value="[X]">
-						</span>
-                      </li>
-                    <% end %>
-                  <% else %>
-                      <li class="dark" style="text-align: center"> No Records Found </li>
-                  <% end %>
-               </ul>
-         </div>
-         </div>
-         </div>
-         </div>
-  </div>
-  <!-- end of grid body -->
-  <div class="userGridFooter"></div>
-  <div class="clear"></div>
-  <!-- end of col 2 -->
-</div>
-<%#= javascript_include_tag "activatables.js" %>
-<%#*<script type="text/javascript">%>
-<%#*activatables('page', ['page-1', 'page-2']);%>
-<%#*</script>%>
-<script>
-function deleteItem(id)
-{
-
-var r=confirm("Are you sure you want to delete !!")
-if (r==true)
-  {
-	window.location.href="/content_libraries/"+id+"/delete";  
-  }
-
-}
-</script>
-<!-- ======= -->
 jQuery(document).ready(function($) {
   $('.facebox_click').facebox()
 }) 
       
 </script>
-<!-- >>>>>>> 12f90c1937b6771476644731f752e2ad9358416f -->
