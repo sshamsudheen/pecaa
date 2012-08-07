@@ -942,6 +942,7 @@ button{
 
 .searchOptions .anoption {
     margin-bottom: 25px;
+    overflow: auto;
 }
 .searchOptions .anoption span.dte_to, .searchOptions .anoption span.dtc_to, .searchOptions .anoption span.dtp_to, .searchOptions .anoption span.dt_to {
     padding-left: 40px;
@@ -992,5 +993,10 @@ button {
 }
 div.headerinfo span {
     display: inline-block;
+    text-align: center;
+}
+.workprogress{
+    color: #6F8895;
+    font-size: 32px;
     text-align: center;
 }

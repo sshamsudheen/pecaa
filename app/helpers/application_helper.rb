@@ -3,7 +3,7 @@ module ApplicationHelper
   def check_selected(sym)
      #params[:controller] == sym ? 'class=select' : ''
 
-     if params[:controller] == sym and params[:action] == 'index'
+     if params[:controller] == sym and params[:action] =~ /index|search/
        'class=select'
      elsif "#{params[:controller]}/#{params[:action]}" == sym
        'class=select'

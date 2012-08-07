@@ -52,7 +52,7 @@
     <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
       <div class="searchOptions">
         <div class="anoption">
-            <input type=checkbox id="last_edited" name="last_edited" ><span>last edited</span>  <!-- class="styled"  -->
+            <input type=checkbox id="last_edited" name="last_edited" ><span class="label">last edited</span>  <!-- class="styled"  -->
             <div class="edate-slider" id='dteRange'>
               <%=hidden_field_tag :last_edited_from%>
               <%=hidden_field_tag :last_edited_to%>
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="anoption">
-            <input type=checkbox id="date_created" name="date_created" ><span>date created</span>
+            <input type=checkbox id="date_created" name="date_created" ><span class="label">date created</span>
             <div class="cdate-slider" id='dtcRange'>
               <%=hidden_field_tag :date_created_from%>
               <%=hidden_field_tag :date_created_to%>

@@ -148,7 +148,10 @@ class SitesController < ApplicationController
 
   def system_stats
   end
-  
+
+  def ad_setup
+  end
+
   def preview
     # @site = Site.find(params[:id])
     # @site_page = params[:page_id] ? @site.site_pages.find(params[:page_id]) : @site.site_pages.first
