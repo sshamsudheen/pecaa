@@ -2,16 +2,11 @@
 <%= csrf_meta_tag %>
 
 <div class="addFileHolder">
-  <div class="helpPopUp">
-  <p>Add Theme info</p>
-  <span><span class="helpGreyTxt">File type:</span> Zip</span><br />
-  <span><span class="helpGreyTxt">max file size:</span> 5mb</span>
+  <div class="helpPopUp" style="display:none;">
+    <p>Add Theme info</p>
+    <span><span class="helpGreyTxt">File type:</span> Zip</span><br />
+    <span><span class="helpGreyTxt">max file size:</span> 5mb</span>
   </div>
-  
-  <% if flash[:notice]%>
-    <%=flash[:notice]%>
-  <% end %>
-
   <%= form_for(@theme, :multipart => true) do |f| %>
     <div>
       <div class="header">Upload Theme</div>
@@ -19,7 +14,7 @@
         <div class="text-editer">
           <%= f.text_field :name, :placeholder=>"theme name" %>
         </div>
-        <div class="addFileBody">
+        <div class="text-editer">
           <%= f.file_field :theme_file %>
         </div>
       </div>

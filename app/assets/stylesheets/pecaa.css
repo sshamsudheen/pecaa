@@ -120,11 +120,11 @@ body {
 }
 
 .ueNav li a:hover, .ueNav li.select a {
-	float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666666; background:url(img/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 20px 0px 0px; text-decoration:none;
+/*  float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666666; background:url(img/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 20px 0px 0px; text-decoration:none;*/
 }
 
 .ueNav li:hover span, .ueNav li.select span {
-	background:url(img/ue-nav-bg.png) no-repeat left bottom; height:35px; float:left; padding:12px 0px 0px 20px; text-decoration:none; color:#666666;
+/*  background:url(img/ue-nav-bg.png) no-repeat left bottom; height:35px; float:left; padding:12px 0px 0px 20px; text-decoration:none; color:#666666;*/
 }
 
 .ueBodyContent {

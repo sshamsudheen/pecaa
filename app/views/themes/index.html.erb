@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/assets/optional.css" type="text/css">
     <link rel="stylesheet" href="/assets/users.css" type="text/css">
     <link rel="stylesheet" href="/assets/done.css" type="text/css">
+    <link rel="stylesheet" href="/assets/facebox.css" type="text/css">
     <script type="text/javascript" src="/assets/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="/assets/facebox.js"></script>
 
@@ -39,21 +40,26 @@
 		    	</div>
 		    	<div class="content-section">
     				<div class="ctrlTabSection">
-	    				<div class="ctrlTabs">
-							<ul>
-								<li><a href="#">Website List</a></li>
-								<li><a href="#">System Stats</a></li>
-								<li><a href="#">Reports</a></li>
-								<li><a href="#">Ad Setup</a></li>
-								<li><a href="#">Content Library</a></li>
-								<li><a href="#">Users</a></li>
-								<li><a href="#">System Config</a></li>
-								<li class="active"><a href="#">Themes</a></li>
-							</ul>
-						</div>
-						
+    				  <div class="ueNavHolder">
+    				    <img src="/assets/ue-nav-bg-left.png" style="float:left;" />
+    				    <div class="ueNavMid">
+		            	<ul class="ueNav narrow">
+                  	<li <%=check_selected('sites')%>><a href="/sites"><span>Website List</span></a></li>
+                      <li <%=check_selected('sites/system_stats')%>><a href="/sites/system_stats"><span>System Stats</span></a></li>
+                      <li <%=check_selected('reports/orders_report')%>><a href="/reports/orders_report"><span>Reports</span></a></li>
+                      <li <%=check_selected('sites/ad_setup')%>><a href="/sites/ad_setup"><span>Ad Setup</span></a></li>
+                      <li <%=check_selected('content_libraries')%>><a href="/content_libraries"><span>Content Library</span></a></li>
+                      <li <%=check_selected('users')%>> <a href="/users"><span>Users</span></a></li>
+                      <li <%=check_selected('system_configs')%>><a href="/system_configs"><span>System Config</span></a></li>
+                      <li <%=check_selected('themes')%>><a href="/themes"><span>Themes</span></a></li>
+		                </ul>
+		            </div>
+		            <img src="/assets/ue-nav-bg-right.png" style="float:left;" />
+		            
+	            </div>
 	    				<div class="ctrlTabContent">
 	    					<div class="themeSection">
+	    					  <a href='<%= new_theme_path(@theme) %>' rel="facebox" style="display:block;" class="theme_link"></a>
 								<div class="themeGroup left">
 									<h2>About Themes</h2>
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -61,6 +67,7 @@
 								<div class="themeGroup left">
 									<button class="getTheme left">Get More Themes</button>
 									<button class="upTheme left">Upload Theme</button>
+									
 								</div>
 							</div>
 	    					<div class="themeSection">
@@ -91,9 +98,9 @@
     							<li>sublink4</li>
     						</ul>
     					</div>
-              <a href='<%= new_theme_path(@theme) %>' rel="facebox" style="display:block;" class="theme_link"></a>
     				</div>
-		    	</div>
+		    	  </div>
+	    	  </div>
 	    	</div>
       </div>
     </div>
@@ -101,7 +108,6 @@
       $('a[rel*=facebox]').facebox();
       $('.upTheme').click(function(){
         $('a.theme_link').trigger('click')
-        console.log("kekeke");
       });
     </script>
 

@@ -1,69 +1,69 @@
 .content-section .ctrlTabSection{
-    width:970px;
-    margin:10px 0 20px 15px;
-    position: relative;
+	width:970px;
+	margin:10px 0 20px 15px;
+	position: relative;
 }
 .content-section .ctrlTabSection .ctrl-footer{
-    height:40px;
-    position: absolute;
-    bottom: -40px;
-    width:970px;
+	height:40px;
+	position: absolute;
+	bottom: -40px;
+	width:970px;
 }
 .content-section .ctrlTabSection .ctrl-footer .ctrlHomeBtn{
-    background: url(img/btn_home.png) no-repeat;
-    width: 28px;
-    height: 28px;
-    margin:5px 5px 5px 10px;
+	background: url(img/btn_home.png) no-repeat;
+	width: 28px;
+	height: 28px;
+	margin:5px 5px 5px 10px;
 }
 .content-section .ctrlTabSection .ctrl-footer ul.ctrlFTLinks {
-    list-style: none;
-    margin:0 5px 0 0;
-    padding:0;
-    float:right;
+	list-style: none;
+	margin:0 5px 0 0;
+	padding:0;
+	float:right;
 }
 .content-section .ctrlTabSection .ctrl-footer ul.ctrlFTLinks li {
-    list-style: none;
-    display:inline-block;
-    padding:10px 10px 5px;
-    margin-right:5px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border:1px solid #AACBE7;
-    border-top:0;
-    text-align: center;
-    cursor: pointer;
-    color: #6C95A9;
-    font-size: 14px;
-    font-weight: bold;
+	list-style: none;
+	display:inline-block;
+	padding:10px 10px 5px;
+	margin-right:5px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border:1px solid #AACBE7;
+	border-top:0;
+	text-align: center;
+	cursor: pointer;
+	color: #6C95A9;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .content-section .ctrlTabs{
-    background:url(img/bg_CtrlTabs.png) no-repeat 0 10px;
-    height:52px;
-    color:#CCCCCC;
-    font-size:16px;
-    font-weight:bold;
-    margin-bottom:-8px;
+	background:url(img/bg_CtrlTabs.png) no-repeat 0 10px;
+	height:52px;
+	color:#CCCCCC;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:-8px;
 }
 .content-section .ctrlTabs ul{
-    list-style: none;
-    margin:0;
-    padding:0;
+	list-style: none;
+	margin:0;
+	padding:0;
 }
 .content-section .ctrlTabs ul li{
-    list-style: none;
-    margin:0;
-    padding:0;
-    display:inline-block;
-    padding:18px 12px;
+	list-style: none;
+	margin:0;
+	padding:0;
+	display:inline-block;
+	padding:18px 12px;
 }
 .content-section .ctrlTabs ul li.active{
-    background:#FFF;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    padding-top: 8px;
-    color: #666666;
-    font-size: 22px;
+	background:#FFF;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	padding-top: 8px;
+	color: #666666;
+	font-size: 22px;
 }
 .content-section .ctrlTabs ul li.last.active{
     width: 102px;
@@ -74,246 +74,248 @@
     font-size: 22px;
 }
 .content-section .ctrlTabContent{
-    background:#FFF;
-    border-radius:6px;
-    min-height: 550px;
-    position: relative;
+	background:#FFF;
+	border-radius:6px;
+	min-height: 550px;
+	position: relative;
     text-align: left;
-    z-index: 999;
-    padding:10px 20px;
-    margin-top:-6px;
-    -moz-box-shadow: 1px 2px 2px #999;
-    -webkit-box-shadow: 1px 2px 2px #999;
+    z-index: 99;
+	padding:10px 20px;
+	margin-top:-6px;
+	-moz-box-shadow: 1px 2px 2px #999;
+	-webkit-box-shadow: 1px 2px 2px #999;
 }
 .content-section .ctrlTabContent .themeSection{
-    margin-bottom:35px;
-    overflow:hidden;
+	margin-bottom:35px;
+	overflow:hidden;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup{
-    width:430px;
-    margin-right:20px;
+	width:430px;
+	margin-right:20px;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup button.getTheme,
 .content-section .ctrlTabContent .themeSection .themeGroup button.upTheme{
-    width:155px;
-    height:67px;
-    padding: 0 40px 0 0;
-    border:0;
-    font-size:22px;
-    line-height: 22px;
-    font-weight: bold;
-    margin-top:30px;
-    cursor: pointer;
+	width:155px;
+	height:67px;
+	padding: 0 40px 0 0;
+	border:0;
+	font-size:22px;
+	line-height: 22px;
+	font-weight: bold;
+	margin-top:30px;
+	cursor: pointer;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup button.getTheme{
-    background: url(img/bg_GetTheme.png) no-repeat;
-    margin-left:50px;
-    margin-right:60px;
+	background: url(img/bg_GetTheme.png) no-repeat;
+	margin-left:50px;
+	margin-right:60px;
 }
 .content-section .ctrlTabContent .themeSection .themeGroup button.upTheme{
-    background: url(img/bg_UpTheme.png) no-repeat;
+	background: url(img/bg_UpTheme.png) no-repeat;
 }
 .content-section .ctrlTabContent .themeSection h2{
-    font-size:24px;
-    font-weight:normal;
-    color:#666;
-    margin-bottom:5px;
+	font-size:24px;
+	font-weight:normal;
+	color:#666;
+	margin-bottom:5px;
 }
 .content-section .ctrlTabContent .themeSection ul{
-    list-style: none;
-    margin:0;
-    padding:0;
-    height:300px;
+	list-style: none;
+	margin:0;
+	padding:0;
+	height:300px;
 }
 .content-section .ctrlTabContent .themeSection ul li{
-    list-style: none;
-    margin:0px 15px 15px 0;
-    padding:10px;
-    width:425px;
-    border:1px solid #CCCCCC;
-    border-radius:8px;
-    min-height: 100px;
-    float: left;
-    position: relative;
+	list-style: none;
+	margin:0px 15px 15px 0;
+	padding:10px;
+	width:425px;
+	border:1px solid #CCCCCC;
+	border-radius:8px;
+	min-height: 110px;
+	float: left;
+	position: relative;
 }
 .content-section .ctrlTabContent .themeSection ul li h3{
-    font-size: 16px;
-    font-weight:normal;
-    margin-bottom:5px;
+	font-size: 16px;
+	font-weight:normal;
+	margin-bottom:5px;
 }
 .content-section .ctrlTabContent .themeSection ul li ul.tools {
-    list-style: none;
-    margin:0;
-    padding:0;
-    height: auto;
-    float:left;
+	list-style: none;
+	margin:0;
+	padding:0;
+	height: auto;
+	float:left;
 }
 .content-section .ctrlTabContent .themeSection ul li .thumb{
-    float:left;
+	float:left;
 }
 .content-section .ctrlTabContent .themeSection ul li ul.tools li {
-    list-style: none;
-    margin:0 0 0 10px;
-    padding: 2px 0 2px 20px;
-    background:none;
-    width:auto;
-    height:auto;
-    display: block;
-    float: none;
-    min-height: 0;
-    border:0;
-    border-radius:0;
-    cursor: pointer;
+	list-style: none;
+	margin:0 0 0 10px;
+	padding: 2px 0 2px 20px;
+	background:none;
+	width:auto;
+	height:auto;
+	display: block;
+	float: none;
+	min-height: 0;
+	border:0;
+	border-radius:0;
+	cursor: pointer;
 }
 .ctrlTabContent .themeSection ul li ul.tools li.edit{
-    background:url(img/btns_editTools.png) no-repeat 0 5px;
-}
+	background:url(img/btns_editTools.png) no-repeat 0 5px;
+} 
 .ctrlTabContent .themeSection ul li ul.tools li.temp{
-    background:url(img/btns_editTools.png) no-repeat 0 -16px;
-}
+	background:url(img/btns_editTools.png) no-repeat 0 -16px;
+} 
 .ctrlTabContent .themeSection ul li ul.tools li.dup{
-    background:url(img/btns_editTools.png) no-repeat 0 -35px;
-}
+	background:url(img/btns_editTools.png) no-repeat 0 -35px;
+} 
 .ctrlTabContent .themeSection ul li ul.tools li.down{
-    background:url(img/btns_editTools.png) no-repeat 0 -55px;
-}
+	background:url(img/btns_editTools.png) no-repeat 0 -55px;
+} 
 .content-section .ctrlTabContent .themeSection ul li .activateLink{
-    padding:7px 35px 7px 10px;
-    border:1px solid #CCCCCC;
-    border-radius:4px;
-    position: absolute;
-    top:10px;
-    right:10px;
-    width:40px;
+	padding:7px 35px 7px 10px;
+	border:1px solid #CCCCCC;
+	border-radius:4px;
+	position: absolute;
+	top:10px;
+	right:10px;
+	width:40px;
 }
 .themeSection ul li .activateLink.on{
-    background:url(img/btnMarkYes.png) no-repeat 95% center;
+	background:url(img/btnMarkYes.png) no-repeat 95% center;
 }
 .themeSection ul li .activateLink.off{
-    background:url(img/btnMarkNo.png) no-repeat 95% center;
+	background:url(img/btnMarkNo.png) no-repeat 95% center;
 }
 .ctrlTabContent .sysConfg{
-    padding:40px 0 0 200px;
+	padding:40px 0 0 200px;
 }
 .ctrlTabContent .sysConfg dl{
-    margin-bottom:10px;
-    width:430px;
+	margin-bottom:10px;
+	width:430px;
 }
 .ctrlTabContent .sysConfg dt,
 .ctrlTabContent .sysConfg dd{
-    vertical-align: middle;
-    margin-bottom:5px;
-    display: inline-table;
-    height:24px;
+	vertical-align: middle;
+	margin-bottom:5px;
+	display: inline-table;
+	height:24px;
 }
 .ctrlTabContent .sysConfg dt{
-    clear: both;
-    width: 100px;
-    text-align: right;
-    color:#999;
-    padding:6px 0 1px 3px ;
-    margin-right: 5px;
-    float: left;
-    display: block;
+	clear: both;
+	width: 100px;
+	text-align: right;
+	color:#999;
+	padding:6px 0 1px 3px ;
+	margin-right: 5px;
+	float: left;
+	display: block;
 }
 .ctrlTabContent .sysConfg dd{
-    width:320px;
-    float: right;
+	width:320px;
+	float: right;
 }
 .ctrlTabContent .sysConfg dl .grayBg{
-    background:#EEE;
-    border-radius:6px;
-    border:0;
-    height:24px;
+	background:#EEE;
+	border-radius:6px;
+	border:0;
+	height:24px;
 }
 .ctrlTabContent .sysConfg dd .imgInput{
-    border:0;
-    background:none;
-    padding:2px;
-    margin-top:3px;
+	border:0;
+	background:none;
+	padding:2px;
+	margin-top:3px;
 }
 .ctrlTabContent .sysConfg dd .pickImg{
-    border:1px solid #333333;
-    background: #999;
-    margin:0;
+	border:1px solid #333333;
+	background: #999;
+	margin:0;
 }
 .ctrlTabContent .sysConfg dd .maxSize{
-    width:50px;
-    margin-right: 5px;
-    padding-left:3px;
-    text-align: center;
+	width:50px; 
+	margin-right: 5px;
+	padding-left:3px;
+	text-align: center;
 }
 .ctrlTabContent .sysConfg dd span.formatGr{
-    display: inline-block;
-    vertical-align: middle;
-    float:left;
+	display: inline-block;
+	vertical-align: middle;
+	float:left;
 }
 .ctrlTabContent .sysConfg dd span.formatGr span.format{
-    vertical-align: middle;
-    padding-top:3px;
-    font-weight: bold;
-    color:#666666;
-    width:45px;
-    display: inline-block;
-    margin-right: 10px;
+	vertical-align: middle;
+	padding-top:3px;
+	font-weight: bold;
+	color:#666666;
+	width:45px;
+	display: inline-block;
+	margin-right: 10px;
 }
 .ctrlTabContent .sysConfg .nomargin{
-    margin:0;
+	margin:0;
 }
 .ctrlTabContent .sysConfg dl .center{
-    text-align: center;
+	text-align: center;
 }
 .ctrlTabContent .sysConfg dl dd.logoDD{
-    margin-bottom:15px;
+	margin-bottom:15px;
 }
 .ctrlTabContent .sysConfg dl dd button.saveBtn{
-    background: -webkit-gradient(linear, left top, left bottom, from(#9BDC5C), to(#87C564));
-    background: -moz-linear-gradient(top,  #9BDC5C,  #87C564);
-    border:1px solid #40A011;
-    font-size: 15px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#9BDC5C), to(#87C564));
+	background: -moz-linear-gradient(top,  #9BDC5C,  #87C564);
+	border:1px solid #40A011;
+	font-size: 15px;
     font-weight: bold;
     padding: 6px 80px;
     margin-top:20px;
 }
 .ueNavHolder {
-    margin:15px auto 0px auto;
-    width:962px;
-    overflow:hidden
+	margin:15px auto 0px auto; 
+	width:962px;
+	overflow:hidden
 }
 
 .ueNavMid {
-    float:left; width:944px; background:url(img/ue-nav-bg.png) repeat-x left top; height:47px;
+	float:left; width:944px; background:url(img/ue-nav-bg.png) repeat-x left top; height:47px;
 }
 
 .ueNav {
-    font:normal 18px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px;
+	font:normal 18px "calibri", Arial, Helvetica, sans-serif; margin:0px 0px 0px 0px; padding:0px;
 }
 
 .ueNav li {
-    list-style-type:none; text-decoration:none; margin-right:5px;
+	list-style-type:none; text-decoration:none; margin-right:5px;
 }
 
 .ueNav li a {
-    float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:0px 0px 0px 0px; height:47px;
+	float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:0px 0px 0px 0px; height:47px;
 }
 
 .ueNav li a span {
-    float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:12px 20px 0px 20px; height:47px;
+	float:left; color:#cccccc; margin:0px 0px 0px 0px; text-decoration:none; padding:12px 20px 0px 20px; height:47px;
 }
-
+.ueNav.narrow li a span{
+	padding:12px 16px 0;
+}
 .ueNav li a:hover span {
-    color:#EEE;
+	color:#EEE;
 }
 .ueNav li.select a:hover span {
-    color:#666;
+	color:#666;
 }
 .ueNav li.select a {
-    float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666; background:url(img/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 40px 0px 0px; text-decoration:none;
+	float:left; font:normal 18px "calibri", Arial, Helvetica, sans-serif; color:#666; background:url(img/ue-nav-bg.png) no-repeat right bottom; height:47px; padding:0px 40px 0px 0px; text-decoration:none;
 }
 .ueNav li.select span {
-    background:url(img/ue-nav-bg.png) no-repeat left bottom; height:35px; float:left; padding:12px 0px 0px 20px; text-decoration:none; color:#666666;
+	background:url(img/ue-nav-bg.png) no-repeat left bottom; height:35px; float:left; padding:12px 0px 0px 20px; text-decoration:none; color:#666666;
 }
-.ueNav li.select span {font-size: 22px; padding: 7px 0 5px 40px !important; }
+.ueNav li.select span {font-size: 22px; padding: 7px 0 5px 30px !important; }
 .stat_tbl{border:1px solid #ccc;border-radius:6px;}
 .stat_tbl thead th,.stat_tbl tfoot td{background:#83a5b6; padding:5px; font-size:14px;text-align: center; color:#fff; }
 .stat_tbl tfoot td{height: 15px;}
@@ -323,21 +325,21 @@
 .stat_tbl thead th:last-child{border-top-right-radius: 6px;}
 .stat_tbl tfoot td:last-child{border-bottom-right-radius: 6px;}
 .stat_tbl tbody tr td{
-    background:#dedede;
-    padding:4px;
-    text-align: center;
-    border-right: 1px solid #999;
-    font-size: 13px;
+	background:#dedede;
+	padding:4px;
+	text-align: center;
+	border-right: 1px solid #999;
+	font-size: 13px;
 }
 .stat_tbl tbody tr td:first-child{
-    background:#6f8895;
-    color: #fff;
-    text-align: right;
+	background:#6f8895;
+	color: #fff;
+	text-align: right;
 }
 .stat_tbl tbody tr.even td{
-    background:#fff;
+	background:#fff;
 }
 .stat_tbl tbody tr.even td:first-child{
-    background:#748e9a;
-    color: #fff;
+	background:#748e9a;
+	color: #fff;
 }
