@@ -40,5 +40,7 @@
 										<span class="key">last activity :</span>
 										<span class="val"><%=@user_obj.created_at.strftime('%d/%m/%y')%></span>
 									</div>
-									<div class="buttonPanel right"><button class="secondary">edit</button></div>
+									
+									<div class="buttonPanel right"><button class="secondary" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_users/<%=@user_obj.id%>/edit'">edit</button></div>
 								</div>
+

@@ -1,0 +1,222 @@
+
+<%= javascript_include_tag "activatables" %>
+    <%= javascript_include_tag "validation"%>
+    <%= stylesheet_link_tag "pecaa", "layout", "controlTabLayout"%>
+    <%= stylesheet_link_tag "select" %>
+    <%= stylesheet_link_tag "tabs" %>
+    <%= stylesheet_link_tag "prettyCheckboxes" %>
+    <%= stylesheet_link_tag "website" %>
+    <%= stylesheet_link_tag "facebox" %>
+    
+    <%#= csrf_meta_tag %>
+    <%#= javascript_include_tag 'jquery.min.js','rails.js'%>
+    <%= javascript_include_tag 'jquery-1.4.2.min'%>
+    <%= javascript_include_tag 'jquery-ui-1.8.2.custom.min'%>
+    <%#= javascript_include_tag 'jquery.min.js', 'rails.js'%>
+    <%= javascript_include_tag 'facebox'%>
+    <%= javascript_include_tag 'common'%>
+    <%= javascript_include_tag 'customSelect'%>
+    <%= javascript_include_tag 'slider'%>
+    <%= javascript_include_tag "prettyCheckboxes" %>
+    <%= javascript_include_tag "jquery.tinyscrollbar.min" %>
+<div class="pages-main">
+	<ul>
+    <% @user_obj.errors.full_messages.each do |msg| %>
+    <li>
+        <%= msg %>
+    </li>
+    <% end %>
+</ul>
+
+		    			<div class="pages-wrapper">
+		    				
+		    				<div class="usersLeftPane userEdit">
+								<div class="title">Manage Users <span class="help">
+									<a href="#"></a></span><div class="addNewUserBtn right">
+										        <%= button_to "create new user", '/users/new',:class=>'addNewUser',:method=>"get" %>
+							     </div>
+							</div>
+
+									<div class="userEditPanel">
+							  <%=form_for(@user_obj) do |f| %>
+								<%=hidden_field_tag :site_id,params[:site_id]%>
+								<%=hidden_field_tag :usr_id,@user_obj.id%>
+										<h2><%if @user_obj and @user_obj.username%><%=@user_obj.username  %>
+										<%else%> 
+     										New User
+										<%end%>
+										</h2>
+										<div class="user-topCorner">
+											<%=f.check_box "active",{:id=>"checkbox-4",:class=>"styled" },1,0%>
+											</span>
+											<span class="val">active</span>
+											<span class="key">created :</span>
+											<span class="val"> <%=@user_obj.created_at.strftime('%d/%m/%y') if @user_obj and @user_obj.created_at %></span>
+											<span class="key">last activity :</span>
+											<span class="val"><%=@user_obj.last_login.strftime('%d/%m/%y') if @user_obj and @user_obj.last_login %></span>
+										</div>
+										<!-- start of colum wrapper -->
+										<div class="colum-wrapper left">
+											<div class="userDetailSet">
+												<span class="key">user name :</span>
+												<span class="val"><%=f.text_field :username,:class=>"ueInp",:size=>27 %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">password :</span>
+												<span class="val"><%=f.password_field :password,:class=>"ueInp" ,:size=>27%></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">email :</span>
+												<span class="val"><%=f.text_field :email,:class=>"ueInp",:size=>27 %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">phone :</span>
+												<span class="val"><%=f.text_field :phone_number,:class=>"ueInp" ,:size=>27%></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">company :</span>
+												<span class="val"> <%=f.text_field :company,:class=>"ueInp" ,:size=>27%></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">title :</span>
+												<span class="val"><%=f.text_field :title,:class=>"ueInp",:size=>27 %></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">role :</span>
+												<span class="val"><%=f.text_field :role_title,:class=>"ueInp" ,:size=>27%></span>
+											</div>
+											<div class="userDetailSet">
+												<span class="key">user # :</span>
+												<span class="val"><%=f.text_field :user_identity,:class=>"ueInp",:size=>27, :readonly=>true %></span>
+											</div>
+									
+										</div>
+										<!-- end of colum wrapper -->
+										<!-- start of colum wrapper -->
+										<div class="colum-wrapper left">
+											<div class="tab-wrapper"><ul><li class="active"><a href="#">shipping address</a></li><li><a href="#">billing address</a></li></ul></div>
+											<div class="tab-Content">
+												<div class="userDetailSet">
+													<span class="key"></span>
+													<span class="val"><select><option>choose an existing address</option></select></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">nickname :</span>
+													<span class="val"><%=f.text_field "addresses1[nickname]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.nickname if @user_obj.addresses.first}",:size=>27 %></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">address :</span>
+													<span class="val"> <%=f.text_field "addresses1[address_one]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.address_one if @user_obj.addresses.first}" ,:size=>27%></span>
+													<span class="key"></span>
+													
+												</div>
+												<div class="userDetailSet">
+													<span class="key">City</span>
+													<span class="val"><%=f.text_field "addresses1[city]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.city if @user_obj.addresses.first}" ,:size=>27%></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">state :</span>
+													<span class="val"><%=f.text_field "addresses1[state]",:class=>"ueInp",:value=>"#{@user_obj.addresses.first.state if @user_obj.addresses.first}",:size=>27 %></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">zip :</span>
+													<span class="val"><%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.zipcode if @user_obj.addresses.first}",:size=>27%></span>
+												</div>
+											</div>
+											<div class="tab-Content" style="display: none">
+												<div class="userDetailSet">
+													<span class="key"></span>
+													<span class="val"><select><option>choose an existing address</option></select></span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">nickname :</span>
+													<span class="val">Home Shipping</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">address :</span>
+													<span class="val">1234 W. 12th Avenue</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">City	</span>
+													<span class="val">302.345.6662</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">state :</span>
+													<span class="val">Nebraska</span>
+												</div>
+												<div class="userDetailSet">
+													<span class="key">zip :</span>
+													<span class="val">15648</span>
+												</div>
+											</div>
+										</div>
+										<!-- end of colum wrapper -->
+										<!-- start of colum wrapper -->
+										<div class="colum-wrapper last left">
+											<div class="userGroupInfo">
+												<div class="groupLabel">groups :</div>
+												<div class="groupInfo">
+													<div>
+														
+														<input type="checkbox" class="styled">
+														<label>group1</label>
+													</div>
+													<div>
+														
+														<input type="checkbox" class="styled">
+														<label>group2</label>
+													</div>
+													<div>
+														
+														<input type="checkbox" class="styled">
+														<label>groupX</label>
+													</div>
+												</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupLabel">notes :</div>
+												<div class="groupInfo fixed"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+													<span class="addNote right"><a href="#" class="btnAddNote"></a></span>
+												</div>
+												<div class="editedBy clear right">10/22/2011 by k.keane</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupInfo fixed fullWidth"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+												</div>
+												<div class="editedBy clear right">9/11/2011 by j.smith</div>
+											</div>
+											<div class="userGroupInfo">
+												<div class="groupInfo fixed fullWidth"><textarea class="noteText">Here is a note about something to do with this account.</textarea>
+												</div>
+												<div class="editedBy clear right">9/11/2011 by peter king</div>
+											</div>
+											<div class="seeMore">
+												<div class="seeMoreLine"></div>
+												<span class="seeMoreBtn"><a href="#">see more</a></span>
+											</div>
+										</div>
+										<!-- end of colum wrapper -->
+					<%end%>					
+										<div class="userEditBtnPanel clear">
+											<%unless @user_obj.new_record?%>
+											<div class="left"><button class="redBtn" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_users/<%=@user_obj.id%>/delete'">delete user</button></div>
+											<%end%>
+											<div class="right">
+												<button class="secondary" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_users/list_users'">cancel</button>
+												<button class="primary" id='user_form_submit'>save changes</button>
+												
+											</div>
+										</div>
+									</div>
+								
+		    				</div>
+
+		    		
+		    			</div>
+		    		</div>
+					<script>
+						$('#user_form_submit').click(function(){
+							$('.edit_user').attr('action','/sites/<%=@site.id%>/site_users/update');
+							$('.edit_user').submit();
+						  });
+					</script>

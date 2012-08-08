@@ -12,12 +12,10 @@ class SiteUsersController < ApplicationController
 	if !params[:query].blank?
 	@searchName	=	params[:query]
 	@searchOn	=	params[:search_on]
-      if params[:search_on] == "role"
-		Rails.logger.debug('else comes here')
+      if params[:search_on] == "role"		
         role_ids = Role.where("name like ?", "%#{params[:query]}%").collect(&:id)
         @site_users= @site.site_users.where("id in(select user_id from roles_users where role_id in(?))", role_ids)
-      else
-		Rails.logger.debug('comes here')
+      else		
         @site_users= @site.site_users.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
       end
     end
@@ -48,6 +46,10 @@ class SiteUsersController < ApplicationController
   def new
     @user_obj = User.new
   end
+
+  def edit	
+    @user_obj = User.find(params[:id])
+  end
   
   def create
     params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
@@ -74,8 +76,13 @@ class SiteUsersController < ApplicationController
   end
   
   def delete
+	@address_obj= Address.find(:all, :conditions => [ "user_id = (?)",  params[:id]])
+	@address_obj.each { |o| o.destroy }	
     @user_obj = User.find(params[:id])
     @user_obj.delete
+	@site_users_obj= SiteUser.find(:all, :conditions => [ "user_id = (?)",  params[:id]])
+	@site_users_obj.each { |o| o.destroy }
+	
     redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
   end
   
@@ -84,6 +91,32 @@ class SiteUsersController < ApplicationController
     @user_obj = @site_user.user
     render :layout => false
   end
+
+   def update
+	@address_obj= Address.find(:all, :conditions => [ "user_id = (?)",  params[:usr_id]])
+	@address_obj.each { |o| o.destroy }
+    @user_obj = User.find(params[:usr_id])	
+    params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
+    params[:user].delete(:addresses1)
+    params[:user].delete(:addresses2)
+    params[:user][:role_ids] = params[:users][:role_ids] if params[:users]
+    params[:user][:password] = @user_obj.password
+    if @user_obj.update_attributes(params[:user])
+      respond_to do |format|
+        format.json { render :json => @user_obj.to_json, :status => 200 }
+        format.xml  { head :ok }
+        format.html { redirect_to :action => :index }
+      end
+    else
+      respond_to do |format|
+        format.json { render :text => "Could not create user", :status => :unprocessable_entity } # placeholder
+        format.xml  { head :ok }
+        format.html { render :action => :edit, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+	
   
   protected
 
