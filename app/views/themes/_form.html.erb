@@ -26,3 +26,9 @@
   <% end %>
   
 </div>
+<script>
+  $('#cancelBtn').click(function(){
+      $(document).trigger('close.facebox');
+      return false;
+  });
+</script>
