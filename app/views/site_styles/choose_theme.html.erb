@@ -38,13 +38,13 @@
 							    x = check_theme_status(theme, @site)
 							    %>
 									<div class="theme-item">
-										<div class="theme-title"><%=theme.name.empty? ? '&nbsp;&nbsp;'.html_safe : theme.name[0..12]%></div>
+										<div class="theme-title"><%=theme.name.empty? ? '&nbsp;&nbsp;'.html_safe : theme.name[0..9]%></div>
 										<div class="theme-snap">
 											<div class="hover-box">
 												<div class="pointer"></div>
 												<div class="colorSnap"></div>
 												<div class="themeDetail">
-													<div class="theme-name"><%=theme.name.empty? ? '&nbsp;&nbsp;'.html_safe : theme.name[0..12]%></div>
+													<div class="theme-name"><%=theme.name.empty? ? '&nbsp;&nbsp;'.html_safe : theme.name[0..9]%></div>
 													<div><%=theme.id%></div>
 													<div><%=x[0]%></div>
 													<div class="theme-rating"><%#theme.rating%></div>

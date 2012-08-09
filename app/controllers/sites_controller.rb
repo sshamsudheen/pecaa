@@ -378,13 +378,13 @@ class SitesController < ApplicationController
   
   def get_files_to_load(theme)
     files = ""
-    theme.get_files.each do |n|
+    theme.get_files("themes/assets").each do |n|
       if Theme.check_file_type(n)
         case (n.split('.').last.downcase)
           when 'js'
-            files += "<script type='text/javascript' src='#{theme.get_load_path}/#{n}'></script>"
+            files += "<script type='text/javascript' src='#{theme.get_load_path_assets}/#{n}'></script>"
           when 'css'
-            files += "<link rel='stylesheet' href='#{theme.get_load_path}/#{n}' type='text/css'>"
+            files += "<link rel='stylesheet' href='#{theme.get_load_path_assets}/#{n}' type='text/css'>"
         end
       end
     end

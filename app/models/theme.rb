@@ -84,6 +84,11 @@ class Theme < ActiveRecord::Base
   def get_load_path
     "/themes/#{self.secret_code}/themes"
   end
+  
+  def get_load_path_assets
+    "/themes/#{self.secret_code}/themes/assets/"
+  end
+  
 
   def zip_file_path
     "#{self.get_file_path}/#{self.filename}"
