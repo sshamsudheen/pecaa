@@ -128,10 +128,10 @@
                         <span class="timesUsed">99</span>
                         <span class="dateAdded">02/08/11</span>
                         <span class="addedBy" title="<%= content.added_by %>"><%= truncate(content.added_by, :length => 10, :separator => '..') %></span>
-                        <span class="edit"><%= edit_content(content) %><div>
-						<!--<a href="content_libraries/<%= content.id %>/delete">[X]</a>-->
-						<input type="button" name="delete" onclick="deleteItem('<%= content.id %>')" value="[X]">
-						</div></span>
+                        <span class="edit"><%= edit_content(content) %>
+						<!--<a href="content_libraries/<%= content.id %>/delete">[X]</a>
+						<input type="button" name="delete" onclick="deleteItem('<%= content.id %>')" value="[X]"> -->
+						</span>
 		
                       </li>
                     <% end %>
