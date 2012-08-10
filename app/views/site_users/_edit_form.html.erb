@@ -94,8 +94,8 @@
 										<!-- end of colum wrapper -->
 										<!-- start of colum wrapper -->
 										<div class="colum-wrapper left">
-											<div class="tab-wrapper"><ul><li class="active"><a href="#">shipping address</a></li><li><a href="#">billing address</a></li></ul></div>
-											<div class="tab-Content">
+											<div class="tab-wrapper"><ul><li class="active" id="shipping_address_tab"><a id='shipping_address_details' href="javascript:void(0);" >shipping address</a></li><li class="inactive"  id="billing_address_tab"><a id='billing_address_details' href="javascript:void(0);" >billing address</a></li></ul></div>
+											<div class="tab-Content" id="shipping_address">
 												<div class="userDetailSet">
 													<span class="key"></span>
 													<span class="val"><select><option>choose an existing address</option></select></span>
@@ -123,30 +123,32 @@
 													<span class="val"><%=f.text_field "addresses1[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.first.zipcode if @user_obj.addresses.first}",:size=>27%></span>
 												</div>
 											</div>
-											<div class="tab-Content" style="display: none">
+											<div  class="tab-Content" style="display: none" id="billing_address">
 												<div class="userDetailSet">
 													<span class="key"></span>
 													<span class="val"><select><option>choose an existing address</option></select></span>
 												</div>
 												<div class="userDetailSet">
 													<span class="key">nickname :</span>
-													<span class="val">Home Shipping</span>
+													<span class="val"><%=f.text_field "addresses2[nickname]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.nickname if @user_obj.addresses.second}",:size=>27 %></span>
 												</div>
 												<div class="userDetailSet">
 													<span class="key">address :</span>
-													<span class="val">1234 W. 12th Avenue</span>
+													<span class="val"> <%=f.text_field "addresses2[address_one]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.address_one if @user_obj.addresses.second}" ,:size=>27%></span>
+													<span class="key"></span>
+													
 												</div>
 												<div class="userDetailSet">
-													<span class="key">City	</span>
-													<span class="val">302.345.6662</span>
+													<span class="key">City</span>
+													<span class="val"><%=f.text_field "addresses2[city]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.city if @user_obj.addresses.second}" ,:size=>27%></span>
 												</div>
 												<div class="userDetailSet">
 													<span class="key">state :</span>
-													<span class="val">Nebraska</span>
+													<span class="val"><%=f.text_field "addresses2[state]",:class=>"ueInp",:value=>"#{@user_obj.addresses.second.city if @user_obj.addresses.second}",:size=>27 %></span>
 												</div>
 												<div class="userDetailSet">
 													<span class="key">zip :</span>
-													<span class="val">15648</span>
+													<span class="val"><%=f.text_field "addresses2[zipcode]",:class=>"ueInp" ,:value=>"#{@user_obj.addresses.second.city if @user_obj.addresses.second}",:size=>27%></span>
 												</div>
 											</div>
 										</div>
@@ -218,5 +220,18 @@
 						$('#user_form_submit').click(function(){
 							$('.edit_user').attr('action','/sites/<%=@site.id%>/site_users/update');
 							$('.edit_user').submit();
+						  });
+						  $('#billing_address_details').click(function(){			
+								$('#shipping_address').hide();
+								$('#shipping_address_tab').attr('class', 'inactive');
+								$('#billing_address').show();
+								$('#billing_address_tab').attr('class', 'active');
+						  });
+
+						  $('#shipping_address_details').click(function(){		
+								$('#shipping_address').show();
+								$('#shipping_address_tab').attr('class', 'active');
+								$('#billing_address').hide();
+								$('#billing_address_tab').attr('class', 'Inactive');
 						  });
 					</script>
