@@ -157,22 +157,17 @@
 											<div class="userGroupInfo">
 												<div class="groupLabel">groups :</div>
 												<div class="groupInfo">
-													<div>
+													
+														<%Site.find(params[:site_id]).site_groups.each do |group|%>
+				    									<div>		
+				    										<input type="checkbox" class="styled" name="group_id" value="<%=group.id%>">
+															<label><%=group.name%></label>
+														</div>
+														<%end%>														
 														
-														<input type="checkbox" class="styled">
-														<label>group1</label>
 													</div>
-													<div>
-														
-														<input type="checkbox" class="styled">
-														<label>group2</label>
-													</div>
-													<div>
-														
-														<input type="checkbox" class="styled">
-														<label>groupX</label>
-													</div>
-												</div>
+													
+												
 											</div>
 											<div class="userGroupInfo">
 												<div class="groupLabel">notes :</div>

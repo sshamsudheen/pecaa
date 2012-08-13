@@ -44,7 +44,7 @@ class SiteUsersController < ApplicationController
   end
 
   def new
-    @user_obj = User.new
+    @user_obj = User.new	
   end
 
   def edit	
@@ -61,7 +61,7 @@ class SiteUsersController < ApplicationController
     @user_obj.created_by = current_user
     if @user_obj.save
       if params[:site_id]
-        SiteUser.create(:user_id=>@user_obj.id,:site_id=>params[:site_id],:name=>@user_obj.username)
+        SiteUser.create(:user_id=>@user_obj.id,:site_id=>params[:site_id],:name=>@user_obj.username, :group_id=>params[:group_id])
         redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
       else
         redirect_to :action => :index        
