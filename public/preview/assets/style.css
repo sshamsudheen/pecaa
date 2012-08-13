@@ -1,0 +1,137 @@
+body {
+    background: url("img/bg.gif") repeat scroll 0 0 transparent;
+    font: 12px Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+color: #345;
+}
+body textarea{resize:none;}
+a,
+a:hover,
+a:focus{
+	text-decoration: none;
+	color:inherit;
+	cursor: pointer;
+}
+.mainContainer {
+    margin: auto;
+    width: 100%;
+}
+.userEditHolder {
+    margin: auto;
+    width: 1024px;
+}
+.header-section .topHeader{
+	background: url("img/bg_topHeader.gif") repeat-x;
+	height: 36px;
+	-moz-box-shadow: 0px 0px 4px #333;
+	-webkit-box-shadow: 0px 0px 4px #333;
+}
+.topHeader .logoHolder{
+	display:block;
+	float:left;
+	background: url("img/pecaa_logo.png") no-repeat;
+	width:170px;
+	height:36px;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.content-tabs{
+	position: relative;
+	height:39px;
+}
+.content-tabs ul{
+	margin:0;
+	padding:0;
+	background:0;
+	position: absolute;
+}
+.content-tabs ul li{
+	margin:0 5px 0 0;
+	padding:0;
+	background: url(img/bg_ContentTab.png) repeat-x 0 bottom;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	width:95px;
+	display:inline-block;
+	font-size:18px;
+	line-height:18px;
+	font-weight:bold;
+	color:#FFFFFF;
+	padding:10px 0 10px 0;
+	text-align: center;
+	border: 1px solid #333;
+}
+.content-tabs ul li.active{
+	background:green;
+	border-bottom: 1px solid green;
+}
+.tabContent{
+	background:#acc0d1;
+	border-radius: 4px;
+	border-top-left-radius: 0px;
+	border:0;
+	border: 1px solid #333333;
+}
+.tabContent .tabContent-wrapper{
+	margin:7px 0 7px 0;
+	min-height: 92px;
+	border-top:1px solid #333333;
+	border-bottom:1px solid #333333;
+	padding:0;
+}
+#box .block {
+    background: none repeat scroll 0 0 white;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 0 white;
+    margin-bottom: 20px;
+}
+
+#box{
+	 background:green;
+	 padding:20px;
+   	 border-top-right-radius: 6px;
+   	 border-bottom-right-radius: 6px;
+   	 border-bottom-left-radius: 6px;
+}
+#box .block h2 {
+    background: #000;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: white;
+    text-shadow: none;
+    margin: 0;
+	padding: 10px 15px;
+}
+#box .block .content {
+    padding: 10px 20px;
+}
+.content-tabs{
+	margin-top:30px;
+}
+.content-tabs ul{
+	width:100%;
+    border-top-right-radius: 6px;
+}
+.content-tabs ul li{
+	border-left:0;
+	border-right:0;
+	border-top:0;
+}
+.content{
+	text-align:center;
+	margin: auto;
+}
+.textStyle{
+	padding:10px;
+	margin-bottom:20px;
+	color:#FFFFFF;
+}

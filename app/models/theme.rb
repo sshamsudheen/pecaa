@@ -20,6 +20,7 @@ class Theme < ActiveRecord::Base
   
   def create_template_directory
     FileUtils.cp_r("#{Rails.root}/public/templates", get_file_path)
+    FileUtils.cp_r("#{Rails.root}/public/preview/assets", get_file_path)
   end
   
   def unzip_extract(file_options)
