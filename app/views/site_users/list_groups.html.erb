@@ -66,7 +66,7 @@
 													<%Site.find(params[:site_id]).site_groups.each do |group|%>
 				    										<li class="alt" id="<%=group.id%>_detail" onclick="show_group('<%=group.id%>')">
 				    											<span class="userName"><span class="pointer"></span><%=group.name%><span class="status"><img src="/assets/btnMarkNo.png" border="0"></span></span>
-				    											<span class="group">2</span>
+				    											<span class="group"><%=group.site_users.count%></span>
 																<!--<span class="group">count</span>-->
 				    											<span class="created"><%=group.created_at.strftime('%D')%></span>
 				    											<span class="lastActivity"><%=group.created_at.strftime("%D")%></span>
