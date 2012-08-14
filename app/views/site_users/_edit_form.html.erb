@@ -158,7 +158,7 @@
 											<div class="userGroupInfo">
 												<div class="groupLabel">groups :</div>
 												<div class="groupInfo">
-                                                  <%SiteGroup.all.each do |group|%>
+                                                  <%Site.find(params[:site_id]).site_groups.each do |group|%>
                                                       <div>
 
                                                         <%=check_box_tag "group_ids[]",group.id,@user_obj.site_users.first.site_groups.include?(group),{:id=>"checkbox-#{group.id}",:class=>"styled"} %>

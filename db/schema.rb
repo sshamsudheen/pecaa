@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20120813211911) do
     t.integer "site_id"
     t.string  "content_type"
     t.integer "list_order",         :default => 0, :null => false
+    t.integer "misc_id"
   end
 
   create_table "content_libraries_sites", :id => false, :force => true do |t|
@@ -740,6 +741,7 @@ ActiveRecord::Schema.define(:version => 20120813211911) do
   create_table "site_users", :force => true do |t|
     t.integer  "user_id"
     t.integer  "site_id"
+    t.integer  "group_id"
     t.string   "name"
     t.integer  "created_by"
     t.datetime "created_at"
