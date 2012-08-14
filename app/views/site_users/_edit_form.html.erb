@@ -158,22 +158,15 @@
 											<div class="userGroupInfo">
 												<div class="groupLabel">groups :</div>
 												<div class="groupInfo">
-													<div>
-														
-														<input type="checkbox" class="styled">
-														<label>group1</label>
-													</div>
-													<div>
-														
-														<input type="checkbox" class="styled">
-														<label>group2</label>
-													</div>
-													<div>
-														
-														<input type="checkbox" class="styled">
-														<label>groupX</label>
-													</div>
-												</div>
+                                                  <%SiteGroup.all.each do |group|%>
+                                                      <div>
+
+                                                        <%=check_box_tag "group_ids[]",group.id,@user_obj.site_users.first.site_groups.include?(group),{:id=>"checkbox-#{group.id}",:class=>"styled"} %>
+
+                                                        <label><%=group.name%></label>
+                                                      </div>
+                                                  <%end%>
+                                                </div>
 											</div>
 											<div class="userGroupInfo">
 												<div class="groupLabel">notes :</div>

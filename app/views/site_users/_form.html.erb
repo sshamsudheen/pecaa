@@ -160,7 +160,7 @@
 													
 														<%Site.find(params[:site_id]).site_groups.each do |group|%>
 				    									<div>		
-				    										<input type="checkbox" class="styled" name="group_id" value="<%=group.id%>">
+				    										<input type="checkbox" class="styled" name="group_ids[]" value="<%=group.id%>">
 															<label><%=group.name%></label>
 														</div>
 														<%end%>														

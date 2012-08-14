@@ -26,7 +26,13 @@
 									</div>
 									<div class="userDetailSet">
 										<span class="key">group :</span>
-										<span class="val">group 1<br>group 2<br>group X</span>
+
+										<span class="val">
+                                          <%@user_obj.site_users.first.site_groups.each do |group|%>
+                                              <%= group.name %>
+                                          <br>
+                                          <%end%>
+                                        </span>
 									</div>
 									<div class="userDetailSet bottomBorder">
 										<span class="key">user # :</span>

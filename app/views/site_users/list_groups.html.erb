@@ -1,4 +1,5 @@
  <script type="text/javascript" src="/assets/jquery.tinyscrollbar.min.js"></script>
+
  <script type="text/javascript">
         	$(document).ready(function(){
         		$('#users1').tinyscrollbar();
@@ -43,7 +44,7 @@
 		    				
 		    				
 		    				<div class="site-users left">
-								<div class="addNewUserBtn"><button class="addNewUser"><a href ="/sites/<%=params[:site_id]%>/site_users/new_group">create new group</button></a></div>
+								<div class="addNewUserBtn"><button class="addNewUser"><a href ="/sites/<%=params[:site_id]%>/site_users/new_group">create new group</a></button></div>
     							<div class="page-data clear">
     								<div class="userGrid">
     									<div class="userGridHeader">
@@ -71,7 +72,7 @@
 				    											<span class="created"><%=group.created_at.strftime('%D')%></span>
 				    											<span class="lastActivity"><%=group.created_at.strftime("%D")%></span>
 				    										</li>
-<%end%>														
+                                                    <%end%>
 				    									</ul>
 				    								</div>
 		    									</div>
@@ -103,7 +104,7 @@
       url: '/sites/1/site_users/group/' + id,
       success: function(data){
         $('#group_details').html(data);
-	},
+	}
 	})
     }
 </script>

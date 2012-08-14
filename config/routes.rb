@@ -164,6 +164,7 @@ Mystore3::Application.routes.draw do
       get 'list_groups', :on => :collection
       get 'new_group', :on => :collection
       get 'group/:group_id', :on => :collection, :to => 'site_users#group_details'
+      post 'edit_group/:group_id', :on => :collection, :to => 'site_users#edit_group'
       get '/user_details/:user_id', :on => :collection, :to => 'site_users#user_details'
       get 'delete', :on => :member
     end
@@ -301,7 +302,7 @@ Mystore3::Application.routes.draw do
    get 'update_account', :on => :collection
    get '/user_details/:user_id', :on => :collection, :to => 'users#user_details'
  end
-
+  match 'edit_group/:group_id', :to => 'site_users#edit_group', :as=> "edit_group"
  devise_for :user
 #         :path_names => {:sign_in => "", :sign_out => "logout",:sign_up => "register"}
 

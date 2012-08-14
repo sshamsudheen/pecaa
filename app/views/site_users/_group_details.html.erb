@@ -1,3 +1,6 @@
+
+
+<%=form_tag "/sites/#{params[:site_id]}/site_users/edit_group/#{@group_obj.id}" do %>
 <div class="userDetailPanel">
 <h2><%=@group_obj.name%></h2>
 <div class="userDetailSet">
@@ -9,15 +12,23 @@
 <span class="val"><%=@group_obj.updated_at.strftime("%D")%></span>
 </div>
 <div class="showGroupDetail">
-<span class="val"><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled"></span>
+<span class="val"><span id="" class="checkbox" style="background-position: 0px -50px; "></span>
+  <%=check_box "groups","active",{:id=>"active",:class=>"styled" },1,0 %>
+</span>
 <span class="key">active</span>
 <div class="groupNameLabel">group name :</div>
-<div class="groupNameField"><%=@group_obj.name%></div>
+  <div class="groupNameField"><%=text_field_tag :name,@group_obj.name %></div>
 </div>
 <div class="showRolesDetail">
 <ul>
 <%Role.all.each do |role|%>
-<li><span class="val"><span id="" class="checkbox" style="background-position: 0px 0px; "></span><input type="checkbox" class="styled"></span>
+<li>
+  <span class="val">
+    <input type="checkbox" class="styled" name="group[role_ids][]" value="<%=role.id%>">
+    <span id="role_<%=role.id%>" class="checkbox" style="background-position: 0px -50px; "></span>
+
+
+  </span>
 <span class="key"><%= role.name %></span></li>
 <%end%>
 </ul>
@@ -25,3 +36,4 @@
 <div class="groupEditBtnPanel"><div class="left"><button class="redBtn">delete</button></div><div class="right"><button class="primary">save changes</button></div></div>
 </div>
 
+<%end%>

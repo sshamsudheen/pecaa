@@ -50,6 +50,15 @@ class SiteUsersController < ApplicationController
   def edit	
     @user_obj = User.find(params[:id])
   end
+
+  def edit_group
+    @group_obj = SiteGroup.find(params[:group_id])
+    @group_obj.name = params[:name]
+    @group_obj.status = params[:groups][:active] == "0" ? false : true
+    @group_obj.role_ids = params[:group][:role_ids]  if params[:group]
+    @group_obj.save
+    redirect_to "/sites/#{params[:site_id]}/site_users/list_groups"
+  end
   
   def create
     params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
@@ -61,7 +70,7 @@ class SiteUsersController < ApplicationController
     @user_obj.created_by = current_user
     if @user_obj.save
       if params[:site_id]
-        SiteUser.create(:user_id=>@user_obj.id,:site_id=>params[:site_id],:name=>@user_obj.username, :group_id=>params[:group_id])
+        s_u = SiteUser.create(:user_id=>@user_obj.id,:site_id=>params[:site_id],:name=>@user_obj.username, :site_group_ids=>params[:group_ids])
         redirect_to "/sites/#{params[:site_id]}/site_users/list_users"
       else
         redirect_to :action => :index        
@@ -101,6 +110,8 @@ class SiteUsersController < ApplicationController
     params[:user].delete(:addresses2)
     params[:user][:role_ids] = params[:users][:role_ids] if params[:users]
     params[:user][:password] = @user_obj.password
+    s_u = @user_obj.site_users.first
+    s_u.site_group_ids = params[:group_ids]
     if @user_obj.update_attributes(params[:user])
       respond_to do |format|
         format.json { render :json => @user_obj.to_json, :status => 200 }
