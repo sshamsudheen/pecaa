@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724161234) do
+ActiveRecord::Schema.define(:version => 20120813211911) do
 
   create_table "add_files", :force => true do |t|
     t.integer  "user_id"
@@ -398,8 +398,8 @@ ActiveRecord::Schema.define(:version => 20120724161234) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_id"
-    t.integer  "list_order"
+    t.integer  "parent_id",                                           :default => 0,    :null => false
+    t.integer  "list_order",                                          :default => 0,    :null => false
     t.integer  "site_id"
     t.boolean  "is_active",                                           :default => true
     t.string   "price_modifier"
@@ -629,6 +629,11 @@ ActiveRecord::Schema.define(:version => 20120724161234) do
     t.datetime "updated_at"
   end
 
+  create_table "site_groups_site_users", :id => false, :force => true do |t|
+    t.integer "site_group_id"
+    t.integer "site_user_id"
+  end
+
   create_table "site_images", :force => true do |t|
     t.integer  "site_id"
     t.integer  "site_page_id"
@@ -799,7 +804,7 @@ ActiveRecord::Schema.define(:version => 20120724161234) do
     t.integer  "shipping_gateway_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_enable"
+    t.boolean  "is_enable",           :default => false
     t.boolean  "is_test_mode"
   end
 
@@ -888,6 +893,7 @@ ActiveRecord::Schema.define(:version => 20120724161234) do
     t.text     "secret_code"
     t.text     "filename"
     t.text     "content_type"
+    t.boolean  "is_active",     :default => true
   end
 
   create_table "try_it_images", :force => true do |t|
@@ -901,15 +907,6 @@ ActiveRecord::Schema.define(:version => 20120724161234) do
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
     t.boolean  "is_deleted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "uploads", :force => true do |t|
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

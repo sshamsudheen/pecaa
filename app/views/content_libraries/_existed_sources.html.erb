@@ -1,15 +1,33 @@
 <%if params[:content_lib] or @site_page%>
   <%common_details=@site_page.content_libraries_site_pages.order('list_order')%>
   <%common_details.each do |common_detail|%>
-      <%content = common_detail.content_library%>
-      <%if content%>
-         <li class="item" id="resize_<%=content.id%>" style="<%=common_detail.position%>"> <!--  style="width:400px;height:500px;position:relative;float:left;" -->
+  <%     content = common_detail.content_library
+         @bloc_id=common_detail.id
+         @bloc_style=common_detail.position
+         li_style = common_detail.position
+         @resizable_el_style = ''
+         @image_w = ''
+         if(!common_detail.width.nil?)
+            li_style += 'width:'+common_detail.width+'px;'
+            @resizable_el_style += 'width:'+common_detail.width+'px;'
+            @image_w = common_detail.content_type == 'Image' ? (common_detail.width.to_i - 50).to_s + 'px' : ''
+         end
+         @image_h = ''
+         if(!common_detail.height.nil?)
+           li_style += 'height:'+common_detail.height+'px;'
+           @resizable_el_style += 'height:'+common_detail.height+'px;'
+           @image_h = common_detail.content_type == 'Image' ? (common_detail.height.to_i - 50).to_s + 'px' : ''
+         end
+         if(@resizable_el_style == '')
+           @resizable_el_style = 'width:600px;'
+         end
+         # container ID
+         li_id = 'resize_'+common_detail.id.to_s
+  %>
+        <%if content%>
+          <div class="item" id="<%=li_id%>" style="<%=li_style%>"> <!--  style="width:400px;height:500px;position:relative;float:left;"  xmlns="http://www.w3.org/1999/html"  -->
             <!-- span class="title"><%#=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span -->
             <%= hidden_field_tag 'content_id', content.id%>
-            <%= hidden_field_tag "style_position[#{content.id}]",''%>
-            <%= hidden_field_tag "list_order[#{content.id}]",''%>
-            <%= hidden_field_tag "src_type[#{content.id}]", content.source_type%>
-            <%@bloc_style=common_detail.position%>
             <div  id="doc_form">
                 <%if content.source_type == "Image"%>
                             <%=render :partial=>"images/crop_images",:locals=>{:content=>content}%>
@@ -33,46 +51,34 @@
                             <%@from_content=true%>
                             <%=render :partial=>"add_forms/form",:locals=>{:content=>content}%>
                 <%end%>
+              <%= hidden_field_tag "style_position[#{@bloc_id}]",''%>
+              <%= hidden_field_tag "list_order[#{@bloc_id}]",''%>
+              <%= hidden_field_tag "iwidth[#{@bloc_id}]",''%>
+              <%= hidden_field_tag "iheight[#{@bloc_id}]",''%>
             </div>
-            <script>
-                // TODO: if the image need to be resized by dragging? find it.. below code can help a bit!
-                <%#if content.source_type == "Image"%>
-                //alsoResize: '#resize_<%#=content.id%> .resizable_content .objectContent img',
-                <%#end%>
-                $('#resize_<%=content.id%> .resizable_content').resizable({
-                    maxHeight: 250,
-                    maxWidth: 350,
-                    minHeight: 150,
-                    minWidth: 200,
-                    handles: 'se',
-                    resize: function(event, ui){
-                        // init default margin and find the increased width & height
-                        // TODO: find a way to determine the original right/bottom margins of the original parent-li element?
-                        var _dm = 20,
-                            _newmr = (ui.size.width > ui.originalSize.width) ? (ui.size.width - ui.originalSize.width) + _dm : _dm,
-                            _newmb = (ui.size.height > ui.originalSize.height) ? (ui.size.height - ui.originalSize.height) + _dm : _dm;
-                        // now add the default margin with the above diff to right/bottom margins
-                        $(ui.originalElement).parent().parent().parent().css({marginRight: _newmr, marginBottom: _newmb, width: ui.size.width, height: ui.size.height});
-                    }
-                });
-            </script>
-         </li>
-      <%elsif common_detail.content_type=="Misc"%>
-          <li class="item"  style="width:506px;height:500px;position:relative;float:left;">
+            <script>resizer(<%=@bloc_id%>, <%=(content.source_type == 'Image')%>);</script>
+          </div>
+      <%elsif common_detail.content_type=='Misc' and !common_detail.misc_id.nil?%>
+          <div class="item" id="<%=li_id%>" style="<%=li_style%>">  <!-- width:506px;height:500px;position:relative;float:left; -->
             <div id="misc_existed"></div>
-          </li>
+            <%= hidden_field_tag "style_position[#{@bloc_id}]",''%>
+            <%= hidden_field_tag "list_order[#{@bloc_id}]",''%>
+            <%= hidden_field_tag "iwidth[#{@bloc_id}]",''%>
+            <%= hidden_field_tag "iheight[#{@bloc_id}]",''%>
+          </div>
           <script>
             $(function() {
                 $.ajax({
-                    type: "get",
-                    url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new?from_existing_content=true"%>',
+                    type: 'get',
+                    url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/#{common_detail.misc_id}/show_block"%>',
                     success: function (data) {
-                        $('.misc_form div#doc_form').remove();
-                        $('#misc_existed').html(data)
+                        //$('.misc_form div#doc_form').remove();
+                        $('#<%=li_id%> #misc_existed').html(data);
+                        $('#<%=li_id%> #mapObj .resizable_content').resizable();
                     }
                 });
             });
           </script>
       <%end%>
-  <%end%>
+    <%end%>
 <%end%>

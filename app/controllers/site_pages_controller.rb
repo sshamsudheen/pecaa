@@ -76,26 +76,50 @@ class SitePagesController < ApplicationController
     @site_page.destroy
     redirect_to site_site_pages_path(@site)
   end
-  
+
+  def content_new
+    @site_page = SitePage.find(params[:id])
+    # parse the data from json
+    new_clib = JSON.load(params[:data])
+    # now create the db record :site_id=>@site.id,:site_page_id=>@site_page.id,
+    _a_cl = @site_page.content_libraries_site_pages.create(:site_id=>params['site_id'],:content_library_id=>new_clib['content_lib_id'],:content_type=>new_clib['type'],:list_order=>new_clib['listorder'])
+    #logger.info "_a_cl c-new>> #{_a_cl.inspect}"
+    render json: _a_cl
+  end
+
+  def content_destroy
+    @site_page = SitePage.find(params[:id])
+logger.info "content_destroy>> #{params.inspect}"
+return
+    # parse the data from json
+    _lib = @site_page.content_libraries_site_pages.find(params[:id])
+    _lib.destroy
+  end
+
   def content_save
     @site_page = SitePage.find(params[:id])
     # now save each block with the resized/repositioned attribs if any
     params[:style_position].each_with_index { |i,x|
       # create/update the content-library-site-page
-      _a_cl = @site_page.content_libraries_site_pages.find_or_create_by_content_library_id(i[0])
+      _a_cl = @site_page.content_libraries_site_pages.find(i[0])
       _a_cl.position = i[1]
-      _a_cl.site_id = @site.id
-      _a_cl.content_type = params[:src_type][i[0]]
       _a_cl.list_order = params[:list_order][i[0]]
+      if params[:iwidth] and params[:iheight]
+		if params[:iwidth][i[0]] and params[:iheight][i[0]]
+			_a_cl.width = params[:iwidth][i[0]]
+			_a_cl.height = params[:iheight][i[0]]
+		end
+	  end
       _a_cl.save!
-      #logger.info "#{_a_cl.content_library_id}) list-order>> #{params[:list_order][i[0]]}"
-      if (params[:crop][i[0]] and ((content = ContentLibrary.find(x)) and content.source_type == "Image") rescue nil)
+      #logger.info "Image Crop>> #{params[:crop][i[0]]}, #{x}"
+      if (_a_cl.content_type == 'Image' and params[:crop][i[0]] and ((content = ContentLibrary.find(_a_cl.content_library_id)) and content.source_type == 'Image') rescue nil)
         content.source.update_attributes(params[:crop][i[0]].merge(:updated_at => Time.now))
       end
     }
     # saving the sorted order of the blocks
-    sorting = params[:sorting_position].split(',').collect{|el| el.split('_').last}.join(';')
-    @site_page.update_attributes(:conent_positioning => sorting)
+    #sorting = params[:sorting_position].split(',').collect{|el| el.split('_').last}.join(';')
+    #@site_page.update_attributes(:conent_positioning => sorting)
+
     # TODO: redirect to appropriate page
     redirect_to :back
 =begin

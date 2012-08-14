@@ -41,20 +41,19 @@ class MiscsController < ApplicationController
   end
 
   # POST /miscs
-  # POST /miscs.json
   def create
     @misc = Misc.new(params[:misc])
     @site  = Site.find(params[:site_id])
     @site_page = SitePage.find(params[:site_page_id]) 
-    respond_to do |format|
-      if @misc.save
-        ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => nil,:site_page_id => @site_page.id,:content_type=>"Misc" )
-        redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Misc"
-      else
-        format.html { render action: "new" }
-        format.json { render json: @misc.errors, status: :unprocessable_entity }
-      end
+
+    if @misc.save
+      ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => nil,:site_page_id => @site_page.id,:content_type=>'Misc',:position=>(params[:misc_position].nil? ? params[:misc_position] : 'width: 500px;'),:misc_id=>@misc.id)
+      #redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Misc"
+    else
+      render action: 'new'
     end
+
+    redirect_to :back
   end
 
   # PUT /miscs/1
@@ -82,6 +81,23 @@ class MiscsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to miscs_url }
       format.json { head :ok }
+    end
+  end
+
+  # GET /miscs/1/show_block
+  # GET /miscs/1/show_block.json
+  def show_block
+    # temporary fix
+    @site = Site.find(params[:site_id])
+    @site_page = SitePage.find(params[:site_page_id])
+    @misc = Misc.find(params[:id])
+    @from_content = false
+    spclib = ContentLibrariesSitePage.where("site_id=#{@site.id} AND site_page_id=#{@site_page.id} AND misc_id=#{@misc.id}")
+    #logger.info "misc.spclib: #{spclib.inspect}"
+    @bloc_style = spclib.length > 0 ? spclib[0].position : 'top:0;left:0;'
+    respond_to do |format|
+      format.html { render :layout => false}# new.html.erb
+      format.json { render json: @misc }
     end
   end
 end

@@ -2,7 +2,7 @@
 	
 	
 	 function loadMap() {
-	 	var address = $("#mapAddress").val();
+	 	var address = $("#misc_address").val();
 	    var uri = "zoom=10&size=400x400&markers=color:blue|" + encodeURIComponent(address) + "&sensor=false";
 	    var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + uri; //encodeURIComponent(uri); 
 	    $("#map-canvas-image").attr('src', mapURL);

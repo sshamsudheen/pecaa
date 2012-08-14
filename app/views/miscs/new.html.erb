@@ -1,6 +1,6 @@
     <%=hidden_field_tag :from_content, @from_content%>
 	    <%=hidden_field_tag :content_type, "Misc"%>
-								<div class="contentObject" id="mapObj">
+								<div class="contentObject" id="mapObj" style="width: 500px;">
 									<div class="resizable_content">
 		    						<div class="alphaBg"></div>
 									<div class="expandable">
@@ -22,9 +22,13 @@
 											<span class="drag"></span>
 											<div class="dragContent">
 												<div class="mapDetail">
-													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
-													<span class="key">address :</span><span class="val"><input type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
-													<button id="reloadMap" class="primary">Reload</button>								
+                                                  <span class="key">title :</span><span class="val"><input id="misc_title" name="misc[title]" type="text" value="store map"></span>
+                                                  <span class="key">address :</span><span class="val"><input id="misc_address" name="misc[address]" type="text" value="<%= @address ? @address.address_string : "" %>" id="mapAddress"></span>
+                                                  <%= hidden_field_tag 'misc[site_page_id]', @site_page.id%>
+                                                  <%= hidden_field_tag 'misc[site_id]', @site.id%>
+                                                  <%= hidden_field_tag 'misc_position', ''%>
+                                                  <button id="reloadMap" class="primary">Reload</button>
+                                                  <button id="saveMap" class="primary">Save</button>
 												</div>
 											</div>
 											<div class="dragContentBottom"></div>	
@@ -44,8 +48,18 @@
 	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + encodeURIComponent(uri); 
 	     	$("#map-canvas-image").attr('src', mapURL);*/
 	     	initMisc();
-      		$('.resizable_content').resizable();
-	  });
+             $('.resizable_content').resizable();
+
+             $('#mapAddr div').draggable({ handle: 'span.drag' });
+
+             $('#form_submit').unbind('click');
+
+             $('#saveMap, #form_submit').click(function(){
+                 $('#misc_position').attr('value', $('#mapObj .resizable_content').attr('style'));
+                 $('#content_page_save').attr('action','<%="/sites/#{@site.id}/site_pages/#{@site_page.id}/miscs"%>');
+                 $('#content_page_save').submit();
+             });
+         });
 	  
     </script>	
 

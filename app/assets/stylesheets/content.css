@@ -558,14 +558,14 @@
     right: 0px;
 }
 .userEditHolder .themes-board {
-    height: auto !important;
-    min-height: 60%;
+    /*height: auto !important; */
+    min-height: 100%;  /* 60% */
 }
 .userEditHolder #sortable .item {
     float: left;
     position: relative;
-    width: 400px;
-    height: 500px;
+   /* width: 400px;
+    height: 500px; */
     margin: 20px;
 }
 .resizable_content span.imageb {

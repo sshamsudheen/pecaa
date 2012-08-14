@@ -114,7 +114,6 @@ class ContentLibrariesController < ApplicationController
     session[:site_page_id] = @site_page.id
     @address = Address.find_by_site_id(params[:site_id])
     @content_libraries = ContentLibrary.search(params[:search]).page(params[:page]).per(12)
-	@content_libraries = ContentLibrary.search(params[:search])
     respond_to do |format|
       format.html { render :action => "search",:layout=>"site" }
       format.json { head :ok }

@@ -50,9 +50,28 @@
 <!-- script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script -->
 <script type="text/javascript">
+
+    function fitgrid() {
+        $('.userEditHolder .themes-board').css('height', ($('#site-blocks').height()+50)+'px');
+    }
+
+    function resizer(eid) {
+        // TODO: if the image need to be resized by dragging? find it.. below code can help a bit!
+        var _selector = '#resize_'+eid+' .resizable_content';
+        $(_selector).resizable({
+            minHeight: 150,
+            minWidth: 200,
+            handles: 'se',
+            alsoResize: (arguments[1] ? _selector+' .objectContent img' : ''),
+            resize: function(event, ui){
+                $( this ).closest('div.item').css({width: ui.size.width, height: ui.size.height});
+            }
+        });
+    }
+
 	$(function() {
       <%if params[:controller] == 'content_libraries' and params[:action] == 'search' %>
-        $('ul#sortable').sortable({
+        /*$('ul#sortable').sortable({
              items: 'li',
              helper: 'helper',
              connectWith: 'ul#sortable',
@@ -60,7 +79,12 @@
              forcePlaceholderSize: true,
              forceHelperSize: true,
              placeholder: 'placeholder'
-         });
+        });   */
+        /*$('div#site-blocks').draggable({
+            helper: 'helper',
+            handle: 'span.drag',
+            containment: 'div#cart'
+        }); */
       <%else%>
         $('#sortable').sortable();
       <% end %>
@@ -86,50 +110,97 @@
 			hoverClass: "ui-state-hover",
 			accept: ":not(.ui-sortable-helper)",
 			drop: function( event, ui ) {
-				//$( this ).find( ".placeholder" ).remove();
-				//$( this ).find('li').remove();
-				//$( this ).html('');
-				if (ui.draggable.attr('class') == "item active newItem misc_form ui-draggable") {
-					 $.ajax({
-				            type: "get",
-				            url: '<%#="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
+                // retrieve the flag values
+                var _isMiscDropped = parseInt($('#isMiscDropped').attr('value'));
+                var _isWorkInProgress = parseInt($('#isWorkInProgress').attr('value'));
+                // is the dragged elements is a Misc i.e. Map ??
+				if (ui.draggable.attr('class') == 'item active newItem misc_form ui-draggable') {
+					$('#isMiscDropped').attr('value', 1);
+                    $( this ).find('.placeholder').remove();
+                    //$( this ).find('li').remove();
+                    $( this ).find('div.item').remove();
+                    $( this ).html('');
+                    $.ajax({
+				            type: 'get',
+				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
-								$('#cart div.ui-droppable').html(data)					
-				            },
-				        });
-				}
-				//$("<div></div>").html(ui.draggable.clone()).appendTo(this);  this.id.match(/\d+/)[0];
-                $( this ).find('li').parent('ul').append(ui.draggable.clone());
-                var new_bloc = $('ul#sortable li').last();
-                var nb_cid = $(new_bloc).attr('id').match(/\d+/)[0],
-                    new_bloc_id = 'resize_'+nb_cid;
-                $(new_bloc).attr('id', new_bloc_id);
-                $(new_bloc).find('span.title').first().remove();
-                $(new_bloc).find('span.dragable').first().remove();
-                $(new_bloc).find('div.hotspot').first().remove();
-                // TODO: attaching the resizable module to the new block mess ups the new item in the grid..
-                //          find a better way to accomplish it..
-                /*$(new_bloc).resizable({
-                    maxHeight: 250,
-                    maxWidth: 350,
-                    minHeight: 150,
-                    minWidth: 200,
-                }); */
-                // as resizing is disabled, better to remove the resizing handles if any..
-                $(new_bloc).find('div.ui-resizable-handle').remove();
-                // manipulating the image if present
-				$('#'+new_bloc_id+' div#doc_form').show();
-				$('#'+new_bloc_id+' img.cropbox').Jcrop({
-					    onChange: function(obj){update_crop(obj,nb_cid,new_bloc_id)},
-					    onSelect: function(obj){update_crop(obj,nb_cid,new_bloc_id)},
-					    aspectRatio: 1
-				});
-				$('#cart input#dropped').attr('value','true');
+								$('#cart div.ui-droppable').html(data)
+				            }
+				    });
+				} else if(ui.draggable.hasClass('ibloc') && !_isMiscDropped && !_isWorkInProgress) {
+                    // init masking and prevention
+                    $('.userEditHolder').mask('Processing...');
+                    $('#isWorkInProgress').attr('value', 1);
+                    // append the block as it is..
+                    /*$( this ).find('li').parent('ul').append(ui.draggable.clone());
+                    $('ul#sortable').append(ui.draggable.clone()); */
+                    var _tmp = ui.draggable.clone();
+                    $('<div id="new_resizer_'+$(ui.draggable).attr('id')+'" class="item"></div>').html(_tmp.html()).appendTo($('div#site-blocks'));
+                    // manipulate the recently added block
+                    var new_bloc = $('div#site-blocks div.item').last();
+                    //var new_bloc = $('ul#sortable li').last();
+                    var nb_cid = $(new_bloc).attr('id').match(/\d+/)[0];
+                    // now save this block before manipulating it, so that we'll get an unique ID
+                    var _params = {type:$('#src_type_'+nb_cid).val(), content_lib_id:nb_cid, listorder:$('div#site-blocks div.item').length};
+                    $.post( '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_new"%>', { data: $.toJSON(_params) },
+                        function( data ) {
+                            var new_bloc_id = 'resize_'+data.content_libraries_site_page.id;
+                            $(new_bloc).attr('id', new_bloc_id);
+                            $(new_bloc).find('span.title').first().remove();
+                            $(new_bloc).find('span.dragable').first().remove();
+                            $(new_bloc).find('div.hotspot').first().remove();
+                            // better to remove the resizing handles if any..
+                            $(new_bloc).find('div.ui-resizable-handle').remove();
+                            // now replace the necessary hidden elements names with the new ID i.e. this will be unique
+                            // 1) do for style-position
+                            var _posid = '#'+new_bloc_id+' #style_position_'+nb_cid;
+                            $(_posid).attr('name','style_position['+data.content_libraries_site_page.id+']');
+                            $(_posid).attr('id','style_position_'+data.content_libraries_site_page.id);
+                            // 2) if image for crop coordinates
+                            if(_params.type == 'Image') {
+                                var _imgc = ['crop_x', 'crop_y', 'crop_w', 'crop_h'];
+                                for (j in _imgc) {
+                                    var _hid = '#'+new_bloc_id+' #crop_'+nb_cid+'_'+_imgc[j];
+                                    $(_hid).attr('name', 'crop['+data.content_libraries_site_page.id+']['+_imgc[j]+']');
+                                    $(_hid).attr('id', 'crop_'+data.content_libraries_site_page.id+'_'+_imgc[j]);
+                                }
+                            }
+                            // manipulating the image if present
+                            $('#'+new_bloc_id+' div#doc_form').show();
+                            $('#'+new_bloc_id+' img.cropbox').Jcrop({
+                                onChange: function(obj){update_crop(obj,data.content_libraries_site_page.id,new_bloc_id)},
+                                onSelect: function(obj){update_crop(obj,data.content_libraries_site_page.id,new_bloc_id)},
+                                aspectRatio: 1
+                            });
 
-                var style = 'top:0;left:0;width:'+$('#'+new_bloc_id+' .resizable_content').width()+'px;height:'+$('#'+new_bloc_id+' .resizable_content').height()+'px;';
-                $('#'+new_bloc_id+' .ui-resizable').attr('style',style);
-                $('#'+new_bloc_id).attr('style',style);
+                            $('#cart input#dropped').attr('value','true');
+
+                            $('<input type="hidden" value="'+data.content_libraries_site_page.list_order+'" name="list_order['+data.content_libraries_site_page.id+']" id="list_order_'+data.content_libraries_site_page.id+'">').appendTo(new_bloc);
+
+                            var style = 'top:0;left:0;width:'+$('#'+new_bloc_id+' .resizable_content').width()+'px;height:'+$('#'+new_bloc_id+' .resizable_content').height()+'px;';
+                            $('#'+new_bloc_id+' .ui-resizable').attr('style',style);
+                            $('#'+new_bloc_id).attr('style',style);
+                            // attaching the resizer handle
+                            resizer(data.content_libraries_site_page.id);
+                            $('#'+new_bloc_id).draggable({
+                                handle: 'span.drag',
+                                containment: 'parent'
+                            });
+                            // say that work has been completed
+                            $('#isWorkInProgress').attr('value', 0);
+                            // now unmask the grid
+                            $('.userEditHolder').unmask();
+                            fitgrid();
+                        }
+                    );
+                } else if(_isMiscDropped) {
+                    // TODO: notify user that there're no actions for other block when there's a New Map/Misc block is sitting...
+                    alert('Please save the Map Data and then continue to add more blocks..');
+                } else {
+                    // TODO: prevent the multiple drops of same block due to mouse gesture or some other weird issue..
+                    //console.debug('Preventing multiple drops of same block.. ;)');
+                }
             }
 		})
 	});
@@ -197,11 +268,15 @@
   <div class="themes-board">
       <div class="grid-board">
         <div id="cart" >
-        	<%=hidden_field_tag "dropped",''%>
-          <div class="ui-droppable ui-sortable" style="height:900px;">
-            <ul id="sortable">
+        	<%=hidden_field_tag 'dropped'%>
+            <%=hidden_field_tag 'isMiscDropped',0%>
+            <%=hidden_field_tag 'isWorkInProgress',0%>
+          <div class="ui-droppable" style="height:900px;">
+            <div id="site-blocks" >
+            <!-- div id="site-blocks"    <ul id="sortable">  -->
             	<%=render :partial => '/content_libraries/existed_sources'%>
-            </ul>
+            <!-- /div   /ul   -->
+            </div>
           </div>
         </div>
       </div>
@@ -222,6 +297,14 @@
         $('.navBtns ul li').click(function(){
             window.location.href=$(this).attr('rel');
         })
+
+        $('div#site-blocks div.item').each(function(){
+            $(this).draggable({
+                handle: 'span.drag',
+                containment: 'parent'
+            });
+        });
+        fitgrid();
       </script>
 
   </body>

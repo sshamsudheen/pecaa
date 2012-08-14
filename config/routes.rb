@@ -135,15 +135,19 @@ Mystore3::Application.routes.draw do
       get 'destroy_page', :on => :member, :to => 'site_pages#destroy'
       get 'update_page', :on => :member, :to => 'site_pages#update'
       get 'seo_page', :on => :member
-      post 'content_save', :on => :member
+      post 'content_new', :on => :member
+      post 'content_destroy', :on => :member
+      post 'content_save', :on => :member, :to => 'site_pages#content_save'
+      put 'content_save', :on => :member, :to => 'site_pages#content_save'
       post 'reorder', :on => :collection
       resources :content_libraries do 
         get 'search', :on => :collection
       end
-      resources :miscs do 
+      resources :miscs do
+        get 'show_block', :on => :member
       end
-      
     end
+
     resources :site_styles do
       get 'choose_theme', :on => :collection
       get 'choose_basecolor', :on => :collection
