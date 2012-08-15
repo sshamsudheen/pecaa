@@ -52,9 +52,10 @@ class SiteUsersController < ApplicationController
   end
 
   def edit_group
+
     @group_obj = SiteGroup.find(params[:group_id])
     @group_obj.name = params[:name]
-    @group_obj.status = params[:groups][:active] == "0" ? false : true
+    @group_obj.status = (params[:groups][:active].blank? ? false : true ) rescue false
     @group_obj.role_ids = params[:group][:role_ids]  if params[:group]
     @group_obj.save
     redirect_to "/sites/#{params[:site_id]}/site_users/list_groups"

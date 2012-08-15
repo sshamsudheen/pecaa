@@ -12,22 +12,20 @@
 <span class="val"><%=@group_obj.updated_at.strftime("%D")%></span>
 </div>
 <div class="showGroupDetail">
-<span class="val"><span id="" class="checkbox" style="background-position: 0px -50px; "></span>
-  <%=check_box "groups","active",{:id=>"active",:class=>"styled" },1,0 %>
+<span class="val">
+  <%=check_box_tag "groups[active]",@group_obj.id, @group_obj.status %>
+
 </span>
 <span class="key">active</span>
 <div class="groupNameLabel">group name :</div>
-  <div class="groupNameField"><%=text_field_tag :name,@group_obj.name %></div>
+  <div class="groupNameField"><%=text_field_tag :name,@group_obj.name,:style=>"width:220px;" %></div>
 </div>
 <div class="showRolesDetail">
 <ul>
 <%Role.all.each do |role|%>
 <li>
   <span class="val">
-    <input type="checkbox" class="styled" name="group[role_ids][]" value="<%=role.id%>">
-    <span id="role_<%=role.id%>" class="checkbox" style="background-position: 0px -50px; "></span>
-
-
+    <%=check_box_tag "group[role_ids][]",role.id,@group_obj.roles.include?(role) %>
   </span>
 <span class="key"><%= role.name %></span></li>
 <%end%>
