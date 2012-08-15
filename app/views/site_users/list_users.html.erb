@@ -102,7 +102,7 @@
 				    												<img src="/assets/btnMarkNo.png" border="0">
 																	<%end%>
 																</span></span>
-				    											<span class="group">Group X</span>
+				    											<span class="group"><%= s_u.site_groups.first.name if s_u.site_groups.first%></span>
 				    											<span class="created"><%=s_u.user.created_at.strftime('%d/%m/%y')%></span>
 				    											<span class="lastActivity"><%=s_u.user.created_at.strftime('%d/%m/%y')%></span>
 				    										</li>
