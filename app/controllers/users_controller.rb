@@ -121,11 +121,12 @@ class UsersController < ApplicationController
   end
   
   def update
+
     @user_obj = User.find(params[:id])
     params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
     params[:user].delete(:addresses1)
     params[:user].delete(:addresses2)
-    params[:user][:role_ids] = params[:users][:role_ids] if params[:users]
+    params[:user][:role_ids] = params[:users][:role_ids] if params[:users] and params[:users][:roles]
     params[:user][:password] = @user_obj.password
     if @user_obj.update_attributes(params[:user])
       respond_to do |format|
