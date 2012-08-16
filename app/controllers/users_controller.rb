@@ -126,7 +126,7 @@ class UsersController < ApplicationController
     params[:user][:addresses]=[params[:user][:addresses1]] << params[:user][:addresses2]
     params[:user].delete(:addresses1)
     params[:user].delete(:addresses2)
-    params[:user][:role_ids] = params[:users][:role_ids] if params[:users] and params[:users][:roles]
+    params[:user][:role_ids] = params[:users][:role_ids] if params[:users] and params[:users][:role_ids]
     params[:user][:password] = @user_obj.password
     if @user_obj.update_attributes(params[:user])
       respond_to do |format|
