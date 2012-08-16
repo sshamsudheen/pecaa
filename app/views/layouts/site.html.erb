@@ -104,6 +104,13 @@
         else $('.ui-droppable').html('');
     }
 
+    function setnofblocks(update) {
+        if(update)
+            $('#nofBlockItems').attr('value', $('div#site-blocks div.item').length);
+        else
+            return $('#nofBlockItems').attr('value');
+    }
+
     $(function() {
         $('#sortable').sortable();
         $('#sortable').disableSelection();
@@ -134,21 +141,24 @@
                 var _isWorkInProgress = parseInt($('#isWorkInProgress').attr('value'));
                 // is the dragged elements is a Misc i.e. Map ??
 				if (ui.draggable.attr('class') == 'item active newItem misc_form ui-draggable') {
-					$('#isMiscDropped').attr('value', 1);
-                    $(grid_blocks_container).find('.placeholder').remove();
-                    //$( this ).find('li').remove();
-                    var _list_order = $(grid_blocks_container+' div.item').length + 1;
-                    $(grid_blocks_container).find('div.item').remove();
-                    $(grid_blocks_container).html('');
-                    $.ajax({
-				            type: 'get',
-				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
-				            success: function (data) {
-								$('.misc_form div#doc_form').remove();
-								$(grid_blocks_container).html(data);
-                                $('input#list_order').attr('value',_list_order);
-				            }
-				    });
+					if(!_isMiscDropped) {
+                        $('#isMiscDropped').attr('value', 1);
+                        $(grid_blocks_container).find('.placeholder').remove();
+                        //$( this ).find('li').remove();
+                        var _list_order = parseInt(setnofblocks(false)) + 1;
+                        $(grid_blocks_container).find('div.item').remove();
+                        $(grid_blocks_container).html('');
+                        $.ajax({
+                                type: 'get',
+                                url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
+                                success: function (data) {
+                                    $('.misc_form div#doc_form').remove();
+                                    $(grid_blocks_container).html(data);
+                                    $('input#list_order').attr('value',_list_order);
+                                    $('#isMiscDropped').attr('value', 0);
+                                }
+                        });
+                    }
 				} else if(ui.draggable.hasClass('ibloc') && !_isMiscDropped && !_isWorkInProgress) {
                     // init masking and prevention
                     $('.userEditHolder').mask('Processing...');
@@ -231,6 +241,7 @@
                             $('#cart input#dropped').attr('value','true');
                             // now unmask the grid
                             $('.userEditHolder').unmask();
+                            setnofblocks(true);
                             fitgrid();
                         }
                     );
@@ -311,6 +322,7 @@
         	<%=hidden_field_tag 'dropped'%>
             <%=hidden_field_tag 'isMiscDropped',0%>
             <%=hidden_field_tag 'isWorkInProgress',0%>
+            <%=hidden_field_tag 'nofBlockItems',0%>
           <div class="ui-droppable" style="height: 900px; position: absolute; width: 1024px;">
             <div id="site-blocks" style="height: 900px; position: relative; width: 1024px;">
             <!-- div id="site-blocks"    <ul id="sortable">  -->
@@ -329,7 +341,7 @@
         $('.location').click(function(){
             window.location.href=$(this).attr('rel');
         })
-        
+
         $('.logout').click(function(){
             window.location.href='/logout';
         })
@@ -350,6 +362,7 @@
             $(_did).unbind('click');
             $(_did).click(function(){delete_block(_id);});
         });
+        setnofblocks(true);
         fitgrid();
       </script>
 
