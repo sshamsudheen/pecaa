@@ -1,51 +1,39 @@
-    <%=hidden_field_tag :from_content, @from_content%>
-	    <%=hidden_field_tag :content_type, "Misc"%>
-								<div class="contentObject" id="mapObj">
-									<div class="resizable_content" style="<%=@resizable_el_style%>">
-		    						<div class="alphaBg"></div>
-									<div class="expandable">
-										<span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>"$('.ui-droppable').html('');"%></span>
-										<span class="drag"></span>
-										
-										<div class="objectContent">
-											<div class="mapTitle">store map</div>
-											<img src="" id="map-canvas-image"> </img>
-											
-										</div>
-									</div>
-									</div>
-								</div>
-								<!-- div class="contentObject" id="mapAddr">
-		    						<div class="dragableObject">
-										<div class="dragable">
-											<span class="drag"></span>
-											<div class="dragContent">
-												<div class="mapDetail">
-													<span class="key">title :</span><span class="val"><input type="text" value="store map"></span>
-													<span class="key">address :</span><span class="val"><input type="text" value="<%#= @address ? @address.address_string : "" %>" id="mapAddress"></span>
-													<button id="reloadMap" class="primary">Reload</button>								
-												</div>
-											</div>
-											<div class="dragContentBottom"></div>	
-										</div>
-	    							</div>
-	    						</div -->
-	    
-	   
-    <script type="text/javascript">
-         $(document).ready(function(){
-	     	/*$('#mapObj').css("left", "50px");
-	     	$('#mapObj').css("top", "30px");
-	     	$('#mapAddr').css("right", "50px");
-	     	$('#mapAddr').css("top", "30px");
-	     	var address = $("#mapAddress").val();
-	     	var uri = "zoom=10&size=400x400&markers=color:blue|" + address + "&sensor=false";
-	     	var mapURL = "http://maps.googleapis.com/maps/api/staticmap?" + encodeURIComponent(uri); 
-	     	$("#map-canvas-image").attr('src', mapURL);*/
-	     	initMisc();
-            // make resizable only in the current block
-      		//$('#resize_<%#=@bloc_id%> #mapObj .resizable_content').resizable();
-	  });
-	  
-    </script>	
+<%=hidden_field_tag :from_content, @from_content%>
+<%=hidden_field_tag :content_type, "Misc"%>
+<div class="contentObject" id="mapObj">
+    <div class="resizable_content" style="<%=@resizable_el_style%>">
+    <div class="alphaBg"></div>
+    <div class="expandable">
+        <span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);',:onclick=>'delete_block('+@bloc_id.to_s+');'%></span>
+        <span class="drag"></span>
 
+        <div class="objectContent">
+            <div class="mapTitle">store map</div>
+            <img src="" id="map-canvas-image"> </img>
+
+        </div>
+    </div>
+    </div>
+</div>
+<div class="contentObject" id="mapAddr" style="display: none;">
+    <div class="dragableObject">
+        <div class="dragable">
+            <span class="drag"></span>
+            <div class="dragContent">
+                <div class="mapDetail">
+                  <span class="key">title :</span><span class="val"><input id="misc_title" name="misc[title]" type="text" value="<%=@misc.title%>"></span>
+                  <span class="key">address :</span><span class="val"><input id="misc_address" name="misc[address]" type="text" value="<%=@misc.address%>" id="mapAddress"></span>
+                  <button id="reloadMap" class="primary">Reload</button>
+                  <button id="saveMap" class="primary">Save</button>
+                </div>
+            </div>
+            <div class="dragContentBottom"></div>
+        </div>
+    </div>
+</div>
+<!-- script type="text/javascript">
+  // !Imp: as of now it's done from the place where this form is requeted..
+  $(document).ready(function(){
+        initMisc();
+  });
+</script -->

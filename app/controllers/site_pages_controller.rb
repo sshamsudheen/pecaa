@@ -88,12 +88,14 @@ class SitePagesController < ApplicationController
   end
 
   def content_destroy
-    @site_page = SitePage.find(params[:id])
-logger.info "content_destroy>> #{params.inspect}"
-return
-    # parse the data from json
-    _lib = @site_page.content_libraries_site_pages.find(params[:id])
-    _lib.destroy
+    if params[:clibspid] and params[:clibspid].to_i > 0
+      _lib = ContentLibrariesSitePage.find(params[:clibspid])
+      _data = {:status => 0}
+      if _lib.destroy
+        _data[:status] = 1
+      end
+    end
+    render json: _data
   end
 
   def content_save
@@ -104,37 +106,28 @@ return
       _a_cl = @site_page.content_libraries_site_pages.find(i[0])
       _a_cl.position = i[1]
       _a_cl.list_order = params[:list_order][i[0]]
-      if params[:iwidth] and params[:iheight]
-		if params[:iwidth][i[0]] and params[:iheight][i[0]]
-			_a_cl.width = params[:iwidth][i[0]]
-			_a_cl.height = params[:iheight][i[0]]
-		end
-	  end
+      if !params[:iwidth].nil? and !params[:iheight].nil?
+        if params[:iwidth][i[0]] and params[:iheight][i[0]]
+          _a_cl.width = params[:iwidth][i[0]]
+          _a_cl.height = params[:iheight][i[0]]
+        end
+      end
       _a_cl.save!
       #logger.info "Image Crop>> #{params[:crop][i[0]]}, #{x}"
-      if (_a_cl.content_type == 'Image' and params[:crop][i[0]] and ((content = ContentLibrary.find(_a_cl.content_library_id)) and content.source_type == 'Image') rescue nil)
+      if (_a_cl.content_type == 'Image' and params[:crop][i[0]] and (content = ContentLibrary.find(_a_cl.content_library_id)) rescue nil)
         content.source.update_attributes(params[:crop][i[0]].merge(:updated_at => Time.now))
       end
     }
     # saving the sorted order of the blocks
     #sorting = params[:sorting_position].split(',').collect{|el| el.split('_').last}.join(';')
     #@site_page.update_attributes(:conent_positioning => sorting)
+    #redirect_to :back
 
-    # TODO: redirect to appropriate page
-    redirect_to :back
-=begin
-    if params[:content_type] == "Misc"
-      @site_page.content_libraries_site_pages.create(:content_type=>"Misc",:position=>params[:style_position],:site_id=>@site.id)
-    else
-      @site_page.content_libraries_site_pages.create(:content_library_id => params[:content_id],:position=>params[:style_position],:site_id=>@site.id)
-    end
-
-    if params[:is_preview] == "true"
+    if params[:is_preview] == 'true'
       redirect_to preview_site_path(@site)
     else
       redirect_to choose_theme_site_site_styles_path(@site)
     end
-=end
   end
 
   def reorder

@@ -1,7 +1,7 @@
 <div class="contentObject">
     <div class="resizable_content" style="<%=@resizable_el_style%>">
         <div class="expandable">
-            <span class="delete"></span>
+            <span class="delete"><%=link_to image_tag('btn_ContentDelete.png'), '#',:href=>'javascript:void(0);'%></span>
             <span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span>
             <span class="drag"></span>
             <div class="objectContent">

@@ -47,7 +47,7 @@ class MiscsController < ApplicationController
     @site_page = SitePage.find(params[:site_page_id]) 
 
     if @misc.save
-      ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => nil,:site_page_id => @site_page.id,:content_type=>'Misc',:position=>(params[:misc_position].nil? ? params[:misc_position] : 'width: 500px;'),:misc_id=>@misc.id)
+      ContentLibrariesSitePage.create(:site_id => @site.id,:content_library_id => nil,:site_page_id => @site_page.id,:content_type=>'Misc',:position=>(params[:misc_position].nil? ? params[:misc_position] : 'width: 500px;'),:misc_id=>@misc.id,:list_order=>(params[:list_order]?params[:list_order]:0))
       #redirect_to "/sites/#{@site.id}/site_pages/#{@site_page.id}/content_libraries/search?search[source_type_equals]=Misc"
     else
       render action: 'new'
@@ -93,8 +93,9 @@ class MiscsController < ApplicationController
     @misc = Misc.find(params[:id])
     @from_content = false
     spclib = ContentLibrariesSitePage.where("site_id=#{@site.id} AND site_page_id=#{@site_page.id} AND misc_id=#{@misc.id}")
-    #logger.info "misc.spclib: #{spclib.inspect}"
-    @bloc_style = spclib.length > 0 ? spclib[0].position : 'top:0;left:0;'
+    logger.info "misc.spclib: #{spclib.inspect}"
+    @bloc_id=spclib[0].id
+    @resizable_el_style = spclib.length > 0 ? spclib[0].position : 'top:0;left:0;'
     respond_to do |format|
       format.html { render :layout => false}# new.html.erb
       format.json { render json: @misc }

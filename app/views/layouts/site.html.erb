@@ -59,7 +59,7 @@
         // TODO: if the image need to be resized by dragging? find it.. below code can help a bit!
         var _selector = '#resize_'+eid+' .resizable_content';
         $(_selector).resizable({
-            minHeight: 150,
+            minHeight: 200,
             minWidth: 200,
             handles: 'se',
             alsoResize: (arguments[1] ? _selector+' .objectContent img' : ''),
@@ -69,25 +69,43 @@
         });
     }
 
-	$(function() {
-      <%if params[:controller] == 'content_libraries' and params[:action] == 'search' %>
-        /*$('ul#sortable').sortable({
-             items: 'li',
-             helper: 'helper',
-             connectWith: 'ul#sortable',
-             handle: 'span.drag',
-             forcePlaceholderSize: true,
-             forceHelperSize: true,
-             placeholder: 'placeholder'
-        });   */
-        /*$('div#site-blocks').draggable({
-            helper: 'helper',
-            handle: 'span.drag',
-            containment: 'div#cart'
-        }); */
-      <%else%>
+    function delete_block(ID) {
+        if (ID > 0) {
+            $('.userEditHolder').mask('Processing...');
+            $.post( '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_destroy"%>', { clibspid: ID },
+                function( data ) {
+                    var _tmp_selector = 'resize_'+ID,
+                        $first_block = $('#site-blocks div.item').first();
+                    if($first_block.attr('id')===_tmp_selector) {
+                        var $next_block = $first_block.next(),
+                            _style = $next_block.attr('style');
+                        if (_style) {
+                            var _top = _style.match(/top\:([\s-\+\d]+)/);
+                            if(_top.length >=2 && _top[1] < 0) {
+                                var _fstyle = $first_block.attr('style'),
+                                    _ftop = _fstyle.match(/top\:([\s-\+\d]+)/);
+                                $next_block.css('top', _ftop[1]+'px');
+                            }
+                        }
+                    }
+                    // now remove the item
+                    $('#'+_tmp_selector).remove();
+                    $('.userEditHolder').unmask();
+                }
+            );
+        }
+    }
+
+    function cleargrid() {
+        if($('div#site-blocks').length > 0) {
+            $('div#site-blocks').html('');
+            $('#isMiscDropped, #isWorkInProgress').attr('value', 0);
+        }
+        else $('.ui-droppable').html('');
+    }
+
+    $(function() {
         $('#sortable').sortable();
-      <% end %>
         $('#sortable').disableSelection();
 	});
 
@@ -105,27 +123,30 @@
 			helper: "clone"
 		});
 
-        $( "#cart div" ).droppable({
+        $( '#cart div' ).droppable({
 			activeClass: "ui-state-default",
 			hoverClass: "ui-state-hover",
 			accept: ":not(.ui-sortable-helper)",
 			drop: function( event, ui ) {
+                var grid_blocks_container = 'div#site-blocks';
                 // retrieve the flag values
                 var _isMiscDropped = parseInt($('#isMiscDropped').attr('value'));
                 var _isWorkInProgress = parseInt($('#isWorkInProgress').attr('value'));
                 // is the dragged elements is a Misc i.e. Map ??
 				if (ui.draggable.attr('class') == 'item active newItem misc_form ui-draggable') {
 					$('#isMiscDropped').attr('value', 1);
-                    $( this ).find('.placeholder').remove();
+                    $(grid_blocks_container).find('.placeholder').remove();
                     //$( this ).find('li').remove();
-                    $( this ).find('div.item').remove();
-                    $( this ).html('');
+                    var _list_order = $(grid_blocks_container+' div.item').length + 1;
+                    $(grid_blocks_container).find('div.item').remove();
+                    $(grid_blocks_container).html('');
                     $.ajax({
 				            type: 'get',
 				            url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/new"%>',
 				            success: function (data) {
 								$('.misc_form div#doc_form').remove();
-								$('#cart div.ui-droppable').html(data)
+								$(grid_blocks_container).html(data);
+                                $('input#list_order').attr('value',_list_order);
 				            }
 				    });
 				} else if(ui.draggable.hasClass('ibloc') && !_isMiscDropped && !_isWorkInProgress) {
@@ -136,13 +157,13 @@
                     /*$( this ).find('li').parent('ul').append(ui.draggable.clone());
                     $('ul#sortable').append(ui.draggable.clone()); */
                     var _tmp = ui.draggable.clone();
-                    $('<div id="new_resizer_'+$(ui.draggable).attr('id')+'" class="item"></div>').html(_tmp.html()).appendTo($('div#site-blocks'));
+                    $('<div id="new_resizer_'+$(ui.draggable).attr('id')+'" class="item"></div>').html(_tmp.html()).appendTo($(grid_blocks_container));
                     // manipulate the recently added block
-                    var new_bloc = $('div#site-blocks div.item').last();
+                    var new_bloc = $(grid_blocks_container+' div.item').last();
                     //var new_bloc = $('ul#sortable li').last();
                     var nb_cid = $(new_bloc).attr('id').match(/\d+/)[0];
                     // now save this block before manipulating it, so that we'll get an unique ID
-                    var _params = {type:$('#src_type_'+nb_cid).val(), content_lib_id:nb_cid, listorder:$('div#site-blocks div.item').length};
+                    var _params = {type:$('#src_type_'+nb_cid).val(), content_lib_id:nb_cid, listorder:$(grid_blocks_container+' div.item').length};
                     $.post( '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/content_new"%>', { data: $.toJSON(_params) },
                         function( data ) {
                             var new_bloc_id = 'resize_'+data.content_libraries_site_page.id;
@@ -157,7 +178,19 @@
                             var _posid = '#'+new_bloc_id+' #style_position_'+nb_cid;
                             $(_posid).attr('name','style_position['+data.content_libraries_site_page.id+']');
                             $(_posid).attr('id','style_position_'+data.content_libraries_site_page.id);
-                            // 2) if image for crop coordinates
+                            // 2) do for iwidth
+                            var _iwid = '#'+new_bloc_id+' #iwidth_'+nb_cid;
+                            $(_iwid).attr('name','iwidth['+data.content_libraries_site_page.id+']');
+                            $(_iwid).attr('id','iwidth_'+data.content_libraries_site_page.id);
+                            // 3) do for iheight
+                            var _ihid = '#'+new_bloc_id+' #iheight_'+nb_cid;
+                            $(_ihid).attr('name','iheight['+data.content_libraries_site_page.id+']');
+                            $(_ihid).attr('id','iheight_'+data.content_libraries_site_page.id);
+                            // 4) do for source-type
+                            var _stid = '#'+new_bloc_id+' #src_type_'+nb_cid;
+                            $(_stid).attr('name','src_type['+data.content_libraries_site_page.id+']');
+                            $(_stid).attr('id','src_type_'+data.content_libraries_site_page.id);
+                            // 5) if image for crop coordinates
                             if(_params.type == 'Image') {
                                 var _imgc = ['crop_x', 'crop_y', 'crop_w', 'crop_h'];
                                 for (j in _imgc) {
@@ -173,22 +206,29 @@
                                 onSelect: function(obj){update_crop(obj,data.content_libraries_site_page.id,new_bloc_id)},
                                 aspectRatio: 1
                             });
-
-                            $('#cart input#dropped').attr('value','true');
-
+                            // save the current list-order
                             $('<input type="hidden" value="'+data.content_libraries_site_page.list_order+'" name="list_order['+data.content_libraries_site_page.id+']" id="list_order_'+data.content_libraries_site_page.id+'">').appendTo(new_bloc);
-
-                            var style = 'top:0;left:0;width:'+$('#'+new_bloc_id+' .resizable_content').width()+'px;height:'+$('#'+new_bloc_id+' .resizable_content').height()+'px;';
-                            $('#'+new_bloc_id+' .ui-resizable').attr('style',style);
-                            $('#'+new_bloc_id).attr('style',style);
+                            // inti the dimensions of the block
+                            var _style_selector = '#'+new_bloc_id+' .resizable_content' + (data.content_libraries_site_page.content_type=='Image' ? ' img.cropbox' : ''),
+                                _style_selector_w = $(_style_selector).width(), _style_selector_h = $(_style_selector).height(),
+                                _style = 'top:0;left:0;width:'+(_style_selector_w > 200 ? _style_selector_w : 200)+'px;height:'+(_style_selector_h > 200 ? _style_selector_h : 200)+'px;';
+                            $('#'+new_bloc_id+' .ui-resizable').attr('style',_style);
+                            $('#'+new_bloc_id).attr('style',_style);
                             // attaching the resizer handle
                             resizer(data.content_libraries_site_page.id);
                             $('#'+new_bloc_id).draggable({
                                 handle: 'span.drag',
                                 containment: 'parent'
                             });
+                            // attach delete handler
+                            var _delete_selector = '#'+new_bloc_id+' .resizable_content span.delete a';
+                            $(_delete_selector).unbind('click');
+                            $(_delete_selector).click(function(){
+                                delete_block(data.content_libraries_site_page.id);
+                            });
                             // say that work has been completed
                             $('#isWorkInProgress').attr('value', 0);
+                            $('#cart input#dropped').attr('value','true');
                             // now unmask the grid
                             $('.userEditHolder').unmask();
                             fitgrid();
@@ -271,8 +311,8 @@
         	<%=hidden_field_tag 'dropped'%>
             <%=hidden_field_tag 'isMiscDropped',0%>
             <%=hidden_field_tag 'isWorkInProgress',0%>
-          <div class="ui-droppable" style="height:900px;">
-            <div id="site-blocks" >
+          <div class="ui-droppable" style="height: 900px; position: absolute; width: 1024px;">
+            <div id="site-blocks" style="height: 900px; position: relative; width: 1024px;">
             <!-- div id="site-blocks"    <ul id="sortable">  -->
             	<%=render :partial => '/content_libraries/existed_sources'%>
             <!-- /div   /ul   -->
@@ -299,10 +339,16 @@
         })
 
         $('div#site-blocks div.item').each(function(){
+            // make the blocks on the grid draggable
             $(this).draggable({
                 handle: 'span.drag',
                 containment: 'parent'
             });
+            // attach the delete handlers
+            var _did = '#'+this.id+' .resizable_content span.delete a',
+                 _id =  this.id.match(/\d+/)[0];
+            $(_did).unbind('click');
+            $(_did).click(function(){delete_block(_id);});
         });
         fitgrid();
       </script>
