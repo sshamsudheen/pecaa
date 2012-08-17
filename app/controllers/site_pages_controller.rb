@@ -84,7 +84,7 @@ class SitePagesController < ApplicationController
     # now create the db record :site_id=>@site.id,:site_page_id=>@site_page.id,
     _a_cl = @site_page.content_libraries_site_pages.create(:site_id=>params['site_id'],:content_library_id=>new_clib['content_lib_id'],:content_type=>new_clib['type'],:list_order=>new_clib['listorder'])
     #logger.info "_a_cl c-new>> #{_a_cl.inspect}"
-    render json: _a_cl
+    render :json => _a_cl
   end
 
   def content_destroy
