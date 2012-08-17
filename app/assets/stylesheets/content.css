@@ -301,7 +301,7 @@
 	top:-2px;
 	width:35px;
 	height:35px;
-	background: url(img/btn_ContentDelete.png) no-repeat;
+	/*background: url(img/btn_ContentDelete.png) no-repeat; */
 }
 .expandable .drag{
 	right:-2px;

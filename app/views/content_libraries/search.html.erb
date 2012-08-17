@@ -87,9 +87,10 @@
 											<li class="item ui-draggable active <%=content.id%> ibloc" id = "bloc_<%=content.id%>">
 												<span class="title"><%=truncate(content.name, :length => 15, :separator => '..')%></span><span class="dragable"></span>
 												<%= hidden_field_tag 'content_id', content.id%>
-												<%#= hidden_field_tag "style_position","width:100%;height:100%"%>
                                                 <%= hidden_field_tag "style_position[#{content.id}]"%>
                                                 <%= hidden_field_tag "src_type[#{content.id}]", content.source_type%>
+                                                <%= hidden_field_tag "iwidth[#{content.id}]",''%>
+                                                <%= hidden_field_tag "iheight[#{content.id}]",''%>
                                               <%if content.source_type == "Image"%>
                                                   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
                                                       <%= hidden_field "crop[#{content.id}]", attribute, :id => "crop_#{content.id}_#{attribute}" %>
@@ -173,9 +174,9 @@
             // save the positions
             $('input#list_order_'+did).attr('value',ix+1);
             sorted_positions = sorted_positions + ',' + $(this).attr('id');
-            if($('#resize_'+did+' .ui-resizable')) {
-                $('input#iwidth_'+did).attr('value',$('#resize_'+did+' .ui-resizable').width());
-                $('input#iheight_'+did).attr('value',$('#resize_'+did+' .ui-resizable').height());
+            if($('#resize_'+did+' .resizable_content')) {
+                $('input#iwidth_'+did).attr('value',$('#resize_'+did+' .resizable_content').width());
+                $('input#iheight_'+did).attr('value',$('#resize_'+did+' .resizable_content').height());
             }
         });
         // now storing the comma separated sorted orders
@@ -186,15 +187,8 @@
 			var content_id = $('#cart div.item').attr('class').split(' ').pop()
 			$('#cart input#content_id').attr('value', content_id)
 		}
+        // after doing all the manipulation and gathering the info, submit the form
 		$('#content_page_save').submit();
-/*		if ($('#cart input#dropped').attr('value') == 'true') {
-			
-			$('#content_page_save').submit();
-		}
-		else{
-			window.location.href='/sites/<%=@site.id%>/site_styles/choose_theme'
-		}
-*/
   });
   
   $('#preview_button').click(function(){

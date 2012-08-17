@@ -4,22 +4,32 @@
   <%     content = common_detail.content_library
          @bloc_id=common_detail.id
          @bloc_style=common_detail.position
-         li_style = common_detail.position
+         li_style = common_detail.position.nil? ? '' : common_detail.position
          @resizable_el_style = ''
          @image_w = ''
          if(!common_detail.width.nil?)
             li_style += 'width:'+common_detail.width+'px;'
             @resizable_el_style += 'width:'+common_detail.width+'px;'
-            @image_w = common_detail.content_type == 'Image' ? (common_detail.width.to_i - 50).to_s + 'px' : ''
+            if common_detail.content_type == 'Image'
+              @image_w = (common_detail.width.to_i - 50).to_s + 'px'
+            elsif common_detail.content_type=='Misc'
+              @image_w = common_detail.width.to_i - 65
+            end
+         else
+           li_style += 'width:460px;'
          end
          @image_h = ''
          if(!common_detail.height.nil?)
            li_style += 'height:'+common_detail.height+'px;'
            @resizable_el_style += 'height:'+common_detail.height+'px;'
-           @image_h = common_detail.content_type == 'Image' ? (common_detail.height.to_i - 50).to_s + 'px' : ''
+           if common_detail.content_type == 'Image'
+               @image_h = (common_detail.height.to_i - 50).to_s + 'px'
+           elsif common_detail.content_type=='Misc'
+               @image_h = common_detail.height.to_i - 35
+           end
          end
          if(@resizable_el_style == '')
-           @resizable_el_style = 'width:600px;'
+           @resizable_el_style = 'width:460px;'
          end
          # container ID
          li_id = 'resize_'+common_detail.id.to_s
@@ -72,9 +82,11 @@
                     type: 'get',
                     url: '<%="/sites/#{params[:site_id]}/site_pages/#{params[:site_page_id]}/miscs/#{common_detail.misc_id}/show_block"%>',
                     success: function (data) {
-                        //$('.misc_form div#doc_form').remove();
                         $('#<%=li_id%> #misc_existed').html(data);
-                        $('#<%=li_id%> #mapObj .resizable_content').resizable();
+                        initMisc('<%=li_id%>', '<%=(@image_w!='' ? @image_w.to_s+'x'+@image_h.to_s : '400x400')%>');
+                        $('#<%=li_id%> #mapObj .resizable_content').attr('style','<%=@resizable_el_style%>');
+                        resizer(<%=@bloc_id%>, true);
+                        fitgrid();
                     }
                 });
             });
