@@ -92,11 +92,13 @@
 
 <script>
 	$(document).ready(function(){
-		$('.on').click(function () {
+		$('.on').live('click',function () {
 		  $(this).attr('class','off');	
+		  return false;
 		});
-	     $('.off').click(function () {
+	     $('.off').live('click',function () {
 		  $(this).attr('class','on');	
+		  return false;
 		})
 
 	})

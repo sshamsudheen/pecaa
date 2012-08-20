@@ -45,7 +45,6 @@
     										<ul class="ConLibraHeads">
     											<li>
     												<span class="name">Name</span>
-    												
                                                     <span class="dateAdded">Date Added</span>
                                                     <span class="products">Products</span>
                                                     <span class="empty"></span>
@@ -102,14 +101,12 @@ $('#user_detail').html(data)
 }
 
 function edit_site_vendors(id){
-$.ajax({
-                                            type: "get",
-                                            url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id +'/edit',
-                                            success: function (data) {
-												$('#user_detail').removeClass('greyOut')
-$('#user_detail').html(data)                                  
-                                            },
-                                        })
+$.ajax({type: "get", url: '<%="/sites/#{params[:site_id]}/site_vendors/"%>'+id +'/edit', 
+	success: function (data) {
+		$('#user_detail').removeClass('greyOut')
+		$('#user_detail').html(data)                                  
+    }
+    })
 }
 
 function show_site_vendors(id){

@@ -68,7 +68,7 @@
                         <ul class="ConLibra">
                          <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="/assets/btnMarkNo.png" border="0" /></span></span> <span class="sku">Group X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
                           							<%GiftCertificate.all.each do |gf|%>
-	                          <li class="selected alt"> <span class="certificateText"><%=gf.certificate_id%></span><span class="createdDate"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="expiresText"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="purchasedByText">James</span> <span class="assignedData"><%=User.find(gf.assigned_to).username rescue ''%></span> <span class="valueText"><%=gf.value%></span><span class="remainingText">$205.00</span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/gift_certificates/<%=gf.id%>/approve'"><input type="checkbox" id="shareThis" <%= gf.status ? "checked='yes'" : ''%> class="styled"></span></span><span><a href="/sites/<%=params[:site_id]%>/gift_certificates/<%=gf.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
+	                          <li class="alt"> <span class="certificateText"><%=gf.certificate_id%></span><span class="createdDate"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="expiresText"><%=gf.created_at.strftime('%y/%m/%d')%></span><span class="purchasedByText">James</span> <span class="assignedData"><%=User.find(gf.assigned_to).username rescue ''%></span> <span class="valueText"><%=gf.value%></span><span class="remainingText">$205.00</span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/gift_certificates/<%=gf.id%>/approve'"><input type="checkbox" id="shareThis" <%= gf.status ? "checked='yes'" : ''%> class="styled"></span></span><span><a href="/sites/<%=params[:site_id]%>/gift_certificates/<%=gf.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
 							<%end%>  
 
                       </div>
@@ -82,3 +82,8 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+			$(document).ready(function(){
+        		$('#products1').tinyscrollbar();
+			});
+	</script>

@@ -398,13 +398,13 @@ z-index:200;
 	.detailsPopDiv2 p{
 	 padding:5px 10px;
 	}
-	.extForm {
-    margin: 20px 0 0 130px;
+.extForm {
+    margin: 20px 0 0 115px;
     overflow: hidden;
 }
 .extForm .form-row span.key {
     margin-right: 5px;
-    min-width: 190px;
+    min-width: 200px;
     text-align: right;
     width: auto;
 }
@@ -714,7 +714,7 @@ font-weight:normal;
 .vendorFeatures .site-users ul.ConLibra li span.emptyText {
     border: 0 none;
     display: inline-block;
-    width: 200px;
+    width: 140px;
 	 height: 21px;
     padding-top: 1px;
     text-align: center;
@@ -751,7 +751,7 @@ margin:0
 }
 .rowDiv2 dd{
 float:left;
-width:220px;	
+width:245px;	
 margin:0;
 padding:5px 10px ;
 }
@@ -1007,7 +1007,7 @@ margin: 10px 34%;
 .couponGrid ul.ConLibraHeads li span.text {
     border: 0 none;
     display: inline-block;
-    width: 90px;
+    width: 70px;
 }
 
 .couponGrid ul.ConLibraHeads li span.created {
@@ -1072,7 +1072,7 @@ margin: 10px 34%;
 .couponGrid ul.ConLibra li span.textData {
     border-right: 1px solid #999999;	
     display: inline-block;
-    width: 90px;
+    width: 80px;
 	height: 21px;
     padding-top: 1px;
     text-align: center;
@@ -1082,7 +1082,7 @@ margin: 10px 34%;
 .couponGrid ul.ConLibra li span.createdDate {
     border-right: 1px solid #999999;	
     display: inline-block;
-    width: 70px;
+    width: 60px;
 	height: 21px;
     padding-top: 1px;
     text-align: center;
@@ -1111,7 +1111,7 @@ margin: 10px 34%;
 .couponGrid ul.ConLibra li span.typeData {
     border-right: 1px solid #999999;	
     display: inline-block;
-    width: 70px;
+    width: 60px;
 	height: 21px;
     padding-top: 1px;
     text-align: center;
@@ -1221,7 +1221,7 @@ margin: 10px 34%;
 /*Gift Certification*/
 .giftCertGrid  ul.ConLibraHeads li span.certificate {
     display: inline-block;
-    width: 150px;
+    width: 130px;
 	text-align:left;
 	padding-left:5px;
 }
@@ -1240,7 +1240,7 @@ margin: 10px 34%;
 .giftCertGrid ul.ConLibraHeads li span.purchasedBy {
     border: 0 none;
     display: inline-block;
-    width: 150px;
+    width: 140px;
 }
 
 .giftCertGrid ul.ConLibraHeads li span.assigned {
@@ -1268,7 +1268,7 @@ margin: 10px 34%;
 }
 
 .giftCertGrid  ul.ConLibra li span.certificateText {
-    width: 150px;
+    width: 130px;
 	text-align:left;
 	padding-left:5px;
 	border-right: 1px solid #999999;	
@@ -1300,7 +1300,7 @@ margin: 10px 34%;
 .giftCertGrid ul.ConLibra li span.purchasedByText {
     border-right: 1px solid #999999;	
     display: inline-block;
-    width: 150px;
+    width: 140px;
 	height: 21px;
     padding-top: 1px;
     text-align: center;

@@ -1,5 +1,5 @@
 /* Tiny Scrollbar */
-.userGrid .viewport { overflow: hidden; position: relative; }
+.userGrid .viewport { overflow: hidden; position: relative; background:#CCC}
 .userGrid .overview { width: 100%; list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; border-right:0; }
 .userGrid .scrollbar{ background: transparent url(img/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 16px; z-index: 1;}
 .userGrid .track { /*background: transparent url(img/bg-scrollbar-trackend-y.png) no-repeat 0 100%;*/ background:#999999; height: 100%; width:12px; position: relative; padding: 0 1px;border-right: 1px solid #333333; border-left: 1px solid #333333;}

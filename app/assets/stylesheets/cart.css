@@ -147,6 +147,13 @@
 	border:none;
 	padding:5px;
 }
+.midSection .inputReadOnly{
+	background-color:#D3D3D3;
+	border-radius:4px;
+}
+.midSection .searchContent1 .searchIcon{
+	float:right;
+}
 .divAlpha{
 	opacity:0.4;
 filter:alpha(opacity=40);
@@ -162,6 +169,9 @@ filter:alpha(opacity=40);
 }
 dd span{
 	margin-left:10px;
+}
+dd span.status, .val span.status{
+	border:0;
 }
 h2 span{
 	margin-top:10px;
@@ -721,7 +731,7 @@ img{
 	overflow: hidden;
 }
 .extForm .form-row{
-	margin-bottom:5px;
+	margin-bottom:10px;
 	overflow: hidden;
 }
 .extForm .form-row span{
@@ -744,7 +754,7 @@ img{
 }
 .extForm .form-row span.val input[type="text"]{
 	width:250px;
-	background:#f5f5f5;
+	background:#EEE;
 	border-radius: 4px;
 	border:0;
 	padding:3px;

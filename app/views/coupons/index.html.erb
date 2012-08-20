@@ -127,8 +127,8 @@
                                     <div class="overview" style="top: 0px;">
                                         <ul class="ConLibra">
                                             <%Coupon.all.each do |coupon|%>
-                                            <li class="selected alt">
-                                                <span class="couponText"><span class="pointer"></span><%=coupon.code%><span class="status"></span></span>
+                                            <li class="alt">
+                                                <span class="couponText"><%=coupon.code%></span>
                                                 <span class="textData"><%=coupon.free_text%></span>
                                                 <span class="createdDate"><%=coupon.created_at.strftime('%D') rescue ''%></span>
                                                 <span class="expiresText"><%=coupon.expired_at.strftime('%D') rescue '25/05/12'%></span>
@@ -137,7 +137,8 @@
                                                 <span class="amountText"><%=coupon.amount%></span>
                                                 <span class="multiuseText"><%=coupon.multi_use ? "yes" : "No"%></span>
                                                 <span class="usersCount">25/250</span>
-												<span><span onclick="window.location.href='/sites/<%=params[:site_id]%>/coupons/<%=coupon.id%>/approve'"><input type="checkbox" id="shareThis" <%= coupon.status ? "checked='yes'" : ''%> class="styled"></span></span><span>
+                                                <span><input type="checkbox" id="shareThis" <%= coupon.status ? "checked='yes'" : ''%> ></span>
+												<!-- <span onclick="window.location.href='/sites/<%=params[:site_id]%>/coupons/<%=coupon.id%>/approve'"><input type="checkbox" id="shareThis" <%= coupon.status ? "checked='yes'" : ''%> class="styled"></span> -->
                                             </li>
 											<%end%>
                                          </ul>
@@ -153,3 +154,8 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#products1').tinyscrollbar();
+	})
+</script>
