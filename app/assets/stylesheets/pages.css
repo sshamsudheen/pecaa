@@ -205,7 +205,7 @@ span.pageName{
     padding-top:2px;
 }
 
-span.status,span.home{
+span.status, span.home{
 	width:43px;	
 	padding-top:2px;
 	text-align: center;
@@ -216,6 +216,7 @@ span.status,span.home{
 	padding-left: 2px;
     padding-right: 3px;
 }
+.customTax1 span.status{border:0; width:65px;	}
 span.home{
 	padding-left:15px;
 	width:25px;

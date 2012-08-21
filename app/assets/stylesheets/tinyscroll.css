@@ -12,3 +12,5 @@
 #commonScroll .overview{position: relative;}
 #users1 .shadows{margin-left:-10px;}
 #users1 .viewport{height:400px;}
+#products1 ul.ConLibra{border:0 !important;}
+#products1 .viewport{border-left: 1px solid #333333;border-right: 1px solid #333333;}

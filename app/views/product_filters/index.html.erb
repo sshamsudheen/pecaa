@@ -44,7 +44,7 @@
                                         </ul>
                                     </div>
                                     <div class="userGridBody">
-                                        <div id="scrollbar1">
+                                        <div id="products1">
                                             <div class="scrollbar" style="height: 0px;">
                                                 <div class="track" style="height:0px;">
                                                     <div class="thumb" style="top: 0px; height: 01px;">
@@ -63,7 +63,7 @@
                                                         <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="css/img/btnMarkNo.png" border="0" /></span></span> <span class="sku">type X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
 														<%ProductFilter.all.each_with_index do |product_filter,i|%>
                                                         <li class="alt">
-                                                            <span class="location"><span class="pointer"></span><%=product_filter.name%><span class="status"></span></span>
+                                                            <span class="location"><%=product_filter.name%></span>
                                                             <span class="type"> <span class="edit" id="div_<%=product_filter.id%>"><%=product_filter.friendly_name%></span></span>
                                                             <span class="status"><a class="<%=product_filter.status ? 'on' : 'off'%>" href="/sites/<%=params[:site_id]%>/product_filters/<%=product_filter.id%>/enable_status"></a></span>
                                                         </li>

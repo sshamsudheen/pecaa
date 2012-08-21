@@ -32,7 +32,7 @@
                     </ul>
                   </div>
                 <div class="userGridBody">
-                  <div id="scrollbar1">
+                  <div id="products1">
                     <div class="scrollbar disable" style="height: 25px;">
                       <div class="track" style="height: 25px;">
                         <div class="thumb" style="top: 0px; height: 25px;">
@@ -40,7 +40,7 @@
                           </div>
                         </div>
                       </div>
-                    <div class="viewport height25">
+                    <div class="viewport">
                       
                       <div class="overview featureProduct" style="top: 0px;">
                         <ul class="ConLibra ">
@@ -49,13 +49,12 @@
                           
                           <li class="alt"> <span class="nameText"><span class="pointer"></span><%=Site.find(params[:site_id]).domain_name || Site.find(params[:site_id]).name%><span class="status"></span></span> <span class="sslText">state</span>  <span class="sslText">state</span>
 						  
-						  <span class="review status">
-                          	
-                          	<%if SiteFeature.first and SiteFeature.first.ssl_setup%>
-							<a class="on" href="#" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=false'"></a>
-							<%else%>						
-								<a href="#" class="off" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=true'"></a>
-							<%end%>
+						  	<span class="review status">
+	                          	<%if SiteFeature.first and SiteFeature.first.ssl_setup%>
+								<a class="on" href="#" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=false'"></a>
+								<%else%>						
+									<a href="#" class="off" onclick="window.location.href='/sites/<%=params[:site_id]%>/site_features/ssl_setup_status?ssl_status=true'"></a>
+								<%end%>
 							</span>
 							<span class="purchase"><input name="" value="purchase" class="button" type="button"></span> </li>
                           </ul>
@@ -75,3 +74,8 @@
                 </div>
            
               </div>
+   <script type="text/javascript">
+			$(document).ready(function(){
+        		$('#scrollbar1').tinyscrollbar();
+			});
+	</script>

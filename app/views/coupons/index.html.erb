@@ -8,17 +8,17 @@
                 <div class="userPanel">
                     <div class="searchUser">
                       <form action="/sites/<%=params[:site_id]%>/coupons" method="get" name="searchbox" id='searchbox'>
-                             <span span="searchInput left">
-                          <input type="text" name='query' >
-                             </span>
-                                        <div class="selectDiv">
-                          <select name='search_on'class="select" title="Select one">
-                            <option selected value='code'>Coupon code</option>
-                            <option selected value='free_text'>Text</option>
-                            <option selected value='created_by'>Created By</option>
-
-                          </select>
-                        </div>
+                      	<span class="searchInput left">
+		          			<input type="text" name='query' placeholder="search">
+		             	</span>
+		             	<span class="addSearch left"> <img border="0" src="/assets/btn_AddNewSearch.png"> </span>
+                      	<span class="selectColumns clear">
+							<select name='search_on'class="select" title="Select one" style="border: 0; background: none; width:96%;">
+								<option selected value='code'>Coupon code</option>
+								<option selected value='free_text'>Text</option>
+								<option selected value='created_by'>Created By</option>
+							</select> 
+						</span>
                       </form>
                     </div>
                   <span class="showUser clear"><span class="userLastname">order <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>

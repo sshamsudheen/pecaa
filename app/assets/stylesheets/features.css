@@ -107,7 +107,7 @@ padding-left:7px;
     float: left;
     margin: 0;
     padding: 5px 5px 0 0;
-    width: 650px;
+    width: 660px;
 }
 
 .featuresMain .site-users ul.ConLibraHeads li span.domainName {
@@ -152,8 +152,9 @@ padding-left:7px;
 	border-right: 1px solid #999999;
     display: inline-block;
     padding-left: 15px;
+    padding-top:3px;
 	vertical-align: top;
-	height: 24px;
+	height: 22px;
     text-align: center;
 }
 .featuresMain .site-users ul.ConLibra li span.purchase {
@@ -163,7 +164,7 @@ padding-left:7px;
 	height: 24px;
     text-align: center;
 }
-
+.featuresMain .site-users ul.ConLibra li span.purchase .button{color:#FFF; background:#999999 !important;}
 .review .on {
     display: inline-block;
 }
@@ -207,14 +208,14 @@ padding-left:7px;
 }
 
 .featuresMain .searchContent {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #666666;
+    background: #FFF;
+    border: 1px solid #666;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 0 3px #999999 inset;
     margin-bottom: 10px;
-    position: absolute;
-    right: 180px;
-   
+    position: static;
+   width: 200px;
+   float: right;
 }
 
 .cartCollumsBottom .usersRightPane .search .inputBox {
@@ -296,7 +297,7 @@ padding-left:7px;
 }
 .featuresMain .site-users ul.ConLibra li span.reviewText {
     border-right: 1px solid #999999;
-    height: 19px;
+    height: 22px;
     padding-left: 10px;
     padding-top: 5px;
     text-align: left;
@@ -612,6 +613,7 @@ font-weight:normal;
     color: #FFFFFF;
     height: 435px;
     margin-right: -20px;
+    margin-top: 20px;
     padding: 8px 16px 8px 8px;
     position: relative;
 }
@@ -633,9 +635,7 @@ font-weight:normal;
     border: 1px solid #666666;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 0 3px #999999 inset;
-  
     float: right;
-    right: 180px;
 }
 .vendorFeatures .searchContent input {
 	border:none;
@@ -1185,7 +1185,7 @@ margin: 10px 34%;
     width: auto;
 }
 .couponWrapper .userPanel .searchUser .searchInput {
-    background: url("img/bg_SearchUser.png") no-repeat scroll 0 0 transparent;
+    background: url("bg_SearchUser.png") no-repeat scroll 0 0 transparent;
     height: 26px;
     padding-left: 5px;
     padding-top: 8px;
