@@ -7,8 +7,21 @@
                 </div>
                 <div class="userPanel">
                     <div class="searchUser">
-                        <span class="searchInput left"><input type="text" placeholder="search"></span><span class="addSearch left"><img border="0" src="/assets/btn_AddNewSearch.png"></span><span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img border="0" src="/assets/btnDropDownSelectColum.png"></span></span>
-                    </div><span class="showUser clear"><span class="userLastname">order <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>
+                      <form action="/sites/<%=params[:site_id]%>/coupons" method="get" name="searchbox" id='searchbox'>
+                             <span span="searchInput left">
+                          <input type="text" name='query' >
+                             </span>
+                                        <div class="selectDiv">
+                          <select name='search_on'class="select" title="Select one">
+                            <option selected value='code'>Coupon code</option>
+                            <option selected value='free_text'>Text</option>
+                            <option selected value='created_by'>Created By</option>
+
+                          </select>
+                        </div>
+                      </form>
+                    </div>
+                  <span class="showUser clear"><span class="userLastname">order <img src="/assets/btn_deleteUser_disabled.png"></span><span class="user-label">type</span></span>
                     <span class="showUser clear"><span class="userLastname">use <img src="/assets/btn_deleteUser_active.png"></span><span class="user-label">multiuse</span></span>
                 </div>
                 <div class="userPanelDevider">
@@ -126,7 +139,7 @@
                                     </div>
                                     <div class="overview" style="top: 0px;">
                                         <ul class="ConLibra">
-                                            <%Coupon.all.each do |coupon|%>
+                                            <%@coupons.all.each do |coupon|%>
                                             <li class="alt">
                                                 <span class="couponText"><%=coupon.code%></span>
                                                 <span class="textData"><%=coupon.free_text%></span>

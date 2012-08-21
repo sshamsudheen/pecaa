@@ -21,8 +21,10 @@
             <div class="title">current reviews</div>
             </div>
             <div class="searchContent">
-		    	<input type="text" placeholder="search">
+              <%=form_tag "/sites/#{params[:site_id]}/reviews", :method=>"get" do |f|%>
+		    	<input type="text" placeholder="search" name="query">
 		    	<span class="searchIcon"><a href="#"></a></span>
+               <%end%>
 		    </div>
           <div class="site-users left">
           	<div class="detailsPopDiv1" style="display:none;">
@@ -59,7 +61,7 @@
                       <div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
                       <div style="top: 0px;" class="overview featureProduct">
                         <ul class="ConLibra ">
-                          <%Review.all.each do |review|%>
+                          <%@reviews.all.each do |review|%>
                           	<li class="selected alt"> <span class="userText"><%=review.user.username rescue nil%></span><span class="dateText"><%=review.created_at.strftime('%D')%></span><span class="productText"><%=review.product.name%></span><span class="reviewText"><%=review.description[0..20]%></span> <span class="ratingText"></span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/reviews/<%=review.id%>/approve'"><input type="checkbox" id="shareThis" <%= review.approved ? "checked='yes'" : ''%> class="styled"></span></span><span class="close"><a href="/sites/<%=params[:site_id]%>/reviews/<%=review.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
 						  <%end%>
                           </ul>

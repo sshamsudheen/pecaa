@@ -36,7 +36,10 @@
 								  <button class="addNewUser" onclick="new_site_vendors();">add new vendor</button>
                                  </div>
                                  <div class="searchContent">
-		    						<input type="text" placeholder="search"><span class="searchIcon"><a href="#"></a></span>
+                                   <%=form_tag "/sites/#{params[:site_id]}/site_vendors", :method=>"get" do |f|%>
+                                       <input type="text" placeholder="search" name="query">
+                                       <span class="searchIcon"><a href="#"></a></span>
+                                   <%end%>
 							    </div>
                                 </div>
     							<div class="page-data clear">
@@ -59,7 +62,7 @@
     												<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
 				 									<div class="overview" style="top: 0px; ">
 				    									<ul class="ConLibra">
-				    										<%SiteVendor.all.each do|sv|%>
+				    										<%@site_vendors.all.each do|sv|%>
 				    										<li class="alt" onmouseover="show_site_vendors('<%=sv.id%>')" onclick="edit_site_vendors('<%=sv.id%>')">
 				    											<span class="nameText"><span class="pointer"></span><%=sv.name%></span>
                                                                 <span class="dateText"><%=sv.created_at.strftime('%y/%m/%d')%></span>

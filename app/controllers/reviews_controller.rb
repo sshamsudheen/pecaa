@@ -3,8 +3,22 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   layout 'features'
   def index
-    @reviews = Review.all
 
+    @reviews = Review.where('')
+    if !params[:query].blank?
+
+      @searchName	=	params[:query]
+      @searchOn	=	params[:search_on]
+      #if params[:search_on]
+        #  user_ids = User.where("name like ?", "%#{params[:query]}%").collect(&:id)
+        #  @gift_certificates= @gift_certificates.where("assigned_to in (?)", user_ids)
+        #else
+        @reviews = @reviews.where("description like ?", "%#{params[:query]}%")
+      #end
+    end
+    #if !params[:date_added].blank?
+    #  @reviews = @reviews.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+    #end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reviews }

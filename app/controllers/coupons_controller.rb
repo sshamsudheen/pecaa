@@ -3,7 +3,22 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   layout 'features'
   def index
-    @coupons = Coupon.all
+
+    @coupons= Coupon.where('')
+    if !params[:query].blank?
+      @searchName	=	params[:query]
+      @searchOn	=	params[:search_on]
+      if params[:search_on] =="created_by"
+        user_ids = User.where("username like ?", "%#{params[:query]}%").collect(&:id)
+        @coupons= @coupons.where(" created_by in (?)", user_ids)
+      else
+
+        @coupons = @coupons.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
+      end
+    end
+    if !params[:date_added].blank?
+      @coupons = @coupons.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+    end
 
     respond_to do |format|
       format.html # index.html.erb

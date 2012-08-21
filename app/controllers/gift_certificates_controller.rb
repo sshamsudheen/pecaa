@@ -3,7 +3,21 @@ class GiftCertificatesController < ApplicationController
   # GET /gift_certificates.json
   layout 'features'
   def index
-    @gift_certificates = GiftCertificate.all
+    @gift_certificates= GiftCertificate.where('')
+    if !params[:query].blank?
+      @searchName	=	params[:query]
+      @searchOn	=	params[:search_on]
+      if params[:search_on] == "assigned_to"
+        user_ids = User.where("username like ?", "%#{params[:query]}%").collect(&:id)
+        @gift_certificates= @gift_certificates.where("assigned_to in (?)", user_ids)
+      else
+        @gift_certificates= @gift_certificates.where("#{params[:search_on]} like ?", "%#{params[:query]}%")
+      end
+    end
+    if !params[:date_added].blank?
+      @gift_certificates = @gift_certificates.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+    end
+    #@gift_certificates = GiftCertificate.all
 
     respond_to do |format|
       format.html # index.html.erb

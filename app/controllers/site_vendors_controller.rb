@@ -3,7 +3,20 @@ class SiteVendorsController < ApplicationController
   # GET /site_vendors.json
   layout 'features'
   def index
-    @site_vendors = SiteVendor.all
+    @site_vendors= SiteVendor.where('')
+    if !params[:query].blank?
+      @searchName	=	params[:query]
+      @searchOn	=	params[:search_on]
+      #if params[:search_on]
+        #  user_ids = User.where("name like ?", "%#{params[:query]}%").collect(&:id)
+        #  @gift_certificates= @gift_certificates.where("assigned_to in (?)", user_ids)
+        #else
+        @site_vendors = @site_vendors.where("name like ?", "%#{params[:query]}%")
+      #end
+    end
+    if !params[:date_added].blank?
+      @site_vendors = @site_vendors.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))
+    end
 
     respond_to do |format|
       format.html # index.html.erb
