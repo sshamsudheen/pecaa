@@ -13,8 +13,12 @@ class ReviewsController < ApplicationController
         #  user_ids = User.where("name like ?", "%#{params[:query]}%").collect(&:id)
         #  @gift_certificates= @gift_certificates.where("assigned_to in (?)", user_ids)
         #else
-        @reviews = @reviews.where("description like ?", "%#{params[:query]}%")
+      @reviews = @reviews.where("description like ?", "%#{params[:query]}%")
       #end
+    end
+    if params[:last_login] == "on"
+      current_user.last_sign_in_at
+      @reviews = @reviews.where(:created_at => (current_user.last_sign_in_at..Time.now))
     end
     #if !params[:date_added].blank?
     #  @reviews = @reviews.where(:created_at => (Date.strptime(params[:start_date],"%m-%d-%Y")..Date.strptime(params[:end_date],"%m-%d-%Y")))

@@ -5,9 +5,16 @@
                     <span><a href="$"><img src="css/img/helpIcon.png"></a></span>
                     </h2>
                     <dl>
+                      <%=form_tag "/sites/#{params[:site_id]}/reviews", :method=>"get", :id=>"last_login_filter" do |f|%>
                       <dt>show only new reviews since last login:</dt>
-                      <dd><input type="checkbox" id="shareThis" class="styled"></dd>
-                      
+                      <dd>
+                        <%if params[:last_login]!="on"%>
+                        <input type="checkbox" name="last_login" value="on" id="shareThis"  onclick="$('#last_login_filter').submit()">
+                        <%else%>
+                          <input type="checkbox" name="last_login" value="off" id="shareThis" checked = "true" onclick="$('#last_login_filter').submit()">
+                        <%end%>
+                      </dd>
+                      <%end%>
                     </dl>
                   </div>
                 
