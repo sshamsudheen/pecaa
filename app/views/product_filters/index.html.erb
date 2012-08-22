@@ -2,7 +2,7 @@
 <div class="siteInfo-main cartBg">
     <div class="cartColumsMain2">
         <div class="rowDiv">
-            <h2>product filter setup<span><a href="$"><img src="css/img/helpIcon.png"/></a></span></h2>
+            <h2>product filter setup<span><a href="$"><img src="/assets/helpIcon.png"/></a></span></h2>
             <dl>
                 <dt>
                     enable product filtering:
@@ -60,8 +60,10 @@
                                                 </div>
                                                 <div class="overview featureProduct" style="top: 0px;">
                                                     <ul class="ConLibra ">
+
                                                         <!-- <li> <span class="productName"><span class="pointer"></span> sunglases<span class="status"><img src="css/img/btnMarkNo.png" border="0" /></span></span> <span class="sku">type X</span> <span class="created">08/12/11</span> <span class="vendor">08/12/11</span> <span class="sold">08/12/11</span> <span class="viewed">08/12/11</span> </li>-->
 														<%ProductFilter.all.each_with_index do |product_filter,i|%>
+
                                                         <li class="alt">
                                                             <span class="location"><%=product_filter.name%></span>
                                                             <span class="type"> <span class="edit" id="div_<%=product_filter.id%>"><%=product_filter.friendly_name%></span></span>
