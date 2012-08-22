@@ -27,18 +27,20 @@
 	               <%end%>
 			    </div>
 	          <div class="site-users left">
-	          	<div class="detailsPopDiv1" style="display:none;">
-	        
-	        	 <div class="detailsPopDiv2">
+
+                    <%@reviews.all.each do |review|%>
+                    <div class="detailsPopDiv1" id="show_description_<%=review.id%>" style="display:none;" >
+	        	 <div class="detailsPopDiv" >
 	        <span class="closeBtn" onclick="$('.detailsPopDiv1').hide();"></span>
-	       <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought that</p>
-	              <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over </p>
+	                              <p><%=review.description%></p>
 	        	       
 	        </div>
-	         <div class="bottmArIcon"></div>
-	        
-	        </div>
-	            
+                      <div class="bottmArIcon"></div>
+
+                    </div>
+
+              <%end%>
+
 	            
 	            
 	            <div class="page-data clear">
@@ -62,7 +64,7 @@
 	                      <div style="top: 0px;" class="overview featureProduct">
 	                        <ul class="ConLibra ">
 	                          <%@reviews.all.each do |review|%>
-	                          	<li class="alt"> <span class="userText"><%=review.user.username rescue nil%></span><span class="dateText"><%=review.created_at.strftime('%D')%></span><span class="productText"><%=review.product.name%></span><span class="reviewText"><%=review.description[0..20]%></span> <span class="ratingText"></span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/reviews/<%=review.id%>/approve'"><input type="checkbox" id="shareThis" <%= review.approved ? "checked='yes'" : ''%> class="styled"></span></span><span class="close"><a href="/sites/<%=params[:site_id]%>/reviews/<%=review.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
+	                          	<li class="alt"> <span class="userText"><%=review.user.username rescue nil%></span><span class="dateText"><%=review.created_at.strftime('%D')%></span><span class="productText"><%=review.product.name%></span><span class="reviewText" onmouseover="$('#show_description_<%=review.id%>').show();"><%=review.description[0..20]%></span> <span class="ratingText"></span> <span class="approvedText"><span onclick="window.location.href='/sites/<%=params[:site_id]%>/reviews/<%=review.id%>/approve'"><input type="checkbox" id="shareThis" <%= review.approved ? "checked='yes'" : ''%> class="styled"></span></span><span class="close"><a href="/sites/<%=params[:site_id]%>/reviews/<%=review.id%>" method="delete"> <img border="0" src="/assets/btnDelete.png"></a></span> </li>
 							  <%end%>
 	                          </ul>
 	                        </div>
@@ -81,10 +83,3 @@
                 </div>
            
               </div>
-			  <script>
-			  	$(document).ready(function(){
-			  	$('.reviewText').hover(function () {
-				    $('.detailsPopDiv1').show();
-				  })
-				  })
-			  </script>
