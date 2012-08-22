@@ -56,9 +56,9 @@
     										</ul>
     									</div>
     									<div class="userGridBody">
-    										<div id="scrollbar1">
+    										<div id="products1">
     											<div class="scrollbar" style="height: 400px; "><div class="track" style="height: 400px; "><div class="thumb" style="top: 0px; height: 248.44720496894408px; "><div class="end"></div></div></div></div>
-    											<div class="viewport">
+    											<div class="viewport" style="height: 400px; ">
     												<div class="shadows"><span class="topShadow"></span><span class="bottomShadow"></span></div>
 				 									<div class="overview" style="top: 0px; ">
 				    									<ul class="ConLibra">
@@ -92,6 +92,9 @@
             </div>
 
 <script>
+$(document).ready(function(){
+	$('#products1').tinyscrollbar();
+})
 function new_site_vendors(){
 $.ajax({
                                             type: "get",

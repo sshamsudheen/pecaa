@@ -297,7 +297,7 @@ padding-left:7px;
 }
 .featuresMain .site-users ul.ConLibra li span.reviewText {
     border-right: 1px solid #999999;
-    height: 22px;
+    height: 19px;
     padding-left: 10px;
     padding-top: 5px;
     text-align: left;
@@ -364,7 +364,6 @@ padding-left:7px;
 	z-index:1000;
 	left: 640px;
 	top:150px;
-
 }
 .detailsPopDiv2{
 	background-color:#fff;
@@ -374,17 +373,18 @@ border:solid 1px #fe9e0e;
 border-radius:10px;
 margin:1px;
 }
-.bottmArIcon{
-background-image:url(img/bottomArrowIcon.png);
-height:14px;
-width:28px;
-position:relative;
-bottom:0;
-margin-top:-2px;
-margin-left:50px;	
-z-index:200;
 
+.bottmArIcon {
+	background-image: url(img/bottomArrowIcon.png);
+	height: 14px;
+	width: 28px;
+	position: relative;
+	bottom: 0;
+	margin-top: -2px;
+	margin-left: 50px;
+	z-index: 200;
 }
+
 	
 	.closeBtn{
 	background-image:url(img/btn_PopupClose.png);
@@ -755,7 +755,8 @@ width:245px;
 margin:0;
 padding:5px 10px ;
 }
-
+.tryItonDiv dd{padding: 0; width:0;}
+.tryit .inputReadOnly{background:#D3D3D3; border-radius: 4px;width:180px;}
 .btnId{
 background-image:url(img/btn_createId.png);
 height:24px;
@@ -906,17 +907,15 @@ width:160px;
 	
 }
 .tryItonDiv  dt{
-	width:110px;
-	
+	width:45px;
 }
 
 .tryItonDiv  dd{
-	width:110px;
-	
+	width:auto;
 }
 
-.Btncenter{
-margin: 10px 34%;
+.tryItonDiv .Btncenter{
+margin: 45px 34% 0;
 }
 
 .cartCollumsBottom {
@@ -962,19 +961,22 @@ margin: 10px 34%;
 
 .tryItonDiv .site-users ul.ConLibra li span.cName {
     border-right: 1px solid #999999;
-    height: 41px;
+    height: 30px;
     padding-left: 10px;
-    padding-top: 5px;
+    padding-top: 15px;
     text-align: left;
     vertical-align: top;
-    width: 220px;
+    width: 210px;
+    font-size:16px;
+    font-weight: normal;
+    color: #333;
 }
 
 .tryItonDiv .site-users ul.ConLibra li span.close1 {
     border-right: 1px solid #999999;
-    height: 41px;
+    height: 30px;
     padding-left: 5px;
-    padding-top: 5px;
+    padding-top: 15px;
     text-align: left;
     vertical-align: top;
     width: 30px;
@@ -993,7 +995,7 @@ margin: 10px 34%;
 .tryItonDiv .rightButtonDiv {
     float: right;
     width: 200px;
-	margin-right:253px;
+	margin-right:325px;
 	margin-bottom:10px;
 }
 

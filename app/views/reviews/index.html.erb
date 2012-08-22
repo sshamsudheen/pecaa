@@ -28,18 +28,17 @@
 			    </div>
 	          <div class="site-users left">
 	          	<div class="detailsPopDiv1" style="display:none;">
-	        
-	        	 <div class="detailsPopDiv2">
-	        <span class="closeBtn" onclick="$('.detailsPopDiv1').hide();"></span>
-	       <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought that</p>
-	              <p>over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over </p>
-	        	       
-	        </div>
-	         <div class="bottmArIcon"></div>
-	        
-	        </div>
-	            
-	            
+					<div class="detailsPopDiv2">
+						<span class="closeBtn" onclick="$('.detailsPopDiv1').hide();"></span>
+						<p>
+							over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought that
+						</p>
+						<p>
+							over all i thought that over all i thought that over all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over all i thought thatover all i thought that over
+						</p>
+					</div>
+					<div class="bottmArIcon"></div>
+				</div>
 	            
 	            <div class="page-data clear">
 	              <div class="userGrid customTax1">
@@ -84,7 +83,7 @@
 			  <script>
 			  	$(document).ready(function(){
 			  	$('.reviewText').hover(function () {
-				    $('.detailsPopDiv1').show();
+				    if(!$('.detailsPopDiv1').is(':visible')) $('.detailsPopDiv1').show();
 				  })
 				  })
 			  </script>

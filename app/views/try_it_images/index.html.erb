@@ -31,7 +31,7 @@
                                             </ul>
                                         </div>
                                         <div class="userGridBody">
-                                            <div id="scrollbar1">
+                                            <div id="products1">
                                                 <div class="scrollbar" style="height: 432px;">
                                                     <div class="track" style="height: 432px;">
                                                         <div class="thumb" style="top: 0px; height: 397.072px;">
@@ -40,7 +40,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="viewport">
+                                                <div class="viewport"  style="height: 432px;">
                                                     <div class="shadows">
                                                         <span class="topShadow"></span>
                                                         <span class="bottomShadow"></span>
@@ -63,6 +63,7 @@
                                     </div>
                                 </div>
 								<div class="rowRightDiv" id="edit_image">
+									
 								</div>
                             </div>
                         </div>
@@ -73,6 +74,9 @@
     </div>
 </div>
 <script>
+	$(document).ready(function(){
+		$('#products1').tinyscrollbar();
+	})
     function show_image(id){
         $.ajax({
             type: "get",
