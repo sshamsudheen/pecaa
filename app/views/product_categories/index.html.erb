@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "jquery.loadmask"%>
 <%= javascript_include_tag 'jquery.ui.mouse', 'jquery.ui.core','jquery.ui.widget','jquery.ui.draggable.js','jquery.ui.droppable','jquery.ui.sortable','jquery.jeditable'%>
 <%= javascript_include_tag 'js/nestysorty','js/jquery.json','js/jquery.loadmask'%>
+<script type="text/javascript" src="/assets/alert_box.js"></script>
 
 <div class="content-section categoryMain">
     <div class="pages-main">
@@ -95,7 +96,7 @@
     // })
     
     var edittext_url = "<%=update_name_site_product_categories_path(@site)%>";
-    get_Inline_editors_ready('PcName', edittext_url)    
+    get_Inline_editors_ready('.PcName', edittext_url)    
     
 	})
 </script>

@@ -55,12 +55,19 @@
 
             <div class="bottomDivRepeat">
               <div class="colum-section last">
-                <div class="title2">Product Categories<span class="help"><a href="#"></a></span></div>
+                <div class="title2">Product Categories
+                  <span class="help"><a href="#"></a></span>
+                </div>
+                <div class="productsetup">
+                  <div class="linkExistBox searchResultBox all_categories" id="linktoExisting">
+                    <%= render :partial=>"products/all_categories" %>
+                  </div>
+                </div>
                 <div class="group">
                   <div class="searchAC">
                     <input type="text" class="search" placeholder="search categories" id="query">
                     <div id="relSearchResults" class="relProductOptBox" style="display:none;"></div>
-                    <span><input name="" type="button" value="view all" class="blueBtn"></span>
+                    <span><input name="" id="view_all_categories" type="button" value="view all" class="blueBtn"></span>
                     <div id='associated_categories'>
                       <%=render :partial=>"products/associated_categories"%>
                     </div>
@@ -77,7 +84,7 @@
                   <div class="searchAC">
                     <input type="text" class="search" placeholder="search vendors" id="vendor_query">
                     <div id="vendorSearchResults" class="relProductOptBox" style="display:none;"></div>
-                    <span><input name="" type="button" value="view all" class="blueBtn"></span>
+                    <span><input name="" id="view_all_vendors" type="button" value="view all" class="blueBtn"></span>
                     <div id='associated_vendors'>
                       <%= render :partial=>"products/associated_vendors" %>
                     </div>
@@ -118,7 +125,18 @@
     });
   });
   
+  $('#view_all_vendors').live('click', function(){
+    $.ajax({
+      type: "POST",
+      url: "<%=search_vendors_site_product_path(@site, @product)%>",
+      data:"query="+'',
+      success: function(result){
+        $('#vendorSearchResults').html(result).show();
+    }});
+  })
+  
   $('.category_associate').live('click', function(){
+    $('#linktoExisting').hide();
     $.ajax({
       type: "get",
       url: $(this).attr('href'),
@@ -127,6 +145,7 @@
     }});
     return false;
   });
+  
   
   $('.vendor_associate').live('click', function(){
     $.ajax({
@@ -176,7 +195,15 @@
     }
     return false;
   });
+  $('#linktoExisting').hide();
   
+	$('#view_all_categories').click(function() {
+		$('#linktoExisting').show();
+	})
+	$('#close_all_category').click(function() {
+		$('#linktoExisting').hide();
+	})
+	
   	
 </script>
 

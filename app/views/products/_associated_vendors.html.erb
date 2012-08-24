@@ -1,6 +1,6 @@
-<%@product.vendors.each do |c| %>
+<% @product.vendors.each do |c| %>
   <span class="lightBlueBtn">
-    <a class="category_associate" href="<%=remove_vendor_site_product_path(@site, @product.id, :product_vendor_id => c.product_vendor.id)%>">
+    <a class="vendor_associate" href="<%=remove_vendor_site_product_path(@site, @product.id, :product_vendor_id => c.product_vendor.id)%>">
     <%=c.product_vendor.name%>
     </a>
   </span>

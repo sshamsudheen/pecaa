@@ -20,7 +20,7 @@ class Theme < ActiveRecord::Base
   
   def create_template_directory
     FileUtils.cp_r("#{Rails.root}/public/templates", get_file_path)
-    FileUtils.cp_r("#{Rails.root}/public/preview/assets", get_file_path)
+    FileUtils.cp_r("#{Rails.root}/public/preview/assets", get_load_path_assets)
   end
   
   def unzip_extract(file_options)
@@ -83,11 +83,11 @@ class Theme < ActiveRecord::Base
   end
   
   def get_load_path
-    "/themes/#{self.secret_code}/themes"
+    "#{self.get_file_path}/themes"
   end
   
   def get_load_path_assets
-    "/themes/#{self.secret_code}/themes/assets/"
+    "#{self.get_file_path}/themes/assets"
   end
   
 

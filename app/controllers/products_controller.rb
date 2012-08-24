@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
   
   def edit
+    @product_categories = ProductCategory.find(:all)
     render :action => :new
   end
   
@@ -69,13 +70,6 @@ class ProductsController < ApplicationController
     render :partial => "associated_categories"
   end
   
-  def remove_category
-    if category = @product.categories.find_by_product_id_and_product_category_id(@product.id, params[:product_category_id])
-      category.destroy
-    end
-    render :partial => "associated_categories"
-  end
-  
   def search_vendors
     @product_vendors = ProductVendor.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
     render :partial => "search_vendors"
@@ -95,6 +89,13 @@ class ProductsController < ApplicationController
     render :partial => "associated_vendors"
   end
   
+  def remove_category
+    if category = @product.categories.find_by_product_id_and_product_category_id(@product.id, params[:product_category_id])
+      category.destroy
+    end
+    render :partial => "associated_categories"
+  end
+    
   def videos_list
     @product_videos = @product.product_videos
   end
