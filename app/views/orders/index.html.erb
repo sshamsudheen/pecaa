@@ -118,7 +118,7 @@
                                 <div class="overview leftMargin" style="top: 0px;">
                                     <ul class="ConLibra">
                                         <%Order.all.each do |order| %>
-                                        <li class="alt">
+                                        <li class="alt" onclick="show_order('<%=order.id%>')">
                                             <span class="dateCol"><span class="pointer" style="display: none;"></span><%=order.order_id%></span>
                                             <span class="dateCol"><%=order.created_at.strftime("%y/%m/%d")%></span>
                                             <span class="dateCol"><%=order.status%></span>
@@ -147,29 +147,26 @@
 		if(!$('#orders1 ul.ConLibra li').length){
 			$('.userGrid').find('.leftMargin').removeClass('leftMargin');
 		}
-		$('#orders1 ul.ConLibra li').live('click',function(){
-			var $this = $(this);
-			if(!$this.hasClass('selected')){
-				$('ul.ConLibra li').removeClass('selected');
-				$('ul.ConLibra li').find('.pointer').hide();
-           		$this.addClass('selected').find('.pointer').show();
-           		show_order($this.index() + 1);
-			}
-			// now this is important, so that the page won't jump
-			return false;
-		})
-			
 	})
 
 	function show_order(id){
         // highlight the row that is clicked
+        var $this = $('#orders1').find('ul.ConLibra li:eq('+(id-1)+')');
+        if(!$this.hasClass('selected')){
+            $('ul.ConLibra li').removeClass('selected');
+            $('ul.ConLibra li').find('.pointer').hide();
+            $this.addClass('selected');
+            $this.find('.pointer').show();
             // triggering an ajax call to fetch the details
-        $.ajax({
-            type: 'get',
-            url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
-            success: function(data){
-                $('#show_order_list').html(data);
-            }
-        });
+            $.ajax({
+                type: 'get',
+                url: '<%="/sites/#{params[:site_id]}/orders/"%>' + id,
+                success: function(data){
+                    $('#show_order_list').html(data);
+                }
+            });
+        }
+        // now this is important, so that the page won't jump
+        return false;
 	}
 </script>
