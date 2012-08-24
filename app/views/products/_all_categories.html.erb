@@ -1,0 +1,25 @@
+<h2>show all categories 
+  <span>
+    <a id="close_all_category"href="#"><img width="20" height="22" src="/assets/searchCloseBtn.png"></a>
+  </span>
+</h2>
+
+<ul class="ulRepeat">
+  <li>show all categories</li>
+    <% @product_categories.each_with_index do |c, i| %>
+    <li>
+      <%=c.name%>
+    <span>
+      <a href="<%=add_category_site_product_path(@site, @product.id, :product_category_id => c.id) %>" class="category_associate">
+        <img src="/assets/searchAddBtn.png" width="20" height="22">
+      </a>
+    </span>
+  </li>
+  <% if (i+1 % 10) == 0 %>
+    </ul>
+    <ul class="ulRepeat">
+      <li>show all categories<span><a href="#"><img width="20" height="22" src="/assets/searchAddBtn.png"></a></span></li>
+  <% end %>
+
+<% end %>
+</ul>
