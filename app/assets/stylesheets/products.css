@@ -172,9 +172,10 @@
 	border-left: 1px solid #999999;
 	height: 19px;
 	padding-top: 5px;
-	text-align: center;
+	padding-left: 5px;
 	vertical-align: top;
-	width: 80px;
+	text-align:left;
+	width: 75px;
 }
 .productGrid ul.ConLibra li span.customCol{ 
 	border-left: 1px solid #999999;
@@ -233,6 +234,12 @@
 }
 #orders1 .pointer {
 	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
+	height: 24px;
+    left: -9px;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    z-index: 999;
 }
 /*product setup*/
 
