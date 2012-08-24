@@ -1783,10 +1783,12 @@ z-index:300;
 }
 .userGrid .ConLibraHeads .amtCol,
 .userGrid .userGridFooter ul.totals .amtCol{
-	width: 85px;
+	width: 75px;
 	display: inline-block;
-	text-align: right;
+	padding-right: 5px;
 }
+.userGrid .ConLibraHeads .amtCol{text-align:center;}
+.userGrid .userGridFooter ul.totals .amtCol{text-align:right;}
 .userGrid .ConLibraHeads .amtCol-narrow,
 .userGrid .userGridFooter ul.totals .amtCol-narrow{
 	width: 65px;
