@@ -1783,7 +1783,7 @@ z-index:300;
 }
 .userGrid .ConLibraHeads .amtCol,
 .userGrid .userGridFooter ul.totals .amtCol{
-	width: 88px;
+	width: 85px;
 	display: inline-block;
 	text-align: right;
 }
@@ -1800,6 +1800,8 @@ z-index:300;
 	width: 100px;
     height: 19px;
     padding-bottom: 2px;
+    padding-left: 5px;
+    overflow: hidden;
     padding-top: 3px;
     vertical-align: top;
 }
@@ -1812,7 +1814,7 @@ z-index:300;
     vertical-align: top;
 }
 .userGrid ul.ConLibra li .amtCol{
-	width: 85px;
+	width: 75px;
 	text-align:right;
 	border-left: 1px solid #999999;
     height: 19px;
