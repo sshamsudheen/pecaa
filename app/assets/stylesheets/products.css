@@ -16,7 +16,9 @@
 	left:0;
 }
 /*end common */
-
+.userSearchField {
+	position:absolute; left:0; width:180px; height:34px; border:none; background:url(../assets/user-search-field-bg.png) no-repeat left top; padding:0px 40px 0px 5px; top:0px;
+}
 .main-nav ul li.products {
 	background: url(img/btn_products.png) no-repeat;
 	width: 102px;

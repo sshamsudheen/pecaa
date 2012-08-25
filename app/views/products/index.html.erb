@@ -5,13 +5,12 @@
   <div class="pages-wrapper">
     <div class="usersLeftPane left">
       <div class="title">Manage Products <span class="help"><a href="#"></a></span></div>
-      <div class="userPanel">
+      <div class="userPanel" style="height: 124px;">
         <form action=<%=search_products_site_products_path(:site_id=>@site.id)%> method="post" name="searchbox" id='searchbox'>
           <input id="tokentag" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
           <input type="text" name='query' class="userSearchField" value="<%=params[:query]%>"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
         <!-- names -->
-          
-        <div class="selectDiv">
+        <div class="selectDiv" style="left: 0; top: 31px;">
           <select name='search_on'class="select" title="Select one">
             <option selected value='all'>all columns</option>
             <option value='name'>Name</option>
@@ -19,7 +18,11 @@
             <option value='sku'>SKU</option>
           </select>
         </div><!-- end of search and select -->
-        <span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png" /></span><span class="user-label">name</span></span> <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png" /></span><span class="user-label">role</span></span> </div>
+        <div style="position: relative; top: 40px;">
+        	<span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png" /></span><span class="user-label">name</span></span> 
+        	<span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png" /></span><span class="user-label">role</span></span> 
+        </div>
+        </div>
         <% # init current month n year
            _c_m = DateTime.now.month.to_s
            _c_y = DateTime.now.year.to_s
@@ -27,34 +30,31 @@
         
       <div class="userPanelDevider"></div>
       <div class="userPanel productp">
-        <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
-          <div class="searchOptions">
-            <div class="anoption">
-                <input type=checkbox id="last_edited" name="last_edited" ><span class="label">last edited</span>  <!-- class="styled"  -->
-                <div class="edate-slider" id='dteRange'>
+      	<div class="date-created"><input id="last_edited" class="styled" type="checkbox"><label for="shareThis">last edited</label></div>
+        <div class="rangeSlider">
+			<div class="edate-slider" id='dteRange'>
                   <%=hidden_field_tag :last_edited_from, "#{_c_y+'-'+_c_m+'-'+'7'}"%>
                   <%=hidden_field_tag :last_edited_to, "#{_c_y+'-'+_c_m+'-'+'16'}"%>
                 </div>
-                <div class="rangedisplay">
-                  <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>
+                <div class="rangedisplay" style="margin-top: 10px;">
+                  <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <span class="dte_to">To: <%=_c_m+'/16/'+_c_y%></span>
                 </div>
+		</div>
+		<div class="last-activity">
+			<input type="checkbox" id="date_created" name="date_created" class="styled" />
+          	<label for="lastActivityVal">last activity</label>
+        </div>
+        <div class="rangeSlider">
+            <div class="cdate-slider" id='dtcRange'>
+              <%=hidden_field_tag :date_created_from, "#{_c_y+'-'+_c_m+'-'+'7'}"%>
+              <%=hidden_field_tag :date_created_to, "#{_c_y+'-'+_c_m+'-'+'16'}"%>
             </div>
-            <div class="anoption">
-                <input type=checkbox id="date_created" name="date_created" ><span class="label">date created</span>
-                <div class="cdate-slider" id='dtcRange'>
-                  <%=hidden_field_tag :date_created_from, "#{_c_y+'-'+_c_m+'-'+'7'}"%>
-                  <%=hidden_field_tag :date_created_to, "#{_c_y+'-'+_c_m+'-'+'16'}"%>
-                </div>
-                <div class="rangedisplay">
-                  <span class="dtc_from">From: <%=_c_m+'/7/'+_c_y%></span>
-                  <span class="dtc_to">To: <%=_c_m+'/16/'+_c_y%></span>
-                </div>
+            <div class="rangedisplay" style="margin-top: 10px;">
+              <span class="dtc_from">From: <%=_c_m+'/7/'+_c_y%></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="dtc_to">To: <%=_c_m+'/16/'+_c_y%></span>
             </div>
-          </div>
-          <div class="clear"></div>
-          <div class="clearHeight10"></div>
-        </div><!-- end of rc slider -->
+		</div>
 
 
         <!-- <div class="date-created">
@@ -81,7 +81,8 @@
           <input type="radio" class="styled"  name='products_status'  value="inactive" name='products_status' />
           <label for="dateCreated">show inactive products only</label>
         </div>
-        <input type="submit" value='Search' class="btnLogin">
+        <div style="width: 210px; text-align: center"><input type="submit" value='Search' class="blueBtn" style="margin: 0 auto;"></div>
+        
          </form>
       </div>
       

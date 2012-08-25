@@ -245,6 +245,8 @@
 	min-height: 100px;
 	margin-bottom:10px;
 	padding-bottom: 5px;
+	position: relative;
+	width:225px;
 }
 .usersLeftPane .userPanel .showRoles{
 	padding: 0 10px;
