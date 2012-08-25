@@ -125,7 +125,7 @@
                                             <span class="dateCol"><%=order.pay_status%></span>
                                             <span class="dateCol"><%=order.ship_status%></span>
                                             <span class="customCol"><%=order.customer_email%></span>
-                                            <span class="dateCol">250</span>
+                                            <span class="amtCol">250</span>
 											<span class="dateCol"><%=link_to "Edit","/sites/#{params[:site_id]}/orders/#{order.id}/edit",:onclick => "window.location.href='/sites/#{params[:site_id]}/orders/#{order.id}/edit'"%></span>
                                         </li>
                                         <%end %>
@@ -144,11 +144,14 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#orders1').tinyscrollbar();
+		if(!$('#orders1 ul.ConLibra li').length){
+			$('.userGrid').find('.leftMargin').removeClass('leftMargin');
+		}
 	})
 
 	function show_order(id){
         // highlight the row that is clicked
-        var $this = $(this);
+        var $this = $('#orders1').find('ul.ConLibra li:eq('+(id-1)+')');
         if(!$this.hasClass('selected')){
             $('ul.ConLibra li').removeClass('selected');
             $('ul.ConLibra li').find('.pointer').hide();

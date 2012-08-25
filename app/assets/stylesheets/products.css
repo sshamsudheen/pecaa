@@ -172,9 +172,11 @@
 	border-left: 1px solid #999999;
 	height: 19px;
 	padding-top: 5px;
-	text-align: center;
+	padding-left: 5px;
 	vertical-align: top;
-	width: 80px;
+	text-align:left;
+	width: 75px;
+	position: relative;
 }
 .productGrid ul.ConLibra li span.customCol{ 
 	border-left: 1px solid #999999;
@@ -233,6 +235,12 @@
 }
 #orders1 .pointer {
 	background:url("img/pointerUserTableRow.png") no-repeat scroll 0 0 transparent !important;
+	height: 24px;
+    left: -9px;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    z-index: 999;
 }
 /*product setup*/
 
@@ -1775,10 +1783,12 @@ z-index:300;
 }
 .userGrid .ConLibraHeads .amtCol,
 .userGrid .userGridFooter ul.totals .amtCol{
-	width: 88px;
+	width: 75px;
 	display: inline-block;
-	text-align: right;
+	padding-right: 5px;
 }
+.userGrid .ConLibraHeads .amtCol{text-align:center;}
+.userGrid .userGridFooter ul.totals .amtCol{text-align:right;}
 .userGrid .ConLibraHeads .amtCol-narrow,
 .userGrid .userGridFooter ul.totals .amtCol-narrow{
 	width: 65px;
@@ -1792,6 +1802,8 @@ z-index:300;
 	width: 100px;
     height: 19px;
     padding-bottom: 2px;
+    padding-left: 5px;
+    overflow: hidden;
     padding-top: 3px;
     vertical-align: top;
 }
@@ -1804,7 +1816,7 @@ z-index:300;
     vertical-align: top;
 }
 .userGrid ul.ConLibra li .amtCol{
-	width: 85px;
+	width: 75px;
 	text-align:right;
 	border-left: 1px solid #999999;
     height: 19px;
