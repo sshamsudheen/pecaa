@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
     
     if !params[:query].blank?
       if params[:search_on] == 'all'
-        search_on += 'name LIKE :q AND vendor LIKE :q AND sku LIKE :q'
+        search_on += 'name LIKE :q OR vendor LIKE :q OR sku LIKE :q'
       else
         search_on += params[:search_on]+' LIKE :q'
       end
