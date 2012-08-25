@@ -178,6 +178,7 @@ Mystore3::Application.routes.draw do
       get 'index', :on => :collection
       get 'featured_products', :on => :collection
       post 'search', :on => :collection
+      post 'search_products', :on => :collection
       get 'add_featured', :on => :member, :to => 'products#update'
       get 'images_list', :on => :member
       get 'videos_list', :on => :member

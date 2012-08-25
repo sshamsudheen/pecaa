@@ -1,15 +1,73 @@
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <div class="pages-main">
   <div class="pages-wrapper">
     <div class="usersLeftPane left">
       <div class="title">Manage Products <span class="help"><a href="#"></a></span></div>
       <div class="userPanel">
-        <div class="searchUser"> <span class="searchInput left">
-          <input type="text" />
-          </span> <span class="addSearch left"><img src="/assets/btn_AddNewSearch.png" border="0" /></span> <span class="selectColumns clear"><span class="columnText">all columns</span><span class="btnDown right"><img src="/assets/btnDropDownSelectColum.png" border="0" /></span></span> </div>
+        <form action=<%=search_products_site_products_path(:site_id=>@site.id)%> method="post" name="searchbox" id='searchbox'>
+          <input id="tokentag" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+          <input type="text" name='query' class="userSearchField" value="<%=params[:query]%>"> <img src="/assets/users/images/icon-user-search-field.png" style="position:absolute; right:0; top:0;">
+        <!-- names -->
+          
+        <div class="searchUser"> 
+          <span class="searchInput left"></span>
+          <span class="addSearch left">
+            <img src="/assets/btn_AddNewSearch.png" border="0" />
+          </span>
+          <span class="selectColumns clear">
+            <span class="columnText">all columns</span>
+            <span class="btnDown right">
+              <img src="/assets/btnDropDownSelectColum.png" border="0" />
+            </span>
+          </span> 
+        </div>
+        <div class="selectDiv">
+          <select name='search_on'class="select" title="Select one">
+            <option selected value='all'>all columns</option>
+            <option selected value='name'>Name</option>
+            <option selected value='vendor'>Vendor Name</option>
+            <option selected value='sku'>SKU</option>
+          </select>
+        </div><!-- end of search and select -->
         <span class="showUser clear"><span class="userLastname">smith <img src="/assets/btn_deleteUser_active.png" /></span><span class="user-label">name</span></span> <span class="showUser clear"><span class="userLastname">admin X <img src="/assets/btn_deleteUser_disabled.png" /></span><span class="user-label">role</span></span> </div>
+        <% # init current month n year
+           _c_m = DateTime.now.month.to_s
+           _c_y = DateTime.now.year.to_s
+        %>
+        
       <div class="userPanelDevider"></div>
       <div class="userPanel productp">
-        <div class="date-created">
+        <div class="rcPaleBlue" style="padding:5px 5px 5px 5px; position:relative;">
+          <div class="searchOptions">
+            <div class="anoption">
+                <input type=checkbox id="last_edited" name="last_edited" ><span class="label">last edited</span>  <!-- class="styled"  -->
+                <div class="edate-slider" id='dteRange'>
+                  <%=hidden_field_tag :last_edited_from, "#{_c_y+'-'+_c_m+'-'+'7'}"%>
+                  <%=hidden_field_tag :last_edited_to, "#{_c_y+'-'+_c_m+'-'+'16'}"%>
+                </div>
+                <div class="rangedisplay">
+                  <span class="dte_from">From: <%=_c_m+'/7/'+_c_y%></span>
+                  <span class="dte_to">To: <%=_c_m+'/16/'+_c_y%></span>
+                </div>
+            </div>
+            <div class="anoption">
+                <input type=checkbox id="date_created" name="date_created" ><span class="label">date created</span>
+                <div class="cdate-slider" id='dtcRange'>
+                  <%=hidden_field_tag :date_created_from, "#{_c_y+'-'+_c_m+'-'+'7'}"%>
+                  <%=hidden_field_tag :date_created_to, "#{_c_y+'-'+_c_m+'-'+'16'}"%>
+                </div>
+                <div class="rangedisplay">
+                  <span class="dtc_from">From: <%=_c_m+'/7/'+_c_y%></span>
+                  <span class="dtc_to">To: <%=_c_m+'/16/'+_c_y%></span>
+                </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="clearHeight10"></div>
+        </div><!-- end of rc slider -->
+
+
+        <!-- <div class="date-created">
           <input type="checkbox"  class="styled" />
           <label for="shareThis">show date created</label>
         </div>
@@ -17,23 +75,26 @@
         <div class="last-activity">
           <input type="checkbox" class="styled" id="lastActivityVal" />
           <label for="lastActivityVal">last activity</label>
-        </div>
+        </div> -->
       </div>
       <div class="userPanelDevider"></div>
       <div class="userPanel">
         <div class="date-created">
-          <input type="radio" checked="checked" class="styled" />
+          <input type="radio" name='products_status'  value="all" checked="checked" class="styled" />
           <label for="dateCreated">show all products</label>
         </div>
         <div class="date-created">
-          <input type="radio" class="styled" />
+          <input type="radio" name='products_status'  value="live" class="styled" name='products_status' />
           <label for="dateCreated">show active products only</label>
         </div>
         <div class="date-created">
-          <input type="radio" class="styled" />
+          <input type="radio" class="styled"  name='products_status'  value="inactive" name='products_status' />
           <label for="dateCreated">show inactive products only</label>
         </div>
+        <input type="submit" value='Search' class="btnLogin">
+         </form>
       </div>
+      
     </div>
     <div class="site-users left">
       <div class="addNewUserBtn">
@@ -43,7 +104,7 @@
         <div class="userGrid productGrid">
           <div class="userGridHeader">
             <ul class="ConLibraHeads">
-              <li> <span class="userName">Product Name</span> <span class="group">SKU</span> <span class="created">Date Created</span> <span class="vender">Vender</span> <span class="sold">Sold</span> <span class="view">Viewed</span> <span class="rating">Rating</span> <span class="active">Active</span> </li>
+              <li> <span class="userName">Product Name</span> <span class="group">SKU</span> <span class="created">Date Created</span> <span class="vender">Vendor</span> <span class="sold">Sold</span> <span class="view">Viewed</span> <span class="rating">Rating</span> <span class="active">Active</span> </li>
             </ul>
           </div>
           <div class="userGridBody">
@@ -64,11 +125,12 @@
                       <span class="userName">
                         <a href ="<%= edit_site_product_path(@site, p)%>"><%= p.name%></a>
                       </span> 
-                      <span class="group"><%= p.sku%> </span> 
-                      <span class="created"><%= p.created_at.strftime("%d/%m/%y")%> </span> 
-                      <span class="vender">Zeiss</span>
-                      <span class="sold">124</span>
-                      <span class="view">1234</span>
+                      <span class="group"><%= (( p.sku && p.sku.length > 9) ? p.sku[0..9] : p.sku) %></span> 
+                      <span class="created"><%= p.created_at.strftime("%d/%m/%y") %> </span> 
+                      <span class="vendor">
+                        <%= ((p.vendor && p.vendor.length > 9) ? p.vendor[0..9] : p.vendor) %></span>
+                      <span class="sold"><%= p.sold %></span>
+                      <span class="view"><%= p.viewed %></span>
                       <span class="rating">
                         <img src="/assets/rating_4.png" border="0" />
                       </span>
@@ -108,5 +170,8 @@ $("span.status a").live("click", function(){
   }});
  return false;
 });
+
 </script>
+<%= javascript_include_tag '/assets/users/scripts/data_picker_setting.js'%>
+<%= javascript_include_tag '/assets/date_sliders.js'%>
 <script type="text/javascript" src="/assets/alert_box.js"></script>

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   before_filter :ensure_site_id
-  before_filter :ensure_product_id, :except => [:index, :new, :search, :create, :featured_products]
+  before_filter :ensure_product_id, :except => [:index, :new, :search, :create, :featured_products, :search_products]
   # edit, :update,:add_image,:images_list, :videos_list, :related_products
   
   def index
@@ -52,6 +52,47 @@ class ProductsController < ApplicationController
   def search
     @products = Product.find(:all, :conditions=>["name like ?", "%#{params[:query]}%"])
     render :partial => "search"
+  end
+  
+  def search_products
+    search_on = ''
+    q = {}
+    and_flag = false
+    
+    if !params[:query].blank?
+      if params[:search_on] == 'all'
+        search_on += 'name LIKE :q AND vendor LIKE :q AND sku LIKE :q'
+      else
+        search_on += params[:search_on]+' LIKE :q'
+      end
+      q.merge!({:q=>"%#{params[:query]}%"})
+      and_flag = true
+    end
+    
+    if params[:last_edited] == 'on'
+      search_on += (and_flag ? ' AND ': '') + 'updated_at >= :last_edited_from AND updated_at <= :last_edited_to'
+      q.merge!({:last_edited_from=>Date.strptime(params[:last_edited_from],'%Y-%m-%d'), 
+        :last_edited_to=>Date.strptime(params[:last_edited_to],'%Y-%m-%d')
+      })
+      and_flag = true
+    end
+    
+    if params[:date_created] == 'on'
+      search_on += (and_flag ? ' AND ': '') + 'created_at >= :date_created_from AND created_at <= :date_created_to'
+      q.merge!({:date_created_from=>Date.strptime(params[:date_created_from],'%Y-%m-%d'),
+         :date_created_to=>Date.strptime(params[:date_created_to],'%Y-%m-%d')
+      })
+      and_flag = true
+    end
+    
+    if params[:products_status] != 'all'
+      search_on += (and_flag ? ' AND ': '') + 'is_active = :status'
+      q.merge!({:status => ( params[:products_status] == 'live' ? true : false)})
+    end
+    
+    @products = search_on.blank? ? Product.all : Product.where("#{search_on}", q)
+    
+    render :action => 'index'
   end
   
   def images_list
