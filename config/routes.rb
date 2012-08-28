@@ -81,6 +81,7 @@ Mystore3::Application.routes.draw do
     post 'customer_login', :on => :member
     get 'user_dashboard', :on => :member
     get 'order_history', :on => :member
+	get 'order_detail', :on => :member
     get 'system_stats', :on => :collection
     get 'ad_setup', :on => :collection
 

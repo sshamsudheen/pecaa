@@ -285,14 +285,40 @@ class SitesController < ApplicationController
   
     @theme_heading = @site.site_style.theme.read_file("theme_page_heading.liquid", 'templates')
     @site_theme = get_files_to_load(@site.site_style.theme) if @site.site_style && @site.site_style.theme
-    customer = Customer.find(session[:customer_id]) if session[:customer_id]
-	@shipping = ShippingDetial.limit(3)
-	#orderdetail = Order.find(:all, :joins[' shipping_detials on shipping_detials.order_id = orders.id'])
-	orderdetail = Order.find(:all, :include => :shipping_detial)
-    #icontent = Liquid::Template.parse(@content).render({"orders" => Order.limit(10)},{ "shippingdetails" => ShippingDetial.limit(2)})
-	icontent = Liquid::Template.parse(@content).render({"orders" => orderdetail, "shipping"=>@shipping})
+    
+	
+	
+	#orderdetail = Order.select('orders.* , shipping_detials.status as shipping_status, shipping_addresses.nickname as name, shipping_addresses.address_line1, shipping_addresses.address_line2, shipping_addresses.city, shipping_addresses.state, shipping_addresses.zip ').joins('left join shipping_detials on shipping_detials.order_id = orders.id').joins('left join shipping_addresses on shipping_addresses.shipping_detial_id = shipping_detials.id').all
+	orderdetail = Order.all   
+	
+	icontent = Liquid::Template.parse(@content).render({"orders" =>orderdetail, "site_id"=>params[:id]})
     lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site_theme"=> @site_theme, "site" => @site)
     render :text => lcontent  
+  end
+
+  def order_detail
+	@site = Site.find(params[:id])
+	@orderId	=	params[:order_id]
+    record = params[:file_name].split('.').first
+    @site.site_style.theme.get_files('templates')
+    @content = @site.site_style.theme.read_file("#{record.downcase}.liquid", 'templates')    
+    
+	
+	orderdetail = Product.joins(:order_products).where('order_products.order_id'=>params[:order_id]).all
+	
+	shippingDetail	=	ShippingAddress.joins(' left join shipping_detials on shipping_detials.id = shipping_addresses.shipping_detial_id ' ).where('shipping_detials.order_id'=>params[:order_id]).limit(1)
+	
+	billinggAddressDetail	=	BillingAddress.joins(' left join billings on billings.id = billing_addresses.billing_id ' ).where('billings.order_id'=>params[:order_id]).limit(1)
+	
+	##
+	billingMethod = Billing.where("order_id"=>params[:order_id])
+	#shipping_details = ShippingDetial.where("order_id"=>params[:order_id])
+
+	shippingMethod = ShippingGateway.joins(" left join shipping_detials on shipping_detials.shipping_gateway_id = shipping_gateways.id ").where("shipping_detials.order_id"=>params[:order_id])
+
+	icontent = Liquid::Template.parse(@content).render({"orders" =>orderdetail, "shippingDetails"=>shippingDetail, "site_id"=>params[:id], "orderid"=>params[:order_id], "billinggAddressDetail"=>billinggAddressDetail, "billingMethod"=> billingMethod, "shippingMethod"=>shippingMethod })
+    #lcontent = Liquid::Template.parse(@content_layout).render("content_for_layout" => icontent, "site_theme"=> @site_theme, "site" => @site)
+    render :text => icontent  
   end
 	
   
